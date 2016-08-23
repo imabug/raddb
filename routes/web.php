@@ -1,0 +1,72 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| This file is where you may define all of the routes that are handled
+| by your application. Just tell Laravel the URIs it should respond
+| to using a Closure or controller method. Build something great!
+|
+*/
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::group([
+    'middleware' => [
+        'web'
+    ]
+], function () {
+    /*
+     * Dashboard routes
+     */
+    // Survey schedule
+    Route::get('/', 'DashboardController@index');
+    // Equipment testing status dashboard
+    Route::get('/dashboard', 'DashboardController@teststatus');
+    Route::get('/teststatus', function() {
+      return redirect('/dashboard');
+    });
+    // Count of surveys per month for year $yr
+    Route::get('/surveycount/{yr}', 'DashboardController@surveycount');
+
+    /*
+     * Machine controller
+     */
+    // Show index of machines grouped by modality
+    Route::get('machines/modalities', 'MachineController@showModalityIndex');
+    // List of machines for a selected modality/modalities
+    Route::get('machines/modalities/{id}', 'MachineController@showModality')
+        ->where('id', '[0-9]+');
+    // Show index of machines grouped by location
+    Route::get('machines/locations', 'MachineController@showLocationIndex');
+    // List of machines for a selected location(s)
+    Route::get('machines/locations/{id}', 'MachineController@showLocation')
+        ->where('id', '[0-9]+');
+    Route::get('machines/{id}/recommendations', 'MachineController@getRecommendations')
+        ->where('id', '[0-9]+');
+    Route::get('machines/{id}/opnotes', 'MachineController@getOperationalNotes')
+        ->where('id', '[0-9]+');
+    Route::get('machines/{id}/gendata', 'MachineController@getGenData')
+            ->where('id', '[0-9]+');
+    Route::get('machines/{id}/tubes', 'MachineController@getTubes')
+            ->where('id', '[0-9]+');
+    Route::resource('machines', 'MachineController');
+
+    Route::resource('contacts', 'ContactController');
+    Route::resource('gendata', 'GenDataController');
+    Route::resource('opnotes', 'OpNoteController');
+    Route::resource('recommendations', 'RecommendationController');
+    Route::resource('testdates', 'TestDateController');
+    Route::resource('tubes', 'TubeController');
+
+    // Routes for managing the lookup tables
+    Route::resource('admin/location', 'LocationController');
+    Route::resource('admin/manufacturer', 'ManufacturerController');
+    Route::resource('admin/modality', 'ModalityController');
+    Route::resource('admin/tester', 'TesterController');
+    Route::resource('admin/testtype', 'TestTypeController');
+});
