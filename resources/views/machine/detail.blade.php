@@ -73,4 +73,18 @@ Notes: {{ $machine->notes }}
     @endforeach
 </table>
 
+<h3>Survey Recommendations</h3>
+<table>
+    <tr>
+        <th>Survey ID</th>
+        <th>Recommendation</th>
+    </tr>
+    @foreach ($recommendations as $rec)
+    <tr>
+        <td>{{ $rec->survey_id }}</td>
+        <td>{{ $rec->recommendation }}</td>
+    </tr>
+    @endforeach
+</table>
+
 @endsection

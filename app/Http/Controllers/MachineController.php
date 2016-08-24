@@ -212,11 +212,15 @@ class MachineController extends Controller
         // Retrieve the operational notes for machine $id
         $opNotes = $this->getOperationalNotes($id);
 
+        // Retrieve the survey recommendations for machine $id
+        $recommendations = $this->getRecommendations($id);
+
         return view('machine.detail', [
             'machine' => $machine,
             'tubes' => $tubes,
             'opnotes' => $opNotes,
-            'surveys' => $surveys
+            'surveys' => $surveys,
+            'recommendations' => $recommendations
         ]);
     }
 
