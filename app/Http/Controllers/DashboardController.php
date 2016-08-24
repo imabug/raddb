@@ -63,7 +63,6 @@ class DashboardController extends Controller
            order by previous.test_date asc;
         */
         // TODO: query misses machines with no survey in previous year
-        // TODO: have previousSurveyID and currentSurveyID link to recommendations page for that survey
         // TODO: may not handle machines with multiple surveys in a year very well
         $surveySchedule = Machine::select('machines.id',
                 'machines.description',
