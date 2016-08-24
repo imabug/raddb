@@ -48,7 +48,7 @@ class TestDate extends Model
      */
     public function machine()
     {
-        return $this->belongsTo('RadBD\Machine');
+        return $this->belongsTo('RadDB\Machine');
     }
 
     public function type()
