@@ -35,7 +35,4 @@
     @endforeach
 </table>
     @endforeach
-<pre>
-{{ print_r($machines) }}
-</pre>
 @endsection
