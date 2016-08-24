@@ -63,8 +63,8 @@ Route::resource('testdates', 'TestDateController');
 Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables
-Route::resource('admin/location', 'LocationController');
-Route::resource('admin/manufacturer', 'ManufacturerController');
-Route::resource('admin/modality', 'ModalityController');
-Route::resource('admin/tester', 'TesterController');
-Route::resource('admin/testtype', 'TestTypeController');
+Route::resource('admin/locations', 'LocationController');
+Route::resource('admin/manufacturers', 'ManufacturerController');
+Route::resource('admin/modalities', 'ModalityController');
+Route::resource('admin/testers', 'TesterController');
+Route::resource('admin/testtypes', 'TestTypeController');

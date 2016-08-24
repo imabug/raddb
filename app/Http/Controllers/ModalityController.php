@@ -18,7 +18,7 @@ class ModalityController extends Controller
         // Show a list of the modalities
         $modalities = Modality::get();
 
-        return view('admin.modality_index', [
+        return view('admin.modalities_index', [
             'modalities' => $modalities
         ]);
     }

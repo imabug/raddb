@@ -18,7 +18,7 @@ class ManufacturerController extends Controller
         // Show a list of the manufacturers
         $manufacturers = Manufacturer::get();
 
-        return view('admin.manufacturer_index', [
+        return view('admin.manufacturers_index', [
             'manufacturers' => $manufacturers
         ]);
     }

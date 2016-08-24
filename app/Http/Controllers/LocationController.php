@@ -18,7 +18,7 @@ class LocationController extends Controller
         // Show a list of the locations
         $locations = Location::get();
 
-        return view('admin.location_index', [
+        return view('admin.locations_index', [
             'locations' => $locations
         ]);
     }

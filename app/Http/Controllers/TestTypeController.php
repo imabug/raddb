@@ -18,7 +18,7 @@ class TestTypeController extends Controller
         // Show a list of the locations
         $testtypes = TestType::get();
 
-        return view('admin.testtype_index', [
+        return view('admin.testtypes_index', [
             'testtypes' => $testtypes
         ]);
     }

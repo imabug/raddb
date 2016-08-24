@@ -18,7 +18,7 @@ class TesterController extends Controller
         // Show a list of the locations
         $testers = Tester::get();
 
-        return view('admin.tester_index', [
+        return view('admin.testers_index', [
             'testers' => $testers
         ]);
     }
