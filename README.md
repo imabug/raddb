@@ -21,7 +21,7 @@ This application will track
 
 * Clone the Github repository for the [project](https://github.com/imabug/raddb)
 * Run ```composer install``` to install the Laravel framework and associated software bits
-* Edit ```.env.example``` and customize for local settings. Save as ```.env```
+* Edit ```.env.example``` and customize database server section for local settings. Save as ```.env```
 * Run ```php artisan key:generate``` to generate an application key
 
 This project is developed in PHP using the [Laravel framework](https://laravel.com/).
