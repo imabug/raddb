@@ -77,10 +77,11 @@ These routes go to pages used to add or edit survey recommendations
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /surveys/recommendations/create | Form to add a survey recommendation ||
-| POST | /surveys/recommendations | Handle adding survey recommendation ||
-| GET | /surveys/recommendations/:id/edit | Form to handle resolving survey recommendations||
-| PUT | /surveys/recommendations/:id | Handle resolving survey recommendation ||
+| GET | /recommendations/create | Form to add a survey recommendation ||
+| POST | /recommendations | Handle adding survey recommendation ||
+| GET | /recommendations/:id/edit | Form to handle resolving survey recommendations||
+| GET | /recommendations/:id | Display a list of survey recommendations ||
+| PUT | /recommendations/:id | Handle resolving survey recommendation ||
 
 ## Survey reporting
 These routes go to pages used to display lists of surveys or recommendations

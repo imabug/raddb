@@ -27,10 +27,12 @@ in the database.
 
 /machines/locations/{*id*} - Presents a listing of all active machines in the database for a specific location specified by *id*. *id* is an integer which maps to the id column in the *locations* table through the *location_id* column in the *machines* table. If an *id* is specified that is not present in the database, a 4040 error is returned.
 
-/machines/{*id*}/recommendations - Returns an [Eloquent collection](https://laravel.com/docs/5.2/eloquent-collections) containing a list of all the recommendations for a specific machine specified by *id*.
+/machines/{*id*}/recommendations - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all the recommendations for a specific machine specified by *id*.
 
-/machines/{*id*}/opnotes - Returns an [Eloquent collection](https://laravel.com/docs/5.2/eloquent-collections) containing a list of all the operational notes for a specific machine specified by *id*.
+/machines/{*id*}/opnotes - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all the operational notes for a specific machine specified by *id*.
 
-/machines/{*id*}/gendata - Returns an [Eloquent collection](https://laravel.com/docs/5.2/eloquent-collections) containing a list of all the generator check data for a specific machine specified by *id*.
+/machines/{*id*}/gendata - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all the generator check data for a specific machine specified by *id*.
 
-/machines/{*id*}/tubes - Returns an [Eloquent collection](https://laravel.com/docs/5.2/eloquent-collections) containing a list of all active x-ray tubes for a specific machine identified by *id*.
+/machines/{*id*}/tubes - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all active x-ray tubes for a specific machine identified by *id*.
+
+/recommendations/{*id*} - Presents a listing of survey recommendations for a specified survey *id*
