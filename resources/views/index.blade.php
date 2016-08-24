@@ -7,8 +7,12 @@
 <p>Click a link to schedule a survey for a unit</p>
 
 <table>
-@foreach ($machinesUntested as $m )
-
+@foreach ($machinesUntested->chunk(5) as $chunk )
+	<tr>
+	@foreach ($chunk as $machine)
+		<td>{{ $machine->description }}</td>
+	@endforeach
+	</tr>
 @endforeach
 </table>
 
