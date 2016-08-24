@@ -2,6 +2,8 @@
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RadDB\TestDate;
+use RadDB\Recommendation;
 use RadDB\Http\Requests;
 
 class RecommendationController extends Controller
@@ -39,14 +41,26 @@ class RecommendationController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the recommendations for a specific survey.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        // Get the machine corresponding to the survey ID provided
+        $machineDesc = TestDate::select('description')
+            ->join('machines', 'testdates.machine_id', '=', 'machines.id')
+            ->where('testdates.id', $id)
+            ->get();
+
+        // Get the recommendations
+        $recs = Recommendation::findOrFail($id);
+
+        return view('surveys.recommendations', [
+            'machineDesc' => $machineDesc,
+            'recs' => $recs
+        ]);
     }
 
     /**
