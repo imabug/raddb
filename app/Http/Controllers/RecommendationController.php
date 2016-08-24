@@ -48,16 +48,17 @@ class RecommendationController extends Controller
      */
     public function show($id)
     {
-        // Get the machine corresponding to the survey ID provided
+        // Get the machine description corresponding to the survey ID provided
         $machineDesc = TestDate::select('description')
             ->join('machines', 'testdates.machine_id', '=', 'machines.id')
             ->where('testdates.id', $id)
-            ->get();
+            ->first();
 
         // Get the recommendations
         $recs = Recommendation::where('survey_id', $id)->get();
 
         return view('surveys.recommendations', [
+            'surveyID' => $id,
             'machineDesc' => $machineDesc,
             'recs' => $recs
         ]);
