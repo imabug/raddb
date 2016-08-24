@@ -55,7 +55,7 @@ class RecommendationController extends Controller
             ->get();
 
         // Get the recommendations
-        $recs = Recommendation::findOrFail($id);
+        $recs = Recommendation::where('survey_id', $id)->get();
 
         return view('surveys.recommendations', [
             'machineDesc' => $machineDesc,
