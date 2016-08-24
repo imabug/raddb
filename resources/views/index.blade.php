@@ -37,9 +37,9 @@
 	<tr>
 		<td>{{ $ss->id }}</td>
 		<td><a href="/machines/{{ $ss->id }}">{{ $ss->description }}</a></td>
-		<td>{{ $ss->prevSurveyID }}</td>
+		<td><a href="/recommendations/{{ $ss->prevSurveyID }}">{{ $ss->prevSurveyID }}</a></td>
 		<td>{{ $ss->prevSurveyDate }}</td>
-		<td>{{ $ss->currSurveyID }}</td>
+		<td><a href="/recommendations/{{ $ss->currSurveyID }}">{{ $ss->currSurveyID }}</a></td>
 		<td>{{ $ss->currSurveyDate }}</td>
 		<td></td>
 		<td></td>
