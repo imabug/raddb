@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Locations</h2>
+<h2>Testers</h2>
 
 <table>
 @foreach ($testers->chunk(2) as $chunk )
@@ -16,4 +16,12 @@
 @endforeach
 </table>
 
+<h2>Add a Tester</h2>
+<!-- Add a new tester -->
+<form action="/admin/testers" method="POST">
+	{{ csrf_field() }}
+Name: <input type="TEXT" name="name" size="25" />
+Initials: <input type="TEXT" name="initials" size="3" /> 
+<button type="SUBMIT">Add tester</button> / <a href="/">Main</a>
+</form>
 @endsection

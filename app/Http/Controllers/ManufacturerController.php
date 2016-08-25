@@ -34,14 +34,22 @@ class ManufacturerController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add a new manufacturer to the database
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'manufacturer' => 'required|string|max:20',
+        ]);
+
+        $manufacturer = new Manufacturer;
+        $manufacturer->manufacturer = $request->manufacturer;
+        $manufacturer->save();
+
+        return redirect('/admin/manufacturers/');
     }
 
     /**

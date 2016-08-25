@@ -34,14 +34,22 @@ class LocationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add a new location to the database
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'location' => 'required|string|max:20',
+        ]);
+
+        $location = new Location;
+        $location->location = $request->location;
+        $location->save();
+
+        return redirect('/admin/locations/');
     }
 
     /**

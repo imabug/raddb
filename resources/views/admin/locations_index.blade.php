@@ -16,4 +16,12 @@
 @endforeach
 </table>
 
+<h2>Add a Location</h2>
+<!-- Add a new location -->
+<form action="/admin/locations" method="POST">
+	{{ csrf_field() }}
+New Location: <input type="TEXT" name="location" size="20" />
+<button type="SUBMIT">Add location</button> / <a href="/">Main</a>
+</form>
+
 @endsection

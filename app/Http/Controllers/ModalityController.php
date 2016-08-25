@@ -30,18 +30,25 @@ class ModalityController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add a new modality to the database
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'modality' => 'required|string|max:25',
+        ]);
+
+        $modality = new Modality;
+        $modality->modality = $request->modality;
+        $modality->save();
+
+        return redirect('/admin/modalities/');
     }
 
     /**

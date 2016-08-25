@@ -41,13 +41,13 @@
 	<tr>
 		<td>{{ $ss->id }}</td>
 		<td><a href="/machines/{{ $ss->id }}">{{ $ss->description }}</a></td>
-	@if(empty($ss->prevSurveyReport))
+	@if (empty($ss->prevSurveyReport))
 		<td>{{ $ss->prevSurveyDate }}</td>
 	@else
 		<td><a href="/{{ $ss->prevSurveyReport }}">{{ $ss->prevSurveyDate }}</a></td>
 	@endif
 		<td><a href="/recommendations/{{ $ss->prevSurveyID }}">{{ $ss->prevSurveyID }}</a></td>
-	@if(empty($ss->currSurveyReport))
+	@if (empty($ss->currSurveyReport))
 		<td>{{ $ss->currSurveyDate }}</td>
 	@else
 		<td><a href="/{{ $ss->currSurveyReport }}">{{ $ss->currSurveyDate}}</a></td>

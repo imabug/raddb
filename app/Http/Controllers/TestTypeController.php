@@ -30,18 +30,25 @@ class TestTypeController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add a new test type to the database
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'testtype' => 'required|string|max:30',
+        ]);
+
+        $testtype = new TestType;
+        $testtype->testtype = $request->testtype;
+        $testtype->save();
+
+        return redirect('/admin/testtype/');
     }
 
     /**

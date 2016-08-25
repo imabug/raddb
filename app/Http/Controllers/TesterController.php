@@ -30,18 +30,27 @@ class TesterController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add a new tester to the database
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:25',
+            'initials' => 'required|string|max:3'
+        ]);
+
+        $tester = new Tester;
+        $tester->name = $request->name;
+        $tester->initials = $request->initials;
+        $tester->save();
+
+        return redirect('/admin/testers/');
     }
 
     /**

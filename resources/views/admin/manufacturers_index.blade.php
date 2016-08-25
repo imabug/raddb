@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Locations</h2>
+<h2>Manufacturers</h2>
 
 <table>
 @foreach ($manufacturers->chunk(2) as $chunk )
@@ -15,5 +15,13 @@
 	</tr>
 @endforeach
 </table>
+
+<h2>Add a Manufacturer</h2>
+<!-- Add a new manufacturer -->
+<form action="/admin/manufacturers" method="POST">
+	{{ csrf_field() }}
+New Manufacturer: <input type="TEXT" name="manufacturer" size="20" />
+<button type="SUBMIT">Add manufacturer</button> / <a href="/">Main</a>
+</form>
 
 @endsection

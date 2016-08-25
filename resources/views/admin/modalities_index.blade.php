@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Locations</h2>
+<h2>Modalities</h2>
 
 <table>
 @foreach ($modalities->chunk(2) as $chunk )
@@ -15,5 +15,13 @@
 	</tr>
 @endforeach
 </table>
+
+<h2>Add a Modality</h2>
+<!-- Add a new modality -->
+<form action="/admin/modalities" method="POST">
+	{{ csrf_field() }}
+New Modality: <input type="TEXT" name="modality" size="25" />
+<button type="SUBMIT">Add modality</button> / <a href="/">Main</a>
+</form>
 
 @endsection
