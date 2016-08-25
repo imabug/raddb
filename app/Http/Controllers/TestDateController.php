@@ -18,6 +18,19 @@ class TestDateController extends Controller
     }
 
     /**
+     * Fetch the service report path for a survey
+     *
+     * @param int $id
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getServiceReportPath($id)
+    {
+        $serviceReportPath = TestDate::select('report_file_path')->findOrFail($id);
+
+        return $serviceReportPath;
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

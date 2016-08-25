@@ -68,8 +68,10 @@ class DashboardController extends Controller
                 'machines.description',
                 'previous.id as prevSurveyID',
                 'previous.test_date as prevSurveyDate',
+                'previous.report_file_path as prevSurveyReport',
                 'current.id as currSurveyID',
-                'current.test_date as currSurveyDate')
+                'current.test_date as currSurveyDate',
+                'current.report_file_path as currSurveyReport')
             ->active()
             ->leftJoin('testdates as previous',
                 'machines.id', '=', 'previous.machine_id')
