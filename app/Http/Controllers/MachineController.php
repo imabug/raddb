@@ -4,6 +4,7 @@ namespace RadDB\Http\Controllers;
 use Illuminate\Http\Request;
 use RadDB\Modality;
 use RadDB\Location;
+use RadDB\Manufacturer;
 use RadDB\Machine;
 use RadDB\Tube;
 use RadDB\TestDate;
@@ -172,24 +173,77 @@ class MachineController extends Controller
          return $machineTube;
      }
     /**
-     * Show the form for creating a new resource.
+     * Show form for adding a new machine
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        // Get the list of modalities
+        $modalities = Modality::select('id', 'modality')
+            ->get();
+        // Get the list of manufacturers
+        $manufacturers = Manufacturer::select('id', 'manufacturer')
+            ->get();
+        // Get the list of locations
+        $locations = Location::select('id','location')
+            ->get();
+
+        return view('machine.machines_create', [
+            'modalities' => $modalities,
+            'manufacturers' => $manufacturers,
+            'locations' => $locations
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Save machine data to the database
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'modality' => 'required|integer',
+            'description' => 'required|string|max:60',
+            'manufacturer' => 'required|integer',
+            'model' => 'required|string|max:20',
+            'serialNumber' => 'required|string|max:20',
+            'vendSiteID' => 'string|max:25',
+            'manufDate' => 'date_format:Y-m-d|max:10',
+            'installDate' => 'date_format:Y-m-d|max:10',
+            'location' => 'required|integer',
+            'room' => 'required|string|max:20',
+            'status' => 'required|in:Active,Inactive,Removed|max:50',
+            'notes' => 'string|max:65535'
+        ]);
+
+        $machine = new Machine;
+        $machine->modality_id = $request->modality;
+        $machine->description = $request->description;
+        $machine->manufacturer_id = $request->manufacturer;
+        if (isset($machine->vend_site_id)) {
+            $machine->vend_site_id = $request->vendSiteID;
+        }
+        $machine->model = $request->model;
+        $machine->serial_number = $request->serialNumber;
+        if (isset($machine->manuf_date)) {
+            $machine->manuf_date = $request->manufDate;
+        }
+        if (isset($machine->install_date)) {
+            $machine->install_date = $request->installDate;
+        }
+        $machine->location_id = $request->location;
+        $machine->room = $request->room;
+        if (isset($machine->notes)) {
+            $machine->notes = $request->notes;
+        }
+
+        $machine->save();
+
+        // Machine has been added to the database. Now redirect to the add tube page
+        return redirect('/tubes/create');
     }
 
     /**
@@ -225,14 +279,32 @@ class MachineController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a machine
      *
      * @param string $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        // Get information for the machine to edit
+        $machine = Machine::findOrFail($id);
+
+        // Get the list of modalities
+        $modalities = Modality::select('id', 'modality')
+            ->get();
+        // Get the list of manufacturers
+        $manufacturers = Manufacturer::select('id', 'manufacturer')
+            ->get();
+        // Get the list of locations
+        $locations = Location::select('id','location')
+            ->get();
+
+        return view('machine.machines_edit', [
+            'modalities' => $modalities,
+            'manufacturers' => $manufacturers,
+            'locations' => $locations,
+            'machine' => $machine
+        ]);
     }
 
     /**
