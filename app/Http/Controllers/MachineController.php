@@ -243,7 +243,9 @@ class MachineController extends Controller
         $machine->save();
 
         // Machine has been added to the database. Now redirect to the add tube page
-        return redirect('/tubes/create');
+        return view('tubes.tubes_create', [
+            'machineID' => $machine->id
+        ]);
     }
 
     /**
@@ -316,7 +318,47 @@ class MachineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'modality' => 'required|integer',
+            'description' => 'required|string|max:60',
+            'manufacturer' => 'required|integer',
+            'model' => 'required|string|max:20',
+            'serialNumber' => 'required|string|max:20',
+            'vendSiteID' => 'string|max:25',
+            'manufDate' => 'date_format:Y-m-d|max:10',
+            'installDate' => 'date_format:Y-m-d|max:10',
+            'location' => 'required|integer',
+            'room' => 'required|string|max:20',
+            'status' => 'required|in:Active,Inactive,Removed|max:50',
+            'notes' => 'string|max:65535'
+        ]);
+
+        $machine = Machine::find($id);
+
+        $machine->modality_id = $request->modality;
+        $machine->description = $request->description;
+        $machine->manufacturer_id = $request->manufacturer;
+        if (isset($machine->vend_site_id)) {
+            $machine->vend_site_id = $request->vendSiteID;
+        }
+        $machine->model = $request->model;
+        $machine->serial_number = $request->serialNumber;
+        if (isset($machine->manuf_date)) {
+            $machine->manuf_date = $request->manufDate;
+        }
+        if (isset($machine->install_date)) {
+            $machine->install_date = $request->installDate;
+        }
+        $machine->location_id = $request->location;
+        $machine->room = $request->room;
+        if (isset($machine->notes)) {
+            $machine->notes = $request->notes;
+        }
+
+        $machine->save();
+
+        // Machine has been added to the database. Now redirect to the add tube page
+        return redirect('/machines/'.$machine->id);
     }
 
     /**
