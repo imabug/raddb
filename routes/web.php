@@ -46,9 +46,9 @@ Route::get('machines/{id}/recommendations', 'MachineController@getRecommendation
 Route::get('machines/{id}/opnotes', 'MachineController@getOperationalNotes')
     ->where('id', '[0-9]+');
 Route::get('machines/{id}/gendata', 'MachineController@getGenData')
-        ->where('id', '[0-9]+');
+    ->where('id', '[0-9]+');
 Route::get('machines/{id}/tubes', 'MachineController@getTubes')
-        ->where('id', '[0-9]+');
+    ->where('id', '[0-9]+');
 Route::resource('machines', 'MachineController');
 
 Route::resource('contacts', 'ContactController');
