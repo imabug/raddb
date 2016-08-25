@@ -45,10 +45,10 @@ class TestTypeController extends Controller
         ]);
 
         $testtype = new TestType;
-        $testtype->testtype = $request->testtype;
+        $testtype->test_type = $request->testtype;
         $testtype->save();
 
-        return redirect('/admin/testtype/');
+        return redirect('/admin/testtypes/');
     }
 
     /**
