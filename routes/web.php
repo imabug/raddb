@@ -59,7 +59,7 @@ Route::resource('opnotes', 'OpNoteController');
  * Recommendation controller
  */
 Route::resource('recommendations', 'RecommendationController');
-Route::resource('testdates', 'TestDateController');
+Route::resource('surveys', 'TestDateController');
 Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables
