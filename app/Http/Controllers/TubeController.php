@@ -2,6 +2,9 @@
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RadDB\Machine;
+use RadDB\Tube;
+use RadDB\Manufacturer;
 use RadDB\Http\Requests;
 
 class TubeController extends Controller
@@ -18,13 +21,25 @@ class TubeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display form for creating a new tube for $machienID
      *
+     * @param int $machineID
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($machineID)
     {
-        //
+        // Get the list of machines
+        $machines = Machine::select('id','description')
+            ->get();
+        // Get the list of manufacturers
+        $manufacturers = Manufacturer::select('id', 'manufacturer')
+            ->get();
+
+        return view('tubes.tubes_create', [
+            'machines' => $machines,
+            'manufacturers' => $manufacturers,
+            'machineID' => $machineID
+        ]);
     }
 
     /**

@@ -60,6 +60,10 @@ Route::resource('opnotes', 'OpNoteController');
  */
 Route::resource('recommendations', 'RecommendationController');
 Route::resource('surveys', 'TestDateController');
+
+// Tube controller
+Route::get('tubes/{id}/create', 'TubeController@create')
+    ->where('id', '[0-9]+');
 Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables
