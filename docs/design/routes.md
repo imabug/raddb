@@ -45,7 +45,7 @@ These routes go to pages used to add, edit or delete x-ray tubes.
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /tubes/create | Form to add a new x-ray tube ||
+| GET | /tubes/:id/create | Form to add a new x-ray tube for machine identified by :id ||
 | POST | /tubes | Handle creation of new x-ray tube ||
 | GET | /tubes/:id/edit | Form to edit an existing x-ray tube ||
 | PUT | /tubes/:id | Handle updates to x-ray tube :id ||
@@ -101,7 +101,7 @@ Locations where equipment is found
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
 | GET | /admin/locations | List locations | Basic implementation |
-| POST | /admin/locations/create | Create a new location ||
+| POST | /admin/locations | Add a new location ||
 | GET | /admin/locations/:id/edit | Form to edit a location ||
 | PUT | /admin/locations/:id | Handle updates to a location ||
 
@@ -111,7 +111,7 @@ Equipment manufacturers
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
 | GET | /admin/manufacturers | List manufacturers | Basic implementation |
-| POST | /admin/manufacturers/create | Create a new manufacturer ||
+| POST | /admin/manufacturers | Add a new manufacturer ||
 | GET | /admin/manufacturers/:id/edit | Form to edit a manufacturer ||
 | PUT | /admin/manufacturers/:id | Handle updates to a manufacturer ||
 
@@ -121,7 +121,7 @@ Imaging modalities
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
 | GET | /admin/modalities | List modalities | Basic implementation |
-| POST | /admin/modalities/create | Create a new modality ||
+| POST | /admin/modalities | Add a new modality ||
 | GET | /admin/modalities/:id/edit | Form to edit a modality ||
 | PUT | /admin/modalities/:id | Handle updates to a modality ||
 
@@ -131,7 +131,7 @@ People who test the equipment
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
 | GET | /admin/testers | List testers | Basic implementation |
-| POST | /admin/testers/create | Create a new tester ||
+| POST | /admin/testers | Add a new tester ||
 | GET | /admin/testers/:id/edit | Form to edit a tester ||
 | PUT | /admin/testers/:id | Handle updates to a tester ||
 
@@ -141,6 +141,6 @@ Types of testing
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
 | GET | /admin/testtypes | List test types | Basic implementation |
-| POST | /admin/testtypes/create | Create a new test type ||
+| POST | /admin/testtypes | Add a new test type ||
 | GET | /admin/testtypes/:id/edit | Form to edit a test type ||
 | PUT | /admin/testtypes/:id | Handle updates to a test type ||
