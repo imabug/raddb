@@ -15,6 +15,8 @@ class MachineController extends Controller
 
     /**
      * Display a listing of all active machines.
+     * URI: /machines
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -32,6 +34,8 @@ class MachineController extends Controller
 
     /**
      * Display a listing of machines grouped by modality
+     * URI: /machines/modalities
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -51,6 +55,8 @@ class MachineController extends Controller
 
     /**
      * Display a listing of machines for a specific modality
+     * URI: /machines/modalities/$id
+     * Method: GET
      *
      * @param string $id
      * @return \Illuminate\Http\Response
@@ -73,6 +79,8 @@ class MachineController extends Controller
 
     /**
      * Display a listing of machines by location
+     * URI: /machines/locations
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -92,6 +100,8 @@ class MachineController extends Controller
 
     /**
      * Display a listing of machines for a specific location
+     * URI: /machines/locations/$id
+     * Method: GET
      *
      * @param string $id
      * @return \\Illuminate\Http\Response
@@ -174,6 +184,8 @@ class MachineController extends Controller
      }
     /**
      * Show form for adding a new machine
+     * URI: /machines/create
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -198,6 +210,8 @@ class MachineController extends Controller
 
     /**
      * Save machine data to the database
+     * URI: /machines
+     * Method: POST
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -250,6 +264,8 @@ class MachineController extends Controller
 
     /**
      * Display the information for machine $id
+     * URI: /machines/$id
+     * Method: GET
      *
      * @param string $id
      * @return \Illuminate\Http\Response
@@ -282,6 +298,8 @@ class MachineController extends Controller
 
     /**
      * Show the form for editing a machine
+     * URI: /machines/$id/edit
+     * Method: GET
      *
      * @param string $id
      * @return \Illuminate\Http\Response
@@ -311,6 +329,8 @@ class MachineController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * http://localhost/machines/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
