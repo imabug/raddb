@@ -5,7 +5,7 @@ Routes that will/could be used in the raddb application
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-|GET | / | Main index / Survey schedule ||
+|GET | / | Main index / Survey schedule | Basic implementation |
 |GET | /dashboard | Equipment testing status dashboard ||
 |GET | /surveycount/:yr | Graph counts of surveys by month for a selected year ||
 
@@ -67,7 +67,7 @@ These routes go to pages used to create or edit survey information
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /surveys/create | Form to add a new survey ||
+| GET | /surveys/:id/create | Form to add a new survey for machine *id* ||
 | POST | /surveys | Handle creation of a new survey ||
 | GET | /surveys/:id/edit | Form to edit a survey (usually for date editing)||
 | PUT | /surveys/:id | Handle updates to survey :id ||

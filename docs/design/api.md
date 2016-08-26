@@ -34,6 +34,9 @@ These URIs are used to show listings of the active equipment currently tracked i
 
 /machines/{*id*} (PUT) - Routed to the MachineController@update method to update the machine info from the /machines/{*id*}/edit form
 
+/recommendations/{*id*} (GET) - Presents a listing of survey recommendations for a specified survey *id*
+
+## API related functions
 /machines/{*id*}/recommendations (GET) - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all the recommendations for a specific machine specified by *id*.
 
 /machines/{*id*}/opnotes - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all the operational notes for a specific machine specified by *id*.
@@ -41,8 +44,6 @@ These URIs are used to show listings of the active equipment currently tracked i
 /machines/{*id*}/gendata - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all the generator check data for a specific machine specified by *id*.
 
 /machines/{*id*}/tubes - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all active x-ray tubes for a specific machine identified by *id*.
-
-/recommendations/{*id*} (GET) - Presents a listing of survey recommendations for a specified survey *id*
 
 ## Administrative operations
 These URIs are used for maintaining the tables used as lookup tables by other tables
