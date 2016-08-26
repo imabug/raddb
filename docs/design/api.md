@@ -12,8 +12,7 @@ These URIs are used to show status dashboards
 /surveycount/{*yr*} - Displays a bar chart showing the number of surveys in each month for the year specified by *yr*
 
 ## X-ray Equipment Inventory Listings
-These URIs are used to show listings of the active equipment currently tracked
-in the database.
+These URIs are used to show listings of the active equipment currently tracked in the database.
 
 /machines (GET) - Listing of all the active machines tracked in the database
 
@@ -44,3 +43,26 @@ in the database.
 /machines/{*id*}/tubes - Returns an [Eloquent collection](https://laravel.com/docs/5.3/eloquent-collections) containing a list of all active x-ray tubes for a specific machine identified by *id*.
 
 /recommendations/{*id*} (GET) - Presents a listing of survey recommendations for a specified survey *id*
+
+## Administrative operations
+These URIs are used for maintaining the tables used as lookup tables by other tables
+
+/locations (GET) - Listing of locations tracked in the database
+
+/locations/{*id*}/edit (GET) - Form for editing location *id*
+
+/manufacturers (GET) - Listing of manufacturers tracked in the database
+
+/manufacturers/{*id*}/edit (GET) - Form for editing manufacturer *id*
+
+/modalities (GET) - Listing of modalities tracked in the database
+
+/modalities/{*id}/edit (GET) - Form for editing modality *id*
+
+/testers (GET) - Listing of testers tracked in the database
+
+/testers/{*id*}/edit (GET) - Form for editing tester *id*
+
+/testtypes (GET) - Listing of test types in the database
+
+/testtypes/{*id*}/edit (GET) - Form for editing test type *id*
