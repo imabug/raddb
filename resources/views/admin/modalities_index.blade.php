@@ -11,6 +11,9 @@
 	@foreach ($chunk as $modality)
 		<td>{{ $modality->id }}</td>
 		<td>{{ $modality->modality }}</td>
+		<form action="/admin/modalities/{{ $modality->id }}/edit" method="POST">
+			<button type="submit">Edit</button>
+		</form>
 	@endforeach
 	</tr>
 @endforeach

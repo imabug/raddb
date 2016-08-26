@@ -64,18 +64,26 @@ class ManufacturerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a manufacturer
+     * URI: /admin/manufacturers/$id/edit
+     * Method: GET
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $manufacturer = Manufacturer::findOrFail($id);
+
+        return view('admin.manufacturers_edit', [
+            'manufacturer' => $manufacturer
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the manufacturer.
+     * URI: /admin/manufacturers/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -83,7 +91,17 @@ class ManufacturerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'manufacturer' => 'requred|string|max:20'
+        ]);
+
+        $manufacturer = Manufacturer::find($id);
+
+        $manufacturer->manufacturer = $request->manufacturer;
+
+        $manufacturer->save();
+
+        return redirect('/admin/manufacturers');
     }
 
     /**

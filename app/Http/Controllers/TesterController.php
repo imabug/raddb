@@ -65,18 +65,26 @@ class TesterController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a tester
+     * URI: /admin/testers/$id/edit
+     * Method: GET
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $tester = Tester::findOrFail($id);
+
+        return view('admin.testers_edit', [
+            'tester' => $tester
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the tester.
+     * URI: /admin/testers/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -84,7 +92,19 @@ class TesterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'requred|string|max:20',
+            'initials' => 'required|string|max:4'
+        ]);
+
+        $tester = Tester::find($id);
+
+        $tester->name = $request->tester;
+        $tester->initials = $request->initials;
+
+        $tester->save();
+
+        return redirect('/admin/testers');
     }
 
     /**

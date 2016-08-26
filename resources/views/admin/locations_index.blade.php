@@ -11,6 +11,11 @@
 	@foreach ($chunk as $location)
 		<td>{{ $location->id }}</td>
 		<td>{{ $location->location }}</td>
+		<td>
+			<form action="/admin/locations/{{ $location->id }}/edit" method="POST">
+				<button type="submit">Edit</button>
+			</form>
+		</td>
 	@endforeach
 	</tr>
 @endforeach

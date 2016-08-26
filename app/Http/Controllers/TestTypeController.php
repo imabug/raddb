@@ -63,18 +63,26 @@ class TestTypeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a test type
+     * URI: /admin/testtypes/$id/edit
+     * Method: GET
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $testtype = TestType::findOrFail($id);
+
+        return view('admin.testtypes_edit', [
+            'testtype' => $testtype
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the test type.
+     * URI: /admin/testtypes/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -82,7 +90,17 @@ class TestTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'testtype' => 'requred|string|max:30'
+        ]);
+
+        $testtype = TestType::find($id);
+
+        $testtype->test_type = $request->testtype;
+
+        $testtype->save();
+
+        return redirect('/admin/testtypes');
     }
 
     /**

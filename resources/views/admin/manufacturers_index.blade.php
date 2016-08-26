@@ -11,6 +11,11 @@
 	@foreach ($chunk as $manufacturer)
 		<td>{{ $manufacturer->id }}</td>
 		<td>{{ $manufacturer->manufacturer }}</td>
+		<td>
+			<form action="/admin/manufacturers/{{ $manufacturer->id }}/edit" method="POST">
+				<button type="submit">Edit</button>
+			</form>
+		</td>
 	@endforeach
 	</tr>
 @endforeach

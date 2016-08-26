@@ -21,7 +21,9 @@ class TubeController extends Controller
     }
 
     /**
-     * Display form for creating a new tube for $machienID
+     * Display form for creating a new tube for $machineID
+     * URI: /tubes/$machineID/create
+     * Method: GET
      *
      * @param int $machineID
      * @return \Illuminate\Http\Response
@@ -43,14 +45,53 @@ class TubeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store new tube information in the database
+     * URI: /tubes
+     * Method: POST
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'machine' => 'required|integer',
+            'hsgManufID' => 'integer',
+            'hsgModel' => 'string|max:30',
+            'hsgSN' => 'string|max:20',
+            'insertManufID' => 'integer',
+            'insertModel' => 'string|max:30',
+            'insertSN' => 'string|max:20',
+            'manufDate' => 'date_format:Y-m-d|max:10',
+            'installDate' => 'date_format:Y-m-d|max:10',
+            'lfs' => 'numeric',
+            'mfs' => 'numeric',
+            'sfs' => 'numeric',
+            'notes' => 'string|max:65535'
+        ]);
+
+        $tube = new Tube;
+        $tube->machine_id = $request->machine;
+        $tube->housing_model = $request->hsgModel;
+        $tube->housing_sn = $request->hsgSN;
+        $tube->housing_manuf_id = $request->hsgManufID;
+        $tube->insert_model = $request->insertModel;
+        $tube->insert_sn = $request->insertSN;
+        $tube->insert_manuf_id = $request->insertManufID;
+        $tube->manuf_date = $request->manufDate;
+        $tube->install_date = $request->installDate;
+        $tube->lfs = $request->lfs;
+        $tube->mfs = $request->mfs;
+        $tube->sfs = $request->sfs;
+        $tube->notes = $request->notes;
+        $tube->tube_status = "Active";
+
+        $tube->save();
+
+        // Tube has been added to the database. Now redirect to the add tube page in case another tube needs to be added
+        return view('tubes.tubes_create', [
+            'machineID' => $machine->id
+        ]);
     }
 
     /**

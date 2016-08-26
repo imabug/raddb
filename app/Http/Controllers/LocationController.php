@@ -64,18 +64,26 @@ class LocationController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a location.
+     * URI: /admin/locations/$id/edit
+     * Method: GET
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $location = Location::findOrFail($id);
+
+        return view('admin.locations_edit', [
+            'location' => $location
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the location.
+     * URI: /admin/locations/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -83,7 +91,17 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'location' => 'requred|string|max:100'
+        ]);
+
+        $location = Location::find($id);
+
+        $location->location = $request->location;
+
+        $location->save();
+
+        return redirect('/admin/locations');
     }
 
     /**

@@ -11,6 +11,9 @@
 	@foreach ($chunk as $testtype)
 		<td>{{ $testtype->id }}</td>
 		<td>{{ $testtype->test_type }}</td>
+		<form action="/admin/testtypes/{{ $testtype->id }}/edit" method="POST">
+			<button type="submit">Edit</button>
+		</form>
 	@endforeach
 	</tr>
 @endforeach

@@ -63,18 +63,26 @@ class ModalityController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a modality
+     * URI: /admin/modalities/$id/edit
+     * Method: GET
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $modality = Modality::findOrFail($id);
+
+        return view('admin.modalities_edit', [
+            'modality' => $modality
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the modality.
+     * URI: /admin/modalities/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -82,7 +90,17 @@ class ModalityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'modality' => 'requred|string|max:20'
+        ]);
+
+        $modality = Modality::find($id);
+
+        $modality->modality = $request->modality;
+
+        $modality->save();
+
+        return redirect('/admin/modalities');
     }
 
     /**
