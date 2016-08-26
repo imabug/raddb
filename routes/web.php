@@ -51,6 +51,9 @@ Route::resource('opnotes', 'OpNoteController');
  * Recommendation controller
  */
 Route::resource('recommendations', 'RecommendationController');
+
+// Test Date controller
+Route::get('surveys/{id?}/create', 'TestDateController@create');
 Route::resource('surveys', 'TestDateController');
 
 // Tube controller

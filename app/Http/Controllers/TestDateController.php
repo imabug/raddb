@@ -2,6 +2,9 @@
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RadDB\Machine;
+use RadDB\Tester;
+use RadDB\TestType;
 use RadDB\Http\Requests;
 
 class TestDateController extends Controller
@@ -18,37 +21,85 @@ class TestDateController extends Controller
     }
 
     /**
-     * Fetch the service report path for a survey
+     * Fetch the survey report path for a survey
      *
      * @param int $id
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getServiceReportPath($id)
+    public function getSurveyReportPath($id)
     {
-        $serviceReportPath = TestDate::select('report_file_path')->findOrFail($id);
+        $surveyReportPath = TestDate::select('report_file_path')->findOrFail($id);
 
-        return $serviceReportPath;
+        return $surveyReportPath;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show a form for creating a new survey.
+     * This method is called with an optional parameter $id which corresponds to
+     * the machine ID the survey is being created for.
+     * URI: /surveys/$id/create
+     * Method: GET
      *
+     * @param int $id (optional)
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id = null)
     {
-        //
+        $testers = Tester::select('id', 'initials')
+            ->get();
+        $testtypes = TestType::select('id', 'test_type')
+            ->get();
+
+        if (isset($id)) {
+            $machines = Machine::select('id', 'description')
+                ->findOrFail($id);
+        }
+        else {
+            $machines = Machine::select('id', 'description')
+                ->get();
+        }
+
+        return view('surveys.surveys_create', [
+            'id' => $id,
+            'testers' => $testers,
+            'testtypes' => $testtypes,
+            'machines' => $machines
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Save survey data to the database
+     * URI: /surveys
+     * Method: POST
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'machineID' => 'required|integer',
+            'test_date' => 'required|date_format:Y-m-d|max:10',
+            'tester1ID' => 'required|string|max:4',
+            'tester2ID' => 'string|max:4',
+            'test_type' => 'required|integer',
+            'notes' => 'string|max:65535',
+            'accession' => 'numeric'
+        ]);
+
+        $testdate = new TestDate;
+
+        $testdate->machine_id = $request->machineID;
+        $testdate->test_date = $request->test_date;
+        $testdate->tester1_id = $request->tester1ID;
+        if (!empty($request->tester2ID)) $testdate->tester2_id = $request->tester2ID;
+        $testdate->type_id = $request->test_type;
+        if (!empty($request->notes)) $testdate->notes = $request->notes;
+        if (!empty($request->accession)) $testdate->accession = $request->accession;
+
+        $testdate->save();
+
+        return redirect('/');
     }
 
     /**
