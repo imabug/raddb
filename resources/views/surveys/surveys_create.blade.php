@@ -53,7 +53,7 @@
 <p><label>Notes:</label> <textarea name="notes" rows="3" cols="70">Enter any notes about the survey</textarea></p>
 <p><label>Accession:</label> <input type="text" name="accession" size="12" /></p>
 
-<p><button type="SUBMIT">Add machine</button> / <a href="/">Main</a></p>
+<p><button type="SUBMIT">Add survey</button> / <a href="/">Main</a></p>
 </form>
 
 @endsection
