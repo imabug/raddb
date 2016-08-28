@@ -114,18 +114,47 @@ class TestDateController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show a form for editing a survey. Typically used to edit the survey date.
+     * URI: /surveys/$id/edit
+     * Method: Get
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $testers = Tester::select('id', 'initials')
+            ->get();
+        $testtypes = TestType::select('id', 'test_type')
+            ->get();
+
+        // Retrieve survey information for $id
+        $survey = TestDate::find($id);
+        $machine = Machine::find($survey->machine_id);
+        $tester1 = Tester::find($survey->tester1_id);
+        if ($survey->tester2_id) <> 0) {
+            $tester2 = Tester::find($survey->tester2_id);
+        }
+        else {
+            $tester2 = null;
+        }
+        $testtype = TestType::find($survey->type_id);
+
+        return view('surveys.surveys_edit', [
+            'survey' => $survey,
+            'machine' => $machine,
+            'tester1' => $tester1,
+            'tester2' => $tester2,
+            'testtype' => $testtype,
+            'testers' => $testers,
+            'testtypes' => $testtypes
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
+     * URI: /surveys/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -133,11 +162,35 @@ class TestDateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'id' => 'require|integer',
+            'machineID' => 'required|integer',
+            'test_date' => 'required|date_format:Y-m-d|max:10',
+            'tester1ID' => 'required|string|max:4',
+            'tester2ID' => 'string|max:4',
+            'test_type' => 'required|integer',
+            'notes' => 'string|max:65535',
+            'accession' => 'numeric'
+        ]);
+
+        $survey = TestDate::find($id);
+
+        if ($survey->test_date <> $request->test_date)
+            $survey->test_date = $request->test_date;
+        if ($survey->tester1_id <> $request->tester1ID)
+            $survey->tester1_id = $request->tester1ID;
+        if ($survey->tester2_id <> $request->tester2ID)
+            $survey->tester2_id = $request->tester2ID;
+        if ($survey->notes <> $request->notes)
+            $survey->notes = $request->notes;
+        if ($survey->accession <> $request->accession)
+            $survey->accession = $request->accession;
+
+        $survey->save();
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Not implemented. Should not be able to remove surveys from the database.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
