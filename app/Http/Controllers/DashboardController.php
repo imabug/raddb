@@ -109,6 +109,27 @@ class DashboardController extends Controller
         //
     }
 
+    /*
+     * Equipment test status dashboard
+     * Each machine is displayed in a table showing machine description,
+     * survey date and colour coded based on test status. Machines are
+     * grouped by modality.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function teststatus()
+    {
+        // Fetch a list of all the machines grouped by modality
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->get()
+            ->groupBy('modality_id');
+
+        return view('dashboard.test_status', [
+            'machines' => $machines
+        ]);
+    }
+
     public function create()
     {
         //
