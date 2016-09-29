@@ -63,16 +63,16 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "1.3.2",
+            "version": "1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "238346118d00d7c25862f6c108fc48a18679a997"
+                "reference": "696652628b5223e4b4bf307d83cf42b2869e048e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/238346118d00d7c25862f6c108fc48a18679a997",
-                "reference": "238346118d00d7c25862f6c108fc48a18679a997",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/696652628b5223e4b4bf307d83cf42b2869e048e",
+                "reference": "696652628b5223e4b4bf307d83cf42b2869e048e",
                 "shasum": ""
             },
             "require": {
@@ -95,7 +95,7 @@
                 }
             ],
             "description": "Create charts for laravel using diferent charts libraries",
-            "time": "2016-09-26 11:58:15"
+            "time": "2016-09-26 12:36:41"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -344,16 +344,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.3.10",
+            "version": "v5.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6febb0ee61999cde3bc7b2963c8903032bb22691"
+                "reference": "309fe4cdb2039c4a46d0454a9c56d5dc5faa304a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6febb0ee61999cde3bc7b2963c8903032bb22691",
-                "reference": "6febb0ee61999cde3bc7b2963c8903032bb22691",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/309fe4cdb2039c4a46d0454a9c56d5dc5faa304a",
+                "reference": "309fe4cdb2039c4a46d0454a9c56d5dc5faa304a",
                 "shasum": ""
             },
             "require": {
@@ -468,7 +468,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-09-20 13:46:16"
+            "time": "2016-09-29 13:46:41"
         },
         {
             "name": "league/flysystem",
