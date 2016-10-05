@@ -63,16 +63,16 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "9e0e3acf98a2160ec1824b4b5e6008398fac1a92"
+                "reference": "94669d7ad8e7b97b01ca57958a922c8acb067a63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/9e0e3acf98a2160ec1824b4b5e6008398fac1a92",
-                "reference": "9e0e3acf98a2160ec1824b4b5e6008398fac1a92",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/94669d7ad8e7b97b01ca57958a922c8acb067a63",
+                "reference": "94669d7ad8e7b97b01ca57958a922c8acb067a63",
                 "shasum": ""
             },
             "require": {
@@ -95,7 +95,7 @@
                 }
             ],
             "description": "Create charts for laravel using diferent charts libraries",
-            "time": "2016-10-03 18:28:09"
+            "time": "2016-10-04 18:08:51"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -344,16 +344,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.3.15",
+            "version": "v5.3.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f034a02f38db77d4b0b3e89942394cae456a627f"
+                "reference": "9932861dee0fef30138f9839102fb00ddd6ddce1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f034a02f38db77d4b0b3e89942394cae456a627f",
-                "reference": "f034a02f38db77d4b0b3e89942394cae456a627f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9932861dee0fef30138f9839102fb00ddd6ddce1",
+                "reference": "9932861dee0fef30138f9839102fb00ddd6ddce1",
                 "shasum": ""
             },
             "require": {
@@ -468,7 +468,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-09-29 22:13:17"
+            "time": "2016-10-04 16:05:47"
         },
         {
             "name": "league/flysystem",
@@ -2613,16 +2613,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.5.6",
+            "version": "5.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "146e0fe0bb7f44d1cefade0c93e86fe0b206dd79"
+                "reference": "3f67cee782c9abfaee5e32fd2f57cdd54bc257ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/146e0fe0bb7f44d1cefade0c93e86fe0b206dd79",
-                "reference": "146e0fe0bb7f44d1cefade0c93e86fe0b206dd79",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3f67cee782c9abfaee5e32fd2f57cdd54bc257ba",
+                "reference": "3f67cee782c9abfaee5e32fd2f57cdd54bc257ba",
                 "shasum": ""
             },
             "require": {
@@ -2692,7 +2692,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-10-03 07:48:45"
+            "time": "2016-10-03 13:04:15"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
