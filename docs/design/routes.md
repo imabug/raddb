@@ -33,10 +33,10 @@ These routes go to pages used to add, edit or delete machines
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /machines/create | Form to create a new machine | Basic implementation. Needs testing |
-| POST | /machines | Handle creation of new machine| Basic implementation. Needs testing |
-| GET | /machines/:id/edit | Form to edit an existing machine identified by :id | Basic implementation. Needs testing |
-| PUT | /machines/:id | Handle updates to machine :id | Basic implementation. Needs testing |
+| GET | /machines/create | Form to create a new machine | Basic implementation. **Needs testing** |
+| POST | /machines | Handle creation of new machine| Basic implementation. **Needs testing** |
+| GET | /machines/:id/edit | Form to edit an existing machine identified by :id | Basic implementation. **Needs testing** |
+| PUT | /machines/:id | Handle updates to machine :id | Basic implementation. **Needs testing** |
 | GET | /machines/:id/delete | Form to confirm deletion of machine :id ||
 | DELETE | /machines/:id | Handle deletion of machine :id ||
 
@@ -45,10 +45,10 @@ These routes go to pages used to add, edit or delete x-ray tubes.
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /tubes/:id/create | Form to add a new x-ray tube for machine identified by :id | Basic implementation. Needs testing |
-| POST | /tubes | Handle creation of new x-ray tube | Basic implementation. Needs testing |
-| GET | /tubes/:id/edit | Form to edit an existing x-ray tube | Basic implementation. Needs testing |
-| PUT | /tubes/:id | Handle updates to x-ray tube :id | Basic implementation. Needs testing |
+| GET | /tubes/:id/create | Form to add a new x-ray tube for machine identified by :id | Basic implementation. **Needs testing** |
+| POST | /tubes | Handle creation of new x-ray tube | Basic implementation. **Needs testing** |
+| GET | /tubes/:id/edit | Form to edit an existing x-ray tube | Basic implementation. **Needs testing** |
+| PUT | /tubes/:id | Handle updates to x-ray tube :id | Basic implementation. **Needs testing** |
 | GET | /tubes/:id/delete | Form to confirm deletion of x-ray tube :id ||
 | DELETE | /tubes/:id | Handle deletion of x-ray tube :id ||
 
@@ -67,8 +67,8 @@ These routes go to pages used to create or edit survey information
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /surveys/:id/create | Form to add a new survey for machine *id* | Needs testing |
-| POST | /surveys | Handle creation of a new survey | Needs testing |
+| GET | /surveys/:id/create | Form to add a new survey for machine *id* | **Needs testing**|
+| POST | /surveys | Handle creation of a new survey | **Needs testing** |
 | GET | /surveys/:id/edit | Form to edit a survey (usually for date editing)||
 | PUT | /surveys/:id | Handle updates to survey :id ||
 
