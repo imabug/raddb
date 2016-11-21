@@ -17,45 +17,54 @@
 </table>
 
 <h2>Pending surveys</h2>
-<table>
-	<tr>
-		<th>Survey ID</th><th>Description</th><th>Date Scheduled</th><th>Accession</th><th>Survey Note</th>
-	</tr>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Survey ID</th><th>Description</th><th>Date Scheduled</th><th>Accession</th><th>Survey Note</th>
+		</tr>
+	</thead>
+	<tbody>
 @foreach ($pendingSurveys as $pending)
-	<tr>
-		<td>{{ $pending->id }}</td>
-		<td>{{ $pending->description }}</td>
-		<td>{{ $pending->test_date}}</td>
-		<td>{{ $pending->accession }}</td>
-		<td>{{ $pending->notes }}</td>
-	</tr>
+		<tr>
+			<td>{{ $pending->id }}</td>
+			<td>{{ $pending->description }}</td>
+			<td>{{ $pending->test_date}}</td>
+			<td>{{ $pending->accession }}</td>
+			<td>{{ $pending->notes }}</td>
+		</tr>
 @endforeach
+	</tbody>
 </table>
 
 <h2>Survey Schedule</h2>
-<table>
-	<tr>
-		<th>ID</th><th>Description</th><th>Previous</th><th>Prev SurveyID</th><th>Current</th><th>Curr SurveyID</th><th>Recs</th><th>Recs Resolved</th>
-	</tr>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th><th>Description</th><th>Previous</th><th>Prev SurveyID</th><th>Current</th><th>Curr SurveyID</th><th>Recs</th><th>Recs Resolved</th>
+		</tr>
+	</thead>
+	<tbody>
 @foreach ($surveySchedule as $ss)
-	<tr>
-		<td>{{ $ss->id }}</td>
-		<td><a href="/machines/{{ $ss->id }}">{{ $ss->description }}</a></td>
-	@if (empty($ss->prevSurveyReport))
-		<td>{{ $ss->prevSurveyDate }}</td>
-	@else
-		<td><a href="/{{ $ss->prevSurveyReport }}">{{ $ss->prevSurveyDate }}</a></td>
-	@endif
-		<td><a href="/recommendations/{{ $ss->prevSurveyID }}">{{ $ss->prevSurveyID }}</a></td>
-	@if (empty($ss->currSurveyReport))
-		<td>{{ $ss->currSurveyDate }}</td>
-	@else
-		<td><a href="/{{ $ss->currSurveyReport }}">{{ $ss->currSurveyDate}}</a></td>
-	@endif
-		<td><a href="/recommendations/{{ $ss->currSurveyID }}">{{ $ss->currSurveyID }}</a></td>
-		<td></td>
-		<td></td>
-	</tr>
+		<tr>
+			<td>{{ $ss->id }}</td>
+			<td><a href="/machines/{{ $ss->id }}">{{ $ss->description }}</a></td>
+		@if (empty($ss->prevSurveyReport))
+			<td>{{ $ss->prevSurveyDate }}</td>
+		@else
+			<td><a href="/{{ $ss->prevSurveyReport }}">{{ $ss->prevSurveyDate }}</a></td>
+		@endif
+			<td><a href="/recommendations/{{ $ss->prevSurveyID }}">{{ $ss->prevSurveyID }}</a></td>
+		@if (empty($ss->currSurveyReport))
+			<td>{{ $ss->currSurveyDate }}</td>
+		@else
+			<td><a href="/{{ $ss->currSurveyReport }}">{{ $ss->currSurveyDate}}</a></td>
+		@endif
+			<td><a href="/recommendations/{{ $ss->currSurveyID }}">{{ $ss->currSurveyID }}</a></td>
+			<td></td>
+			<td></td>
+		</tr>
 @endforeach
+	</tbody>
 </table>
 @endsection
