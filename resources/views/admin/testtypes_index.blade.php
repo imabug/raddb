@@ -4,17 +4,14 @@
 
 @section('content')
 <h2>Test Types</h2>
-
+<p>Click a test type to edit</p>
 <table class="table">
 	<tbody>
 @foreach ($testtypes->chunk(2) as $chunk )
 		<tr>
 		@foreach ($chunk as $testtype)
 			<td>{{ $testtype->id }}</td>
-			<td>{{ $testtype->test_type }}</td>
-			<form action="/admin/testtypes/{{ $testtype->id }}/edit" method="POST">
-				<button type="submit">Edit</button>
-			</form>
+			<td><a href="/admin/testtypes/{{ $testtype->id }}/edit">{{ $testtype->test_type }}</a></td>
 		@endforeach
 		</tr>
 @endforeach
@@ -23,10 +20,12 @@
 
 <h2>Add a Test Type</h2>
 <!-- Add a new test type -->
-<form action="/admin/testtypes" method="POST">
-	{{ csrf_field() }}
-New Test Type: <input type="TEXT" name="testtype" size="30" />
-<button type="SUBMIT">Add test type</button> / <a href="/">Main</a>
+<form class="form-inline" action="/admin/testtypes" method="POST">
+	<div class="form-group">
+		{{ csrf_field() }}
+		<label for="testtype">New Test Type:</label> <input class="form-control" type="TEXT" id="testtype" name="testtype" size="30" />
+		<button class="btn btn-default" type="SUBMIT">Add test type</button> / <a href="/">Main</a>
+	</div>
 </form>
 
 @endsection
