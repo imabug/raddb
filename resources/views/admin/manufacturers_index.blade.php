@@ -4,19 +4,14 @@
 
 @section('content')
 <h2>Manufacturers</h2>
-
+<p>Click a manufacturer to edit</p>
 <table class="table">
 	<tbody>
 @foreach ($manufacturers->chunk(2) as $chunk )
 		<tr>
 		@foreach ($chunk as $manufacturer)
 			<td>{{ $manufacturer->id }}</td>
-			<td>{{ $manufacturer->manufacturer }}</td>
-			<td>
-				<form action="/admin/manufacturers/{{ $manufacturer->id }}/edit" method="POST">
-					<button type="submit">Edit</button>
-				</form>
-			</td>
+			<td><a href="/admin/manufacturers/{{ $manufacturer->id }}/edit">{{ $manufacturer->manufacturer }}</a></td>
 		@endforeach
 		</tr>
 @endforeach
@@ -25,10 +20,12 @@
 
 <h2>Add a Manufacturer</h2>
 <!-- Add a new manufacturer -->
-<form action="/admin/manufacturers" method="POST">
-	{{ csrf_field() }}
-New Manufacturer: <input type="TEXT" name="manufacturer" size="20" />
-<button type="SUBMIT">Add manufacturer</button> / <a href="/">Main</a>
+<form class="form-inline" action="/admin/manufacturers" method="POST">
+	<div class="form-group">
+		{{ csrf_field() }}
+		<label for="manufacturer">New Manufacturer:</label> <input type="TEXT" class="form-control" id="manufacturer" name="manufacturer" size="20" placeholder="Manufacturer" />
+		<button class="btn btn-default" type="SUBMIT">Add manufacturer</button> / <a href="/">Main</a>
+	</div>
 </form>
 
 @endsection
