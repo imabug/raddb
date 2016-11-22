@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Surveys to be scheduled ({{ $remain }}/{{ $total }})</h2>
+<h2><span class="label label-default">Surveys to be scheduled ({{ $remain }}/{{ $total }})</span></h2>
 <p>Click a link to schedule a survey for a unit</p>
 
 <table class="table">
@@ -18,7 +18,7 @@
 	</tbody>
 </table>
 
-<h2>Pending surveys</h2>
+<h2><span class="label label-default">Pending surveys</span></h2>
 <table class="table">
 	<thead>
 		<tr>
@@ -38,9 +38,9 @@
 	</tbody>
 </table>
 
-<h2>Survey Schedule</h2>
+<h2><span class="label label-default">Survey Schedule</span></h2>
 
-<table class="table">
+<table class="table table-hover">
 	<thead>
 		<tr>
 			<th>ID</th><th>Description</th><th>Previous</th><th>Prev SurveyID</th><th>Current</th><th>Curr SurveyID</th><th>Recs</th><th>Recs Resolved</th>

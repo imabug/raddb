@@ -4,21 +4,26 @@
 
 @section('content')
 <h2>Machine Information</h2>
-<h2>{{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</h2>
-<h3>Machine Information</h3>
-<p>
-Machine ID: {{ $machine->id }} <br />
-Model: {{ $machine->model }} <br />
-Serial Number: {{ $machine->serial_number }} <br />
-Vendor Site ID: {{ $machine->vend_site_id }} <br />
-Location: {{ $machine->location->location }} <br />
-Manufacture Date: {{ $machine->manuf_date }} <br />
-Install Date: {{ $machine->install_date }} <br />
-Age: {{ $machine->age }}<br />
-Notes: {{ $machine->notes }}
-</p>
-
-<h3>Tube Information</h3>
+<h2><span class="label label-primary">{{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</span></h2>
+<div class="panel panel-primary">
+    <div class="panel-heading>">
+        <h3 class="panel-title">Machine Information</h3>
+    </div>
+    <div class="panel-body">
+        <p>
+        Machine ID: {{ $machine->id }} <br />
+        Model: {{ $machine->model }} <br />
+        Serial Number: {{ $machine->serial_number }} <br />
+        Vendor Site ID: {{ $machine->vend_site_id }} <br />
+        Location: {{ $machine->location->location }} <br />
+        Manufacture Date: {{ $machine->manuf_date }} <br />
+        Install Date: {{ $machine->install_date }} <br />
+        Age: {{ $machine->age }}<br />
+        Notes: {{ $machine->notes }}
+        </p>
+    </div>
+</div>
+<h3><span class="label label-default">Tube Information</span></h3>
 <table class="table">
     <thead>
         <tr>
@@ -50,14 +55,14 @@ Notes: {{ $machine->notes }}
     </tbody>
 </table>
 
-<h3>Operational Notes</h3>
+<h3><span class="label label-default">Operational Notes</span></h3>
 <ol>
   @foreach ($opnotes as $opnote)
   <li>{{ $opnote->note }}</li>
   @endforeach
 </ol>
 
-<h3>Survey Information</h3>
+<h3><span class="label label-default">Survey Information</span></h3>
 <table class="table">
     <thead>
         <tr>
@@ -81,7 +86,7 @@ Notes: {{ $machine->notes }}
     </tbody>
 </table>
 
-<h3>Survey Recommendations</h3>
+<h3><span class="label label-default">Survey Recommendations</span></h3>
 <table class="table">
     <thead>
         <tr>
