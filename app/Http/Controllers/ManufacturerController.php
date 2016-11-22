@@ -112,6 +112,11 @@ class ManufacturerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $manufacturer = Manufacturer::find($id);
+
+        $manufacturer->delete();
+
+        return redirect('/admin/manufacturers');
+
     }
 }

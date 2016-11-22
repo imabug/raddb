@@ -111,6 +111,9 @@ class TestTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $testtype = TestType::find($id);
+
+        $testtype->delete();
+        return redirect('/admin/testtypes');
     }
 }

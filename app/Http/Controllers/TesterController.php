@@ -115,6 +115,9 @@ class TesterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tester = Tester::find($id);
+
+        $tester->delete();
+        return redirect('/admin/testers');
     }
 }

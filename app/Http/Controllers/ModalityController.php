@@ -111,6 +111,9 @@ class ModalityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $modality = Modality::find($id);
+
+        $modality->delete();
+        return redirect('/admin/modalities');
     }
 }

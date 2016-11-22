@@ -12,6 +12,15 @@
 		@foreach ($chunk as $testtype)
 			<td>{{ $testtype->id }}</td>
 			<td><a href="/admin/testtypes/{{ $testtype->id }}/edit">{{ $testtype->test_type }}</a></td>
+			<td>
+				<form class="form-inline" action="/admin/testtypes/{{ $testtype->id }}" method="post">
+					{{ csrf_field() }}
+					{{ method_field('DELETE') }}
+					<button type="submit" class="btn btn-xs">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</form>
+			</td>
 		@endforeach
 		</tr>
 @endforeach

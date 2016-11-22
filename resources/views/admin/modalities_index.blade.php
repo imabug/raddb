@@ -12,6 +12,15 @@
 		@foreach ($chunk as $modality)
 			<td>{{ $modality->id }}</td>
 			<td><a href="/admin/modalities/{{ $modality->id }}/edit">{{ $modality->modality }}</a></td>
+			<td>
+				<form class="form-inline" action="/admin/modalities/{{ $modality->id }}" method="post">
+					{{ csrf_field() }}
+					{{ method_field('DELETE') }}
+					<button type="submit" class="btn btn-xs">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</form>
+			</td>
 		@endforeach
 		</tr>
 @endforeach

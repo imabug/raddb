@@ -389,6 +389,26 @@ class MachineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $machine = Machine::find($id);
+
+        // Retrieve tubes associated with this machine
+        $tubes = $this->getTubes($id);
+
+        // Update the status and remove date for the machine
+        $machine->machine_status = "Removed";
+        $machine->remove_date = date("Y-m-d");
+        $machine->save();
+
+        // Set the delete status for each tube
+        foreach ($tubes as $tube) {
+            $tube->tube_status = "Removed";
+            $tube->remove_date = date("Y-m-d");
+            $tube->save();
+            $tube->delete();
+        }
+
+        $machine->delete();
+
+        return redirect('/machines');
     }
 }
