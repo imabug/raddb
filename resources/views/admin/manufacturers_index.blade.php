@@ -5,20 +5,22 @@
 @section('content')
 <h2>Manufacturers</h2>
 
-<table>
+<table class="table">
+	<tbody>
 @foreach ($manufacturers->chunk(2) as $chunk )
-	<tr>
-	@foreach ($chunk as $manufacturer)
-		<td>{{ $manufacturer->id }}</td>
-		<td>{{ $manufacturer->manufacturer }}</td>
-		<td>
-			<form action="/admin/manufacturers/{{ $manufacturer->id }}/edit" method="POST">
-				<button type="submit">Edit</button>
-			</form>
-		</td>
-	@endforeach
-	</tr>
+		<tr>
+		@foreach ($chunk as $manufacturer)
+			<td>{{ $manufacturer->id }}</td>
+			<td>{{ $manufacturer->manufacturer }}</td>
+			<td>
+				<form action="/admin/manufacturers/{{ $manufacturer->id }}/edit" method="POST">
+					<button type="submit">Edit</button>
+				</form>
+			</td>
+		@endforeach
+		</tr>
 @endforeach
+	</tbody>
 </table>
 
 <h2>Add a Manufacturer</h2>

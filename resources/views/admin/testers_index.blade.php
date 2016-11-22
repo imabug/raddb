@@ -5,18 +5,20 @@
 @section('content')
 <h2>Testers</h2>
 
-<table>
+<table class="table">
+	<tbody>
 @foreach ($testers->chunk(2) as $chunk )
-	<tr>
-	@foreach ($chunk as $tester)
-		<td>{{ $tester->id }}</td>
-		<td>{{ $tester->name }}</td>
-		<form action="/admin/testers/{{ $tester->id }}/edit" method="POST">
-			<button type="submit">Edit</button>
-		</form>
-	@endforeach
-	</tr>
+		<tr>
+		@foreach ($chunk as $tester)
+			<td>{{ $tester->id }}</td>
+			<td>{{ $tester->name }}</td>
+			<form action="/admin/testers/{{ $tester->id }}/edit" method="POST">
+				<button type="submit">Edit</button>
+			</form>
+		@endforeach
+		</tr>
 @endforeach
+	</tbody>
 </table>
 
 <h2>Add a Tester</h2>

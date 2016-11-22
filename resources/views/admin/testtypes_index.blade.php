@@ -5,18 +5,20 @@
 @section('content')
 <h2>Test Types</h2>
 
-<table>
+<table class="table">
+	<tbody>
 @foreach ($testtypes->chunk(2) as $chunk )
-	<tr>
-	@foreach ($chunk as $testtype)
-		<td>{{ $testtype->id }}</td>
-		<td>{{ $testtype->test_type }}</td>
-		<form action="/admin/testtypes/{{ $testtype->id }}/edit" method="POST">
-			<button type="submit">Edit</button>
-		</form>
-	@endforeach
-	</tr>
+		<tr>
+		@foreach ($chunk as $testtype)
+			<td>{{ $testtype->id }}</td>
+			<td>{{ $testtype->test_type }}</td>
+			<form action="/admin/testtypes/{{ $testtype->id }}/edit" method="POST">
+				<button type="submit">Edit</button>
+			</form>
+		@endforeach
+		</tr>
 @endforeach
+	</tbody>
 </table>
 
 <h2>Add a Test Type</h2>

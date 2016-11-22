@@ -5,20 +5,22 @@
 @section('content')
 <h2>Locations</h2>
 
-<table>
+<table class="table"
+	<tbody>
 @foreach ($locations->chunk(2) as $chunk )
-	<tr>
-	@foreach ($chunk as $location)
-		<td>{{ $location->id }}</td>
-		<td>{{ $location->location }}</td>
-		<td>
-			<form action="/admin/locations/{{ $location->id }}/edit" method="POST">
-				<button type="submit">Edit</button>
-			</form>
-		</td>
-	@endforeach
-	</tr>
+		<tr>
+		@foreach ($chunk as $location)
+			<td>{{ $location->id }}</td>
+			<td>{{ $location->location }}</td>
+			<td>
+				<form action="/admin/locations/{{ $location->id }}/edit" method="POST">
+					<button type="submit">Edit</button>
+				</form>
+			</td>
+		@endforeach
+		</tr>
 @endforeach
+	</tbody>
 </table>
 
 <h2>Add a Location</h2>

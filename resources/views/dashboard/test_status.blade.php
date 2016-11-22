@@ -17,14 +17,16 @@ td {text-align: center;}
 @section('content')
 <h2>Equipment Testing Status Dashboard</h2>
 <h3>Table legent</a>
-<table>
-  <tr>
-    <td class="green">Current</td>
-    <td class="yellow">Due within 30 days</td>
-    <td class="orange">Overdue &lt; 13 months</td>
-    <td class="red">Overdue &gt; 13 months</td>
-    <td class="blue">Scheduled, not tested yet</td>
-</tr>
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="green">Current</td>
+            <td class="yellow">Due within 30 days</td>
+            <td class="orange">Overdue &lt; 13 months</td>
+            <td class="red">Overdue &gt; 13 months</td>
+            <td class="blue">Scheduled, not tested yet</td>
+        </tr>
+    </tbody>
 </table>
 
 @endsection

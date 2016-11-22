@@ -5,18 +5,20 @@
 @section('content')
 <h2>Modalities</h2>
 
-<table>
+<table class="table">
+	<tbody>
 @foreach ($modalities->chunk(2) as $chunk )
-	<tr>
-	@foreach ($chunk as $modality)
-		<td>{{ $modality->id }}</td>
-		<td>{{ $modality->modality }}</td>
-		<form action="/admin/modalities/{{ $modality->id }}/edit" method="POST">
-			<button type="submit">Edit</button>
-		</form>
-	@endforeach
-	</tr>
+		<tr>
+		@foreach ($chunk as $modality)
+			<td>{{ $modality->id }}</td>
+			<td>{{ $modality->modality }}</td>
+			<form action="/admin/modalities/{{ $modality->id }}/edit" method="POST">
+				<button type="submit">Edit</button>
+			</form>
+		@endforeach
+		</tr>
 @endforeach
+	</tbody>
 </table>
 
 <h2>Add a Modality</h2>

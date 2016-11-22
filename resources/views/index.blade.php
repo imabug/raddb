@@ -6,14 +6,16 @@
 <h2>Surveys to be scheduled ({{ $remain }}/{{ $total }})</h2>
 <p>Click a link to schedule a survey for a unit</p>
 
-<table>
+<table class="table">
+	<tbody>
 @foreach ($machinesUntested->chunk(5) as $chunk )
-	<tr>
-	@foreach ($chunk as $machine)
-		<td>{{ $machine->description }}</td>
-	@endforeach
-	</tr>
+		<tr>
+		@foreach ($chunk as $machine)
+			<td>{{ $machine->description }}</td>
+		@endforeach
+		</tr>
 @endforeach
+	</tbody>
 </table>
 
 <h2>Pending surveys</h2>
