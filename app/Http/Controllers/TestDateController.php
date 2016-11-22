@@ -132,7 +132,7 @@ class TestDateController extends Controller
         $survey = TestDate::find($id);
         $machine = Machine::find($survey->machine_id);
         $tester1 = Tester::find($survey->tester1_id);
-        if ($survey->tester2_id) <> 0) {
+        if ($survey->tester2_id <> 0) {
             $tester2 = Tester::find($survey->tester2_id);
         }
         else {
