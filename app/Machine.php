@@ -3,10 +3,12 @@ namespace RadDB;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Machine extends Model
 {
-
+    use SoftDeletes;
+    
     /**
      * Attributes that are mass assignable
      * @var array

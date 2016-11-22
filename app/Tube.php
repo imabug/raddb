@@ -3,9 +3,33 @@ namespace RadDB;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tube extends Model
 {
+    use SoftDeletes;
+
+    /**
+     * Attributes that are mass assignable
+     * @var array
+     */
+    protected $fillable = [
+        'machine_id',
+        'housing_model',
+        'housing_sn',
+        'housing_manuf_id',
+        'insert_model',
+        'insert_sn',
+        'insert_manuf_id',
+        'manuf_date',
+        'install_date',
+        'remove_date',
+        'lfs',
+        'mfs',
+        'sfs',
+        'notes',
+        'tube_status'
+    ];
 
     /**
      * Attributes that should be mutated to dates
