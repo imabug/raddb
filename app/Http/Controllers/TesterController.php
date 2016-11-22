@@ -99,7 +99,7 @@ class TesterController extends Controller
 
         $tester = Tester::find($id);
 
-        $tester->name = $request->tester;
+        $tester->name = $request->name;
         $tester->initials = $request->initials;
 
         $tester->save();
