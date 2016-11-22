@@ -92,7 +92,7 @@ class LocationController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'location' => 'requred|string|max:100'
+            'location' => 'required|string|max:100'
         ]);
 
         $location = Location::find($id);
