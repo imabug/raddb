@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<link href="css/app.css" rel="stylesheet" />
+	<link href="/css/app.css" rel="stylesheet" />
 <title>Radiological Equipment Database</title>
 </head>
 <body>
