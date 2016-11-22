@@ -91,7 +91,7 @@ class ModalityController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'modality' => 'requred|string|max:20'
+            'modality' => 'required|string|max:20'
         ]);
 
         $modality = Modality::find($id);

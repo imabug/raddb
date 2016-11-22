@@ -91,7 +91,7 @@ class TestTypeController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'testtype' => 'requred|string|max:30'
+            'testtype' => 'required|string|max:30'
         ]);
 
         $testtype = TestType::find($id);

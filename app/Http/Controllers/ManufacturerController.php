@@ -92,7 +92,7 @@ class ManufacturerController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'manufacturer' => 'requred|string|max:20'
+            'manufacturer' => 'required|string|max:20'
         ]);
 
         $manufacturer = Manufacturer::find($id);

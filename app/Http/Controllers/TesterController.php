@@ -93,7 +93,7 @@ class TesterController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'requred|string|max:20',
+            'name' => 'required|string|max:20',
             'initials' => 'required|string|max:4'
         ]);
 
