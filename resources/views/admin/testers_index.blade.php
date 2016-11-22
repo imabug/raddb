@@ -4,17 +4,14 @@
 
 @section('content')
 <h2>Testers</h2>
-
+<p>Click on a name to edit</p>
 <table class="table">
 	<tbody>
 @foreach ($testers->chunk(2) as $chunk )
 		<tr>
 		@foreach ($chunk as $tester)
 			<td>{{ $tester->id }}</td>
-			<td>{{ $tester->name }}</td>
-			<form action="/admin/testers/{{ $tester->id }}/edit" method="POST">
-				<button type="submit">Edit</button>
-			</form>
+			<td><a href="/admin/testers/{{ $tester->id }}/edit">{{ $tester->name }}</a></td>
 		@endforeach
 		</tr>
 @endforeach
@@ -23,10 +20,12 @@
 
 <h2>Add a Tester</h2>
 <!-- Add a new tester -->
-<form action="/admin/testers" method="POST">
-	{{ csrf_field() }}
-Name: <input type="TEXT" name="name" size="25" />
-Initials: <input type="TEXT" name="initials" size="3" />
-<button type="SUBMIT">Add tester</button> / <a href="/">Main</a>
+<form class="form-inline" action="/admin/testers" method="POST">
+	<div class="form-group">
+		{{ csrf_field() }}
+		<label for="name">Name:</label> <input type="TEXT" class="form-control" id="name" name="name" size="25" />
+		<label for="initials">Initials:</label> <input type="TEXT" class="form-control" id="initials" name="initials" size="3" />
+		<button type="SUBMIT" class="btn btn-default">Add tester</button> / <a href="/">Main</a>
+	</div>
 </form>
 @endsection
