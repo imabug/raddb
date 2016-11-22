@@ -7,7 +7,7 @@
 <p>Click a location to edit</p>
 <table class="table">
 	<tbody>
-@foreach ($locations->chunk(2) as $chunk )
+@foreach ($locations->chunk(3) as $chunk )
 		<tr>
 		@foreach ($chunk as $location)
 			<td>{{ $location->id }}</td>

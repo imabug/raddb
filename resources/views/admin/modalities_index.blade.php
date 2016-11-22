@@ -7,7 +7,7 @@
 <p>Click a modality to edit</p>
 <table class="table">
 	<tbody>
-@foreach ($modalities->chunk(2) as $chunk )
+@foreach ($modalities->chunk(3) as $chunk )
 		<tr>
 		@foreach ($chunk as $modality)
 			<td>{{ $modality->id }}</td>

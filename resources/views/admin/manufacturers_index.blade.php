@@ -7,7 +7,7 @@
 <p>Click a manufacturer to edit</p>
 <table class="table">
 	<tbody>
-@foreach ($manufacturers->chunk(2) as $chunk )
+@foreach ($manufacturers->chunk(3) as $chunk )
 		<tr>
 		@foreach ($chunk as $manufacturer)
 			<td>{{ $manufacturer->id }}</td>
