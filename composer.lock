@@ -63,20 +63,20 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "1.8",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4"
+                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
-                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
+                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=7.0.8"
             },
             "type": "library",
             "autoload": {
@@ -95,7 +95,7 @@
                 }
             ],
             "description": "Create charts for laravel using diferent charts libraries",
-            "time": "2016-10-06 20:42:04"
+            "time": "2016-10-19 10:55:43"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1344,16 +1344,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.5.1",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "a07797b986671b0dc823885a81d5e3516b931599"
+                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/a07797b986671b0dc823885a81d5e3516b931599",
-                "reference": "a07797b986671b0dc823885a81d5e3516b931599",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/5677cfe02397dd6b58c861870dfaa5d9007d3954",
+                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954",
                 "shasum": ""
             },
             "require": {
@@ -1366,11 +1366,13 @@
             "require-dev": {
                 "apigen/apigen": "^4.1",
                 "codeception/aspect-mock": "1.0.0",
+                "doctrine/annotations": "~1.2.0",
                 "goaop/framework": "1.0.0-alpha.2",
                 "ircmaxell/random-lib": "^1.1",
                 "jakub-onderka/php-parallel-lint": "^0.9.0",
                 "mockery/mockery": "^0.9.4",
                 "moontoast/math": "^1.1",
+                "php-mock/php-mock-phpunit": "^0.3|^1.1",
                 "phpunit/phpunit": "^4.7|>=5.0 <5.4",
                 "satooshi/php-coveralls": "^0.6.1",
                 "squizlabs/php_codesniffer": "^2.3"
@@ -1420,7 +1422,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2016-10-02 15:51:17"
+            "time": "2016-11-22 19:21:44"
         },
         {
             "name": "swiftmailer/swiftmailer",
