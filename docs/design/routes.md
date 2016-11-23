@@ -67,8 +67,9 @@ These routes go to pages used to create or edit survey information
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /surveys/:id/create | Form to add a new survey for machine *id* | **Needs testing**|
-| POST | /surveys | Handle creation of a new survey | **Needs testing** |
+| GET | /surveys/create | Form to add a new survey | Basic implementation|
+| GET | /surveys/:id/create | Form to add a new survey for machine *id* | Basic implementation |
+| POST | /surveys | Handle creation of a new survey | Basic implementation |
 | GET | /surveys/:id/edit | Form to edit a survey (usually for date editing)||
 | PUT | /surveys/:id | Handle updates to survey :id ||
 
