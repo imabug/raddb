@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use RadDB\Machine;
 use RadDB\Tester;
 use RadDB\TestType;
+use RadDB\TestDate;
 use RadDB\Http\Requests;
 
 class TestDateController extends Controller
@@ -79,7 +80,7 @@ class TestDateController extends Controller
     {
         $this->validate($request, [
             'machineID' => 'required|integer',
-            'test_date' => 'required|date_format:Y-m-d|max:10',
+            'test_date' => 'date_format:Y-m-d|max:10',
             'tester1ID' => 'required|string|max:4',
             'tester2ID' => 'string|max:4',
             'test_type' => 'required|integer',
@@ -89,8 +90,16 @@ class TestDateController extends Controller
 
         $testdate = new TestDate;
 
+        // If the test date or today checkbox are left empty, use the current date.
+        // If they're both set for some reason, use the current date
+        if (empty($request->test_date) || $request->today == "on") {
+            $testdate->test_date = date('Y-m-d');
+        }
+        else {
+            $testdate->test_date = $request->test_date;
+        }
+
         $testdate->machine_id = $request->machineID;
-        $testdate->test_date = $request->test_date;
         $testdate->tester1_id = $request->tester1ID;
         if (!empty($request->tester2ID)) $testdate->tester2_id = $request->tester2ID;
         $testdate->type_id = $request->test_type;
