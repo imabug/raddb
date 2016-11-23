@@ -53,7 +53,8 @@ Route::resource('opnotes', 'OpNoteController');
 Route::resource('recommendations', 'RecommendationController');
 
 // Test Date controller
-Route::get('surveys/{id?}/create', 'TestDateController@create');
+Route::get('surveys/{id?}/create', 'TestDateController@create')
+    ->where('id', '[0-9]+'); // id parameter is optional
 Route::resource('surveys', 'TestDateController');
 
 // Tube controller
