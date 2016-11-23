@@ -24,19 +24,16 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Machines<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>New machine</li>
+                            <li><a href="/machines/create">New machine</a></li>
                             <li>Modify machine</li>
-                            <li>New tube</li>
-                            <li>Modify tube</li>
                             <li>Add op note</li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Surveys<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>Add survey</li>
-                            <li>Add survey recommendation</li>
-                            <li>Resolve recommendations</li>
+                            <li><a href="/surveys/create">Add survey</a></li>
+                            <li><a href="/recommendations/create">Add survey recommendation</a></li>
                             <li>Add service report</li>
                             <li>Add survey report</li>
                         </ul>
@@ -44,9 +41,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>List machines</li>
-                            <li>List by modality</li>
-                            <li>List by location</li>
+                            <li><a href="/machines">List machines</a></li>
+                            <li><a href="/machines/modalities">List by modality</a></li>
+                            <li><a href="/machines/locations">List by location</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
