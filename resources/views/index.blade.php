@@ -11,7 +11,7 @@
 @foreach ($machinesUntested->chunk(5) as $chunk )
 		<tr>
 		@foreach ($chunk as $machine)
-			<td>{{ $machine->description }}</td>
+			<td><a href="/surveys/{{ $machine->id}}/create">{{ $machine->description }}</a></td>
 		@endforeach
 		</tr>
 @endforeach
