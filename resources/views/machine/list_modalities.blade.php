@@ -7,7 +7,7 @@
 <h3>List equipment by modality</h3>
     @foreach ($machines as $modality)
 <h4>Modality: ({{ count($modality) }})</h4>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>ID</th>

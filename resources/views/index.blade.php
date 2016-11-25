@@ -1,4 +1,4 @@
-<!-- resources/views/machine/index.blade.php -->
+<!-- resources/views/index.blade.php -->
 
 @extends('layouts.app')
 
@@ -19,7 +19,7 @@
 </table>
 
 <h2><span class="label label-default">Pending surveys</span></h2>
-<table class="table">
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th>Survey ID</th><th>Description</th><th>Date Scheduled</th><th>Accession</th><th>Survey Note</th>
@@ -40,7 +40,7 @@
 
 <h2><span class="label label-default">Survey Schedule</span></h2>
 
-<table class="table table-hover">
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th>ID</th><th>Description</th><th>Previous</th><th>Prev SurveyID</th><th>Current</th><th>Curr SurveyID</th><th>Recs</th><th>Recs Resolved</th>

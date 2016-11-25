@@ -7,7 +7,7 @@
 <h3>List equipment by location</h3>
     @foreach ($machines as $location)
 <h4>Location: ({{ count($location) }})</h4>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>ID</th>
