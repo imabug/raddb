@@ -116,12 +116,10 @@ class Tube extends Model
         // Calculate the age of the tube based on install_date or manuf_date
         if ($this->attributes['install_date'] != "0000-00-00") {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
-        } else
-            if ($this->attributes['manuf_date'] != "0000-00-00") {
-                return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
-            } else {
-                return "N/A";
-            }
+        } elseif ($this->attributes['manuf_date'] != "0000-00-00") {
+            return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
+        } else {
+            return "N/A";
+        }
     }
-
 }
