@@ -256,10 +256,10 @@ class MachineController extends Controller
 
         $machine->save();
 
-        // Machine has been added to the database. Now redirect to the add tube page
-        return view('tubes.tubes_create', [
-            'machineID' => $machine->id
-        ]);
+        // Machine has been added to the database. Now redirect to
+        // /tubes/$id/create to create a new tube for the machine
+        // TODO: Show some kind of confirmation message that a new machine was added
+        return redirect('/tubes/' . $machine->id . '/create');
     }
 
     /**
