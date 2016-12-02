@@ -14,7 +14,7 @@ class CreateManufacturersTable extends Migration
     {
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('manufacturer', 20);
+            $table->string('manufacturer', 20)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

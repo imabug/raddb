@@ -26,8 +26,8 @@ class CreateMachinesTable extends Migration
             $table->integer('location_id')->default(0)->unsigned();
             $table->string('room', 20)->nullable();
             $table->string('machine_status', 50)->default('Active');
-            $table->text('notes');
-            $table->string('photo');
+            $table->text('notes')->nullable();
+            $table->string('photo')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

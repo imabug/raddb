@@ -19,7 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('pager', 6)->nullable();
             $table->string('email', 50)->nullable();
             $table->integer('location_id')->nullable()->unsigned();
-            $table->string('title', 50);
+            $table->string('title', 50)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
