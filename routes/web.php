@@ -58,8 +58,8 @@ Route::get('surveys/{id?}/create', 'TestDateController@create')
 Route::resource('surveys', 'TestDateController');
 
 // Tube controller
-Route::get('tubes/{id}/create', 'TubeController@create')
-    ->where('id', '[0-9]+');
+Route::get('tubes/{machineID}/create', 'TubeController@create')
+    ->where('machineID', '[0-9]+');
 Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables
