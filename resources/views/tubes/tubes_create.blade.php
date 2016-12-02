@@ -47,7 +47,7 @@
 	<label>Medium:</label> <input type="text" name="mfs" size="4" />mm
 	<label>Small:</label> <input type="text" name="sfs" size="4" />mm</p>
 <p><label>Notes</label><br /><textarea name="notes" rows="3" cols="70">Additional notes about this tube</textarea></p>
-<p><button type="SUBMIT">Add machine</button> / <a href="/">Main</a></p>
+<p><button type="SUBMIT">Add tube</button> / <a href="/">Main</a></p>
 </form>
 
 @endsection
