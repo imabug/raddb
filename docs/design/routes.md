@@ -33,8 +33,8 @@ These routes go to pages used to add, edit or delete machines
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /machines/create | Form to create a new machine | Basic implementation. **Needs testing** |
-| POST | /machines | Handle creation of new machine| Basic implementation. **Needs testing** |
+| GET | /machines/create | Form to create a new machine | Basic implementation. |
+| POST | /machines | Handle creation of new machine| Basic implementation. ** Needs confirmation dialog** |
 | GET | /machines/:id/edit | Form to edit an existing machine identified by :id | Basic implementation. **Needs testing** |
 | PUT | /machines/:id | Handle updates to machine :id | Basic implementation. **Needs testing** |
 | GET | /machines/:id/delete | Form to confirm deletion of machine :id ||
@@ -45,8 +45,8 @@ These routes go to pages used to add, edit or delete x-ray tubes.
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /tubes/:id/create | Form to add a new x-ray tube for machine identified by :id | Basic implementation. **Needs testing** |
-| POST | /tubes | Handle creation of new x-ray tube | Basic implementation. **Needs testing** |
+| GET | /tubes/:id/create | Form to add a new x-ray tube for machine identified by :id | Basic implementation. |
+| POST | /tubes | Handle creation of new x-ray tube | Basic implementation. ** Needs confirmation dialog** |
 | GET | /tubes/:id/edit | Form to edit an existing x-ray tube | Basic implementation. **Needs testing** |
 | PUT | /tubes/:id | Handle updates to x-ray tube :id | Basic implementation. **Needs testing** |
 | GET | /tubes/:id/delete | Form to confirm deletion of x-ray tube :id ||

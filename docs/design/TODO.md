@@ -12,3 +12,4 @@ TODO
 * Survey report uploads
 * Survey dashboard
 * Activity graphs
+* Show confirmation dialog when new machine/tube is added

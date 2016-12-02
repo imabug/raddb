@@ -58,7 +58,7 @@ These URIs are used for maintaining the tables used as lookup tables by other ta
 
 /modalities (GET) - Listing of modalities tracked in the database
 
-/modalities/{*id}/edit (GET) - Form for editing modality *id*
+/modalities/{*id*}/edit (GET) - Form for editing modality *id*
 
 /testers (GET) - Listing of testers tracked in the database
 
