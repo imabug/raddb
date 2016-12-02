@@ -80,18 +80,30 @@ class TubeController extends Controller
         $tube->insert_manuf_id = $request->insertManufID;
         $tube->manuf_date = $request->manufDate;
         $tube->install_date = $request->installDate;
-        $tube->lfs = $request->lfs;
-        $tube->mfs = $request->mfs;
-        $tube->sfs = $request->sfs;
+        if (!empty($request->lfs)) {
+            $tube->lfs = $request->lfs;
+        } else {
+            $tube->lfs = 0.0;
+        }
+        if (!empty($request->mfs)) {
+            $tube->mfs = $request->mfs;
+        } else {
+            $tube->mfs = 0.0;
+        }
+        if (!empty($request->sfs)) {
+            $tube->sfs = $request->sfs;
+        } else {
+            $tube->sfs = 0.0;
+        }
         $tube->notes = $request->notes;
         $tube->tube_status = "Active";
 
         $tube->save();
 
-        // Tube has been added to the database. Now redirect to the add tube page in case another tube needs to be added
-        return view('tubes.tubes_create', [
-            'machineID' => $machine->id
-        ]);
+        // Tube has been added to the database. Now redirect to the add tube
+        // page in case another tube needs to be added
+        // TODO: Show some kind of confirmation message that a new tube was added
+        return redirect('/tubes/' . $request->machine . '/create');
     }
 
     /**
