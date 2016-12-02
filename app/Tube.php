@@ -44,13 +44,13 @@ class Tube extends Model
         'install_date'
     ];
 
-    protected $attributes = [
-        'age'
-    ];
-
-    protected $appends = [
-        'age'
-    ];
+    // protected $attributes = [
+    //     'age'
+    // ];
+    //
+    // protected $appends = [
+    //     'age'
+    // ];
 
     /*
      * Relationships

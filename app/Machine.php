@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Machine extends Model
 {
     use SoftDeletes;
-    
+
     /**
      * Attributes that are mass assignable
      * @var array
@@ -41,14 +41,6 @@ class Machine extends Model
         'updated_at',
         'manuf_date',
         'install_date'
-    ];
-
-    protected $attributes = [
-        'age'
-    ];
-
-    protected $appends = [
-        'age'
     ];
 
     /*
