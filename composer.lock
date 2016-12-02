@@ -63,20 +63,20 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "1.8.5",
+            "version": "1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e"
+                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
-                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
+                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0.8"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "autoload": {
@@ -95,7 +95,7 @@
                 }
             ],
             "description": "Create charts for laravel using diferent charts libraries",
-            "time": "2016-10-19 10:55:43"
+            "time": "2016-10-06 20:42:04"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3069,16 +3069,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.6.7",
+            "version": "5.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "38810e97481723ef918f6e35c03cb1014a645bd5"
+                "reference": "00d72b8dbd2bb7d6f02a820e6db5cb70df6ac55c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/38810e97481723ef918f6e35c03cb1014a645bd5",
-                "reference": "38810e97481723ef918f6e35c03cb1014a645bd5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00d72b8dbd2bb7d6f02a820e6db5cb70df6ac55c",
+                "reference": "00d72b8dbd2bb7d6f02a820e6db5cb70df6ac55c",
                 "shasum": ""
             },
             "require": {
@@ -3097,7 +3097,7 @@
                 "phpunit/phpunit-mock-objects": "^3.2",
                 "sebastian/comparator": "~1.2.2",
                 "sebastian/diff": "~1.2",
-                "sebastian/environment": "^1.3 || ^2.0",
+                "sebastian/environment": "^1.3.4 || ^2.0",
                 "sebastian/exporter": "~2.0",
                 "sebastian/global-state": "~1.0",
                 "sebastian/object-enumerator": "~2.0",
@@ -3121,7 +3121,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.6.x-dev"
+                    "dev-master": "5.7.x-dev"
                 }
             },
             "autoload": {
@@ -3147,7 +3147,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-11-28 16:04:24"
+            "time": "2016-12-01 17:04:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
