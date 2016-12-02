@@ -242,15 +242,15 @@ class MachineController extends Controller
         }
         $machine->model = $request->model;
         $machine->serial_number = $request->serialNumber;
-        if (isset($machine->manuf_date)) {
+        if (isset($request->manufDate)) {
             $machine->manuf_date = $request->manufDate;
         }
-        if (isset($machine->install_date)) {
+        if (isset($request->installDate)) {
             $machine->install_date = $request->installDate;
         }
         $machine->location_id = $request->location;
         $machine->room = $request->room;
-        if (isset($machine->notes)) {
+        if (isset($request->notes)) {
             $machine->notes = $request->notes;
         }
 
