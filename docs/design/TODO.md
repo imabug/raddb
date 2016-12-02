@@ -13,3 +13,4 @@ TODO
 * Survey dashboard
 * Activity graphs
 * Show confirmation dialog when new machine/tube is added
+* Think about pulling inventory listing reports out of the MachineController and giving them their own controller.
