@@ -21,9 +21,9 @@ class CreateTubesTable extends Migration
             $table->string('insert_model', 30)->nullable();
             $table->string('insert_sn', 20)->nullable();
             $table->integer('insert_manuf_id')->default(0)->unsigned();
-            $table->date('manuf_date')->nullable()->default('0000-00-00');
-            $table->date('install_date')->nullable()->default('0000-00-00');
-            $table->date('remove_date')->nullable()->default('0000-00-00');
+            $table->date('manuf_date')->nullable();
+            $table->date('install_date')->nullable();
+            $table->date('remove_date')->nullable();
             $table->float('lfs')->default('0.0');
             $table->float('mfs')->default('0.0');
             $table->float('sfs')->default('0.0');
