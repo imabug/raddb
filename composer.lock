@@ -63,20 +63,20 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "1.8.5",
+            "version": "1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e"
+                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
-                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
+                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0.8"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "autoload": {
@@ -95,7 +95,7 @@
                 }
             ],
             "description": "Create charts for laravel using diferent charts libraries",
-            "time": "2016-10-19 10:55:43"
+            "time": "2016-10-06 20:42:04"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -688,20 +688,20 @@
         },
         {
             "name": "jeremeamia/SuperClosure",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeremeamia/super_closure.git",
-                "reference": "29a88be2a4846d27c1613aed0c9071dfad7b5938"
+                "reference": "443c3df3207f176a1b41576ee2a66968a507b3db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeremeamia/super_closure/zipball/29a88be2a4846d27c1613aed0c9071dfad7b5938",
-                "reference": "29a88be2a4846d27c1613aed0c9071dfad7b5938",
+                "url": "https://api.github.com/repos/jeremeamia/super_closure/zipball/443c3df3207f176a1b41576ee2a66968a507b3db",
+                "reference": "443c3df3207f176a1b41576ee2a66968a507b3db",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "^1.2|^2.0",
+                "nikic/php-parser": "^1.2|^2.0|^3.0",
                 "php": ">=5.4",
                 "symfony/polyfill-php56": "^1.0"
             },
@@ -711,7 +711,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -742,7 +742,7 @@
                 "serialize",
                 "tokenizer"
             ],
-            "time": "2015-12-05 17:17:57"
+            "time": "2016-12-07 09:37:55"
         },
         {
             "name": "laravel/framework",
