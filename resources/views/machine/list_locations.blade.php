@@ -5,8 +5,8 @@
 @section('content')
 <h2>Equipment Inventory</h2>
 <h3>List equipment by location</h3>
-    @foreach ($machines as $location)
-<h4>Location: ({{ count($location) }})</h4>
+    @foreach ($machines as $key=>$location)
+<h4>Location: {{ $key }} ({{ count($location) }})</h4>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
