@@ -15,7 +15,7 @@
             <th>Model</th>
             <th>SN</th>
             <th>Description</th>
-            <th>Location</th>
+            <th>Modality</th>
             <th>Age</th>
             <th>Room</th>
         </tr>
@@ -27,8 +27,8 @@
             <td>{{ $machine->manufacturer->manufacturer }}</td>
             <td>{{ $machine->model }}</td>
             <td>{{ $machine->serial_number }}</td>
-            <td>{{ $machine->description }}</td>
-            <td>{{ $machine->location->location }}</td>
+            <td><a href="/machines/{{ $machine->id }}">{{ $machine->description }}</a></td>
+            <td><a href="/machines/modalities/{{ $machine->modality_id }}">{{ $machine->modality->modality }}</a></td>
             <td>{{ $machine->age }}</td>
             <td>{{ $machine->room }}</td>
         </tr>
