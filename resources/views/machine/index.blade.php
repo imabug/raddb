@@ -24,12 +24,12 @@
 		@foreach ($machines as $machine)
 		<tr>
 			<td>{{ $machine->id }}</td>
-	        <td>{{ $machine->modality->modality }}</td>
+	        <td><a href="/machines/modalities/{{ $machine->modality_id}}">{{ $machine->modality->modality }}</a></td>
 			<td>{{ $machine->manufacturer->manufacturer }}</td>
 			<td>{{ $machine->model }}</td>
 			<td>{{ $machine->serial_number }}</td>
 			<td><a href="/machines/{{ $machine->id }}">{{ $machine->description }}</a></td>
-			<td>{{ $machine->location->location }}</td>
+			<td><a href="/machines/locations/{{ $machine->location_id }}">{{ $machine->location->location }}</a></td>
 	        <td>{{ $machine->age }}</td>
 			<td>{{ $machine->room }}</td>
 			<td>
