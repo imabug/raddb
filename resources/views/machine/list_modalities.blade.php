@@ -5,8 +5,8 @@
 @section('content')
 <h2>Equipment Inventory</h2>
 <h3>List equipment by modality</h3>
-    @foreach ($machines as $modality)
-<h4>Modality: ({{ count($modality) }})</h4>
+    @foreach ($machines as $key=>$modality)
+<h4>Modality: {{ $key }} ({{ count($modality) }})</h4>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -30,7 +30,7 @@
             <td>{{ $machine->serial_number }}</td>
             <td><a href="/machines/{{ $machine->id }}">{{ $machine->description }}</a></td>
             <td>{{ $machine->modality->modality }}</td>
-            <td>{{ $machine->location->location }}</td>
+            <td><a href="/machines/locations/{{ $machine->location_id }}">{{ $machine->location->location }}</a></td>
             <td>{{ $machine->age }}</td>
             <td>{{ $machine->room }}</td>
 
