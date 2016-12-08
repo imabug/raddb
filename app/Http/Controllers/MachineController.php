@@ -42,11 +42,11 @@ class MachineController extends Controller
     public function showModalityIndex()
     {
         // Fetch a list of all the machines grouped by modality
-        // Almost works. Need to figure out how to get the modality description from the top level of the array
+        // Use the modality field to group the collection by modality
         $machines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->get()
-            ->groupBy('modality_id');
+            ->groupBy('modality.modality');
 
         return view('machine.list_modalities', [
             'machines' => $machines
@@ -87,11 +87,11 @@ class MachineController extends Controller
     public function showLocationIndex()
     {
         // Fetch a list of all the machines grouped by location
-        // Almost owrks. Need to figure out how to get th elocation from the top level of the array
+        // Use the location field to group the collection by location
         $machines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->get()
-            ->groupBy('location_id');
+            ->groupBy('location.location');
 
         return view('machine.list_locations', [
             'machines' => $machines
