@@ -9,6 +9,7 @@ use RadDB\Manufacturer;
 use RadDB\Machine;
 use RadDB\Tube;
 use RadDB\TestDate;
+use RadDB\Http\Requests;
 
 class TestController extends Controller
 {
@@ -19,7 +20,17 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        // Fetch a list of all the machines grouped by modality
+        // Almost works. Need to figure out how to get the modality description from the top level of the array
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->get()
+            ->groupBy('modality.modality');
+
+        return view('test.index', [
+            'machines' => $machines
+        ]);
+
     }
 
     /**
