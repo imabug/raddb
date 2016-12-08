@@ -68,3 +68,6 @@ Route::resource('admin/manufacturers', 'ManufacturerController');
 Route::resource('admin/modalities', 'ModalityController');
 Route::resource('admin/testers', 'TesterController');
 Route::resource('admin/testtypes', 'TestTypeController');
+
+// Route for experiments and tests
+Route::resource('test', 'TestController');
