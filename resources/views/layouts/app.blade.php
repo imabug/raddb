@@ -10,64 +10,9 @@
 </head>
 <body>
     <div class="container">
-        @if (count($errors) > 0)
-    	<div class="text-warning">
-    		<ul>
-    			@foreach ($errors->all() as $error)
-    				<li>{{ $error }}</li>
-    			@endforeach
-    		</ul>
-    	</div>
-        @endif
+@include('layouts.errors')
         <h1>Radiological Equipment Database</h1>
-        <nav class="navbar navbar-default navbar-static-top">
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav nav-tabs">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboards<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>Survey status</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Machines<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/machines/create">New machine</a></li>
-                            <li>Modify machine</li>
-                            <li>Add op note</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Surveys<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/surveys/create">Add survey</a></li>
-                            <li><a href="/recommendations/create">Add survey recommendation</a></li>
-                            <li>Add service report</li>
-                            <li>Add survey report</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/machines">List machines</a></li>
-                            <li><a href="/machines/modalities">List by modality</a></li>
-                            <li><a href="/machines/locations">List by location</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin/locations">Locations</a></li>
-                            <li><a href="/admin/manufacturers">Manufacturers</a></li>
-                            <li><a href="/admin/modalities">Modalities</a></li>
-                            <li><a href="/admin/testers">Testers</a></li>
-                            <li><a href="/admin/testtypes">Test Types</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+@include('layouts.sidebar')
         @yield('content')
     </div>
     <!-- Bootstrap core JavaScript
