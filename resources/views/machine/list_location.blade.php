@@ -18,6 +18,7 @@
             <th>Modality</th>
             <th>Age</th>
             <th>Room</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +32,20 @@
             <td><a href="/machines/modalities/{{ $machine->modality_id }}">{{ $machine->modality->modality }}</a></td>
             <td>{{ $machine->age }}</td>
             <td>{{ $machine->room }}</td>
+            <td>
+                <form class="form-inline" action="/machines/{{ $machine->id }}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <a href="/machines/{{ $machine->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this machine">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </form>
+            </td>
         </tr>
     @endforeach
     </tbody>

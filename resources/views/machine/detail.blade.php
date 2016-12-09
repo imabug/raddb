@@ -21,7 +21,20 @@
         Age: {{ $machine->age }}<br />
         Notes: {{ $machine->notes }}
         </p>
-        <p><a href="/machines/{{ $machine->id }}/edit">Modify this machine</a></p>
+        <p>
+            <form class="form-inline" action="/machines/{{ $machine->id }}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <a href="/machines/{{ $machine->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this machine">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </form>
+        </p>
     </div>
 </div>
 <h3><span class="label label-default">Tube Information</span></h3>
@@ -37,6 +50,7 @@
             <th>Manuf Date</th>
             <th>Age</th>
             <th>Notes</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -51,6 +65,20 @@
             <td>{{ $tube->manuf_date }}</td>
             <td>{{ $tube->age }}</td>
             <td>{{ $tube->notes }}</td>
+			<td>
+				<form class="form-inline" action="/tubes/{{ $machine->id }}" method="post">
+					{{ csrf_field() }}
+					{{ method_field('DELETE') }}
+                    <a href="/tubes/{{ $tube->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
+    					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    				</a>
+					<div class="form-group">
+						<button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this tube">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+					</div>
+				</form>
+			</td>
         </tr>
     @endforeach
     </tbody>
