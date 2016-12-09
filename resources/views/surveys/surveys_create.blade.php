@@ -27,7 +27,7 @@
 <p>
     <label>Tested by: </label>
     <select name="tester1ID" size="1">
-    <option></option
+    <option value="0"></option
     @foreach ($testers as $tester)
     <option value="{{ $tester->id }}">{{ $tester->initials }}</option>
     @endforeach
@@ -36,7 +36,7 @@
 <p>
     <label>Tested by: </label>
     <select name="tester2ID" size="1">
-    <option></option
+    <option value="0"></option
     @foreach ($testers as $tester)
     <option value="{{ $tester->id }}">{{ $tester->initials }}</option>
     @endforeach
