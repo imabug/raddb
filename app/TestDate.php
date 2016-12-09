@@ -29,7 +29,10 @@ class TestDate extends Model
         'type_id',
         'notes',
         'accession',
-        'report_file_path'
+        'report_file_path',
+        'deleted_at',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -38,8 +41,8 @@ class TestDate extends Model
      * @var array
      */
     protected $dates = [
-        'test_date',
-        'report_sent_date',
+        // 'test_date',
+        // 'report_sent_date',
         'deleted_at',
         'created_at',
         'updated_at'

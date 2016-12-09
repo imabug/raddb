@@ -28,7 +28,10 @@ class Tube extends Model
         'mfs',
         'sfs',
         'notes',
-        'tube_status'
+        'tube_status',
+        'created_at',
+        'deleted_at',
+        'updated_at',
     ];
 
     /**
@@ -40,8 +43,8 @@ class Tube extends Model
         'created_at',
         'deleted_at',
         'updated_at',
-        'manuf_date',
-        'install_date'
+        // 'manuf_date',
+        // 'install_date'
     ];
 
     /*

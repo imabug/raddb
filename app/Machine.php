@@ -27,7 +27,10 @@ class Machine extends Model
         'room',
         'status',
         'notes',
-        'photo'
+        'photo',
+        'created_at',
+        'deleted_at',
+        'updated_at',
     ];
 
     /**
@@ -39,8 +42,8 @@ class Machine extends Model
         'created_at',
         'deleted_at',
         'updated_at',
-        'manuf_date',
-        'install_date'
+        // 'manuf_date',
+        // 'install_date'
     ];
 
     /*
