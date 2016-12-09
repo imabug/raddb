@@ -9,6 +9,16 @@
     <title>Radiological Equipment Database</title>
 </head>
 <body>
+@if (count($errors) > 0)
+	<div class="text-warning">
+		<ul>
+			@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+@endif
+
     <div class="container">
         <h1>Radiological Equipment Database</h1>
         <nav class="navbar navbar-default navbar-static-top">
