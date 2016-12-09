@@ -21,6 +21,7 @@
         Age: {{ $machine->age }}<br />
         Notes: {{ $machine->notes }}
         </p>
+        <p><a href="/machines/{{ $machine->id }}/edit">Modify this machine</a></p>
     </div>
 </div>
 <h3><span class="label label-default">Tube Information</span></h3>
