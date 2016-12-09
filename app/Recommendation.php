@@ -22,6 +22,16 @@ class Recommendation extends Model
         'service_report_path'
     ];
 
+    /**
+     * Attributes that should be mutated to dates
+     *
+     * @var array
+     */
+    protected $dates = [
+        'rec_add_ts',
+        'rec_resolve_ts',
+    ];
+    
     /*
      * Relationships
      */
