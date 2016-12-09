@@ -118,18 +118,36 @@ class TubeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a tube.
+     * URI: /tubes/$id/edit
+     * Method: GET
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        // Get the information for the tube to edit
+        $tube = Tube::findOrFail($id);
+
+        // Get the information for the corresponding machine
+        $machine = Machine::findOrFail($tube->machine_id);
+
+        // Get the list of manufacturers
+        $manufacturers = Manufacturer::select('id', 'manufacturer')->get();
+
+        // Show the form
+        return view('tubes.tubes_edit', [
+            'tube' => $tube,
+            'machine' => $machine,
+            'manufacturers' => $manufacturers,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
+     * URI: /tubes/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -137,7 +155,48 @@ class TubeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'machine_id' => 'required|integer',
+            'hsgManufID' => 'integer',
+            'hsgModel' => 'string|max:30',
+            'hsgSN' => 'string|max:20',
+            'insertManufID' => 'integer',
+            'insertModel' => 'string|max:30',
+            'insertSN' => 'string|max:20',
+            'manufDate' => 'date_format:Y-m-d|max:10',
+            'installDate' => 'date_format:Y-m-d|max:10',
+            'removeDate' => 'date_format:Y-m-d|max:10',
+            'lfs' => 'numeric',
+            'mfs' => 'numeric',
+            'sfs' => 'numeric',
+            'status' => 'required|in:Active,Removed|max:20',
+            'notes' => 'string|max:65535',
+        ]);
+
+        // Retrieve the model for the t ube to be edited
+        $tube = Tube::find($id);
+
+        $tube->machine_id = $request->machine_id;
+        $tube->housing_model = $request->hsgModel;
+        $tube->housing_sn = $request->hsgSN;
+        $tube->housing_manuf_id = $request->hsgManufID;
+        $tube->insert_model = $request->insertModel;
+        $tube->insert_sn = $request->insertSN;
+        $tube->insert_manuf_id = $request->insertManufID;
+        $tube->manuf_date = $request->manufDate;
+        $tube->install_date = $request->installDate;
+        $tube->remove_date = $request->removeDate;
+        $tube->lfs = $request->lfs;
+        $tube->mfs = $request->mfs;
+        $tube->sfs = $request->sfs;
+        $tube->notes = $request->notes;
+        $tube->tube_status = $request->status;
+
+        $tube->save();
+
+        // Tube has been updated in the database. Redirect to the machine page
+        // for the unit
+        return redirect('/machines/' . $request->machine_id);
     }
 
     /**
