@@ -380,7 +380,7 @@ class MachineController extends Controller
 
         $machine->save();
 
-        // Machine has been added to the database. Now redirect to the add tube page
+        // Machine has been updated in the database. Redirect to the machine page
         return redirect('/machines/'.$machine->id);
     }
 
