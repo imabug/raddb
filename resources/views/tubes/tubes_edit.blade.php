@@ -5,51 +5,46 @@
 @section('content')
 <h2>Edit a tube</h2>
 
-<form class="form-inline" action="/tubes" method="POST">
+<form class="form-inline" action="/tubes/{{$tube->id}}" method="POST">
     <div class="form-group">
     	{{ csrf_field() }}
         {{ method_field('PUT') }}
-    <p><label for="machine">Machine:</label>
-    	<select id="machine" name="machine" size="1">
-    	<option>Select machine</option>
-
-    	@foreach ($machines as $machine)
-    	<option value="{{ $machine->id}}"
-    		@if ($machine->id == $machineID)
-    		selected="selected"
-    		@endif
-    		>{{ $machine->description }}</option>
-    	@endforeach
-    	</select></p>
+        <input type="hidden" id="machine_id" name="machine_id" value="{{ $machine->id }}" />
+        <input type="hidden" id="tube_id" name="tube_id" value="{{$tube->id}}">
+    <p><label for="machine">Machine:</label> {{ $machine->description }}</p>
     <p><label for="hsgManufID">Housing Manufacturer:</label>
-    	<select id="hsgManufID" name="hsgManufID" size="1">
+    	<select class="form-control" id="hsgManufID" name="hsgManufID" size="1">
     	<option>Select manufacturer</option>
-
     	@foreach ($manufacturers as $manufacturer)
-    	<option value="{{ $manufacturer->id }}">{{ $manufacturer->manufacturer }}</option>
+    	<option value="{{ $manufacturer->id }}"
+@if ($manufacturer->id == $tube->housing_manuf_id)
+    selected="selected"
+@endif
+            >{{ $manufacturer->manufacturer }}</option>
     	@endforeach
-
     	</select></p>
-    <p><label for="hsgModel">Housing Model:</label> <input type="TEXT" id="hsgModel" name="hsgModel" size="20"></p>
-    <p><label for="hsgSN">Housing SN:</label> <input type="TEXT" id="hsgSN" name="hsgSN" size="20"></p>
+    <p><label for="hsgModel">Housing Model:</label> <input class="form-control" type="TEXT" id="hsgModel" name="hsgModel" size="20" value="{{ $tube->housing_model }}" /></p>
+    <p><label for="hsgSN">Housing SN:</label> <input class="form-control" type="TEXT" id="hsgSN" name="hsgSN" size="20" value="{{ $tube->housing_sn }}" /></p>
     <p><label for="insertManufID">Insert Manufacturer:</label>
-    	<select id="insertManufID" name="insertManufID" size="1">
+    	<select class="form-control" id="insertManufID" name="insertManufID" size="1">
     	<option>Select manufacturer</option>
-
     	@foreach ($manufacturers as $manufacturer)
-    	<option value="{{ $manufacturer->id }}">{{ $manufacturer->manufacturer }}</option>
+    	<option value="{{ $manufacturer->id }}"
+@if ($manufacturer->id == $tube->insert_manuf_id)
+    selected="selected"
+@endif
+            >{{ $manufacturer->manufacturer }}</option>
     	@endforeach
-
     	</select></p>
-    <p><label for="insertModel">Insert Model:</label> <input type="text" id="insertModel" name="insertModel" size="20" /></p>
-    <p><label for="insertSN">Insert SN:</label> <input type="text" id="insertSN" name="insertSN" size="20" /></p>
-    <p><label for="manufDate">Manufacture Date:</label> <input type="text" id="manufDate" name="manufDate" size="10" /> (YYYY-MM-DD)</p>
-    <p><label for="installDate">Install date:</label> <input type="text" id="installDate" name="installDate" size="10" /> (YYYY-MM-DD)</p>
-    <p><label for="lfs">Focal spot size: Large:</label> <input type="text" id="lfs" name="lfs" size="4" />mm
-    	<label for="mfs">Medium:</label> <input type="text" id="mfs" name="mfs" size="4" />mm
-    	<label for="sfs">Small:</label> <input type="text" id="sfs" name="sfs" size="4" />mm</p>
-    <p><label for="notes">Notes</label><br /><textarea id="notes" name="notes" rows="3" cols="70">Additional notes about this tube</textarea></p>
-    <p><button type="SUBMIT">Add tube</button> / <a href="/">Main</a></p>
+    <p><label for="insertModel">Insert Model:</label> <input class="form-control" type="text" id="insertModel" name="insertModel" size="20" value="{{ $tube->insert_model }}" /></p>
+    <p><label for="insertSN">Insert SN:</label> <input class="form-control" type="text" id="insertSN" name="insertSN" size="20" value="{{ $tube->insert_sn }}" /></p>
+    <p><label for="manufDate">Manufacture Date:</label> <input class="form-control" type="text" id="manufDate" name="manufDate" size="10" value="{{ $tube->manuf_date }}" /> (YYYY-MM-DD)</p>
+    <p><label for="installDate">Install date:</label> <input class="form-control" type="text" id="installDate" name="installDate" size="10" value="{{ $tube->install_date }}" /> (YYYY-MM-DD)</p>
+    <p><label for="lfs">Focal spot size: Large:</label> <input class="form-control" type="text" id="lfs" name="lfs" size="4" value="{{ $tube->lfs }}" />mm
+    	<label for="mfs">Medium:</label> <input class="form-control" type="text" id="mfs" name="mfs" size="4" value="{{ $tube->mfs }}" />mm
+    	<label for="sfs">Small:</label> <input class="form-control" type="text" id="sfs" name="sfs" size="4" value="{{ $tube->sfs }}" />mm</p>
+    <p><label for="notes">Notes</label><br /><textarea class="form-control" id="notes" name="notes" rows="3" cols="70">{{$tube->notes}} </textarea></p>
+    <p><button type="SUBMIT">Modify tube</button> / <a href="/">Main</a></p>
     </div>
 </form>
 

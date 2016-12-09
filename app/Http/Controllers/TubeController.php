@@ -131,7 +131,9 @@ class TubeController extends Controller
         $tube = Tube::findOrFail($id);
 
         // Get the information for the corresponding machine
-        $machine = Machine::findOrFail($tube->machine_id);
+        $machine = Machine::select('id','description')
+            ->where('id', '=', $tube->machine_id)
+            ->first();
 
         // Get the list of manufacturers
         $manufacturers = Manufacturer::select('id', 'manufacturer')->get();
@@ -165,11 +167,9 @@ class TubeController extends Controller
             'insertSN' => 'string|max:20',
             'manufDate' => 'date_format:Y-m-d|max:10',
             'installDate' => 'date_format:Y-m-d|max:10',
-            'removeDate' => 'date_format:Y-m-d|max:10',
             'lfs' => 'numeric',
             'mfs' => 'numeric',
             'sfs' => 'numeric',
-            'status' => 'required|in:Active,Removed|max:20',
             'notes' => 'string|max:65535',
         ]);
 
@@ -185,12 +185,10 @@ class TubeController extends Controller
         $tube->insert_manuf_id = $request->insertManufID;
         $tube->manuf_date = $request->manufDate;
         $tube->install_date = $request->installDate;
-        $tube->remove_date = $request->removeDate;
         $tube->lfs = $request->lfs;
         $tube->mfs = $request->mfs;
         $tube->sfs = $request->sfs;
         $tube->notes = $request->notes;
-        $tube->tube_status = $request->status;
 
         $tube->save();
 
