@@ -16,7 +16,7 @@
 				<form class="form-inline" action="/admin/locations/{{ $location->id }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
-					<button type="submit" class="btn btn-xs">
+					<button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this location">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 				</form>
