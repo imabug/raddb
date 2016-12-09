@@ -70,8 +70,11 @@
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
                     <a href="/tubes/{{ $tube->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
-    					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
     				</a>
+                    <a href="/tubes/{{ $machine->id }}/create" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Add new tube">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </a>
 					<div class="form-group">
 						<button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this tube">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
