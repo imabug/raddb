@@ -58,7 +58,7 @@ class RecommendationController extends Controller
             ->first();
 
         // Get the recommendations
-        $recs = Recommendation::where('survey_id', $surveyId)->get();
+        $recs = Recommendation::surveyId($surveyId)->get();
 
         return view('surveys.recommendations', [
             'surveyID' => $surveyId,
@@ -105,9 +105,10 @@ class RecommendationController extends Controller
         if (!is_dir($path)) {
             Storage::makeDirectory($path);
         }
+
         if ($request->hasFile('ServiceReport')) {
             $serviceReportFile = $request->ServiceReport;
-            $serviceReportPath = $serviceReportFile->storeAs($path, $serviceReportFile)
+            $serviceReportPath = $serviceReportFile->storeAs($path, $serviceReportFile);
         }
 
         foreach ($resolved as $recId) {
@@ -119,7 +120,9 @@ class RecommendationController extends Controller
             if (isset($request->ResolvedBy)) $recommendation->resolved_by = $request->ResolvedBy;
             $recommendation->resolved = 1;
             $recommendation->rec_status = "Complete";
-            $recommendation->service_report_path = $serviceReportPath;
+            if (isset($serviceReportPath)) $recommendation->service_report_path = $serviceReportPath;
+
+            $recommendation->save();
         }
 
         return redirect('/recommendations/' . $surveyID);
