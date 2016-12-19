@@ -120,6 +120,7 @@ class RecommendationController extends Controller
             if (isset($request->ResolvedBy)) $recommendation->resolved_by = $request->ResolvedBy;
             $recommendation->resolved = 1;
             $recommendation->rec_status = "Complete";
+            $recommendation->rec_resolve_ts = date("Y-m-d H:i:s");
             if (isset($serviceReportPath)) $recommendation->service_report_path = $serviceReportPath;
 
             $recommendation->save();
