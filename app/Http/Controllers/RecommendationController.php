@@ -116,12 +116,12 @@ class RecommendationController extends Controller
             $recommendation = Recommendation::findOrFail($recId);
 
             if (isset($request->WONum)) $recommendation->wo_number = $request->WONum;
-            if (isset($request->RecResolveDate)) $recommendation->rec_resolve_date = $recResolveDate;
             if (isset($request->ResolvedBy)) $recommendation->resolved_by = $request->ResolvedBy;
+            if (isset($serviceReportPath)) $recommendation->service_report_path = $serviceReportPath;
+            $recommendation->rec_resolve_date = $recResolveDate;
             $recommendation->resolved = 1;
             $recommendation->rec_status = "Complete";
             $recommendation->rec_resolve_ts = date("Y-m-d H:i:s");
-            if (isset($serviceReportPath)) $recommendation->service_report_path = $serviceReportPath;
 
             $recommendation->save();
         }
