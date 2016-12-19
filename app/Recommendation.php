@@ -30,8 +30,11 @@ class Recommendation extends Model
     protected $dates = [
         'rec_add_ts',
         'rec_resolve_ts',
+        'deleted_at',
+        'created_at',
+        'updated_at',
     ];
-    
+
     /*
      * Relationships
      */
@@ -54,4 +57,28 @@ class Recommendation extends Model
     {
         return $query->where('resolved', 0);
     }
+
+    /**
+     * Scope function to return unresolved recommendations (resolved=1)
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+     public function scopeResolved($query)
+     {
+         return $query->where('resolved', 1);
+     }
+
+     /**
+      * Scope function to return recommendations for a given $surveyID
+      *
+      * @param \Illuminate\Database\Eloquent\Builder $query
+      * @param int $surveyID
+      * @return \Illuminate\Database\Eloquent\Builder
+      */
+      public function scopeSurveyId($query, $surveyID)
+      {
+          return $query->where('survey_id', $surveyID)
+      }
+
 }
