@@ -64,21 +64,20 @@ class Recommendation extends Model
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-     public function scopeResolved($query)
-     {
-         return $query->where('resolved', 1);
-     }
+    public function scopeResolved($query)
+    {
+        return $query->where('resolved', 1);
+    }
 
-     /**
-      * Scope function to return recommendations for a given $surveyID
-      *
-      * @param \Illuminate\Database\Eloquent\Builder $query
-      * @param int $surveyID
-      * @return \Illuminate\Database\Eloquent\Builder
-      */
-      public function scopeSurveyId($query, $surveyID)
-      {
-          return $query->where('survey_id', $surveyID)
-      }
-
+    /**
+     * Scope function to return recommendations for a given $surveyID
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $surveyID
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSurveyId($query, $surveyId)
+    {
+        return $query->where('survey_id', $surveyId);
+    }
 }
