@@ -32,7 +32,8 @@ class RecommendationController extends Controller
     {
         if (is_null($surveyId)) {
             // No survey id was provided
-
+            $recs = null;
+            $machineDesc = null;
         }
         else {
             // Get the machine description corresponding to the survey ID provided
@@ -44,10 +45,17 @@ class RecommendationController extends Controller
             // Retrieve the recommendations for the provided survey ID
             $recs = Recommendation::surveyID($surveyId)->get();
         }
+        return view('surveys.rec_add', [
+            'surveyId' => $surveyId,
+            'machineDesc' => $machineDesc,
+            'recs' => $recs,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
+     * URI: /recommendations
+     * Method: POST
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
