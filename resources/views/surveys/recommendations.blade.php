@@ -1,4 +1,4 @@
-<!-- resources/views/surveys/index.blade.php -->
+<!-- resources/views/surveys/recommendations.blade.php -->
 
 @extends('layouts.app')
 
