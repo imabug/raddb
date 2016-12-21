@@ -21,13 +21,29 @@ class RecommendationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for adding a new recommendation.
+     * URI: /recommendations/$surveyID/create
+     * Method: GET
      *
+     * @param int $surveyID (optional)
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($surveyId = null)
     {
-        //
+        if (is_null($surveyId)) {
+            // No survey id was provided
+
+        }
+        else {
+            // Get the machine description corresponding to the survey ID provided
+            $machineDesc = TestDate::select('description')
+                ->join('machines', 'testdates.machine_id', '=', 'machines.id')
+                ->where('testdates.id', $surveyId)
+                ->first();
+
+            // Retrieve the recommendations for the provided survey ID
+            $recs = Recommendation::surveyID($surveyId)->get();
+        }
     }
 
     /**
