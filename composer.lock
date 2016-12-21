@@ -63,20 +63,20 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "1.8",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4"
+                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
-                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
+                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=7.0.8"
             },
             "type": "library",
             "autoload": {
@@ -95,7 +95,7 @@
                 }
             ],
             "description": "Create charts for laravel using diferent charts libraries",
-            "time": "2016-10-06 20:42:04"
+            "time": "2016-10-19 10:55:43"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2826,16 +2826,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "903fd6318d0a90b4770a009ff73e4a4e9c437929"
+                "reference": "c14196e64a78570034afd0b7a9f3757ba71c2a0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/903fd6318d0a90b4770a009ff73e4a4e9c437929",
-                "reference": "903fd6318d0a90b4770a009ff73e4a4e9c437929",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c14196e64a78570034afd0b7a9f3757ba71c2a0a",
+                "reference": "c14196e64a78570034afd0b7a9f3757ba71c2a0a",
                 "shasum": ""
             },
             "require": {
@@ -2885,7 +2885,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-11-28 16:00:31"
+            "time": "2016-12-20 15:22:42"
         },
         {
             "name": "phpunit/php-file-iterator",
