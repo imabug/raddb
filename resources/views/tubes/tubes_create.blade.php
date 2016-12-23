@@ -42,8 +42,8 @@
 		</select></p>
 	<p><label for="insertModel">Insert Model:</label> <input type="text" id="insertModel" name="insertModel" size="20" /></p>
 	<p><label for="insertSN">Insert SN:</label> <input type="text" id="insertSN" name="insertSN" size="20" /></p>
-	<p><label for="manufDate">Manufacture Date:</label> <input type="text" id="manufDate" name="manufDate" size="10" /> (YYYY-MM-DD)</p>
-	<p><label for="installDate">Install date:</label> <input type="text" id="installDate" name="installDate" size="10" /> (YYYY-MM-DD)</p>
+	<p><label for="manufDate">Manufacture Date:</label> <input type="text" id="manufDate" name="manufDate" size="10" placeholder="YYYY-MM-DD"  /></p>
+	<p><label for="installDate">Install date:</label> <input type="text" id="installDate" name="installDate" size="10" placeholder="YYYY-MM-DD"  /></p>
 	<p><label for="lfs">Focal spot size: Large:</label> <input type="text" id="lfs" name="lfs" size="4" />mm
 		<label for="mfs">Medium:</label> <input type="text" id="mfs" name="mfs" size="4" />mm
 		<label for="sfs">Small:</label> <input type="text" id="sfs" name="sfs" size="4" />mm</p>

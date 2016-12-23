@@ -39,8 +39,8 @@
 		<p><label for="model">Model:</label> <input class="form-control" type="text" id="model" name="model" size="20" value="{{ $machine->model }}"/></p>
 		<p><label for="serialNumber">Serial Number:</label> <input class="form-control" type="text" id="serialNumber" name="serialNumber" size="20" value="{{ $machine->serial_number }}"/></p>
 		<p><label for="vendSiteID">Vendor site ID:</label> <input class="form-control" type="text" id="vendSiteID" name="vendSiteID" size="20"  value="{{ $machine->vend_site_id }}"/></p>
-		<p><label for="manufDate">Manufacture date:</label> <input class="form-control" type="text" id="manufDate" name="manufDate" size="20" value="{{ $machine->manuf_date }}"/> (YYYY-MM-DD)</p>
-		<p><label for="installDate">Install date:</label> <input class="form-control" type="text" id="installDate" name="installDate" size="20" value="{{ $machine->install_date }}"/> (YYYY-MM-DD)</p>
+		<p><label for="manufDate">Manufacture date:</label> <input class="form-control" type="text" id="manufDate" name="manufDate" size="20" value="{{ $machine->manuf_date }}" placeholder="YYYY-MM-DD" /></p>
+		<p><label for="installDate">Install date:</label> <input class="form-control" type="text" id="installDate" name="installDate" size="20" value="{{ $machine->install_date }}" placeholder="YYYY-MM-DD" /></p>
 		<p><label for="location">Location:</label>
 		<select class="form-control" id="location_id" name="location_id" size="1">
 			<option>Select location</option>

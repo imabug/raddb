@@ -38,8 +38,8 @@
     	</select></p>
     <p><label for="insertModel">Insert Model:</label> <input class="form-control" type="text" id="insertModel" name="insertModel" size="20" value="{{ $tube->insert_model }}" /></p>
     <p><label for="insertSN">Insert SN:</label> <input class="form-control" type="text" id="insertSN" name="insertSN" size="20" value="{{ $tube->insert_sn }}" /></p>
-    <p><label for="manufDate">Manufacture Date:</label> <input class="form-control" type="text" id="manufDate" name="manufDate" size="10" value="{{ $tube->manuf_date }}" /> (YYYY-MM-DD)</p>
-    <p><label for="installDate">Install date:</label> <input class="form-control" type="text" id="installDate" name="installDate" size="10" value="{{ $tube->install_date }}" /> (YYYY-MM-DD)</p>
+    <p><label for="manufDate">Manufacture Date:</label> <input class="form-control" type="text" id="manufDate" name="manufDate" size="10" value="{{ $tube->manuf_date }}" placeholder="YYYY-MM-DD" /></p>
+    <p><label for="installDate">Install date:</label> <input class="form-control" type="text" id="installDate" name="installDate" size="10" value="{{ $tube->install_date }}" placeholder="YYYY-MM-DD" /></p>
     <p><label for="lfs">Focal spot size: Large:</label> <input class="form-control" type="text" id="lfs" name="lfs" size="4" value="{{ $tube->lfs }}" />mm
     	<label for="mfs">Medium:</label> <input class="form-control" type="text" id="mfs" name="mfs" size="4" value="{{ $tube->mfs }}" />mm
     	<label for="sfs">Small:</label> <input class="form-control" type="text" id="sfs" name="sfs" size="4" value="{{ $tube->sfs }}" />mm</p>
