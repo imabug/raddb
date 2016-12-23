@@ -108,7 +108,7 @@
     <tbody>
     @foreach ($surveys as $survey)
         <tr>
-            <td>{{ $survey->id }}</td>
+            <td><a href="/recommendations/{{ $survey->id }}">{{ $survey->id }}</a></td>
             <td>{{ $survey->test_date }}</td>
             <td>{{ $survey->type->test_type }}</td>
             <td>{{ $survey->accession }}</td>
@@ -124,13 +124,19 @@
         <tr>
             <th>Survey ID</th>
             <th>Recommendation</th>
+            <th>Resolved</th>
         </tr>
     </thead>
     <tbody>
     @foreach ($recommendations as $rec)
         <tr>
-            <td>{{ $rec->survey_id }}</td>
+            <td><a href="/recommendations/{{ $rec->survey_id }}">{{ $rec->survey_id }}</a></td>
             <td>{{ $rec->recommendation }}</td>
+            <td>
+@if($rec->resolved)
+    <span class="glyphicon glyphicon-ok" aria-hidden-"true"></span>
+@endif
+            </td>
         </tr>
     @endforeach
     </tbody>
