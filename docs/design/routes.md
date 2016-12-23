@@ -47,8 +47,8 @@ These routes go to pages used to add, edit or delete x-ray tubes.
 |------|-----|-----------|------|
 | GET | /tubes/:id/create | Form to add a new x-ray tube for machine identified by :id | Basic implementation. |
 | POST | /tubes | Handle creation of new x-ray tube | Basic implementation. ** Needs confirmation dialog** |
-| GET | /tubes/:id/edit | Form to edit an existing x-ray tube | Basic implementation. **Needs testing** |
-| PUT | /tubes/:id | Handle updates to x-ray tube :id | Basic implementation. **Needs testing** |
+| GET | /tubes/:id/edit | Form to edit an existing x-ray tube | Basic implementation.|
+| PUT | /tubes/:id | Handle updates to x-ray tube :id | Basic implementation. |
 | GET | /tubes/:id/delete | Form to confirm deletion of x-ray tube :id ||
 | DELETE | /tubes/:id | Handle deletion of x-ray tube :id | |
 
@@ -78,11 +78,11 @@ These routes go to pages used to add or edit survey recommendations
 
 |Method|Route|Description|Status|
 |------|-----|-----------|------|
-| GET | /recommendations/create | Form to add a survey recommendation ||
-| POST | /recommendations | Handle adding survey recommendation ||
-| GET | /recommendations/:id/edit | Form to handle resolving survey recommendations||
-| GET | /recommendations/:id | Display a list of survey recommendations ||
-| PUT | /recommendations/:id | Handle resolving survey recommendation ||
+| GET | /recommendations/create | Form to add a survey recommendation | Basic implementation |
+| POST | /recommendations | Handle adding survey recommendation | Basic implementation |
+| GET | /recommendations/:id/edit | Form to handle resolving survey recommendations| Basic implementation |
+| GET | /recommendations/:id | Display a list of survey recommendations | Basic implementation |
+| PUT | /recommendations/:id | Handle resolving survey recommendation | Basic implementation |
 
 ## Survey reporting
 These routes go to pages used to display lists of surveys or recommendations
