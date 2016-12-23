@@ -104,4 +104,16 @@ class TestDate extends Model
     {
         return $query->whereYear('test_date', '=', $yr);
     }
+
+    /**
+     * Scope function to return a specific $id
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+     public function scopeId($query, $id)
+     {
+         return $query->where('id', $id);
+     }
 }
