@@ -36,6 +36,12 @@
             @endforeach
             </tbody>
         </table>
+        <p>
+            <a href="/recommendations/{{ $surveyID }}/create" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                Add new recommendation
+            </a>
+        </p>
         <p><label for="WONum">Biomed Work Order Number:</label> <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" /></p>
         <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="text" size="20" maxlength="20" /></p>
         <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" /></p>
