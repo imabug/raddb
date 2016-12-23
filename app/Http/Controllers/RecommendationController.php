@@ -45,7 +45,7 @@ class RecommendationController extends Controller
             // Retrieve the recommendations for the provided survey ID
             $recs = Recommendation::surveyID($surveyId)->get();
         }
-        return view('surveys.rec_create', [
+        return view('recommendations.rec_create', [
             'surveyId' => $surveyId,
             'machineDesc' => $machineDesc,
             'recs' => $recs,
@@ -62,7 +62,59 @@ class RecommendationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request
+        $this->validate($request, [
+            'surveyId' => 'required|exists:testdates,id|integer',
+            'recommendation' => 'required|string|max:500',
+            'resolved' => 'integer',
+            'WONum' => 'string|max:20',
+            'RecResolveDate' => 'required_with:resolved|date_format:Y-m-d|max:10',
+            'ResolvedBy' => 'required_with:resolved|string|max:10',
+            'ServiceReport' => 'file|mimes:pdf',
+        ]);
+
+        $recommendation = new Recommendation;
+        $recommendation->survey_id = $request->surveyId;
+        $recommendation->recommendation = $request->recommendation;
+        if (isset($request->resolved)) {
+            // New recommendation was also marked as resolved
+            $recommendation->resolved = 1;
+            $recommendation->rec_status = "Complete";
+            $recommendation->rec_add_ts = date("Y-m-d H:i:s");
+            $recommendation->rec_resolve_ts = date("Y-m-d H:i:s");
+            if (isset($request->WONum)) $recommendation->wo_number = $request->WONum;
+            if (isset($request->RecResolveDate)) {
+                $recommendation->rec_resolve_date = $request->RecResolveDate;
+            }
+            else {
+                $recommendation->rec_resolve_date = date("Y-m-d");
+            }
+            if (isset($request->ResolvedBy)) $recommendation->resolved_by = $request->ResolvedBy;
+
+            // If a service report was uploaded, handle it
+            // Service reports are stored in the storage/app/public/ServiceReports/$recResolveYr
+            $path = "ServiceReports/" . date_parse($recommendation->rec_resolve_date)['year'];
+            if (!is_dir($path)) {
+                Storage::makeDirectory($path);
+            }
+
+            if ($request->hasFile('ServiceReport')) {
+                $serviceReportFile = $request->ServiceReport;
+                $serviceReportPath = $serviceReportFile->storeAs($path, $serviceReportFile);
+                $recommendation->service_report_path = $serviceReportPath;
+            }
+        }
+        else {
+            // If the recommendation was not marked as resolved, ignore the rest of the fields
+            $recommendation->resolved = 0;
+            $recommendation->rec_status = "New";
+            $recommendation->rec_add_ts = date("Y-m-d H:i:s");
+        }
+
+        $recommendation->save();
+
+        return redirect('/recommendations/' . $request->surveyId);
+
     }
 
     /**
@@ -84,7 +136,7 @@ class RecommendationController extends Controller
         // Get the recommendations
         $recs = Recommendation::surveyId($surveyId)->get();
 
-        return view('surveys.recommendations', [
+        return view('recommendations.recommendations', [
             'surveyID' => $surveyId,
             'machineDesc' => $machineDesc,
             'recs' => $recs

@@ -1,4 +1,4 @@
-<!-- resources/views/surveys/rec_add.blade.php -->
+<!-- resources/views/surveys/rec_create.blade.php -->
 
 @extends('layouts.app')
 
@@ -8,7 +8,7 @@
     <div class="form-group">
         {{ csrf_field() }}
         @if (isset($recs))
-        <h3>Survey recommendations for {{ $machineDesc->description }} (Survey ID {{ $surveyID }})</h3>
+        <h3>Survey recommendations for {{ $machineDesc->description }} (Survey ID {{ $surveyId }})</h3>
         <p>Unresolved recommendations are in bold with the checkbox in front</p>
         <table class="table">
             <thead>
@@ -38,11 +38,11 @@
             </tbody>
         </table>
         @endif
-        <p><label for="surveyId">Survey ID: </label><input class="form-control" type="text" id="surveyID" name="surveyId" value="{{ $surveyID or '' }}" /></p>
-        <p><label for="recommendation">Recommendation: </label><textarea name="recommendation" rows="4" cols="80" placeholder="Enter recommendation"></textarea></p>
-        <p><label for="resolved">Resolved: </label><input type="checkbox" id="resolved" name="resolved" value="1" /></p>
+        <p><label for="surveyId">Survey ID: </label><input class="form-control" type="text" id="surveyId" name="surveyId" value="{{ $surveyId or '' }}" /></p>
+        <p><label for="recommendation">Recommendation: </label><textarea class="form-control" id="recommendation" name="recommendation" rows="4" cols="80" placeholder="Enter recommendation"></textarea></p>
+        <p><label for="resolved">Resolved: </label><input class="form-control" type="checkbox" id="resolved" name="resolved" value="1" /></p>
         <p><label for="WONum">Biomed Work Order Number:</label> <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" /></p>
-        <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="text" size="20" maxlength="20" /></p>
+        <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="text" size="20" maxlength="20" placeholder="YYYY-MM-DD" /></p>
         <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" /></p>
         <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" /></p>
         <p><button type="SUBMIT">Resolve recommendations</button> / <a href="/">Main</a></p>
