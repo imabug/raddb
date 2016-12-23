@@ -45,7 +45,7 @@ class RecommendationController extends Controller
             // Retrieve the recommendations for the provided survey ID
             $recs = Recommendation::surveyID($surveyId)->get();
         }
-        return view('surveys.rec_add', [
+        return view('surveys.rec_create', [
             'surveyId' => $surveyId,
             'machineDesc' => $machineDesc,
             'recs' => $recs,
