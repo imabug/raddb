@@ -51,7 +51,7 @@ class TestDateController extends Controller
         $testtypes = TestType::select('id', 'test_type')
             ->get();
 
-        if (isset($id)) {
+        if (!is_null($id)) {
             $machines = Machine::select('id', 'description')
                 ->findOrFail($id);
         }
@@ -214,7 +214,7 @@ class TestDateController extends Controller
     public function addSurveyReport($surveyId = null)
     {
         if (is_null($surveyId)) {
-            $machineDesc = "";
+            $machineDesc = null;
         }
         else {
             // Get the machine description corresponding to the survey ID provided
