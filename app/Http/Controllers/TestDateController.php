@@ -189,18 +189,16 @@ class TestDateController extends Controller
 
         $survey = TestDate::find($id);
 
-        if ($survey->test_date <> $request->test_date)
-            $survey->test_date = $request->test_date;
-        if ($survey->tester1_id <> $request->tester1ID)
-            $survey->tester1_id = $request->tester1ID;
-        if ($survey->tester2_id <> $request->tester2ID)
-            $survey->tester2_id = $request->tester2ID;
-        if ($survey->notes <> $request->notes)
-            $survey->notes = $request->notes;
-        if ($survey->accession <> $request->accession)
-            $survey->accession = $request->accession;
+        if ($survey->test_date <> $request->test_date) $survey->test_date = $request->test_date;
+        if ($survey->tester1_id <> $request->tester1ID) $survey->tester1_id = $request->tester1ID;
+        if ($survey->tester2_id <> $request->tester2ID) $survey->tester2_id = $request->tester2ID;
+        if ($survey->notes <> $request->notes) $survey->notes = $request->notes;
+        if ($survey->accession <> $request->accession) $survey->accession = $request->accession;
 
         $survey->save();
+
+        return redirect('/');
+    
     }
 
     /**
