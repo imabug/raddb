@@ -50,7 +50,8 @@ Route::resource('opnotes', 'OpNoteController');
 /*
  * Recommendation controller
  */
-Route::get('recommendations/{id?}/create', 'RecommendationController@create');
+Route::get('recommendations/{id?}/create', 'RecommendationController@create')
+    ->where('id', '[0-9]+'); // id parameter is optional
 Route::resource('recommendations', 'RecommendationController');
 
 // Test Date controller
