@@ -102,7 +102,6 @@ class RecommendationController extends Controller
             }
 
             if ($request->hasFile('ServiceReport')) {
-                $serviceReportFile = $request->ServiceReport;
                 $serviceReportPath = $request->ServiceReport->storeAs($path, $serviceReportName);
                 $recommendation->service_report_path = $serviceReportPath;
             }
