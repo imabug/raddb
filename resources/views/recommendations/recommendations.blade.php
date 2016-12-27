@@ -5,7 +5,7 @@
 @section('content')
 <h2>Survey recommendations for {{ $machineDesc->description }} (Survey ID {{ $surveyID }})</h2>
 <p>Unresolved recommendations are in bold with the checkbox in front</p>
-<form class="form-inline" action="/recommendations/{{ $surveyID }}" method="post">
+<form class="form-inline" action="/recommendations/{{ $surveyID }}" method="post" enctype="multipart/form-data">
     <div class="form-group">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -28,7 +28,7 @@
                     <td>{{ $rec->rec_add_ts }}</td>
                     <td>{{ $rec->rec_resolve_date }}</td>
                     @if (isset($rec->service_report_path))
-                    <td><a href="/{{ $rec->service_report_path }}">{{ $rec->wo_number }}</a></td>
+                    <td><a href="/storage/{{ $rec->service_report_path }}">{{ $rec->wo_number }}</a></td>
                     @else
                     <td>{{ $rec->wo_number }}</td>
                     @endif

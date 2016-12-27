@@ -92,6 +92,9 @@ class RecommendationController extends Controller
             if (isset($request->ResolvedBy)) $recommendation->resolved_by = $request->ResolvedBy;
 
             // If a service report was uploaded, handle it
+            // Get the file name of the uploaded file
+            $serviceReportName = $request->ServiceReport->getClientOriginalName();
+
             // Service reports are stored in the storage/app/public/ServiceReports/$recResolveYr
             $path = "ServiceReports/" . date_parse($recommendation->rec_resolve_date)['year'];
             if (!is_dir($path)) {
@@ -100,7 +103,7 @@ class RecommendationController extends Controller
 
             if ($request->hasFile('ServiceReport')) {
                 $serviceReportFile = $request->ServiceReport;
-                $serviceReportPath = $serviceReportFile->storeAs($path, $serviceReportFile);
+                $serviceReportPath = $request->ServiceReport->storeAs($path, $serviceReportName);
                 $recommendation->service_report_path = $serviceReportPath;
             }
         }
@@ -176,6 +179,9 @@ class RecommendationController extends Controller
         $recResolveDate = $request->RecResolveDate;
 
         // If a service report was uploaded, handle it
+        // Get the file name of the uploaded file
+        $serviceReportName = $request->ServiceReport->getClientOriginalName();
+
         // Service reports are stored in the storage/app/public/ServiceReports/$recResolveYr
         $path = "ServiceReports/" . date_parse($recResolveDate)['year'];
         if (!is_dir($path)) {
@@ -183,8 +189,7 @@ class RecommendationController extends Controller
         }
 
         if ($request->hasFile('ServiceReport')) {
-            $serviceReportFile = $request->ServiceReport;
-            $serviceReportPath = $serviceReportFile->storeAs($path, $serviceReportFile);
+            $serviceReportPath = $request->ServiceReport->storeAs($path, $serviceReportName);
         }
 
         foreach ($resolved as $recId) {

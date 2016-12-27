@@ -4,7 +4,7 @@
 
 @section('content')
 <h2>Add new recommendations</h2>
-<form class="form-inline" action="/recommendations" method="post">
+<form class="form-inline" action="/recommendations" method="post" enctype="multipart/form-data">
     <div class="form-group">
         {{ csrf_field() }}
         @if (isset($recs))
