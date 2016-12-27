@@ -19,7 +19,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="/surveys/create">Add survey</a></li>
                     <li><a href="/recommendations/create">Add survey recommendation</a></li>
-                    <li>Add survey report</li>
+                    <li><a href="/surveys/addReport">Add survey report</a></li>
                 </ul>
             </li>
             <li class="dropdown">

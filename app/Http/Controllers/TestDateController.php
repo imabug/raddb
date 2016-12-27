@@ -198,7 +198,74 @@ class TestDateController extends Controller
         $survey->save();
 
         return redirect('/');
-    
+
+    }
+
+    /**
+     * Show a form for adding a new survey report.
+     * This method is called with an optional parameter $surveyId which corresponds to
+     * the survey ID the survey for the report being uploaded.
+     * URI: /surveys/$id/addReport
+     * Method: GET
+     *
+     * @param int $surveyId (optional)
+     * @return \Illuminate\Http\Response
+     */
+    public function addSurveyReport($surveyId = null)
+    {
+        if (is_null($surveyId)) {
+            $machineDesc = "";
+        }
+        else {
+            // Get the machine description corresponding to the survey ID provided
+            $machineDesc = TestDate::select('description')
+                ->join('machines', 'testdates.machine_id', '=', 'machines.id')
+                ->where('testdates.id', $surveyId)
+                ->first();
+        }
+
+        return view('surveys.surveys_addReport', [
+            'surveyId' => $surveyId,
+            'machineDesc' => $machineDesc,
+        ]);
+    }
+
+    /**
+     * Handle an uploaded survey report
+     * URI: /surveys/addReport
+     * Method: PUT
+     *
+     * @param int $surveyId
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeSurveyReport(Request $request, $surveyId)
+    {
+        $this->validate($request, [
+            'surveyId' => 'required||exists:testdates,id|integer',
+            'surveyReport' => 'required|file|mimes:pdf',
+        ]);
+
+        $survey = TestDate::find($surveyId);
+
+        // Handle the uploaded file
+        // Get the file name of the uploaded file
+        $surveyReportName = $request->surveyReport->getClientOriginalName();
+
+        // Service reports are stored in the storage/app/public/ServiceReports/$recResolveYr
+        $path = "SurveyReports/" . date_parse($survey->test_date)['year'];
+        if (!is_dir($path)) {
+            Storage::makeDirectory($path);
+        }
+
+        if ($request->hasFile('surveyReport')) {
+            $surveyReportPath = $request->surveyReport->storeAs($path, $surveyReportName);
+            $survey->report_file_path = $serviceReportPath;
+        }
+
+        $survey->save();
+
+        return redirect('/');
     }
 
     /**
