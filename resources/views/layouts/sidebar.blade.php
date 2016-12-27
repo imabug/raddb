@@ -19,7 +19,6 @@
                 <ul class="dropdown-menu">
                     <li><a href="/surveys/create">Add survey</a></li>
                     <li><a href="/recommendations/create">Add survey recommendation</a></li>
-                    <li>Add service report</li>
                     <li>Add survey report</li>
                 </ul>
             </li>
