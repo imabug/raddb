@@ -52,13 +52,13 @@ class TestDateController extends Controller
         $testtypes = TestType::select('id', 'test_type')
             ->get();
 
-        if (!is_null($id)) {
+        if (is_null($id)) {
             $machines = Machine::select('id', 'description')
-                ->findOrFail($id);
+                ->get();
         }
         else {
             $machines = Machine::select('id', 'description')
-                ->get();
+                ->findOrFail($id);
         }
 
         return view('surveys.surveys_create', [
