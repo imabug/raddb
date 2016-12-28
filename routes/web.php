@@ -33,13 +33,11 @@ Route::get('/surveycount/{yr}', 'DashboardController@surveycount');
 // Show index of machines grouped by modality
 Route::get('machines/modalities', 'MachineController@showModalityIndex');
 // List of machines for a selected modality/modalities
-Route::get('machines/modalities/{id}', 'MachineController@showModality')
-    ->where('id', '[0-9]+');
+Route::get('machines/modalities/{id}', 'MachineController@showModality');
 // Show index of machines grouped by location
 Route::get('machines/locations', 'MachineController@showLocationIndex');
 // List of machines for a selected location(s)
-Route::get('machines/locations/{id}', 'MachineController@showLocation')
-    ->where('id', '[0-9]+');
+Route::get('machines/locations/{id}', 'MachineController@showLocation');
 Route::resource('machines', 'MachineController');
 
 Route::resource('contacts', 'ContactController');
@@ -49,20 +47,17 @@ Route::resource('opnotes', 'OpNoteController');
 /*
  * Recommendation controller
  */
-Route::get('recommendations/{id?}/create', 'RecommendationController@create')
-    ->where('id', '[0-9]+'); // id parameter is optional
+Route::get('recommendations/{id?}/create', 'RecommendationController@create'); // id parameter is optional
 Route::resource('recommendations', 'RecommendationController');
 
 // Test Date controller
-Route::get('surveys/{machineId?}/create', 'TestDateController@create')
-    ->where('machineId', '[0-9]+'); // machineId parameter is optional
+Route::get('surveys/{id?}/create', 'TestDateController@create'); // machineId parameter is optional
 Route::get('surveys/addReport', 'TestDateController@addSurveyReport');
 Route::put('surveys/storeReport', 'TestDateController@storeSurveyReport');
 Route::resource('surveys', 'TestDateController');
 
 // Tube controller
-Route::get('tubes/{machineID}/create', 'TubeController@create')
-    ->where('machineID', '[0-9]+');
+Route::get('tubes/{id}/create', 'TubeController@create');
 Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables

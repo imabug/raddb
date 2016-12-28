@@ -17,11 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // })->middleware('auth:api');
 
-Route::get('machines/{id}/recommendations', 'MachineController@getRecommendations')
-    ->where('id', '[0-9]+');
-Route::get('machines/{id}/opnotes', 'MachineController@getOperationalNotes')
-    ->where('id', '[0-9]+');
-Route::get('machines/{id}/gendata', 'MachineController@getGenData')
-    ->where('id', '[0-9]+');
-Route::get('machines/{id}/tubes', 'MachineController@getTubes')
-    ->where('id', '[0-9]+');
+Route::get('machines/{id}/recommendations', 'MachineController@getRecommendations');
+Route::get('machines/{id}/opnotes', 'MachineController@getOperationalNotes');
+Route::get('machines/{id}/gendata', 'MachineController@getGenData');
+Route::get('machines/{id}/tubes', 'MachineController@getTubes');
