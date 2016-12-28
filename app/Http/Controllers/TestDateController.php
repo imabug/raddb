@@ -3,6 +3,7 @@ namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use RadDB\Machine;
 use RadDB\Tester;
 use RadDB\TestType;
@@ -204,32 +205,15 @@ class TestDateController extends Controller
 
     /**
      * Show a form for adding a new survey report.
-     * This method is called with an optional parameter $surveyId which corresponds to
-     * the survey ID the survey for the report being uploaded.
-     * URI: /surveys/$id/addReport
+     * URI: /surveys/addReport
      * Method: GET
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $surveyId (optional)
      * @return \Illuminate\Http\Response
      */
-    public function addSurveyReport(Request $request, $surveyId = null)
+    public function addSurveyReport(Request $request)
     {
-        if (is_null($surveyId)) {
-            $machineDesc = null;
-        }
-        else {
-            // Get the machine description corresponding to the survey ID provided
-            $machineDesc = TestDate::select('description')
-                ->join('machines', 'testdates.machine_id', '=', 'machines.id')
-                ->where('testdates.id', $surveyId)
-                ->first();
-        }
-
-        return view('surveys.surveys_addReport', [
-            'surveyId' => $surveyId,
-            'machineDesc' => $machineDesc,
-        ]);
+        return view('surveys.surveys_addReport');
     }
 
     /**
