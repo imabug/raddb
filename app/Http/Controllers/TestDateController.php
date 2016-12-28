@@ -213,6 +213,11 @@ class TestDateController extends Controller
      */
     public function addSurveyReport(Request $request)
     {
+        // TODO: Have the survey ID as an optional parameter.
+        // URI: /surveys/{surveyId?}/addReport
+        // In the initial attempt, route matching failed when the survey ID
+        // wasn't provided in the URI.
+
         return view('surveys.surveys_addReport');
     }
 
