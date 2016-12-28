@@ -2,6 +2,7 @@
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RadDB\Machine;
 use RadDB\Tester;
 use RadDB\TestType;
@@ -208,10 +209,11 @@ class TestDateController extends Controller
      * URI: /surveys/$id/addReport
      * Method: GET
      *
+     * @param \Illuminate\Http\Request $request
      * @param int $surveyId (optional)
      * @return \Illuminate\Http\Response
      */
-    public function addSurveyReport($surveyId = null)
+    public function addSurveyReport(Request $request, $surveyId = null)
     {
         if (is_null($surveyId)) {
             $machineDesc = null;
@@ -239,14 +241,14 @@ class TestDateController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function storeSurveyReport(Request $request, $surveyId)
+    public function storeSurveyReport(Request $request)
     {
         $this->validate($request, [
             'surveyId' => 'required||exists:testdates,id|integer',
             'surveyReport' => 'required|file|mimes:pdf',
         ]);
 
-        $survey = TestDate::find($surveyId);
+        $survey = TestDate::find($request->surveyId);
 
         // Handle the uploaded file
         // Get the file name of the uploaded file
@@ -260,7 +262,7 @@ class TestDateController extends Controller
 
         if ($request->hasFile('surveyReport')) {
             $surveyReportPath = $request->surveyReport->storeAs($path, $surveyReportName);
-            $survey->report_file_path = $serviceReportPath;
+            $survey->report_file_path = $surveyReportPath;
         }
 
         $survey->save();
