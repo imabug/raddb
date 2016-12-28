@@ -22,9 +22,8 @@
 Route::get('/', 'DashboardController@index');
 // Equipment testing status dashboard
 Route::get('/dashboard', 'DashboardController@teststatus');
-Route::get('/teststatus', function() {
-  return redirect('/dashboard');
-});
+Route::get('/teststatus',  'DashboardController@teststatus');
+
 // Count of surveys per month for year $yr
 Route::get('/surveycount/{yr}', 'DashboardController@surveycount');
 
@@ -73,6 +72,9 @@ Route::resource('admin/manufacturers', 'ManufacturerController');
 Route::resource('admin/modalities', 'ModalityController');
 Route::resource('admin/testers', 'TesterController');
 Route::resource('admin/testtypes', 'TestTypeController');
+
+// Route for user management
+Route::resource('users', 'UserController');
 
 // Route for experiments and tests
 Route::resource('test', 'TestController');
