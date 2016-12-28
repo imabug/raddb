@@ -54,10 +54,10 @@ Route::get('recommendations/{id?}/create', 'RecommendationController@create')
 Route::resource('recommendations', 'RecommendationController');
 
 // Test Date controller
-Route::get('surveys/{id?}/create', 'TestDateController@create')
-    ->where('id', '[0-9]+'); // id parameter is optional
-Route::get('surveys/{id?}/addReport', 'TestDateController@addSurveyReport')
-    ->where('id', '[0-9]+'); // id parameter is optional
+Route::get('surveys/{machineId?}/create', 'TestDateController@create')
+    ->where('machineId', '[0-9]+'); // id parameter is optional
+Route::get('surveys/{surveyId?}/addReport', 'TestDateController@addSurveyReport')
+    ->where('surveyId', '[0-9]+'); // id parameter is optional
 Route::put('surveys/storeReport', 'TestDateController@storeSurveyReport');
 Route::resource('surveys', 'TestDateController');
 

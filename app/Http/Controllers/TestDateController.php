@@ -42,27 +42,27 @@ class TestDateController extends Controller
      * URI: /surveys/$id/create
      * Method: GET
      *
-     * @param int $id (optional)
+     * @param int $machineId (optional)
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    public function create($machineId = null)
     {
         $testers = Tester::select('id', 'initials')
             ->get();
         $testtypes = TestType::select('id', 'test_type')
             ->get();
 
-        if (is_null($id)) {
+        if (is_null($machineId)) {
             $machines = Machine::select('id', 'description')
                 ->get();
         }
         else {
             $machines = Machine::select('id', 'description')
-                ->findOrFail($id);
+                ->findOrFail($machineId);
         }
 
         return view('surveys.surveys_create', [
-            'id' => $id,
+            'id' => $machineId,
             'testers' => $testers,
             'testtypes' => $testtypes,
             'machines' => $machines
@@ -136,7 +136,7 @@ class TestDateController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($surveyId)
     {
         $testers = Tester::select('id', 'initials')
             ->get();
@@ -144,7 +144,7 @@ class TestDateController extends Controller
             ->get();
 
         // Retrieve survey information for $id
-        $survey = TestDate::find($id);
+        $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
         $tester1 = Tester::find($survey->tester1_id);
         if ($survey->tester2_id <> 0) {
@@ -167,15 +167,15 @@ class TestDateController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     * URI: /surveys/$id
+     * Update the survey info for $surveyId.
+     * URI: /surveys/$surveyId
      * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $surveyId)
     {
         $this->validate($request, [
             'id' => 'require|integer',
@@ -188,7 +188,7 @@ class TestDateController extends Controller
             'accession' => 'numeric'
         ]);
 
-        $survey = TestDate::find($id);
+        $survey = TestDate::find($surveyId);
 
         if ($survey->test_date <> $request->test_date) $survey->test_date = $request->test_date;
         if ($survey->tester1_id <> $request->tester1ID) $survey->tester1_id = $request->tester1ID;
