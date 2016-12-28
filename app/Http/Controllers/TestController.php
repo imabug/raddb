@@ -18,18 +18,9 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $id)
     {
-        // Fetch a list of all the machines grouped by modality
-        // Almost works. Need to figure out how to get the modality description from the top level of the array
-        $machines = Machine::with('modality', 'manufacturer', 'location')
-            ->active()
-            ->get()
-            ->groupBy('modality.modality');
-
-        return view('test.index', [
-            'machines' => $machines
-        ]);
+        dd($request);
 
     }
 
