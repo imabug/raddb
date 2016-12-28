@@ -59,7 +59,7 @@ Route::get('surveys/{id?}/create', 'TestDateController@create')
     ->where('id', '[0-9]+'); // id parameter is optional
 Route::get('surveys/{id?}/addReport', 'TestDateController@addSurveyReport')
     ->where('id', '[0-9]+'); // id parameter is optional
-Route::put('surveys/addReport', 'TestDateController@storeSurveyReport');
+Route::put('surveys/storeReport', 'TestDateController@storeSurveyReport');
 Route::resource('surveys', 'TestDateController');
 
 // Tube controller

@@ -9,7 +9,7 @@
 <h2>Add survey report</h2>
 @endif
 
-<form class="form-inline" action="/surveys/addReport" method="post" enctype="multipart/form-data">
+<form class="form-inline" action="/surveys/storeReport" method="post" enctype="multipart/form-data">
     <div class="form-group">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
