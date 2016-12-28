@@ -6,7 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <title>Radiological Equipment Database</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
     <div class="container">

@@ -78,3 +78,7 @@ Route::resource('users', 'UserController');
 
 // Route for experiments and tests
 Route::resource('test', 'TestController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
