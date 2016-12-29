@@ -15,3 +15,14 @@ select testdates.id,machines.description,testdates.test_date,testdates.accession
 # Get surveys from previous and current year
 # Query still misses the machines that didn't have surveys in the previous year or machines that don't have surveys in the previous or current year
 select machines.id, machines.description, previous.id as prevSurveyID, previous.test_date as prevSurveyDate, current.id as currSurveyID, current.test_date as currSurveyDate from machines left join testdates as previous on (machines.id=previous.machine_id) join testdates as current using (machine_id) where year(previous.test_date)='2015' and year(current.test_date)='2016' order by previous.test_date asc;
+
+# Dashboard queries
+# Get the list of active machines
+SELECT machines.id,modality,manufacturer,description,location
+    FROM modalities,manufacturers,locations,machines
+    WHERE machines.machine_status="Active"
+    AND (testdates.type_id=1 or testdates.type_id=2)
+    AND modalities.id=machines.modality_id
+    AND manufacturers.id=machines.manufacturer_id
+    AND locations.id=machines.location_id
+    ORDER BY modality
