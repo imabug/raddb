@@ -79,6 +79,11 @@ class Machine extends Model
         return $this->hasMany('RadDB\TestDate');
     }
 
+    public function testdateRecent()
+    {
+        return $this->hasMany('RadDB\TestDate')->latest('test_date')->first();
+    }
+
     public function recommendation()
     {
         return $this->hasManyThrough('RadDB\Recommendation', 'RadDB\TestDate', 'machine_id', 'survey_id');
