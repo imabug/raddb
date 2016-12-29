@@ -124,8 +124,8 @@ class DashboardController extends Controller
             'modality',
             'manufacturer',
             'location',
-            'testdate'=> function ($query) {
-                    $query->orderBy('test_date', 'desc'); // Order test dates
+            'testdate' => function ($query) {
+                $query->latest('test_date');
             }])
             ->active()
             ->get()

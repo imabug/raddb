@@ -19,7 +19,7 @@
 
 @foreach ($machines as $key=>$modality)
 <h4>Modality: {{ $key }} ({{ count($modality) }})</h4>
-<table>
+<table class="table table-bordered">
 @foreach ($modality->chunk(5) as $mod_chunk)
 <tr>
 @foreach ($mod_chunk as $m)
