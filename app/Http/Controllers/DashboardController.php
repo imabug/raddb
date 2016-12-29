@@ -120,10 +120,16 @@ class DashboardController extends Controller
     public function teststatus()
     {
         // Fetch a list of all the machines grouped by modality
-        $machines = Machine::with('modality', 'manufacturer', 'location')
+        $machines = Machine::with([
+            'modality',
+            'manufacturer',
+            'location',
+            'testdate'=> function ($query) {
+                    $query->orderBy('test_date', 'desc'); // Order test dates
+            }])
             ->active()
             ->get()
-            ->groupBy('modality_id');
+            ->groupBy('modality.modality');
 
         return view('dashboard.test_status', [
             'machines' => $machines
