@@ -18,11 +18,24 @@ select machines.id, machines.description, previous.id as prevSurveyID, previous.
 
 # Dashboard queries
 # Get the list of active machines
-SELECT machines.id,modality,manufacturer,description,location
-    FROM modalities,manufacturers,locations,machines
-    WHERE machines.machine_status="Active"
-    AND (testdates.type_id=1 or testdates.type_id=2)
-    AND modalities.id=machines.modality_id
-    AND manufacturers.id=machines.manufacturer_id
-    AND locations.id=machines.location_id
-    ORDER BY modality
+select machines.id as machine_id, machines.description, modality, manufacturer, location, testdates.id as survey_id, testdates.test_date, to_days(curdate()) - to_days(test_date) as days
+    from machines
+    left join testdates on testdates.machine_id = machines.id
+    join modalities on modalities.id = machines.modality_id
+    join manufacturers on manufacturers.id = machines.manufacturer_id
+    join locations on locations.id = machines.location_id
+    where machines.machine_status="Active"
+    and year(testdates.test_date) = year(CURRENT_DATE)
+    and (testdates.type_id=1 or testdates.type_id=2)
+    order by testdates.test_date desc
+
+
+$machines = RadDB\Machine::with([
+    'modality',
+    'manufacturer',
+    'location',
+    'testdate'=> function ($query)
+        {
+            $query->latest('test_date');
+        },
+    ])->active()->get();
