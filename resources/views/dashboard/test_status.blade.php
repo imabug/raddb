@@ -35,20 +35,20 @@ $days = $test_date->diff($today)->format('%a');
 
 if ($days < 355) {
     if ($td->test_date > date("Y-m-d")) {
-        echo "<span class=\"bg-primary\">" . $td->test_date . "</span>";
+        echo "<div class=\"bg-primary\">" . $td->test_date . "</div>";
     }
     else {
-        echo "<span class=\"bg-success\">" . $td->test_date . "</span>";
+        echo "<div class=\"bg-success\">" . $td->test_date . "</div>";
     }
 }
 else if (($days >= 335) && ($days < 365)) {
-    echo "<span class=\"bg-info\">" . $td->test_date . "</span>";
+    echo "<div class=\"bg-info\">" . $td->test_date . "</div>";
 }
 else if (($days >= 365) && ($days < 395)) {
-    echo "<span class=\"bg-warning\">" . $td->test_date . "</span>";
+    echo "<div class=\"bg-warning\">" . $td->test_date . "</div>";
 }
 else if ($days > 395) {
-    echo "<span class=\"bg-danger\">" . $td->test_date . "</span>";
+    echo "<div class=\"bg-danger\">" . $td->test_date . "</div>";
 }
 @endphp
     @endif
