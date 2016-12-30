@@ -28,6 +28,7 @@
                     <li><a href="/machines">List machines</a></li>
                     <li><a href="/modalities">List by modality</a></li>
                     <li><a href="/locations">List by location</a></li>
+                    <li><a href="/manufacturers">List by manufacturer</a></li>
                 </ul>
             </li>
             <li class="dropdown">

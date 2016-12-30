@@ -30,14 +30,6 @@ Route::get('/surveycount/{yr}', 'DashboardController@surveycount');
 /*
  * Machine controller
  */
-// Show index of machines grouped by modality
-Route::get('machines/modalities', 'MachineController@showModalityIndex');
-// List of machines for a selected modality/modalities
-Route::get('machines/modalities/{id}', 'MachineController@showModality');
-// Show index of machines grouped by location
-Route::get('machines/locations', 'MachineController@showLocationIndex');
-// List of machines for a selected location(s)
-Route::get('machines/locations/{id}', 'MachineController@showLocation');
 Route::resource('machines', 'MachineController');
 
 Route::resource('contacts', 'ContactController');
@@ -61,8 +53,22 @@ Route::get('tubes/{id}/create', 'TubeController@create');
 Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables
+// Show index of machines grouped by location
+Route::get('locations/', 'LocationController@showLocationIndex');
+// List of machines for a selected location(s)
+Route::get('locations/{id}', 'LocationController@showLocation');
 Route::resource('admin/locations', 'LocationController');
+
+// Show index of machines grouped by manufacturer
+Route::get('manufacturers/', 'ManufacturerController@showManufacturerIndex');
+// List of machines for a selected modality/modalities
+Route::get('manufacturers/{id}', 'ManufacturerController@showManufacturer');
 Route::resource('admin/manufacturers', 'ManufacturerController');
+
+// Show index of machines grouped by modality
+Route::get('modalities/', 'ModalityController@showModalityIndex');
+// List of machines for a selected modality/modalities
+Route::get('modalities/{id}', 'ModalityController@showModality');
 Route::resource('admin/modalities', 'ModalityController');
 Route::resource('admin/testers', 'TesterController');
 Route::resource('admin/testtypes', 'TestTypeController');

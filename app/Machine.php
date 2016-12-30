@@ -135,6 +135,19 @@ class Machine extends Model
         return $query->where('modality_id', $id);
     }
 
+    /**
+     * Scope function to return machines for a specific manufacturer
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeManufacturer($query, $id)
+    {
+        // Scope function to return machines with modality_id=$id
+        return $query->where('manufacturer_id', $id);
+    }
+
     /*
      * Mutators
      */

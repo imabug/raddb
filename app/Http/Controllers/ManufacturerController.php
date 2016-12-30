@@ -3,6 +3,7 @@ namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
 use RadDB\Manufacturer;
+use RadDB\Machine;
 use RadDB\Http\Requests;
 
 class ManufacturerController extends Controller
@@ -61,6 +62,51 @@ class ManufacturerController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of machines by manufacturer
+     * URI: /manufacturers
+     * Method: GET
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showManufacturerIndex()
+    {
+        // Fetch a list of all the machines grouped by location
+        // Use the location field to group the collection by location
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->get()
+            ->groupBy('manufacturer.manufacturer');
+
+        return view('manufacturers.index', [
+            'machines' => $machines
+        ]);
+    }
+
+    /**
+     * Display a listing of machines for a specific location
+     * URI: /manufacturers/$id
+     * Method: GET
+     *
+     * @param string $id
+     * @return \\Illuminate\Http\Response
+     */
+    public function showManufacturer($id)
+    {
+        // Show a list of machines for location $id
+        $manufacturer = Manufacturer::findOrFail($id); // application will return HTTP 404 if $id doesn't exist
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->manufacturer($id)
+            ->get();
+
+        return view('manufacturers.manufacturer', [
+            'manufacturer' => $manufacturer,
+            'machines' => $machines,
+            'n' => $machines->count()
+        ]);
     }
 
     /**
