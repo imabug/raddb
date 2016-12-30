@@ -63,20 +63,20 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "1.8",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4"
+                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
-                "reference": "55dcc66d6aa637a584f3ca7773c5c5e01c22e1a4",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
+                "reference": "d0e3b8e6b67723867d0ed1264da246c7d17bc25e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=7.0.8"
             },
             "type": "library",
             "autoload": {
@@ -95,7 +95,7 @@
                 }
             ],
             "description": "Create charts for laravel using diferent charts libraries",
-            "time": "2016-10-06 20:42:04"
+            "time": "2016-10-19 10:55:43"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -132,16 +132,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5"
+                "reference": "bd4461328621bde0ae6b1b2675fbc6aca4ceb558"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
-                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/bd4461328621bde0ae6b1b2675fbc6aca4ceb558",
+                "reference": "bd4461328621bde0ae6b1b2675fbc6aca4ceb558",
                 "shasum": ""
             },
             "require": {
@@ -196,7 +196,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2016-10-24 11:45:47"
+            "time": "2016-12-30 15:59:45"
         },
         {
             "name": "doctrine/cache",
