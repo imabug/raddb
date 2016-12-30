@@ -15,6 +15,8 @@ php artisan make:migration create_testers_table --create=testers
 php artisan make:migration create_testtypes_table --create=testtypes
 php artisan make:migration create_tubes_table --create=tubes
 php artisan make:migration add_fk
+php artisan make:migration create_lastyear_view
+php artisan make:migration create_thisyear_view
 
 # Models
 
@@ -32,11 +34,15 @@ php artisan make:model TestType
 php artisan make:model Tube
 
 # Controllers
-php artisan make:controller MachineController --resource
 php artisan make:controller ContactController --resource
-php artisan make:controller TubeController --resource
+php artisan make:controller DashboardController --resource
 php artisan make:controller GenDataController --resource
+php artisan make:controller LocationController --resource
+php artisan make:controller MachineController --resource
+php artisan make:controller ManufacturerController --resource
+php artisan make:controller ModalityController --resource
 php artisan make:controller OpNoteController --resource
 php artisan make:controller RecommendationController --resource
 php artisan make:controller TestDateController --resource
-
+php artisan make:controller TestTypeController --resource
+php artisan make:controller TubeController --resource
