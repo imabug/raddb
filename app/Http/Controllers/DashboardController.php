@@ -52,25 +52,16 @@ class DashboardController extends Controller
             ->get();
 
         /* Get the list of machines and their surveys for this year
-           and the previous year
-           select machines.id, machines.description, previous.id as prevSurveyID,
-           previous.test_date as prevSurveyDate, current.id as currSurveyID,
-           current.test_date as currSurveyDate from machines
-           left join testdates as previous on (machines.id=previous.machine_id)
-           left join testdates as current on (machines.id=current.machine_id)
-           where year(previous.test_date)='2015'
-           and year(current.test_date)='2016'
-           order by previous.test_date asc;
-        */
-        // TODO: query misses machines with no survey in previous year
-        // select machines.id,machines.description,
-        // lastyear_view.survey_id as prev_survey_id, lastyear_view.test_date as prev_test_date,
-        // thisyear_view.survey_id as curr_survey_id, thisyear_view.test_date as curr_test_date
-        // from machines
-        // left join thisyear_view on machines.id = thisyear_view.machine_id
-        // left join lastyear_view on machines.id = lastyear_view.machine_id
-        // where machines.machine_status="Active"
-        // order by prev_test_date
+         *  and the previous year
+         * select machines.id,machines.description,
+         * lastyear_view.survey_id as prev_survey_id, lastyear_view.test_date as prev_test_date,
+         * thisyear_view.survey_id as curr_survey_id, thisyear_view.test_date as curr_test_date
+         * from machines
+         * left join thisyear_view on machines.id = thisyear_view.machine_id
+         * left join lastyear_view on machines.id = lastyear_view.machine_id
+         * where machines.machine_status="Active"
+         * order by prev_test_date
+         */
         // TODO: may not handle machines with multiple surveys in a year very well
         $surveySchedule = Machine::select('machines.id',
                 'machines.description',
@@ -96,15 +87,8 @@ class DashboardController extends Controller
 
     }
 
-    /*
-     * Display the count of surveys per month for the specified year
-     *
-     * @param $yr
-     * @return \Illuminate\Http\Response
-     */
-
     /**
-     * Show the form for creating a new resource.
+     * Display the count of surveys per month for the specified year
      *
      * @return \Illuminate\Http\Response
      */
@@ -113,7 +97,7 @@ class DashboardController extends Controller
         //
     }
 
-    /*
+    /**
      * Equipment test status dashboard
      * Each machine is displayed in a table showing machine description,
      * survey date and colour coded based on test status. Machines are
