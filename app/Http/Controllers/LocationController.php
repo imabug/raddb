@@ -3,6 +3,7 @@ namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
 use RadDB\Location;
+use RadDB\Machine;
 use RadDB\Http\Requests;
 
 class LocationController extends Controller
@@ -61,6 +62,51 @@ class LocationController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of machines by location
+     * URI: /locations
+     * Method: GET
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLocationIndex()
+    {
+        // Fetch a list of all the machines grouped by location
+        // Use the location field to group the collection by location
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->get()
+            ->groupBy('location.location');
+
+        return view('locations.index', [
+            'machines' => $machines
+        ]);
+    }
+
+    /**
+     * Display a listing of machines for a specific location
+     * URI: /locations/$id
+     * Method: GET
+     *
+     * @param string $id
+     * @return \\Illuminate\Http\Response
+     */
+    public function showLocation($id)
+    {
+        // Show a list of machines for location $id
+        $location = Location::findOrFail($id); // application will return HTTP 404 if $id doesn't exist
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->location($id)
+            ->get();
+
+        return view('locations.location', [
+            'location' => $location,
+            'machines' => $machines,
+            'n' => $machines->count()
+        ]);
     }
 
     /**

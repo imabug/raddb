@@ -26,8 +26,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/machines">List machines</a></li>
-                    <li><a href="/machines/modalities">List by modality</a></li>
-                    <li><a href="/machines/locations">List by location</a></li>
+                    <li><a href="/modalities">List by modality</a></li>
+                    <li><a href="/locations">List by location</a></li>
                 </ul>
             </li>
             <li class="dropdown">

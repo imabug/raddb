@@ -4,6 +4,7 @@ namespace RadDB\Http\Controllers;
 use Illuminate\Http\Request;
 use RadDB\Http\Requests;
 use RadDB\Modality;
+use RadDB\Machine;
 
 class ModalityController extends Controller
 {
@@ -60,6 +61,51 @@ class ModalityController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of machines grouped by modality
+     * URI: /modalities
+     * Method: GET
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showModalityIndex()
+    {
+        // Fetch a list of all the machines grouped by modality
+        // Use the modality field to group the collection by modality
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->get()
+            ->groupBy('modality.modality');
+
+        return view('modalities.index', [
+            'machines' => $machines
+        ]);
+    }
+
+    /**
+     * Display a listing of machines for a specific modality
+     * URI: /modalities/$id
+     * Method: GET
+     *
+     * @param string $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showModality($id)
+    {
+        // Show a list of machines for modality $id
+        $modality = Modality::findOrFail($id); // application will return HTTP 404 if $id doesn't exist
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->modality($id)
+            ->get();
+
+        return view('modalities.modality', [
+            'modality' => $modality,
+            'machines' => $machines,
+            'n' => $machines->count()
+        ]);
     }
 
     /**
