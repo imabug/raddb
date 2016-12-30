@@ -63,6 +63,10 @@ class DashboardController extends Controller
            order by previous.test_date asc;
         */
         // TODO: query misses machines with no survey in previous year
+        // select machines.id, thisyear_view.survey_id, thisyear_view.test_date
+        // from machines
+        // left join thisyear_view on machines.id = thisyear_view.machine_id
+        // where machines.machine_status="Active"
         // TODO: may not handle machines with multiple surveys in a year very well
         $surveySchedule = Machine::select('machines.id',
                 'machines.description',
