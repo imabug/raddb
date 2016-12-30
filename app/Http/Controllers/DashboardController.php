@@ -57,7 +57,7 @@ class DashboardController extends Controller
            previous.test_date as prevSurveyDate, current.id as currSurveyID,
            current.test_date as currSurveyDate from machines
            left join testdates as previous on (machines.id=previous.machine_id)
-           join testdates as current using (machine_id)
+           left join testdates as current on (machines.id=current.machine_id)
            where year(previous.test_date)='2015'
            and year(current.test_date)='2016'
            order by previous.test_date asc;
@@ -75,8 +75,8 @@ class DashboardController extends Controller
             ->active()
             ->leftJoin('testdates as previous',
                 'machines.id', '=', 'previous.machine_id')
-            ->join('testdates as current',
-                'current.machine_id', '=', 'previous.machine_id')
+            ->leftJoin('testdates as current',
+                'machines.id', '=', 'current.machine_id')
             ->whereYear('previous.test_date', '=', date("Y")-1)
             ->whereYear('current.test_date', '=', date("Y"))
             ->orderBy('previous.test_date', 'asc')
