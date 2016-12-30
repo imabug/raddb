@@ -4,7 +4,7 @@
 
 @section('content')
 <h2>Equipment Testing Status Dashboard</h2>
-<h3>Table legend</h3>
+<p>Table legend</p>
 <table class="table table-bordered">
     <tbody>
         <tr>
@@ -18,17 +18,39 @@
 </table>
 
 @foreach ($machines as $key=>$modality)
-<h4>Modality: {{ $key }} ({{ count($modality) }})</h4>
+<h3>Modality: {{ $key }} ({{ count($modality) }})</h3>
 <table class="table table-bordered">
 @foreach ($modality->chunk(5) as $mod_chunk)
 <tr>
 @foreach ($mod_chunk as $m)
 <td class="text-center">
-    {{ $m->description}}<br />
-    {{ $m->location->location }}<br />
+    <a href="/machines/{{ $m->id }}">{{ $m->description}}</a><br />
+    <a href="/machines/locations/{{ $m->location_id }}">{{ $m->location->location }}</a><br />
 @foreach ($m->testdate as $td)
     @if ($loop->first)
-        {{ $td->test_date }}
+@php
+$today = new DateTime("now");
+$test_date = new DateTime($td->test_date);
+$days = $test_date->diff($today)->format('%a');
+
+if ($days < 355) {
+    if ($td->test_date > date("Y-m-d")) {
+        echo "<span class=\"bg-primary\">" . $td->test_date . "</span>";
+    }
+    else {
+        echo "<span class=\"bg-success\">" . $td->test_date . "</span>";
+    }
+}
+else if (($days >= 335) && ($days < 365)) {
+    echo "<span class=\"bg-info\">" . $td->test_date . "</span>";
+}
+else if (($days >= 365) && ($days < 395)) {
+    echo "<span class=\"bg-warning\">" . $td->test_date . "</span>";
+}
+else if ($days > 395) {
+    echo "<span class=\"bg-danger\">" . $td->test_date . "</span>";
+}
+@endphp
     @endif
 @endforeach
 </td>
@@ -37,4 +59,17 @@
 @endforeach
 </table>
 @endforeach
+<p>Table legend</p>
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td class="bg-success">Current</td>
+            <td class="bg-info">Due within 30 days</td>
+            <td class="bg-warning">Overdue &lt; 13 months</td>
+            <td class="bg-danger">Overdue &gt; 13 months</td>
+            <td class="bg-primary">Scheduled, not tested yet</td>
+        </tr>
+    </tbody>
+</table>
+
 @endsection

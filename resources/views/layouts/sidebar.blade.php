@@ -5,7 +5,7 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboards<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li>Survey status</li>
+                    <li><a href="/dashboard">Survey status</a></li>
                 </ul>
             </li>
             <li class="dropdown">

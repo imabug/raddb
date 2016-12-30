@@ -122,7 +122,6 @@ class DashboardController extends Controller
         // Fetch a list of all the machines grouped by modality
         $machines = Machine::with([
             'modality',
-            'manufacturer',
             'location',
             'testdate' => function ($query) {
                 $query->latest('test_date');
