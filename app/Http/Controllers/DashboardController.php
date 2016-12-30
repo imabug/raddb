@@ -57,29 +57,33 @@ class DashboardController extends Controller
            previous.test_date as prevSurveyDate, current.id as currSurveyID,
            current.test_date as currSurveyDate from machines
            left join testdates as previous on (machines.id=previous.machine_id)
-           join testdates as current using (machine_id)
+           left join testdates as current on (machines.id=current.machine_id)
            where year(previous.test_date)='2015'
            and year(current.test_date)='2016'
            order by previous.test_date asc;
         */
         // TODO: query misses machines with no survey in previous year
+        // select machines.id,machines.description,
+        // lastyear_view.survey_id as prev_survey_id, lastyear_view.test_date as prev_test_date,
+        // thisyear_view.survey_id as curr_survey_id, thisyear_view.test_date as curr_test_date
+        // from machines
+        // left join thisyear_view on machines.id = thisyear_view.machine_id
+        // left join lastyear_view on machines.id = lastyear_view.machine_id
+        // where machines.machine_status="Active"
+        // order by prev_test_date
         // TODO: may not handle machines with multiple surveys in a year very well
         $surveySchedule = Machine::select('machines.id',
                 'machines.description',
-                'previous.id as prevSurveyID',
-                'previous.test_date as prevSurveyDate',
-                'previous.report_file_path as prevSurveyReport',
-                'current.id as currSurveyID',
-                'current.test_date as currSurveyDate',
-                'current.report_file_path as currSurveyReport')
+                'lastyear_view.survey_id as prevSurveyID',
+                'lastyear_view.test_date as prevSurveyDate',
+                'lastyear_view.report_file_path as prevSurveyReport',
+                'thisyear_view.survey_id as currSurveyID',
+                'thisyear_view.test_date as currSurveyDate',
+                'thisyear_view.report_file_path as currSurveyReport')
             ->active()
-            ->leftJoin('testdates as previous',
-                'machines.id', '=', 'previous.machine_id')
-            ->join('testdates as current',
-                'current.machine_id', '=', 'previous.machine_id')
-            ->whereYear('previous.test_date', '=', date("Y")-1)
-            ->whereYear('current.test_date', '=', date("Y"))
-            ->orderBy('previous.test_date', 'asc')
+            ->leftJoin('thisyear_view', 'machines.id', '=', 'thisyear_view.machine_id')
+            ->leftJoin('lastyear_view', 'machines.id', '=', 'lastyear_view.machine_id')
+            ->orderBy('lastyear_view.test_date', 'asc')
             ->get();
 
         return view('index', [
