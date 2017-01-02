@@ -45,10 +45,14 @@ class RecommendationController extends Controller
             // Retrieve the recommendations for the provided survey ID
             $recs = Recommendation::surveyID($surveyId)->get();
         }
+
+        $post_max_size = ini_get('post_max_size');
+
         return view('recommendations.rec_create', [
             'surveyId' => $surveyId,
             'machineDesc' => $machineDesc,
             'recs' => $recs,
+            'post_max_size' => $post_max_size,
         ]);
     }
 
@@ -131,10 +135,12 @@ class RecommendationController extends Controller
         // Get the recommendations
         $recs = Recommendation::surveyId($surveyId)->get();
 
+        $post_max_size = ini_get('post_max_size');
         return view('recommendations.recommendations', [
             'surveyID' => $surveyId,
             'machineDesc' => $machineDesc,
-            'recs' => $recs
+            'recs' => $recs,
+            'post_max_size' => $post_max_size,
         ]);
     }
 
