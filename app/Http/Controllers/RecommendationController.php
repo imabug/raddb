@@ -53,7 +53,7 @@ class RecommendationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add a new recommendation to the database.
      * URI: /recommendations
      * Method: POST
      *
@@ -92,17 +92,10 @@ class RecommendationController extends Controller
             if (isset($request->ResolvedBy)) $recommendation->resolved_by = $request->ResolvedBy;
 
             // If a service report was uploaded, handle it
-            // Get the file name of the uploaded file
-            $serviceReportName = $request->ServiceReport->getClientOriginalName();
-
-            // Service reports are stored in the storage/app/public/ServiceReports/$recResolveYr
-            $path = "ServiceReports/" . date_parse($recommendation->rec_resolve_date)['year'];
-            if (!is_dir($path)) {
-                Storage::makeDirectory($path);
-            }
+            // This breaks the way service reports were handled in the previous version. Deal with it.
 
             if ($request->hasFile('ServiceReport')) {
-                $serviceReportPath = $request->ServiceReport->storeAs($path, $serviceReportName);
+                $serviceReportPath = $request->ServiceReport->store('ServiceReports');
                 $recommendation->service_report_path = $serviceReportPath;
             }
         }
@@ -178,17 +171,11 @@ class RecommendationController extends Controller
         $recResolveDate = $request->RecResolveDate;
 
         // If a service report was uploaded, handle it
-        // Get the file name of the uploaded file
-        $serviceReportName = $request->ServiceReport->getClientOriginalName();
-
-        // Service reports are stored in the storage/app/public/ServiceReports/$recResolveYr
-        $path = "ServiceReports/" . date_parse($recResolveDate)['year'];
-        if (!is_dir($path)) {
-            Storage::makeDirectory($path);
-        }
+        // This breaks the way service reports were handled in the previous version. Deal with it.
 
         if ($request->hasFile('ServiceReport')) {
-            $serviceReportPath = $request->ServiceReport->storeAs($path, $serviceReportName);
+            $serviceReportPath = $request->ServiceReport->store('ServiceReports');
+            $recommendation->service_report_path = $serviceReportPath;
         }
 
         foreach ($resolved as $recId) {

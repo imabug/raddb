@@ -240,18 +240,11 @@ class TestDateController extends Controller
         $survey = TestDate::find($request->surveyId);
 
         // Handle the uploaded file
-        // Get the file name of the uploaded file
-        $surveyReportName = $request->surveyReport->getClientOriginalName();
-
-        // Service reports are stored in the storage/app/public/ServiceReports/$recResolveYr
-        $path = "SurveyReports/" . date_parse($survey->test_date)['year'];
-        if (!is_dir($path)) {
-            Storage::makeDirectory($path);
-        }
+        // This breaks the way service reports were handled in the previous version. Deal with it.
 
         if ($request->hasFile('surveyReport')) {
-            $surveyReportPath = $request->surveyReport->storeAs($path, $surveyReportName);
-            $survey->report_file_path = $surveyReportPath;
+            $surveyReportPath = $request->surveyReport->store('SurveyReports');
+            $survey->report_file_path = $serviceReportPath;
         }
 
         $survey->save();
