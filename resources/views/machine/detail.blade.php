@@ -11,14 +11,14 @@
     </div>
     <div class="panel-body">
         <p>
-        Machine ID: {{ $machine->id }} <br />
-        Model: {{ $machine->model }} <br />
-        Serial Number: {{ $machine->serial_number }} <br />
-        Vendor Site ID: {{ $machine->vend_site_id }} <br />
-        Location: {{ $machine->location->location }} {{ $machine->room }}<br />
-        Manufacture Date: {{ $machine->manuf_date }} <br />
-        Install Date: {{ $machine->install_date }} <br />
-        Age: {{ $machine->age }}<br />
+        Machine ID: {{ $machine->id }} <br>
+        Model: {{ $machine->model }} <br>
+        Serial Number: {{ $machine->serial_number }} <br>
+        Vendor Site ID: {{ $machine->vend_site_id }} <br>
+        Location: {{ $machine->location->location }} {{ $machine->room }}<br>
+        Manufacture Date: {{ $machine->manuf_date }} <br>
+        Install Date: {{ $machine->install_date }} <br>
+        Age: {{ $machine->age }}<br>
         Notes: {{ $machine->notes }}
         </p>
         <p>
