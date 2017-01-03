@@ -23,6 +23,7 @@ class CreateTestdatesTable extends Migration
             $table->text('notes')->nullable();
             $table->integer('accession')->default(0)->unsigned();
             $table->text('report_file_path')->nullable();
+            $table->integer('survey_report_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

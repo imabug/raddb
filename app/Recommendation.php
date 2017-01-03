@@ -19,7 +19,8 @@ class Recommendation extends Model
         'resolved_by',
         'rec_status',
         'wo_number',
-        'service_report_path'
+        'service_report_path',
+        'service_report_id',
     ];
 
     /**
@@ -41,6 +42,11 @@ class Recommendation extends Model
     public function survey()
     {
         return $this->belongsTo('RadDB\TestDate');
+    }
+
+    public function serviceReports()
+    {
+        return $this->morphMany('RadDB\Report', 'report');
     }
 
     /*

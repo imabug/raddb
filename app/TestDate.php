@@ -30,6 +30,7 @@ class TestDate extends Model
         'notes',
         'accession',
         'report_file_path',
+        'survey_report_id',
         'deleted_at',
         'created_at',
         'updated_at'
@@ -74,6 +75,11 @@ class TestDate extends Model
     public function recommendations()
     {
         return $this->hasMany('RadDB\Recommendation', 'survey_id');
+    }
+
+    public function surveyReports()
+    {
+        return $this->morphMany('RadDB\Report', 'report');
     }
 
     /*

@@ -24,6 +24,7 @@ class CreateRecommendationsTable extends Migration
             $table->string('rec_status', 40)->default('New');
             $table->string('wo_number', 50)->nullable();
             $table->text('service_report_path')->nullable();
+            $table->integer('service_report_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
