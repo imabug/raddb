@@ -15,7 +15,7 @@
         Model: {{ $machine->model }} <br />
         Serial Number: {{ $machine->serial_number }} <br />
         Vendor Site ID: {{ $machine->vend_site_id }} <br />
-        Location: {{ $machine->location->location }} <br />
+        Location: {{ $machine->location->location }} {{ $machine->room }}<br />
         Manufacture Date: {{ $machine->manuf_date }} <br />
         Install Date: {{ $machine->install_date }} <br />
         Age: {{ $machine->age }}<br />
@@ -25,10 +25,10 @@
             <form class="form-inline" action="/machines/{{ $machine->id }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <a href="/machines/{{ $machine->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                </a>
                 <div class="form-group">
+                    <a href="/machines/{{ $machine->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
                     <button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this machine">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
@@ -69,13 +69,13 @@
 				<form class="form-inline" action="/tubes/{{ $machine->id }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
-                    <a href="/tubes/{{ $tube->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-    				</a>
-                    <a href="/tubes/{{ $machine->id }}/create" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Add new tube">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </a>
 					<div class="form-group">
+                        <a href="/tubes/{{ $tube->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        <a href="/tubes/{{ $machine->id }}/create" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Add new tube">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
 						<button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this tube">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
