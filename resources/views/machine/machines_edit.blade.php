@@ -22,7 +22,7 @@
 		@endforeach
 
 		</select></p>
-		<p><label for="description">Description:</label> <input class="form-control" type="text" id="description" name="description" size="40" value="{{ $machine->description }}" /></p>
+		<p><label for="description">Description:</label> <input class="form-control" type="text" id="description" name="description" size="40" value="{{ $machine->description }}" ></p>
 		<p><label for="manufacturer">Manufacturer:</label>
 		<select class="form-control" id="manufacturer_id" name="manufacturer_id" size="1">
 			<option>Select manufacturer</option>
@@ -36,11 +36,11 @@
 		@endforeach
 
 		</select></p>
-		<p><label for="model">Model:</label> <input class="form-control" type="text" id="model" name="model" size="20" value="{{ $machine->model }}"/></p>
-		<p><label for="serialNumber">Serial Number:</label> <input class="form-control" type="text" id="serialNumber" name="serialNumber" size="20" value="{{ $machine->serial_number }}"/></p>
-		<p><label for="vendSiteID">Vendor site ID:</label> <input class="form-control" type="text" id="vendSiteID" name="vendSiteID" size="20"  value="{{ $machine->vend_site_id }}"/></p>
-		<p><label for="manufDate">Manufacture date:</label> <input class="form-control" type="text" id="manufDate" name="manufDate" size="20" value="{{ $machine->manuf_date }}" placeholder="YYYY-MM-DD" /></p>
-		<p><label for="installDate">Install date:</label> <input class="form-control" type="text" id="installDate" name="installDate" size="20" value="{{ $machine->install_date }}" placeholder="YYYY-MM-DD" /></p>
+		<p><label for="model">Model:</label> <input class="form-control" type="text" id="model" name="model" size="20" value="{{ $machine->model }}"></p>
+		<p><label for="serialNumber">Serial Number:</label> <input class="form-control" type="text" id="serialNumber" name="serialNumber" size="20" value="{{ $machine->serial_number }}"></p>
+		<p><label for="vendSiteID">Vendor site ID:</label> <input class="form-control" type="text" id="vendSiteID" name="vendSiteID" size="20"  value="{{ $machine->vend_site_id }}"></p>
+		<p><label for="manufDate">Manufacture date:</label> <input class="form-control" type="date" id="manufDate" name="manufDate" size="20" value="{{ $machine->manuf_date }}" placeholder="YYYY-MM-DD" ></p>
+		<p><label for="installDate">Install date:</label> <input class="form-control" type="date" id="installDate" name="installDate" size="20" value="{{ $machine->install_date }}" placeholder="YYYY-MM-DD" ></p>
 		<p><label for="location">Location:</label>
 		<select class="form-control" id="location_id" name="location_id" size="1">
 			<option>Select location</option>
@@ -53,7 +53,7 @@
 			>{{ $location->location }}</option>
 		@endforeach
 		</select></p>
-		<p><label for="room">Room:</label> <input type="text" id="room" name="room" size="20" value="{{ $machine->room }}"/></p>
+		<p><label for="room">Room:</label> <input type="text" id="room" name="room" size="20" value="{{ $machine->room }}"></p>
 		<p><label for="status">Machine status:</label>
 		<select class="form-control" id="status" name="status" size="1">
 			<option>Select status</option>
