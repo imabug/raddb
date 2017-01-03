@@ -21,7 +21,7 @@ class CreateThisyearView extends Migration
     {
         DB::statement('
         CREATE VIEW thisyear_view (machine_id,survey_id,test_date,report_file_path) AS
-        SELECT machine_id,survey_id,test_date,report_file_path
+        SELECT machine_id,id as survey_id,test_date,report_file_path
         FROM testdates
         WHERE testdates.test_date BETWEEN MAKEDATE(YEAR(CURDATE()),1) AND MAKEDATE(YEAR(CURDATE())+1,1)
         AND (testdates.type_id=1 or testdates.type_id=2)
