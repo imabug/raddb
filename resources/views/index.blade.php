@@ -28,8 +28,8 @@
 	<tbody>
 @foreach ($pendingSurveys as $pending)
 		<tr>
-			<td>{{ $pending->id }}</td>
-			<td>{{ $pending->description }}</td>
+			<td>{{ $pending->surveyId }}</td>
+			<td><a href="/machines/{{ $pending->machineId }}">{{ $pending->description }}</a></td>
 			<td>{{ $pending->test_date}}</td>
 			<td>{{ $pending->accession }}</td>
 			<td>{{ $pending->notes }}</td>
