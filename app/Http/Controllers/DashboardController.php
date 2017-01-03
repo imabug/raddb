@@ -112,7 +112,7 @@ class DashboardController extends Controller
             'modality',
             'location',
             'testdate' => function ($query) {
-                $query->latest('test_date');
+                $query->where('type_id','1')->orWhere('type_id','2')->latest('test_date');
             }])
             ->active()
             ->get()
