@@ -40,14 +40,15 @@ class DashboardController extends Controller
             left join machines on testdates.machine_id=machines.id
             where testdates.test_date > CURDATE();
         */
-        $pendingSurveys = TestDate::select('testdates.id',
+        $pendingSurveys = TestDate::select('testdates.id as surveyId',
+                'machines.id as machineId',
                 'machines.description',
                 'testdates.test_date',
                 'testdates.accession',
                 'testdates.notes')
             ->leftJoin('machines',
                 'testdates.machine_id', '=', 'machines.id')
-            ->where('testdates.test_date', '>=', date("Y-m-d"))
+            ->pending()
             ->orderBy('testdates.test_date','asc')
             ->get();
 
