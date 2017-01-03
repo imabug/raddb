@@ -6,7 +6,7 @@
 <h2><span class="label label-default">Surveys to be scheduled ({{ $remain }}/{{ $total }})</span></h2>
 <p>Click a link to schedule a survey for a unit</p>
 
-<table class="table">
+<table class="table table-bordered table-condensed">
 	<tbody>
 @foreach ($machinesUntested->chunk(5) as $chunk )
 		<tr>
