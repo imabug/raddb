@@ -134,4 +134,14 @@ class TestDate extends Model
      {
          return $query->where('type_id', $id);
      }
+
+     /**
+      * Scope function to return pending test dates (scheduled after the current date)
+      * @param \Illuminate\Database\Eloquent\Builder $query
+      * @return \Illuminate\Database\Eloquent\Builder
+      */
+     public function scopePending($query)
+     {
+         return $query->where('testdates.test_date', '>=', date("Y-m-d"));
+     }
 }
