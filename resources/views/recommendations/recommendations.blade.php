@@ -22,7 +22,7 @@
                     <td><span class="glyphicon glyphicon-ok" aria-hidden-"true"></span></td>
                     <td>{{ $rec->recommendation }}</td>
                     @else
-                    <td><input class="form-control" type="checkbox" id="recID" name="recID[]" value="{{ $rec->id }}" /></td>
+                    <td><input class="form-control" type="checkbox" id="recID" name="recID[]" value="{{ $rec->id }}" ></td>
                     <td><b>{{ $rec->recommendation }}</b></td>
                     @endif
                     <td>{{ $rec->rec_add_ts }}</td>

@@ -23,7 +23,7 @@
                     <td><span class="glyphicon glyphicon-ok" aria-hidden-"true"></span></td>
                     <td>{{ $rec->recommendation }}</td>
                     @else
-                    <td><input class="form-control" type="checkbox" id="recID" name="recID[]" value="{{ $rec->id }}" /></td>
+                    <td><input class="form-control" type="checkbox" id="recID" name="recID[]" value="{{ $rec->id }}" ></td>
                     <td><b>{{ $rec->recommendation }}</b></td>
                     @endif
                     <td>{{ $rec->rec_add_ts }}</td>
@@ -42,7 +42,7 @@
         <p><label for="recommendation">Recommendation: </label><textarea class="form-control" id="recommendation" name="recommendation" rows="4" cols="80" placeholder="Enter recommendation"></textarea></p>
         <p><label for="resolved">Resolved: </label><input class="form-control" type="checkbox" id="resolved" name="resolved" value="1" ></p>
         <p><label for="WONum">Biomed Work Order Number:</label> <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" ></p>
-        <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="text" size="20" maxlength="20" placeholder="YYYY-MM-DD" ></p>
+        <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date" size="20" maxlength="20" placeholder="YYYY-MM-DD" ></p>
         <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" > (Max file size: {{ ini_get('post_max_size') }})</p>
         <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" ></p>
         <p><button type="SUBMIT">Resolve recommendations</button> / <a href="/">Main</a></p>
