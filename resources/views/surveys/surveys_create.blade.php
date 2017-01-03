@@ -13,9 +13,9 @@
 <p><label for="machineID">Machine:</label>
 @if (isset($id))
 {{ $machines->description }}
-<input class="form-control" type="hidden" id="machineID" name="machineID" value="{{ $machines->id }}" />
+<input class="form-control" type="hidden" id="machineID" name="machineID" value="{{ $machines->id }}" autofocus>
 @else
-    <select class="form-control" name="machineID" size="1">
+    <select class="form-control" name="machineID" size="1" autofocus>
     <option>Select a machine</option>
     @foreach ($machines as $machine)
     <option value="{{ $machine->id }}">{{ $machine->description }}</option>
@@ -23,11 +23,11 @@
     </select>
 @endif
 </p>
-<p><label for="test_date">Date tested:</label> <input class="form-control" type="text" id="test_date" name="test_date" size="10" placeholder="YYYY-MM-DD" /> <input type="checkbox" name="today" />Today</p>
+<p><label for="test_date">Date tested:</label> <input class="form-control" type="date" id="test_date" name="test_date" size="10" placeholder="YYYY-MM-DD" required> <input type="checkbox" name="today" />Today</p>
 <p>
     <label for="tester1ID">Tested by: </label>
     <select class="form-control" id="tester1ID" name="tester1ID" size="1">
-    <option value="10" selected="="selected""></option
+    <option value="10" selected="="selected""></option>
     @foreach ($testers as $tester)
     <option value="{{ $tester->id }}">{{ $tester->initials }}</option>
     @endforeach
@@ -36,7 +36,7 @@
 <p>
     <label for="tester2ID">Tested by: </label>
     <select class="form-control" id="tester2ID" name="tester2ID" size="1">
-    <option value="10" selected="="selected""></option
+    <option value="10" selected="="selected""></option>
     @foreach ($testers as $tester)
     <option value="{{ $tester->id }}">{{ $tester->initials }}</option>
     @endforeach

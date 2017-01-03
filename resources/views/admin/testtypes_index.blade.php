@@ -32,7 +32,7 @@
 <form class="form-inline" action="/admin/testtypes" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
-		<label for="testtype">New Test Type:</label> <input class="form-control" type="TEXT" id="testtype" name="testtype" size="30" />
+		<label for="testtype">New Test Type:</label> <input class="form-control" type="TEXT" id="testtype" name="testtype" size="30" >
 		<button class="btn btn-default" type="SUBMIT">Add test type</button> / <a href="/">Main</a>
 	</div>
 </form>

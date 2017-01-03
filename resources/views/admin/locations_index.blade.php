@@ -32,7 +32,7 @@
 <form class="form-inline" action="/admin/locations" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
-		<label for="location">New Location:</label> <input type="TEXT" class="form-control" id="location" name="location" size="20" placeholder="Location" />
+		<label for="location">New Location:</label> <input type="TEXT" class="form-control" id="location" name="location" size="20" placeholder="Location" >
 		<button type="SUBMIT" class="btn btn-default">Add location</button> / <a href="/">Main</a>
 	</div>
 </form>

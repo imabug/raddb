@@ -32,7 +32,7 @@
 <form class="form-inline" action="/admin/modalities" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
-		<label for="modality">New Modality:</label> <input type="TEXT" class="form-control" id="modality" name="modality" size="25" />
+		<label for="modality">New Modality:</label> <input type="TEXT" class="form-control" id="modality" name="modality" size="25" >
 		<button class="btn btn-default" type="SUBMIT">Add modality</button> / <a href="/">Main</a>
 	</div>
 </form>

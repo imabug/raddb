@@ -32,7 +32,7 @@
 <form class="form-inline" action="/admin/manufacturers" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
-		<label for="manufacturer">New Manufacturer:</label> <input type="TEXT" class="form-control" id="manufacturer" name="manufacturer" size="20" placeholder="Manufacturer" />
+		<label for="manufacturer">New Manufacturer:</label> <input type="TEXT" class="form-control" id="manufacturer" name="manufacturer" size="20" placeholder="Manufacturer" >
 		<button class="btn btn-default" type="SUBMIT">Add manufacturer</button> / <a href="/">Main</a>
 	</div>
 </form>

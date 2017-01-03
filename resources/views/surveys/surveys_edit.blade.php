@@ -7,15 +7,15 @@
 <form class="form-inline" action="/surveys" method="POST">
 {{ csrf_field() }}
 {{ method_field('PUT') }}
-<input class="form-control" type="hidden" id="id" name="id" value="{{ $survey->id }}" />
-<input class="form-control" type="hidden" id="machineID" name="machineID" value="{{ $machines->id }}" />
+<input class="form-control" type="hidden" id="id" name="id" value="{{ $survey->id }}" >
+<input class="form-control" type="hidden" id="machineID" name="machineID" value="{{ $machines->id }}" >
 <p>Machine: {{ $machine->description }}
 </p>
-<p><label for="test_date">Date tested:</label> <input class="form-control" type="text" id="test_date" name="test_date" size="10" value="{{ $survey->test_date }}" placeholder="YYYY-MM-DD" /></p>
+<p><label for="test_date">Date tested:</label> <input class="form-control" type="date" id="test_date" name="test_date" size="10" value="{{ $survey->test_date }}" placeholder="YYYY-MM-DD" ></p>
 <p>
     <label for="tester1ID">Tested by: </label>
     <select class="form-control" id="tester1ID" name="tester1ID" size="1">
-    <option></option
+    <option value="10" selected="="selected""></option>
     @foreach ($testers as $t)
     <option value="{{ $t->id }}"
     @if ($t->id == $tester1->id)
@@ -28,7 +28,7 @@
 <p>
     <label for="tester2ID">Tested by: </label>
     <select class="form-control" id="tester2ID" name="tester2ID" size="1">
-    <option></option
+    <option value="10" selected="="selected""></option>
     @foreach ($testers as $t)
     <option value="{{ $t->id }}"
     @if (isset($tester2) && ($t->id == $tester2->id))
@@ -51,7 +51,7 @@
     </select>
 </p>
 <p><label for="notes">Notes:</label> <textarea class="form-control" id="notes" name="notes" rows="3" cols="70">{{ $survey->notes }}</textarea></p>
-<p><label for="accession">Accession:</label> <input class="form-control" type="text" id="accession" name="accession" size="12" value="{{ $survey->accession }}" /></p>
+<p><label for="accession">Accession:</label> <input class="form-control" type="text" id="accession" name="accession" size="12" value="{{ $survey->accession }}" ></p>
 
 <p><button type="SUBMIT">Edit survey</button> / <a href="/">Main</a></p>
 </form>

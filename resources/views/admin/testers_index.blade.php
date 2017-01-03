@@ -32,8 +32,8 @@
 <form class="form-inline" action="/admin/testers" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
-		<label for="name">Name:</label> <input type="TEXT" class="form-control" id="name" name="name" size="25" />
-		<label for="initials">Initials:</label> <input type="TEXT" class="form-control" id="initials" name="initials" size="3" />
+		<label for="name">Name:</label> <input type="TEXT" class="form-control" id="name" name="name" size="25" >
+		<label for="initials">Initials:</label> <input type="TEXT" class="form-control" id="initials" name="initials" size="3" >
 		<button type="SUBMIT" class="btn btn-default">Add tester</button> / <a href="/">Main</a>
 	</div>
 </form>

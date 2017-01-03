@@ -9,7 +9,7 @@
 	<div class="form-group">
 		{{ csrf_field() }}
 		{{ method_field('PUT') }}
-		<label for"manufacturer">Manufacturer:</label> <input class="form-control" type="TEXT" id="manufacturer" name="manufacturer" size="20" value="{{ $manufacturer->manufacturer }}" />
+		<label for"manufacturer">Manufacturer:</label> <input class="form-control" type="TEXT" id="manufacturer" name="manufacturer" size="20" value="{{ $manufacturer->manufacturer }}" >
 		<button class="btn btn-default" type="SUBMIT">Edit manufacturer</button> / <a href="/">Main</a>
 	</div>
 </form>
