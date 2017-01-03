@@ -122,4 +122,16 @@ class TestDate extends Model
      {
          return $query->where('id', $id);
      }
+
+     /**
+      * Scope function to return test dates for a specific type of test
+      *
+      * @param \Illuminate\Database\Eloquent\Builder $query
+      * @param int $yr
+      * @return \Illuminate\Database\Eloquent\Builder
+      */
+     public function scopeTestType($query, $id)
+     {
+         return $query->where('type_id', $id);
+     }
 }
