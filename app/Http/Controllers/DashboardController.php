@@ -31,6 +31,7 @@ class DashboardController extends Controller
         $machinesUntested = Machine::select('id', 'description')
             ->active()
             ->whereNotIn('id', $currSurveys->toArray())
+            ->orderBy('description')
             ->get();
         $total = Machine::active()->get()->count();
 
