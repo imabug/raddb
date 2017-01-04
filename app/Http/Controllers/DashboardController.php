@@ -23,7 +23,7 @@ class DashboardController extends Controller
             select machines.id, machines.description from machines
             where machines.machine_status="Active" and machines.id not in
             (select testdates.machine_id from testdates
-            where year(testdates.test_date) = "2016");
+            where year(testdates.test_date) = $currYear);
         */
         $currSurveys = TestDate::select('machine_id')
             ->year(date("Y"))
