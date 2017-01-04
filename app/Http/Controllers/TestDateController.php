@@ -55,6 +55,8 @@ class TestDateController extends Controller
 
         if (is_null($machineId)) {
             $machines = Machine::select('id', 'description')
+                ->active()
+                ->orderBy('description')
                 ->get();
         }
         else {
