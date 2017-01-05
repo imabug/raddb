@@ -246,7 +246,7 @@ class TestDateController extends Controller
 
         if ($request->hasFile('surveyReport')) {
             $surveyReportPath = $request->surveyReport->store('SurveyReports');
-            $survey->report_file_path = $serviceReportPath;
+            $survey->report_file_path = $surveyReportPath;
         }
 
         $survey->save();
