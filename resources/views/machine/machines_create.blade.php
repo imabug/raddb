@@ -31,8 +31,8 @@
 		<p><label for="model">Model:</label> <input type="text" id="model" name="model" size="20" ></p>
 		<p><label for="serialNumber">Serial Number:</label> <input type="text" id="serialNumber" name="serialNumber" size="20" ></p>
 		<p><label for="vendSiteID">Vendor site ID:</label> <input type="text" id="vendSiteID" name="vendSiteID" size="20" ></p>
-		<p><label for="manufDate">Manufacture date:</label> <input type="date" id="manufDate" name="manufDate" size="10" placeholder="YYYY-MM-DD"  ></p>
-		<p><label for="installDate">Install date:</label> <input type="date" id="installDate" name="installDate" size="10" placeholder="YYYY-MM-DD"  ></p>
+		<p><label for="manufDate">Manufacture date:</label> <input type="date" id="manufDate" name="manufDate" size="10"></p>
+		<p><label for="installDate">Install date:</label> <input type="date" id="installDate" name="installDate" size="10"></p>
 		<p><label for="location">Location:</label>
 		<select id="location" name="location" size="1">
 			<option>Select location</option>

@@ -11,7 +11,7 @@
 <input class="form-control" type="hidden" id="machineID" name="machineID" value="{{ $machines->id }}" >
 <p>Machine: {{ $machine->description }}
 </p>
-<p><label for="test_date">Date tested:</label> <input class="form-control" type="date" id="test_date" name="test_date" size="10" value="{{ $survey->test_date }}" placeholder="YYYY-MM-DD" ></p>
+<p><label for="test_date">Date tested:</label> <input class="form-control" type="date" id="test_date" name="test_date" size="10" value="{{ $survey->test_date }}" ></p>
 <p>
     <label for="tester1ID">Tested by: </label>
     <select class="form-control" id="tester1ID" name="tester1ID" size="1">
