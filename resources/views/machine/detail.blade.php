@@ -103,6 +103,7 @@
             <th>Test Type</th>
             <th>Accession</th>
             <th>Notes</th>
+            <th>Survey Report</th>
         </tr>
     </thead>
     <tbody>
@@ -113,6 +114,11 @@
             <td>{{ $survey->type->test_type }}</td>
             <td>{{ $survey->accession }}</td>
             <td>{{ $survey->notes }}</td>
+            @if (empty($survey->report_file_path) || is_null($survey->report_file_path))
+            <td></td>
+            @else
+            <td><a href="/report/survey/{{ $survey->id }} "><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            @endif
         </tr>
     @endforeach
     </tbody>
@@ -125,6 +131,7 @@
             <th>Survey ID</th>
             <th>Recommendation</th>
             <th>Resolved</th>
+            <th>Service Report</th>
         </tr>
     </thead>
     <tbody>
@@ -137,6 +144,11 @@
     <span class="glyphicon glyphicon-ok" aria-hidden-"true"></span>
 @endif
             </td>
+            @if (empty($rec->service_report_path) || is_null($rec->service_report_path))
+            <td></td>
+            @else
+            <td><a href="/report/service/{{ $rec->id }}"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            @endif
         </tr>
     @endforeach
     </tbody>

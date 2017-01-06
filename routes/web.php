@@ -73,6 +73,8 @@ Route::resource('admin/modalities', 'ModalityController');
 Route::resource('admin/testers', 'TesterController');
 Route::resource('admin/testtypes', 'TestTypeController');
 
+Route::get('report/{type}/{id}', 'ReportController@show');
+
 // Route for user management
 Route::resource('users', 'UserController');
 

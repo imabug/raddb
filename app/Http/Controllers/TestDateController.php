@@ -245,7 +245,7 @@ class TestDateController extends Controller
         // This breaks the way service reports were handled in the previous version. Deal with it.
 
         if ($request->hasFile('surveyReport')) {
-            $surveyReportPath = $request->surveyReport->store('SurveyReports');
+            $surveyReportPath = $request->surveyReport->store('public/SurveyReports');
             $survey->report_file_path = $surveyReportPath;
         }
 
