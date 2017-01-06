@@ -117,7 +117,7 @@
             @if (empty($survey->report_file_path) || is_null($survey->report_file_path))
             <td></td>
             @else
-            <td><a href="/report/survey/{{ $survey->id }} "><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td><a href="/report/survey/{{ $survey->id }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @endif
         </tr>
     @endforeach
@@ -147,7 +147,7 @@
             @if (empty($rec->service_report_path) || is_null($rec->service_report_path))
             <td></td>
             @else
-            <td><a href="/report/service/{{ $rec->id }}"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td><a href="/report/service/{{ $rec->id }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @endif
         </tr>
     @endforeach
