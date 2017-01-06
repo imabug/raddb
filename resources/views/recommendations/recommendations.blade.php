@@ -28,7 +28,7 @@
                     <td>{{ $rec->rec_add_ts }}</td>
                     <td>{{ $rec->rec_resolve_date }}</td>
                     @if (isset($rec->service_report_path))
-                    <td><a href="/report/service/{{ $rec->id }}">{{ $rec->wo_number }}</a></td>
+                    <td><a href="/report/service/{{ $rec->id }}" target="_blank">{{ $rec->wo_number }}</a></td>
                     @else
                     <td>{{ $rec->wo_number }}</td>
                     @endif
