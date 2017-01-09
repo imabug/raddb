@@ -55,13 +55,13 @@
 		@if (empty($ss->prevSurveyReport))
             <td>{{ $ss->prevSurveyID }}</td>
 		@else
-            <td><a href="/report/survey/{{ $ss->prevSurveyID }}">{{ $ss->prevSurveyID }}</a></td>
+            <td><a href="/report/survey/{{ $ss->prevSurveyID }}" target="_blank">{{ $ss->prevSurveyID }}</a></td>
 		@endif
         <td>{{ $ss->currSurveyDate }}</td>
 		@if (empty($ss->currSurveyReport))
             <td>{{ $ss->currSurveyID }}</td>
 		@else
-			<td><a href="/report/survey/{{ $ss->currSurveyID }}">{{ $ss->currSurveyID}}</a></td>
+			<td><a href="/report/survey/{{ $ss->currSurveyID }}" target="_blank">{{ $ss->currSurveyID}}</a></td>
 		@endif
 			<td></td>
 			<td></td>
