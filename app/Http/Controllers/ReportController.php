@@ -56,7 +56,7 @@ class ReportController extends Controller
                     return redirect(Storage::url($survey->report_file_path));
                 }
                 else {
-                    return redirect('machines/'. $id);
+                    return redirect()->route('machines.show', $id);
                 }
                 break;
             case "service":
@@ -65,7 +65,7 @@ class ReportController extends Controller
                     return redirect(Storage::url($rec->service_report_path));
                 }
                 else {
-                    return redirect('recommendations/' . $rec->survey_id);
+                    return redirect()->route('recommendations.show' . $rec->survey_id);
                 }
                 break;
             default:

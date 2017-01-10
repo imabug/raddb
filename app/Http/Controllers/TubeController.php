@@ -103,7 +103,7 @@ class TubeController extends Controller
         // Tube has been added to the database. Now redirect to
         // /tubes/$id/create to create a new tube for the machine
         // TODO: Show some kind of confirmation message that a new tube was added
-        return redirect('/tubes/' . $request->machine . '/create');
+        return redirect()->route('tubes.createTubeFor', $request->machine);
     }
 
     /**
@@ -194,7 +194,7 @@ class TubeController extends Controller
 
         // Tube has been updated in the database. Redirect to the machine page
         // for the unit
-        return redirect('/machines/' . $request->machine_id);
+        return redirect()->route('machines.show', $request->machine_id);
     }
 
     /**

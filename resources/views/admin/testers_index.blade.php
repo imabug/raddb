@@ -11,9 +11,9 @@
 		<tr>
 		@foreach ($chunk as $tester)
 			<td>{{ $tester->id }}</td>
-			<td><a href="/admin/testers/{{ $tester->id }}/edit">{{ $tester->name }}</a></td>
+			<td><a href="{{ route('testers.edit', $tester->id) }}">{{ $tester->name }}</a></td>
 			<td>
-				<form class="form-inline" action="/admin/testers/{{ $tester->id }}" method="post">
+				<form class="form-inline" action="{{ route('testers.destroy', $tester->id) }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
 					<button type="submit" class="btn btn-danger btn-xs">
@@ -29,12 +29,14 @@
 
 <h2>Add a Tester</h2>
 <!-- Add a new tester -->
-<form class="form-inline" action="/admin/testers" method="POST">
+<p>
+<form class="form-inline" action="{{ route('testers.store') }}" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
 		<label for="name">Name:</label> <input type="TEXT" class="form-control" id="name" name="name" size="25" >
 		<label for="initials">Initials:</label> <input type="TEXT" class="form-control" id="initials" name="initials" size="3" >
-		<button type="SUBMIT" class="btn btn-default">Add tester</button> / <a href="/">Main</a>
+		<button type="SUBMIT" class="btn btn-default">Add tester</button>
 	</div>
 </form>
+</p>
 @endsection

@@ -5,13 +5,13 @@
 @section('content')
 <h2>Add survey report</h2>
 
-<form class="form-inline" action="/surveys/storeReport" method="post" enctype="multipart/form-data">
+<form class="form-inline" action="{{ route('surveys.storeSurveyReport') }}" method="post" enctype="multipart/form-data">
     <div class="form-group">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <p><label for="surveyId">Survey ID: </label> <input class="form-control" type="number" id="surveyId" name="surveyId"></p>
         <p><label for="surveyReport">Upload survey report: </label> <input class="form-control" type="file" id="surveyReport" name="surveyReport" ></p>
-        <p><button type="submit">Submit survey report</button> / <a href="/">Main</a></p>
+        <p><button type="submit">Submit survey report</button></p>
     </div>
 </form>
 @endsection

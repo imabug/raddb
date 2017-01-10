@@ -4,8 +4,8 @@
 
 @section('content')
 <h2>Add a tube</h2>
-
-<form class="form-inline" action="/tubes" method="POST">
+<p>
+<form class="form-inline" action="{{ route('tubes.store') }}" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
 	<p><label for="machine">Machine:</label>
@@ -48,8 +48,8 @@
     	<label for="mfs">Medium:</label> <input type="text" id="mfs" name="mfs" size="4" >mm
 		<label for="sfs">Small:</label> <input type="text" id="sfs" name="sfs" size="4" >mm</p>
 	<p><label for="notes">Notes</label><br /><textarea id="notes" name="notes" rows="3" cols="70">Additional notes about this tube</textarea></p>
-	<p><button type="SUBMIT">Add tube</button> / <a href="/">Main</a></p>
+	<p><button type="SUBMIT">Add tube</button></p>
 	</div>
 </form>
-
+</p>
 @endsection

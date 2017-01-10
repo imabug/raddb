@@ -11,9 +11,9 @@
 		<tr>
 		@foreach ($chunk as $manufacturer)
 			<td>{{ $manufacturer->id }}</td>
-			<td><a href="/admin/manufacturers/{{ $manufacturer->id }}/edit">{{ $manufacturer->manufacturer }}</a></td>
+			<td><a href="{{ route('manufacturers.edit', $manufacturer->id) }}">{{ $manufacturer->manufacturer }}</a></td>
 			<td>
-				<form class="form-inline" action="/admin/manufacturers/{{ $manufacturer->id }}" method="post">
+				<form class="form-inline" action="{{ route('manufacturers.destroy', $manufacturer->id) }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
 					<button type="submit" class="btn btn-danger btn-xs">
@@ -29,12 +29,13 @@
 
 <h2>Add a Manufacturer</h2>
 <!-- Add a new manufacturer -->
-<form class="form-inline" action="/admin/manufacturers" method="POST">
+<p>
+<form class="form-inline" action="{{ route('manufacturers.store') }}" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
 		<label for="manufacturer">New Manufacturer:</label> <input type="TEXT" class="form-control" id="manufacturer" name="manufacturer" size="20" placeholder="Manufacturer" >
-		<button class="btn btn-default" type="SUBMIT">Add manufacturer</button> / <a href="/">Main</a>
+		<button class="btn btn-default" type="SUBMIT">Add manufacturer</button>
 	</div>
 </form>
-
+</p>
 @endsection

@@ -4,7 +4,7 @@
 
 @section('content')
 <h2>Edit a survey for {{ $machine->description }}</h2>
-<form class="form-inline" action="/surveys" method="POST">
+<form class="form-inline" action="{{ route('surveys.update', $survey->id) }}" method="POST">
 {{ csrf_field() }}
 {{ method_field('PUT') }}
 <input class="form-control" type="hidden" id="id" name="id" value="{{ $survey->id }}" >
@@ -53,7 +53,7 @@
 <p><label for="notes">Notes:</label> <textarea class="form-control" id="notes" name="notes" rows="3" cols="70">{{ $survey->notes }}</textarea></p>
 <p><label for="accession">Accession:</label> <input class="form-control" type="text" id="accession" name="accession" size="12" value="{{ $survey->accession }}" ></p>
 
-<p><button type="SUBMIT">Edit survey</button> / <a href="/">Main</a></p>
+<p><button type="SUBMIT">Edit survey</button></p>
 </form>
 
 @endsection

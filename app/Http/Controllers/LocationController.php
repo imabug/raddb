@@ -50,7 +50,7 @@ class LocationController extends Controller
         $location->location = $request->location;
         $location->save();
 
-        return redirect('/admin/locations/');
+        return redirect()->route('locations.index');
     }
 
     /**
@@ -147,7 +147,7 @@ class LocationController extends Controller
 
         $location->save();
 
-        return redirect('/admin/locations');
+        return redirect()->route('locations.index');
     }
 
     /**
@@ -161,6 +161,6 @@ class LocationController extends Controller
         $location = Location::find($id);
 
         $location->delete();
-        return redirect('/admin/locations');
+        return redirect()->route('locations.index');
     }
 }

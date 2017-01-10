@@ -4,8 +4,8 @@
 
 @section('content')
 <h2>Edit a tube</h2>
-
-<form class="form-inline" action="/tubes/{{$tube->id}}" method="POST">
+<p>
+<form class="form-inline" action="{{route('tubes.update', $tube->id)}}" method="POST">
     <div class="form-group">
     	{{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -47,5 +47,5 @@
     <p><button type="SUBMIT">Modify tube</button> / <a href="/">Main</a></p>
     </div>
 </form>
-
+</p>
 @endsection

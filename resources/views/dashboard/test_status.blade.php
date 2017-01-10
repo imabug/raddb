@@ -24,8 +24,8 @@
 <tr>
 @foreach ($mod_chunk as $m)
 <td class="text-center">
-    <a href="/machines/{{ $m->id }}">{{ $m->description}}</a><br />
-    <a href="/machines/locations/{{ $m->location_id }}">{{ $m->location->location }}</a><br />
+    <a href="{{ route('machines.show', $m->id) }}">{{ $m->description}}</a><br />
+    <a href="{{ route('locations.showLocation', $m->location_id) }}">{{ $m->location->location }}</a><br />
 @foreach ($m->testdate as $td)
     @if ($loop->first)
 @php

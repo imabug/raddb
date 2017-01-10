@@ -4,7 +4,7 @@
 
 @section('content')
 <h2>Add new recommendations</h2>
-<form class="form-inline" action="/recommendations" method="post" enctype="multipart/form-data">
+<form class="form-inline" action="{{ route('recommendations.store') }}" method="post" enctype="multipart/form-data">
     <div class="form-group">
         {{ csrf_field() }}
         @if (isset($recs))
@@ -45,7 +45,7 @@
         <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date" size="20" maxlength="20" ></p>
         <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" > (Max file size: {{ ini_get('post_max_size') }})</p>
         <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" ></p>
-        <p><button type="SUBMIT">Add recommendations</button> / <a href="/">Main</a></p>
+        <p><button type="SUBMIT">Add recommendations</button></p>
     </div>
 </form>
 

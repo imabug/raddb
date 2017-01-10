@@ -11,9 +11,9 @@
 		<tr>
 		@foreach ($chunk as $testtype)
 			<td>{{ $testtype->id }}</td>
-			<td><a href="/admin/testtypes/{{ $testtype->id }}/edit">{{ $testtype->test_type }}</a></td>
+			<td><a href="{{ route('testtypes.edit', $testtype->id) }}">{{ $testtype->test_type }}</a></td>
 			<td>
-				<form class="form-inline" action="/admin/testtypes/{{ $testtype->id }}" method="post">
+				<form class="form-inline" action="{{ route('testtypes.destroy', $testtype->id) }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
 					<button type="submit" class="btn btn-danger btn-xs">
@@ -29,12 +29,13 @@
 
 <h2>Add a Test Type</h2>
 <!-- Add a new test type -->
-<form class="form-inline" action="/admin/testtypes" method="POST">
+<p>
+<form class="form-inline" action="{{ route('testtypes.store') }}" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
 		<label for="testtype">New Test Type:</label> <input class="form-control" type="TEXT" id="testtype" name="testtype" size="30" >
-		<button class="btn btn-default" type="SUBMIT">Add test type</button> / <a href="/">Main</a>
+		<button class="btn btn-default" type="SUBMIT">Add test type</button>
 	</div>
 </form>
-
+</p>
 @endsection

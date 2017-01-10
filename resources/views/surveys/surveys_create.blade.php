@@ -8,7 +8,7 @@
     for {{ $machines->description }}
 @endif
 </h2>
-<form class="form-inline" action="/surveys" method="POST">
+<form class="form-inline" action="{{ route('surveys.store') }}" method="POST">
 {{ csrf_field() }}
 <p><label for="machineID">Machine:</label>
 @if (isset($id))
@@ -53,7 +53,7 @@
 <p><label for="notes">Notes:</label> <textarea class="form-control" id="notes" name="notes" rows="3" cols="70" placeholder="Enter any notes about the survey"></textarea></p>
 <p><label for="accession">Accession:</label> <input class="form-control" type="text" id="accession" name="accession" size="12" /></p>
 
-<p><button type="SUBMIT">Add survey</button> / <a href="/">Main</a></p>
+<p><button type="SUBMIT">Add survey</button></p>
 </form>
 
 @endsection

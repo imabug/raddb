@@ -48,7 +48,7 @@ class TestTypeController extends Controller
         $testtype->test_type = $request->testtype;
         $testtype->save();
 
-        return redirect('/admin/testtypes/');
+        return redirect()->route('testtypes.index');
     }
 
     /**
@@ -100,7 +100,7 @@ class TestTypeController extends Controller
 
         $testtype->save();
 
-        return redirect('/admin/testtypes');
+        return redirect()->route('testtypes.index');
     }
 
     /**
@@ -114,6 +114,6 @@ class TestTypeController extends Controller
         $testtype = TestType::find($id);
 
         $testtype->delete();
-        return redirect('/admin/testtypes');
+        return redirect()->route('testtypes.index');
     }
 }

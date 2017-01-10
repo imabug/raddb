@@ -50,7 +50,7 @@ class ManufacturerController extends Controller
         $manufacturer->manufacturer = $request->manufacturer;
         $manufacturer->save();
 
-        return redirect('/admin/manufacturers/');
+        return redirect()->route('manufacturers.index');
     }
 
     /**
@@ -147,7 +147,7 @@ class ManufacturerController extends Controller
 
         $manufacturer->save();
 
-        return redirect('/admin/manufacturers');
+        return redirect()->route('manufacturers.index');
     }
 
     /**
@@ -162,7 +162,7 @@ class ManufacturerController extends Controller
 
         $manufacturer->delete();
 
-        return redirect('/admin/manufacturers');
+        return redirect()->route('manufacturers.index');
 
     }
 }

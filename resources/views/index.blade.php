@@ -11,7 +11,7 @@
 @foreach ($machinesUntested->chunk(5) as $chunk )
 		<tr>
 		@foreach ($chunk as $machine)
-			<td><a href="/surveys/{{ $machine->id}}/create">{{ $machine->description }}</a></td>
+			<td><a href="{{ route('surveys.createSurveyFor', $machine->id)}}">{{ $machine->description }}</a></td>
 		@endforeach
 		</tr>
 @endforeach
@@ -29,7 +29,7 @@
 @foreach ($pendingSurveys as $pending)
 		<tr>
 			<td>{{ $pending->surveyId }}</td>
-			<td><a href="/machines/{{ $pending->machineId }}">{{ $pending->description }}</a></td>
+			<td><a href="{{ route('machines.show', $pending->machineId) }}">{{ $pending->description }}</a></td>
 			<td>{{ $pending->test_date}}</td>
 			<td>{{ $pending->accession }}</td>
 			<td>{{ $pending->notes }}</td>
@@ -50,18 +50,18 @@
 @foreach ($surveySchedule as $ss)
 		<tr>
 			<td>{{ $ss->id }}</td>
-			<td><a href="/machines/{{ $ss->id }}">{{ $ss->description }}</a></td>
+			<td><a href="{{ route('machines.show', $ss->id) }}">{{ $ss->description }}</a></td>
             <td>{{ $ss->prevSurveyDate }}</td>
 		@if (empty($ss->prevSurveyReport))
             <td>{{ $ss->prevSurveyID }}</td>
 		@else
-            <td><a href="/report/survey/{{ $ss->prevSurveyID }}" target="_blank">{{ $ss->prevSurveyID }}</a></td>
+            <td><a href="{{ route('reports.show', ["survey", $ss->prevSurveyID]) }}" target="_blank">{{ $ss->prevSurveyID }}</a></td>
 		@endif
         <td>{{ $ss->currSurveyDate }}</td>
 		@if (empty($ss->currSurveyReport))
             <td>{{ $ss->currSurveyID }}</td>
 		@else
-			<td><a href="/report/survey/{{ $ss->currSurveyID }}" target="_blank">{{ $ss->currSurveyID}}</a></td>
+			<td><a href="{{ route('reports.show', ["survey", $ss->currSurveyID]) }}" target="_blank">{{ $ss->currSurveyID}}</a></td>
 		@endif
 			<td></td>
 			<td></td>

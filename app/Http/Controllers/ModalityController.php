@@ -49,7 +49,7 @@ class ModalityController extends Controller
         $modality->modality = $request->modality;
         $modality->save();
 
-        return redirect('/admin/modalities/');
+        return redirect()->route('modalities.index');
     }
 
     /**
@@ -146,7 +146,7 @@ class ModalityController extends Controller
 
         $modality->save();
 
-        return redirect('/admin/modalities');
+        return redirect()->route('modalities.index');
     }
 
     /**
@@ -160,6 +160,6 @@ class ModalityController extends Controller
         $modality = Modality::find($id);
 
         $modality->delete();
-        return redirect('/admin/modalities');
+        return redirect()->route('modalities.index');
     }
 }

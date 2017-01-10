@@ -5,7 +5,7 @@
 @section('content')
 <h2>Edit a machine</h2>
 
-<form class="form-inline" action="/machines/{{ $machine->id }}" method="POST">
+<form class="form-inline" action="{{ route('machines.update', $machine->id) }}" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
 		{{ method_field('PUT') }}
@@ -63,7 +63,7 @@
 		</select></p>
 		<p><label for="notes">Notes:</label><br /> <textarea id="notes" name="notes" rows="3" cols="70">{{ $machine->notes }}</textarea></p>
 
-		<p><button type="SUBMIT">Edit machine</button> / <a href="/">Main</a></p>
+		<p><button type="SUBMIT">Edit machine</button></p>
 
 	</div>
 </form>

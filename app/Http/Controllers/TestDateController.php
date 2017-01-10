@@ -117,7 +117,7 @@ class TestDateController extends Controller
 
         $testdate->save();
 
-        return redirect('/');
+        return redirect()->route('index');
     }
 
     /**
@@ -201,7 +201,7 @@ class TestDateController extends Controller
 
         $survey->save();
 
-        return redirect('/');
+        return redirect()->route('index');
 
     }
 
@@ -251,7 +251,7 @@ class TestDateController extends Controller
 
         $survey->save();
 
-        return redirect('/');
+        return redirect()->route('index');
     }
 
     /**

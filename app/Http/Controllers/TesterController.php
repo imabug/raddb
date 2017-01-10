@@ -50,7 +50,7 @@ class TesterController extends Controller
         $tester->initials = $request->initials;
         $tester->save();
 
-        return redirect('/admin/testers/');
+        return redirect()->route('testers.index');
     }
 
     /**
@@ -104,7 +104,7 @@ class TesterController extends Controller
 
         $tester->save();
 
-        return redirect('/admin/testers');
+        return redirect()->route('testers.index');
     }
 
     /**
@@ -118,6 +118,6 @@ class TesterController extends Controller
         $tester = Tester::find($id);
 
         $tester->delete();
-        return redirect('/admin/testers');
+        return redirect()->route('testers.index');
     }
 }

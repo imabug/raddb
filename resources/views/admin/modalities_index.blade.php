@@ -11,9 +11,9 @@
 		<tr>
 		@foreach ($chunk as $modality)
 			<td>{{ $modality->id }}</td>
-			<td><a href="/admin/modalities/{{ $modality->id }}/edit">{{ $modality->modality }}</a></td>
+			<td><a href="{{ route('modalities.edit', $modality->id) }}">{{ $modality->modality }}</a></td>
 			<td>
-				<form class="form-inline" action="/admin/modalities/{{ $modality->id }}" method="post">
+				<form class="form-inline" action="{{ route('modalities.destroy', $modality->id) }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
 					<button type="submit" class="btn btn-danger btn-xs">
@@ -29,12 +29,13 @@
 
 <h2>Add a Modality</h2>
 <!-- Add a new modality -->
-<form class="form-inline" action="/admin/modalities" method="POST">
+<p>
+<form class="form-inline" action="{{ route('modalities.store') }}" method="POST">
 	<div class="form-group">
 		{{ csrf_field() }}
 		<label for="modality">New Modality:</label> <input type="TEXT" class="form-control" id="modality" name="modality" size="25" >
-		<button class="btn btn-default" type="SUBMIT">Add modality</button> / <a href="/">Main</a>
+		<button class="btn btn-default" type="SUBMIT">Add modality</button>
 	</div>
 </form>
-
+</p>
 @endsection

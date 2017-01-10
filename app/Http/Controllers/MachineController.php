@@ -172,7 +172,7 @@ class MachineController extends Controller
         // Machine has been added to the database. Now redirect to
         // /tubes/$id/create to create a new tube for the machine
         // TODO: Show some kind of confirmation message that a new machine was added
-        return redirect('/tubes/' . $machine->id . '/create');
+        return redirect()->route('tubes.createTubeFor', $machine->id);
     }
 
     /**
@@ -292,7 +292,7 @@ class MachineController extends Controller
         $machine->save();
 
         // Machine has been updated in the database. Redirect to the machine page
-        return redirect('/machines/'.$machine->id);
+        return redirect()->route('machines.show', $machine->id);
     }
 
     /**
@@ -323,6 +323,6 @@ class MachineController extends Controller
 
         $machine->delete();
 
-        return redirect('/machines');
+        return redirect()->route('machines.index');
     }
 }

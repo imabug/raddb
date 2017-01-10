@@ -5,7 +5,7 @@
 @section('content')
 <h2>Add a machine</h2>
 
-<form class="form-inline" action="/machines" method="POST">
+<form class="form-inline" action="{{route('machines.store')}}" method="POST">
 	<div class="form-group">
 
 		{{ csrf_field() }}
@@ -52,8 +52,7 @@
 		</select></p>
 		<p><label for="notes">Notes:</label><br /> <textarea id="notes" name="notes" rows="3" cols="70" placeholder="Enter any notes about the machine here"></textarea></p>
 
-		<p><button type="SUBMIT">Add machine</button> / <a href="/">Main</a></p>
-
+		<p><button type="SUBMIT">Add machine</button></p>
 	</div>
 </form>
 

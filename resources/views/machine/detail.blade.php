@@ -22,11 +22,11 @@
         Notes: {{ $machine->notes }}
         </p>
         <p>
-            <form class="form-inline" action="/machines/{{ $machine->id }}" method="post">
+            <form class="form-inline" action="{{ route('machines.destroy', $machine->id) }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <div class="form-group">
-                    <a href="/machines/{{ $machine->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
+                    <a href="{{ route('machines.edit', $machine->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
                     <button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this machine">
@@ -66,14 +66,14 @@
             <td>{{ $tube->age }}</td>
             <td>{{ $tube->notes }}</td>
 			<td>
-				<form class="form-inline" action="/tubes/{{ $machine->id }}" method="post">
+				<form class="form-inline" action="{{ route('tubes.destroy', $machine->id) }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
 					<div class="form-group">
-                        <a href="/tubes/{{ $tube->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
+                        <a href="{{ route('tubes.edit', $tube->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
-                        <a href="/tubes/{{ $machine->id }}/create" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Add new tube">
+                        <a href="{{ route('tubes.createTubeFor', $machine->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Add new tube">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </a>
 						<button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this tube">
@@ -109,7 +109,7 @@
     <tbody>
     @foreach ($surveys as $survey)
         <tr>
-            <td><a href="/recommendations/{{ $survey->id }}">{{ $survey->id }}</a></td>
+            <td><a href="{{ route('recommendations.show', $survey->id) }}">{{ $survey->id }}</a></td>
             <td>{{ $survey->test_date }}</td>
             <td>{{ $survey->type->test_type }}</td>
             <td>{{ $survey->accession }}</td>
@@ -117,7 +117,7 @@
             @if (empty($survey->report_file_path) || is_null($survey->report_file_path))
             <td></td>
             @else
-            <td><a href="/report/survey/{{ $survey->id }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td><a href="{{ route('reports.show', ["survey", $survey->id]) }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @endif
         </tr>
     @endforeach
@@ -137,7 +137,7 @@
     <tbody>
     @foreach ($recommendations as $rec)
         <tr>
-            <td><a href="/recommendations/{{ $rec->survey_id }}">{{ $rec->survey_id }}</a></td>
+            <td><a href="{{ route('recommendations.show', $rec->survey_id) }}">{{ $rec->survey_id }}</a></td>
             <td>{{ $rec->recommendation }}</td>
             <td>
 @if($rec->resolved)
@@ -147,7 +147,7 @@
             @if (empty($rec->service_report_path) || is_null($rec->service_report_path))
             <td></td>
             @else
-            <td><a href="/report/service/{{ $rec->id }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td><a href="{{ route('reports.show', ["service", $rec->id]) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @endif
         </tr>
     @endforeach

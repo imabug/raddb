@@ -19,7 +19,7 @@
  * Dashboard routes
  */
 // Survey schedule
-Route::get('/', 'DashboardController@index')->name('dashboard.index');
+Route::get('/', 'DashboardController@index')->name('index');
 // Equipment testing status dashboard
 Route::get('/dashboard', 'DashboardController@teststatus')->name('dashboard.dashboard');
 // Route::get('/teststatus',  'DashboardController@teststatus')->name('dashboard.status');

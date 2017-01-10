@@ -109,7 +109,7 @@ class RecommendationController extends Controller
 
         $recommendation->save();
 
-        return redirect('/recommendations/' . $request->surveyId);
+        return redirect()->route('recommendations.show', $request->surveyId);
 
     }
 
@@ -194,7 +194,7 @@ class RecommendationController extends Controller
             $recommendation->save();
         }
 
-        return redirect('/recommendations/' . $surveyID);
+        return redirect()->route('recommendations.show', $surveyID);
     }
 
     /**
