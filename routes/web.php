@@ -19,13 +19,13 @@
  * Dashboard routes
  */
 // Survey schedule
-Route::get('/', 'DashboardController@index');
+Route::get('/', 'DashboardController@index')->name('dashboard.index');
 // Equipment testing status dashboard
-Route::get('/dashboard', 'DashboardController@teststatus');
-Route::get('/teststatus',  'DashboardController@teststatus');
+Route::get('/dashboard', 'DashboardController@teststatus')->name('dashboard.dashboard');
+// Route::get('/teststatus',  'DashboardController@teststatus')->name('dashboard.status');
 
 // Count of surveys per month for year $yr
-Route::get('/surveycount/{yr}', 'DashboardController@surveycount');
+Route::get('/surveycount/{yr}', 'DashboardController@surveycount')->name('dashboard.surveyCount');
 
 /*
  * Machine controller
@@ -39,41 +39,41 @@ Route::resource('opnotes', 'OpNoteController');
 /*
  * Recommendation controller
  */
-Route::get('recommendations/{id?}/create', 'RecommendationController@create'); // id parameter is optional
+Route::get('recommendations/{id?}/create', 'RecommendationController@create')->name('recommendations.createRecFor'); // id parameter is optional
 Route::resource('recommendations', 'RecommendationController');
 
 // Test Date controller
-Route::get('surveys/{id?}/create', 'TestDateController@create'); // machineId parameter is optional
-Route::get('surveys/addReport', 'TestDateController@addSurveyReport');
-Route::put('surveys/storeReport', 'TestDateController@storeSurveyReport');
+Route::get('surveys/{id?}/create', 'TestDateController@create')->name('surveys.createSurveyFor'); // machineId parameter is optional
+Route::get('surveys/addReport', 'TestDateController@addSurveyReport')->name('surveys.addSurveyReport');
+Route::put('surveys/storeReport', 'TestDateController@storeSurveyReport')->name('surveys.storeSurveyReport');
 Route::resource('surveys', 'TestDateController');
 
 // Tube controller
-Route::get('tubes/{id}/create', 'TubeController@create');
+Route::get('tubes/{id}/create', 'TubeController@create')->name('tubes.createTubeFor');
 Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables
 // Show index of machines grouped by location
-Route::get('locations/', 'LocationController@showLocationIndex');
+Route::get('locations/', 'LocationController@showLocationIndex')->name('locations.showLocationIndex');
 // List of machines for a selected location(s)
-Route::get('locations/{id}', 'LocationController@showLocation');
+Route::get('locations/{id}', 'LocationController@showLocation')->name('locations.showLocation');
 Route::resource('admin/locations', 'LocationController');
 
 // Show index of machines grouped by manufacturer
-Route::get('manufacturers/', 'ManufacturerController@showManufacturerIndex');
+Route::get('manufacturers/', 'ManufacturerController@showManufacturerIndex')->name('showManufacturerIndex');
 // List of machines for a selected modality/modalities
-Route::get('manufacturers/{id}', 'ManufacturerController@showManufacturer');
+Route::get('manufacturers/{id}', 'ManufacturerController@showManufacturer')->name('showManufacturer');
 Route::resource('admin/manufacturers', 'ManufacturerController');
 
 // Show index of machines grouped by modality
-Route::get('modalities/', 'ModalityController@showModalityIndex');
+Route::get('modalities/', 'ModalityController@showModalityIndex')->name('showModalityIndex');
 // List of machines for a selected modality/modalities
-Route::get('modalities/{id}', 'ModalityController@showModality');
+Route::get('modalities/{id}', 'ModalityController@showModality')->name('showModality');
 Route::resource('admin/modalities', 'ModalityController');
 Route::resource('admin/testers', 'TesterController');
 Route::resource('admin/testtypes', 'TestTypeController');
 
-Route::get('report/{type}/{id}', 'ReportController@show');
+Route::get('report/{type}/{id}', 'ReportController@show')->name('report.show');
 
 // Route for user management
 Route::resource('users', 'UserController');
@@ -83,4 +83,4 @@ Route::resource('test', 'TestController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home.index');

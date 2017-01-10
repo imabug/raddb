@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // })->middleware('auth:api');
 
-Route::get('machines/{id}/recommendations', 'MachineController@getRecommendations');
-Route::get('machines/{id}/opnotes', 'MachineController@getOperationalNotes');
-Route::get('machines/{id}/gendata', 'MachineController@getGenData');
-Route::get('machines/{id}/tubes', 'MachineController@getTubes');
+Route::get('machines/{id}/recommendations', 'MachineController@getRecommendations')->name('api.machines.recommendations');
+Route::get('machines/{id}/opnotes', 'MachineController@getOperationalNotes')->name('api.machines.opnotes');
+Route::get('machines/{id}/gendata', 'MachineController@getGenData')->name('api.machines.gendata');
+Route::get('machines/{id}/tubes', 'MachineController@getTubes')->name('api.machines.tubes');
