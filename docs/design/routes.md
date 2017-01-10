@@ -248,7 +248,7 @@ Types of testing
 |        | GET|HEAD  | recommendations/{recommendation}/edit   | recommendations.edit         | RadDB\Http\Controllers\RecommendationController@edit                     | web                     |
 |        | POST      | register                                |                              | RadDB\Http\Controllers\Auth\RegisterController@register                  | web,guest               |
 |        | GET|HEAD  | register                                | register                     | RadDB\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest               |
-|        | GET|HEAD  | report/{type}/{id}                      | report.show                  | RadDB\Http\Controllers\ReportController@show                             | web                     |
+|        | GET|HEAD  | reports/{type}/{id}                     | reports.show                  | RadDB\Http\Controllers\ReportController@show                             | web                     |
 |        | GET|HEAD  | surveycount/{yr}                        | dashboard.surveyCount        | RadDB\Http\Controllers\DashboardController@surveycount                   | web                     |
 |        | POST      | surveys                                 | surveys.store                | RadDB\Http\Controllers\TestDateController@store                          | web                     |
 |        | GET|HEAD  | surveys                                 | surveys.index                | RadDB\Http\Controllers\TestDateController@index                          | web                     |
