@@ -60,20 +60,20 @@ Route::get('locations/{id}', 'LocationController@showLocation')->name('locations
 Route::resource('admin/locations', 'LocationController');
 
 // Show index of machines grouped by manufacturer
-Route::get('manufacturers/', 'ManufacturerController@showManufacturerIndex')->name('showManufacturerIndex');
+Route::get('manufacturers/', 'ManufacturerController@showManufacturerIndex')->name('manufacturers.showManufacturerIndex');
 // List of machines for a selected modality/modalities
-Route::get('manufacturers/{id}', 'ManufacturerController@showManufacturer')->name('showManufacturer');
+Route::get('manufacturers/{id}', 'ManufacturerController@showManufacturer')->name('manufacturers.showManufacturer');
 Route::resource('admin/manufacturers', 'ManufacturerController');
 
 // Show index of machines grouped by modality
-Route::get('modalities/', 'ModalityController@showModalityIndex')->name('showModalityIndex');
+Route::get('modalities/', 'ModalityController@showModalityIndex')->name('modalities.showModalityIndex');
 // List of machines for a selected modality/modalities
-Route::get('modalities/{id}', 'ModalityController@showModality')->name('showModality');
+Route::get('modalities/{id}', 'ModalityController@showModality')->name('modalities.showModality');
 Route::resource('admin/modalities', 'ModalityController');
 Route::resource('admin/testers', 'TesterController');
 Route::resource('admin/testtypes', 'TestTypeController');
 
-Route::get('report/{type}/{id}', 'ReportController@show')->name('report.show');
+Route::get('reports/{type}/{id}', 'ReportController@show')->name('reports.show');
 
 // Route for user management
 Route::resource('users', 'UserController');
