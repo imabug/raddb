@@ -171,25 +171,24 @@ class RecommendationController extends Controller
         $resolved = $request->recID;
         $recResolveDate = $request->RecResolveDate;
 
-        // If a service report was uploaded, handle it
-        // This breaks the way service reports were handled in the previous version. Deal with it.
-
-        if ($request->hasFile('ServiceReport')) {
-            $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
-            $recommendation->service_report_path = $serviceReportPath;
-        }
-
         foreach ($resolved as $recId) {
             // Retrieve the Recommendations
             $recommendation = Recommendation::findOrFail($recId);
 
             if (isset($request->WONum)) $recommendation->wo_number = $request->WONum;
             if (isset($request->ResolvedBy)) $recommendation->resolved_by = $request->ResolvedBy;
-            if (isset($serviceReportPath)) $recommendation->service_report_path = $serviceReportPath;
             $recommendation->rec_resolve_date = $recResolveDate;
             $recommendation->resolved = 1;
             $recommendation->rec_status = "Complete";
             $recommendation->rec_resolve_ts = date("Y-m-d H:i:s");
+
+            // If a service report was uploaded, handle it
+            // This breaks the way service reports were handled in the previous version. Deal with it.
+
+            if ($request->hasFile('ServiceReport')) {
+                $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
+                $recommendation->service_report_path = $serviceReportPath;
+            }
 
             $recommendation->save();
         }
