@@ -285,6 +285,7 @@ class MachineController extends Controller
         }
         $machine->location_id = $request->location_id;
         $machine->room = $request->room;
+        $machine->status = $request->status;
         if (isset($request->notes)) {
             $machine->notes = $request->notes;
         }
