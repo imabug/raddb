@@ -1,14 +1,13 @@
 <?php
+
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
-use RadDB\Manufacturer;
 use RadDB\Machine;
-use RadDB\Http\Requests;
+use RadDB\Manufacturer;
+use Illuminate\Http\Request;
 
 class ManufacturerController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +19,7 @@ class ManufacturerController extends Controller
         $manufacturers = Manufacturer::get();
 
         return view('admin.manufacturers_index', [
-            'manufacturers' => $manufacturers
+            'manufacturers' => $manufacturers,
         ]);
     }
 
@@ -35,9 +34,10 @@ class ManufacturerController extends Controller
     }
 
     /**
-     * Add a new manufacturer to the database
+     * Add a new manufacturer to the database.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,7 +46,7 @@ class ManufacturerController extends Controller
             'manufacturer' => 'required|string|max:20',
         ]);
 
-        $manufacturer = new Manufacturer;
+        $manufacturer = new Manufacturer();
         $manufacturer->manufacturer = $request->manufacturer;
         $manufacturer->save();
 
@@ -57,6 +57,7 @@ class ManufacturerController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -67,7 +68,7 @@ class ManufacturerController extends Controller
     /**
      * Display a listing of machines by manufacturer
      * URI: /manufacturers
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -81,16 +82,17 @@ class ManufacturerController extends Controller
             ->groupBy('manufacturer.manufacturer');
 
         return view('manufacturers.index', [
-            'machines' => $machines
+            'machines' => $machines,
         ]);
     }
 
     /**
      * Display a listing of machines for a specific location
      * URI: /manufacturers/$id
-     * Method: GET
+     * Method: GET.
      *
      * @param string $id
+     *
      * @return \\Illuminate\Http\Response
      */
     public function showManufacturer($id)
@@ -104,17 +106,18 @@ class ManufacturerController extends Controller
 
         return view('manufacturers.manufacturer', [
             'manufacturer' => $manufacturer,
-            'machines' => $machines,
-            'n' => $machines->count()
+            'machines'     => $machines,
+            'n'            => $machines->count(),
         ]);
     }
 
     /**
      * Show the form for editing a manufacturer
      * URI: /admin/manufacturers/$id/edit
-     * Method: GET
+     * Method: GET.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -122,23 +125,24 @@ class ManufacturerController extends Controller
         $manufacturer = Manufacturer::findOrFail($id);
 
         return view('admin.manufacturers_edit', [
-            'manufacturer' => $manufacturer
+            'manufacturer' => $manufacturer,
         ]);
     }
 
     /**
      * Update the manufacturer.
      * URI: /admin/manufacturers/$id
-     * Method: PUT
+     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'manufacturer' => 'required|string|max:20'
+            'manufacturer' => 'required|string|max:20',
         ]);
 
         $manufacturer = Manufacturer::find($id);
@@ -154,6 +158,7 @@ class ManufacturerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -163,6 +168,5 @@ class ManufacturerController extends Controller
         $manufacturer->delete();
 
         return redirect()->route('manufacturers.index');
-
     }
 }

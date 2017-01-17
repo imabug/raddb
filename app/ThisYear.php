@@ -20,5 +20,4 @@ class ThisYear extends Model
     {
         return $this->belongsTo('RadDB\Machine');
     }
-
 }

@@ -3,13 +3,6 @@
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
-use RadDB\Modality;
-use RadDB\Location;
-use RadDB\Manufacturer;
-use RadDB\Machine;
-use RadDB\Tube;
-use RadDB\TestDate;
-use RadDB\Http\Requests;
 
 class TestController extends Controller
 {
@@ -21,7 +14,6 @@ class TestController extends Controller
     public function index(Request $request, $id)
     {
         dd($request);
-
     }
 
     /**
@@ -37,7 +29,8 @@ class TestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,7 +41,8 @@ class TestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,7 +53,8 @@ class TestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -70,8 +65,9 @@ class TestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -82,7 +78,8 @@ class TestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

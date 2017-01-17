@@ -1,4 +1,5 @@
 <?php
+
 namespace RadDB;
 
 use Carbon\Carbon;
@@ -10,7 +11,8 @@ class Machine extends Model
     use SoftDeletes;
 
     /**
-     * Attributes that are mass assignable
+     * Attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = [
@@ -34,7 +36,7 @@ class Machine extends Model
     ];
 
     /**
-     * Attributes that should be mutated to dates
+     * Attributes that should be mutated to dates.
      *
      * @var array
      */
@@ -99,9 +101,10 @@ class Machine extends Model
      */
 
     /**
-     * Scope function to return active machines
+     * Scope function to return active machines.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query)
@@ -110,10 +113,11 @@ class Machine extends Model
     }
 
     /**
-     * Scope function to return machines for a specific location
+     * Scope function to return machines for a specific location.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $id
+     * @param int                                   $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeLocation($query, $id)
@@ -123,10 +127,11 @@ class Machine extends Model
     }
 
     /**
-     * Scope function to return machines for a specific modality
+     * Scope function to return machines for a specific modality.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $id
+     * @param int                                   $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeModality($query, $id)
@@ -136,10 +141,11 @@ class Machine extends Model
     }
 
     /**
-     * Scope function to return machines for a specific manufacturer
+     * Scope function to return machines for a specific manufacturer.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $id
+     * @param int                                   $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeManufacturer($query, $id)
@@ -153,19 +159,19 @@ class Machine extends Model
      */
 
     /**
-     * Add an age attribute based on either install or manufacture date
+     * Add an age attribute based on either install or manufacture date.
      *
      * @return int
      */
     public function getAgeAttribute()
     {
         // Calculate the age of the unit based on install_date or manuf_date
-        if ($this->attributes['install_date'] != "0000-00-00") {
+        if ($this->attributes['install_date'] != '0000-00-00') {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
-        } elseif ($this->attributes['manuf_date'] != "0000-00-00") {
+        } elseif ($this->attributes['manuf_date'] != '0000-00-00') {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
         } else {
-            return "N/A";
+            return 'N/A';
         }
     }
 }

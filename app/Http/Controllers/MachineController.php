@@ -1,24 +1,22 @@
 <?php
+
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
-use RadDB\Http\Requests;
-// use RadDB\Http\Requests\UpdateMachineRequest;
-use RadDB\Http\Controllers\Controller;
-use RadDB\Modality;
-use RadDB\Location;
-use RadDB\Manufacturer;
-use RadDB\Machine;
 use RadDB\Tube;
+// use RadDB\Http\Requests\UpdateMachineRequest;
+use RadDB\Machine;
+use RadDB\Location;
+use RadDB\Modality;
 use RadDB\TestDate;
+use RadDB\Manufacturer;
+use Illuminate\Http\Request;
 
 class MachineController extends Controller
 {
-
     /**
      * Display a listing of all active machines.
      * URI: /machines
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,15 +28,15 @@ class MachineController extends Controller
             ->get();
 
         return view('machine.index', [
-            'machines' => $machines
+            'machines' => $machines,
         ]);
     }
 
-
     /**
-     * Display a listing of survey recommendations for a machine
+     * Display a listing of survey recommendations for a machine.
      *
      * @param int $id
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getRecommendations($id)
@@ -51,9 +49,10 @@ class MachineController extends Controller
     }
 
     /**
-     * Retrieve operational notes for a machine
+     * Retrieve operational notes for a machine.
      *
      * @param int $id
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getOperationalNotes($id)
@@ -61,44 +60,49 @@ class MachineController extends Controller
         $machineOpNotes = Machine::findOrFail($id)
             ->opnote()
             ->get();
+
         return $machineOpNotes;
     }
 
-    /**
-     * Retrieve generator check data for a machine
-     *
-     * @param int $id
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
+     /**
+      * Retrieve generator check data for a machine.
+      *
+      * @param int $id
+      *
+      * @return \Illuminate\Database\Eloquent\Collection
+      */
      public function getGenData($id)
      {
          $machineGenData = Machine::findOrFail($id)
             ->gendata()
             ->get();
+
          return $machineGenData;
      }
 
-    /**
-     * Retrieve x-ray tubes for a machine
-     *
-     * @param int $id
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
+     /**
+      * Retrieve x-ray tubes for a machine.
+      *
+      * @param int $id
+      *
+      * @return \Illuminate\Database\Eloquent\Collection
+      */
      public function getTubes($id)
      {
          $machineTube = Tube::active()->where([
              [
                  'machine_id',
-                 $id
-             ]
+                 $id,
+             ],
          ])->get();
 
          return $machineTube;
      }
+
     /**
      * Show form for adding a new machine
      * URI: /machines/create
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -111,42 +115,43 @@ class MachineController extends Controller
         $manufacturers = Manufacturer::select('id', 'manufacturer')
             ->get();
         // Get the list of locations
-        $locations = Location::select('id','location')
+        $locations = Location::select('id', 'location')
             ->get();
 
         return view('machine.machines_create', [
-            'modalities' => $modalities,
+            'modalities'    => $modalities,
             'manufacturers' => $manufacturers,
-            'locations' => $locations
+            'locations'     => $locations,
         ]);
     }
 
     /**
      * Save machine data to the database
      * URI: /machines
-     * Method: POST
+     * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'modality' => 'required|integer',
-            'description' => 'required|string|max:60',
+            'modality'     => 'required|integer',
+            'description'  => 'required|string|max:60',
             'manufacturer' => 'required|integer',
-            'model' => 'required|string|max:20',
+            'model'        => 'required|string|max:20',
             'serialNumber' => 'required|string|max:20',
-            'vendSiteID' => 'string|max:25',
-            'manufDate' => 'date_format:Y-m-d|max:10',
-            'installDate' => 'date_format:Y-m-d|max:10',
-            'location' => 'required|integer',
-            'room' => 'required|string|max:20',
-            'status' => 'required|in:Active,Inactive,Removed|max:50',
-            'notes' => 'string|max:65535'
+            'vendSiteID'   => 'string|max:25',
+            'manufDate'    => 'date_format:Y-m-d|max:10',
+            'installDate'  => 'date_format:Y-m-d|max:10',
+            'location'     => 'required|integer',
+            'room'         => 'required|string|max:20',
+            'status'       => 'required|in:Active,Inactive,Removed|max:50',
+            'notes'        => 'string|max:65535',
         ]);
 
-        $machine = new Machine;
+        $machine = new Machine();
         $machine->modality_id = $request->modality;
         $machine->description = $request->description;
         $machine->manufacturer_id = $request->manufacturer;
@@ -178,9 +183,10 @@ class MachineController extends Controller
     /**
      * Display the information for machine $id
      * URI: /machines/$id
-     * Method: GET
+     * Method: GET.
      *
      * @param string $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -201,20 +207,21 @@ class MachineController extends Controller
         $recommendations = $this->getRecommendations($id);
 
         return view('machine.detail', [
-            'machine' => $machine,
-            'tubes' => $tubes,
-            'opnotes' => $opNotes,
-            'surveys' => $surveys,
-            'recommendations' => $recommendations
+            'machine'         => $machine,
+            'tubes'           => $tubes,
+            'opnotes'         => $opNotes,
+            'surveys'         => $surveys,
+            'recommendations' => $recommendations,
         ]);
     }
 
     /**
      * Show the form for editing a machine
      * URI: /machines/$id/edit
-     * Method: GET
+     * Method: GET.
      *
      * @param string $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -229,41 +236,42 @@ class MachineController extends Controller
         $manufacturers = Manufacturer::select('id', 'manufacturer')
             ->get();
         // Get the list of locations
-        $locations = Location::select('id','location')
+        $locations = Location::select('id', 'location')
             ->get();
 
         return view('machine.machines_edit', [
-            'modalities' => $modalities,
+            'modalities'    => $modalities,
             'manufacturers' => $manufacturers,
-            'locations' => $locations,
-            'machine' => $machine
+            'locations'     => $locations,
+            'machine'       => $machine,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      * URI: /machines/$id
-     * Method: PUT
+     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'modality_id' => 'required|integer',
-            'description' => 'required|string|max:60',
+            'modality_id'     => 'required|integer',
+            'description'     => 'required|string|max:60',
             'manufacturer_id' => 'required|integer',
-            'model' => 'required|string|max:20',
-            'serialNumber' => 'required|string|max:20',
-            'vendSiteID' => 'string|max:25',
-            'manufDate' => 'date_format:Y-m-d|max:10',
-            'installDate' => 'date_format:Y-m-d|max:10',
-            'location_id' => 'required|integer',
-            'room' => 'required|string|max:20',
-            'status' => 'required|in:Active,Inactive,Removed|max:50',
-            'notes' => 'string|max:65535',
+            'model'           => 'required|string|max:20',
+            'serialNumber'    => 'required|string|max:20',
+            'vendSiteID'      => 'string|max:25',
+            'manufDate'       => 'date_format:Y-m-d|max:10',
+            'installDate'     => 'date_format:Y-m-d|max:10',
+            'location_id'     => 'required|integer',
+            'room'            => 'required|string|max:20',
+            'status'          => 'required|in:Active,Inactive,Removed|max:50',
+            'notes'           => 'string|max:65535',
         ]);
 
         // Retrieve the model for the machine to be edited
@@ -300,6 +308,7 @@ class MachineController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -310,14 +319,14 @@ class MachineController extends Controller
         $tubes = $this->getTubes($id);
 
         // Update the status and remove date for the machine
-        $machine->machine_status = "Removed";
-        $machine->remove_date = date("Y-m-d");
+        $machine->machine_status = 'Removed';
+        $machine->remove_date = date('Y-m-d');
         $machine->save();
 
         // Set the delete status for each tube
         foreach ($tubes as $tube) {
-            $tube->tube_status = "Removed";
-            $tube->remove_date = date("Y-m-d");
+            $tube->tube_status = 'Removed';
+            $tube->remove_date = date('Y-m-d');
             $tube->save();
             $tube->delete();
         }

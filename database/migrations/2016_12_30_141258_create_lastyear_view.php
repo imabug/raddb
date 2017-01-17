@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateLastyearView extends Migration
@@ -13,7 +11,7 @@ class CreateLastyearView extends Migration
      * FROM testdates
      * WHERE testdates.test_date BETWEEN MAKEDATE(YEAR(CURDATE())-1,1) AND MAKEDATE(YEAR(CURDATE()),1)
      * AND (testdates.type_id=1 or testdates.type_id=2)
-     * ORDER BY testdates.test_date DESC
+     * ORDER BY testdates.test_date DESC.
      *
      * @return void
      */
