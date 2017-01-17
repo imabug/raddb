@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
 use RadDB\TestType;
+use Illuminate\Http\Request;
 
 class TestTypeController extends Controller
 {

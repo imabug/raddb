@@ -2,10 +2,10 @@
 
 namespace RadDB\Http\Controllers;
 
+use RadDB\TestDate;
+use RadDB\Recommendation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use RadDB\Recommendation;
-use RadDB\TestDate;
 
 class RecommendationController extends Controller
 {
