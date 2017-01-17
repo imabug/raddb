@@ -1,19 +1,17 @@
 <?php
+
 namespace RadDB\Http\Controllers;
 
-use DB;
 use Illuminate\Http\Request;
 use RadDB\Machine;
 use RadDB\TestDate;
-use RadDB\Http\Requests;
 
 class DashboardController extends Controller
 {
-
     /**
      * Main index page.
      * Display list of machines that need to be surveyed, pending
-     * surveys and the survey schedule
+     * surveys and the survey schedule.
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +24,7 @@ class DashboardController extends Controller
             where year(testdates.test_date) = $currYear);
         */
         $currSurveys = TestDate::select('machine_id')
-            ->year(date("Y"))
+            ->year(date('Y'))
             ->get();
         $machinesUntested = Machine::select('id', 'description')
             ->active()
@@ -50,7 +48,7 @@ class DashboardController extends Controller
             ->leftJoin('machines',
                 'testdates.machine_id', '=', 'machines.id')
             ->pending()
-            ->orderBy('testdates.test_date','asc')
+            ->orderBy('testdates.test_date', 'asc')
             ->get();
 
         /* Get the list of machines and their surveys for this year
@@ -81,16 +79,15 @@ class DashboardController extends Controller
 
         return view('index', [
             'machinesUntested' => $machinesUntested,
-            'remain' => $machinesUntested->count(),
-            'total' => $total,
-            'pendingSurveys' => $pendingSurveys,
-            'surveySchedule' => $surveySchedule
+            'remain'           => $machinesUntested->count(),
+            'total'            => $total,
+            'pendingSurveys'   => $pendingSurveys,
+            'surveySchedule'   => $surveySchedule,
         ]);
-
     }
 
     /**
-     * Display the count of surveys per month for the specified year
+     * Display the count of surveys per month for the specified year.
      *
      * @return \Illuminate\Http\Response
      */
@@ -114,14 +111,14 @@ class DashboardController extends Controller
             'modality',
             'location',
             'testdate' => function ($query) {
-                $query->where('type_id','1')->orWhere('type_id','2')->latest('test_date');
-            }])
+                $query->where('type_id', '1')->orWhere('type_id', '2')->latest('test_date');
+            }, ])
             ->active()
             ->get()
             ->groupBy('modality.modality');
 
         return view('dashboard.test_status', [
-            'machines' => $machines
+            'machines' => $machines,
         ]);
     }
 
@@ -134,6 +131,7 @@ class DashboardController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -145,6 +143,7 @@ class DashboardController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -156,6 +155,7 @@ class DashboardController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -167,7 +167,8 @@ class DashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -179,6 +180,7 @@ class DashboardController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -1,13 +1,12 @@
 <?php
+
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
-use RadDB\Http\Requests;
 use RadDB\Tester;
 
 class TesterController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +18,7 @@ class TesterController extends Controller
         $testers = Tester::get();
 
         return view('admin.testers_index', [
-            'testers' => $testers
+            'testers' => $testers,
         ]);
     }
 
@@ -33,19 +32,20 @@ class TesterController extends Controller
     }
 
     /**
-     * Add a new tester to the database
+     * Add a new tester to the database.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:25',
-            'initials' => 'required|string|max:3'
+            'name'     => 'required|string|max:25',
+            'initials' => 'required|string|max:3',
         ]);
 
-        $tester = new Tester;
+        $tester = new Tester();
         $tester->name = $request->name;
         $tester->initials = $request->initials;
         $tester->save();
@@ -57,6 +57,7 @@ class TesterController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -67,9 +68,10 @@ class TesterController extends Controller
     /**
      * Show the form for editing a tester
      * URI: /admin/testers/$id/edit
-     * Method: GET
+     * Method: GET.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -77,24 +79,25 @@ class TesterController extends Controller
         $tester = Tester::findOrFail($id);
 
         return view('admin.testers_edit', [
-            'tester' => $tester
+            'tester' => $tester,
         ]);
     }
 
     /**
      * Update the tester.
      * URI: /admin/testers/$id
-     * Method: PUT
+     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:20',
-            'initials' => 'required|string|max:4'
+            'name'     => 'required|string|max:20',
+            'initials' => 'required|string|max:4',
         ]);
 
         $tester = Tester::find($id);
@@ -111,6 +114,7 @@ class TesterController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -118,6 +122,7 @@ class TesterController extends Controller
         $tester = Tester::find($id);
 
         $tester->delete();
+
         return redirect()->route('testers.index');
     }
 }

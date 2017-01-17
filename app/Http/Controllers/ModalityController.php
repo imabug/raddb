@@ -1,14 +1,13 @@
 <?php
+
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
-use RadDB\Http\Requests;
-use RadDB\Modality;
 use RadDB\Machine;
+use RadDB\Modality;
 
 class ModalityController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +19,7 @@ class ModalityController extends Controller
         $modalities = Modality::get();
 
         return view('admin.modalities_index', [
-            'modalities' => $modalities
+            'modalities' => $modalities,
         ]);
     }
 
@@ -34,9 +33,10 @@ class ModalityController extends Controller
     }
 
     /**
-     * Add a new modality to the database
+     * Add a new modality to the database.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,7 +45,7 @@ class ModalityController extends Controller
             'modality' => 'required|string|max:25',
         ]);
 
-        $modality = new Modality;
+        $modality = new Modality();
         $modality->modality = $request->modality;
         $modality->save();
 
@@ -56,6 +56,7 @@ class ModalityController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -66,7 +67,7 @@ class ModalityController extends Controller
     /**
      * Display a listing of machines grouped by modality
      * URI: /modalities
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -80,16 +81,17 @@ class ModalityController extends Controller
             ->groupBy('modality.modality');
 
         return view('modalities.index', [
-            'machines' => $machines
+            'machines' => $machines,
         ]);
     }
 
     /**
      * Display a listing of machines for a specific modality
      * URI: /modalities/$id
-     * Method: GET
+     * Method: GET.
      *
      * @param string $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function showModality($id)
@@ -104,16 +106,17 @@ class ModalityController extends Controller
         return view('modalities.modality', [
             'modality' => $modality,
             'machines' => $machines,
-            'n' => $machines->count()
+            'n'        => $machines->count(),
         ]);
     }
 
     /**
      * Show the form for editing a modality
      * URI: /admin/modalities/$id/edit
-     * Method: GET
+     * Method: GET.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -121,23 +124,24 @@ class ModalityController extends Controller
         $modality = Modality::findOrFail($id);
 
         return view('admin.modalities_edit', [
-            'modality' => $modality
+            'modality' => $modality,
         ]);
     }
 
     /**
      * Update the modality.
      * URI: /admin/modalities/$id
-     * Method: PUT
+     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'modality' => 'required|string|max:20'
+            'modality' => 'required|string|max:20',
         ]);
 
         $modality = Modality::find($id);
@@ -153,6 +157,7 @@ class ModalityController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -160,6 +165,7 @@ class ModalityController extends Controller
         $modality = Modality::find($id);
 
         $modality->delete();
+
         return redirect()->route('modalities.index');
     }
 }

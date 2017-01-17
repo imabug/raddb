@@ -1,4 +1,5 @@
 <?php
+
 namespace RadDB;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,17 +10,17 @@ class Location extends Model
     use SoftDeletes;
 
     /**
-     * Attributes that are mass assignable
-     * @var array
-     */
-    protected $fillable = ['location'];
-    
-    /**
-     * Attributes that should be mutated to dates
+     * Attributes that are mass assignable.
      *
      * @var array
      */
+    protected $fillable = ['location'];
 
+     /**
+      * Attributes that should be mutated to dates.
+      *
+      * @var array
+      */
      protected $dates = [
          'created_at',
          'deleted_at',

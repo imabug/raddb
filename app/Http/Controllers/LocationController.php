@@ -1,14 +1,13 @@
 <?php
+
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
 use RadDB\Location;
 use RadDB\Machine;
-use RadDB\Http\Requests;
 
 class LocationController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +19,7 @@ class LocationController extends Controller
         $locations = Location::get();
 
         return view('admin.locations_index', [
-            'locations' => $locations
+            'locations' => $locations,
         ]);
     }
 
@@ -35,9 +34,10 @@ class LocationController extends Controller
     }
 
     /**
-     * Add a new location to the database
+     * Add a new location to the database.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,7 +46,7 @@ class LocationController extends Controller
             'location' => 'required|string|max:20',
         ]);
 
-        $location = new Location;
+        $location = new Location();
         $location->location = $request->location;
         $location->save();
 
@@ -57,6 +57,7 @@ class LocationController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -67,7 +68,7 @@ class LocationController extends Controller
     /**
      * Display a listing of machines by location
      * URI: /locations
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -81,16 +82,17 @@ class LocationController extends Controller
             ->groupBy('location.location');
 
         return view('locations.index', [
-            'machines' => $machines
+            'machines' => $machines,
         ]);
     }
 
     /**
      * Display a listing of machines for a specific location
      * URI: /locations/$id
-     * Method: GET
+     * Method: GET.
      *
      * @param string $id
+     *
      * @return \\Illuminate\Http\Response
      */
     public function showLocation($id)
@@ -105,16 +107,17 @@ class LocationController extends Controller
         return view('locations.location', [
             'location' => $location,
             'machines' => $machines,
-            'n' => $machines->count()
+            'n'        => $machines->count(),
         ]);
     }
 
     /**
      * Show the form for editing a location.
      * URI: /admin/locations/$id/edit
-     * Method: GET
+     * Method: GET.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -122,23 +125,24 @@ class LocationController extends Controller
         $location = Location::findOrFail($id);
 
         return view('admin.locations_edit', [
-            'location' => $location
+            'location' => $location,
         ]);
     }
 
     /**
      * Update the location.
      * URI: /admin/locations/$id
-     * Method: PUT
+     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'location' => 'required|string|max:100'
+            'location' => 'required|string|max:100',
         ]);
 
         $location = Location::find($id);
@@ -154,6 +158,7 @@ class LocationController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -161,6 +166,7 @@ class LocationController extends Controller
         $location = Location::find($id);
 
         $location->delete();
+
         return redirect()->route('locations.index');
     }
 }
