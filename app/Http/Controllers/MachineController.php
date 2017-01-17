@@ -168,6 +168,7 @@ class MachineController extends Controller
         }
         $machine->location_id = $request->location;
         $machine->room = $request->room;
+        $machine->machine_status = $request->status;
         if (isset($request->notes)) {
             $machine->notes = $request->notes;
         }
@@ -293,7 +294,7 @@ class MachineController extends Controller
         }
         $machine->location_id = $request->location_id;
         $machine->room = $request->room;
-        $machine->status = $request->status;
+        $machine->machine_status = $request->status;
         if (isset($request->notes)) {
             $machine->notes = $request->notes;
         }
