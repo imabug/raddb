@@ -2,10 +2,10 @@
 
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
+use RadDB\Tube;
 use RadDB\Machine;
 use RadDB\Manufacturer;
-use RadDB\Tube;
+use Illuminate\Http\Request;
 
 class TubeController extends Controller
 {
@@ -81,17 +81,17 @@ class TubeController extends Controller
         $tube->insert_manuf_id = $request->insertManufID;
         $tube->manuf_date = $request->manufDate;
         $tube->install_date = $request->installDate;
-        if (!empty($request->lfs)) {
+        if (! empty($request->lfs)) {
             $tube->lfs = $request->lfs;
         } else {
             $tube->lfs = 0.0;
         }
-        if (!empty($request->mfs)) {
+        if (! empty($request->mfs)) {
             $tube->mfs = $request->mfs;
         } else {
             $tube->mfs = 0.0;
         }
-        if (!empty($request->sfs)) {
+        if (! empty($request->sfs)) {
             $tube->sfs = $request->sfs;
         } else {
             $tube->sfs = 0.0;

@@ -2,14 +2,14 @@
 
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
+use RadDB\Tube;
 // use RadDB\Http\Requests\UpdateMachineRequest;
-use RadDB\Location;
 use RadDB\Machine;
-use RadDB\Manufacturer;
+use RadDB\Location;
 use RadDB\Modality;
 use RadDB\TestDate;
-use RadDB\Tube;
+use RadDB\Manufacturer;
+use Illuminate\Http\Request;
 
 class MachineController extends Controller
 {

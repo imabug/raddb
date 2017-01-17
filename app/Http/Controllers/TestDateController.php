@@ -2,11 +2,11 @@
 
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
+use RadDB\Tester;
 use RadDB\Machine;
 use RadDB\TestDate;
-use RadDB\Tester;
 use RadDB\TestType;
+use Illuminate\Http\Request;
 
 class TestDateController extends Controller
 {
@@ -103,16 +103,16 @@ class TestDateController extends Controller
 
         $testdate->machine_id = $request->machineID;
         $testdate->tester1_id = $request->tester1ID;
-        if (!empty($request->tester2ID)) {
+        if (! empty($request->tester2ID)) {
             $testdate->tester2_id = $request->tester2ID;
         } else {
             $testdate->tester2_id = 0;
         }
         $testdate->type_id = $request->test_type;
-        if (!empty($request->notes)) {
+        if (! empty($request->notes)) {
             $testdate->notes = $request->notes;
         }
-        if (!empty($request->accession)) {
+        if (! empty($request->accession)) {
             $testdate->accession = $request->accession;
         }
 
