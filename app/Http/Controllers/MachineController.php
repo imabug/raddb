@@ -155,7 +155,7 @@ class MachineController extends Controller
         $machine->modality_id = $request->modality;
         $machine->description = $request->description;
         $machine->manufacturer_id = $request->manufacturer;
-        if (isset($machine->vend_site_id)) {
+        if (isset($request->vendSiteID)) {
             $machine->vend_site_id = $request->vendSiteID;
         }
         $machine->model = $request->model;
@@ -281,7 +281,7 @@ class MachineController extends Controller
         $machine->modality_id = $request->modality_id;
         $machine->description = $request->description;
         $machine->manufacturer_id = $request->manufacturer_id;
-        if (isset($request->vend_site_id)) {
+        if (isset($request->vendSiteID)) {
             $machine->vend_site_id = $request->vendSiteID;
         }
         $machine->model = $request->model;
