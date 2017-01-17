@@ -2,9 +2,9 @@
 
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
 use RadDB\Machine;
 use RadDB\TestDate;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {

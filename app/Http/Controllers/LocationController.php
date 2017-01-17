@@ -2,9 +2,9 @@
 
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
-use RadDB\Location;
 use RadDB\Machine;
+use RadDB\Location;
+use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
