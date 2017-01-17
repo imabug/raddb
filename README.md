@@ -27,3 +27,5 @@ This application will track
 * For production, configure a web server virtual host using the ```public``` directory as the DocumentRoot
 
 This project is developed in PHP using the [Laravel framework](https://laravel.com/).
+
+[![StyleCI](https://styleci.io/repos/66408419/shield?branch=master)](https://styleci.io/repos/66408419)
