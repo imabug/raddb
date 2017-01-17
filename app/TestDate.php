@@ -1,4 +1,5 @@
 <?php
+
 namespace RadDB;
 
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +17,7 @@ class TestDate extends Model
     protected $table = 'testdates';
 
     /**
-     * Attributes that are mass assignable
+     * Attributes that are mass assignable.
      *
      * @var array
      */
@@ -33,11 +34,11 @@ class TestDate extends Model
         'survey_report_id',
         'deleted_at',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**
-     * Attributes that should be mutated to dates
+     * Attributes that should be mutated to dates.
      *
      * @var array
      */
@@ -46,7 +47,7 @@ class TestDate extends Model
         // 'report_sent_date',
         'deleted_at',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /*
@@ -87,10 +88,11 @@ class TestDate extends Model
      */
 
     /**
-     * Scope function to return tests dates belonging to $machine_id
+     * Scope function to return tests dates belonging to $machine_id.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $machine_id
+     * @param int                                   $machine_id
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeMachine($query, $machine_id)
@@ -100,10 +102,11 @@ class TestDate extends Model
     }
 
     /**
-     * Scope function to return test dates from the specified year
+     * Scope function to return test dates from the specified year.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $yr
+     * @param int                                   $yr
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeYear($query, $yr)
@@ -111,23 +114,25 @@ class TestDate extends Model
         return $query->whereYear('test_date', '=', $yr);
     }
 
-    /**
-     * Scope function to return a specific $id
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int id
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
+     /**
+      * Scope function to return a specific $id.
+      *
+      * @param \Illuminate\Database\Eloquent\Builder $query
+      * @param int id
+      *
+      * @return \Illuminate\Database\Eloquent\Builder
+      */
      public function scopeId($query, $id)
      {
          return $query->where('id', $id);
      }
 
      /**
-      * Scope function to return test dates for a specific type of test
+      * Scope function to return test dates for a specific type of test.
       *
       * @param \Illuminate\Database\Eloquent\Builder $query
       * @param int $yr
+      *
       * @return \Illuminate\Database\Eloquent\Builder
       */
      public function scopeTestType($query, $id)
@@ -136,12 +141,14 @@ class TestDate extends Model
      }
 
      /**
-      * Scope function to return pending test dates (scheduled after the current date)
+      * Scope function to return pending test dates (scheduled after the current date).
+      *
       * @param \Illuminate\Database\Eloquent\Builder $query
+      *
       * @return \Illuminate\Database\Eloquent\Builder
       */
      public function scopePending($query)
      {
-         return $query->where('testdates.test_date', '>=', date("Y-m-d"));
+         return $query->where('testdates.test_date', '>=', date('Y-m-d'));
      }
 }

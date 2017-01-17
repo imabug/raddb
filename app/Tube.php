@@ -1,4 +1,5 @@
 <?php
+
 namespace RadDB;
 
 use Carbon\Carbon;
@@ -10,7 +11,8 @@ class Tube extends Model
     use SoftDeletes;
 
     /**
-     * Attributes that are mass assignable
+     * Attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = [
@@ -35,7 +37,7 @@ class Tube extends Model
     ];
 
     /**
-     * Attributes that should be mutated to dates
+     * Attributes that should be mutated to dates.
      *
      * @var array
      */
@@ -75,9 +77,10 @@ class Tube extends Model
      */
 
     /**
-     * Scope function to return tubes with tube_status = Active
+     * Scope function to return tubes with tube_status = Active.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query)
@@ -86,10 +89,11 @@ class Tube extends Model
     }
 
     /**
-     * Scope function to return tubes belonging to $machine_id
+     * Scope function to return tubes belonging to $machine_id.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $machine_id
+     * @param int                                   $machine_id
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeMachine($query, $machine_id)
@@ -101,20 +105,20 @@ class Tube extends Model
      * Mutators
      */
 
-     /**
-      * Add an age attribute based on either install or manufacture date
-      *
-      * @return int
-      */
+    /**
+     * Add an age attribute based on either install or manufacture date.
+     *
+     * @return int
+     */
     public function getAgeAttribute()
     {
         // Calculate the age of the tube based on install_date or manuf_date
-        if ($this->attributes['install_date'] != "0000-00-00") {
+        if ($this->attributes['install_date'] != '0000-00-00') {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
-        } elseif ($this->attributes['manuf_date'] != "0000-00-00") {
+        } elseif ($this->attributes['manuf_date'] != '0000-00-00') {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
         } else {
-            return "N/A";
+            return 'N/A';
         }
     }
 }
