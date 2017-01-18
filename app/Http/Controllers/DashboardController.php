@@ -17,6 +17,36 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // Get the list of machines that still need to be surveyed
+        $machinesUntested = $this->untested();
+        $total = Machine::active()->get()->count();
+
+        // Get the list of pending surveys
+        $pendingSurveys = $this->pending();
+
+        // Get the list of machines and their surveys for this year and the previous year
+        $surveySchedule = $this->surveySchedule();
+
+        return view('index', [
+            'machinesUntested' => $machinesUntested,
+            'remain'           => $machinesUntested->count(),
+            'total'            => $total,
+            'pendingSurveys'   => $pendingSurveys,
+            'surveySchedule'   => $surveySchedule,
+        ]);
+    }
+
+    /**
+     * Get the list of machines that still need to be surveyed
+     * select machines.id, machines.description from machines
+     * where machines.machine_status="Active" and machines.id not in
+     * (select testdates.machine_id from testdates
+     * where year(testdates.test_date) = $currYear);.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function untested()
+    {
         /* Get the list of machines that still need to be surveyed
             select machines.id, machines.description from machines
             where machines.machine_status="Active" and machines.id not in
@@ -26,20 +56,33 @@ class DashboardController extends Controller
         $currSurveys = TestDate::select('machine_id')
             ->year(date('Y'))
             ->get();
-        $machinesUntested = Machine::select('id', 'description')
+        $untested = Machine::select('id', 'description')
             ->active()
             ->whereNotIn('id', $currSurveys->toArray())
             ->orderBy('description')
             ->get();
-        $total = Machine::active()->get()->count();
 
+        return $untested;
+    }
+
+    /**
+     * Get the list of pending surveys
+     * select testdates.id,machines.description,testdates.test_date,
+     * testdates.accession, testdates.notes from testdates
+     * left join machines on testdates.machine_id=machines.id
+     * where testdates.test_date > CURDATE();.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function pending()
+    {
         /* Get the list of pending surveys
             select testdates.id,machines.description,testdates.test_date,
             testdates.accession, testdates.notes from testdates
             left join machines on testdates.machine_id=machines.id
             where testdates.test_date > CURDATE();
         */
-        $pendingSurveys = TestDate::select('testdates.id as surveyId',
+        $pending = TestDate::select('testdates.id as surveyId',
                 'machines.id as machineId',
                 'machines.description',
                 'testdates.test_date',
@@ -51,17 +94,25 @@ class DashboardController extends Controller
             ->orderBy('testdates.test_date', 'asc')
             ->get();
 
-        /* Get the list of machines and their surveys for this year
-         *  and the previous year
-         * select machines.id,machines.description,
-         * lastyear_view.survey_id as prev_survey_id, lastyear_view.test_date as prev_test_date,
-         * thisyear_view.survey_id as curr_survey_id, thisyear_view.test_date as curr_test_date
-         * from machines
-         * left join thisyear_view on machines.id = thisyear_view.machine_id
-         * left join lastyear_view on machines.id = lastyear_view.machine_id
-         * where machines.machine_status="Active"
-         * order by prev_test_date
-         */
+        return $pending;
+    }
+
+    /**
+     * Get the list of machines and their surveys for this year and the previous year
+     * select machines.id,machines.description,
+     * lastyear_view.survey_id as prev_survey_id, lastyear_view.test_date as prev_test_date,
+     * thisyear_view.survey_id as curr_survey_id, thisyear_view.test_date as curr_test_date
+     * from machines
+     * left join thisyear_view on machines.id = thisyear_view.machine_id
+     * left join lastyear_view on machines.id = lastyear_view.machine_id
+     * where machines.machine_status="Active"
+     * order by prev_test_date.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function surveySchedule()
+    {
+        // Get the list of machines and their surveys for this year
         // TODO: may not handle machines with multiple surveys in a year very well
         $surveySchedule = Machine::select('machines.id',
                 'machines.description',
@@ -77,13 +128,7 @@ class DashboardController extends Controller
             ->orderBy('lastyear_view.test_date', 'asc')
             ->get();
 
-        return view('index', [
-            'machinesUntested' => $machinesUntested,
-            'remain'           => $machinesUntested->count(),
-            'total'            => $total,
-            'pendingSurveys'   => $pendingSurveys,
-            'surveySchedule'   => $surveySchedule,
-        ]);
+        return $surveySchedule;
     }
 
     /**
@@ -149,6 +194,50 @@ class DashboardController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Show grid of untested machines.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUntested()
+    {
+        // Get the list of machines that still need to be surveyed
+        $machinesUntested = $this->untested();
+        $total = Machine::active()->get()->count();
+
+        return view('dashboard.untested', [
+            'machinesUntested' => $machinesUntested,
+            'remain'           => $machinesUntested->count(),
+            'total'            => $total,
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function showPending()
+    {
+        // Get the list of pending surveys
+        $pendingSurveys = $this->pending();
+
+        return view('dashboard.pending', [
+            'pendingSurveys'   => $pendingSurveys,
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function showSchedule()
+    {
+        // Get the list of machines and their surveys for this year and the previous year
+        $surveySchedule = $this->surveySchedule();
+
+        return view('dashboard.survey_schedule', [
+            'surveySchedule'   => $surveySchedule,
+        ]);
     }
 
     /**

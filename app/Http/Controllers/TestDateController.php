@@ -106,7 +106,7 @@ class TestDateController extends Controller
         if (! empty($request->tester2ID)) {
             $testdate->tester2_id = $request->tester2ID;
         } else {
-            $testdate->tester2_id = 0;
+            $testdate->tester2_id = 10;
         }
         $testdate->type_id = $request->test_type;
         if (! empty($request->notes)) {

@@ -22,8 +22,9 @@
 Route::get('/', 'DashboardController@index')->name('index');
 // Equipment testing status dashboard
 Route::get('/dashboard', 'DashboardController@teststatus')->name('dashboard.dashboard');
-// Route::get('/teststatus',  'DashboardController@teststatus')->name('dashboard.status');
-
+Route::get('/dashboard/showUntested', 'DashboardController@showUntested')->name('dashboard.showUntested');
+Route::get('/dashboard/showPending', 'DashboardController@showPending')->name('dashboard.showPending');
+Route::get('/dashboard/showSchedule', 'DashboardController@showSchedule')->name('dashboard.showSchedule');
 // Count of surveys per month for year $yr
 Route::get('/surveycount/{yr}', 'DashboardController@surveycount')->name('dashboard.surveyCount');
 

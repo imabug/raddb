@@ -47,7 +47,7 @@
 	<p><label for="lfs">Focal spot size: Large:</label> <input type="text" id="lfs" name="lfs" size="4" />mm
     	<label for="mfs">Medium:</label> <input type="text" id="mfs" name="mfs" size="4" >mm
 		<label for="sfs">Small:</label> <input type="text" id="sfs" name="sfs" size="4" >mm</p>
-	<p><label for="notes">Notes</label><br /><textarea id="notes" name="notes" rows="3" cols="70">Additional notes about this tube</textarea></p>
+	<p><label for="notes">Notes</label><br /><textarea id="notes" name="notes" rows="3" cols="70" placeholder="Additional notes about this tube"></textarea></p>
 	<p><button type="SUBMIT">Add tube</button></p>
 	</div>
 </form>
