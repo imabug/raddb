@@ -4,8 +4,18 @@
 
 @section('content')
 <h2>Machine Information</h2>
-<h2><span class="label label-primary">{{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</span></h2>
+<h2>
+@if ($machine->machine_status == "Inactive" || $machine->machine_status == "Removed")
+    <span class="label label-danger">
+@else
+    <span class="label label-primary">
+@endif
+        {{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</span></h2>
+@if ($machine->machine_status == "Inactive" || $machine->machine_status == "Removed")
+<div class="panel panel-danger">
+@else
 <div class="panel panel-primary">
+@endif
     <div class="panel-heading>">
         <h3 class="panel-title">Machine Information</h3>
     </div>
@@ -19,6 +29,7 @@
         Manufacture Date: {{ $machine->manuf_date }} <br>
         Install Date: {{ $machine->install_date }} <br>
         Age: {{ $machine->age }}<br>
+        Status: {{ $machine->machine_status }}<br>
         Notes: {{ $machine->notes }}
         </p>
         <p>
