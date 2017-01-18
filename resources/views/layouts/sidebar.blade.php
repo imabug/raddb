@@ -6,6 +6,9 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboards<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('dashboard.dashboard')}}">Survey status</a></li>
+                    <li><a href="{{ route('dashboard.showUntested')}}">Surveys to be scheduled</a></li>
+                    <li><a href="{{ route('dashboard.showPending')}}">Pending surveys</a></li>
+                    <li><a href="{{ route('dashboard.showSchedule')}}">Survey schedule</a></li>
                 </ul>
             </li>
             <li class="dropdown">
