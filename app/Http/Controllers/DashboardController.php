@@ -41,7 +41,7 @@ class DashboardController extends Controller
      * select machines.id, machines.description from machines
      * where machines.machine_status="Active" and machines.id not in
      * (select testdates.machine_id from testdates
-     * where year(testdates.test_date) = $currYear);
+     * where year(testdates.test_date) = $currYear);.
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
@@ -70,7 +70,7 @@ class DashboardController extends Controller
      * select testdates.id,machines.description,testdates.test_date,
      * testdates.accession, testdates.notes from testdates
      * left join machines on testdates.machine_id=machines.id
-     * where testdates.test_date > CURDATE();
+     * where testdates.test_date > CURDATE();.
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
@@ -106,7 +106,7 @@ class DashboardController extends Controller
      * left join thisyear_view on machines.id = thisyear_view.machine_id
      * left join lastyear_view on machines.id = lastyear_view.machine_id
      * where machines.machine_status="Active"
-     * order by prev_test_date
+     * order by prev_test_date.
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
@@ -129,7 +129,6 @@ class DashboardController extends Controller
             ->get();
 
         return $surveySchedule;
-
     }
 
     /**
@@ -168,7 +167,6 @@ class DashboardController extends Controller
         ]);
     }
 
-
     public function create()
     {
         //
@@ -199,7 +197,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show grid of untested machines
+     * Show grid of untested machines.
      *
      * @return \Illuminate\Http\Response
      */
@@ -209,7 +207,6 @@ class DashboardController extends Controller
         $machinesUntested = $this->untested();
         $total = Machine::active()->get()->count();
 
-
         return view('dashboard.untested', [
             'machinesUntested' => $machinesUntested,
             'remain'           => $machinesUntested->count(),
@@ -218,7 +215,6 @@ class DashboardController extends Controller
     }
 
     /**
-     *
      * @return \Illuminate\Http\Response
      */
     public function showPending()
@@ -232,7 +228,6 @@ class DashboardController extends Controller
     }
 
     /**
-     *
      * @return \Illuminate\Http\Response
      */
     public function showSchedule()
