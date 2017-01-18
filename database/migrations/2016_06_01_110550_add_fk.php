@@ -85,16 +85,16 @@ class AddFk extends Migration
         Schema::table('opnotes', function (Blueprint $table) {
             $table->dropForeign('opnotes_machine_id_foreign');
         });
-        Schema::table('recommendations', function(Blueprint $table) {
+        Schema::table('recommendations', function (Blueprint $table) {
             $table->dropForeign('recommendations_survey_id_foreign');
         });
-        Schema::table('testdates', function(Blueprint $table) {
+        Schema::table('testdates', function (Blueprint $table) {
             $table->dropForeign('testdates_machine_id_foreign');
             $table->dropForeign('testdates_tester1_id_foreign');
             $table->dropForeign('testdates_tester2_id_foreign');
             $table->dropForeign('testdates_type_id_foreign');
         });
-        Schema::table('tubes', function(Blueprint $table) {
+        Schema::table('tubes', function (Blueprint $table) {
             $table->dropForeign('tubes_machine_id_foreign');
             $table->dropForeign('tubes_housing_manuf_id_foreign');
             $table->dropForeign('tubes_insert_manuf_id_foreign');
