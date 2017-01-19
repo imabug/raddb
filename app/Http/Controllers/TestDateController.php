@@ -111,7 +111,7 @@ class TestDateController extends Controller
 
         $saved = $testdate->save();
         if ($saved) {
-            $message = "Survey " . $testdate->id . " added.";
+            $message = 'Survey '.$testdate->id.' added.';
             Log::info($message);
         }
 
@@ -211,7 +211,7 @@ class TestDateController extends Controller
 
         $saved = $testdate->save();
         if ($saved) {
-            $message = "Survey " . $testdate->id . " edited.";
+            $message = 'Survey '.$testdate->id.' edited.';
             Log::info($message);
         }
 
@@ -266,7 +266,7 @@ class TestDateController extends Controller
 
         $saved = $testdate->save();
         if ($saved) {
-            $message = "Survey report for survey " . $testdate->id . " stored.";
+            $message = 'Survey report for survey '.$testdate->id.' stored.';
             Log::info($message);
         }
 

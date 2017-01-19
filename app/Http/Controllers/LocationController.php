@@ -50,7 +50,7 @@ class LocationController extends Controller
         $location->location = $request->location;
         $saved = $location->save();
         if ($saved) {
-            $message = "New location: " . $location->location . " added.";
+            $message = 'New location: '.$location->location.' added.';
             Log::info($message);
         }
 
@@ -155,7 +155,7 @@ class LocationController extends Controller
 
         $saved = $location->save();
         if ($saved) {
-            $message = "Location " . $location->id . " edited.";
+            $message = 'Location '.$location->id.' edited.';
             Log::info($message);
         }
 
@@ -175,7 +175,7 @@ class LocationController extends Controller
 
         $deleted = $location->delete();
         if ($deleted) {
-            $message = "Location " . $location->id . " deleted.";
+            $message = 'Location '.$location->id.' deleted.';
             Log::notice($message);
         }
 

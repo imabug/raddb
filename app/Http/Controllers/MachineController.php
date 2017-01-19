@@ -175,7 +175,7 @@ class MachineController extends Controller
 
         $saved = $machine->save();
         if ($saved) {
-            $message = "New machine created: Machine ID " . $machine->id;
+            $message = 'New machine created: Machine ID '.$machine->id;
             Log::info($message);
         }
 
@@ -305,7 +305,7 @@ class MachineController extends Controller
 
         $saved = $machine->save();
         if ($saved) {
-            $message = "Machine ID " . $machine->id . " updated.";
+            $message = 'Machine ID '.$machine->id.' updated.';
             Log::info($message);
         }
 
@@ -342,7 +342,7 @@ class MachineController extends Controller
 
         $deleted = $machine->delete();
         if ($deleted) {
-            $message = "Machine ID " . $machine->id . " deleted.";
+            $message = 'Machine ID '.$machine->id.' deleted.';
             Log::notice($message);
         }
 
