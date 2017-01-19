@@ -4,16 +4,12 @@
 
 @section('content')
 <h2>Machine Information</h2>
-<h2>
+
 @if ($machine->machine_status == "Inactive" || $machine->machine_status == "Removed")
-    <span class="label label-danger">
-@else
-    <span class="label label-primary">
-@endif
-        {{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</span></h2>
-@if ($machine->machine_status == "Inactive" || $machine->machine_status == "Removed")
+<h2><span class="label label-danger">{{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</span></h2>
 <div class="panel panel-danger">
 @else
+<h2><span class="label label-primary">{{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</span></h2>
 <div class="panel panel-primary">
 @endif
     <div class="panel-heading>">
