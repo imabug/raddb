@@ -47,7 +47,11 @@ class ModalityController extends Controller
 
         $modality = new Modality();
         $modality->modality = $request->modality;
-        $modality->save();
+        $saved = $modality->save();
+        if ($saved) {
+            $message = "Modality " . $modality->modality . " added.";
+            Log::info($message);
+        }
 
         return redirect()->route('modalities.index');
     }
@@ -148,7 +152,11 @@ class ModalityController extends Controller
 
         $modality->modality = $request->modality;
 
-        $modality->save();
+        $saved = $modality->save();
+        if ($saved) {
+            $message = "Modality " . $modality->id . " edited.";
+            Log::info($message);
+        }
 
         return redirect()->route('modalities.index');
     }
@@ -164,7 +172,11 @@ class ModalityController extends Controller
     {
         $modality = Modality::find($id);
 
-        $modality->delete();
+        $deleted = $modality->delete();
+        if ($deleted) {
+            $message = "Modality " . $modality->id . " deleted.";
+            Log::notice($message);
+        }
 
         return redirect()->route('modalities.index');
     }

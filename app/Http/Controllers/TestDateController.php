@@ -109,7 +109,11 @@ class TestDateController extends Controller
             $testdate->accession = $request->accession;
         }
 
-        $testdate->save();
+        $saved = $testdate->save();
+        if ($saved) {
+            $message = "Survey " . $testdate->id . " added.";
+            Log::info($message);
+        }
 
         return redirect()->route('index');
     }
@@ -187,25 +191,29 @@ class TestDateController extends Controller
             'accession' => 'string|max:50',
         ]);
 
-        $survey = TestDate::find($surveyId);
+        $testdate = TestDate::find($surveyId);
 
-        if ($survey->test_date != $request->test_date) {
-            $survey->test_date = $request->test_date;
+        if ($testdate->test_date != $request->test_date) {
+            $testdate->test_date = $request->test_date;
         }
-        if ($survey->tester1_id != $request->tester1ID) {
-            $survey->tester1_id = $request->tester1ID;
+        if ($testdate->tester1_id != $request->tester1ID) {
+            $testdate->tester1_id = $request->tester1ID;
         }
-        if ($survey->tester2_id != $request->tester2ID) {
-            $survey->tester2_id = $request->tester2ID;
+        if ($testdate->tester2_id != $request->tester2ID) {
+            $testdate->tester2_id = $request->tester2ID;
         }
-        if ($survey->notes != $request->notes) {
-            $survey->notes = $request->notes;
+        if ($testdate->notes != $request->notes) {
+            $testdate->notes = $request->notes;
         }
-        if ($survey->accession != $request->accession) {
-            $survey->accession = $request->accession;
+        if ($testdate->accession != $request->accession) {
+            $testdate->accession = $request->accession;
         }
 
-        $survey->save();
+        $saved = $testdate->save();
+        if ($saved) {
+            $message = "Survey " . $testdate->id . " edited.";
+            Log::info($message);
+        }
 
         return redirect()->route('index');
     }
@@ -246,17 +254,21 @@ class TestDateController extends Controller
             'surveyReport' => 'required|file|mimes:pdf',
         ]);
 
-        $survey = TestDate::find($request->surveyId);
+        $testdate = TestDate::find($request->surveyId);
 
         // Handle the uploaded file
         // This breaks the way service reports were handled in the previous version. Deal with it.
 
         if ($request->hasFile('surveyReport')) {
             $surveyReportPath = $request->surveyReport->store('public/SurveyReports');
-            $survey->report_file_path = $surveyReportPath;
+            $testdate->report_file_path = $surveyReportPath;
         }
 
-        $survey->save();
+        $saved = $testdate->save();
+        if ($saved) {
+            $message = "Survey report for survey " . $testdate->id . " stored.";
+            Log::info($message);
+        }
 
         return redirect()->route('index');
     }

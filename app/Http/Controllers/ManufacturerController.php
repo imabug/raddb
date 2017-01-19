@@ -48,7 +48,11 @@ class ManufacturerController extends Controller
 
         $manufacturer = new Manufacturer();
         $manufacturer->manufacturer = $request->manufacturer;
-        $manufacturer->save();
+        $saved = $manufacturer->save();
+        if ($saved) {
+            $message = "Manufacturer " . $manufacturer->manufacturer . " added.";
+            Log::info($message);
+        }
 
         return redirect()->route('manufacturers.index');
     }
@@ -149,7 +153,11 @@ class ManufacturerController extends Controller
 
         $manufacturer->manufacturer = $request->manufacturer;
 
-        $manufacturer->save();
+        $saved = $manufacturer->save();
+        if ($saved) {
+            $message = "Manufacturer " . $manufacturer->id . " edited.";
+            Log::info($message);
+        }
 
         return redirect()->route('manufacturers.index');
     }
@@ -165,7 +173,11 @@ class ManufacturerController extends Controller
     {
         $manufacturer = Manufacturer::find($id);
 
-        $manufacturer->delete();
+        $deleted = $manufacturer->delete();
+        if ($deleted) {
+            $message = "Manufacturer " . $manufacturer->id . " deleted.";
+            Log::notice($message);
+        }
 
         return redirect()->route('manufacturers.index');
     }

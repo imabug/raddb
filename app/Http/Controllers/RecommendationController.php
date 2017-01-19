@@ -109,7 +109,11 @@ class RecommendationController extends Controller
             $recommendation->rec_add_ts = date('Y-m-d H:i:s');
         }
 
-        $recommendation->save();
+        $saved = $recommendation->save();
+        if ($saved) {
+            $message = "Recommendation " . $recommendation->id . " added.";
+            Log::info($message);
+        }
 
         return redirect()->route('recommendations.show', $request->surveyId);
     }
@@ -198,7 +202,11 @@ class RecommendationController extends Controller
                 $recommendation->service_report_path = $serviceReportPath;
             }
 
-            $recommendation->save();
+            $saved = $recommendation->save();
+            if ($saved) {
+                $message = "Recommendation " . $recommendation->id . " edited.";
+                Log::info($message);
+            }
         }
 
         return redirect()->route('recommendations.show', $surveyID);

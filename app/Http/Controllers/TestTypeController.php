@@ -46,7 +46,11 @@ class TestTypeController extends Controller
 
         $testtype = new TestType();
         $testtype->test_type = $request->testtype;
-        $testtype->save();
+        $saved = $testtype->save();
+        if ($saved) {
+            $message = "Test type " . $testtype->test_type . " added.";
+            Log::info($message);
+        }
 
         return redirect()->route('testtypes.index');
     }
@@ -101,7 +105,11 @@ class TestTypeController extends Controller
 
         $testtype->test_type = $request->testtype;
 
-        $testtype->save();
+        $saved = $testtype->save();
+        if ($saved) {
+            $message = "Test type " . $testtype->id . " edited.";
+            Log::info($message);
+        }
 
         return redirect()->route('testtypes.index');
     }
@@ -117,7 +125,11 @@ class TestTypeController extends Controller
     {
         $testtype = TestType::find($id);
 
-        $testtype->delete();
+        $deleted = $testtype->delete();
+        if ($deleted) {
+            $message = "Test type " . $testtype->id . " deleted.";
+            Log::notice($message);
+        }
 
         return redirect()->route('testtypes.index');
     }

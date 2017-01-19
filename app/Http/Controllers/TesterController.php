@@ -48,7 +48,11 @@ class TesterController extends Controller
         $tester = new Tester();
         $tester->name = $request->name;
         $tester->initials = $request->initials;
-        $tester->save();
+        $saved = $tester->save();
+        if ($saved) {
+            $message = "Tester " . $tester->name . " added.";
+            Log::info($message);
+        }
 
         return redirect()->route('testers.index');
     }
@@ -105,7 +109,11 @@ class TesterController extends Controller
         $tester->name = $request->name;
         $tester->initials = $request->initials;
 
-        $tester->save();
+        $saved = $tester->save();
+        if ($saved) {
+            $message = "Tester ID " . $tester->id . " edited.";
+            Log::info($message);
+        }
 
         return redirect()->route('testers.index');
     }
@@ -121,7 +129,11 @@ class TesterController extends Controller
     {
         $tester = Tester::find($id);
 
-        $tester->delete();
+        $deleted = $tester->delete();
+        if ($deleted) {
+            $message = "Tester ID " . $tester->id . " deleted.";
+            Log::notice($message); 
+        }
 
         return redirect()->route('testers.index');
     }

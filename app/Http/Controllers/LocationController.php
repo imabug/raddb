@@ -48,7 +48,11 @@ class LocationController extends Controller
 
         $location = new Location();
         $location->location = $request->location;
-        $location->save();
+        $saved = $location->save();
+        if ($saved) {
+            $message = "New location: " . $location->location . " added.";
+            Log::info($message);
+        }
 
         return redirect()->route('locations.index');
     }
@@ -149,7 +153,11 @@ class LocationController extends Controller
 
         $location->location = $request->location;
 
-        $location->save();
+        $saved = $location->save();
+        if ($saved) {
+            $message = "Location " . $location->id . " edited.";
+            Log::info($message);
+        }
 
         return redirect()->route('locations.index');
     }
@@ -165,7 +173,11 @@ class LocationController extends Controller
     {
         $location = Location::find($id);
 
-        $location->delete();
+        $deleted = $location->delete();
+        if ($deleted) {
+            $message = "Location " . $location->id . " deleted.";
+            Log::notice($message);
+        }
 
         return redirect()->route('locations.index');
     }

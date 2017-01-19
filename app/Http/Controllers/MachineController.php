@@ -173,7 +173,11 @@ class MachineController extends Controller
             $machine->notes = $request->notes;
         }
 
-        $machine->save();
+        $saved = $machine->save();
+        if ($saved) {
+            $message = "New machine created: Machine ID " . $machine->id;
+            Log::info($message);
+        }
 
         // Machine has been added to the database. Now redirect to
         // /tubes/$id/create to create a new tube for the machine
@@ -299,7 +303,11 @@ class MachineController extends Controller
             $machine->notes = $request->notes;
         }
 
-        $machine->save();
+        $saved = $machine->save();
+        if ($saved) {
+            $message = "Machine ID " . $machine->id . " updated.";
+            Log::info($message);
+        }
 
         // Machine has been updated in the database. Redirect to the machine page
         return redirect()->route('machines.show', $machine->id);
@@ -332,7 +340,11 @@ class MachineController extends Controller
             $tube->delete();
         }
 
-        $machine->delete();
+        $deleted = $machine->delete();
+        if ($deleted) {
+            $message = "Machine ID " . $machine->id . " deleted."
+            Log::notice($message);
+        }
 
         return redirect()->route('machines.index');
     }

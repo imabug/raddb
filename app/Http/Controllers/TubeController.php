@@ -6,6 +6,7 @@ use RadDB\Tube;
 use RadDB\Machine;
 use RadDB\Manufacturer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TubeController extends Controller
 {
@@ -99,7 +100,11 @@ class TubeController extends Controller
         $tube->notes = $request->notes;
         $tube->tube_status = 'Active';
 
-        $tube->save();
+        $saved = $tube->save();
+        if ($saved) {
+            $message = "New tube saved for machine: " . $tube->machine_id . ".";
+            Log::info($message);
+        }
 
         // Tube has been added to the database. Now redirect to
         // /tubes/$id/create to create a new tube for the machine
@@ -194,7 +199,11 @@ class TubeController extends Controller
         $tube->sfs = $request->sfs;
         $tube->notes = $request->notes;
 
-        $tube->save();
+        $saved = $tube->save();
+        if ($saved) {
+            $message = "Tube ID " . $tube->id . " for machine " . $tube->machine_id . " updated.";
+            Log::info($message);
+        }
 
         // Tube has been updated in the database. Redirect to the machine page
         // for the unit
