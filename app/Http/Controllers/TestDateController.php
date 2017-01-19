@@ -216,9 +216,11 @@ class TestDateController extends Controller
         if ($saved) {
             $message = 'Survey '.$testdate->id.' edited.';
             Log::info($message);
-        }
 
-        return redirect()->route('index');
+            return redirect()->route('index')->with('success', 'Survey edited');
+        } else {
+            return redirect()->route('index')->with('fail', 'Error editing survey');
+        }
     }
 
     /**
