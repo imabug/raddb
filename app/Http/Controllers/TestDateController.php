@@ -83,24 +83,17 @@ class TestDateController extends Controller
     {
         $this->validate($request, [
             'machineID' => 'required|integer',
-            'test_date' => 'date_format:Y-m-d|max:10',
+            'test_date' => 'required|date_format:Y-m-d|max:10',
             'tester1ID' => 'required|string|max:4',
             'tester2ID' => 'string|max:4',
             'test_type' => 'required|integer',
             'notes'     => 'string|max:65535',
-            'accession' => 'numeric',
+            'accession' => 'string|max:50',
         ]);
 
         $testdate = new TestDate();
 
-        // If the test date or today checkbox are left empty, use the current date.
-        // If they're both set for some reason, use the current date
-        if (empty($request->test_date) || $request->today == 'on') {
-            $testdate->test_date = date('Y-m-d');
-        } else {
-            $testdate->test_date = $request->test_date;
-        }
-
+        $testdate->test_date = $request->test_date;
         $testdate->machine_id = $request->machineID;
         $testdate->tester1_id = $request->tester1ID;
         if (! empty($request->tester2ID)) {
@@ -191,7 +184,7 @@ class TestDateController extends Controller
             'tester2ID' => 'string|max:4',
             'test_type' => 'required|integer',
             'notes'     => 'string|max:65535',
-            'accession' => 'numeric',
+            'accession' => 'string|max:50',
         ]);
 
         $survey = TestDate::find($surveyId);
