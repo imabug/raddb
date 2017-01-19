@@ -111,7 +111,7 @@ class RecommendationController extends Controller
 
         $saved = $recommendation->save();
         if ($saved) {
-            $message = "Recommendation " . $recommendation->id . " added.";
+            $message = 'Recommendation '.$recommendation->id.' added.';
             Log::info($message);
         }
 
@@ -204,7 +204,7 @@ class RecommendationController extends Controller
 
             $saved = $recommendation->save();
             if ($saved) {
-                $message = "Recommendation " . $recommendation->id . " edited.";
+                $message = 'Recommendation '.$recommendation->id.' edited.';
                 Log::info($message);
             }
         }

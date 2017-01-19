@@ -49,7 +49,7 @@ class ModalityController extends Controller
         $modality->modality = $request->modality;
         $saved = $modality->save();
         if ($saved) {
-            $message = "Modality " . $modality->modality . " added.";
+            $message = 'Modality '.$modality->modality.' added.';
             Log::info($message);
         }
 
@@ -154,7 +154,7 @@ class ModalityController extends Controller
 
         $saved = $modality->save();
         if ($saved) {
-            $message = "Modality " . $modality->id . " edited.";
+            $message = 'Modality '.$modality->id.' edited.';
             Log::info($message);
         }
 
@@ -174,7 +174,7 @@ class ModalityController extends Controller
 
         $deleted = $modality->delete();
         if ($deleted) {
-            $message = "Modality " . $modality->id . " deleted.";
+            $message = 'Modality '.$modality->id.' deleted.';
             Log::notice($message);
         }
 
