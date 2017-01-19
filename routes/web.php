@@ -44,7 +44,7 @@ Route::get('recommendations/{id?}/create', 'RecommendationController@create')->n
 Route::resource('recommendations', 'RecommendationController');
 
 // Test Date controller
-Route::get('surveys/{id?}/create', 'TestDateController@create')->name('surveys.createSurveyFor'); // machineId parameter is optional
+Route::get('surveys/{id?}/create', 'TestDateController@create')->name('surveys.createSurveyFor'); // id parameter is optional
 Route::get('surveys/addReport', 'TestDateController@addSurveyReport')->name('surveys.addSurveyReport');
 Route::put('surveys/storeReport', 'TestDateController@storeSurveyReport')->name('surveys.storeSurveyReport');
 Route::resource('surveys', 'TestDateController');
