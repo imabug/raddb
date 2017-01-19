@@ -130,7 +130,7 @@
     @endforeach
     </tbody>
 </table>
-
+<p><a href="{{ route('surveys.createSurveyFor',  $machine->id)}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add survey</a></p>
 <h3><span class="label label-default">Survey Recommendations</span></h3>
 <table class="table">
     <thead>
