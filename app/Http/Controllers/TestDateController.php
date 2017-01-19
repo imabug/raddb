@@ -6,6 +6,7 @@ use RadDB\Tester;
 use RadDB\Machine;
 use RadDB\TestDate;
 use RadDB\TestType;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class TestDateController extends Controller
@@ -113,9 +114,12 @@ class TestDateController extends Controller
         if ($saved) {
             $message = 'Survey '.$testdate->id.' added.';
             Log::info($message);
+            return redirect()->route('index')->with('success', 'Survey added');
+        }
+        else {
+            return redirect()->route('index')->with('fail', 'Error adding survey');
         }
 
-        return redirect()->route('index');
     }
 
     /**
