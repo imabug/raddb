@@ -104,12 +104,13 @@ class TubeController extends Controller
         if ($saved) {
             $message = 'New tube saved for machine: '.$tube->machine_id.'.';
             Log::info($message);
-        }
 
-        // Tube has been added to the database. Now redirect to
-        // /tubes/$id/create to create a new tube for the machine
-        // TODO: Show some kind of confirmation message that a new tube was added
-        return redirect()->route('tubes.createTubeFor', $request->machine);
+            return redirect()->route('tubes.createTubeFor', $request->machine)
+                ->with('success', 'New tube added');
+        } else {
+            return redirect()->route('tubes.createTubeFor', $request->machine)
+                ->with('fail', 'Error adding new tube');
+        }
     }
 
     /**
@@ -203,11 +204,13 @@ class TubeController extends Controller
         if ($saved) {
             $message = 'Tube ID '.$tube->id.' for machine '.$tube->machine_id.' updated.';
             Log::info($message);
-        }
 
-        // Tube has been updated in the database. Redirect to the machine page
-        // for the unit
-        return redirect()->route('machines.show', $request->machine_id);
+            return redirect()->route('machines.show', $request->machine_id)
+                ->with('success', 'Tube edited');
+        } else {
+            return redirect()->route('machines.show', $request->machine_id)
+                ->with('fail', 'Error editing tube');
+        }
     }
 
     /**
