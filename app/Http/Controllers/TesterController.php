@@ -4,6 +4,7 @@ namespace RadDB\Http\Controllers;
 
 use RadDB\Tester;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TesterController extends Controller
 {

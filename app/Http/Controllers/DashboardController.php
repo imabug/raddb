@@ -5,6 +5,7 @@ namespace RadDB\Http\Controllers;
 use RadDB\Machine;
 use RadDB\TestDate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {

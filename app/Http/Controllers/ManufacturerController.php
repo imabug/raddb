@@ -5,6 +5,7 @@ namespace RadDB\Http\Controllers;
 use RadDB\Machine;
 use RadDB\Manufacturer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ManufacturerController extends Controller
 {

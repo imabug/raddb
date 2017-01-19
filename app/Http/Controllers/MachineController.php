@@ -10,6 +10,7 @@ use RadDB\Modality;
 use RadDB\TestDate;
 use RadDB\Manufacturer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MachineController extends Controller
 {
