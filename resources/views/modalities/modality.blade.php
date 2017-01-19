@@ -24,7 +24,7 @@
     @foreach ($machines as $machine)
         <tr>
             <td>{{ $machine->id }}</td>
-            <td>{{ $machine->manufacturer->manufacturer }}</td>
+            <td><a href="{{ route('manufacturers.showManufacturer', $machine->manufacturer_id) }}">{{ $machine->manufacturer->manufacturer }}</a></td>
             <td>{{ $machine->model }}</td>
             <td>{{ $machine->serial_number }}</td>
             <td><a href="/machines/{{ $machine->id }}">{{ $machine->description }}</a></td>
