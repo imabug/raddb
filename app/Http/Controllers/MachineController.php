@@ -342,7 +342,7 @@ class MachineController extends Controller
 
         $deleted = $machine->delete();
         if ($deleted) {
-            $message = "Machine ID " . $machine->id . " deleted."
+            $message = "Machine ID " . $machine->id . " deleted.";
             Log::notice($message);
         }
 
