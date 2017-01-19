@@ -21,6 +21,7 @@
 <body>
     <div class="container">
 @include('layouts.errors')
+@include('layouts.messages')
         <h1>Radiological Equipment Database</h1>
 @include('layouts.sidebar')
         @yield('content')
