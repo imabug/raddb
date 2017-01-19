@@ -316,7 +316,6 @@ class MachineController extends Controller
             return redirect()->route('machines.show', $machine->id)
                 ->with('fail', 'Error editing machine');
         }
-
     }
 
     /**
@@ -357,6 +356,5 @@ class MachineController extends Controller
             return redirect()->route('machines.index')
                 ->with('fail', 'Error deleting machine');
         }
-
     }
 }

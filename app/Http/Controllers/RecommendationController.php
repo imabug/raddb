@@ -119,7 +119,7 @@ class RecommendationController extends Controller
                 ->with('success', 'Service report uploaded');
         } else {
             return redirect()->route('recommendations.show', $request->surveyId)
-                ->with('fail', 'Error uploading service report');            
+                ->with('fail', 'Error uploading service report');
         }
     }
 
