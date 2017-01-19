@@ -50,7 +50,7 @@ class ManufacturerController extends Controller
         $manufacturer->manufacturer = $request->manufacturer;
         $saved = $manufacturer->save();
         if ($saved) {
-            $message = "Manufacturer " . $manufacturer->manufacturer . " added.";
+            $message = 'Manufacturer '.$manufacturer->manufacturer.' added.';
             Log::info($message);
         }
 
@@ -155,7 +155,7 @@ class ManufacturerController extends Controller
 
         $saved = $manufacturer->save();
         if ($saved) {
-            $message = "Manufacturer " . $manufacturer->id . " edited.";
+            $message = 'Manufacturer '.$manufacturer->id.' edited.';
             Log::info($message);
         }
 
@@ -175,7 +175,7 @@ class ManufacturerController extends Controller
 
         $deleted = $manufacturer->delete();
         if ($deleted) {
-            $message = "Manufacturer " . $manufacturer->id . " deleted.";
+            $message = 'Manufacturer '.$manufacturer->id.' deleted.';
             Log::notice($message);
         }
 

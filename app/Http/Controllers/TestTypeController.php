@@ -48,7 +48,7 @@ class TestTypeController extends Controller
         $testtype->test_type = $request->testtype;
         $saved = $testtype->save();
         if ($saved) {
-            $message = "Test type " . $testtype->test_type . " added.";
+            $message = 'Test type '.$testtype->test_type.' added.';
             Log::info($message);
         }
 
@@ -107,7 +107,7 @@ class TestTypeController extends Controller
 
         $saved = $testtype->save();
         if ($saved) {
-            $message = "Test type " . $testtype->id . " edited.";
+            $message = 'Test type '.$testtype->id.' edited.';
             Log::info($message);
         }
 
@@ -127,7 +127,7 @@ class TestTypeController extends Controller
 
         $deleted = $testtype->delete();
         if ($deleted) {
-            $message = "Test type " . $testtype->id . " deleted.";
+            $message = 'Test type '.$testtype->id.' deleted.';
             Log::notice($message);
         }
 

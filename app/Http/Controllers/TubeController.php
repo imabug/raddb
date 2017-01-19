@@ -102,7 +102,7 @@ class TubeController extends Controller
 
         $saved = $tube->save();
         if ($saved) {
-            $message = "New tube saved for machine: " . $tube->machine_id . ".";
+            $message = 'New tube saved for machine: '.$tube->machine_id.'.';
             Log::info($message);
         }
 
@@ -201,7 +201,7 @@ class TubeController extends Controller
 
         $saved = $tube->save();
         if ($saved) {
-            $message = "Tube ID " . $tube->id . " for machine " . $tube->machine_id . " updated.";
+            $message = 'Tube ID '.$tube->id.' for machine '.$tube->machine_id.' updated.';
             Log::info($message);
         }
 
