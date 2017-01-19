@@ -178,12 +178,13 @@ class MachineController extends Controller
         if ($saved) {
             $message = 'New machine created: Machine ID '.$machine->id;
             Log::info($message);
-        }
 
-        // Machine has been added to the database. Now redirect to
-        // /tubes/$id/create to create a new tube for the machine
-        // TODO: Show some kind of confirmation message that a new machine was added
-        return redirect()->route('tubes.createTubeFor', $machine->id);
+            return redirect()->route('tubes.createTubeFor', $machine->id)
+                ->with('success', 'New machine created');
+        } else {
+            return redirect()->route('tubes.createTubeFor', $machine->id)
+                ->with('fail', 'Error creating new machine');
+        }
     }
 
     /**
@@ -308,10 +309,14 @@ class MachineController extends Controller
         if ($saved) {
             $message = 'Machine ID '.$machine->id.' updated.';
             Log::info($message);
+
+            return redirect()->route('machines.show', $machine->id)
+                ->with('success', 'Machine edited');
+        } else {
+            return redirect()->route('machines.show', $machine->id)
+                ->with('fail', 'Error editing machine');
         }
 
-        // Machine has been updated in the database. Redirect to the machine page
-        return redirect()->route('machines.show', $machine->id);
     }
 
     /**
@@ -345,8 +350,13 @@ class MachineController extends Controller
         if ($deleted) {
             $message = 'Machine ID '.$machine->id.' deleted.';
             Log::notice($message);
+
+            return redirect()->route('machines.index')
+                ->with('success', 'Machine deleted');
+        } else {
+            return redirect()->route('machines.index')
+                ->with('fail', 'Error deleting machine');
         }
 
-        return redirect()->route('machines.index');
     }
 }
