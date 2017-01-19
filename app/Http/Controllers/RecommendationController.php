@@ -114,9 +114,13 @@ class RecommendationController extends Controller
         if ($saved) {
             $message = 'Recommendation '.$recommendation->id.' added.';
             Log::info($message);
-        }
 
-        return redirect()->route('recommendations.show', $request->surveyId);
+            return redirect()->route('recommendations.show', $request->surveyId)
+                ->with('success', 'Service report uploaded');
+        } else {
+            return redirect()->route('recommendations.show', $request->surveyId)
+                ->with('fail', 'Error uploading service report');            
+        }
     }
 
     /**

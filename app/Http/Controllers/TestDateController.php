@@ -273,9 +273,11 @@ class TestDateController extends Controller
         if ($saved) {
             $message = 'Survey report for survey '.$testdate->id.' stored.';
             Log::info($message);
-        }
 
-        return redirect()->route('index');
+            return redirect()->route('index')->with('success', 'Survey report uploaded');
+        } else {
+            return redirect()->route('index')->with('fail', 'Error uploading survey report');
+        }
     }
 
     /**
