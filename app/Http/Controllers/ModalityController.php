@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Log;
 class ModalityController extends Controller
 {
     /**
-     * Instantiate a new controller instance.
-     *
-     * @return void
-     */
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
      public function __construct()
      {
          $this->middleware('auth')->except([
@@ -21,6 +21,7 @@ class ModalityController extends Controller
              'showModalityIndex',
          ]);
      }
+
     /**
      * Display a listing of the resource.
      *
