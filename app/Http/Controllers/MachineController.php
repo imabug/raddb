@@ -9,9 +9,8 @@ use RadDB\Location;
 use RadDB\Modality;
 use RadDB\TestDate;
 use RadDB\Manufacturer;
-use RadDB\Http\Requests\UpdateMachineRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\UpdateMachineRequest;
 
 class MachineController extends Controller
 {
