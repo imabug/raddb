@@ -28,6 +28,7 @@
         Status: {{ $machine->machine_status }}<br>
         Notes: {{ $machine->notes }}
         </p>
+        @if (Auth::check())
         <p>
             <form class="form-inline" action="{{ route('machines.destroy', $machine->id) }}" method="post">
                 {{ csrf_field() }}
@@ -42,6 +43,7 @@
                 </div>
             </form>
         </p>
+        @endif
     </div>
 </div>
 <h3><span class="label label-default">Tube Information</span></h3>
@@ -73,6 +75,7 @@
             <td>{{ $tube->age }}</td>
             <td>{{ $tube->notes }}</td>
 			<td>
+                @if (Auth::check())
 				<form class="form-inline" action="{{ route('tubes.destroy', $machine->id) }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
@@ -88,6 +91,7 @@
 						</button>
 					</div>
 				</form>
+                @endif
 			</td>
         </tr>
     @endforeach

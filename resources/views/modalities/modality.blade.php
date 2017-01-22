@@ -32,6 +32,7 @@
             <td>{{ $machine->age }}</td>
             <td>{{ $machine->room }}</td>
             <td>
+                @if (Auth::check())
                 <form class="form-inline" action="/machines/{{ $machine->id }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
@@ -44,7 +45,7 @@
                         </button>
                     </div>
                 </form>
-
+                @endif
             </td>
         </tr>
     @endforeach
