@@ -34,6 +34,7 @@
                     <li><a href="{{ route('manufacturers.showManufacturerIndex') }}">List by manufacturer</a></li>
                 </ul>
             </li>
+            @if (Auth::check())
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -45,7 +46,6 @@
                 </ul>
             </li>
             <li>
-                @if (Auth::check())
                 <a href="{{ url('/logout') }}"
                     onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
@@ -55,10 +55,11 @@
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
-                @else
-                <a href="{{route('home.index')}}">Login</a>
-                @endif
             </li>
+            @else
+            <li><a href="{{route('home.index')}}">Login</a></li>
+            @endif
+
         </ul>
     </div>
 </nav>
