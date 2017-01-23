@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class testAppDashboard extends TestCase
+class TestAppDashboard extends TestCase
 {
     /**
      * @test main index page
