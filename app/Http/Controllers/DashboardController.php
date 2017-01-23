@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
-use Carbon\Carbon;
 use Charts;
+use Carbon\Carbon;
 use RadDB\Machine;
 use RadDB\TestDate;
 use Illuminate\Http\Request;
@@ -141,7 +141,7 @@ class DashboardController extends Controller
     public function surveyGraph($yr = Carbon::now()->year)
     {
         $chart = Charts::database(TestDate::year($yr)->get(), 'bar', 'google')
-            ->title('Monthly survey count for ' . $yr)
+            ->title('Monthly survey count for '.$yr)
             ->elementLabel('Number of surveys')
             ->lastByMonth();
 
