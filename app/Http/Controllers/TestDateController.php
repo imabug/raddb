@@ -8,6 +8,7 @@ use RadDB\TestDate;
 use RadDB\TestType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\UpdateMachineRequest;
 
 class TestDateController extends Controller
 {
@@ -80,16 +81,9 @@ class TestDateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateTestDateRequest $request)
     {
         $this->validate($request, [
-            'machineID' => 'required|integer',
-            'test_date' => 'required|date_format:Y-m-d|max:10',
-            'tester1ID' => 'required|string|max:4',
-            'tester2ID' => 'string|max:4',
-            'test_type' => 'required|integer',
-            'notes'     => 'string|max:65535',
-            'accession' => 'string|max:50',
         ]);
 
         $testdate = new TestDate();
@@ -181,17 +175,9 @@ class TestDateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $surveyId)
+    public function update(UpdateTestDateRequest $request, $surveyId)
     {
         $this->validate($request, [
-            'id'        => 'require|integer',
-            'machineID' => 'required|integer',
-            'test_date' => 'required|date_format:Y-m-d|max:10',
-            'tester1ID' => 'required|string|max:4',
-            'tester2ID' => 'string|max:4',
-            'test_type' => 'required|integer',
-            'notes'     => 'string|max:65535',
-            'accession' => 'string|max:50',
         ]);
 
         $testdate = TestDate::find($surveyId);
