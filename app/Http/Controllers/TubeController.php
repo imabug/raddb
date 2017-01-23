@@ -5,7 +5,6 @@ namespace RadDB\Http\Controllers;
 use RadDB\Tube;
 use RadDB\Machine;
 use RadDB\Manufacturer;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\UpdateTubeRequest;
 
