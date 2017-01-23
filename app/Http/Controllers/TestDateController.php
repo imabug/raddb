@@ -8,7 +8,7 @@ use RadDB\TestDate;
 use RadDB\TestType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\UpdateMachineRequest;
+use RadDB\Http\Requests\UpdateTestDateRequest;
 
 class TestDateController extends Controller
 {
