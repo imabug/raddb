@@ -51,6 +51,9 @@ class TestTypeController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'testtype' => 'required|string|max:30',
         ]);
@@ -108,6 +111,9 @@ class TestTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'testtype' => 'required|string|max:30',
         ]);
@@ -134,6 +140,9 @@ class TestTypeController extends Controller
      */
     public function destroy($id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $testtype = TestType::find($id);
 
         $deleted = $testtype->delete();

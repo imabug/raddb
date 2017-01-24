@@ -56,6 +56,9 @@ class TubeController extends Controller
      */
     public function store(UpdateTubeRequest $request)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $tube = new Tube();
         $tube->machine_id = $request->machine;
         $tube->housing_model = $request->hsgModel;
@@ -151,6 +154,9 @@ class TubeController extends Controller
      */
     public function update(UpdateTubeRequest $request, $id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         // Retrieve the model for the t ube to be edited
         $tube = Tube::find($id);
 

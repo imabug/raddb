@@ -55,6 +55,9 @@ class ModalityController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'modality' => 'required|string|max:25',
         ]);
@@ -158,6 +161,9 @@ class ModalityController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'modality' => 'required|string|max:20',
         ]);
@@ -184,6 +190,9 @@ class ModalityController extends Controller
      */
     public function destroy($id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $modality = Modality::find($id);
 
         $deleted = $modality->delete();

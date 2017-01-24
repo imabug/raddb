@@ -56,6 +56,10 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if action is allowed
+        $this->authorize(Location::class);
+
+        // Validate the submitted data
         $this->validate($request, [
             'location' => 'required|string|max:20',
         ]);
@@ -159,6 +163,10 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Check if action is allowed
+        $this->authorize(Location::class);
+
+        // Validate the submitted data
         $this->validate($request, [
             'location' => 'required|string|max:100',
         ]);
@@ -185,6 +193,7 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize(Location::class);
         $location = Location::find($id);
 
         $deleted = $location->delete();

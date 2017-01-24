@@ -83,8 +83,8 @@ class TestDateController extends Controller
      */
     public function store(UpdateTestDateRequest $request)
     {
-        $this->validate($request, [
-        ]);
+        // Check if action is allowed
+        $this->authorize(Machine::class);
 
         $testdate = new TestDate();
 
@@ -177,8 +177,8 @@ class TestDateController extends Controller
      */
     public function update(UpdateTestDateRequest $request, $surveyId)
     {
-        $this->validate($request, [
-        ]);
+        // Check if action is allowed
+        $this->authorize(Machine::class);
 
         $testdate = TestDate::find($surveyId);
 
@@ -240,6 +240,9 @@ class TestDateController extends Controller
      */
     public function storeSurveyReport(Request $request)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'surveyId'     => 'required||exists:testdates,id|integer',
             'surveyReport' => 'required|file|mimes:pdf',

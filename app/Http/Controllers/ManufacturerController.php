@@ -56,6 +56,9 @@ class ManufacturerController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'manufacturer' => 'required|string|max:20',
         ]);
@@ -159,6 +162,9 @@ class ManufacturerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'manufacturer' => 'required|string|max:20',
         ]);
@@ -185,6 +191,9 @@ class ManufacturerController extends Controller
      */
     public function destroy($id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $manufacturer = Manufacturer::find($id);
 
         $deleted = $manufacturer->delete();

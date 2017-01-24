@@ -51,6 +51,9 @@ class TesterController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'name'     => 'required|string|max:25',
             'initials' => 'required|string|max:3',
@@ -110,6 +113,9 @@ class TesterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $this->validate($request, [
             'name'     => 'required|string|max:20',
             'initials' => 'required|string|max:4',
@@ -138,6 +144,9 @@ class TesterController extends Controller
      */
     public function destroy($id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $tester = Tester::find($id);
 
         $deleted = $tester->delete();
