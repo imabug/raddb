@@ -2,6 +2,7 @@
 
 namespace RadDB\Providers;
 
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -20,10 +21,25 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(GateContract $gate)
     {
-        $this->registerPolicies();
+        $this->registerPolicies($gate);
 
-        //
+        // Authorization gates
+        $gate->define('create-machine', function ($user) {
+            return $user->is_admin;
+        });
+        $gate->define('create-survey', function ($user) {
+            return $user->is_admin;
+        });
+        $gate->define('add-surveyreport', function ($user) {
+            return $user->is_admin;
+        });
+        $gate->define('add-servicereport', function ($user) {
+            return $user->is_admin;
+        });
+        $gate->define('create-recommendation', function ($user) {
+            return $user->is_admin;
+        });
     }
 }
