@@ -10,6 +10,13 @@ class MachinePolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the machine.
      *
@@ -30,7 +37,7 @@ class MachinePolicy
      */
     public function create(User $user)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -42,7 +49,7 @@ class MachinePolicy
      */
     public function update(User $user, Machine $machine)
     {
-        //
+        return Auth::check();
     }
 
     /**

@@ -10,6 +10,13 @@ class TestDatePolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the testDate.
      *
@@ -30,7 +37,18 @@ class TestDatePolicy
      */
     public function create(User $user)
     {
-        //
+        return Auth::check();
+    }
+
+    /**
+     * Determine whether the user can add survey reports.
+     *
+     * @param  \RadDB\User  $user
+     * @return mixed
+     */
+    public function addSurveyReport(User $user)
+    {
+        return Auth::check();
     }
 
     /**
@@ -42,7 +60,7 @@ class TestDatePolicy
      */
     public function update(User $user, TestDate $testDate)
     {
-        //
+        return Auth::check();
     }
 
     /**

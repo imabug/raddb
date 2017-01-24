@@ -14,6 +14,15 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'RadDB\Model' => 'RadDB\Policies\ModelPolicy',
+        Location::class => LocationPolicy::class,
+        Machine::class => MachinePolicy::class,
+        Manufacturer::class => ManufacturerPolicy::class,
+        Modality::class => ModalityPolicy::class,
+        OpNote::class => OpNotePolicy::class,
+        Recommendation::class => RecommendationPolicy::class,
+        TestDate::class => TestDatePolicy::class,
+        Tester::class => TesterPolicy::class,
+        Tube::class => TubePolicy::class,
     ];
 
     /**
@@ -21,25 +30,9 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(GateContract $gate)
+    public function boot()
     {
         $this->registerPolicies($gate);
 
-        // Authorization gates
-        $gate->define('create-machine', function ($user) {
-            return $user->is_admin;
-        });
-        $gate->define('create-survey', function ($user) {
-            return $user->is_admin;
-        });
-        $gate->define('add-surveyreport', function ($user) {
-            return $user->is_admin;
-        });
-        $gate->define('add-servicereport', function ($user) {
-            return $user->is_admin;
-        });
-        $gate->define('create-recommendation', function ($user) {
-            return $user->is_admin;
-        });
     }
 }

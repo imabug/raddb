@@ -10,6 +10,13 @@ class TubePolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the tube.
      *
@@ -30,7 +37,7 @@ class TubePolicy
      */
     public function create(User $user)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -42,7 +49,7 @@ class TubePolicy
      */
     public function update(User $user, Tube $tube)
     {
-        //
+        return Auth::check();
     }
 
     /**

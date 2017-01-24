@@ -10,6 +10,13 @@ class RecommendationPolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the recommendation.
      *
@@ -30,7 +37,7 @@ class RecommendationPolicy
      */
     public function create(User $user)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -42,7 +49,7 @@ class RecommendationPolicy
      */
     public function update(User $user, Recommendation $recommendation)
     {
-        //
+        return Auth::check();
     }
 
     /**
