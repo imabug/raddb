@@ -2,6 +2,26 @@
 
 namespace RadDB\Providers;
 
+use RadDB\Location;
+use RadDB\Machine;
+use RadDB\Manufacturer;
+use RadDB\Modality;
+use RadDB\OpNote;
+use RadDB\Recommendation;
+use RadDB\TestDate;
+use RadDB\Tester;
+use RadDB\TestType;
+use RadDB\Tube;
+use RadDB\Policies\LocationPolicy;
+use RadDB\Policies\MachinePolicy;
+use RadDB\Policies\ManufacturerPolicy;
+use RadDB\Policies\ModalityPolicy;
+use RadDB\Policies\OpNotePolicy;
+use RadDB\Policies\RecommendationPolicy;
+use RadDB\Policies\TestDatePolicy;
+use RadDB\Policies\TesterPolicy;
+use RadDB\Policies\TestTypePolicy;
+use RadDB\Policies\TubePolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
