@@ -7,6 +7,20 @@ use Illuminate\Http\Request;
 class OpNoteController extends Controller
 {
     /**
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
+     public function __construct()
+     {
+         $this->middleware('auth')->only([
+             'store',
+             'update',
+             'destroy',
+         ]);
+     }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -36,7 +50,7 @@ class OpNoteController extends Controller
     public function store(Request $request)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(OpNote::class);
 
         //
     }
@@ -76,7 +90,7 @@ class OpNoteController extends Controller
     public function update(Request $request, $id)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(OpNote::class);
 
         //
     }

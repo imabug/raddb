@@ -4,6 +4,7 @@ namespace RadDB\Policies;
 
 use RadDB\Tube;
 use RadDB\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TubePolicy

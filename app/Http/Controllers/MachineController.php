@@ -14,6 +14,20 @@ use RadDB\Http\Requests\UpdateMachineRequest;
 class MachineController extends Controller
 {
     /**
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
+     public function __construct()
+     {
+         $this->middleware('auth')->only([
+             'store',
+             'update',
+             'destroy',
+         ]);
+     }
+
+    /**
      * Display a listing of all active machines.
      * URI: /machines
      * Method: GET.

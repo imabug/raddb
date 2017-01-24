@@ -57,7 +57,7 @@ class ManufacturerController extends Controller
     public function store(ManufacturerRequest $request)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(Manufacturer::class);
 
         $manufacturer = new Manufacturer();
         $manufacturer->manufacturer = $request->manufacturer;
@@ -159,7 +159,7 @@ class ManufacturerController extends Controller
     public function update(ManufacturerRequest $request, $id)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(Manufacturer::class);
 
         $manufacturer = Manufacturer::find($id);
 
@@ -184,7 +184,7 @@ class ManufacturerController extends Controller
     public function destroy($id)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(Manufacturer::class);
 
         $manufacturer = Manufacturer::find($id);
 

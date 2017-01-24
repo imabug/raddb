@@ -4,6 +4,7 @@ namespace RadDB\Policies;
 
 use RadDB\User;
 use RadDB\Modality;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ModalityPolicy

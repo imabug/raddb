@@ -4,6 +4,7 @@ namespace RadDB\Policies;
 
 use RadDB\User;
 use RadDB\TestDate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TestDatePolicy
@@ -44,7 +45,7 @@ class TestDatePolicy
      * @param  \RadDB\User  $user
      * @return mixed
      */
-    public function addSurveyReport(User $user)
+    public function storeSurveyReport(User $user)
     {
         return Auth::check();
     }
