@@ -5,7 +5,6 @@ namespace RadDB\Http\Controllers;
 use RadDB\Tester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\TesterRequest;
 
 class TesterController extends Controller
 {
@@ -50,10 +49,15 @@ class TesterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(TesterRequest $request)
+    public function store(Request $request)
     {
         // Check if action is allowed
         $this->authorize(Machine::class);
+
+        $this->validate($request, [
+            'name'     => 'required|string|max:25',
+            'initials' => 'required|string|max:3',
+        ]);
 
         $tester = new Tester();
         $tester->name = $request->name;
@@ -107,10 +111,15 @@ class TesterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(TesterRequest $request, $id)
+    public function update(Request $request, $id)
     {
         // Check if action is allowed
         $this->authorize(Machine::class);
+
+        $this->validate($request, [
+            'name'     => 'required|string|max:20',
+            'initials' => 'required|string|max:4',
+        ]);
 
         $tester = Tester::find($id);
 
