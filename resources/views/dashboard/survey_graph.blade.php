@@ -1,7 +1,7 @@
 <!-- resources/views/dashboard/survey_graph.blade.php -->
 @extends('layouts.app')
 @section('content')
-<h2>Monthly survey count</h2>
+<h2>Survey Count Graphs</h2>
 {!! Charts::assets() !!}
 <div class="panel panel-default">
     <div class="panel-body">
