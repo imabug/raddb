@@ -150,7 +150,7 @@ class DashboardController extends Controller
 
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
-            ->orderBy('years')
+            ->orderBy('years', 'desc')
             ->get();
         foreach ($years as $y) {
             $yearCharts[$y->years] = Charts::database(TestDate::year($y->years)->get(), 'bar', 'google')
