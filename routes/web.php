@@ -26,7 +26,7 @@ Route::get('/dashboard/showUntested', 'DashboardController@showUntested')->name(
 Route::get('/dashboard/showPending', 'DashboardController@showPending')->name('dashboard.showPending');
 Route::get('/dashboard/showSchedule', 'DashboardController@showSchedule')->name('dashboard.showSchedule');
 // Count of surveys per month for year $yr
-Route::get('/surveyGraph/{yr?}', 'DashboardController@surveyGraph')->name('dashboard.surveyGraph');
+Route::get('/dashboard/surveyGraph', 'DashboardController@surveyGraph')->name('dashboard.surveyGraph');
 
 /*
  * Machine controller
