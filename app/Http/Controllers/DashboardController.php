@@ -152,12 +152,14 @@ class DashboardController extends Controller
             ->distinct()
             ->orderBy('years')
             ->get();
-        $yearChart = Charts::database(TestDate::year($yr)->get(), 'bar', 'google')
-            ->dateColumn('test_date')
-            ->title('Monthly survey count for '.$yr)
-            ->elementLabel('Number of surveys')
-            ->dimensions(1000, 700)
-            ->groupByMonth($yr, true);
+        foreach ($years as $y) {
+            $yearCharts[$y->years] = Charts::database(TestDate::year($y->years)->get(), 'bar', 'google')
+                ->dateColumn('test_date')
+                ->title('Monthly survey count for '.$y->years)
+                ->elementLabel('Number of surveys')
+                ->dimensions(1000, 700)
+                ->groupByMonth($y->years, true);
+        }
         $allYears = Charts::database(TestDate::get(), 'bar', 'google')
             ->dateColumn('test_date')
             ->title('Survey count for all years')
@@ -166,7 +168,7 @@ class DashboardController extends Controller
             ->groupByYear($years->count());
 
         return view('dashboard.survey_graph', [
-            'yearChart' => $yearChart,
+            'yearCharts' => $yearCharts,
             'allYears' => $allYears,
             'years' => $years,
         ]);
