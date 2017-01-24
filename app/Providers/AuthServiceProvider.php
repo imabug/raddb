@@ -22,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         Recommendation::class => RecommendationPolicy::class,
         TestDate::class => TestDatePolicy::class,
         Tester::class => TesterPolicy::class,
+        TestType::class => TestTypePolicy::class,
         Tube::class => TubePolicy::class,
     ];
 
