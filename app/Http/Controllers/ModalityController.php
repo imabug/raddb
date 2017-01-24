@@ -6,6 +6,7 @@ use RadDB\Machine;
 use RadDB\Modality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\ModalityRequest;
 
 class ModalityController extends Controller
 {
@@ -53,14 +54,10 @@ class ModalityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ModalityRequest $request)
     {
         // Check if action is allowed
         $this->authorize(Machine::class);
-
-        $this->validate($request, [
-            'modality' => 'required|string|max:25',
-        ]);
 
         $modality = new Modality();
         $modality->modality = $request->modality;
@@ -159,14 +156,10 @@ class ModalityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModalityRequest $request, $id)
     {
         // Check if action is allowed
         $this->authorize(Machine::class);
-
-        $this->validate($request, [
-            'modality' => 'required|string|max:20',
-        ]);
 
         $modality = Modality::find($id);
 
