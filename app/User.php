@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Variable casts
+     * Variable casts.
      * @var array
      */
     protected $casts = [
@@ -36,7 +36,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Returns whether is_admin flag is set or not
+     * Returns whether is_admin flag is set or not.
      */
     public function isAdmin()
     {

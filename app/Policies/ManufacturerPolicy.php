@@ -4,7 +4,6 @@ namespace RadDB\Policies;
 
 use RadDB\User;
 use RadDB\Manufacturer;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ManufacturerPolicy

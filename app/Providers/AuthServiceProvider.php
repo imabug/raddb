@@ -2,26 +2,26 @@
 
 namespace RadDB\Providers;
 
-use RadDB\Location;
-use RadDB\Machine;
-use RadDB\Manufacturer;
-use RadDB\Modality;
-use RadDB\OpNote;
-use RadDB\Recommendation;
-use RadDB\TestDate;
-use RadDB\Tester;
-use RadDB\TestType;
 use RadDB\Tube;
-use RadDB\Policies\LocationPolicy;
-use RadDB\Policies\MachinePolicy;
-use RadDB\Policies\ManufacturerPolicy;
-use RadDB\Policies\ModalityPolicy;
-use RadDB\Policies\OpNotePolicy;
-use RadDB\Policies\RecommendationPolicy;
-use RadDB\Policies\TestDatePolicy;
-use RadDB\Policies\TesterPolicy;
-use RadDB\Policies\TestTypePolicy;
+use RadDB\OpNote;
+use RadDB\Tester;
+use RadDB\Machine;
+use RadDB\Location;
+use RadDB\Modality;
+use RadDB\TestDate;
+use RadDB\TestType;
+use RadDB\Manufacturer;
+use RadDB\Recommendation;
 use RadDB\Policies\TubePolicy;
+use RadDB\Policies\OpNotePolicy;
+use RadDB\Policies\TesterPolicy;
+use RadDB\Policies\MachinePolicy;
+use RadDB\Policies\LocationPolicy;
+use RadDB\Policies\ModalityPolicy;
+use RadDB\Policies\TestDatePolicy;
+use RadDB\Policies\TestTypePolicy;
+use RadDB\Policies\ManufacturerPolicy;
+use RadDB\Policies\RecommendationPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
