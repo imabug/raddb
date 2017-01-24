@@ -5,8 +5,8 @@ namespace RadDB\Http\Controllers;
 use RadDB\Tube;
 use RadDB\Machine;
 use RadDB\Manufacturer;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\UpdateTubeRequest;
 
 class TubeController extends Controller
 {
@@ -54,24 +54,8 @@ class TubeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateTubeRequest $request)
     {
-        $this->validate($request, [
-            'machine'       => 'required|integer',
-            'hsgManufID'    => 'integer',
-            'hsgModel'      => 'string|max:30',
-            'hsgSN'         => 'string|max:20',
-            'insertManufID' => 'integer',
-            'insertModel'   => 'string|max:30',
-            'insertSN'      => 'string|max:20',
-            'manufDate'     => 'date_format:Y-m-d|max:10',
-            'installDate'   => 'date_format:Y-m-d|max:10',
-            'lfs'           => 'numeric',
-            'mfs'           => 'numeric',
-            'sfs'           => 'numeric',
-            'notes'         => 'string|max:65535',
-        ]);
-
         $tube = new Tube();
         $tube->machine_id = $request->machine;
         $tube->housing_model = $request->hsgModel;
@@ -165,28 +149,12 @@ class TubeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTubeRequest $request, $id)
     {
-        $this->validate($request, [
-            'machine_id'    => 'required|integer',
-            'hsgManufID'    => 'integer',
-            'hsgModel'      => 'string|max:30',
-            'hsgSN'         => 'string|max:20',
-            'insertManufID' => 'integer',
-            'insertModel'   => 'string|max:30',
-            'insertSN'      => 'string|max:20',
-            'manufDate'     => 'date_format:Y-m-d|max:10',
-            'installDate'   => 'date_format:Y-m-d|max:10',
-            'lfs'           => 'numeric',
-            'mfs'           => 'numeric',
-            'sfs'           => 'numeric',
-            'notes'         => 'string|max:65535',
-        ]);
-
         // Retrieve the model for the t ube to be edited
         $tube = Tube::find($id);
 
-        $tube->machine_id = $request->machine_id;
+        $tube->machine_id = $request->machine;
         $tube->housing_model = $request->hsgModel;
         $tube->housing_sn = $request->hsgSN;
         $tube->housing_manuf_id = $request->hsgManufID;

@@ -7,6 +7,7 @@ use RadDB\Recommendation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use RadDB\Http\Requests\StoreRecommendationRequest;
 
 class RecommendationController extends Controller
 {
@@ -62,19 +63,8 @@ class RecommendationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRecommendationRequest $request)
     {
-        // Validate the request
-        $this->validate($request, [
-            'surveyId'       => 'required|exists:testdates,id|integer',
-            'recommendation' => 'required|string|max:500',
-            'resolved'       => 'integer',
-            'WONum'          => 'string|max:20',
-            'RecResolveDate' => 'required_with:resolved|date_format:Y-m-d|max:10',
-            'ResolvedBy'     => 'required_with:resolved|string|max:10',
-            'ServiceReport'  => 'file|mimes:pdf',
-        ]);
-
         $recommendation = new Recommendation();
         $recommendation->survey_id = $request->surveyId;
         $recommendation->recommendation = $request->recommendation;

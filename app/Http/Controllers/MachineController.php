@@ -3,14 +3,13 @@
 namespace RadDB\Http\Controllers;
 
 use RadDB\Tube;
-// use RadDB\Http\Requests\UpdateMachineRequest;
 use RadDB\Machine;
 use RadDB\Location;
 use RadDB\Modality;
 use RadDB\TestDate;
 use RadDB\Manufacturer;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\UpdateMachineRequest;
 
 class MachineController extends Controller
 {
@@ -135,23 +134,8 @@ class MachineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateMachineRequest $request)
     {
-        $this->validate($request, [
-            'modality'     => 'required|integer',
-            'description'  => 'required|string|max:60',
-            'manufacturer' => 'required|integer',
-            'model'        => 'required|string|max:20',
-            'serialNumber' => 'required|string|max:20',
-            'vendSiteID'   => 'string|max:25',
-            'manufDate'    => 'date_format:Y-m-d|max:10',
-            'installDate'  => 'date_format:Y-m-d|max:10',
-            'location'     => 'required|integer',
-            'room'         => 'required|string|max:20',
-            'status'       => 'required|in:Active,Inactive,Removed|max:50',
-            'notes'        => 'string|max:65535',
-        ]);
-
         $machine = new Machine();
         $machine->modality_id = $request->modality;
         $machine->description = $request->description;
@@ -264,29 +248,14 @@ class MachineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMachineRequest $request, $id)
     {
-        $this->validate($request, [
-            'modality_id'     => 'required|integer',
-            'description'     => 'required|string|max:60',
-            'manufacturer_id' => 'required|integer',
-            'model'           => 'required|string|max:20',
-            'serialNumber'    => 'required|string|max:20',
-            'vendSiteID'      => 'string|max:25',
-            'manufDate'       => 'date_format:Y-m-d|max:10',
-            'installDate'     => 'date_format:Y-m-d|max:10',
-            'location_id'     => 'required|integer',
-            'room'            => 'required|string|max:20',
-            'status'          => 'required|in:Active,Inactive,Removed|max:50',
-            'notes'           => 'string|max:65535',
-        ]);
-
         // Retrieve the model for the machine to be edited
         $machine = Machine::find($id);
 
-        $machine->modality_id = $request->modality_id;
+        $machine->modality_id = $request->modality;
         $machine->description = $request->description;
-        $machine->manufacturer_id = $request->manufacturer_id;
+        $machine->manufacturer_id = $request->manufacturer;
         if (isset($request->vendSiteID)) {
             $machine->vend_site_id = $request->vendSiteID;
         }
@@ -298,7 +267,7 @@ class MachineController extends Controller
         if (isset($request->install_date)) {
             $machine->install_date = $request->installDate;
         }
-        $machine->location_id = $request->location_id;
+        $machine->location_id = $request->location;
         $machine->room = $request->room;
         $machine->machine_status = $request->status;
         if (isset($request->notes)) {

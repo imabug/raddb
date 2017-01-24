@@ -9,7 +9,7 @@
     <div class="form-group">
     	{{ csrf_field() }}
         {{ method_field('PUT') }}
-        <input type="hidden" id="machine_id" name="machine_id" value="{{ $machine->id }}" >
+        <input type="hidden" id="machine" name="machine" value="{{ $machine->id }}" >
         <input type="hidden" id="tube_id" name="tube_id" value="{{$tube->id}}">
     <p><label for="machine">Machine:</label> {{ $machine->description }}</p>
     <p><label for="hsgManufID">Housing Manufacturer:</label>

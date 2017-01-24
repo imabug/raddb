@@ -10,7 +10,7 @@
 		{{ csrf_field() }}
 		{{ method_field('PUT') }}
 		<p><label for="modality_id">Modality:</label>
-		<select class="form-control" id="modality_id" name="modality_id" size="1">
+		<select class="form-control" id="modality" name="modality" size="1">
 			<option>Select modality</option>
 
 		@foreach ($modalities as $modality)
@@ -24,7 +24,7 @@
 		</select></p>
 		<p><label for="description">Description:</label> <input class="form-control" type="text" id="description" name="description" size="40" value="{{ $machine->description }}" ></p>
 		<p><label for="manufacturer">Manufacturer:</label>
-		<select class="form-control" id="manufacturer_id" name="manufacturer_id" size="1">
+		<select class="form-control" id="manufacturer" name="manufacturer" size="1">
 			<option>Select manufacturer</option>
 
 		@foreach ($manufacturers as $manufacturer)
@@ -42,7 +42,7 @@
 		<p><label for="manufDate">Manufacture date:</label> <input class="form-control" type="date" id="manufDate" name="manufDate" size="20" value="{{ $machine->manuf_date }}" ></p>
 		<p><label for="installDate">Install date:</label> <input class="form-control" type="date" id="installDate" name="installDate" size="20" value="{{ $machine->install_date }}" ></p>
 		<p><label for="location">Location:</label>
-		<select class="form-control" id="location_id" name="location_id" size="1">
+		<select class="form-control" id="location" name="location" size="1">
 			<option>Select location</option>
 
 		@foreach ($locations as $location)
