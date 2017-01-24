@@ -36,7 +36,7 @@ class OpNoteController extends Controller
     public function store(Request $request)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(OpNote::class);
 
         //
     }
@@ -76,7 +76,7 @@ class OpNoteController extends Controller
     public function update(Request $request, $id)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(OpNote::class);
 
         //
     }

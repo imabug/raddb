@@ -53,7 +53,7 @@ class TestTypeController extends Controller
     public function store(TestTypeRequest $request)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(TestType::class);
 
         $testtype = new TestType();
         $testtype->test_type = $request->testtype;
@@ -109,7 +109,7 @@ class TestTypeController extends Controller
     public function update(TestTypeRequest $request, $id)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(TestType::class);
 
         $testtype = TestType::find($id);
 
@@ -134,7 +134,7 @@ class TestTypeController extends Controller
     public function destroy($id)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(TestType::class);
 
         $testtype = TestType::find($id);
 

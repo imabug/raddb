@@ -66,7 +66,7 @@ class RecommendationController extends Controller
     public function store(StoreRecommendationRequest $request)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(Recommendation::class);
 
         $recommendation = new Recommendation();
         $recommendation->survey_id = $request->surveyId;
@@ -168,7 +168,7 @@ class RecommendationController extends Controller
     public function update(Request $request, $surveyID)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(Recommendation::class);
 
         $this->validate($request, [
             'recID'          => 'array',

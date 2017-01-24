@@ -57,7 +57,7 @@ class ModalityController extends Controller
     public function store(ModalityRequest $request)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(Modality::class);
 
         $modality = new Modality();
         $modality->modality = $request->modality;
@@ -159,7 +159,7 @@ class ModalityController extends Controller
     public function update(ModalityRequest $request, $id)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(Modality::class);
 
         $modality = Modality::find($id);
 
@@ -184,7 +184,7 @@ class ModalityController extends Controller
     public function destroy($id)
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        $this->authorize(Modality::class);
 
         $modality = Modality::find($id);
 
