@@ -13,6 +13,21 @@ use RadDB\Http\Requests\UpdateTestDateRequest;
 class TestDateController extends Controller
 {
     /**
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
+     public function __construct()
+     {
+         $this->middleware('auth')->except([
+             'store',
+             'update',
+             'destroy',
+             'storeSurveyReport',
+         ]);
+     }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
