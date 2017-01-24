@@ -3,7 +3,6 @@
 namespace RadDB\Http\Controllers;
 
 use RadDB\Tester;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\TesterRequest;
 
