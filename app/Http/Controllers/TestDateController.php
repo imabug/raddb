@@ -19,7 +19,7 @@ class TestDateController extends Controller
       */
      public function __construct()
      {
-         $this->middleware('auth')->except([
+         $this->middleware('auth')->only([
              'store',
              'update',
              'destroy',
