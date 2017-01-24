@@ -6,6 +6,7 @@ use RadDB\Machine;
 use RadDB\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\LocationRequest;
 
 class LocationController extends Controller
 {
@@ -54,11 +55,10 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LocationRequest $request)
     {
-        $this->validate($request, [
-            'location' => 'required|string|max:20',
-        ]);
+        // Check if action is allowed
+        $this->authorize(Location::class);
 
         $location = new Location();
         $location->location = $request->location;
@@ -157,11 +157,10 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LocationRequest $request, $id)
     {
-        $this->validate($request, [
-            'location' => 'required|string|max:100',
-        ]);
+        // Check if action is allowed
+        $this->authorize(Location::class);
 
         $location = Location::find($id);
 
@@ -185,6 +184,7 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize(Location::class);
         $location = Location::find($id);
 
         $deleted = $location->delete();

@@ -13,6 +13,16 @@
                 </ul>
             </li>
             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('machines.index') }}">List machines</a></li>
+                    <li><a href="{{ route('modalities.showModalityIndex') }}">List by modality</a></li>
+                    <li><a href="{{ route('locations.showLocationIndex') }}">List by location</a></li>
+                    <li><a href="{{ route('manufacturers.showManufacturerIndex') }}">List by manufacturer</a></li>
+                </ul>
+            </li>
+            @if (Auth::check())
+            <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Machines<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('machines.create') }}">New machine</a></li>
@@ -26,16 +36,6 @@
                     <li><a href="{{ route('surveys.addSurveyReport') }}">Add survey report</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ route('machines.index') }}">List machines</a></li>
-                    <li><a href="{{ route('modalities.showModalityIndex') }}">List by modality</a></li>
-                    <li><a href="{{ route('locations.showLocationIndex') }}">List by location</a></li>
-                    <li><a href="{{ route('manufacturers.showManufacturerIndex') }}">List by manufacturer</a></li>
-                </ul>
-            </li>
-            @if (Auth::check())
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                 <ul class="dropdown-menu">
