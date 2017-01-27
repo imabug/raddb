@@ -25,7 +25,7 @@ class OpNoteStoreRequest extends FormRequest
     {
         return [
             'machineId' => 'required|exists:machines,id|integer',
-            'note'      => 'required|string|max:1024'
+            'note'      => 'required|string|max:1024',
         ];
     }
 }
