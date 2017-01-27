@@ -43,7 +43,7 @@ class OpNoteController extends Controller
         if (is_null($id)) {
             $machineID = null;
             $opNotes = null;
-            $machines = Machine::->active()->get();
+            $machines = Machine::active()->get();
         } else {
             $machineID = $id;
             $machines = Machine::find($machineID);
@@ -52,7 +52,7 @@ class OpNoteController extends Controller
         return view('opnotes.opnote_create', [
             'machineID' => $machineID,
             'machines' => $machines,
-            'opnotes' => $opNotes,
+            'opNotes' => $opNotes,
         ]);
     }
 
@@ -116,9 +116,9 @@ class OpNoteController extends Controller
     {
         $opNote = OpNote::find($id);
 
-        return view('opnotes.opnote_edit' {
+        return view('opnotes.opnote_edit', [
             'opnote' => $opnote,
-        });
+        ]);
     }
 
     /**
