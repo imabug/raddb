@@ -25,7 +25,7 @@ class OpNoteUpdateRequest extends FormRequest
     {
         return [
             'opnote_' => 'required|exists:opnotes,id|integer',
-            'note'      => 'required|string|max:1024'
+            'note'      => 'required|string|max:1024',
         ];
     }
 }
