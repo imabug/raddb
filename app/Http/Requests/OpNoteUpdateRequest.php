@@ -24,7 +24,7 @@ class OpNoteUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'note'      => 'required|string|max:1024'
+            'note'      => 'required|string|max:1024',
         ];
     }
 }

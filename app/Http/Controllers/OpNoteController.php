@@ -50,6 +50,7 @@ class OpNoteController extends Controller
             $machines = Machine::find($machineID);
             $opNotes = OpNote::where('machine_id', $machineID)->get();
         }
+
         return view('opnotes.opnote_create', [
             'machineID' => $machineID,
             'machines' => $machines,
@@ -78,11 +79,11 @@ class OpNoteController extends Controller
             $message = 'Operational note '.$opNote->id.' added.';
             Log::info($message);
 
-            $status = "success";
-            $message = "Operational note added";
+            $status = 'success';
+            $message = 'Operational note added';
         } else {
-            $status = "fail";
-            $message = "Error adding operational note";
+            $status = 'fail';
+            $message = 'Error adding operational note';
         }
 
         return redirect()->route('opnotes.show', $opNote->machine_id)
@@ -144,11 +145,11 @@ class OpNoteController extends Controller
             $message = 'Operational note '.$opNote->id.' updated.';
             Log::info($message);
 
-            $status = "success";
-            $message = "Operational note updated";
+            $status = 'success';
+            $message = 'Operational note updated';
         } else {
-            $status = "fail";
-            $message = "Error updating operational note";
+            $status = 'fail';
+            $message = 'Error updating operational note';
         }
 
         return redirect()->route('opnotes.show', $opNote->machine_id)
