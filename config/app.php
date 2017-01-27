@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          */
         ConsoleTVs\Charts\ChartsServiceProvider::class,
-        //
+        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
