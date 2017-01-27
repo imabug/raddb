@@ -26,6 +26,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Machines<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('machines.create') }}">New machine</a></li>
+                    <li><a href="{{ route('opnotes.create' )}}">Add operational note</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -39,7 +40,7 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test Equipment<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ route('testgear.index') }}">Test Equipment</a></li>
+                    <li><a href="{{ route('testequipment.index') }}">Test Equipment</a></li>
                 </ul>
             </li>
             <li class="dropdown">
