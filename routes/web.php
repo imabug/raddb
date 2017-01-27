@@ -32,7 +32,7 @@ Route::get('/dashboard/surveyGraph', 'DashboardController@surveyGraph')->name('d
  * Machine controller
  */
 Route::resource('machines', 'MachineController');
-
+Route::resource('testequipment', 'TestEquipmentController');
 Route::resource('contacts', 'ContactController');
 Route::resource('gendata', 'GenDataController');
 Route::resource('opnotes', 'OpNoteController');
