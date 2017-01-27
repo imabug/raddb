@@ -104,6 +104,7 @@
   <li>{{ $opnote->note }}</li>
   @endforeach
 </ol>
+<p><a href="{{ route('opnotes.create',  $machine->id)}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add operational note</a></p>
 
 <h3><span class="label label-default">Survey Information</span></h3>
 <table class="table">
