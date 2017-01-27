@@ -32,6 +32,7 @@ Route::get('/dashboard/surveyGraph', 'DashboardController@surveyGraph')->name('d
  * Machine controller
  */
 Route::resource('machines', 'MachineController');
+Route::get('/testequipment/caldates', 'TestEquipmentController@showCalDates')->name('testequipment.showCalDates');
 Route::resource('testequipment', 'TestEquipmentController');
 Route::resource('contacts', 'ContactController');
 Route::resource('gendata', 'GenDataController');
