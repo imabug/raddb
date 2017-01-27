@@ -32,17 +32,17 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'RadDB\Model' => 'RadDB\Policies\ModelPolicy',
-        Location::class => LocationPolicy::class,
-        Machine::class => MachinePolicy::class,
-        Manufacturer::class => ManufacturerPolicy::class,
-        Modality::class => ModalityPolicy::class,
-        OpNote::class => OpNotePolicy::class,
+        'RadDB\Model'         => 'RadDB\Policies\ModelPolicy',
+        Location::class       => LocationPolicy::class,
+        Machine::class        => MachinePolicy::class,
+        Manufacturer::class   => ManufacturerPolicy::class,
+        Modality::class       => ModalityPolicy::class,
+        OpNote::class         => OpNotePolicy::class,
         Recommendation::class => RecommendationPolicy::class,
-        TestDate::class => TestDatePolicy::class,
-        Tester::class => TesterPolicy::class,
-        TestType::class => TestTypePolicy::class,
-        Tube::class => TubePolicy::class,
+        TestDate::class       => TestDatePolicy::class,
+        Tester::class         => TesterPolicy::class,
+        TestType::class       => TestTypePolicy::class,
+        Tube::class           => TubePolicy::class,
     ];
 
     /**
