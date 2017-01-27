@@ -33,7 +33,9 @@
         <input type="hidden" name="machineId" value="$machine->id">
         @endif
         </p>
-        <p><textarea name="note" rows="8" cols="80" placeholder="Enter operational note"></textarea></p>
+        <p></p>
+        <p><label for="note">Operational note</label><br>
+            <textarea name="note" rows="8" cols="80" placeholder="Enter operational note"></textarea></p>
         <p><button type="submit" name="submit">Submit</button></p>
     </div>
 </form>
