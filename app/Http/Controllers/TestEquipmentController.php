@@ -2,7 +2,6 @@
 
 namespace RadDB\Http\Controllers;
 
-use Carbon\Carbon;
 use RadDB\Machine;
 use RadDB\TestDate;
 use Illuminate\Http\Request;
