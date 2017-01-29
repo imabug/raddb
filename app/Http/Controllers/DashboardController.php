@@ -4,7 +4,6 @@ namespace RadDB\Http\Controllers;
 
 use DB;
 use Charts;
-use Carbon\Carbon;
 use RadDB\Machine;
 use RadDB\TestDate;
 use Illuminate\Http\Request;
@@ -16,7 +15,7 @@ class DashboardController extends Controller
      * Display list of machines that need to be surveyed, pending
      * surveys and the survey schedule.
      * URI: /
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -130,7 +129,7 @@ class DashboardController extends Controller
      * Display a bar chart showing the count of surveys per month for the specified year.
      * Uses the ConsoleTVs/Charts package from https://erik.cat/projects/Charts.
      * URI: /dashboard/surveyGraph
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -170,7 +169,7 @@ class DashboardController extends Controller
      * survey date and colour coded based on test status. Machines are
      * grouped by modality.
      * URI: /dashboard
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -224,7 +223,7 @@ class DashboardController extends Controller
     /**
      * Show grid of untested machines.
      * URI: /dashboard/showUntested
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -244,7 +243,7 @@ class DashboardController extends Controller
     /**
      * Show the list of pending surveys
      * URI: /dashboard/showPending
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -258,7 +257,7 @@ class DashboardController extends Controller
     /**
      * Show the survey schedule for the year
      * URI: /dashboard/showSchedule
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
