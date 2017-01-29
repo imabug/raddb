@@ -17,6 +17,7 @@ class TubeController extends Controller
       */
      public function __construct()
      {
+         // Only use auth middlware on these methods
          $this->middleware('auth')->only([
              'store',
              'update',
@@ -45,16 +46,9 @@ class TubeController extends Controller
      */
     public function create($machineID)
     {
-        // Get the list of machines
-        $machines = Machine::select('id', 'description')
-            ->get();
-        // Get the list of manufacturers
-        $manufacturers = Manufacturer::select('id', 'manufacturer')
-            ->get();
-
         return view('tubes.tubes_create', [
-            'machines'      => $machines,
-            'manufacturers' => $manufacturers,
+            'machines'      => Machine::get(),
+            'manufacturers' => Manufacturer::get(),
             'machineID'     => $machineID,
         ]);
     }
@@ -83,26 +77,25 @@ class TubeController extends Controller
         $tube->insert_manuf_id = $request->insertManufID;
         $tube->manuf_date = $request->manufDate;
         $tube->install_date = $request->installDate;
-        if (! empty($request->lfs)) {
-            $tube->lfs = $request->lfs;
-        } else {
+        if (empty($request->lfs)) {
             $tube->lfs = 0.0;
-        }
-        if (! empty($request->mfs)) {
-            $tube->mfs = $request->mfs;
         } else {
+            $tube->lfs = $request->lfs;
+        }
+        if (empty($request->mfs)) {
             $tube->mfs = 0.0;
-        }
-        if (! empty($request->sfs)) {
-            $tube->sfs = $request->sfs;
         } else {
+            $tube->mfs = $request->mfs;
+        }
+        if (empty($request->sfs)) {
             $tube->sfs = 0.0;
+        } else {
+            $tube->sfs = $request->sfs;
         }
         $tube->notes = $request->notes;
         $tube->tube_status = 'Active';
 
-        $saved = $tube->save();
-        if ($saved) {
+        if ($tube->save()) {
             $message = 'New tube saved for machine: '.$tube->machine_id.'.';
             Log::info($message);
 
@@ -137,22 +130,16 @@ class TubeController extends Controller
      */
     public function edit($id)
     {
-        // Get the information for the tube to edit
-        $tube = Tube::findOrFail($id);
-
         // Get the information for the corresponding machine
         $machine = Machine::select('id', 'description')
             ->where('id', '=', $tube->machine_id)
             ->first();
 
-        // Get the list of manufacturers
-        $manufacturers = Manufacturer::select('id', 'manufacturer')->get();
-
         // Show the form
         return view('tubes.tubes_edit', [
-            'tube'          => $tube,
+            'tube'          => Tube::findOrFail($id),
             'machine'       => $machine,
-            'manufacturers' => $manufacturers,
+            'manufacturers' => Manufacturer::get(),
         ]);
     }
 
@@ -188,8 +175,7 @@ class TubeController extends Controller
         $tube->sfs = $request->sfs;
         $tube->notes = $request->notes;
 
-        $saved = $tube->save();
-        if ($saved) {
+        if ($tube->save()) {
             $message = 'Tube ID '.$tube->id.' for machine '.$tube->machine_id.' updated.';
             Log::info($message);
 

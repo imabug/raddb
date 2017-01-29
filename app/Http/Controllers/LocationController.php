@@ -16,6 +16,7 @@ class LocationController extends Controller
       */
      public function __construct()
      {
+         // Exclude these methods from auth middlware
          $this->middleware('auth')->except([
              'showLocation',
              'showLocationIndex',
@@ -30,10 +31,8 @@ class LocationController extends Controller
     public function index()
     {
         // Show a list of the locations
-        $locations = Location::get();
-
         return view('admin.locations_index', [
-            'locations' => $locations,
+            'locations' => Location::get(),
         ]);
     }
 
@@ -61,8 +60,7 @@ class LocationController extends Controller
 
         $location = new Location();
         $location->location = $request->location;
-        $saved = $location->save();
-        if ($saved) {
+        if ($location->save()) {
             $message = 'New location: '.$location->location.' added.';
             Log::info($message);
         }
@@ -139,10 +137,8 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        $location = Location::findOrFail($id);
-
         return view('admin.locations_edit', [
-            'location' => $location,
+            'location' => Location::findOrFail($id),
         ]);
     }
 
@@ -165,8 +161,7 @@ class LocationController extends Controller
 
         $location->location = $request->location;
 
-        $saved = $location->save();
-        if ($saved) {
+        if ($location->save()) {
             $message = 'Location '.$location->id.' edited.';
             Log::info($message);
         }
@@ -186,8 +181,7 @@ class LocationController extends Controller
         $this->authorize(Location::class);
         $location = Location::find($id);
 
-        $deleted = $location->delete();
-        if ($deleted) {
+        if ($location->delete()) {
             $message = 'Location '.$location->id.' deleted.';
             Log::notice($message);
         }

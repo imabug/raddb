@@ -20,6 +20,7 @@ class MachineController extends Controller
       */
      public function __construct()
      {
+         // Only apply auth middleware to these methods
          $this->middleware('auth')->only([
              'store',
              'update',
@@ -47,7 +48,7 @@ class MachineController extends Controller
     }
 
     /**
-     * Display a listing of survey recommendations for a machine.
+     * Return a colelction of survey recommendations for machine $id.
      *
      * @param int $id
      *
@@ -55,15 +56,13 @@ class MachineController extends Controller
      */
     public function getRecommendations($id)
     {
-        $machineRecommendations = Machine::findOrFail($id)
+        return Machine::findOrFail($id)
             ->recommendation()
             ->get();
-
-        return $machineRecommendations;
     }
 
     /**
-     * Retrieve operational notes for a machine.
+     * Return a collection of operational notes for machine $id.
      *
      * @param int $id
      *
@@ -71,15 +70,13 @@ class MachineController extends Controller
      */
     public function getOperationalNotes($id)
     {
-        $machineOpNotes = Machine::findOrFail($id)
+        return Machine::findOrFail($id)
             ->opnote()
             ->get();
-
-        return $machineOpNotes;
     }
 
      /**
-      * Retrieve generator check data for a machine.
+      * Return a collection of generator test data for machine $id.
       *
       * @param int $id
       *
@@ -87,15 +84,13 @@ class MachineController extends Controller
       */
      public function getGenData($id)
      {
-         $machineGenData = Machine::findOrFail($id)
+         return Machine::findOrFail($id)
             ->gendata()
             ->get();
-
-         return $machineGenData;
      }
 
      /**
-      * Retrieve x-ray tubes for a machine.
+      * Return a collection of x-ray tubes for machine $id
       *
       * @param int $id
       *
@@ -103,14 +98,7 @@ class MachineController extends Controller
       */
      public function getTubes($id)
      {
-         $machineTube = Tube::active()->where([
-             [
-                 'machine_id',
-                 $id,
-             ],
-         ])->get();
-
-         return $machineTube;
+         return Tube::active()->where('machine_id', $id)->get();
      }
 
     /**
@@ -122,20 +110,11 @@ class MachineController extends Controller
      */
     public function create()
     {
-        // Get the list of modalities
-        $modalities = Modality::select('id', 'modality')
-            ->get();
-        // Get the list of manufacturers
-        $manufacturers = Manufacturer::select('id', 'manufacturer')
-            ->get();
-        // Get the list of locations
-        $locations = Location::select('id', 'location')
-            ->get();
-
+        // Return data from lookup tables to use in the form
         return view('machine.machines_create', [
-            'modalities'    => $modalities,
-            'manufacturers' => $manufacturers,
-            'locations'     => $locations,
+            'modalities'    => Modality::select('id', 'modality')->get(),
+            'manufacturers' => Manufacturer::select('id', 'manufacturer')->get(),
+            'locations'     => Location::select('id', 'location')->get(),
         ]);
     }
 
@@ -175,8 +154,7 @@ class MachineController extends Controller
             $machine->notes = $request->notes;
         }
 
-        $saved = $machine->save();
-        if ($saved) {
+        if ($machine->save()) {
             $message = 'New machine created: Machine ID '.$machine->id;
             Log::info($message);
 
@@ -199,27 +177,12 @@ class MachineController extends Controller
      */
     public function show($id)
     {
-        // Retrieve details for a specific machine
-        $machine = Machine::findOrFail($id); // application will return HTTP 404 if $id doesn't exist
-
-        // Retrieve the active tubes for machine $id
-        $tubes = $this->getTubes($id);
-
-        // Retrieve the surveys for machine $id
-        $surveys = TestDate::where('machine_id', $id)->orderBy('test_date', 'asc')->get();
-
-        // Retrieve the operational notes for machine $id
-        $opNotes = $this->getOperationalNotes($id);
-
-        // Retrieve the survey recommendations for machine $id
-        $recommendations = $this->getRecommendations($id);
-
         return view('machine.detail', [
-            'machine'         => $machine,
-            'tubes'           => $tubes,
-            'opnotes'         => $opNotes,
-            'surveys'         => $surveys,
-            'recommendations' => $recommendations,
+            'machine'         => Machine::findOrFail($id),
+            'tubes'           => $this->getTubes($id),
+            'opnotes'         => $this->getOperationalNotes($id),
+            'surveys'         => TestDate::where('machine_id', $id)->orderBy('test_date', 'asc')->get(),
+            'recommendations' => $this->getRecommendations($id),
         ]);
     }
 
@@ -234,24 +197,11 @@ class MachineController extends Controller
      */
     public function edit($id)
     {
-        // Get information for the machine to edit
-        $machine = Machine::findOrFail($id);
-
-        // Get the list of modalities
-        $modalities = Modality::select('id', 'modality')
-            ->get();
-        // Get the list of manufacturers
-        $manufacturers = Manufacturer::select('id', 'manufacturer')
-            ->get();
-        // Get the list of locations
-        $locations = Location::select('id', 'location')
-            ->get();
-
         return view('machine.machines_edit', [
-            'modalities'    => $modalities,
-            'manufacturers' => $manufacturers,
-            'locations'     => $locations,
-            'machine'       => $machine,
+            'modalities'    => Modality::select('id', 'modality')->get(),
+            'manufacturers' => Manufacturer::select('id', 'manufacturer')->get(),
+            'locations'     => Location::select('id', 'location')->get(),
+            'machine'       => Machine::findOrFail($id),
         ]);
     }
 
@@ -294,8 +244,7 @@ class MachineController extends Controller
             $machine->notes = $request->notes;
         }
 
-        $saved = $machine->save();
-        if ($saved) {
+        if ($machine->save()) {
             $message = 'Machine ID '.$machine->id.' updated.';
             Log::info($message);
 
@@ -308,7 +257,9 @@ class MachineController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove machine $id and associated tubes from the database
+     * URI: /machines/$id
+     * Method: DELETE
      *
      * @param int $id
      *
@@ -337,8 +288,7 @@ class MachineController extends Controller
             $tube->delete();
         }
 
-        $deleted = $machine->delete();
-        if ($deleted) {
+        if ($machine->delete()) {
             $message = 'Machine ID '.$machine->id.' deleted.';
             Log::notice($message);
 

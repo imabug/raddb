@@ -17,6 +17,7 @@ class OpNoteController extends Controller
       */
      public function __construct()
      {
+         // Only include these methods in the auth middlware
          $this->middleware('auth')->only([
              'store',
              'update',
@@ -35,31 +36,37 @@ class OpNoteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating an operational note for machine $id.
+     * URI: /opnotes/create
+     * Method: GET
+     *
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
     public function create($id = null)
     {
         if (is_null($id)) {
-            $machineID = null;
+            // No machine was specified. Pull a list of active machines to use in the form
             $machines = Machine::active()->get();
             $opNotes = null;
         } else {
-            $machineID = $id;
-            $machines = Machine::find($machineID);
-            $opNotes = OpNote::where('machine_id', $machineID)->get();
+            // A machine was specified. Pull the machine model and any existing operational notes
+            $machines = Machine::find($id);
+            $opNotes = OpNote::where('machine_id', $id)->get();
         }
 
         return view('opnotes.opnote_create', [
-            'machineID' => $machineID,
+            'machineID' => $id,
             'machines' => $machines,
             'opNotes' => $opNotes,
         ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new operational note.
+     * URI: /opnotes
+     * Method: POST
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -74,8 +81,7 @@ class OpNoteController extends Controller
         $opNote->machine_id = $request->machineId;
         $opNote->note = $request->note;
 
-        $saved = $opNote->save();
-        if ($saved) {
+        if ($opNote->save()) {
             $message = 'Operational note '.$opNote->id.' added.';
             Log::info($message);
 
@@ -91,7 +97,9 @@ class OpNoteController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display operational notes for machine $id.
+     * URI: /opnotes/$id
+     * Method: GET
      *
      * @param int $id
      *
@@ -99,17 +107,16 @@ class OpNoteController extends Controller
      */
     public function show($id)
     {
-        $machine = Machine::find($id);
-        $opNotes = OpNote::where('machine_id', $id)->get();
-
         return view('opnotes.opnote_show', [
-            'machine' => $machine,
-            'opNotes' => $opNotes,
+            'machine' => Machine::find($id),
+            'opNotes' => OpNote::where('machine_id', $id)->get(),
         ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing an operational note.
+     * URI: /opnotes/$id/edit
+     * Method: GET
      *
      * @param int $id
      *
@@ -117,15 +124,15 @@ class OpNoteController extends Controller
      */
     public function edit($id)
     {
-        $opNote = OpNote::find($id);
-
         return view('opnotes.opnote_edit', [
-            'opNote' => $opNote,
+            'opNote' => OpNote::find($id),
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the operational note.
+     * URI: /opnotes/$id
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
@@ -140,8 +147,7 @@ class OpNoteController extends Controller
         $opNote = OpNote::find($id);
         $opNote->note = $request->note;
 
-        $saved = $opNote->save();
-        if ($saved) {
+        if ($opNote->save()) {
             $message = 'Operational note '.$opNote->id.' updated.';
             Log::info($message);
 

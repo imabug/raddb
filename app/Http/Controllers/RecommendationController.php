@@ -18,6 +18,7 @@ class RecommendationController extends Controller
       */
      public function __construct()
      {
+         // Only include these methods in the auth middlware
          $this->middleware('auth')->only([
              'store',
              'update',
@@ -105,10 +106,8 @@ class RecommendationController extends Controller
 
             // If a service report was uploaded, handle it
             // This breaks the way service reports were handled in the previous version. Deal with it.
-
             if ($request->hasFile('ServiceReport')) {
-                $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
-                $recommendation->service_report_path = $serviceReportPath;
+                $recommendation->service_report_path = $request->ServiceReport->store('public/ServiceReports');
             }
         } else {
             // If the recommendation was not marked as resolved, ignore the rest of the fields
@@ -117,8 +116,7 @@ class RecommendationController extends Controller
             $recommendation->rec_add_ts = date('Y-m-d H:i:s');
         }
 
-        $saved = $recommendation->save();
-        if ($saved) {
+        if ($recommendation->save()) {
             $message = 'Recommendation '.$recommendation->id.' added.';
             Log::info($message);
 
@@ -179,18 +177,11 @@ class RecommendationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $surveyID)
+    public function update(UpdateRecommendationRequest $request, $surveyID)
     {
         // Check if action is allowed
         $this->authorize(Recommendation::class);
 
-        $this->validate($request, [
-            'recID'          => 'array',
-            'WONum'          => 'string|max:20',
-            'RecResolveDate' => 'required|date_format:Y-m-d|max:10',
-            'ResolvedBy'     => 'string|max:10',
-            'ServiceReport'  => 'file|mimes:pdf',
-        ]);
         $resolved = $request->recID;
         $recResolveDate = $request->RecResolveDate;
 
@@ -211,14 +202,12 @@ class RecommendationController extends Controller
 
             // If a service report was uploaded, handle it
             // This breaks the way service reports were handled in the previous version. Deal with it.
-
             if ($request->hasFile('ServiceReport')) {
                 $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
                 $recommendation->service_report_path = $serviceReportPath;
             }
 
-            $saved = $recommendation->save();
-            if ($saved) {
+            if ($recommendation->save()) {
                 $message = 'Recommendation '.$recommendation->id.' edited.';
                 Log::info($message);
             }

@@ -20,4 +20,9 @@ class ThisYear extends Model
     {
         return $this->belongsTo('RadDB\Machine');
     }
+
+    public function survey()
+    {
+        return $this->belongsTo('RadDB\TestDate');
+    }
 }

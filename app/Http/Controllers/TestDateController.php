@@ -19,6 +19,7 @@ class TestDateController extends Controller
       */
      public function __construct()
      {
+         // Only use these methods with the auth middlware
          $this->middleware('auth')->only([
              'store',
              'update',
@@ -46,9 +47,7 @@ class TestDateController extends Controller
      */
     public function getSurveyReportPath($id)
     {
-        $surveyReportPath = TestDate::select('report_file_path')->findOrFail($id);
-
-        return $surveyReportPath;
+        return TestDate::select('report_file_path')->findOrFail($id);
     }
 
     /**
@@ -64,11 +63,6 @@ class TestDateController extends Controller
      */
     public function create($machineId = null)
     {
-        $testers = Tester::select('id', 'initials')
-            ->get();
-        $testtypes = TestType::select('id', 'test_type')
-            ->get();
-
         if (is_null($machineId)) {
             $machines = Machine::select('id', 'description')
                 ->active()
@@ -81,8 +75,8 @@ class TestDateController extends Controller
 
         return view('surveys.surveys_create', [
             'id'        => $machineId,
-            'testers'   => $testers,
-            'testtypes' => $testtypes,
+            'testers'   => Tester::get(),
+            'testtypes' => TestType::get(),
             'machines'  => $machines,
         ]);
     }
@@ -106,10 +100,10 @@ class TestDateController extends Controller
         $testdate->test_date = $request->test_date;
         $testdate->machine_id = $request->machineID;
         $testdate->tester1_id = $request->tester1ID;
-        if (! empty($request->tester2ID)) {
-            $testdate->tester2_id = $request->tester2ID;
-        } else {
+        if (empty($request->tester2ID)) {
             $testdate->tester2_id = 10;
+        } else {
+            $testdate->tester2_id = $request->tester2ID;
         }
         $testdate->type_id = $request->test_type;
         if (! empty($request->notes)) {
@@ -119,8 +113,7 @@ class TestDateController extends Controller
             $testdate->accession = $request->accession;
         }
 
-        $saved = $testdate->save();
-        if ($saved) {
+        if ($testdate->save()) {
             $message = 'Survey '.$testdate->id.' added.';
             Log::info($message);
 
@@ -153,30 +146,15 @@ class TestDateController extends Controller
      */
     public function edit($surveyId)
     {
-        $testers = Tester::select('id', 'initials')
-            ->get();
-        $testtypes = TestType::select('id', 'test_type')
-            ->get();
-
-        // Retrieve survey information for $id
-        $survey = TestDate::find($surveyId);
-        $machine = Machine::find($survey->machine_id);
-        $tester1 = Tester::find($survey->tester1_id);
-        if ($survey->tester2_id != 0) {
-            $tester2 = Tester::find($survey->tester2_id);
-        } else {
-            $tester2 = null;
-        }
-        $testtype = TestType::find($survey->type_id);
-
+        // Return survey information for $id
         return view('surveys.surveys_edit', [
-            'survey'    => $survey,
-            'machine'   => $machine,
-            'tester1'   => $tester1,
-            'tester2'   => $tester2,
-            'testtype'  => $testtype,
-            'testers'   => $testers,
-            'testtypes' => $testtypes,
+            'survey'    => TestDate::findOrFail($surveyId),
+            'machine'   => Machine::findOrFail($survey->machine_id),
+            'tester1'   => Tester::findOrFail($survey->tester1_id),
+            'tester2'   => Tester::find($survey->tester2_id),
+            'testtype'  => TestType::find($survey->type_id),
+            'testers'   => Tester::get(),
+            'testtypes' => TestType::get(),
         ]);
     }
 
@@ -213,8 +191,7 @@ class TestDateController extends Controller
             $testdate->accession = $request->accession;
         }
 
-        $saved = $testdate->save();
-        if ($saved) {
+        if ($testdate->save()) {
             $message = 'Survey '.$testdate->id.' edited.';
             Log::info($message);
 
@@ -253,28 +230,21 @@ class TestDateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function storeSurveyReport(Request $request)
+    public function storeSurveyReport(StoreSurveyReport $request)
     {
         // Check if action is allowed
         $this->authorize(TestDate::class);
-
-        $this->validate($request, [
-            'surveyId'     => 'required||exists:testdates,id|integer',
-            'surveyReport' => 'required|file|mimes:pdf',
-        ]);
 
         $testdate = TestDate::find($request->surveyId);
 
         // Handle the uploaded file
         // This breaks the way service reports were handled in the previous version. Deal with it.
-
         if ($request->hasFile('surveyReport')) {
-            $surveyReportPath = $request->surveyReport->store('public/SurveyReports');
-            $testdate->report_file_path = $surveyReportPath;
+            $testdate->report_file_path = $request->surveyReport->store('public/SurveyReports');
         }
 
-        $saved = $testdate->save();
-        if ($saved) {
+        $saved = ;
+        if ($testdate->save()) {
             $message = 'Survey report for survey '.$testdate->id.' stored.';
             Log::info($message);
 

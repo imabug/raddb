@@ -16,6 +16,7 @@ class TestEquipmentController extends Controller
       */
      public function __construct()
      {
+         // Only use middlware auth on these methods
          $this->middleware('auth')->only([
              'store',
              'update',
@@ -24,16 +25,15 @@ class TestEquipmentController extends Controller
      }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of test equipment.
+     * URI: /testequipment/
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $testEquipment = Machine::active()->testEquipment()->get();
-
         return view('machine.index', [
-            'machines' => $testEquipment,
+            'machines' => Machine::active()->testEquipment()->get(),
         ]);
     }
 
@@ -70,9 +70,10 @@ class TestEquipmentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a list of test equipment with the most recent calibration dates.
+     * URI: /testequipment/caldates
+     * Method: GET
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function showCalDates()

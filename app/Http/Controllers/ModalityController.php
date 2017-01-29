@@ -16,6 +16,7 @@ class ModalityController extends Controller
       */
      public function __construct()
      {
+         // Exclude these methods from the auth middlware
          $this->middleware('auth')->except([
              'showModality',
              'showModalityIndex',
@@ -23,17 +24,14 @@ class ModalityController extends Controller
      }
 
     /**
-     * Display a listing of the resource.
+     * Show a list of the modalities.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Show a list of the modalities
-        $modalities = Modality::get();
-
         return view('admin.modalities_index', [
-            'modalities' => $modalities,
+            'modalities' => Modality::get(),
         ]);
     }
 
@@ -60,8 +58,7 @@ class ModalityController extends Controller
 
         $modality = new Modality();
         $modality->modality = $request->modality;
-        $saved = $modality->save();
-        if ($saved) {
+        if ($modality->save()) {
             $message = 'Modality '.$modality->modality.' added.';
             Log::info($message);
         }
@@ -138,10 +135,8 @@ class ModalityController extends Controller
      */
     public function edit($id)
     {
-        $modality = Modality::findOrFail($id);
-
         return view('admin.modalities_edit', [
-            'modality' => $modality,
+            'modality' => Modality::findOrFail($id),
         ]);
     }
 
@@ -164,8 +159,7 @@ class ModalityController extends Controller
 
         $modality->modality = $request->modality;
 
-        $saved = $modality->save();
-        if ($saved) {
+        if ($modality->save()) {
             $message = 'Modality '.$modality->id.' edited.';
             Log::info($message);
         }
@@ -187,8 +181,7 @@ class ModalityController extends Controller
 
         $modality = Modality::find($id);
 
-        $deleted = $modality->delete();
-        if ($deleted) {
+        if ($modality->delete()) {
             $message = 'Modality '.$modality->id.' deleted.';
             Log::notice($message);
         }

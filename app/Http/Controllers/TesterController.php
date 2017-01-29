@@ -19,17 +19,16 @@ class TesterController extends Controller
      }
 
     /**
-     * Display a listing of the resource.
+     * Show a list of the testers.
+     * URI: /admin/testers
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Show a list of the locations
-        $testers = Tester::get();
-
         return view('admin.testers_index', [
-            'testers' => $testers,
+            'testers' => Tester::get(),
         ]);
     }
 
@@ -44,6 +43,8 @@ class TesterController extends Controller
 
     /**
      * Add a new tester to the database.
+     * URI: /admin/testers
+     * Method: POST
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -57,8 +58,7 @@ class TesterController extends Controller
         $tester = new Tester();
         $tester->name = $request->name;
         $tester->initials = $request->initials;
-        $saved = $tester->save();
-        if ($saved) {
+        if ($tester->save()) {
             $message = 'Tester '.$tester->name.' added.';
             Log::info($message);
         }
@@ -89,10 +89,8 @@ class TesterController extends Controller
      */
     public function edit($id)
     {
-        $tester = Tester::findOrFail($id);
-
         return view('admin.testers_edit', [
-            'tester' => $tester,
+            'tester' => Tester::findOrFail($id),
         ]);
     }
 
@@ -116,8 +114,7 @@ class TesterController extends Controller
         $tester->name = $request->name;
         $tester->initials = $request->initials;
 
-        $saved = $tester->save();
-        if ($saved) {
+        if ($tester->save()) {
             $message = 'Tester ID '.$tester->id.' edited.';
             Log::info($message);
         }
@@ -127,6 +124,8 @@ class TesterController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * URI: /admin/testers/$id
+     * Method: DELETE
      *
      * @param int $id
      *
@@ -139,8 +138,7 @@ class TesterController extends Controller
 
         $tester = Tester::find($id);
 
-        $deleted = $tester->delete();
-        if ($deleted) {
+        if ($tester->delete()) {
             $message = 'Tester ID '.$tester->id.' deleted.';
             Log::notice($message);
         }

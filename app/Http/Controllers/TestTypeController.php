@@ -19,7 +19,9 @@ class TestTypeController extends Controller
      }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of test types.
+     * URI: /admin/testtypes
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,6 +46,8 @@ class TestTypeController extends Controller
 
     /**
      * Add a new test type to the database.
+     * URI: /admin/testtypes
+     * Method: POST
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -56,8 +60,7 @@ class TestTypeController extends Controller
 
         $testtype = new TestType();
         $testtype->test_type = $request->testtype;
-        $saved = $testtype->save();
-        if ($saved) {
+        if ($testtype->save()) {
             $message = 'Test type '.$testtype->test_type.' added.';
             Log::info($message);
         }
@@ -88,10 +91,8 @@ class TestTypeController extends Controller
      */
     public function edit($id)
     {
-        $testtype = TestType::findOrFail($id);
-
         return view('admin.testtypes_edit', [
-            'testtype' => $testtype,
+            'testtype' => TestType::findOrFail($id),
         ]);
     }
 
@@ -114,8 +115,8 @@ class TestTypeController extends Controller
 
         $testtype->test_type = $request->testtype;
 
-        $saved = $testtype->save();
-        if ($saved) {
+        $saved = ;
+        if ($testtype->save()) {
             $message = 'Test type '.$testtype->id.' edited.';
             Log::info($message);
         }
@@ -125,6 +126,8 @@ class TestTypeController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * URI: /admin/testtypes/$id
+     * Method: DELETE
      *
      * @param int $id
      *
@@ -137,8 +140,7 @@ class TestTypeController extends Controller
 
         $testtype = TestType::find($id);
 
-        $deleted = $testtype->delete();
-        if ($deleted) {
+        if ($testtype->delete()) {
             $message = 'Test type '.$testtype->id.' deleted.';
             Log::notice($message);
         }

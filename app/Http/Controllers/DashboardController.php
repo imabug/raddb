@@ -15,6 +15,8 @@ class DashboardController extends Controller
      * Main index page.
      * Display list of machines that need to be surveyed, pending
      * surveys and the survey schedule.
+     * URI: /
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -50,15 +52,11 @@ class DashboardController extends Controller
      */
     public function untested()
     {
-        /* Get the list of machines that still need to be surveyed
-            select machines.id, machines.description from machines
-            where machines.machine_status="Active" and machines.id not in
-            (select testdates.machine_id from testdates
-            where year(testdates.test_date) = $currYear);
-        */
+        // Collection of machines that have already been tested
         $currSurveys = TestDate::select('machine_id')
             ->year(date('Y'))
             ->get();
+        // Untested machines are the ones that aren't in the above list
         $untested = Machine::select('id', 'description')
             ->active()
             ->whereNotIn('id', $currSurveys->toArray())
@@ -79,12 +77,6 @@ class DashboardController extends Controller
      */
     public function pending()
     {
-        /* Get the list of pending surveys
-            select testdates.id,machines.description,testdates.test_date,
-            testdates.accession, testdates.notes from testdates
-            left join machines on testdates.machine_id=machines.id
-            where testdates.test_date > CURDATE();
-        */
         $pending = TestDate::select('testdates.id as surveyId',
                 'machines.id as machineId',
                 'machines.description',
@@ -137,21 +129,19 @@ class DashboardController extends Controller
     /**
      * Display a bar chart showing the count of surveys per month for the specified year.
      * Uses the ConsoleTVs/Charts package from https://erik.cat/projects/Charts.
+     * URI: /dashboard/surveyGraph
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
     public function surveyGraph(Request $request)
     {
-        if (isset($request->yr)) {
-            $yr = $request->yr;
-        } else {
-            $yr = Carbon::now()->year;
-        }
-
+        // Get a list of all the years there are surveys for
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
             ->orderBy('years', 'desc')
             ->get();
+        // Create a bar chart for each year
         foreach ($years as $y) {
             $yearCharts[$y->years] = Charts::database(TestDate::year($y->years)->get(), 'bar', 'google')
                 ->dateColumn('test_date')
@@ -160,6 +150,7 @@ class DashboardController extends Controller
                 ->dimensions(1000, 700)
                 ->groupByMonth($y->years, true);
         }
+        // Create a bar chart showing total number of surveys done in each year
         $allYears = Charts::database(TestDate::get(), 'bar', 'google')
             ->dateColumn('test_date')
             ->title('Survey count for all years')
@@ -170,7 +161,6 @@ class DashboardController extends Controller
         return view('dashboard.survey_graph', [
             'yearCharts' => $yearCharts,
             'allYears' => $allYears,
-            'years' => $years,
         ]);
     }
 
@@ -179,6 +169,8 @@ class DashboardController extends Controller
      * Each machine is displayed in a table showing machine description,
      * survey date and colour coded based on test status. Machines are
      * grouped by modality.
+     * URI: /dashboard
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -231,6 +223,8 @@ class DashboardController extends Controller
 
     /**
      * Show grid of untested machines.
+     * URI: /dashboard/showUntested
+     * Method: GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -248,28 +242,31 @@ class DashboardController extends Controller
     }
 
     /**
+     * Show the list of pending surveys
+     * URI: /dashboard/showPending
+     * Method: GET
+     *
      * @return \Illuminate\Http\Response
      */
     public function showPending()
     {
-        // Get the list of pending surveys
-        $pendingSurveys = $this->pending();
-
         return view('dashboard.pending', [
-            'pendingSurveys'   => $pendingSurveys,
+            'pendingSurveys'   => $this->pending(),
         ]);
     }
 
     /**
+     * Show the survey schedule for the year
+     * URI: /dashboard/showSchedule
+     * Method: GET
+     *
      * @return \Illuminate\Http\Response
      */
     public function showSchedule()
     {
         // Get the list of machines and their surveys for this year and the previous year
-        $surveySchedule = $this->surveySchedule();
-
         return view('dashboard.survey_schedule', [
-            'surveySchedule'   => $surveySchedule,
+            'surveySchedule'   => $this->surveySchedule(),
         ]);
     }
 

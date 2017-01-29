@@ -16,6 +16,7 @@ class ManufacturerController extends Controller
       */
      public function __construct()
      {
+         // Exclude these methods from the auth middlware
          $this->middleware('auth')->except([
              'showManufacturer',
              'showManufacturerIndex',
@@ -23,17 +24,14 @@ class ManufacturerController extends Controller
      }
 
     /**
-     * Display a listing of the resource.
+     * Show a list of the manufacturers
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Show a list of the manufacturers
-        $manufacturers = Manufacturer::get();
-
         return view('admin.manufacturers_index', [
-            'manufacturers' => $manufacturers,
+            'manufacturers' => Manufacturer::get(),
         ]);
     }
 
@@ -49,6 +47,8 @@ class ManufacturerController extends Controller
 
     /**
      * Add a new manufacturer to the database.
+     * URI: /admin/manufacturers
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -61,8 +61,7 @@ class ManufacturerController extends Controller
 
         $manufacturer = new Manufacturer();
         $manufacturer->manufacturer = $request->manufacturer;
-        $saved = $manufacturer->save();
-        if ($saved) {
+        if ($manufacturer->save()) {
             $message = 'Manufacturer '.$manufacturer->manufacturer.' added.';
             Log::info($message);
         }
@@ -139,10 +138,8 @@ class ManufacturerController extends Controller
      */
     public function edit($id)
     {
-        $manufacturer = Manufacturer::findOrFail($id);
-
         return view('admin.manufacturers_edit', [
-            'manufacturer' => $manufacturer,
+            'manufacturer' => Manufacturer::findOrFail($id),
         ]);
     }
 
@@ -165,8 +162,7 @@ class ManufacturerController extends Controller
 
         $manufacturer->manufacturer = $request->manufacturer;
 
-        $saved = $manufacturer->save();
-        if ($saved) {
+        if ($manufacturer->save()) {
             $message = 'Manufacturer '.$manufacturer->id.' edited.';
             Log::info($message);
         }
@@ -188,8 +184,7 @@ class ManufacturerController extends Controller
 
         $manufacturer = Manufacturer::find($id);
 
-        $deleted = $manufacturer->delete();
-        if ($deleted) {
+        if ($manufacturer->delete()) {
             $message = 'Manufacturer '.$manufacturer->id.' deleted.';
             Log::notice($message);
         }

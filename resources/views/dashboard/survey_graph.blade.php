@@ -8,10 +8,10 @@
         <p>{!! $allYears->render() !!}</p>
     </div>
 </div>
-@foreach ($yearCharts as $ych)
+@foreach ($yearCharts as $yearChart)
 <div class="panel panel-default">
     <div class="panel-body">
-        <p>{!! $ych->render() !!}</p>
+        <p>{!! $yearChart->render() !!}</p>
     </div>
 </div>
 @endforeach
