@@ -21,7 +21,7 @@ class TestTypeController extends Controller
     /**
      * Display a listing of test types.
      * URI: /admin/testtypes
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -47,7 +47,7 @@ class TestTypeController extends Controller
     /**
      * Add a new test type to the database.
      * URI: /admin/testtypes
-     * Method: POST
+     * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -126,7 +126,7 @@ class TestTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      * URI: /admin/testtypes/$id
-     * Method: DELETE
+     * Method: DELETE.
      *
      * @param int $id
      *

@@ -24,7 +24,7 @@ class ManufacturerController extends Controller
      }
 
     /**
-     * Show a list of the manufacturers
+     * Show a list of the manufacturers.
      *
      * @return \Illuminate\Http\Response
      */
@@ -48,7 +48,7 @@ class ManufacturerController extends Controller
     /**
      * Add a new manufacturer to the database.
      * URI: /admin/manufacturers
-     * Method: PUT
+     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
      *

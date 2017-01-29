@@ -90,7 +90,7 @@ class MachineController extends Controller
      }
 
      /**
-      * Return a collection of x-ray tubes for machine $id
+      * Return a collection of x-ray tubes for machine $id.
       *
       * @param int $id
       *
@@ -259,7 +259,7 @@ class MachineController extends Controller
     /**
      * Remove machine $id and associated tubes from the database
      * URI: /machines/$id
-     * Method: DELETE
+     * Method: DELETE.
      *
      * @param int $id
      *

@@ -21,7 +21,7 @@ class TesterController extends Controller
     /**
      * Show a list of the testers.
      * URI: /admin/testers
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,7 +44,7 @@ class TesterController extends Controller
     /**
      * Add a new tester to the database.
      * URI: /admin/testers
-     * Method: POST
+     * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -125,7 +125,7 @@ class TesterController extends Controller
     /**
      * Remove the specified resource from storage.
      * URI: /admin/testers/$id
-     * Method: DELETE
+     * Method: DELETE.
      *
      * @param int $id
      *
