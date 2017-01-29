@@ -2,7 +2,6 @@
 
 namespace RadDB\Http\Controllers;
 
-use Carbon\Carbon;
 use RadDB\Machine;
 use RadDB\TestDate;
 use Illuminate\Http\Request;
@@ -26,7 +25,7 @@ class TestEquipmentController extends Controller
 
     /**
      * Display a listing of test equipment.
-     * URI: /testequipment/
+     * URI: /testequipment/.
      *
      * @return \Illuminate\Http\Response
      */
@@ -72,7 +71,7 @@ class TestEquipmentController extends Controller
     /**
      * Display a list of test equipment with the most recent calibration dates.
      * URI: /testequipment/caldates
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
