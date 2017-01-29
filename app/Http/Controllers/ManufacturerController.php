@@ -4,8 +4,8 @@ namespace RadDB\Http\Controllers;
 
 use RadDB\Machine;
 use RadDB\Manufacturer;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\ManufacturerRequest;
 
 class ManufacturerController extends Controller
 {
@@ -54,11 +54,10 @@ class ManufacturerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ManufacturerRequest $request)
     {
-        $this->validate($request, [
-            'manufacturer' => 'required|string|max:20',
-        ]);
+        // Check if action is allowed
+        $this->authorize(Manufacturer::class);
 
         $manufacturer = new Manufacturer();
         $manufacturer->manufacturer = $request->manufacturer;
@@ -157,11 +156,10 @@ class ManufacturerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ManufacturerRequest $request, $id)
     {
-        $this->validate($request, [
-            'manufacturer' => 'required|string|max:20',
-        ]);
+        // Check if action is allowed
+        $this->authorize(Manufacturer::class);
 
         $manufacturer = Manufacturer::find($id);
 
@@ -185,6 +183,9 @@ class ManufacturerController extends Controller
      */
     public function destroy($id)
     {
+        // Check if action is allowed
+        $this->authorize(Manufacturer::class);
+
         $manufacturer = Manufacturer::find($id);
 
         $deleted = $manufacturer->delete();

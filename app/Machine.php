@@ -154,6 +154,17 @@ class Machine extends Model
         return $query->where('manufacturer_id', $id);
     }
 
+    /**
+     * Scope function to return test equipment.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int                                   $id
+     */
+    public function scopeTestEquipment($query)
+    {
+        return $query->where('modality_id', 19);
+    }
+
     /*
      * Mutators
      */

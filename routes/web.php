@@ -26,13 +26,14 @@ Route::get('/dashboard/showUntested', 'DashboardController@showUntested')->name(
 Route::get('/dashboard/showPending', 'DashboardController@showPending')->name('dashboard.showPending');
 Route::get('/dashboard/showSchedule', 'DashboardController@showSchedule')->name('dashboard.showSchedule');
 // Count of surveys per month for year $yr
-Route::get('/surveyGraph/{yr?}', 'DashboardController@surveyGraph')->name('dashboard.surveyGraph');
+Route::get('/dashboard/surveyGraph', 'DashboardController@surveyGraph')->name('dashboard.surveyGraph');
 
 /*
  * Machine controller
  */
 Route::resource('machines', 'MachineController');
-
+Route::get('/testequipment/caldates', 'TestEquipmentController@showCalDates')->name('testequipment.showCalDates');
+Route::resource('testequipment', 'TestEquipmentController');
 Route::resource('contacts', 'ContactController');
 Route::resource('gendata', 'GenDataController');
 Route::resource('opnotes', 'OpNoteController');

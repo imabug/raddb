@@ -11,6 +11,20 @@ use RadDB\Http\Requests\UpdateTubeRequest;
 class TubeController extends Controller
 {
     /**
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
+     public function __construct()
+     {
+         $this->middleware('auth')->only([
+             'store',
+             'update',
+             'destroy',
+         ]);
+     }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -56,6 +70,9 @@ class TubeController extends Controller
      */
     public function store(UpdateTubeRequest $request)
     {
+        // Check if action is allowed
+        $this->authorize(Tube::class);
+
         $tube = new Tube();
         $tube->machine_id = $request->machine;
         $tube->housing_model = $request->hsgModel;
@@ -151,6 +168,9 @@ class TubeController extends Controller
      */
     public function update(UpdateTubeRequest $request, $id)
     {
+        // Check if action is allowed
+        $this->authorize(Tube::class);
+
         // Retrieve the model for the t ube to be edited
         $tube = Tube::find($id);
 

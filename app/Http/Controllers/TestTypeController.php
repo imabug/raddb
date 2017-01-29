@@ -3,8 +3,8 @@
 namespace RadDB\Http\Controllers;
 
 use RadDB\TestType;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\TestTypeRequest;
 
 class TestTypeController extends Controller
 {
@@ -49,11 +49,10 @@ class TestTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TestTypeRequest $request)
     {
-        $this->validate($request, [
-            'testtype' => 'required|string|max:30',
-        ]);
+        // Check if action is allowed
+        $this->authorize(TestType::class);
 
         $testtype = new TestType();
         $testtype->test_type = $request->testtype;
@@ -106,11 +105,10 @@ class TestTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TestTypeRequest $request, $id)
     {
-        $this->validate($request, [
-            'testtype' => 'required|string|max:30',
-        ]);
+        // Check if action is allowed
+        $this->authorize(TestType::class);
 
         $testtype = TestType::find($id);
 
@@ -134,6 +132,9 @@ class TestTypeController extends Controller
      */
     public function destroy($id)
     {
+        // Check if action is allowed
+        $this->authorize(TestType::class);
+
         $testtype = TestType::find($id);
 
         $deleted = $testtype->delete();

@@ -2,10 +2,28 @@
 
 namespace RadDB\Http\Controllers;
 
-use Illuminate\Http\Request;
+use RadDB\OpNote;
+use RadDB\Machine;
+use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\OpNoteStoreRequest;
+use RadDB\Http\Requests\OpNoteUpdateRequest;
 
 class OpNoteController extends Controller
 {
+    /**
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
+     public function __construct()
+     {
+         $this->middleware('auth')->only([
+             'store',
+             'update',
+             'destroy',
+         ]);
+     }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +39,23 @@ class OpNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id = null)
     {
-        //
+        if (is_null($id)) {
+            $machineID = null;
+            $machines = Machine::active()->get();
+            $opNotes = null;
+        } else {
+            $machineID = $id;
+            $machines = Machine::find($machineID);
+            $opNotes = OpNote::where('machine_id', $machineID)->get();
+        }
+
+        return view('opnotes.opnote_create', [
+            'machineID' => $machineID,
+            'machines' => $machines,
+            'opNotes' => $opNotes,
+        ]);
     }
 
     /**
@@ -33,9 +65,29 @@ class OpNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OpNoteStoreRequest $request)
     {
-        //
+        // Check if action is allowed
+        $this->authorize(OpNote::class);
+
+        $opNote = new OpNote();
+        $opNote->machine_id = $request->machineId;
+        $opNote->note = $request->note;
+
+        $saved = $opNote->save();
+        if ($saved) {
+            $message = 'Operational note '.$opNote->id.' added.';
+            Log::info($message);
+
+            $status = 'success';
+            $message = 'Operational note added';
+        } else {
+            $status = 'fail';
+            $message = 'Error adding operational note';
+        }
+
+        return redirect()->route('opnotes.show', $opNote->machine_id)
+            ->with($status, $message);
     }
 
     /**
@@ -47,7 +99,13 @@ class OpNoteController extends Controller
      */
     public function show($id)
     {
-        //
+        $machine = Machine::find($id);
+        $opNotes = OpNote::where('machine_id', $id)->get();
+
+        return view('opnotes.opnote_show', [
+            'machine' => $machine,
+            'opNotes' => $opNotes,
+        ]);
     }
 
     /**
@@ -59,7 +117,11 @@ class OpNoteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $opNote = OpNote::find($id);
+
+        return view('opnotes.opnote_edit', [
+            'opNote' => $opNote,
+        ]);
     }
 
     /**
@@ -70,9 +132,28 @@ class OpNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OpNoteUpdateRequest $request, $id)
     {
-        //
+        // Check if action is allowed
+        $this->authorize(OpNote::class);
+
+        $opNote = OpNote::find($id);
+        $opNote->note = $request->note;
+
+        $saved = $opNote->save();
+        if ($saved) {
+            $message = 'Operational note '.$opNote->id.' updated.';
+            Log::info($message);
+
+            $status = 'success';
+            $message = 'Operational note updated';
+        } else {
+            $status = 'fail';
+            $message = 'Error updating operational note';
+        }
+
+        return redirect()->route('opnotes.show', $opNote->machine_id)
+            ->with($status, $message);
     }
 
     /**

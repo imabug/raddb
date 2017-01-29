@@ -14,6 +14,20 @@ use RadDB\Http\Requests\UpdateMachineRequest;
 class MachineController extends Controller
 {
     /**
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
+     public function __construct()
+     {
+         $this->middleware('auth')->only([
+             'store',
+             'update',
+             'destroy',
+         ]);
+     }
+
+    /**
      * Display a listing of all active machines.
      * URI: /machines
      * Method: GET.
@@ -136,6 +150,9 @@ class MachineController extends Controller
      */
     public function store(UpdateMachineRequest $request)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $machine = new Machine();
         $machine->modality_id = $request->modality;
         $machine->description = $request->description;
@@ -250,6 +267,9 @@ class MachineController extends Controller
      */
     public function update(UpdateMachineRequest $request, $id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         // Retrieve the model for the machine to be edited
         $machine = Machine::find($id);
 
@@ -296,6 +316,9 @@ class MachineController extends Controller
      */
     public function destroy($id)
     {
+        // Check if action is allowed
+        $this->authorize(Machine::class);
+
         $machine = Machine::find($id);
 
         // Retrieve tubes associated with this machine

@@ -13,6 +13,21 @@ use RadDB\Http\Requests\UpdateTestDateRequest;
 class TestDateController extends Controller
 {
     /**
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
+     public function __construct()
+     {
+         $this->middleware('auth')->only([
+             'store',
+             'update',
+             'destroy',
+             'storeSurveyReport',
+         ]);
+     }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -83,8 +98,8 @@ class TestDateController extends Controller
      */
     public function store(UpdateTestDateRequest $request)
     {
-        $this->validate($request, [
-        ]);
+        // Check if action is allowed
+        $this->authorize(TestDate::class);
 
         $testdate = new TestDate();
 
@@ -177,8 +192,8 @@ class TestDateController extends Controller
      */
     public function update(UpdateTestDateRequest $request, $surveyId)
     {
-        $this->validate($request, [
-        ]);
+        // Check if action is allowed
+        $this->authorize(TestDate::class);
 
         $testdate = TestDate::find($surveyId);
 
@@ -240,6 +255,9 @@ class TestDateController extends Controller
      */
     public function storeSurveyReport(Request $request)
     {
+        // Check if action is allowed
+        $this->authorize(TestDate::class);
+
         $this->validate($request, [
             'surveyId'     => 'required||exists:testdates,id|integer',
             'surveyReport' => 'required|file|mimes:pdf',

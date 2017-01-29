@@ -4,8 +4,8 @@ namespace RadDB\Http\Controllers;
 
 use RadDB\Machine;
 use RadDB\Modality;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\ModalityRequest;
 
 class ModalityController extends Controller
 {
@@ -53,11 +53,10 @@ class ModalityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ModalityRequest $request)
     {
-        $this->validate($request, [
-            'modality' => 'required|string|max:25',
-        ]);
+        // Check if action is allowed
+        $this->authorize(Modality::class);
 
         $modality = new Modality();
         $modality->modality = $request->modality;
@@ -156,11 +155,10 @@ class ModalityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModalityRequest $request, $id)
     {
-        $this->validate($request, [
-            'modality' => 'required|string|max:20',
-        ]);
+        // Check if action is allowed
+        $this->authorize(Modality::class);
 
         $modality = Modality::find($id);
 
@@ -184,6 +182,9 @@ class ModalityController extends Controller
      */
     public function destroy($id)
     {
+        // Check if action is allowed
+        $this->authorize(Modality::class);
+
         $modality = Modality::find($id);
 
         $deleted = $modality->delete();
