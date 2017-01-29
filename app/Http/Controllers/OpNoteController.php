@@ -38,7 +38,7 @@ class OpNoteController extends Controller
     /**
      * Show the form for creating an operational note for machine $id.
      * URI: /opnotes/create
-     * Method: GET
+     * Method: GET.
      *
      * @param int $id
      *
@@ -66,7 +66,7 @@ class OpNoteController extends Controller
     /**
      * Store a new operational note.
      * URI: /opnotes
-     * Method: POST
+     * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -99,7 +99,7 @@ class OpNoteController extends Controller
     /**
      * Display operational notes for machine $id.
      * URI: /opnotes/$id
-     * Method: GET
+     * Method: GET.
      *
      * @param int $id
      *
@@ -116,7 +116,7 @@ class OpNoteController extends Controller
     /**
      * Show the form for editing an operational note.
      * URI: /opnotes/$id/edit
-     * Method: GET
+     * Method: GET.
      *
      * @param int $id
      *
@@ -132,7 +132,7 @@ class OpNoteController extends Controller
     /**
      * Update the operational note.
      * URI: /opnotes/$id
-     * Method: PUT
+     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
