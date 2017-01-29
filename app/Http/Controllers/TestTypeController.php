@@ -115,7 +115,6 @@ class TestTypeController extends Controller
 
         $testtype->test_type = $request->testtype;
 
-        $saved = ;
         if ($testtype->save()) {
             $message = 'Test type '.$testtype->id.' edited.';
             Log::info($message);

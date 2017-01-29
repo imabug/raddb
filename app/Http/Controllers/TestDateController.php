@@ -243,7 +243,6 @@ class TestDateController extends Controller
             $testdate->report_file_path = $request->surveyReport->store('public/SurveyReports');
         }
 
-        $saved = ;
         if ($testdate->save()) {
             $message = 'Survey report for survey '.$testdate->id.' stored.';
             Log::info($message);
