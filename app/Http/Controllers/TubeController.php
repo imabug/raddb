@@ -99,10 +99,10 @@ class TubeController extends Controller
             $message = 'New tube saved for machine: '.$tube->machine_id.'.';
             Log::info($message);
 
-            return redirect()->route('tubes.createTubeFor', $request->machine)
+            return redirect()->route('machines.show', $tube->machine_id)
                 ->with('success', 'New tube added');
         } else {
-            return redirect()->route('tubes.createTubeFor', $request->machine)
+            return redirect()->route('machines.show', $tube->machine_id)
                 ->with('fail', 'Error adding new tube');
         }
     }
