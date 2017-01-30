@@ -83,9 +83,6 @@
                         <a href="{{ route('tubes.edit', $tube->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ route('tubes.createTubeFor', $machine->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Add new tube">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </a>
 						<button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this tube">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
