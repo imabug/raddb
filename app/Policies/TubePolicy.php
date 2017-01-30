@@ -60,6 +60,6 @@ class TubePolicy
      */
     public function delete(User $user, Tube $tube)
     {
-        //
+        return Auth::check();
     }
 }
