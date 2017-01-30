@@ -161,7 +161,7 @@ class MachineController extends Controller
             return redirect()->route('tubes.createTubeFor', $machine->id)
                 ->with('success', 'New machine created');
         } else {
-            return redirect()->route('tubes.createTubeFor', $machine->id)
+            return redirect()->route('machines.index')
                 ->with('fail', 'Error creating new machine');
         }
     }
