@@ -130,6 +130,9 @@ class TubeController extends Controller
      */
     public function edit($id)
     {
+        // Get the model for the x-ray tube
+        $tube = Tube::findOrFail($id);
+
         // Get the information for the corresponding machine
         $machine = Machine::select('id', 'description')
             ->where('id', '=', $tube->machine_id)
@@ -137,7 +140,7 @@ class TubeController extends Controller
 
         // Show the form
         return view('tubes.tubes_edit', [
-            'tube'          => Tube::findOrFail($id),
+            'tube'          => $tube,
             'machine'       => $machine,
             'manufacturers' => Manufacturer::get(),
         ]);
