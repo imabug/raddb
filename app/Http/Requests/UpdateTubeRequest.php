@@ -26,17 +26,17 @@ class UpdateTubeRequest extends FormRequest
         return [
             'machine'       => 'required|integer',
             'hsgManufID'    => 'integer',
-            'hsgModel'      => 'string|max:30',
-            'hsgSN'         => 'string|max:20',
+            'hsgModel'      => 'string|nullable|max:30',
+            'hsgSN'         => 'string|nullable|max:20',
             'insertManufID' => 'integer',
-            'insertModel'   => 'string|max:30',
-            'insertSN'      => 'string|max:20',
+            'insertModel'   => 'string|nullable|max:30',
+            'insertSN'      => 'string|nullable|max:20',
             'manufDate'     => 'date_format:Y-m-d|max:10',
             'installDate'   => 'date_format:Y-m-d|max:10',
             'lfs'           => 'numeric',
             'mfs'           => 'numeric',
             'sfs'           => 'numeric',
-            'notes'         => 'string|max:65535',
+            'notes'         => 'string|nullable|max:65535',
         ];
     }
 }
