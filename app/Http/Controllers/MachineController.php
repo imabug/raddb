@@ -98,7 +98,7 @@ class MachineController extends Controller
       */
      public function getTubes($id)
      {
-         return Tube::active()->where('machine_id', $id)->get();
+         return Tube::active()->forMachine($id)->get();
      }
 
     /**
