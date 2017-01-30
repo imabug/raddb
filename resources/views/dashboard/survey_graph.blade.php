@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
 <h2>Survey Count Graphs</h2>
-{!! Charts::assets() !!}
+{!! Charts::assets(['google']) !!}
 <div class="panel panel-default">
     <div class="panel-body">
         <p>{!! $allYears->render() !!}</p>
