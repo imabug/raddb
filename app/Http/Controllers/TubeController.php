@@ -196,6 +196,27 @@ class TubeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Check if action is allowed
+        $this->authorize(Tube::class);
+
+        // Retrieve the model for the requested tube
+        $tube = Tube::find($id);
+
+        // Update the x-ray tube status
+        $tube->remove_date = date('Y-m-d');
+        $tube->tube_status = 'Removed';
+        $tube->save();
+
+        // Delete and log the x-ray tube removal
+        if ($tube->delete()) {
+            $message = 'Tube ID '.$tube->id.' deleted.';
+            Log::notice($message);
+
+            return redirect()->route('machines.show', $tube->machine_id)
+                ->with('success', 'X-ray tube deleted');
+        } else {
+            return redirect()->route('machines.show', $tube->machine_id)
+                ->with('fail', 'Error deleting X-ray tube');
+        }
     }
 }
