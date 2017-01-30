@@ -112,9 +112,9 @@ class MachineController extends Controller
     {
         // Return data from lookup tables to use in the form
         return view('machine.machines_create', [
-            'modalities'    => Modality::select('id', 'modality')->get(),
-            'manufacturers' => Manufacturer::select('id', 'manufacturer')->get(),
-            'locations'     => Location::select('id', 'location')->get(),
+            'modalities'    => Modality::get(),
+            'manufacturers' => Manufacturer::get(),
+            'locations'     => Location::get(),
         ]);
     }
 
@@ -198,9 +198,9 @@ class MachineController extends Controller
     public function edit($id)
     {
         return view('machine.machines_edit', [
-            'modalities'    => Modality::select('id', 'modality')->get(),
-            'manufacturers' => Manufacturer::select('id', 'manufacturer')->get(),
-            'locations'     => Location::select('id', 'location')->get(),
+            'modalities'    => Modality::get(),
+            'manufacturers' => Manufacturer::get(),
+            'locations'     => Location::get(),
             'machine'       => Machine::findOrFail($id),
         ]);
     }
