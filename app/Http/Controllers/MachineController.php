@@ -181,7 +181,7 @@ class MachineController extends Controller
             'machine'         => Machine::findOrFail($id),
             'tubes'           => $this->getTubes($id),
             'opnotes'         => $this->getOperationalNotes($id),
-            'surveys'         => TestDate::where('machine_id', $id)->orderBy('test_date', 'asc')->get(),
+            'surveys'         => TestDate::forMachine($id)->orderBy('test_date', 'asc')->get(),
             'recommendations' => $this->getRecommendations($id),
         ]);
     }
