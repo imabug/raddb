@@ -24,7 +24,7 @@ class UpdateTubeRequest extends FormRequest
     public function rules()
     {
         return [
-            'machine'       => 'required|integer',
+            'machine_id'       => 'required|integer',
             'hsgManufID'    => 'integer',
             'hsgModel'      => 'string|nullable|max:30',
             'hsgSN'         => 'string|nullable|max:20',

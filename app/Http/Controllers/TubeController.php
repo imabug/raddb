@@ -68,7 +68,7 @@ class TubeController extends Controller
         $this->authorize(Tube::class);
 
         $tube = new Tube();
-        $tube->machine_id = $request->machine;
+        $tube->machine_id = $request->machine_id;
         $tube->housing_model = $request->hsgModel;
         $tube->housing_sn = $request->hsgSN;
         $tube->housing_manuf_id = $request->hsgManufID;
@@ -161,10 +161,10 @@ class TubeController extends Controller
         // Check if action is allowed
         $this->authorize(Tube::class);
 
-        // Retrieve the model for the t ube to be edited
+        // Retrieve the model for the tube to be edited
         $tube = Tube::find($id);
 
-        $tube->machine_id = $request->machine;
+        $tube->machine_id = $request->machine_id;
         $tube->housing_model = $request->hsgModel;
         $tube->housing_sn = $request->hsgSN;
         $tube->housing_manuf_id = $request->hsgManufID;
