@@ -37,6 +37,7 @@
             @endforeach
             </tbody>
         </table>
+        <hr>
         <p>
             <a href="{{ route('recommendations.createRecFor', $surveyID) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
