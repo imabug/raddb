@@ -7,6 +7,7 @@ use RadDB\Recommendation;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use RadDB\Http\Requests\StoreRecommendationRequest;
+use RadDB\Http\Requests\UpdateRecommendationRequest;
 
 class RecommendationController extends Controller
 {
