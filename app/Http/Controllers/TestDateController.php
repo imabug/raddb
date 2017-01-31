@@ -8,6 +8,7 @@ use RadDB\TestDate;
 use RadDB\TestType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\StoreSurveyReportRequest;
 use RadDB\Http\Requests\UpdateTestDateRequest;
 
 class TestDateController extends Controller
@@ -230,7 +231,7 @@ class TestDateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function storeSurveyReport(StoreSurveyReport $request)
+    public function storeSurveyReport(StoreSurveyReportRequest $request)
     {
         // Check if action is allowed
         $this->authorize(TestDate::class);
