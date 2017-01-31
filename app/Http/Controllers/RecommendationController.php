@@ -4,6 +4,7 @@ namespace RadDB\Http\Controllers;
 
 use RadDB\TestDate;
 use RadDB\Recommendation;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use RadDB\Http\Requests\StoreRecommendationRequest;
@@ -92,17 +93,13 @@ class RecommendationController extends Controller
             $recommendation->rec_status = 'Complete';
             $recommendation->rec_add_ts = date('Y-m-d H:i:s');
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
-            if (isset($request->WONum)) {
-                $recommendation->wo_number = $request->WONum;
-            }
-            if (isset($request->RecResolveDate)) {
-                $recommendation->rec_resolve_date = $request->RecResolveDate;
-            } else {
+            $recommendation->wo_number = $request->WONum;
+            if (is_null($request->RecResolveDate)) {
                 $recommendation->rec_resolve_date = date('Y-m-d');
+            } else {
+                $recommendation->rec_resolve_date = $request->RecResolveDate;
             }
-            if (isset($request->ResolvedBy)) {
-                $recommendation->resolved_by = $request->ResolvedBy;
-            }
+            $recommendation->resolved_by = $request->ResolvedBy;
 
             // If a service report was uploaded, handle it
             // This breaks the way service reports were handled in the previous version. Deal with it.
