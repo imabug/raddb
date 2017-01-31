@@ -231,10 +231,10 @@ class MachineController extends Controller
         }
         $machine->model = $request->model;
         $machine->serial_number = $request->serialNumber;
-        if (isset($request->manuf_date)) {
+        if (isset($request->manufDate)) {
             $machine->manuf_date = $request->manufDate;
         }
-        if (isset($request->install_date)) {
+        if (isset($request->installDate)) {
             $machine->install_date = $request->installDate;
         }
         $machine->location_id = $request->location;
