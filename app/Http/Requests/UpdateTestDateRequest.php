@@ -25,7 +25,7 @@ class UpdateTestDateRequest extends FormRequest
     {
         return [
             'machineID' => 'required|integer',
-            'test_date' => 'required|date_format:Y-m-d|max:10',
+            'test_date' => 'required|date_format:Y-m-d',
             'tester1ID' => 'required|integer',
             'tester2ID' => 'integer',
             'test_type' => 'required|integer',

@@ -28,7 +28,7 @@ class StoreRecommendationRequest extends FormRequest
             'recommendation' => 'required|string|max:500',
             'resolved'       => 'integer',
             'WONum'          => 'string|nullable|max:20',
-            'RecResolveDate' => 'required_with:resolved|date_format:Y-m-d|max:10',
+            'RecResolveDate' => 'required_with:resolved|date_format:Y-m-d',
             'ResolvedBy'     => 'required_with:resolved|string|max:10',
             'ServiceReport'  => 'file|mimes:pdf',
         ];
