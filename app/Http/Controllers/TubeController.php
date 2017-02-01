@@ -68,7 +68,7 @@ class TubeController extends Controller
         $this->authorize(Tube::class);
 
         $tube = new Tube();
-        $tube->machine_id = $request->machine;
+        $tube->machine_id = $request->machine_id;
         $tube->housing_model = $request->hsgModel;
         $tube->housing_sn = $request->hsgSN;
         $tube->housing_manuf_id = $request->hsgManufID;
@@ -99,10 +99,10 @@ class TubeController extends Controller
             $message = 'New tube saved for machine: '.$tube->machine_id.'.';
             Log::info($message);
 
-            return redirect()->route('tubes.createTubeFor', $request->machine)
+            return redirect()->route('machines.show', $tube->machine_id)
                 ->with('success', 'New tube added');
         } else {
-            return redirect()->route('tubes.createTubeFor', $request->machine)
+            return redirect()->route('machines.show', $tube->machine_id)
                 ->with('fail', 'Error adding new tube');
         }
     }
@@ -130,6 +130,9 @@ class TubeController extends Controller
      */
     public function edit($id)
     {
+        // Get the model for the x-ray tube
+        $tube = Tube::findOrFail($id);
+
         // Get the information for the corresponding machine
         $machine = Machine::select('id', 'description')
             ->where('id', '=', $tube->machine_id)
@@ -137,7 +140,7 @@ class TubeController extends Controller
 
         // Show the form
         return view('tubes.tubes_edit', [
-            'tube'          => Tube::findOrFail($id),
+            'tube'          => $tube,
             'machine'       => $machine,
             'manufacturers' => Manufacturer::get(),
         ]);
@@ -158,10 +161,10 @@ class TubeController extends Controller
         // Check if action is allowed
         $this->authorize(Tube::class);
 
-        // Retrieve the model for the t ube to be edited
+        // Retrieve the model for the tube to be edited
         $tube = Tube::find($id);
 
-        $tube->machine_id = $request->machine;
+        $tube->machine_id = $request->machine_id;
         $tube->housing_model = $request->hsgModel;
         $tube->housing_sn = $request->hsgSN;
         $tube->housing_manuf_id = $request->hsgManufID;
@@ -196,6 +199,27 @@ class TubeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Check if action is allowed
+        $this->authorize(Tube::class);
+
+        // Retrieve the model for the requested tube
+        $tube = Tube::find($id);
+
+        // Update the x-ray tube status
+        $tube->remove_date = date('Y-m-d');
+        $tube->tube_status = 'Removed';
+        $tube->save();
+
+        // Delete and log the x-ray tube removal
+        if ($tube->delete()) {
+            $message = 'Tube ID '.$tube->id.' deleted.';
+            Log::notice($message);
+
+            return redirect()->route('machines.show', $tube->machine_id)
+                ->with('success', 'X-ray tube deleted');
+        } else {
+            return redirect()->route('machines.show', $tube->machine_id)
+                ->with('fail', 'Error deleting X-ray tube');
+        }
     }
 }

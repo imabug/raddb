@@ -147,6 +147,7 @@ class DashboardController extends Controller
                 ->title('Monthly survey count for '.$y->years)
                 ->elementLabel('Number of surveys')
                 ->dimensions(1000, 700)
+                ->monthFormat('M Y')
                 ->groupByMonth($y->years, true);
         }
         // Create a bar chart showing total number of surveys done in each year

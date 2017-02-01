@@ -98,7 +98,7 @@ class MachineController extends Controller
       */
      public function getTubes($id)
      {
-         return Tube::active()->where('machine_id', $id)->get();
+         return Tube::active()->forMachine($id)->get();
      }
 
     /**
@@ -112,9 +112,9 @@ class MachineController extends Controller
     {
         // Return data from lookup tables to use in the form
         return view('machine.machines_create', [
-            'modalities'    => Modality::select('id', 'modality')->get(),
-            'manufacturers' => Manufacturer::select('id', 'manufacturer')->get(),
-            'locations'     => Location::select('id', 'location')->get(),
+            'modalities'    => Modality::get(),
+            'manufacturers' => Manufacturer::get(),
+            'locations'     => Location::get(),
         ]);
     }
 
@@ -161,7 +161,7 @@ class MachineController extends Controller
             return redirect()->route('tubes.createTubeFor', $machine->id)
                 ->with('success', 'New machine created');
         } else {
-            return redirect()->route('tubes.createTubeFor', $machine->id)
+            return redirect()->route('machines.index')
                 ->with('fail', 'Error creating new machine');
         }
     }
@@ -181,7 +181,7 @@ class MachineController extends Controller
             'machine'         => Machine::findOrFail($id),
             'tubes'           => $this->getTubes($id),
             'opnotes'         => $this->getOperationalNotes($id),
-            'surveys'         => TestDate::where('machine_id', $id)->orderBy('test_date', 'asc')->get(),
+            'surveys'         => TestDate::forMachine($id)->orderBy('test_date', 'asc')->get(),
             'recommendations' => $this->getRecommendations($id),
         ]);
     }
@@ -198,9 +198,9 @@ class MachineController extends Controller
     public function edit($id)
     {
         return view('machine.machines_edit', [
-            'modalities'    => Modality::select('id', 'modality')->get(),
-            'manufacturers' => Manufacturer::select('id', 'manufacturer')->get(),
-            'locations'     => Location::select('id', 'location')->get(),
+            'modalities'    => Modality::get(),
+            'manufacturers' => Manufacturer::get(),
+            'locations'     => Location::get(),
             'machine'       => Machine::findOrFail($id),
         ]);
     }
@@ -231,10 +231,10 @@ class MachineController extends Controller
         }
         $machine->model = $request->model;
         $machine->serial_number = $request->serialNumber;
-        if (isset($request->manuf_date)) {
+        if (isset($request->manufDate)) {
             $machine->manuf_date = $request->manufDate;
         }
-        if (isset($request->install_date)) {
+        if (isset($request->installDate)) {
             $machine->install_date = $request->installDate;
         }
         $machine->location_id = $request->location;

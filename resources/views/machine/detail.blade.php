@@ -76,15 +76,12 @@
             <td>{{ $tube->notes }}</td>
 			<td>
                 @if (Auth::check())
-				<form class="form-inline" action="{{ route('tubes.destroy', $machine->id) }}" method="post">
+				<form class="form-inline" action="{{ route('tubes.destroy', $tube->id) }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
 					<div class="form-group">
                         <a href="{{ route('tubes.edit', $tube->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </a>
-                        <a href="{{ route('tubes.createTubeFor', $machine->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Add new tube">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </a>
 						<button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this tube">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -97,6 +94,7 @@
     @endforeach
     </tbody>
 </table>
+<p><a href="{{ route('tubes.createTubeFor', $machine->id) }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add x-ray tube</a></p>
 
 <h3><span class="label label-default">Operational Notes</span></h3>
 <ol>
@@ -104,7 +102,7 @@
   <li>{{ $opnote->note }}</li>
   @endforeach
 </ol>
-<p><a href="{{ route('opnotes.create', $machine->id)}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add operational note</a></p>
+<p><a href="{{ route('opnotes.createOpNoteFor', $machine->id) }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add operational note</a></p>
 
 <h3><span class="label label-default">Survey Information</span></h3>
 <table class="table">

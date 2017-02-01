@@ -43,6 +43,8 @@ Route::resource('testequipment', 'TestEquipmentController');
 // Route::resource('gendata', 'GenDataController');
 
 // Operational notes controller
+Route::get('opnotes/{$id}/create', 'OpNoteController@create')
+    ->name('opnotes.createOpNoteFor');
 Route::resource('opnotes', 'OpNoteController');
 
 // Recommendation controller

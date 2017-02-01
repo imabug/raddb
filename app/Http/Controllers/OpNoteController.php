@@ -37,7 +37,7 @@ class OpNoteController extends Controller
 
     /**
      * Show the form for creating an operational note for machine $id.
-     * URI: /opnotes/create
+     * URI: /opnotes/{$id}/create
      * Method: GET.
      *
      * @param int $id

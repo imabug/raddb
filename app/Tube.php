@@ -96,7 +96,7 @@ class Tube extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeMachine($query, $machine_id)
+    public function scopeForMachine($query, $machine_id)
     {
         return $query->where('machine_id', $machine_id);
     }

@@ -9,7 +9,7 @@
 	<div class="form-group">
 		{{ csrf_field() }}
 	<p><label for="machine">Machine:</label>
-		<select id="machine" name="machine" size="1">
+		<select id="machine_id" name="machine_id" size="1">
 		<option>Select machine</option>
 
 		@foreach ($machines as $machine)

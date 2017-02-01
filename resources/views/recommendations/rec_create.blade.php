@@ -10,7 +10,7 @@
         @if (isset($recs))
         <h3>Survey recommendations for {{ $machineDesc->description }} (Survey ID {{ $surveyId }})</h3>
         <p>Unresolved recommendations are in bold with the checkbox in front</p>
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Resolved</th><th>Recommendation</th><th>Date Added</th><th>Date Resolved</th><th>Work Order</th>
@@ -38,6 +38,7 @@
             </tbody>
         </table>
         @endif
+        <hr>
         <p><label for="surveyId">Survey ID: </label><input class="form-control" type="text" id="surveyId" name="surveyId" value="{{ $surveyId or '' }}" ></p>
         <p><label for="recommendation">Recommendation: </label><textarea class="form-control" id="recommendation" name="recommendation" rows="4" cols="80" placeholder="Enter recommendation"></textarea></p>
         <p><label for="resolved">Resolved: </label><input class="form-control" type="checkbox" id="resolved" name="resolved" value="1" ></p>

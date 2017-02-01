@@ -29,13 +29,13 @@ class UpdateMachineRequest extends FormRequest
             'manufacturer' => 'required|integer',
             'model'        => 'required|string|max:20',
             'serialNumber' => 'required|string|max:20',
-            'vendSiteID'   => 'string|max:25',
-            'manufDate'    => 'date_format:Y-m-d|max:10',
-            'installDate'  => 'date_format:Y-m-d|max:10',
+            'vendSiteID'   => 'string|nullable|max:25',
+            'manufDate'    => 'date_format:Y-m-d',
+            'installDate'  => 'date_format:Y-m-d',
             'location'     => 'required|integer',
             'room'         => 'required|string|max:20',
             'status'       => 'required|in:Active,Inactive,Removed|max:50',
-            'notes'        => 'string|max:65535',
+            'notes'        => 'string|nullable|max:65535',
         ];
     }
 }

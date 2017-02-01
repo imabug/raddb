@@ -26,7 +26,7 @@ class UpdateRecommendationRequest extends FormRequest
         return [
             'recID'          => 'array',
             'WONum'          => 'string|max:20',
-            'RecResolveDate' => 'required|date_format:Y-m-d|max:10',
+            'RecResolveDate' => 'required|date_format:Y-m-d',
             'ResolvedBy'     => 'string|max:10',
             'ServiceReport'  => 'file|mimes:pdf',
         ];
