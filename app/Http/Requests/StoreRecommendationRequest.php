@@ -25,13 +25,13 @@ class StoreRecommendationRequest extends FormRequest
     public function rules(Request $request)
     {
         // Build the validation rules
-        $rules = array[
+        $rules = array(
             'surveyId'       => 'required|exists:testdates,id|integer',
             'recommendation' => 'required|string|max:500',
             'resolved'       => 'integer',
             'WONum'          => 'string|nullable|max:20',
             'ServiceReport'  => 'file|mimes:pdf',
-        ];
+        );
 
         // If 'resolved' was checked, then add validation rules for
         // 'RecResolveDate' and 'ResolvedBy'.
