@@ -113,9 +113,11 @@ class DashboardController extends Controller
                 'lastyear_view.survey_id as prevSurveyID',
                 'lastyear_view.test_date as prevSurveyDate',
                 'lastyear_view.report_file_path as prevSurveyReport',
+                'lastyear_vew.recCount as prevRecCount',
                 'thisyear_view.survey_id as currSurveyID',
                 'thisyear_view.test_date as currSurveyDate',
-                'thisyear_view.report_file_path as currSurveyReport')
+                'thisyear_view.report_file_path as currSurveyReport',
+                'thisyear_view.recCount as currRecCount')
             ->active()
             ->leftJoin('thisyear_view', 'machines.id', '=', 'thisyear_view.machine_id')
             ->leftJoin('lastyear_view', 'machines.id', '=', 'lastyear_view.machine_id')

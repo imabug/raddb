@@ -11,7 +11,7 @@
 		<tr>
 			<td>{{ $ss->id }}</td>
 			<td><a href="{{ route('machines.show', $ss->id) }}">{{ $ss->description }}</a></td>
-        @if ($ss->recommendation()->whereYear('rec_add_ts',date('Y')-1)->count() > 0)
+        @if ($ss->prevRecCount > 0)
             <td><a href="{{ route('recommendations.show', $ss->prevSurveyID)}}" title="Recommendations" alt="Recommendations">{{ $ss->prevSurveyDate }}</a></td>
         @else
             <td>{{ $ss->prevSurveyDate }}</td>
@@ -21,7 +21,7 @@
 		@else
             <td><a href="{{ route('reports.show', ["survey", $ss->prevSurveyID]) }}" target="_blank" title="Survey report" alt="Survey report">{{ $ss->prevSurveyID }}</a></td>
 		@endif
-        @if ($ss->recommendation()->whereYear('rec_add_ts',date('Y'))->count() > 0)
+        @if ($ss->currRecCount > 0)
             <td><a href="{{ route('recommendations.show', $ss->currSurveyID)}}" title="Recommendations" alt="Recommendations">{{ $ss->currSurveyDate }}</a></td>
         @else
             <td>{{ $ss->currSurveyDate }}</td>
