@@ -27,7 +27,7 @@ class UpdateMachineRequest extends FormRequest
             'modality'     => 'required|integer',
             'description'  => 'required|string|max:60',
             'manufacturer' => 'required|integer',
-            'model'        => 'required|string|max:20',
+            'model'        => 'required|string|max:50',
             'serialNumber' => 'required|string|max:20',
             'vendSiteID'   => 'string|nullable|max:25',
             'manufDate'    => 'date_format:Y-m-d',
