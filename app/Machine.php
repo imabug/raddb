@@ -113,6 +113,30 @@ class Machine extends Model
     }
 
     /**
+     * Scope function to return inactive machines.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeInactive($query)
+    {
+        return $query->where('machine_status', 'Inactive');
+    }
+
+    /**
+     * Scope function to return removed machines.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeRemoved($query)
+    {
+        return $query->where('machine_status', 'Removed');
+    }
+
+    /**
      * Scope function to return machines for a specific location.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
