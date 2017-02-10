@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateLastyearView extends Migration
 {
     /**
-     * Create a view containing surveys from the previous year
+     * Create a view containing surveys from the previous year.
      *
      * @return void
      */
