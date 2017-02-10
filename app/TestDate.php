@@ -83,6 +83,16 @@ class TestDate extends Model
         return $this->morphMany('RadDB\Report', 'report');
     }
 
+    public function thisyear()
+    {
+        return $this->belongsTo('RadDB\ThisYear', 'survey_id');
+    }
+
+    public function lastyear()
+    {
+        return $this->belongsTo('RadDB\LastYear', 'survey_id');
+    }
+
     /*
      * Scopes
      */

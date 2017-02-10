@@ -81,6 +81,16 @@ class Machine extends Model
         return $this->hasMany('RadDB\TestDate');
     }
 
+    public function thisyear()
+    {
+        return $this->hasMany('RadDB\ThisYear');
+    }
+
+    public function lastyear()
+    {
+        return $this->hasMany('RadDB\LastYear');
+    }
+
     public function testdateRecent()
     {
         return $this->hasMany('RadDB\TestDate')->latest('test_date')->first();
