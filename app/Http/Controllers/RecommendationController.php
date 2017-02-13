@@ -48,7 +48,7 @@ class RecommendationController extends Controller
     public function create($surveyId = null)
     {
         if (is_null($surveyId)) {
-            // No survey id was provided
+            // No survey id was provided.
             $recs = null;
             $machineDesc = null;
         } else {
@@ -57,12 +57,15 @@ class RecommendationController extends Controller
                 ->join('machines', 'testdates.machine_id', '=', 'machines.id')
                 ->where('testdates.id', $surveyId)
                 ->first();
+
+            // Retrieve recommendations for the provided survey ID.
+            $recs = Recommendation::surveyID($surveyId)->get();
         }
 
         return view('recommendations.rec_create', [
             'surveyId'    => $surveyId,
             'machineDesc' => $machineDesc,
-            'recs'        => Recommendation::surveyID($surveyId)->get(),
+            'recs'        => $recs,
         ]);
     }
 
