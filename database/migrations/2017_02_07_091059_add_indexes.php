@@ -38,7 +38,7 @@ class AddIndexes extends Migration
             $table->index('machine_id');
             $table->index('housing_manuf_id');
             $table->index('insert_manuf_id');
-        })
+        });
     }
 
     /**
