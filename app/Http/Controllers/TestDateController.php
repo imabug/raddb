@@ -120,7 +120,6 @@ class TestDateController extends Controller
             $status = 'success';
             $message .= 'Survey '.$testdate->id.' added.\n';
             Log::info($message);
-
         } else {
             $status = 'fail';
             $message .= 'Error adding survey\n';
