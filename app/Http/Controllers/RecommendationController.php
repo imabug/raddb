@@ -124,10 +124,10 @@ class RecommendationController extends Controller
             $status = 'fail';
             $message .= 'Error adding recommendation\n';
         }
+
         return redirect()
             ->route('recommendations.show', $request->surveyId)
             ->with($status, $message);
-
     }
 
     /**
