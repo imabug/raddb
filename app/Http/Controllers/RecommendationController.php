@@ -116,13 +116,14 @@ class RecommendationController extends Controller
 
         if ($recommendation->save()) {
             $message = 'Recommendation '.$recommendation->id.' added.';
-            Log::info($message);
 
             $status = 'success';
             $message .= 'Recommendation added\n';
+            Log::info($message);
         } else {
             $status = 'fail';
             $message .= 'Error adding recommendation\n';
+            Log::info($message);
         }
 
         return redirect()
@@ -213,12 +214,13 @@ class RecommendationController extends Controller
 
             if ($recommendation->save()) {
                 $message = 'Recommendation '.$recommendation->id.' edited.';
-                Log::info($message);
                 $status = 'success';
                 $message .= 'Recommendation resolved';
+                Log::info($message);
             } else {
                 $status = 'fail';
                 $message .= 'Error resolving recommendations\n';
+                Log::info($message);
             }
         }
 
