@@ -235,9 +235,10 @@ class TestDateController extends Controller
         $surveys = TestDate::year(date('Y'))
             ->where(function ($query) {
                 $query->whereNull('report_file_path')
-                    ->orWhere('report_file_path','');
+                    ->orWhere('report_file_path', '');
             })
             ->get();
+
         return view('surveys.surveys_addReport', [
             'surveys' => $surveys,
         ]);
