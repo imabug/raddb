@@ -123,7 +123,7 @@ class TestDateController extends Controller
 
         } else {
             $status = 'fail';
-            $message .= 'Error adding survey\n');
+            $message .= 'Error adding survey\n';
             Log::error($message);
         }
 
