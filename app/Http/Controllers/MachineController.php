@@ -132,6 +132,8 @@ class MachineController extends Controller
         // Check if action is allowed
         $this->authorize(Machine::class);
 
+        $message = '';
+
         $machine = new Machine();
         $machine->modality_id = $request->modality;
         $machine->description = $request->description;
@@ -155,15 +157,18 @@ class MachineController extends Controller
         }
 
         if ($machine->save()) {
-            $message = 'New machine created: Machine ID '.$machine->id;
+            $status = 'success';
+            $message = 'New machine created: Machine ID '.$machine->id.'\n';
             Log::info($message);
-
-            return redirect()->route('tubes.createTubeFor', $machine->id)
-                ->with('success', 'New machine created');
         } else {
-            return redirect()->route('machines.index')
-                ->with('fail', 'Error creating new machine');
+            $status = 'fail';
+            $message = 'Error creating new machine\n';
+            Log::error($message);
         }
+
+        return redirect()
+            ->route('tubes.createTubeFor', $machine->id)
+            ->with($status, $message);
     }
 
     /**
@@ -220,6 +225,8 @@ class MachineController extends Controller
         // Check if action is allowed
         $this->authorize(Machine::class);
 
+        $message = '';
+
         // Retrieve the model for the machine to be edited
         $machine = Machine::find($id);
 
@@ -245,15 +252,19 @@ class MachineController extends Controller
         }
 
         if ($machine->save()) {
-            $message = 'Machine ID '.$machine->id.' updated.';
+            $status = 'success';
+            $message = 'Machine ID '.$machine->id.' updated.\n';
             Log::info($message);
 
-            return redirect()->route('machines.show', $machine->id)
-                ->with('success', 'Machine edited');
         } else {
-            return redirect()->route('machines.show', $machine->id)
-                ->with('fail', 'Error editing machine');
+            $status = 'fail';
+            $message = 'Error editing machine\n';
+            Log::error($message);
         }
+
+        return redirect()
+            ->route('machines.show', $machine->id)
+            ->with($status, $message);
     }
 
     /**
@@ -270,6 +281,8 @@ class MachineController extends Controller
         // Check if action is allowed
         $this->authorize(Machine::class);
 
+        $message = '';
+
         $machine = Machine::find($id);
 
         // Retrieve tubes associated with this machine
@@ -285,18 +298,25 @@ class MachineController extends Controller
             $tube->tube_status = 'Removed';
             $tube->remove_date = date('Y-m-d');
             $tube->save();
-            $tube->delete();
+            if ($tube->delete()) {
+                $message .= 'Tube ID '.$tube->id.' deleted.\n';
+            } else {
+                $message .= 'Error deleting tube ID '.$tube->id.'\n';
+            }
         }
 
         if ($machine->delete()) {
-            $message = 'Machine ID '.$machine->id.' deleted.';
-            Log::notice($message);
-
-            return redirect()->route('machines.index')
-                ->with('success', 'Machine deleted');
+            $status = 'success';
+            $message .= 'Machine ID '.$machine->id.' deleted.\n';
+            Log::info($message);
         } else {
-            return redirect()->route('machines.index')
-                ->with('fail', 'Error deleting machine');
+            $status = 'fail';
+            $message .= 'Error deleting machine ID '.$machine->id.'.\n';
+            Log::error($message);
         }
+
+        return redirect()
+            ->route('machines.index')
+            ->with($status, $message);
     }
 }

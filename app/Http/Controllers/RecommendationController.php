@@ -115,15 +115,13 @@ class RecommendationController extends Controller
         }
 
         if ($recommendation->save()) {
-            $message = 'Recommendation '.$recommendation->id.' added.';
-
+            $message = 'Recommendation '.$recommendation->id.' added.\n';
             $status = 'success';
-            $message .= 'Recommendation added\n';
             Log::info($message);
         } else {
             $status = 'fail';
             $message .= 'Error adding recommendation\n';
-            Log::info($message);
+            Log::error($message);
         }
 
         return redirect()
@@ -213,14 +211,13 @@ class RecommendationController extends Controller
             $recommendation->service_report_path = $serviceReportPath;
 
             if ($recommendation->save()) {
-                $message = 'Recommendation '.$recommendation->id.' edited.';
+                $message = 'Recommendation '.$recommendation->id.' resolved.';
                 $status = 'success';
-                $message .= 'Recommendation resolved';
                 Log::info($message);
             } else {
                 $status = 'fail';
                 $message .= 'Error resolving recommendations\n';
-                Log::info($message);
+                Log::error($message);
             }
         }
 

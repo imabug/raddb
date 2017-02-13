@@ -96,6 +96,8 @@ class TestDateController extends Controller
         // Check if action is allowed
         $this->authorize(TestDate::class);
 
+        $message = '';
+
         $testdate = new TestDate();
 
         $testdate->test_date = $request->test_date;
@@ -115,13 +117,19 @@ class TestDateController extends Controller
         }
 
         if ($testdate->save()) {
-            $message = 'Survey '.$testdate->id.' added.';
+            $status = 'success';
+            $message .= 'Survey '.$testdate->id.' added.\n';
             Log::info($message);
 
-            return redirect()->route('index')->with('success', 'Survey added');
         } else {
-            return redirect()->route('index')->with('fail', 'Error adding survey');
+            $status = 'fail';
+            $message .= 'Error adding survey\n');
+            Log::error($message);
         }
+
+        return redirect()
+            ->route('index')
+            ->with($status, $message);
     }
 
     /**
@@ -174,6 +182,8 @@ class TestDateController extends Controller
         // Check if action is allowed
         $this->authorize(TestDate::class);
 
+        $message = '';
+
         $testdate = TestDate::find($surveyId);
 
         if ($testdate->test_date != $request->test_date) {
@@ -193,13 +203,18 @@ class TestDateController extends Controller
         }
 
         if ($testdate->save()) {
-            $message = 'Survey '.$testdate->id.' edited.';
+            $status = 'success';
+            $message .= 'Survey '.$testdate->id.' edited.\n';
             Log::info($message);
-
-            return redirect()->route('index')->with('success', 'Survey edited');
         } else {
-            return redirect()->route('index')->with('fail', 'Error editing survey');
+            $status = 'fail';
+            $message .= 'Error editing survey\n';
+            Log::error($message);
         }
+
+        return redirect()
+            ->route('index')
+            ->with($status, $message);
     }
 
     /**
@@ -236,6 +251,8 @@ class TestDateController extends Controller
         // Check if action is allowed
         $this->authorize(TestDate::class);
 
+        $message = '';
+
         $testdate = TestDate::find($request->surveyId);
 
         // Handle the uploaded file
@@ -245,13 +262,18 @@ class TestDateController extends Controller
         }
 
         if ($testdate->save()) {
-            $message = 'Survey report for survey '.$testdate->id.' stored.';
+            $status = 'success';
+            $message .= 'Survey report for survey '.$testdate->id.' stored.\n';
             Log::info($message);
-
-            return redirect()->route('index')->with('success', 'Survey report uploaded');
         } else {
-            return redirect()->route('index')->with('fail', 'Error uploading survey report');
+            $status = 'fail';
+            $message .= 'Error uploading survey report\n';
+            Log::error($message);
         }
+
+        return redirect()
+            ->route('index')
+            ->with($status, $message);
     }
 
     /**
