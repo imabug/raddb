@@ -232,7 +232,15 @@ class TestDateController extends Controller
         // In the initial attempt, route matching failed when the survey ID
         // wasn't provided in the URI.
 
-        return view('surveys.surveys_addReport');
+        $surveys = TestDate::year(date('Y'))
+            ->where(function ($query) {
+                $query->whereNull('report_file_path')
+                    ->orWhere('report_file_path','');
+            })
+            ->get();
+        return view('surveys.surveys_addReport', [
+            'surveys' => $surveys,
+        ]);
     }
 
     /**
