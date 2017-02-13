@@ -255,7 +255,6 @@ class MachineController extends Controller
             $status = 'success';
             $message = 'Machine ID '.$machine->id.' updated.\n';
             Log::info($message);
-
         } else {
             $status = 'fail';
             $message = 'Error editing machine\n';
