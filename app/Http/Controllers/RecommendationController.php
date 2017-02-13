@@ -185,8 +185,7 @@ class RecommendationController extends Controller
         // This breaks the way service reports were handled in the previous version. Deal with it.
         if ($request->hasFile('ServiceReport')) {
             $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
-        }
-        else {
+        } else {
             $serviceReportPath = null;
         }
 
