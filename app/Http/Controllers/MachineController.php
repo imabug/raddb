@@ -43,7 +43,8 @@ class MachineController extends Controller
             ->get();
 
         return view('machine.index', [
-            'machines' => $machines,
+            'machineStatus' => 'Active',
+            'machines'      => $machines,
         ]);
     }
 
@@ -188,6 +189,46 @@ class MachineController extends Controller
             'opnotes'         => $this->getOperationalNotes($id),
             'surveys'         => TestDate::forMachine($id)->orderBy('test_date', 'asc')->get(),
             'recommendations' => $this->getRecommendations($id),
+        ]);
+    }
+
+    /**
+     * Show a list of inactive machines.
+     * URI: /machines/inactive
+     * Method: GET
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showInactive()
+    {
+        // Show a list of all the machines in the database
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->inactive()
+            ->get();
+
+        return view('machine.index', [
+            'machineStatus' => 'Inactive',
+            'machines'      => $machines,
+        ]);
+    }
+
+    /**
+     * Show a list of removed machines.
+     * URI: /machines/removed
+     * Method: GET
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRemoved()
+    {
+        // Show a list of all the machines in the database
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->removed()
+            ->get();
+
+        return view('machine.index', [
+            'machineStatus' => 'Removed',
+            'machines'      => $machines,
         ]);
     }
 

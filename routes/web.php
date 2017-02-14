@@ -29,6 +29,10 @@ Route::get('/dashboard/surveyGraph', 'DashboardController@surveyGraph')
     ->name('dashboard.surveyGraph'); // Count of surveys per month
 
 // Machine controller
+Route::get('/machines/inactive', 'MachineController@showInactive')
+    ->name('machines.inactive'); // Listing of inactive machines
+Route::get('/machines/removed', 'MachineController@showRemoved')
+    ->name('machines.removed'); // Listing of removed machines
 Route::resource('machines', 'MachineController');
 
 // Test equipment controller

@@ -19,6 +19,8 @@
                     <li><a href="{{ route('modalities.showModalityIndex') }}">List by modality</a></li>
                     <li><a href="{{ route('locations.showLocationIndex') }}">List by location</a></li>
                     <li><a href="{{ route('manufacturers.showManufacturerIndex') }}">List by manufacturer</a></li>
+                    <li><a href="{{ route('machines.inactive') }}">Inactive machines</a></li>
+                    <li><a href="{{ route('machines.removed') }}">Removed machines</a></li>
                 </ul>
             </li>
             @if (Auth::check())

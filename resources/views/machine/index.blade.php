@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Equipment Inventory</h2>
+<h2>Equipment Inventory - {{ $machineStatus or '' }}</h2>
 
 <table class="table table-striped table-hover">
 	<thead>
