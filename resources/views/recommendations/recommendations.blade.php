@@ -38,6 +38,7 @@
             </tbody>
         </table>
         <hr>
+        @if (Auth::check())
         <p>
             <a href="{{ route('recommendations.createRecFor', $surveyID) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -49,6 +50,7 @@
         <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" > (Max file size: {{ ini_get('post_max_size') }})</p>
         <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" ></p>
         <p><button type="SUBMIT">Resolve recommendations</button></p>
+        @endif
     </div>
 </form>
 </p>
