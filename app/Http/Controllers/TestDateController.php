@@ -118,11 +118,11 @@ class TestDateController extends Controller
 
         if ($testdate->save()) {
             $status = 'success';
-            $message .= 'Survey '.$testdate->id.' added.\n';
+            $message .= 'Survey '.$testdate->id.' added.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error adding survey\n';
+            $message .= 'Error adding survey.';
             Log::error($message);
         }
 
@@ -203,11 +203,11 @@ class TestDateController extends Controller
 
         if ($testdate->save()) {
             $status = 'success';
-            $message .= 'Survey '.$testdate->id.' edited.\n';
+            $message .= 'Survey '.$testdate->id.' edited.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error editing survey\n';
+            $message .= 'Error editing survey.';
             Log::error($message);
         }
 
@@ -271,11 +271,11 @@ class TestDateController extends Controller
 
         if ($testdate->save()) {
             $status = 'success';
-            $message .= 'Survey report for survey '.$testdate->id.' stored.\n';
+            $message .= 'Survey report for survey '.$testdate->id.' stored.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error uploading survey report\n';
+            $message .= 'Error uploading survey report.';
             Log::error($message);
         }
 

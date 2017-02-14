@@ -99,11 +99,11 @@ class TubeController extends Controller
 
         if ($tube->save()) {
             $status = 'success';
-            $message .= 'New tube saved for machine: '.$tube->machine_id.'.\n';
+            $message .= 'New tube saved for machine: '.$tube->machine_id.'.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error adding new tube\n';
+            $message .= 'Error adding new tube.';
             Log::error($message);
         }
 
@@ -187,11 +187,11 @@ class TubeController extends Controller
 
         if ($tube->save()) {
             $status = 'success';
-            $message .= 'Tube ID '.$tube->id.' for machine '.$tube->machine_id.' updated.\n';
+            $message .= 'Tube ID '.$tube->id.' for machine '.$tube->machine_id.' updated.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error editing tube\n';
+            $message .= 'Error editing tube.';
             Log::error($message);
         }
 
@@ -225,11 +225,11 @@ class TubeController extends Controller
         // Delete and log the x-ray tube removal
         if ($tube->delete()) {
             $status = 'success';
-            $message .= 'Tube ID '.$tube->id.' deleted.\n';
+            $message .= 'Tube ID '.$tube->id.' deleted.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error deleting X-ray tube\n';
+            $message .= 'Error deleting X-ray tube.';
             Log::error($message);
         }
 

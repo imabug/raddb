@@ -83,11 +83,11 @@ class OpNoteController extends Controller
 
         if ($opNote->save()) {
             $status = 'success';
-            $message = 'Operational note '.$opNote->id.' added.\n';
+            $message = 'Operational note '.$opNote->id.' added.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error adding operational note\n';
+            $message .= 'Error adding operational note.';
             Log::error($message);
         }
 
@@ -149,11 +149,11 @@ class OpNoteController extends Controller
 
         if ($opNote->save()) {
             $status = 'success';
-            $message = 'Operational note '.$opNote->id.' updated.\n';
+            $message = 'Operational note '.$opNote->id.' updated.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error updating operational note\n';
+            $message .= 'Error updating operational note.';
             Log::error($message);
         }
 

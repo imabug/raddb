@@ -108,7 +108,7 @@ class RecommendationController extends Controller
             // This breaks the way service reports were handled in the previous version. Deal with it.
             if ($request->hasFile('ServiceReport')) {
                 $recommendation->service_report_path = $request->ServiceReport->store('public/ServiceReports');
-                $message .= 'Service report uploaded.\n';
+                $message .= 'Service report uploaded.';
             }
         } else {
             // If the recommendation was not marked as resolved, ignore the rest of the fields
@@ -118,12 +118,12 @@ class RecommendationController extends Controller
         }
 
         if ($recommendation->save()) {
-            $message = 'Recommendation '.$recommendation->id.' added.\n';
+            $message = 'Recommendation '.$recommendation->id.' added.';
             $status = 'success';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error adding recommendation\n';
+            $message .= 'Error adding recommendation.';
             Log::error($message);
         }
 
@@ -192,7 +192,7 @@ class RecommendationController extends Controller
         // This breaks the way service reports were handled in the previous version. Deal with it.
         if ($request->hasFile('ServiceReport')) {
             $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
-            $message .= 'Service report uploaded.\n';
+            $message .= 'Service report uploaded.';
         } else {
             $serviceReportPath = null;
         }
@@ -219,7 +219,7 @@ class RecommendationController extends Controller
                 Log::info($message);
             } else {
                 $status = 'fail';
-                $message .= 'Error resolving recommendations\n';
+                $message .= 'Error resolving recommendations.';
                 Log::error($message);
             }
         }
