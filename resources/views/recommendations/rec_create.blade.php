@@ -8,7 +8,7 @@
     <div class="form-group">
         {{ csrf_field() }}
         @if (isset($recs))
-        <h3>Survey recommendations for {{ $machineDesc->description }} (Survey ID {{ $surveyId }})</h3>
+        <h3>Survey recommendations for <a href="{{ route('machines.show', $machine->machine_id) }}">{{ $machine->description }}</a> (Survey ID {{ $surveyId }})</h3>
         <p>Unresolved recommendations are in bold with the checkbox in front</p>
         <table class="table table-hover">
             <thead>

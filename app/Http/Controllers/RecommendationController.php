@@ -53,7 +53,7 @@ class RecommendationController extends Controller
             $machineDesc = null;
         } else {
             // Get the machine description corresponding to the survey ID provided
-            $machineDesc = TestDate::select('description')
+            $machine = TestDate::select('testdates.machine_id as machine_id', 'machines.description as description')
                 ->join('machines', 'testdates.machine_id', '=', 'machines.id')
                 ->where('testdates.id', $surveyId)
                 ->first();
@@ -64,7 +64,7 @@ class RecommendationController extends Controller
 
         return view('recommendations.rec_create', [
             'surveyId'    => $surveyId,
-            'machineDesc' => $machineDesc,
+            'machine'     => $machine,
             'recs'        => $recs,
         ]);
     }
@@ -144,14 +144,14 @@ class RecommendationController extends Controller
     public function show($surveyId)
     {
         // Get the machine description corresponding to the survey ID provided
-        $machineDesc = TestDate::select('description')
+        $machine = TestDate::select('testdates.machine_id as machine_id', 'machines.description as description')
             ->join('machines', 'testdates.machine_id', '=', 'machines.id')
             ->where('testdates.id', $surveyId)
             ->first();
 
         return view('recommendations.recommendations', [
             'surveyID'    => $surveyId,
-            'machineDesc' => $machineDesc,
+            'machine'     => $machine,
             'recs'        => Recommendation::surveyId($surveyId)->get(),
         ]);
     }

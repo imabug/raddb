@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Survey recommendations for {{ $machineDesc->description }} (Survey ID {{ $surveyID }})</h2>
+<h2>Survey recommendations for <a href="{{ route('machines.show', $machine->machine_id) }}">{{ $machine->description }}</a> (Survey ID {{ $surveyID }})</h2>
 <p>Unresolved recommendations are in bold with the checkbox in front</p>
 <p>
 <form class="form-inline" action="{{ route('recommendations.update', $surveyID) }}" method="post" enctype="multipart/form-data">
