@@ -195,7 +195,7 @@ class MachineController extends Controller
     /**
      * Show a list of inactive machines.
      * URI: /machines/inactive
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
@@ -215,7 +215,7 @@ class MachineController extends Controller
     /**
      * Show a list of removed machines.
      * URI: /machines/removed
-     * Method: GET
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
