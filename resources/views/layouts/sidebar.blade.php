@@ -70,7 +70,7 @@
             @else
             <li><a href="{{route('home.index')}}">Login</a></li>
             @endif
-
+            <li><a href="http://128.23.56.214/MPwiki/index.php/RadDB">Help</a></li>
         </ul>
     </div>
 </nav>
