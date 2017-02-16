@@ -10,7 +10,7 @@
 
 		{{ csrf_field() }}
 		<p><label for="modality">Modality:</label>
-		<select id="modality" name="modality" size="1" class="form-control">
+		<select id="modality" name="modality" size="1" class="form-control" autofocus>
 			<option>Select modality</option>
 
 		@foreach ($modalities as $modality)
