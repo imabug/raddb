@@ -3,7 +3,14 @@
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<th>ID</th><th>Description</th><th>Previous</th><th>Prev SurveyID</th><th>Current</th><th>Curr SurveyID</th><th>Recs</th><th>Recs Resolved</th>
+			<th>ID</th>
+            <th>Description</th>
+            <th>Previous</th>
+            <th>Prev SurveyID</th>
+            <th>Current</th>
+            <th>Curr SurveyID</th>
+            {{-- <th>Recs</th>
+            <th>Recs Resolved</th> --}}
 		</tr>
 	</thead>
 	<tbody>
@@ -31,8 +38,8 @@
 		@else
 			<td><a href="{{ route('reports.show', ["survey", $ss->currSurveyID]) }}" target="_blank" title="Survey report" alt="Survey report">{{ $ss->currSurveyID}}</a></td>
 		@endif
-			<td></td>
-			<td></td>
+			{{-- <td></td>
+			<td></td> --}}
 		</tr>
 @endforeach
 	</tbody>
