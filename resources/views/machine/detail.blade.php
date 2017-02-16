@@ -94,7 +94,9 @@
     @endforeach
     </tbody>
 </table>
+@if (Auth::check())
 <p><a href="{{ route('tubes.createTubeFor', $machine->id) }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add x-ray tube</a></p>
+@endif
 
 <h3><span class="label label-default">Operational Notes</span></h3>
 <ol>
@@ -102,7 +104,9 @@
   <li>{{ $opnote->note }}</li>
   @endforeach
 </ol>
+@if (Auth::check())
 <p><a href="{{ route('opnotes.createOpNoteFor', $machine->id) }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add operational note</a></p>
+@endif
 
 <h3><span class="label label-default">Survey Information</span></h3>
 <table class="table">
@@ -133,7 +137,10 @@
     @endforeach
     </tbody>
 </table>
+@if (Auth::check())
 <p><a href="{{ route('surveys.createSurveyFor',  $machine->id)}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add survey</a></p>
+@endif
+
 <h3><span class="label label-default">Survey Recommendations</span></h3>
 <table class="table">
     <thead>
