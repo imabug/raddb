@@ -1,6 +1,4 @@
-# radequipdb
-
-## Radiology Equipment DB
+# Radiology Equipment DB
 
 Radiology imaging equipment management system to track equipment inventory and annual testing of radiology imaging equipment.
 
