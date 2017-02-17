@@ -16,7 +16,7 @@
 		@foreach ($modalities as $modality)
 		<option value="{{ $modality->id }}"
 			@if ($modality->id == $machine->modality_id)
-				selected="selected"
+				selected
 			@endif
 			>{{ $modality->modality }}</option>
 		@endforeach
@@ -30,7 +30,7 @@
 		@foreach ($manufacturers as $manufacturer)
 		<option value="{{ $manufacturer->id }}"
 			@if ($manufacturer->id == $machine->manufacturer_id)
-				selected="selected"
+				selected
 			@endif
 			>{{ $manufacturer->manufacturer }}</option>
 		@endforeach
@@ -48,7 +48,7 @@
 		@foreach ($locations as $location)
 		<option value="{{ $location->id }}"
 			@if ($location->id == $machine->location_id)
-				selected="selected"
+				selected
 			@endif
 			>{{ $location->location }}</option>
 		@endforeach
@@ -56,10 +56,21 @@
 		<p><label for="room">Room:</label> <input type="text" id="room" name="room" size="20" value="{{ $machine->room }}"> <span class="text-danger">*</span></p>
 		<p><label for="status">Machine status:</label>
 		<select class="form-control" id="status" name="status" size="1">
-			<option>Select status</option>
-			<option value="Active" selected="selected">Active</option>
+            @if ($machine->machine_status == "Active")
+			<option value="Active" selected>Active</option>
+            @else
+            <option value="Active">Active</option>
+            @endif
+            @if ($machine->machine_status == "Inactive")
+            <option value="Inactive" selected>Inactive</option>
+            @else
 			<option value="Inactive">Inactive</option>
-			<option value="Removed">Removed</option>
+            @endif
+            @if ($machine->machine_status == "Removed")
+            <option value="Removed" selected>Removed</option>
+            @else
+            <option value="Removed">Removed</option>
+            @endif
 		</select> <span class="text-danger">*</span></p>
 		<p><label for="notes">Notes:</label><br /> <textarea id="notes" name="notes" rows="3" cols="70">{{ $machine->notes }}</textarea></p>
 
