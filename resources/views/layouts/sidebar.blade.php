@@ -70,7 +70,11 @@
             @else
             <li><a href="{{route('home.index')}}">Login</a></li>
             @endif
-            <li><a href="http://128.23.56.214/MPwiki/index.php/RadDB">Help</a></li>
+            <li>Help</li>
+            <ul>
+                <li><a href="http://128.23.56.214/MPwiki/index.php/RadDB">Help (local)</a></li>
+                <li><a href="https://github.com/imabug/raddb/wiki">Help (on Github)</a></li>
+            </ul>
         </ul>
     </div>
 </nav>
