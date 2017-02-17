@@ -197,7 +197,7 @@ class Machine extends Model
     public function scopeTestEquipment($query)
     {
         // If the modality_id for test equipment is something other than 19
-        // change the value in the where() clause. 
+        // change the value in the where() clause.
         return $query->where('modality_id', 19);
     }
 
