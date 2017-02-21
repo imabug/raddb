@@ -15,7 +15,7 @@
 <form class="form-inline" action="{{ route('opnotes.store')}}" method="post">
     <div class="form-group">
         {{ csrf_field() }}
-        <input type="hidden" name="machineId" value="$machine->id">
+        <input type="hidden" name="machineId" value="{{$machine->id}}">
         <p><textarea name="note" rows="8" cols="80" placeholder="Enter operational note"></textarea></p>
         <p><button type="submit" name="submit">Submit</button></p>
     </div>
