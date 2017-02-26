@@ -16,7 +16,7 @@ class Photo extends Model
      */
     protected $fillable = [
         'machine_id',
-        'photo_path'
+        'photo_path',
     ];
 
      /**
@@ -30,7 +30,8 @@ class Photo extends Model
          'updated_at',
      ];
 
-     public function machine() {
-         return $this->belongsTo('RadDB\Machine');
-     }
+    public function machine()
+    {
+        return $this->belongsTo('RadDB\Machine');
+    }
 }
