@@ -75,6 +75,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="http://128.23.56.214/MPwiki/index.php/RadDB" target="_blank">Help (local)</a></li>
                     <li><a href="https://github.com/imabug/raddb/wiki" target="_blank">Help (on Github)</a></li>
+                    <li><a href="https://github.com/imabug/raddb/issues" target="_blank">Report a bug</a></li>
                 </ul>
             </li>
         </ul>
