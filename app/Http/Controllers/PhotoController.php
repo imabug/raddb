@@ -3,7 +3,6 @@
 namespace RadDB\Http\Controllers;
 
 use RadDB\Machine;
-use Illuminate\Http\Request;
 use RadDB\Http\Requests\StorePhotoRequest;
 use RadDB\Http\Requests\UpdatePhotoRequest;
 
