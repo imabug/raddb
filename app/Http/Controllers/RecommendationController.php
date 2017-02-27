@@ -50,7 +50,7 @@ class RecommendationController extends Controller
         if (is_null($surveyId)) {
             // No survey id was provided.
             $recs = null;
-            $machineDesc = null;
+            $machine = null;
         } else {
             // Get the machine description corresponding to the survey ID provided
             $machine = TestDate::select('testdates.machine_id as machine_id', 'machines.description as description')
