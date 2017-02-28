@@ -223,6 +223,7 @@ class MachineController extends Controller
     {
         // Show a list of all the machines in the database
         $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->withTrashed()
             ->removed()
             ->get();
 
