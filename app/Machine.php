@@ -106,9 +106,9 @@ class Machine extends Model
         return $this->hasManyThrough('RadDB\GenData', 'RadDB\TestDate', 'machine_id', 'survey_id');
     }
 
-    public function photo_path()
+    public function machinephoto()
     {
-        return $this->hasMany('RadDB\Photo');
+        return $this->hasMany('RadDB\MachinePhoto');
     }
 
     /*
