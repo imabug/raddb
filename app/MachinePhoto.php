@@ -44,5 +44,4 @@ class MachinePhoto extends Model
     {
         return $this->belongsTo('RadDB\Machine');
     }
-
 }
