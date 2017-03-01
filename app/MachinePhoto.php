@@ -32,8 +32,6 @@ class MachinePhoto extends Model
      * @var array
      */
     protected $dates = [
-        // 'test_date',
-        // 'report_sent_date',
         'deleted_at',
         'created_at',
         'updated_at',
