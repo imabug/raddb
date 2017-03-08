@@ -67,10 +67,10 @@ class SurveyReportController extends Controller
 
         // Get the year of the survey
         $test_date = date_parse($survey->test_date);
-        $year = $test_date["year"];
+        $year = $test_date['year'];
 
         // Append the year to the survey report path
-        $path = $path."/".$year;
+        $path = $path.'/'.$year;
 
         // Handle the uploaded file
         // This breaks the way service reports were handled in the previous version.
