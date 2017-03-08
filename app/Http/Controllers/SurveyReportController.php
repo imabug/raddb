@@ -4,6 +4,7 @@ namespace RadDB\Http\Controllers;
 
 use RadDB\TestDate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use RadDB\Http\Requests\StoreSurveyReportRequest;
 
@@ -44,7 +45,7 @@ class SurveyReportController extends Controller
 
     /**
      * Handle an uploaded survey report
-     * URI: /surveys/addReport
+     * URI: /surveyreports
      * Method: PUT.
      *
      * @param int                      $surveyId
@@ -80,7 +81,7 @@ class SurveyReportController extends Controller
 
         if ($survey->save()) {
             $status = 'success';
-            $message .= 'Survey report for survey '.$testdate->id.' stored.';
+            $message .= 'Survey report for survey '.$survey->id.' stored.';
             Log::info($message);
         } else {
             $status = 'fail';
