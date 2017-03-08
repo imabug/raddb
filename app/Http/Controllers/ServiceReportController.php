@@ -38,14 +38,19 @@ class ServiceReportController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the service report.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $rec = Recommendation::findOrFail($id);
+        if (Storage::exists($rec->service_report_path)) {
+            return redirect(Storage::url($rec->service_report_path));
+        } else {
+            return redirect()->route('recommendations.show'.$rec->survey_id);
+        }
     }
 
     /**
