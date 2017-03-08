@@ -6,7 +6,6 @@ use RadDB\Tester;
 use RadDB\Machine;
 use RadDB\TestDate;
 use RadDB\TestType;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\UpdateTestDateRequest;
 
