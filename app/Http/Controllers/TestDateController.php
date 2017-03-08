@@ -24,7 +24,6 @@ class TestDateController extends Controller
              'store',
              'update',
              'destroy',
-             'storeSurveyReport',
          ]);
      }
 
