@@ -65,6 +65,13 @@ Route::put('surveys/storeReport', 'TestDateController@storeSurveyReport')
     ->name('surveys.storeSurveyReport');
 Route::resource('surveys', 'TestDateController');
 
+// Survey report controller
+Route::get('surveyreports/{id?}/create', 'SurveyReportController@create');
+Route::resource('surveyreports', 'SurveyReportController');
+
+// Service report controller
+Route::resource('servicereports', 'ServiceReportController');
+
 // Tube controller
 Route::get('tubes/{id}/create', 'TubeController@create')
     ->name('tubes.createTubeFor');
