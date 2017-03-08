@@ -58,24 +58,27 @@ class SurveyReportController extends Controller
         $this->authorize(TestDate::class);
 
         $message = '';
+
         // Get the path to store the survey report
         $path = env('SURVEY_REPORT_PATH', 'public/SurveyReports');
 
+        // Get the survey data
+        $survey = TestDate::find($request->surveyId);
+
         // Get the year of the survey
-        $testdate = TestDate::find($request->surveyId);
-        $test_date = date_parse($testdate->test_date);
+        $test_date = date_parse($survey->test_date);
         $year = $test_date["year"];
 
         // Append the year to the survey report path
         $path = $path."/".$year;
 
         // Handle the uploaded file
-        // This breaks the way service reports were handled in the previous version. Deal with it.
+        // This breaks the way service reports were handled in the previous version.
         if ($request->hasFile('surveyReport')) {
-            $testdate->report_file_path = $request->surveyReport->store($path);
+            $survey->report_file_path = $request->surveyReport->store($path);
         }
 
-        if ($testdate->save()) {
+        if ($survey->save()) {
             $status = 'success';
             $message .= 'Survey report for survey '.$testdate->id.' stored.';
             Log::info($message);
