@@ -5,7 +5,7 @@
 @section('content')
 <h2>Add survey report</h2>
 
-<form class="form-inline" action="{{ route('surveys.storeSurveyReport') }}" method="post" enctype="multipart/form-data">
+<form class="form-inline" action="{{ route('surveyreports.store') }}" method="post" enctype="multipart/form-data">
     <div class="form-group">
         {{ csrf_field() }}
         {{ method_field('PUT') }}

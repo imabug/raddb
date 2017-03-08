@@ -36,7 +36,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('surveys.create') }}">Add survey</a></li>
                     <li><a href="{{ route('recommendations.create') }}">Add survey recommendation</a></li>
-                    <li><a href="{{ route('surveys.addSurveyReport') }}">Add survey report</a></li>
+                    <li><a href="{{ route('surveyreports.create') }}">Add survey report</a></li>
                 </ul>
             </li>
             <li class="dropdown">
