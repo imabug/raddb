@@ -151,9 +151,11 @@ class TestDateController extends Controller
      */
     public function edit($surveyId)
     {
+        $survey = TestDate::findOrFail($surveyId);
+
         // Return survey information for $id
         return view('surveys.surveys_edit', [
-            'survey'    => TestDate::findOrFail($surveyId),
+            'survey'    => $survey,
             'machine'   => Machine::findOrFail($survey->machine_id),
             'tester1'   => Tester::findOrFail($survey->tester1_id),
             'tester2'   => Tester::find($survey->tester2_id),
