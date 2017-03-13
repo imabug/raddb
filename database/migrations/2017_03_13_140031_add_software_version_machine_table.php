@@ -14,7 +14,7 @@ class AddSoftwareVersionMachineTable extends Migration
     public function up()
     {
         Schema::table('machines', function (Blueprint $table) {
-            $table->string('software_version',50)->nullable();
+            $table->string('software_version', 50)->nullable();
         });
     }
 
