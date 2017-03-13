@@ -8,7 +8,7 @@
 	<tbody>
 @foreach ($pendingSurveys as $pending)
 		<tr>
-			<td>{{ $pending->surveyId }}</td>
+			<td><a href="{{ route('surveys.edit', $pending->surveyId)}}">{{ $pending->surveyId }}</a></td>
 			<td><a href="{{ route('machines.show', $pending->machineId) }}">{{ $pending->description }}</a></td>
 			<td>{{ $pending->test_date}}</td>
 			<td>{{ $pending->accession }}</td>

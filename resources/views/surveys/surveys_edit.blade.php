@@ -8,7 +8,7 @@
 {{ csrf_field() }}
 {{ method_field('PUT') }}
 <input class="form-control" type="hidden" id="id" name="id" value="{{ $survey->id }}" >
-<input class="form-control" type="hidden" id="machineID" name="machineID" value="{{ $machines->id }}" >
+<input class="form-control" type="hidden" id="machineID" name="machineID" value="{{ $machine->id }}" >
 <p>Machine: {{ $machine->description }}
 </p>
 <p><label for="test_date">Date tested:</label> <input class="form-control" type="date" id="test_date" name="test_date" size="10" value="{{ $survey->test_date }}" ></p>

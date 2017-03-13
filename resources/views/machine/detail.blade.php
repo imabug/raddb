@@ -20,6 +20,7 @@
         Machine ID: {{ $machine->id }} <br>
         Model: {{ $machine->model }} <br>
         Serial Number: {{ $machine->serial_number }} <br>
+        Software version: {{ $machine->software_version }} <br>
         Vendor Site ID: {{ $machine->vend_site_id }} <br>
         Location: {{ $machine->location->location }} {{ $machine->room }}<br>
         Manufacture Date: {{ $machine->manuf_date }} <br>
@@ -140,7 +141,7 @@
             @if (empty($survey->report_file_path) || is_null($survey->report_file_path))
             <td></td>
             @else
-            <td><a href="{{ route('reports.show', ["survey", $survey->id]) }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td><a href="{{ route('surveyreports.show', ["survey", $survey->id]) }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @endif
         </tr>
     @endforeach
@@ -173,7 +174,7 @@
             @if (empty($rec->service_report_path) || is_null($rec->service_report_path))
             <td></td>
             @else
-            <td><a href="{{ route('reports.show', ["service", $rec->id]) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td><a href="{{ route('servicereports.show', ["service", $rec->id]) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @endif
         </tr>
     @endforeach

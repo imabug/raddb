@@ -36,7 +36,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('surveys.create') }}">Add survey</a></li>
                     <li><a href="{{ route('recommendations.create') }}">Add survey recommendation</a></li>
-                    <li><a href="{{ route('surveys.addSurveyReport') }}">Add survey report</a></li>
+                    <li><a href="{{ route('surveyreports.create') }}">Add survey report</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -75,6 +75,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="http://128.23.56.214/MPwiki/index.php/RadDB" target="_blank">Help (local)</a></li>
                     <li><a href="https://github.com/imabug/raddb/wiki" target="_blank">Help (on Github)</a></li>
+                    <li><a href="https://github.com/imabug/raddb/issues" target="_blank">Report a bug</a></li>
                 </ul>
             </li>
         </ul>

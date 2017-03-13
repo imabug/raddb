@@ -9,8 +9,6 @@
             <th>Prev SurveyID</th>
             <th>Current</th>
             <th>Curr SurveyID</th>
-            {{-- <th>Recs</th>
-            <th>Recs Resolved</th> --}}
 		</tr>
 	</thead>
 	<tbody>
@@ -26,7 +24,11 @@
 		@if (empty($ss->prevSurveyReport))
             <td>{{ $ss->prevSurveyID }}</td>
 		@else
-            <td><a href="{{ route('reports.show', ["survey", $ss->prevSurveyID]) }}" target="_blank" title="Survey report" alt="Survey report">{{ $ss->prevSurveyID }}</a></td>
+            <td>{{ $ss->prevSurveyID }}
+                <a href="{{ route('surveyreports.show', $ss->prevSurveyID) }}" target="_blank" title="Survey report" alt="Survey report">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                </a>
+            </td>
 		@endif
         @if ($ss->currRecCount > 0)
             <td><a href="{{ route('recommendations.show', $ss->currSurveyID)}}" title="Recommendations" alt="Recommendations">{{ $ss->currSurveyDate }}</a></td>
@@ -36,10 +38,12 @@
 		@if (empty($ss->currSurveyReport))
             <td>{{ $ss->currSurveyID }}</td>
 		@else
-			<td><a href="{{ route('reports.show', ["survey", $ss->currSurveyID]) }}" target="_blank" title="Survey report" alt="Survey report">{{ $ss->currSurveyID}}</a></td>
+			<td>{{ $ss->currSurveyID}}
+                <a href="{{ route('surveyreports.show', $ss->currSurveyID) }}" target="_blank" title="Survey report" alt="Survey report">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                </a>
+            </td>
 		@endif
-			{{-- <td></td>
-			<td></td> --}}
 		</tr>
 @endforeach
 	</tbody>
