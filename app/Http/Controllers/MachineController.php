@@ -144,6 +144,7 @@ class MachineController extends Controller
         }
         $machine->model = $request->model;
         $machine->serial_number = $request->serialNumber;
+        $machine->software_version = $request->softwareVersion;
         if (isset($request->manufDate)) {
             $machine->manuf_date = $request->manufDate;
         }
@@ -280,6 +281,7 @@ class MachineController extends Controller
         }
         $machine->model = $request->model;
         $machine->serial_number = $request->serialNumber;
+        $machine->software_version = $request->softwareVersion;
         if (isset($request->manufDate)) {
             $machine->manuf_date = $request->manufDate;
         }

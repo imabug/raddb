@@ -20,6 +20,7 @@
         Machine ID: {{ $machine->id }} <br>
         Model: {{ $machine->model }} <br>
         Serial Number: {{ $machine->serial_number }} <br>
+        Software version: {{ $machine->software_version }} <br>
         Vendor Site ID: {{ $machine->vend_site_id }} <br>
         Location: {{ $machine->location->location }} {{ $machine->room }}<br>
         Manufacture Date: {{ $machine->manuf_date }} <br>

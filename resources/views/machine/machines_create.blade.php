@@ -30,6 +30,7 @@
 		</select> <span class="text-danger">*</span></p>
 		<p><label for="model">Model:</label> <input class="form-control" type="text" id="model" name="model" size="20" > <span class="text-danger">*</span></p>
 		<p><label for="serialNumber">Serial Number:</label> <input class="form-control" type="text" id="serialNumber" name="serialNumber" size="20" > <span class="text-danger">*</span></p>
+        <p><label for="softwareVersion">Software version:</label> <input class="form-control" type="text" id="softwareVersion" name="softwareVersion" size="50"></p>
 		<p><label for="vendSiteID">Vendor site ID:</label> <input class="form-control" type="text" id="vendSiteID" name="vendSiteID" size="20" ></p>
 		<p><label for="manufDate">Manufacture date:</label> <input class="form-control" type="date" id="manufDate" name="manufDate" size="10"></p>
 		<p><label for="installDate">Install date:</label> <input class="form-control" type="date" id="installDate" name="installDate" size="10"></p>
