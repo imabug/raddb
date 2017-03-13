@@ -6,10 +6,8 @@ use RadDB\Tester;
 use RadDB\Machine;
 use RadDB\TestDate;
 use RadDB\TestType;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\UpdateTestDateRequest;
-use RadDB\Http\Requests\StoreSurveyReportRequest;
 
 class TestDateController extends Controller
 {
@@ -25,7 +23,6 @@ class TestDateController extends Controller
              'store',
              'update',
              'destroy',
-             'storeSurveyReport',
          ]);
      }
 
@@ -208,74 +205,6 @@ class TestDateController extends Controller
         } else {
             $status = 'fail';
             $message .= 'Error editing survey.';
-            Log::error($message);
-        }
-
-        return redirect()
-            ->route('index')
-            ->with($status, $message);
-    }
-
-    /**
-     * Show a form for adding a new survey report.
-     * URI: /surveys/addReport
-     * Method: GET.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addSurveyReport(Request $request)
-    {
-        // TODO: Have the survey ID as an optional parameter.
-        // URI: /surveys/{surveyId?}/addReport
-        // In the initial attempt, route matching failed when the survey ID
-        // wasn't provided in the URI.
-
-        $surveys = TestDate::year(date('Y'))
-            ->where(function ($query) {
-                $query->whereNull('report_file_path')
-                    ->orWhere('report_file_path', '');
-            })
-            ->get();
-
-        return view('surveys.surveys_addReport', [
-            'surveys' => $surveys,
-        ]);
-    }
-
-    /**
-     * Handle an uploaded survey report
-     * URI: /surveys/addReport
-     * Method: PUT.
-     *
-     * @param int                      $surveyId
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function storeSurveyReport(StoreSurveyReportRequest $request)
-    {
-        // Check if action is allowed
-        $this->authorize(TestDate::class);
-
-        $message = '';
-
-        $testdate = TestDate::find($request->surveyId);
-
-        // Handle the uploaded file
-        // This breaks the way service reports were handled in the previous version. Deal with it.
-        if ($request->hasFile('surveyReport')) {
-            $testdate->report_file_path = $request->surveyReport->store('public/SurveyReports');
-        }
-
-        if ($testdate->save()) {
-            $status = 'success';
-            $message .= 'Survey report for survey '.$testdate->id.' stored.';
-            Log::info($message);
-        } else {
-            $status = 'fail';
-            $message .= 'Error uploading survey report.';
             Log::error($message);
         }
 

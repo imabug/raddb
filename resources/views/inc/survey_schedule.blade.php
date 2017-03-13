@@ -25,7 +25,7 @@
             <td>{{ $ss->prevSurveyID }}</td>
 		@else
             <td>{{ $ss->prevSurveyID }}
-                <a href="{{ route('reports.show', ["survey", $ss->prevSurveyID]) }}" target="_blank" title="Survey report" alt="Survey report">
+                <a href="{{ route('surveyreports.show', $ss->prevSurveyID) }}" target="_blank" title="Survey report" alt="Survey report">
                     <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                 </a>
             </td>
@@ -39,7 +39,7 @@
             <td>{{ $ss->currSurveyID }}</td>
 		@else
 			<td>{{ $ss->currSurveyID}}
-                <a href="{{ route('reports.show', ["survey", $ss->currSurveyID]) }}" target="_blank" title="Survey report" alt="Survey report">
+                <a href="{{ route('surveyreports.show', $ss->currSurveyID) }}" target="_blank" title="Survey report" alt="Survey report">
                     <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                 </a>
             </td>
