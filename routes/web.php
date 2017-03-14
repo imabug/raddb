@@ -114,6 +114,8 @@ Route::resource('admin/testers', 'TesterController');
 Route::resource('admin/testtypes', 'TestTypeController');
 
 // Photos controller. Used to handle uploading and updating photos of machines.
+Route::name('photos.create')
+    ->get('photos/{id}/create', 'MachinePhotoController@create');
 Route::resource('photos', 'PhotoController');
 
 // Route for user management
