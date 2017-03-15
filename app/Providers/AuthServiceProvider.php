@@ -20,6 +20,7 @@ use RadDB\Policies\LocationPolicy;
 use RadDB\Policies\ModalityPolicy;
 use RadDB\Policies\TestDatePolicy;
 use RadDB\Policies\TestTypePolicy;
+use RadDB\Policies\MachinePhotoPolicy;
 use RadDB\Policies\ManufacturerPolicy;
 use RadDB\Policies\RecommendationPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -35,6 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         'RadDB\Model'         => 'RadDB\Policies\ModelPolicy',
         Location::class       => LocationPolicy::class,
         Machine::class        => MachinePolicy::class,
+        MachinePhoto::class   => MachinePhotoPolicy::class,
         Manufacturer::class   => ManufacturerPolicy::class,
         Modality::class       => ModalityPolicy::class,
         OpNote::class         => OpNotePolicy::class,
