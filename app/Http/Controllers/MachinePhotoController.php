@@ -38,7 +38,7 @@ class MachinePhotoController extends Controller
     /**
      * Show the form for adding a new photo.
      * URI: photos/{id}/create
-     * Method: GET
+     * Method: GET.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
@@ -49,7 +49,7 @@ class MachinePhotoController extends Controller
         $machine = Machine::find($id);
         $photos = MachinePhoto::where('machine_id', $id)->get();
 
-        return view('photos.photos_create',[
+        return view('photos.photos_create', [
             'machine' => $machine,
             'photos' => $photos,
         ]);
@@ -95,8 +95,7 @@ class MachinePhotoController extends Controller
             // Create a thumbnail image
             if ($photoSize[0] >= 150) {
                 $photoThumb = imagescale($photo, 150, -1, IMG_BICUBIC);
-            }
-            else {
+            } else {
                 $photoThumb = $photo;
             }
 
@@ -107,8 +106,7 @@ class MachinePhotoController extends Controller
             imagejpeg($photoThumb, $machinePhoto->machine_photo_thumb);
             if (is_null($request->photoDescription)) {
                 $machinePhoto->photo_description = null;
-            }
-            else {
+            } else {
                 $machinePhoto->photo_description = $request->photoDescription;
             }
 
@@ -116,8 +114,7 @@ class MachinePhotoController extends Controller
                 $status = 'success';
                 $message .= 'Photo for machine '.$machineId.' saved.';
                 Log::info($message);
-            }
-            else {
+            } else {
                 $status = 'fail';
                 $message .= 'Error saving photo.';
                 Log::error($message);
