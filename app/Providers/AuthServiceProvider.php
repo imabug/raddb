@@ -10,6 +10,7 @@ use RadDB\Location;
 use RadDB\Modality;
 use RadDB\TestDate;
 use RadDB\TestType;
+use RadDB\MachinePhoto;
 use RadDB\Manufacturer;
 use RadDB\Recommendation;
 use RadDB\Policies\TubePolicy;
