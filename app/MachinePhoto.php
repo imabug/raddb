@@ -44,4 +44,21 @@ class MachinePhoto extends Model
     {
         return $this->belongsTo('RadDB\Machine');
     }
+
+    /*
+     * Scopes
+     */
+
+    /**
+     * Scope function to return photos for machine $id
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int                                   $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeMachine($query, $id)
+    {
+        return $query->where('machine_id', $id);
+    }
 }
