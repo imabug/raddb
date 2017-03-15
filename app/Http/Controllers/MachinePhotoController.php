@@ -11,6 +11,21 @@ use RadDB\Http\Requests\StoreMachinePhotoRequest;
 class MachinePhotoController extends Controller
 {
     /**
+      * Instantiate a new controller instance.
+      *
+      * @return void
+      */
+     public function __construct()
+     {
+         // Only apply auth middleware to these methods
+         $this->middleware('auth')->only([
+             'store',
+             'update',
+             'destroy',
+         ]);
+     }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -32,9 +47,9 @@ class MachinePhotoController extends Controller
     {
         // $id is the machine ID to add the photo to.
         $machine = Machine::find($id);
-        $photos = MachinePhoto::machine($id)->get();
+        $photos = MachinePhoto::where('machine_id', $id)->get();
 
-        return view('photos.photo_create',[
+        return view('photos.photos_create',[
             'machine' => $machine,
             'photos' => $photos,
         ]);
@@ -89,7 +104,7 @@ class MachinePhotoController extends Controller
             $photoName = $machineId.'_'.$machinePhoto->id;
             $machinePhoto->machine_photo_path = $request->file('photo')->storeAs($path, $photoName);
             $machinePhoto->machine_photo_thumb = $thumbPath.$photoName.'_th';
-            imaagejpeg($photoThumb, $machinePhoto->machine_photo_thumb)
+            imagejpeg($photoThumb, $machinePhoto->machine_photo_thumb);
             if (is_null($request->photoDescription)) {
                 $machinePhoto->photo_description = null;
             }
@@ -118,11 +133,11 @@ class MachinePhotoController extends Controller
      * Display the photos for machine $id.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function show($id)
     {
-        //
+        return MachinePhoto::where('machine_id', $id)->get();
     }
 
     /**
