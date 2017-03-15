@@ -79,7 +79,7 @@ class MachinePhotoController extends Controller
 
             // Create a thumbnail image
             if ($photoSize[0] >= 150) {
-                $photoThumb = imagescale($photo, 150), -1, IMG_BICUBIC);
+                $photoThumb = imagescale($photo, 150, -1, IMG_BICUBIC);
             }
             else {
                 $photoThumb = $photo;
