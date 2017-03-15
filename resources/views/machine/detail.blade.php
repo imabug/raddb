@@ -30,11 +30,6 @@
         Notes: {{ $machine->notes }}
         <div class="media">
             <div class="media-right">
-                <a href="#">
-                    @if (isset($machine->photo))
-                    <img class="media-object" src="{{ $machine->photo }}" alt="{{ $machine->description }}">
-                    @endif
-                </a>
             </div>
         </div>
         </p>
