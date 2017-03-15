@@ -50,7 +50,7 @@ class MachinePhoto extends Model
      */
 
     /**
-     * Scope function to return photos for machine $id
+     * Scope function to return photos for machine $id.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param int                                   $id
