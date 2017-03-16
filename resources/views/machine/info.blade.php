@@ -53,7 +53,7 @@
             {{-- Machine photo carousel --}}
                 <div class="multiple-items">
                 @foreach ($photos as $photo)
-                    <div><img src="{{ $photos->machine_photo_path }}" alt="{{ $photos->photo_description}}" width="150"></div>
+                    <div><img src="{{ $photo->machine_photo_path }}" alt="{{ $photo->photo_description}}" width="150"></div>
                 @endforeach
                 </div>
             </div>
