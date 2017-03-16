@@ -18,6 +18,7 @@
     <div class="panel-body">
         <p>
         Machine ID: {{ $machine->id }} <br>
+        Manufacturer: {{ $machine->manufacturer->manufacturer }} <br>
         Model: {{ $machine->model }} <br>
         Serial Number: {{ $machine->serial_number }} <br>
         Software version: {{ $machine->software_version }} <br>
