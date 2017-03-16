@@ -6,6 +6,7 @@ use RadDB\Tube;
 use RadDB\Machine;
 use RadDB\Manufacturer;
 use Illuminate\Support\Facades\Log;
+use RadDB\Http\Requests\StoreTubeRequest;
 use RadDB\Http\Requests\UpdateTubeRequest;
 
 class TubeController extends Controller
@@ -62,7 +63,7 @@ class TubeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(UpdateTubeRequest $request)
+    public function store(StoreTubeRequest $request)
     {
         // Check if action is allowed
         $this->authorize(Tube::class);
