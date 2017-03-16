@@ -12,7 +12,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
             {{-- Machine data section --}}
                 <p>
                 Machine ID: {{ $machine->id }} <br>
@@ -49,7 +49,7 @@
                 </p>
                 @endif
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
             {{-- Machine photo carousel --}}
                 <div class="multiple-items">
                 @foreach ($photos as $photo)
