@@ -81,6 +81,16 @@ class Machine extends Model
         return $this->hasMany('RadDB\TestDate');
     }
 
+    public function thisyear()
+    {
+        return $this->hasMany('RadDB\ThisYear');
+    }
+
+    public function lastyear()
+    {
+        return $this->hasMany('RadDB\LastYear');
+    }
+
     public function testdateRecent()
     {
         return $this->hasMany('RadDB\TestDate')->latest('test_date')->first();
@@ -94,6 +104,11 @@ class Machine extends Model
     public function gendata()
     {
         return $this->hasManyThrough('RadDB\GenData', 'RadDB\TestDate', 'machine_id', 'survey_id');
+    }
+
+    public function machinephoto()
+    {
+        return $this->hasMany('RadDB\MachinePhoto');
     }
 
     /*
@@ -110,6 +125,30 @@ class Machine extends Model
     public function scopeActive($query)
     {
         return $query->where('machine_status', 'Active');
+    }
+
+    /**
+     * Scope function to return inactive machines.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeInactive($query)
+    {
+        return $query->where('machine_status', 'Inactive');
+    }
+
+    /**
+     * Scope function to return removed machines.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeRemoved($query)
+    {
+        return $query->where('machine_status', 'Removed');
     }
 
     /**
@@ -162,6 +201,8 @@ class Machine extends Model
      */
     public function scopeTestEquipment($query)
     {
+        // If the modality_id for test equipment is something other than 19
+        // change the value in the where() clause.
         return $query->where('modality_id', 19);
     }
 

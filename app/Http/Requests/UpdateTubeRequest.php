@@ -24,18 +24,19 @@ class UpdateTubeRequest extends FormRequest
     public function rules()
     {
         return [
-            'machine_id'       => 'required|integer',
+            'machine_id'    => 'required|integer',
             'hsgManufID'    => 'integer',
             'hsgModel'      => 'string|nullable|max:30',
             'hsgSN'         => 'string|nullable|max:20',
             'insertManufID' => 'integer',
             'insertModel'   => 'string|nullable|max:30',
             'insertSN'      => 'string|nullable|max:20',
-            'manufDate'     => 'date_format:Y-m-d',
-            'installDate'   => 'date_format:Y-m-d',
+            'manufDate'     => 'date_format:Y-m-d|nullable',
+            'installDate'   => 'date_format:Y-m-d|nullable',
             'lfs'           => 'numeric',
             'mfs'           => 'numeric',
             'sfs'           => 'numeric',
+            'tube_status'   => 'required|in:Active,Removed|max:20',
             'notes'         => 'string|nullable|max:65535',
         ];
     }

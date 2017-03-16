@@ -2,6 +2,7 @@
 
 namespace RadDB\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRecommendationRequest extends FormRequest
@@ -21,16 +22,24 @@ class StoreRecommendationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
-        return [
+        // Build the validation rules
+        $rules = [
             'surveyId'       => 'required|exists:testdates,id|integer',
             'recommendation' => 'required|string|max:500',
             'resolved'       => 'integer',
             'WONum'          => 'string|nullable|max:20',
-            'RecResolveDate' => 'date_format:Y-m-d|nullable',
-            'ResolvedBy'     => 'string|nullable|max:10',
             'ServiceReport'  => 'file|mimes:pdf',
         ];
+
+        // If 'resolved' was checked, then add validation rules for
+        // 'RecResolveDate' and 'ResolvedBy'.
+        if ($request->has('resolved')) {
+            $rules['RecResolveDate'] = 'required|date_format:Y-m-d';
+            $rules['ResolvedBy'] = 'required|string|max:10';
+        }
+
+        return $rules;
     }
 }

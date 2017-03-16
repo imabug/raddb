@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Survey recommendations for {{ $machineDesc->description }} (Survey ID {{ $surveyID }})</h2>
+<h2>Survey recommendations for <a href="{{ route('machines.show', $machine->machine_id) }}">{{ $machine->description }}</a> (Survey ID {{ $surveyID }})</h2>
 <p>Unresolved recommendations are in bold with the checkbox in front</p>
 <p>
 <form class="form-inline" action="{{ route('recommendations.update', $surveyID) }}" method="post" enctype="multipart/form-data">
@@ -38,6 +38,7 @@
             </tbody>
         </table>
         <hr>
+        @if (Auth::check())
         <p>
             <a href="{{ route('recommendations.createRecFor', $surveyID) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -45,12 +46,13 @@
             </a>
         </p>
         <p><label for="WONum">Biomed Work Order Number:</label> <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" ></p>
-        <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date" size="20" maxlength="20" ></p>
+        <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date"> <span class="text-danger">*</span></p>
         <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" > (Max file size: {{ ini_get('post_max_size') }})</p>
-        <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" ></p>
-        <p><button type="SUBMIT">Resolve recommendations</button></p>
+        <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" > <span class="text-danger">*</span></p>
+        <p><button class="form-control" type="SUBMIT">Resolve recommendations</button></p>
+        @endif
     </div>
 </form>
 </p>
-
+<p><span class="text-danger">*</span> Required field when resolving recommendations</p>
 @endsection

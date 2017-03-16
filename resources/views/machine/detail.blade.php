@@ -20,6 +20,7 @@
         Machine ID: {{ $machine->id }} <br>
         Model: {{ $machine->model }} <br>
         Serial Number: {{ $machine->serial_number }} <br>
+        Software version: {{ $machine->software_version }} <br>
         Vendor Site ID: {{ $machine->vend_site_id }} <br>
         Location: {{ $machine->location->location }} {{ $machine->room }}<br>
         Manufacture Date: {{ $machine->manuf_date }} <br>
@@ -27,6 +28,10 @@
         Age: {{ $machine->age }}<br>
         Status: {{ $machine->machine_status }}<br>
         Notes: {{ $machine->notes }}
+        <div class="media">
+            <div class="media-right">
+            </div>
+        </div>
         </p>
         @if (Auth::check())
         <p>
@@ -94,7 +99,9 @@
     @endforeach
     </tbody>
 </table>
+@if (Auth::check())
 <p><a href="{{ route('tubes.createTubeFor', $machine->id) }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add x-ray tube</a></p>
+@endif
 
 <h3><span class="label label-default">Operational Notes</span></h3>
 <ol>
@@ -102,7 +109,9 @@
   <li>{{ $opnote->note }}</li>
   @endforeach
 </ol>
+@if (Auth::check())
 <p><a href="{{ route('opnotes.createOpNoteFor', $machine->id) }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add operational note</a></p>
+@endif
 
 <h3><span class="label label-default">Survey Information</span></h3>
 <table class="table">
@@ -127,13 +136,16 @@
             @if (empty($survey->report_file_path) || is_null($survey->report_file_path))
             <td></td>
             @else
-            <td><a href="{{ route('reports.show', ["survey", $survey->id]) }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td><a href="{{ route('surveyreports.show', ["survey", $survey->id]) }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @endif
         </tr>
     @endforeach
     </tbody>
 </table>
+@if (Auth::check())
 <p><a href="{{ route('surveys.createSurveyFor',  $machine->id)}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add survey</a></p>
+@endif
+
 <h3><span class="label label-default">Survey Recommendations</span></h3>
 <table class="table">
     <thead>
@@ -157,7 +169,7 @@
             @if (empty($rec->service_report_path) || is_null($rec->service_report_path))
             <td></td>
             @else
-            <td><a href="{{ route('reports.show', ["service", $rec->id]) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td><a href="{{ route('servicereports.show', ["service", $rec->id]) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @endif
         </tr>
     @endforeach

@@ -19,6 +19,8 @@
                     <li><a href="{{ route('modalities.showModalityIndex') }}">List by modality</a></li>
                     <li><a href="{{ route('locations.showLocationIndex') }}">List by location</a></li>
                     <li><a href="{{ route('manufacturers.showManufacturerIndex') }}">List by manufacturer</a></li>
+                    <li><a href="{{ route('machines.inactive') }}">Inactive machines</a></li>
+                    <li><a href="{{ route('machines.removed') }}">Removed machines</a></li>
                 </ul>
             </li>
             @if (Auth::check())
@@ -34,7 +36,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('surveys.create') }}">Add survey</a></li>
                     <li><a href="{{ route('recommendations.create') }}">Add survey recommendation</a></li>
-                    <li><a href="{{ route('surveys.addSurveyReport') }}">Add survey report</a></li>
+                    <li><a href="{{ route('surveyreports.create') }}">Add survey report</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -68,7 +70,14 @@
             @else
             <li><a href="{{route('home.index')}}">Login</a></li>
             @endif
-
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="http://128.23.56.214/MPwiki/index.php/RadDB" target="_blank">Help (local)</a></li>
+                    <li><a href="https://github.com/imabug/raddb/wiki" target="_blank">Help (on Github)</a></li>
+                    <li><a href="https://github.com/imabug/raddb/issues" target="_blank">Report a bug</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>

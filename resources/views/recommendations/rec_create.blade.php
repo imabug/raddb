@@ -8,7 +8,7 @@
     <div class="form-group">
         {{ csrf_field() }}
         @if (isset($recs))
-        <h3>Survey recommendations for {{ $machineDesc->description }} (Survey ID {{ $surveyId }})</h3>
+        <h3>Survey recommendations for <a href="{{ route('machines.show', $machine->machine_id) }}">{{ $machine->description }}</a> (Survey ID {{ $surveyId }})</h3>
         <p>Unresolved recommendations are in bold with the checkbox in front</p>
         <table class="table table-hover">
             <thead>
@@ -39,16 +39,18 @@
         </table>
         @endif
         <hr>
-        <p><label for="surveyId">Survey ID: </label><input class="form-control" type="text" id="surveyId" name="surveyId" value="{{ $surveyId or '' }}" ></p>
-        <p><label for="recommendation">Recommendation: </label><textarea class="form-control" id="recommendation" name="recommendation" rows="4" cols="80" placeholder="Enter recommendation"></textarea></p>
-        <p><label for="resolved">Resolved: </label><input class="form-control" type="checkbox" id="resolved" name="resolved" value="1" ></p>
+        @if (Auth::check())
+        <p><label for="surveyId">Survey ID: </label><input class="form-control" type="text" id="surveyId" name="surveyId" value="{{ $surveyId or '' }}" > <span class="text-danger">*</span></p>
+        <p><label for="recommendation">Recommendation: </label><textarea class="form-control" id="recommendation" name="recommendation" rows="4" cols="80" placeholder="Enter recommendation"></textarea> <span class="text-danger">*</span></p>
+        <p><label for="resolved">Resolved: </label> <input class="form-control" type="checkbox" id="resolved" name="resolved" value="1" ></p>
         <p><label for="WONum">Biomed Work Order Number:</label> <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" ></p>
         <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date" size="20" maxlength="20" ></p>
         <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" > (Max file size: {{ ini_get('post_max_size') }})</p>
         <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" ></p>
         <p><button type="SUBMIT">Add recommendations</button></p>
+        @endif
     </div>
 </form>
-
+<p><span class="text-danger">*</span> Required field</p>
 
 @endsection

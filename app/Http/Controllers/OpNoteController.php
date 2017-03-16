@@ -82,17 +82,17 @@ class OpNoteController extends Controller
         $opNote->note = $request->note;
 
         if ($opNote->save()) {
+            $status = 'success';
             $message = 'Operational note '.$opNote->id.' added.';
             Log::info($message);
-
-            $status = 'success';
-            $message = 'Operational note added';
         } else {
             $status = 'fail';
-            $message = 'Error adding operational note';
+            $message .= 'Error adding operational note.';
+            Log::error($message);
         }
 
-        return redirect()->route('opnotes.show', $opNote->machine_id)
+        return redirect()
+            ->route('opnotes.show', $opNote->machine_id)
             ->with($status, $message);
     }
 
@@ -148,17 +148,17 @@ class OpNoteController extends Controller
         $opNote->note = $request->note;
 
         if ($opNote->save()) {
+            $status = 'success';
             $message = 'Operational note '.$opNote->id.' updated.';
             Log::info($message);
-
-            $status = 'success';
-            $message = 'Operational note updated';
         } else {
             $status = 'fail';
-            $message = 'Error updating operational note';
+            $message .= 'Error updating operational note.';
+            Log::error($message);
         }
 
-        return redirect()->route('opnotes.show', $opNote->machine_id)
+        return redirect()
+            ->route('opnotes.show', $opNote->machine_id)
             ->with($status, $message);
     }
 

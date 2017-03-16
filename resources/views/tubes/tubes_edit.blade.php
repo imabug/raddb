@@ -40,11 +40,11 @@
     <p><label for="insertSN">Insert SN:</label> <input class="form-control" type="text" id="insertSN" name="insertSN" size="20" value="{{ $tube->insert_sn }}" ></p>
     <p><label for="manufDate">Manufacture Date:</label> <input class="form-control" type="date" id="manufDate" name="manufDate" size="10" value="{{ $tube->manuf_date }}" ></p>
     <p><label for="installDate">Install date:</label> <input class="form-control" type="date" id="installDate" name="installDate" size="10" value="{{ $tube->install_date }}" ></p>
-    <p><label for="lfs">Focal spot size: Large:</label> <input class="form-control" type="text" id="lfs" name="lfs" size="4" value="{{ $tube->lfs }}" >mm
-    	<label for="mfs">Medium:</label> <input class="form-control" type="text" id="mfs" name="mfs" size="4" value="{{ $tube->mfs }}" >mm
-    	<label for="sfs">Small:</label> <input class="form-control" type="text" id="sfs" name="sfs" size="4" value="{{ $tube->sfs }}" >mm</p>
+    <p><label for="lfs">Focal spot size: Large:</label> <input class="form-control" type="text" id="lfs" name="lfs" size="4" value="{{ $tube->lfs or '0' }}" >mm
+    	<label for="mfs">Medium:</label> <input class="form-control" type="text" id="mfs" name="mfs" size="4" value="{{ $tube->mfs or '0' }}" >mm
+    	<label for="sfs">Small:</label> <input class="form-control" type="text" id="sfs" name="sfs" size="4" value="{{ $tube->sfs or '0' }}" >mm</p>
     <p><label for="notes">Notes</label><br /><textarea class="form-control" id="notes" name="notes" rows="3" cols="70">{{$tube->notes}} </textarea></p>
-    <p><button type="SUBMIT">Modify tube</button> / <a href="/">Main</a></p>
+    <p><button class="form-control" type="SUBMIT">Modify tube</button></p>
     </div>
 </form>
 </p>

@@ -4,7 +4,6 @@ namespace RadDB\Http\Controllers;
 
 use RadDB\TestDate;
 use RadDB\Recommendation;
-// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use RadDB\Http\Requests\StoreRecommendationRequest;
@@ -49,23 +48,23 @@ class RecommendationController extends Controller
     public function create($surveyId = null)
     {
         if (is_null($surveyId)) {
-            // No survey id was provided
+            // No survey id was provided.
             $recs = null;
-            $machineDesc = null;
+            $machine = null;
         } else {
             // Get the machine description corresponding to the survey ID provided
-            $machineDesc = TestDate::select('description')
+            $machine = TestDate::select('testdates.machine_id as machine_id', 'machines.description as description')
                 ->join('machines', 'testdates.machine_id', '=', 'machines.id')
                 ->where('testdates.id', $surveyId)
                 ->first();
 
-            // Retrieve the recommendations for the provided survey ID
+            // Retrieve recommendations for the provided survey ID.
             $recs = Recommendation::surveyID($surveyId)->get();
         }
 
         return view('recommendations.rec_create', [
             'surveyId'    => $surveyId,
-            'machineDesc' => $machineDesc,
+            'machine'     => $machine,
             'recs'        => $recs,
         ]);
     }
@@ -84,6 +83,8 @@ class RecommendationController extends Controller
         // Check if action is allowed
         $this->authorize(Recommendation::class);
 
+        $message = '';
+
         $recommendation = new Recommendation();
         $recommendation->survey_id = $request->surveyId;
         $recommendation->recommendation = $request->recommendation;
@@ -95,6 +96,8 @@ class RecommendationController extends Controller
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
             $recommendation->wo_number = $request->WONum;
             if (is_null($request->RecResolveDate)) {
+                // Recommendation resolved date wasn't set (should have been).
+                // Use current date as a default.
                 $recommendation->rec_resolve_date = date('Y-m-d');
             } else {
                 $recommendation->rec_resolve_date = $request->RecResolveDate;
@@ -105,6 +108,7 @@ class RecommendationController extends Controller
             // This breaks the way service reports were handled in the previous version. Deal with it.
             if ($request->hasFile('ServiceReport')) {
                 $recommendation->service_report_path = $request->ServiceReport->store('public/ServiceReports');
+                $message .= 'Service report uploaded.';
             }
         } else {
             // If the recommendation was not marked as resolved, ignore the rest of the fields
@@ -115,14 +119,17 @@ class RecommendationController extends Controller
 
         if ($recommendation->save()) {
             $message = 'Recommendation '.$recommendation->id.' added.';
+            $status = 'success';
             Log::info($message);
-
-            return redirect()->route('recommendations.show', $request->surveyId)
-                ->with('success', 'Service report uploaded');
         } else {
-            return redirect()->route('recommendations.show', $request->surveyId)
-                ->with('fail', 'Error uploading service report');
+            $status = 'fail';
+            $message .= 'Error adding recommendation.';
+            Log::error($message);
         }
+
+        return redirect()
+            ->route('recommendations.show', $request->surveyId)
+            ->with($status, $message);
     }
 
     /**
@@ -137,18 +144,15 @@ class RecommendationController extends Controller
     public function show($surveyId)
     {
         // Get the machine description corresponding to the survey ID provided
-        $machineDesc = TestDate::select('description')
+        $machine = TestDate::select('testdates.machine_id as machine_id', 'machines.description as description')
             ->join('machines', 'testdates.machine_id', '=', 'machines.id')
             ->where('testdates.id', $surveyId)
             ->first();
 
-        // Get the recommendations
-        $recs = Recommendation::surveyId($surveyId)->get();
-
         return view('recommendations.recommendations', [
             'surveyID'    => $surveyId,
-            'machineDesc' => $machineDesc,
-            'recs'        => $recs,
+            'machine'     => $machine,
+            'recs'        => Recommendation::surveyId($surveyId)->get(),
         ]);
     }
 
@@ -179,10 +183,21 @@ class RecommendationController extends Controller
         // Check if action is allowed
         $this->authorize(Recommendation::class);
 
-        $resolved = $request->recID;
+        $message = '';
+        $serviceReportPath = null;
+
         $recResolveDate = $request->RecResolveDate;
 
-        foreach ($resolved as $recId) {
+        // If a service report was uploaded, handle it
+        // This breaks the way service reports were handled in the previous version. Deal with it.
+        if ($request->hasFile('ServiceReport')) {
+            $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
+            $message .= 'Service report uploaded.';
+        } else {
+            $serviceReportPath = null;
+        }
+
+        foreach ($request->recID as $recId) {
             // Retrieve the Recommendations
             $recommendation = Recommendation::findOrFail($recId);
 
@@ -196,21 +211,22 @@ class RecommendationController extends Controller
             $recommendation->resolved = 1;
             $recommendation->rec_status = 'Complete';
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
-
-            // If a service report was uploaded, handle it
-            // This breaks the way service reports were handled in the previous version. Deal with it.
-            if ($request->hasFile('ServiceReport')) {
-                $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
-                $recommendation->service_report_path = $serviceReportPath;
-            }
+            $recommendation->service_report_path = $serviceReportPath;
 
             if ($recommendation->save()) {
-                $message = 'Recommendation '.$recommendation->id.' edited.';
+                $message = 'Recommendation '.$recommendation->id.' resolved.';
+                $status = 'success';
                 Log::info($message);
+            } else {
+                $status = 'fail';
+                $message .= 'Error resolving recommendations.';
+                Log::error($message);
             }
         }
 
-        return redirect()->route('recommendations.show', $surveyID);
+        return redirect()
+            ->route('recommendations.show', $surveyID)
+            ->with($status, $message);
     }
 
     /**

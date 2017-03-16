@@ -24,7 +24,7 @@ class StoreSurveyReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'surveyId'     => 'required||exists:testdates,id|integer',
+            'surveyId'     => 'required|exists:testdates,id|integer',
             'surveyReport' => 'required|file|mimes:pdf',
         ];
     }
