@@ -51,9 +51,11 @@
             </div>
             <div class="col-md-6">
             {{-- Machine photo carousel --}}
-                <div class="multiple-items">
+                <div class="slider multiple-items">
                 @foreach ($photos as $photo)
-                    <div><img src="{{ $photo->machine_photo_path }}" alt="{{ $photo->photo_description}}" width="150"></div>
+                    <div class="image">
+                        <h3><img src="{{ $photo->machine_photo_path }}" alt="{{ $photo->photo_description}}" width="150"></h3>
+                    </div>
                 @endforeach
                 </div>
             </div>
