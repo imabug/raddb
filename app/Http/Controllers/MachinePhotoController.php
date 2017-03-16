@@ -6,7 +6,6 @@ use RadDB\Machine;
 use RadDB\MachinePhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use RadDB\Http\Requests\StoreMachinePhotoRequest;
 
 class MachinePhotoController extends Controller
@@ -70,44 +69,20 @@ class MachinePhotoController extends Controller
         $this->authorize('store', MachinePhoto::class);
 
         $message = '';
-        $maxThumbWidth = 150;
         $machineId = $request->machineId;
 
         $path = env('MACHINE_PHOTO_PATH', 'public/photos/machines');
         // Store each photo in subdirectories by machine ID
         $path = $path.'/'.$machineId;
-        $thumbPath = $path.'/thumb';
 
         $machinePhoto = new MachinePhoto();
 
         $machinePhoto->machine_id = $machineId;
 
         if ($request->hasFile('photo')) {
-            list($w, $h, $imgType, $attr) = getimagesize($request->file('photo'));
-            switch ($imgType) {
-                case IMAGETYPE_GIF:
-                    $photo = imagecreatefromgif($request->file('photo'));
-                    break;
-                case IMAGETYPE_JPEG:
-                    $photo = imagecreatefromjpeg($request->file('photo'));
-                    break;
-                case IMAGETYPE_PNG:
-                    $photo = imagecreatefrompng($request->file('photo'));
-                    break;
-                default:
-                    break;
-            }
-
-            // Create a 150 px wide thumbnail image
-            // Thumbnail height = 150 / aspect ratio
-            $thumbHeight = ceil($maxThumbWidth/($w/$h));
-            $photoThumb = imagecreatetruecolor($maxThumbWidth, $thumbHeight);
-            $photoThumb = imagescale($photo, $maxThumbWidth, -1, IMG_BICUBIC);
-
             // Store the photo and thumbnail
             $machinePhoto->machine_photo_path = $request->file('photo')->store($path);
-            $machinePhoto->machine_photo_thumb = ;
-            imagejpeg($photoThumb, $machinePhoto->machine_photo_thumb);
+
             if (is_null($request->photoDescription)) {
                 $machinePhoto->photo_description = null;
             }
@@ -130,7 +105,7 @@ class MachinePhotoController extends Controller
 
         return redirect()
             ->route('machines.show', $machineId)
-            ->with($status, message);
+            ->with($status, $message);
     }
 
     /**
