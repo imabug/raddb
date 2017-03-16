@@ -157,8 +157,7 @@ class MachinePhotoController extends Controller
             $status = 'success';
             $message .= 'Photo for machine '.$machineId.' deleted.';
             Log::info($message);
-        }
-        else {
+        } else {
             $status = 'fail';
             $message .= 'Error deleting photo.';
             Log::error($message);
