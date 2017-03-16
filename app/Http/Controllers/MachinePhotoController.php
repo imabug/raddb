@@ -150,6 +150,20 @@ class MachinePhotoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('destroy', MachinePhoto::class);
+        $message = '';
+
+        $machinePhoto = MachinePhoto::find($id);
+        // Save the record to the database
+        if ($machinePhoto->delete()) {
+            $status = 'success';
+            $message .= 'Photo for machine '.$machineId.' deleted.';
+            Log::info($message);
+        }
+        else {
+            $status = 'fail';
+            $message .= 'Error deleting photo.';
+            Log::error($message);
+        }
     }
 }
