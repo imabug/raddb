@@ -18,10 +18,10 @@
     <span class="glyphicon glyphicon-ok" aria-hidden-"true"></span>
 @endif
             </td>
-            @if (empty($rec->service_report_path) || is_null($rec->service_report_path))
-            <td></td>
+            @if (Storage::exists($rec->service_report_path)
+            <td><a href="{{ Storage::url($rec->service_report_path) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @else
-            <td><a href="{{ route('servicereports.show', ["service", $rec->id]) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            <td></td>
             @endif
         </tr>
     @endforeach
