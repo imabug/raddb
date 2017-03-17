@@ -163,6 +163,7 @@ class MachinePhotoController extends Controller
             $message .= 'Error deleting photo.';
             Log::error($message);
         }
+
         return redirect()
             ->route('machines.show', $machineId)
             ->with($status, $message);
