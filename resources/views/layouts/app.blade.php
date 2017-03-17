@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" />
+    <!-- Slick image carousel http://kenwheeler.github.io/slick/ -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

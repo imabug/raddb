@@ -146,13 +146,14 @@ class MachinePhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $this->authorize('destroy', MachinePhoto::class);
         $message = '';
+        $machineId = $request->machineId;
 
         $machinePhoto = MachinePhoto::find($id);
-        // Save the record to the database
+
         if ($machinePhoto->delete()) {
             $status = 'success';
             $message .= 'Photo for machine '.$machineId.' deleted.';
@@ -162,5 +163,9 @@ class MachinePhotoController extends Controller
             $message .= 'Error deleting photo.';
             Log::error($message);
         }
+
+        return redirect()
+            ->route('machines.show', $machineId)
+            ->with($status, $message);
     }
 }

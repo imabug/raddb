@@ -7,6 +7,7 @@ use RadDB\Machine;
 use RadDB\Location;
 use RadDB\Modality;
 use RadDB\TestDate;
+use RadDB\MachinePhoto;
 use RadDB\Manufacturer;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\UpdateMachineRequest;
@@ -49,7 +50,7 @@ class MachineController extends Controller
     }
 
     /**
-     * Return a colelction of survey recommendations for machine $id.
+     * Return a collection of survey recommendations for machine $id.
      *
      * @param int $id
      *
@@ -87,6 +88,19 @@ class MachineController extends Controller
      {
          return Machine::findOrFail($id)
             ->gendata()
+            ->get();
+     }
+
+     /**
+      * Return a collection of photos for machine $id.
+      *
+      * @param int $id
+      *
+      * @return \Illuminate\Database\Eloquent\Collection
+      */
+     public function getPhotos($id)
+     {
+         return MachinePhoto::where('machine_id', $id)
             ->get();
      }
 
@@ -186,6 +200,7 @@ class MachineController extends Controller
     {
         return view('machine.detail', [
             'machine'         => Machine::findOrFail($id),
+            'photos'          => $this->getPhotos($id),
             'tubes'           => $this->getTubes($id),
             'opnotes'         => $this->getOperationalNotes($id),
             'surveys'         => TestDate::forMachine($id)->orderBy('test_date', 'asc')->get(),
