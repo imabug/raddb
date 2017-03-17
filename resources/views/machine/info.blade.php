@@ -57,6 +57,18 @@
                         <h3>
                             <a href="{{ Storage::url($photo->machine_photo_path) }}" target="_blank">
                             <img src="{{ Storage::url($photo->machine_photo_path) }}" alt="{{ $photo->photo_description}}" width="150"></a>
+                            @if (Auth::check())
+                            <form class="form-inline" action="{{ route('photos.destroy', $photo->id) }}" method="post">
+                                <div class="form-group">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <input class="form-control" type="hidden" name="machineId" value="{{ $machine->id }}">
+                                    <button type="submit" class="form-control btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this image">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
                         </h3>
                     </div>
                 @endforeach
