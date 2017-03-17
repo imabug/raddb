@@ -54,7 +54,7 @@
                 <div class="slider multiple-items">
                 @foreach ($photos as $photo)
                     <div class="image">
-                        <h3><img src="{{ $photo->machine_photo_path }}" alt="{{ $photo->photo_description}}" width="150"></h3>
+                        <h3><img src="{{ Storage::url($photo->machine_photo_path) }}" alt="{{ $photo->photo_description}}" width="150"></h3>
                     </div>
                 @endforeach
                 </div>
