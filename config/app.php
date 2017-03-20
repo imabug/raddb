@@ -168,6 +168,7 @@ return [
          */
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -197,7 +198,7 @@ return [
         'Artisan'      => Illuminate\Support\Facades\Artisan::class,
         'Auth'         => Illuminate\Support\Facades\Auth::class,
         'Blade'        => Illuminate\Support\Facades\Blade::class,
-        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
+        'Broadcast'    => Illuminate\Support\Facades\Broadcast::class,
         'Cache'        => Illuminate\Support\Facades\Cache::class,
         'Config'       => Illuminate\Support\Facades\Config::class,
         'Cookie'       => Illuminate\Support\Facades\Cookie::class,
@@ -226,7 +227,8 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         'Charts'       => ConsoleTVs\Charts\Facades\Charts::class,
-
+        'Form'         => Collective\Html\FormFacade::class,
+        'Html'         => Collective\Html\HtmlFacade::class,
     ],
 
 ];
