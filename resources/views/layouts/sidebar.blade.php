@@ -1,59 +1,59 @@
 <nav class="navbar navbar-default navbar-static-top">
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav nav-tabs">
-            <li class="active"><a href="{{ route('index') }}">Home</a></li>
-            <li class="dropdown">
+            <li role="presentation" class="active"><a href="{{ route('index') }}">Home</a></li>
+            <li role="presentation" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboards<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ route('dashboard.dashboard')}}">Survey status</a></li>
-                    <li><a href="{{ route('dashboard.showUntested')}}">Surveys to be scheduled</a></li>
-                    <li><a href="{{ route('dashboard.showPending')}}">Pending surveys</a></li>
-                    <li><a href="{{ route('dashboard.showSchedule')}}">Survey schedule</a></li>
-                    <li><a href="{{ route('dashboard.surveyGraph') }}">Survey graphs</a></li>
+                    <li role="presentation"><a href="{{ route('dashboard.dashboard')}}">Survey status</a></li>
+                    <li role="presentation"><a href="{{ route('dashboard.showUntested')}}">Surveys to be scheduled</a></li>
+                    <li role="presentation"><a href="{{ route('dashboard.showPending')}}">Pending surveys</a></li>
+                    <li role="presentation"><a href="{{ route('dashboard.showSchedule')}}">Survey schedule</a></li>
+                    <li role="presentation"><a href="{{ route('dashboard.surveyGraph') }}">Survey graphs</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
+            <li role="presentation" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ route('machines.index') }}">List machines</a></li>
-                    <li><a href="{{ route('modalities.showModalityIndex') }}">List by modality</a></li>
-                    <li><a href="{{ route('locations.showLocationIndex') }}">List by location</a></li>
-                    <li><a href="{{ route('manufacturers.showManufacturerIndex') }}">List by manufacturer</a></li>
-                    <li><a href="{{ route('machines.inactive') }}">Inactive machines</a></li>
-                    <li><a href="{{ route('machines.removed') }}">Removed machines</a></li>
+                    <li role="presentation"><a href="{{ route('machines.index') }}">List machines</a></li>
+                    <li role="presentation"><a href="{{ route('modalities.showModalityIndex') }}">List by modality</a></li>
+                    <li role="presentation"><a href="{{ route('locations.showLocationIndex') }}">List by location</a></li>
+                    <li role="presentation"><a href="{{ route('manufacturers.showManufacturerIndex') }}">List by manufacturer</a></li>
+                    <li role="presentation"><a href="{{ route('machines.inactive') }}">Inactive machines</a></li>
+                    <li role="presentation"><a href="{{ route('machines.removed') }}">Removed machines</a></li>
                 </ul>
             </li>
             @if (Auth::check())
-            <li class="dropdown">
+            <li role="presentation" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Machines<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ route('machines.create') }}">New machine</a></li>
-                    <li><a href="{{ route('opnotes.create' )}}">Add operational note</a></li>
+                    <li role="presentation"><a href="{{ route('machines.create') }}">New machine</a></li>
+                    <li role="presentation"><a href="{{ route('opnotes.create' )}}">Add operational note</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
+            <li role="presentation" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Surveys<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ route('surveys.create') }}">Add survey</a></li>
-                    <li><a href="{{ route('recommendations.create') }}">Add survey recommendation</a></li>
-                    <li><a href="{{ route('surveyreports.create') }}">Add survey report</a></li>
+                    <li role="presentation"><a href="{{ route('surveys.create') }}">Add survey</a></li>
+                    <li role="presentation"><a href="{{ route('recommendations.create') }}">Add survey recommendation</a></li>
+                    <li role="presentation"><a href="{{ route('surveyreports.create') }}">Add survey report</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
+            <li role="presentation" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test Equipment<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ route('testequipment.index') }}">List Test Equipment</a></li>
-                    <li><a href="{{ route('testequipment.showCalDates') }}">Recent calibration dates</a></li>
+                    <li role="presentation"><a href="{{ route('testequipment.index') }}">List Test Equipment</a></li>
+                    <li role="presentation"><a href="{{ route('testequipment.showCalDates') }}">Recent calibration dates</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
+            <li role="presentation" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{route('locations.index')}}">Locations</a></li>
-                    <li><a href="{{route('manufacturers.index')}}">Manufacturers</a></li>
-                    <li><a href="{{route('modalities.index')}}">Modalities</a></li>
-                    <li><a href="{{route('testers.index')}}">Testers</a></li>
-                    <li><a href="{{route('testtypes.index')}}">Test Types</a></li>
+                    <li role="presentation"><a href="{{route('locations.index')}}">Locations</a></li>
+                    <li role="presentation"><a href="{{route('manufacturers.index')}}">Manufacturers</a></li>
+                    <li role="presentation"><a href="{{route('modalities.index')}}">Modalities</a></li>
+                    <li role="presentation"><a href="{{route('testers.index')}}">Testers</a></li>
+                    <li role="presentation"><a href="{{route('testtypes.index')}}">Test Types</a></li>
                 </ul>
             </li>
             <li>
@@ -68,14 +68,14 @@
                 </form>
             </li>
             @else
-            <li><a href="{{route('home.index')}}">Login</a></li>
+            <li role="presentation"><a href="{{route('home.index')}}">Login</a></li>
             @endif
-            <li class="dropdown">
+            <li role="presentation" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="http://128.23.56.214/MPwiki/index.php/RadDB" target="_blank">Help (local)</a></li>
-                    <li><a href="https://github.com/imabug/raddb/wiki" target="_blank">Help (on Github)</a></li>
-                    <li><a href="https://github.com/imabug/raddb/issues" target="_blank">Report a bug</a></li>
+                    <li role="presentation"><a href="http://128.23.56.214/MPwiki/index.php/RadDB" target="_blank">Help (local)</a></li>
+                    <li role="presentation"><a href="https://github.com/imabug/raddb/wiki" target="_blank">Help (on Github)</a></li>
+                    <li role="presentation"><a href="https://github.com/imabug/raddb/issues" target="_blank">Report a bug</a></li>
                 </ul>
             </li>
         </ul>
