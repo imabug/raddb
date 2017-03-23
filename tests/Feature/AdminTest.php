@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AdminTest extends TestCase
 {
@@ -15,19 +13,19 @@ class AdminTest extends TestCase
      *
      * @return void
      */
-    public function testAdminPages($uri, $value)
+    public function testAdminPagesLoadProperly($routeName, $value)
     {
-        $this->withoutMiddleware()->get($uri)->assertSee($value);
+        $this->withoutMiddleware()->get(route($routeName))->assertSee($value);
     }
 
     public function adminPages()
     {
         return [
-            ['/admin/locations', 'Locations'],
-            ['/admin/manufacturers', 'Manufacturers'],
-            ['/admin/modalities', 'Modalities'],
-            ['/admin/testers', 'Testers'],
-            ['/admin/testtypes', 'Test Types'],
+            ['locations.index', 'Locations'],
+            ['manufacturers.index', 'Manufacturers'],
+            ['modalities.index', 'Modalities'],
+            ['testers.index', 'Testers'],
+            ['testtypes.index', 'Test Types'],
         ];
     }
 }
