@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 class AdminTest extends TestCase
 {
     /**
-     * Test to see that the admin pages can be loaded
+     * Test to see that the admin pages can be loaded.
      * @dataProvider adminPages
      *
      * @return void
