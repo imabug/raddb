@@ -3,9 +3,8 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestAppDashboard extends TestCase
+class DashboardTest extends TestCase
 {
     /**
      * @test main index page
@@ -57,10 +56,10 @@ class TestAppDashboard extends TestCase
         $this->get(route('dashboard.showSchedule'))->assertStatus(200);
     }
 
-    /**
-     * @test survey graphs
-     * @return void
-     */
+     /**
+      * @test survey graphs
+      * @return void
+      */
      public function testSurveyGraphs()
      {
          $this->get(route('dashboard.surveyGraph'))->assertStatus(200);
