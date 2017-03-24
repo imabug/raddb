@@ -14,7 +14,11 @@ class TestAppDashboard extends TestCase
      */
     public function testMainIndex()
     {
-        $this->get(route('index'))->assertStatus(200);
+        $page = $this->get(route('index'));
+        $page->assertStatus(200);
+        $page->assertSee('Survey Schedule');
+        $page->assertSee('Pending surveys');
+        $page->assertSee('Surveys to be scheduled');
     }
 
     /**
@@ -24,7 +28,9 @@ class TestAppDashboard extends TestCase
      */
     public function testSurveyStatus()
     {
-        $this->get(route('dashboard.dashboard'))->assertStatus(200);
+        $page = $this->get(route('dashboard.dashboard'));
+        $page->assertStatus(200);
+        $page->assertSee('Equipment Testing Status Dashboard');
     }
 
     /**
@@ -34,7 +40,9 @@ class TestAppDashboard extends TestCase
      */
     public function testToBeScheduled()
     {
-        $this->get(route('dashboard.showUntested'))->assertStatus(200);
+        $page = $this->get(route('dashboard.showUntested'));
+        $page->assertStatus(200);
+        $page->assertSee('Surveys to be scheduled');
     }
 
     /**
@@ -44,7 +52,9 @@ class TestAppDashboard extends TestCase
      */
     public function testPending()
     {
-        $this->get(route('dashboard.showPending'))->assertStatus(200);
+        $page = $this->get(route('dashboard.showPending'));
+        $page->assertStatus(200);
+        $page->assertSee('Pending surveys');
     }
 
     /**
@@ -54,7 +64,9 @@ class TestAppDashboard extends TestCase
      */
     public function testSurveySchedule()
     {
-        $this->get(route('dashboard.showSchedule'))->assertStatus(200);
+        $page = $this->get(route('dashboard.showSchedule'));
+        $page->assertStatus(200);
+        $page->assertSee('Survey Schedule');
     }
 
     /**
@@ -63,6 +75,8 @@ class TestAppDashboard extends TestCase
      */
      public function testSurveyGraphs()
      {
-         $this->get(route('dashboard.surveyGraph'))->assertStatus(200);
+         $page = $this->get(route('dashboard.surveyGraph'));
+         $page->assertStatus(200);
+         $page->assertSee('Survey Count Graphs');
      }
 }
