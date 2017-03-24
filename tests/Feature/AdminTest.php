@@ -10,14 +10,13 @@ class AdminTest extends TestCase
     use WithoutMiddleware;
 
     /**
-     * Test to see that the admin pages can be loaded
+     * Test to see that the admin pages can be loaded.
      * @dataProvider adminPages
      *
      * @return void
      */
     public function testAdminPagesLoadProperly($routeName, $value)
     {
-
         $this->get(route($routeName))->assertSee($value);
     }
 

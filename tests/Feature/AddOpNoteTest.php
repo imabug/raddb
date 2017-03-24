@@ -4,15 +4,13 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AddOpNoteTest extends TestCase
 {
     use WithoutMiddleware;
 
     /**
-     * See if the add op note form loads properly
+     * See if the add op note form loads properly.
      *
      * @return void
      */
