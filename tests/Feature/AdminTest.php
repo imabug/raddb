@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class AdminTest extends TestCase
 {
+    use WithoutMiddleware;
+
     /**
      * Test to see that the admin pages can be loaded
      * @dataProvider adminPages
@@ -15,7 +17,8 @@ class AdminTest extends TestCase
      */
     public function testAdminPagesLoadProperly($routeName, $value)
     {
-        $this->withoutMiddleware()->get(route($routeName))->assertSee($value);
+
+        $this->get(route($routeName))->assertSee($value);
     }
 
     public function adminPages()

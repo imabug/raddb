@@ -5,11 +5,10 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-// use Illuminate\Foundation\Testing\DatabaseMigrations;
-// use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 class ListingsTest extends TestCase
 {
+    use WithoutMiddleware;
+
     /**
      * Test to see that the Listings pages load.
      * @dataProvider listingPages
@@ -17,7 +16,7 @@ class ListingsTest extends TestCase
      */
     public function testListingPagesLoadProperly($routeName, $value)
     {
-        $this->withoutMiddleware()->get(route($routeName))->assertSee($value);
+        $this->get(route($routeName))->assertSee($value);
     }
 
     public function listingPages()
