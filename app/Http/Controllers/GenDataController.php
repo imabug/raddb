@@ -121,9 +121,9 @@ class GenDataController extends Controller
 
             // Store the data
             $genData->save();
-
-            return redirect()->route('index');
         }
+
+        return redirect()->route('index');
     }
 
     /**
