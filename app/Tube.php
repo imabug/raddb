@@ -16,13 +16,10 @@ class Tube extends Model
      * @var array
      */
     protected $fillable = [
-        'machine_id',
         'housing_model',
         'housing_sn',
-        'housing_manuf_id',
         'insert_model',
         'insert_sn',
-        'insert_manuf_id',
         'manuf_date',
         'install_date',
         'remove_date',

@@ -14,7 +14,7 @@ class OpNote extends Model
      *
      * @var array
      */
-    protected $fillable = ['machine_id', 'note'];
+    protected $fillable = ['note'];
 
      /**
       * Attributes that should be mutated to dates.
