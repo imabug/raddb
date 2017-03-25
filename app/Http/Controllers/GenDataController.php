@@ -6,6 +6,7 @@ use RadDB\GenData;
 use RadDB\Machine;
 use RadDB\TestDate;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class GenDataController extends Controller
 {
@@ -124,6 +125,18 @@ class GenDataController extends Controller
         }
 
         return redirect()->route('index');
+    }
+
+    /**
+     * Process a spreadsheet file
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function processSpreadsheet(Request $request)
+    {
+
     }
 
     /**
