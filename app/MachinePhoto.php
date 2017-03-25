@@ -22,7 +22,6 @@ class MachinePhoto extends Model
      * @var array
      */
     protected $fillable = [
-        'machine_photo_path',
         'photo_description',
     ];
 
