@@ -15,21 +15,21 @@ class GenDataController extends Controller
     const REPRO = 0b1000;
 
     /**
-      * Instantiate a new controller instance.
-      *
-      * @return void
-      */
-     public function __construct()
-     {
-         // Only apply auth middleware to these methods
-         $this->middleware('auth')->only([
-             'create',
-             'store',
-             'edit',
-             'update',
-             'destroy',
-         ]);
-     }
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+     // Only apply auth middleware to these methods
+     $this->middleware('auth')->only([
+         'create',
+         'store',
+         'edit',
+         'update',
+         'destroy',
+     ]);
+    }
 
     /**
      * Display a listing of the resource.
@@ -127,15 +127,17 @@ class GenDataController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show generator check data for a specific survey.
      *
-     * @param int $id
+     * @param int $surveyId
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($surveyId)
     {
-        //
+        // Retrieve the generator test data
+        $genData = GenData::where('survey_id', $surveyId)->get();
+
     }
 
     /**
