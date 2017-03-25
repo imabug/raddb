@@ -77,13 +77,13 @@ class GenDataController extends Controller
         // Process the data pasted into the form
         // Data comes from cells AA688:BB747 of the generator data spreadsheet
         // Convert the data into an array
-        $genDataArray = explode("\n",$request->generatorData);
+        $genDataArray = explode("\n", $request->generatorData);
 
-        foreach($genDataArray as $genDataRow) {
+        foreach ($genDataArray as $genDataRow) {
             // Split each row into an array with each element
             // containing a column of data after rtrim()ming any trailing spaces
             // or newlines.
-            $genDataCol = explode("\t",rtrim($genDataRow));
+            $genDataCol = explode("\t", rtrim($genDataRow));
 
             // Only columns 1-4,6,8,17-19,21,24-28 are used.
             // Columns 1-4,6,8 are the set values
@@ -107,9 +107,9 @@ class GenDataController extends Controller
             // Columns 17-19,21 contain 1 if the current row is used for that
             // particular measurement, and 0 if it isn't.
              $genData->use_flags = (($genDataCol[16] ? self::LINEARITY : 0) |
-                                   ($genDataCol[17] ? self::ACCURACY : 0 ) |
-                                   ($genDataCol[18] ? self::BEAMQUAL : 0 ) |
-                                   ($genDataCol[20] ? self::REPRO : 0 ));
+                                   ($genDataCol[17] ? self::ACCURACY : 0) |
+                                   ($genDataCol[18] ? self::BEAMQUAL : 0) |
+                                   ($genDataCol[20] ? self::REPRO : 0));
 
             // Columns 24-28 contain the actual measurements.
             // If there is no value, then store null
@@ -137,7 +137,6 @@ class GenDataController extends Controller
     {
         // Retrieve the generator test data
         $genData = GenData::where('survey_id', $surveyId)->get();
-
     }
 
     /**
