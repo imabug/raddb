@@ -73,11 +73,6 @@ class TestDate extends Model
         return $this->hasMany('RadDB\Recommendation', 'survey_id');
     }
 
-    public function surveyReports()
-    {
-        return $this->morphMany('RadDB\Report', 'report');
-    }
-
     public function thisyear()
     {
         return $this->belongsTo('RadDB\ThisYear', 'survey_id');
