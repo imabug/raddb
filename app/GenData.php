@@ -15,8 +15,6 @@ class GenData extends Model
      * @var array
      */
     protected $fillable = [
-        'survey_id',
-        'tube_id',
         'kv_set',
         'ma_set',
         'time_set',

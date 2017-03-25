@@ -12,7 +12,6 @@ class Recommendation extends Model
      * @var array
      */
     protected $fillable = [
-        'survey_id',
         'recommendation',
         'resolved',
         'rec_add_ts',

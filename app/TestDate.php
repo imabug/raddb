@@ -22,16 +22,11 @@ class TestDate extends Model
      * @var array
      */
     protected $fillable = [
-        'machine_id',
         'test_date',
         'report_sent_date',
-        'tester1_id',
-        'tester2_id',
-        'type_id',
         'notes',
         'accession',
         'report_file_path',
-        'survey_report_id',
         'deleted_at',
         'created_at',
         'updated_at',

@@ -16,16 +16,13 @@ class Machine extends Model
      * @var array
      */
     protected $fillable = [
-        'modality_id',
         'description',
-        'manufacturer_id',
         'vend_site_id',
         'model',
         'serial_number',
         'manuf_date',
         'install_date',
         'remove_date',
-        'location_id',
         'room',
         'status',
         'notes',
