@@ -50,7 +50,10 @@ Route::resource('testequipment', 'TestEquipmentController');
 // Route::resource('contacts', 'ContactController');
 
 // Generator data controller - haven't decided whether to  keep this or not
-// Route::resource('gendata', 'GenDataController');
+Route::name('gendata.create')
+    ->get('surveydata/generator/{surveyId}/create', 'GenDataController@create');
+Route::resource('gendata', 'GenDataController',
+    ['except' => ['create']]);
 
 // Operational notes controller
 Route::name('opnotes.createOpNoteFor')
