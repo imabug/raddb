@@ -88,6 +88,11 @@ class TestDate extends Model
         return $this->belongsTo('RadDB\LastYear', 'survey_id');
     }
 
+    public function gendata()
+    {
+        return $this->hasMany('RadDB\GenData', 'survey_id');
+    }
+
     /*
      * Scopes
      */

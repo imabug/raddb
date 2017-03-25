@@ -52,4 +52,9 @@ class GenData extends Model
     {
         return $this->belongsTo('RadDB\Tube');
     }
+
+    public function survey()
+    {
+        return $this->belongsTo('RadDB\TestDate');
+    }
 }
