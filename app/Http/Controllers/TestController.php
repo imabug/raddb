@@ -2,18 +2,13 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\GenData;
-use RadDB\Machine;
-use RadDB\TestDate;
-use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 // use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Reader\Excel2007;
 
 class TestController extends Controller
 {
     /**
-     * Process a spreadsheet file
+     * Process a spreadsheet file.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -26,13 +21,13 @@ class TestController extends Controller
         // $spreadsheet = $this->loadSpreadsheet($file);
     }
 
-     /**
-      * Load a spreadsheet file
-      *
-      * @param string $file
-      *
-      * @return \PhpOffice\PhpSpreadsheet\Reader\IReader
-      */
+    /**
+     * Load a spreadsheet file.
+     *
+     * @param string $file
+     *
+     * @return \PhpOffice\PhpSpreadsheet\Reader\IReader
+     */
     public function loadSpreadsheet()
     {
         $file = 'Trauma1.xlsm';
@@ -41,5 +36,4 @@ class TestController extends Controller
 
         return $spreadsheet;
     }
-
 }
