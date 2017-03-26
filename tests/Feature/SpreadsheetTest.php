@@ -3,9 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SpreadsheetTest extends TestCase
 {
@@ -18,6 +15,5 @@ class SpreadsheetTest extends TestCase
     {
         $page = $this->get(route('test.loadSpreadsheet'));
         $page->assertStatus(200);
-        
     }
 }
