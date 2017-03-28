@@ -126,7 +126,8 @@ Route::resource('photos', 'MachinePhotoController',
 Route::resource('users', 'UserController');
 
 // Route for experiments and tests
-Route::name('test.loadSpreadsheet')->get('test/loadSpreadsheet', 'TestController@loadSpreadsheet');
+Route::name('test.loadXlsSpreadsheet')->get('test/loadXlsSpreadsheet', 'TestController@loadXlsSpreadsheet');
+Route::name('test.loadOdsSpreadsheet')->get('test/loadOdsSpreadsheet', 'TestController@loadOdsSpreadsheet');
 
 // Authentication routes
 Auth::routes();
