@@ -128,18 +128,6 @@ class GenDataController extends Controller
     }
 
     /**
-     * Process a spreadsheet file
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function processSpreadsheet(Request $request)
-    {
-
-    }
-
-    /**
      * Show generator check data for a specific survey.
      *
      * @param int $surveyId
