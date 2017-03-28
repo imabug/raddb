@@ -17,12 +17,12 @@ class TestController extends Controller
     const REPRO = 0b1000;
 
     /**
-    * Load an Excel spreadsheet file
-    *
-    * @param string $file
-    *
-    * @return bool
-    */
+     * Load an Excel spreadsheet file
+     *
+     * @param string $file
+     *
+     * @return bool
+     */
     public function loadXlsSpreadsheet()
     {
         $file = public_path().'/'.'Trauma1.xlsm';
