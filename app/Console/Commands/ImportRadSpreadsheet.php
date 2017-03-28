@@ -2,7 +2,6 @@
 
 namespace RadDB\Console\Commands;
 
-use PHPExcel;
 use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\Machine;
