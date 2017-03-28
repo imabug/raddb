@@ -4,6 +4,7 @@
 /public/vendor
 /storage/*.key
 /vendor
+/resources/views/vendor
 /.idea
 /.vagrant
 Homestead.json
