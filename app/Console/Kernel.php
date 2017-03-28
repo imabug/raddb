@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\ImportRadSpreadsheet::class,
-        Commands\ImportFluoroSpreadsheet::class
+        Commands\ImportFluoroSpreadsheet::class,
     ];
 
     /**

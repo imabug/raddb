@@ -52,6 +52,5 @@ class ImportFluoroSpreadsheet extends Command
         $digEntranceExpRate = $fluoroSheet->rangeToArray('C271:M285', null, true, false, false);
         $maxDigEntranceExpRate = $fluoroSheet->rangeToArray('E286:M286', null, true, false, false);
         $digReceptorEntrExpRate = $fluoroSheet->rangeToArray('C300:H314', null, true, false, false);
-
     }
 }
