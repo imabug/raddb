@@ -2,11 +2,6 @@
 
 namespace RadDB\Console\Commands;
 
-use PHPExcel;
-use RadDB\Tube;
-use RadDB\GenData;
-use RadDB\Machine;
-use RadDB\TestDate;
 use Illuminate\Console\Command;
 
 class ImportRadSpreadsheet extends Command

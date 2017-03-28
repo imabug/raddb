@@ -6,8 +6,6 @@ use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\Machine;
 use RadDB\TestDate;
-use Illuminate\Http\Request;
-use PHPExcel;
 
 class TestController extends Controller
 {
@@ -16,13 +14,13 @@ class TestController extends Controller
     const BEAMQUAL = 0b0100;
     const REPRO = 0b1000;
 
-     /**
-      * Load an Excel spreadsheet file
-      *
-      * @param string $file
-      *
-      * @return \PhpOffice\PhpSpreadsheet\Reader\IReader
-      */
+    /**
+     * Load an Excel spreadsheet file.
+     *
+     * @param string $file
+     *
+     * @return \PhpOffice\PhpSpreadsheet\Reader\IReader
+     */
     public function loadXlsSpreadsheet()
     {
         $file = public_path().'/'.'Trauma1.xlsm';
@@ -72,17 +70,14 @@ class TestController extends Controller
         // Load generator test data from cells AA688:BB747 into an array
         $genTestData = $genFormSheet->rangeToArray('AA688:BB747', null, true, false, true);
         if ($this->processGenData($surveyId, $genTestData)) {
-            echo "<p>Generator data added</p>";
-        }
-        else {
-            echo "<p>Generator data not added</p>";
+            echo '<p>Generator data added</p>';
+        } else {
+            echo '<p>Generator data not added</p>';
         }
 
         // Get half value layer data
         // kV, HVL (mm Al)
         $HVLs = $genFormSheet->rangeToArray('Y969:Z978', null, true, false, false);
-
-        return;
     }
 
     /**
@@ -91,7 +86,7 @@ class TestController extends Controller
      * @param int $surveyId
      * @param array $genTesetData
      *
-     * @return boolean
+     * @return bool
      */
     public function processGenData(int $surveyId, $genTestData)
     {
@@ -101,7 +96,9 @@ class TestController extends Controller
 
         foreach ($genTestData as $genDataRow) {
             // If there is no recorded data, skip this record
-            if (empty($genDataRow['AZ'])) continue;
+            if (empty($genDataRow['AZ'])) {
+                continue;
+            }
 
             $genData = new GenData();
             $genData->survey_id = $survey->id;
@@ -138,11 +135,12 @@ class TestController extends Controller
             // Store the data
             $genData->save();
         }
+
         return true;
     }
 
     /**
-     * Load a LibreOffice spreadsheet
+     * Load a LibreOffice spreadsheet.
      *
      * @return \PhpOffice\PhpSpreadsheet\Reader\IReader
      */
@@ -164,7 +162,5 @@ class TestController extends Controller
         $digEntranceExpRate = $fluoroSheet->rangeToArray('C271:M285', null, true, false, false);
         $maxDigEntranceExpRate = $fluoroSheet->rangeToArray('E286:M286', null, true, false, false);
         $digReceptorEntrExpRate = $fluoroSheet->rangeToArray('C300:H314', null, true, false, false);
-
-        return;
     }
 }
