@@ -38,7 +38,7 @@ class ImportRadSpreadsheet extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return bool
      */
     public function handle()
     {
@@ -110,7 +110,9 @@ class ImportRadSpreadsheet extends Command
         // Process the generator test data and insert into the database
         foreach ($genTestData as $genDataRow) {
             // If there is no recorded data, skip this record
-            if (empty($genDataRow['AZ'])) continue;
+            if (empty($genDataRow['AZ'])) {
+                continue;
+            }
 
             $genData = new GenData();
             $genData->survey_id = $survey->id;
@@ -152,6 +154,6 @@ class ImportRadSpreadsheet extends Command
         // kV, HVL (mm Al)
         $HVLs = $genFormSheet->rangeToArray('Y969:Z978', null, true, false, false);
 
-        return;
+        return true;
     }
 }

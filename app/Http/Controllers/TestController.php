@@ -16,13 +16,13 @@ class TestController extends Controller
     const BEAMQUAL = 0b0100;
     const REPRO = 0b1000;
 
-     /**
-      * Load an Excel spreadsheet file
-      *
-      * @param string $file
-      *
-      * @return \PhpOffice\PhpSpreadsheet\Reader\IReader
-      */
+    /**
+    * Load an Excel spreadsheet file
+    *
+    * @param string $file
+    *
+    * @return bool
+    */
     public function loadXlsSpreadsheet()
     {
         $file = public_path().'/'.'Trauma1.xlsm';
@@ -73,8 +73,7 @@ class TestController extends Controller
         $genTestData = $genFormSheet->rangeToArray('AA688:BB747', null, true, false, true);
         if ($this->processGenData($surveyId, $genTestData)) {
             echo "<p>Generator data added</p>";
-        }
-        else {
+        } else {
             echo "<p>Generator data not added</p>";
         }
 
@@ -82,7 +81,7 @@ class TestController extends Controller
         // kV, HVL (mm Al)
         $HVLs = $genFormSheet->rangeToArray('Y969:Z978', null, true, false, false);
 
-        return;
+        return true;
     }
 
     /**
@@ -91,7 +90,7 @@ class TestController extends Controller
      * @param int $surveyId
      * @param array $genTesetData
      *
-     * @return boolean
+     * @return bool
      */
     public function processGenData(int $surveyId, $genTestData)
     {
@@ -101,7 +100,9 @@ class TestController extends Controller
 
         foreach ($genTestData as $genDataRow) {
             // If there is no recorded data, skip this record
-            if (empty($genDataRow['AZ'])) continue;
+            if (empty($genDataRow['AZ'])) {
+                continue;
+            }
 
             $genData = new GenData();
             $genData->survey_id = $survey->id;
@@ -138,13 +139,14 @@ class TestController extends Controller
             // Store the data
             $genData->save();
         }
+
         return true;
     }
 
     /**
      * Load a LibreOffice spreadsheet
      *
-     * @return \PhpOffice\PhpSpreadsheet\Reader\IReader
+     * @return bool
      */
     public function loadOdsSpreadsheet()
     {
@@ -165,6 +167,6 @@ class TestController extends Controller
         $maxDigEntranceExpRate = $fluoroSheet->rangeToArray('E286:M286', null, true, false, false);
         $digReceptorEntrExpRate = $fluoroSheet->rangeToArray('C300:H314', null, true, false, false);
 
-        return;
+        return true;
     }
 }
