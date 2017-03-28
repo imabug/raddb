@@ -128,7 +128,7 @@ class GenDataController extends Controller
     }
 
     /**
-     * Process a spreadsheet file
+     * Process a spreadsheet file.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -136,7 +136,6 @@ class GenDataController extends Controller
      */
     public function processSpreadsheet(Request $request)
     {
-
     }
 
     /**
