@@ -67,7 +67,7 @@ class ImportRadSpreadsheet extends Command
         // ask the user which tube to associate this spreadsheet with
         if ($tubes->count() > 1) {
             $choice = "Enter the tube ID this spreadsheet belongs to\n";
-            $tubeChoice = []];
+            $tubeChoice = [];
             foreach ($tubes as $t) {
                 $choice .= $t->id.': '.$t->insert_sn."\n";
                 $tubeChoice[] = $t->id;
