@@ -52,4 +52,4 @@ class RadiationOutput extends Model
     {
         return $this->belongsTo('RadDB\Tube');
     }
- }
+}
