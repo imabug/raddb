@@ -28,9 +28,6 @@ class Tube extends Model
         'sfs',
         'notes',
         'tube_status',
-        'created_at',
-        'deleted_at',
-        'updated_at',
     ];
 
     /**
@@ -67,6 +64,26 @@ class Tube extends Model
     public function insert_manuf()
     {
         return $this->belongsTo('RadDB\Manufacturer');
+    }
+
+    public function hvl()
+    {
+        return $this->belongsTo('RadDB\HVLData');
+    }
+
+    public function radSurveyData()
+    {
+        return $this->hasMany('RadDB\RadSurveyData');
+    }
+
+    public function collimatorData()
+    {
+        return$this->hasMany('RadDB\CollimatorData');
+    }
+
+    public function radiationOutput()
+    {
+        return $this->hasMany('\RadDB\RadiationOutput');
     }
 
     /*

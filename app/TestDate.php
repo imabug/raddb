@@ -88,6 +88,26 @@ class TestDate extends Model
         return $this->hasMany('RadDB\GenData', 'survey_id');
     }
 
+    public function hvl()
+    {
+        return $this->hasMany('RadDB\HVLData', 'survey_id');
+    }
+
+    public function radSurveyData()
+    {
+        return $this->hasMany('RadDB\RadSurveyData', 'survey_id');
+
+    }
+    public function collimatorData()
+    {
+        return $this->hasMany('RadDB\CollimatorData', 'survey_id');
+    }
+
+    public function radiationOutput()
+    {
+        return $this->hasMany('\RadDB\RadiationOutput', 'survey_id');
+    }
+
     /*
      * Scopes
      */

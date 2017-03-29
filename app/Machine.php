@@ -27,9 +27,6 @@ class Machine extends Model
         'status',
         'notes',
         'photo',
-        'created_at',
-        'deleted_at',
-        'updated_at',
     ];
 
     /**
@@ -106,6 +103,26 @@ class Machine extends Model
     public function machinephoto()
     {
         return $this->hasMany('RadDB\MachinePhoto');
+    }
+
+    public function hvl()
+    {
+        return $this->hasMany('RadDB\HVLData');
+    }
+
+    public function radSurveyData()
+    {
+        return $this->hasMany('RadDB\RadSurveyData');
+    }
+
+    public function collimatorData()
+    {
+        return $this->hasMany('RadDB\CollimatorData');
+    }
+
+    public function radiationOutput()
+    {
+        return $this->hasMany('\RadDB\RadiationOutput');
     }
 
     /*
