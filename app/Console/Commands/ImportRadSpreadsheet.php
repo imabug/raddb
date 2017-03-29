@@ -2,14 +2,12 @@
 
 namespace RadDB\Console\Commands;
 
-use PHPExcel;
 use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\HVLData;
 use RadDB\Machine;
 use RadDB\TestDate;
 use RadDB\RadSurveyData;
-use RadDB\CollimatorData;
 use RadDB\RadiationOutput;
 use Illuminate\Console\Command;
 
@@ -67,9 +65,9 @@ class ImportRadSpreadsheet extends Command
         // ask the user which tube to associate this spreadsheet with
         if ($tubes->count() > 1) {
             $choice = "Enter the tube ID this spreadsheet belongs to\n";
-            $tubeChoice = array();
+            $tubeChoice = [];
             foreach ($tubes as $t) {
-                $choice .= $t->id.": ".$t->insert_sn."\n";
+                $choice .= $t->id.': '.$t->insert_sn."\n";
                 $tubeChoice[] = $t->id;
             }
             $tubeId = $this->choice($choice, $tubeChoice);
@@ -224,7 +222,7 @@ class ImportRadSpreadsheet extends Command
             $HVLData->survey_id = $survey->id;
             $HVLData->machine_id = $machine->id;
             $HVLData->tube_id = $tubeId;
-            if (!empty(HVL[0]) || !empty(HVL[1])) {
+            if (! empty(HVL[0]) || ! empty(HVL[1])) {
                 $HVLData->kv = $HVL[0];
                 $HVLData->hvl = $HVL[1];
                 $HVLData->save();
@@ -233,6 +231,7 @@ class ImportRadSpreadsheet extends Command
                 continue;
             }
         }
+
         return true;
     }
 }
