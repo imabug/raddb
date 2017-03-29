@@ -2,14 +2,12 @@
 
 namespace RadDB\Console\Commands;
 
-use PHPExcel;
 use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\HVLData;
 use RadDB\Machine;
 use RadDB\TestDate;
 use RadDB\RadSurveyData;
-use RadDB\CollimatorData;
 use RadDB\RadiationOutput;
 use Illuminate\Console\Command;
 
