@@ -97,6 +97,7 @@ class TestDate extends Model
     {
         return $this->hasMany('RadDB\RadSurveyData', 'survey_id');
     }
+
     public function collimatorData()
     {
         return $this->hasMany('RadDB\CollimatorData', 'survey_id');
