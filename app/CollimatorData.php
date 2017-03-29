@@ -51,16 +51,16 @@ class CollimatorData extends Model
      */
     public function machine()
     {
-     return $this->belongsTo('RadDB\Machine');
+        return $this->belongsTo('RadDB\Machine');
     }
 
     public function survey()
     {
-     return $this->belongsTo('RadDB\TestDate');
+        return $this->belongsTo('RadDB\TestDate');
     }
 
     public function tube()
     {
-     return $this->belongsTo('RadDB\Tube');
+        return $this->belongsTo('RadDB\Tube');
     }
 }
