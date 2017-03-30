@@ -18,7 +18,7 @@ class ImportRadSpreadsheet extends Command
     /**
      * Bit flags used to indicate what each line of the generator test data is used for
      *
-     * @var int
+     * @var const
      */
     const LINEARITY = 0b0001;
     const ACCURACY = 0b0010;
@@ -72,7 +72,7 @@ class ImportRadSpreadsheet extends Command
 
         echo 'Saving data for survey ID: '.$surveyId."\n";
         // Pull info for this spreadsheet from the database
-        $survey = TestDate::find(1938);
+        $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
         $tubes = Tube::where('machine_id', $machine->id)->active()->get();
 
