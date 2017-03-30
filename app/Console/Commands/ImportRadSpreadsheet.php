@@ -16,7 +16,7 @@ use Illuminate\Console\Command;
 class ImportRadSpreadsheet extends Command
 {
     /**
-     * Bit flags used to indicate what each line of the generator test data is used for
+     * Bit flags used to indicate what each line of the generator test data is used for.
      *
      * @var int
      */
@@ -140,14 +140,14 @@ class ImportRadSpreadsheet extends Command
         $pblWall = $genFormSheet->rangeToArray('C637:D638', null, true, false, false);
         // Insert the collimator data into the database
         // Table receptor
-        for ($i=0;$i<=1; $i++) {
+        for ($i = 0; $i <= 1; $i++) {
             $collimatorData = new CollimatorData();
             $collimatorData->survey_id = $survey->id;
             $collimatorData->machine_id = $machine->id;
             $collimatorData->tube_id = $tubeId;
             $collimatorData->sid = $tableSid;
             $collimatorData->receptor = 'Table';
-            $collimatorData->indicated_trans = $collimationTable[$i][0] == 'NA'? null : (float) $collimationTable[$i][0];
+            $collimatorData->indicated_trans = $collimationTable[$i][0] == 'NA' ? null : (float) $collimationTable[$i][0];
             $collimatorData->indicated_long = $collimationTable[$i][1] == 'NA' ? null : (float) $collimationTable[$i][1];
             $collimatorData->rad_trans = $collimationTable[$i][2] == 'NA' ? null : (float) $collimationTable[$i][2];
             $collimatorData->rad_long = $collimationTable[$i][3] == 'NA' ? null : (float) $collimationTable[$i][3];
@@ -159,14 +159,14 @@ class ImportRadSpreadsheet extends Command
         }
         echo "Table receptor collimator data saved.\n";
         // Wall receptor
-        for ($i=0;$i<=1; $i++) {
+        for ($i = 0; $i <= 1; $i++) {
             $collimatorData = new CollimatorData();
             $collimatorData->survey_id = $survey->id;
             $collimatorData->machine_id = $machine->id;
             $collimatorData->tube_id = $tubeId;
             $collimatorData->sid = $wallSid;
             $collimatorData->receptor = 'Wall';
-            $collimatorData->indicated_trans = $collimationWall[$i][0] == 'NA'? null : (float) $collimationWall[$i][0];
+            $collimatorData->indicated_trans = $collimationWall[$i][0] == 'NA' ? null : (float) $collimationWall[$i][0];
             $collimatorData->indicated_long = $collimationWall[$i][1] == 'NA' ? null : (float) $collimationWall[$i][1];
             $collimatorData->rad_trans = $collimationWall[$i][2] == 'NA' ? null : (float) $collimationWall[$i][2];
             $collimatorData->rad_long = $collimationWall[$i][3] == 'NA' ? null : (float) $collimationWall[$i][3];
