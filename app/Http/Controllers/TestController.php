@@ -2,12 +2,12 @@
 
 namespace RadDB\Http\Controllers;
 
+use PHPExcel;
 use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\Machine;
 use RadDB\TestDate;
 use Illuminate\Http\Request;
-use PHPExcel;
 
 class TestController extends Controller
 {
@@ -17,7 +17,7 @@ class TestController extends Controller
     const REPRO = 0b1000;
 
     /**
-     * Load an Excel spreadsheet file
+     * Load an Excel spreadsheet file.
      *
      * @param string $file
      *
@@ -72,9 +72,9 @@ class TestController extends Controller
         // Load generator test data from cells AA688:BB747 into an array
         $genTestData = $genFormSheet->rangeToArray('AA688:BB747', null, true, false, true);
         if ($this->processGenData($surveyId, $genTestData)) {
-            echo "<p>Generator data added</p>";
+            echo '<p>Generator data added</p>';
         } else {
-            echo "<p>Generator data not added</p>";
+            echo '<p>Generator data not added</p>';
         }
 
         // Get half value layer data
@@ -144,7 +144,7 @@ class TestController extends Controller
     }
 
     /**
-     * Load a LibreOffice spreadsheet
+     * Load a LibreOffice spreadsheet.
      *
      * @return bool
      */
