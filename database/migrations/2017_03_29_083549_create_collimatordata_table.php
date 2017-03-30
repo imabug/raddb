@@ -19,8 +19,7 @@ class CreateCollimatordataTable extends Migration
             $table->integer('machine_id')->unsigned()->nullable();
             $table->integer('tube_id')->unsigned()->nullable();
             $table->enum('receptor', ['None', 'Table', 'Wall'])->default('None');
-            $table->float('table_sid')->nullable();
-            $table->float('wall_sid')->nullable();
+            $table->float('sid')->nullable();
             $table->float('indicated_trans')->nullable();
             $table->float('indicated_long')->nullable();
             $table->float('rad_trans')->nullable();
