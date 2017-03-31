@@ -7,6 +7,9 @@ use RadDB\Tube;
 use RadDB\HVLData;
 use RadDB\Machine;
 use RadDB\TestDate;
+use RadDB\FluoroData;
+use RadDB\MaxFluoroData;
+use RadDB\ReceptorEntranceExp;
 use Illuminate\Console\Command;
 
 class ImportFluoroSpreadsheet extends Command
@@ -88,11 +91,144 @@ class ImportFluoroSpreadsheet extends Command
         $HVLData->save();
         echo "HVL data saved.\n";
 
-        $fluoroEntranceExpRate = $fluoroSheet->rangeToArray('C205:M219', null, true, false, false);
-        $maxFluoroEntraceExpRate = $fluoroSheet->rangeToArray('E220:M220', null, true, false, false);
-        $fluoroReceptorEntrExpRate = $fluoroSheet->rangeToArray('C237:H251', null, true, false, false);
-        $digEntranceExpRate = $fluoroSheet->rangeToArray('C271:M285', null, true, false, false);
-        $maxDigEntranceExpRate = $fluoroSheet->rangeToArray('E286:M286', null, true, false, false);
-        $digReceptorEntrExpRate = $fluoroSheet->rangeToArray('C300:H314', null, true, false, false);
+        // Get image receptor field sizes (cm)
+        $fieldSizes[0] = $fluoroSheet->getCell('O110')->getCalculatedValue();
+        $fieldSizes[1] = $fluoroSheet->getCell('O113')->getCalculatedValue();
+        $fieldSizes[2] = $fluoroSheet->getCell('O116')->getCalculatedValue();
+        $fieldSizes[3] = $fluoroSheet->getCell('O119')->getCalculatedValue();
+        $fieldSizes[4] = $fluoroSheet->getCell('O122')->getCalculatedValue();
+        // Get dose modes
+        $doseModes[0] = $fluoroSheet->getCell('Q107')->getCalculatedValue();
+        $doseModes[1] = $fluoroSheet->getCell('T107')->getCalculatedValue();
+        $doseModes[2] = $fluoroSheet->getCell('W107')->getCalculatedValue();
+        // Get fluoro entrance exposure rate data
+        $entranceExpRate = $fluoroSheet->rangeToArray('P109:Y123', null, true, false, false);
+        $maxEntraceExpRate = $fluoroSheet->rangeToArray('Q124:Y124', null, true, false, false);
+        // Store entrance exposure rate data
+        foreach ($fieldSizes as $fs) {
+            for ($i=0 ; $i<=2 ; $i++) {
+                $fluoroData = new FluoroData();
+                $fluoroData->survey_id = $survey->id;
+                $fluoroData->machine_id = $machine->id;
+                $fluoroData->tube_id = $tubeId;
+                $fluoroData->field_size = $fs;
+                $fluoroData->atten = $entranceExpRate[$i][0];
+                $fluoroData->dose1_mode = $doseModes[0];
+                $fluoroData->dose1_kv = round($entranceExpRate[$i][1], 1);
+                $fluoroData->dose1_ma = round($entranceExpRate[$i][2], 1);
+                $fluoroData->dose1_rate = round($entranceExpRate[$i][3], 3);
+                $fluoroData->dose2_mode = $doseModes[1];
+                $fluoroData->dose2_kv = round($entranceExpRate[$i][4], 1);
+                $fluoroData->dose2_ma = round($entranceExpRate[$i][5], 1);
+                $fluoroData->dose2_rate = round($entranceExpRate[$i][6], 3);
+                $fluoroData->dose3_mode = $doseModes[2];
+                $fluoroData->dose3_kv = round($entranceExpRate[$i][7], 1);
+                $fluoroData->dose3_ma = round($entranceExpRate[$i][8], 1);
+                $fluoroData->dose3_rate = round($entranceExpRate[$i][9], 1);
+                $fluoroData->save();
+            }
+        }
+        echo "Fluoro entrance exposure rates saved\n";
+        // Store max entrance exposure rates
+        $max = new MaxFluoroData();
+        $max->survey_id = $survey->id;
+        $max->machine_id = $machine->id;
+        $max->tube_id = $tubeId;
+        $max->dose1_kv = round($maxEntraceExpRate[0][0], 1);
+        $max->dose1_ma = round($maxEntraceExpRate[0][1], 1);
+        $max->dose1_rate = round($maxEntraceExpRate[0][2], 3);
+        $max->dose2_kv = round($maxEntraceExpRate[0][3], 1);
+        $max->dose2_ma = round($maxEntraceExpRate[0][4], 1);
+        $max->dose2_rate = round($maxEntraceExpRate[0][5], 3);
+        $max->dose3_kv = round($maxEntraceExpRate[0][6], 1);
+        $max->dose3_ma = round($maxEntraceExpRate[0][7], 1);
+        $max->dose3_rate = round($maxEntraceExpRate[0][8], 3);
+        $max->save();
+        echo "Max fluoro entrance exposure rates saved\n";
+
+        // Get pulse/digital entrance exposure rate data
+        $doseModes[0] = $fluoroSheet->getCell('Q139')->getCalculatedValue();
+        $doseModes[1] = $fluoroSheet->getCell('T139')->getCalculatedValue();
+        $doseModes[2] = $fluoroSheet->getCell('W139')->getCalculatedValue();
+        $entranceExpRate = $fluoroSheet->rangeToArray('P141:Y155', null, true, false, false);
+        $maxEntraceExpRate = $fluoroSheet->rangeToArray('Q156:Y156', null, true, false, false);
+        // Store entrance exposure rate data
+        foreach ($fieldSizes as $fs) {
+            for ($i=0 ; $i<=2 ; $i++) {
+                $fluoroData = new FluoroData();
+                $fluoroData->survey_id = $survey->id;
+                $fluoroData->machine_id = $machine->id;
+                $fluoroData->tube_id = $tubeId;
+                $fluoroData->field_size = $fs;
+                $fluoroData->atten = $entranceExpRate[$i][0];
+                $fluoroData->dose1_mode = $doseModes[0];
+                $fluoroData->dose1_kv = round($entranceExpRate[$i][1], 1);
+                $fluoroData->dose1_ma = round($entranceExpRate[$i][2], 1);
+                $fluoroData->dose1_rate = round($entranceExpRate[$i][3], 3);
+                $fluoroData->dose2_mode = $doseModes[1];
+                $fluoroData->dose2_kv = round($entranceExpRate[$i][4], 1);
+                $fluoroData->dose2_ma = round($entranceExpRate[$i][5], 1);
+                $fluoroData->dose2_rate = round($entranceExpRate[$i][6], 3);
+                $fluoroData->dose3_mode = $doseModes[2];
+                $fluoroData->dose3_kv = round($entranceExpRate[$i][7], 1);
+                $fluoroData->dose3_ma = round($entranceExpRate[$i][8], 1);
+                $fluoroData->dose3_rate = round($entranceExpRate[$i][9], 1);
+                $fluoroData->save();
+            }
+        }
+        echo "Pulse/digital entrance exposure rates saved\n";
+        // Store max entrance exposure rates
+        $max = new MaxFluoroData();
+        $max->survey_id = $survey->id;
+        $max->machine_id = $machine->id;
+        $max->tube_id = $tubeId;
+        $max->dose1_kv = round($maxEntraceExpRate[0][0], 1);
+        $max->dose1_ma = round($maxEntraceExpRate[0][1], 1);
+        $max->dose1_rate = round($maxEntraceExpRate[0][2], 3);
+        $max->dose2_kv = round($maxEntraceExpRate[0][3], 1);
+        $max->dose2_ma = round($maxEntraceExpRate[0][4], 1);
+        $max->dose2_rate = round($maxEntraceExpRate[0][5], 3);
+        $max->dose3_kv = round($maxEntraceExpRate[0][6], 1);
+        $max->dose3_ma = round($maxEntraceExpRate[0][7], 1);
+        $max->dose3_rate = round($maxEntraceExpRate[0][8], 3);
+        $max->save();
+        echo "Max pulse/digital entrance exposure rates saved\n";
+
+        // Get dose modes
+        $doseModes[0] = $fluoroSheet->getCell('Q107')->getCalculatedValue();
+        $doseModes[1] = $fluoroSheet->getCell('T107')->getCalculatedValue();
+        $doseModes[2] = $fluoroSheet->getCell('W107')->getCalculatedValue();
+        // Get receptor entrance exposure rate data
+        $receptorEntrExpRate = $fluoroSheet->rangeToArray('P190:T204', null, true, false, false);
+        foreach ($receptorEntrExpRate as $k => $r) {
+            $ree = new ReceptorEntranceExp();
+            $ree->survey_id = $survey->id;
+            $ree->machine_id = $machine->id;
+            $ree->tube_id = $tubeId;
+            $ree->field_size = $r[0];
+            $ree->mode = $doseModes[floor($k/5)];
+            $ree->kv = $r[1];
+            $ree->ma = $r[2];
+            $ree->rate = $r[4];
+            $ree->save();
+        }
+        // Get pulse/digital entrance exposure rate data
+        $doseModes[0] = $fluoroSheet->getCell('Q139')->getCalculatedValue();
+        $doseModes[1] = $fluoroSheet->getCell('T139')->getCalculatedValue();
+        $doseModes[2] = $fluoroSheet->getCell('W139')->getCalculatedValue();
+        // Get pulse/digital entrance exposure rate data
+        $receptorEntrExpRate = $fluoroSheet->rangeToArray('P214:T228', null, true, false, false);
+        foreach ($receptorEntrExpRate as $k => $r) {
+            $ree = new ReceptorEntranceExp();
+            $ree->survey_id = $survey->id;
+            $ree->machine_id = $machine->id;
+            $ree->tube_id = $tubeId;
+            $ree->field_size = $r[0];
+            $ree->mode = $doseModes[floor($k/5)];
+            $ree->kv = $r[1];
+            $ree->ma = $r[2];
+            $ree->rate = $r[4];
+            $ree->save();
+        }
     }
 }
