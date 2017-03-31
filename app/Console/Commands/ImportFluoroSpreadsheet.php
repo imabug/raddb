@@ -106,7 +106,7 @@ class ImportFluoroSpreadsheet extends Command
         $maxEntraceExpRate = $fluoroSheet->rangeToArray('Q124:Y124', null, true, false, false);
         // Store entrance exposure rate data
         foreach ($fieldSizes as $fs) {
-            for ($i=0 ; $i<=2 ; $i++) {
+            for ($i = 0; $i <= 2; $i++) {
                 $fluoroData = new FluoroData();
                 $fluoroData->survey_id = $survey->id;
                 $fluoroData->machine_id = $machine->id;
@@ -154,7 +154,7 @@ class ImportFluoroSpreadsheet extends Command
         $maxEntraceExpRate = $fluoroSheet->rangeToArray('Q156:Y156', null, true, false, false);
         // Store entrance exposure rate data
         foreach ($fieldSizes as $fs) {
-            for ($i=0 ; $i<=2 ; $i++) {
+            for ($i = 0; $i <= 2; $i++) {
                 $fluoroData = new FluoroData();
                 $fluoroData->survey_id = $survey->id;
                 $fluoroData->machine_id = $machine->id;
@@ -206,7 +206,7 @@ class ImportFluoroSpreadsheet extends Command
             $ree->machine_id = $machine->id;
             $ree->tube_id = $tubeId;
             $ree->field_size = $r[0];
-            $ree->mode = $doseModes[floor($k/5)];
+            $ree->mode = $doseModes[floor($k / 5)];
             $ree->kv = $r[1];
             $ree->ma = $r[2];
             $ree->rate = $r[4];
@@ -224,7 +224,7 @@ class ImportFluoroSpreadsheet extends Command
             $ree->machine_id = $machine->id;
             $ree->tube_id = $tubeId;
             $ree->field_size = $r[0];
-            $ree->mode = $doseModes[floor($k/5)];
+            $ree->mode = $doseModes[floor($k / 5)];
             $ree->kv = $r[1];
             $ree->ma = $r[2];
             $ree->rate = $r[4];

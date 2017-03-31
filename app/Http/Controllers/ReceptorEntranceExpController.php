@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\ReceptorEntranceExp;
 use Illuminate\Http\Request;
+use RadDB\ReceptorEntranceExp;
 
 class ReceptorEntranceExpController extends Controller
 {
