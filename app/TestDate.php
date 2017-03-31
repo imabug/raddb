@@ -108,6 +108,21 @@ class TestDate extends Model
         return $this->hasMany('\RadDB\RadiationOutput', 'survey_id');
     }
 
+    public function fluoroData()
+    {
+        return $this->hasMany('RadDB\FluoroData', 'survey_id');
+    }
+
+    public function maxFluoroData()
+    {
+        return $this->hasMany('RadDB\MaxFluoroData', 'survey_id');
+    }
+
+    public function receptorEntranceExp()
+    {
+        return $this->hasMany('RadDB\ReceptorEntranceExp', 'survey_id');
+    }
+
     /*
      * Scopes
      */

@@ -125,6 +125,21 @@ class Machine extends Model
         return $this->hasMany('\RadDB\RadiationOutput');
     }
 
+    public function fluoroData()
+    {
+        return $this->hasMany('RadDB\FluoroData');
+    }
+
+    public function maxFluoroData()
+    {
+        return $this->hasMany('RadDB\MaxFluoroData');
+    }
+
+    public function receptorEntranceExp()
+    {
+        return $this->hasMany('RadDB\ReceptorEntranceExp');
+    }
+
     /*
      * Scopes
      */
