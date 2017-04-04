@@ -23,6 +23,8 @@ class MachineController extends Controller
      {
          // Only apply auth middleware to these methods
          $this->middleware('auth')->only([
+             'create',
+             'edit',
              'store',
              'update',
              'destroy',

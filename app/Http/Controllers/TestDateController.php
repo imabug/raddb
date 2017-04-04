@@ -20,6 +20,8 @@ class TestDateController extends Controller
      {
          // Only use these methods with the auth middlware
          $this->middleware('auth')->only([
+             'create',
+             'edit',
              'store',
              'update',
              'destroy',

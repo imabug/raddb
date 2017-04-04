@@ -19,6 +19,8 @@ class OpNoteController extends Controller
      {
          // Only include these methods in the auth middlware
          $this->middleware('auth')->only([
+             'create',
+             'edit',
              'store',
              'update',
              'destroy',

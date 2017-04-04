@@ -12,19 +12,21 @@ use RadDB\Http\Requests\UpdateTubeRequest;
 class TubeController extends Controller
 {
     /**
-      * Instantiate a new controller instance.
-      *
-      * @return void
-      */
-     public function __construct()
-     {
-         // Only use auth middlware on these methods
-         $this->middleware('auth')->only([
-             'store',
-             'update',
-             'destroy',
-         ]);
-     }
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Only use auth middlware on these methods
+        $this->middleware('auth')->only([
+            'create',
+            'edit',
+            'store',
+            'update',
+            'destroy',
+        ]);
+    }
 
     /**
      * Display a listing of the resource.
