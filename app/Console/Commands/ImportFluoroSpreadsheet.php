@@ -60,7 +60,7 @@ class ImportFluoroSpreadsheet extends Command
         echo 'Saving data for survey ID: '.$surveyId."\n";
 
         // Pull info for this spreadsheet from the database
-        $survey = TestDate::find(1939);
+        $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
         $tubes = Tube::where('machine_id', $machine->id)->active()->get();
 
