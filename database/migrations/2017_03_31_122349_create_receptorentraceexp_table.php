@@ -23,8 +23,17 @@ class CreateReceptorEntraceExpTable extends Migration
             $table->float('kv')->nullable();
             $table->float('ma')->nullable();
             $table->float('rate')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
+        // Add foreign key constraints
+        Schema::disableForeignKeyConstraints();
+        Schema::table('receptorentrance', function (Blueprint $table) {
+            $table->foreign('survey_id')->references('id')->on('testdates');
+            $table->foreign('machine_id')->references('id')->on('machines');
+            $table->foreign('tube_id')->references('id')->on('tubes');
+        });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

@@ -28,12 +28,13 @@ class CreateCollimatordataTable extends Migration
             $table->float('light_long')->nullable();
             $table->float('pbl_trans')->nullable();
             $table->float('pbl_long')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
         // Add foreign key constraints
         Schema::disableForeignKeyConstraints();
-        Schema::table('hvldata', function (Blueprint $table) {
+        Schema::table('collimatordata', function (Blueprint $table) {
             $table->foreign('survey_id')->references('id')->on('testdates');
             $table->foreign('machine_id')->references('id')->on('machines');
             $table->foreign('tube_id')->references('id')->on('tubes');

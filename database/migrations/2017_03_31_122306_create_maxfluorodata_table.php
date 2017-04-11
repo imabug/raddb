@@ -27,8 +27,17 @@ class CreateMaxFluoroDataTable extends Migration
             $table->float('dose3_kv')->nullable();
             $table->float('dose3_ma')->nullable();
             $table->float('dose3_rate')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
+        // Add foreign key constraints
+        Schema::disableForeignKeyConstraints();
+        Schema::table('maxfluorodata', function (Blueprint $table) {
+            $table->foreign('survey_id')->references('id')->on('testdates');
+            $table->foreign('machine_id')->references('id')->on('machines');
+            $table->foreign('tube_id')->references('id')->on('tubes');
+        });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

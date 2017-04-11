@@ -20,6 +20,7 @@ class CreateHvlDataTable extends Migration
             $table->integer('tube_id')->unsigned()->nullable();
             $table->float('kv')->nullable();
             $table->float('hvl')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
