@@ -2,7 +2,11 @@
 
 namespace RadDB\Http\Controllers;
 
+use DB;
+use Charts;
+use RadDB\Tube;
 use RadDB\GenData;
+use RadDB\HVLData;
 use RadDB\Machine;
 use RadDB\TestDate;
 use Illuminate\Http\Request;
@@ -138,6 +142,27 @@ class GenDataController extends Controller
     {
         // Retrieve the generator test data
         $genData = GenData::where('survey_id', $surveyId)->get();
+        // Retrieve HVL data
+        $hvl = HVLData::where('survey_id', $surveyId)->orderBy('kv')->get();
+        $hvlChart = Charts::create('line', 'google')
+                  ->labels($hvl->pluck('kv'))
+                  ->values($hvl->pluck('hvl'))
+                  ->title('Half value layer')
+                  ->dimensions(1200, 700);
+        // Retrieve machine information
+        $survey = TestDate::find($surveyId);
+        $machine = Machine::find($survey->machine_id);
+        // Retrieve tube information
+        $tube = Tube::find($genData->first()->tube_id);
+
+        return view('gendata.show', [
+            'gendata' => $genData,
+            'hvl' => $hvl,
+            'hvlChart' => $hvlChart,
+            'machine' => $machine,
+            'tube' => $tube,
+            'survey' => $survey,
+        ]);
     }
 
     /**
