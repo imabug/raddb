@@ -20,7 +20,7 @@ class CreateRadoutputdataTable extends Migration
             $table->integer('tube_id')->unsigned()->nullable();
             $table->enum('focus', ['Large', 'Small'])->default('Large');
             $table->float('kv')->nullable();
-            $table->float('output')->nullable();
+            $table->float('output', 8, 4)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
