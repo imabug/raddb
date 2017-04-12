@@ -15,15 +15,20 @@
     src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
     integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
     crossorigin="anonymous"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-{{-- blueimp jQuery-File-Upload https://github.com/blueimp/jQuery-File-Upload --}}
+<!-- Latest compiled and minified JavaScript -->
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+<!-- blueimp jQuery-File-Upload https://github.com/blueimp/jQuery-File-Upload -->
 <script src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
 <script src="{{ asset('js/jquery.fileupload.js') }}"></script>
+<script src="{{ asset('js/jquery.fileupload-process.js') }}"></script>
 <script src="{{ asset('js/jquery.fileupload-image.js') }}"></script>
 <script src="{{ asset('js/jquery.fileupload-validate.js') }}"></script>
-<script src="{{ asset('js/jquery-fileupload-ui.js') }}"></script>
-<script src="{{ asset('js/jquery-fileupload-jquery-ui.js') }}"></script>
-<script src="{{ asset('js/jquery-fileupload-main.js')}}"></script>
+<script src="{{ asset('js/jquery.fileupload-ui.js') }}"></script>
+<script src="{{ asset('js/jquery.fileupload-main.js')}}"></script>
 {{-- Only load the Slick javascript if the machine detail page is being shown
     Slick image carousel http://kenwheeler.github.io/slick/ --}}
 @if (Route::currentRouteName() == 'machines.show')
