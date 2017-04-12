@@ -11,7 +11,7 @@ use RadDB\Http\Requests\StoreSurveyReportRequest;
 class SurveyReportController extends Controller
 {
     /**
-     * Instantiate a new controller instance
+     * Instantiate a new controller instance.
      *
      * @return void
      */
