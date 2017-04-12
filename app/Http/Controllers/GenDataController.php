@@ -141,8 +141,15 @@ class GenDataController extends Controller
      */
     public function show($surveyId)
     {
+        // Retrieve machine information
+        $survey = TestDate::find($surveyId);
+        $machine = Machine::find($survey->machine_id);
+        // Retrieve tube information
+        $tube = Tube::find($genData->first()->tube_id);
+
         // Retrieve the generator test data
         $genData = GenData::where('survey_id', $surveyId)->get();
+
         // Retrieve HVL data
         $hvl = HVLData::where('survey_id', $surveyId)->orderBy('kv')->get();
         $hvlChart = Charts::create('line', 'google')
@@ -150,6 +157,7 @@ class GenDataController extends Controller
                   ->values($hvl->pluck('hvl'))
                   ->title('Half value layer')
                   ->dimensions(1200, 700);
+
         // Retrieve radiation output data
         $radOutput = RadiationOutput::where('survey_id', $surveyId)->orderBy('kv')->get();
         $radOutputChart = Charts::create('line', 'google')
@@ -157,11 +165,6 @@ class GenDataController extends Controller
                         ->values($radOutput->pluck('output'))
                         ->title('Radiation Output')
                         ->dimensions(1200, 700);
-        // Retrieve machine information
-        $survey = TestDate::find($surveyId);
-        $machine = Machine::find($survey->machine_id);
-        // Retrieve tube information
-        $tube = Tube::find($genData->first()->tube_id);
 
         return view('gendata.show', [
             'gendata' => $genData,
