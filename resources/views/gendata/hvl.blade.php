@@ -15,7 +15,6 @@
 @endforeach
     </tbody>
 </table>
-{!! Charts::assets(['google']) !!}
 <div class="panel panel-default">
     <div class="panel-body">
         <p>{!! $hvlChart->render() !!}</p>
