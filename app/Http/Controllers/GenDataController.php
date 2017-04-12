@@ -9,6 +9,7 @@ use RadDB\GenData;
 use RadDB\HVLData;
 use RadDB\Machine;
 use RadDB\TestDate;
+use RadDB\RadiationOutput;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
@@ -149,6 +150,13 @@ class GenDataController extends Controller
                   ->values($hvl->pluck('hvl'))
                   ->title('Half value layer')
                   ->dimensions(1200, 700);
+        // Retrieve radiation output data
+        $radOutput = RadiationOutput::where('survey_id', $surveyId)->orderBy('kv')->get();
+        $radOutputChart = Charts::create('line', 'google')
+                        ->labels($radOutput->pluck('kv'))
+                        ->values($radOutput->pluck('output'))
+                        ->title('Radiation Output')
+                        ->dimensions(1200, 700);
         // Retrieve machine information
         $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
@@ -159,6 +167,8 @@ class GenDataController extends Controller
             'gendata' => $genData,
             'hvl' => $hvl,
             'hvlChart' => $hvlChart,
+            'radOutput' => $radOutput,
+            'radOutputChart' => $radOutputChart,
             'machine' => $machine,
             'tube' => $tube,
             'survey' => $survey,
