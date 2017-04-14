@@ -141,30 +141,40 @@ class GenDataController extends Controller
      */
     public function show($surveyId)
     {
+        // Retrieve the generator test data
+        $genData = GenData::where('survey_id', $surveyId)->get();
+
         // Retrieve machine information
         $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
         // Retrieve tube information
         $tube = Tube::find($genData->first()->tube_id);
 
-        // Retrieve the generator test data
-        $genData = GenData::where('survey_id', $surveyId)->get();
-
         // Retrieve HVL data
         $hvl = HVLData::where('survey_id', $surveyId)->orderBy('kv')->get();
-        $hvlChart = Charts::create('line', 'google')
+        $hvlChart = Charts::create('scatter', 'google')
                   ->labels($hvl->pluck('kv'))
                   ->values($hvl->pluck('hvl'))
                   ->title('Half value layer')
-                  ->dimensions(1200, 700);
+                  ->xAxisTitle('kV')
+                  ->yAxistitle('mm Al')
+                  ->responsive(false)
+                  ->height(600)
+                  ->width(800)
+                  ->legend(false);
 
         // Retrieve radiation output data
         $radOutput = RadiationOutput::where('survey_id', $surveyId)->orderBy('kv')->get();
-        $radOutputChart = Charts::create('line', 'google')
+        $radOutputChart = Charts::create('scatter', 'google')
                         ->labels($radOutput->pluck('kv'))
                         ->values($radOutput->pluck('output'))
                         ->title('Radiation Output')
-                        ->dimensions(1200, 700);
+                        ->xAxisTitle('kV')
+                        ->yAxisTitle('mGy/mAs @ 40 in.')
+                        ->responsive(false)
+                        ->height(600)
+                        ->width(800)
+                        ->legend(false);
 
         return view('gendata.show', [
             'gendata' => $genData,
