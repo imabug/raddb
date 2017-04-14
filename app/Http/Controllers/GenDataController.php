@@ -155,26 +155,28 @@ class GenDataController extends Controller
         $hvlChart = Charts::create('scatter', 'google')
                   ->labels($hvl->pluck('kv'))
                   ->values($hvl->pluck('hvl'))
+                  ->elementLabel('HVL')
                   ->title('Half value layer')
                   ->xAxisTitle('kV')
                   ->yAxistitle('mm Al')
                   ->responsive(false)
                   ->height(600)
                   ->width(800)
-                  ->legend(false);
+                  ->legend(true);
 
         // Retrieve radiation output data
         $radOutput = RadiationOutput::where('survey_id', $surveyId)->orderBy('kv')->get();
         $radOutputChart = Charts::create('scatter', 'google')
                         ->labels($radOutput->pluck('kv'))
                         ->values($radOutput->pluck('output'))
+                        ->elementLabel('Output')
                         ->title('Radiation Output')
                         ->xAxisTitle('kV')
                         ->yAxisTitle('mGy/mAs @ 40 in.')
                         ->responsive(false)
                         ->height(600)
                         ->width(800)
-                        ->legend(false);
+                        ->legend(true);
 
         return view('gendata.show', [
             'gendata' => $genData,
