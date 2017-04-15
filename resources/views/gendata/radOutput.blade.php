@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>kV</th>
-                <th>Output (mGy/mAs)</th>
+                <th>Output (mGy/mAs) @ 40 in.</th>
             </tr>
         </thead>
         <tbody>
