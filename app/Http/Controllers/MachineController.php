@@ -2,12 +2,9 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\Tube;
 use RadDB\Machine;
 use RadDB\Location;
 use RadDB\Modality;
-use RadDB\TestDate;
-use RadDB\MachinePhoto;
 use RadDB\Manufacturer;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\UpdateMachineRequest;
@@ -50,73 +47,6 @@ class MachineController extends Controller
             'machines'      => $machines,
         ]);
     }
-
-    /**
-     * Return a collection of survey recommendations for machine $id.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getRecommendations($id)
-    {
-        return Machine::findOrFail($id)
-            ->recommendation()
-            ->get();
-    }
-
-    /**
-     * Return a collection of operational notes for machine $id.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getOperationalNotes($id)
-    {
-        return Machine::findOrFail($id)
-            ->opnote()
-            ->get();
-    }
-
-     /**
-      * Return a collection of generator test data for machine $id.
-      *
-      * @param int $id
-      *
-      * @return \Illuminate\Database\Eloquent\Collection
-      */
-     public function getGenData($id)
-     {
-         return Machine::findOrFail($id)
-            ->gendata()
-            ->get();
-     }
-
-     /**
-      * Return a collection of photos for machine $id.
-      *
-      * @param int $id
-      *
-      * @return \Illuminate\Database\Eloquent\Collection
-      */
-     public function getPhotos($id)
-     {
-         return MachinePhoto::where('machine_id', $id)
-            ->get();
-     }
-
-     /**
-      * Return a collection of x-ray tubes for machine $id.
-      *
-      * @param int $id
-      *
-      * @return \Illuminate\Database\Eloquent\Collection
-      */
-     public function getTubes($id)
-     {
-         return Tube::active()->forMachine($id)->get();
-     }
 
     /**
      * Show form for adding a new machine
@@ -200,13 +130,15 @@ class MachineController extends Controller
      */
     public function show($id)
     {
+        $machine = Machine::findOrFail($id);
+
         return view('machine.detail', [
-            'machine'         => Machine::findOrFail($id),
-            'photos'          => $this->getPhotos($id),
-            'tubes'           => $this->getTubes($id),
-            'opnotes'         => $this->getOperationalNotes($id),
-            'surveys'         => TestDate::forMachine($id)->orderBy('test_date', 'asc')->get(),
-            'recommendations' => $this->getRecommendations($id),
+            'machine'         => $machine,
+            'photos'          => $machine->machinephoto,
+            'tubes'           => $machine->tube,
+            'opnotes'         => $machine->opnote,
+            'surveys'         => $machine->testdate->sortBy('test_date'),
+            'recommendations' => $machine->recommendation,
         ]);
     }
 
@@ -346,7 +278,7 @@ class MachineController extends Controller
         $machine = Machine::find($id);
 
         // Retrieve tubes associated with this machine
-        $tubes = $this->getTubes($id);
+        $tubes = $machine->tube->where('tube_status', 'Active');
 
         // Update the status and remove date for the machine
         $machine->machine_status = 'Removed';

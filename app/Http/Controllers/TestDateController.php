@@ -158,10 +158,10 @@ class TestDateController extends Controller
         // Return survey information for $id
         return view('surveys.surveys_edit', [
             'survey'    => $survey,
-            'machine'   => Machine::findOrFail($survey->machine_id),
-            'tester1'   => Tester::findOrFail($survey->tester1_id),
-            'tester2'   => Tester::find($survey->tester2_id),
-            'testtype'  => TestType::find($survey->type_id),
+            'machine'   => $survey->machine,
+            'tester1'   => $survey->tester1,
+            'tester2'   => $survey->tester2,
+            'testtype'  => $survey->type,
             'testers'   => Tester::get(),
             'testtypes' => TestType::get(),
         ]);
