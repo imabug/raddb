@@ -162,9 +162,9 @@ class GenDataController extends Controller
 
         // Retrieve radiation output data only if this is a radiographic unit
         switch ($machine->modality->modality) {
-        case "Portable":
-        case "Radiographic":
-        case "Rad/Fluoro":
+        case 'Portable':
+        case 'Radiographic':
+        case 'Rad/Fluoro':
             $radOutput = RadiationOutput::where('survey_id', $surveyId)->orderBy('kv')->get();
             $radOutputChart = Charts::create('scatter', 'google')
                             ->labels($radOutput->pluck('kv'))
