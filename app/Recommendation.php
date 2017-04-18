@@ -19,8 +19,6 @@ class Recommendation extends Model
         'resolved_by',
         'rec_status',
         'wo_number',
-        'service_report_path',
-        'service_report_id',
     ];
 
     /**

@@ -39,8 +39,6 @@ class Tube extends Model
         'created_at',
         'deleted_at',
         'updated_at',
-        // 'manuf_date',
-        // 'install_date'
     ];
 
     /*

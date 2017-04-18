@@ -26,7 +26,6 @@ class Machine extends Model
         'room',
         'status',
         'notes',
-        'photo',
     ];
 
     /**
