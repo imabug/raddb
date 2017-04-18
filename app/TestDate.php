@@ -27,9 +27,6 @@ class TestDate extends Model
         'notes',
         'accession',
         'report_file_path',
-        'deleted_at',
-        'created_at',
-        'updated_at',
     ];
 
     /**
