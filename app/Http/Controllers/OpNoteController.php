@@ -55,7 +55,7 @@ class OpNoteController extends Controller
         } else {
             // A machine was specified. Pull the machine model and any existing operational notes
             $machines = Machine::find($id);
-            $opNotes = OpNote::where('machine_id', $id)->get();
+            $opNotes = $machines->opnote;
         }
 
         return view('opnotes.opnote_create', [
@@ -109,9 +109,11 @@ class OpNoteController extends Controller
      */
     public function show($id)
     {
+        $machine = Machine::find($id);
+
         return view('opnotes.opnote_show', [
-            'machine' => Machine::find($id),
-            'opNotes' => OpNote::where('machine_id', $id)->get(),
+            'machine' => $machine,
+            'opNotes' => $machine->opnote,
         ]);
     }
 
