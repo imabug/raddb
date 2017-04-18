@@ -2,16 +2,12 @@
 
 namespace RadDB\Http\Controllers;
 
-use DB;
 use Charts;
-use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\HVLData;
-use RadDB\Machine;
-use RadDB\TestDate;
+use RadDB\RadSurveyData;
 use RadDB\RadiationOutput;
 use Illuminate\Http\Request;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class GenDataController extends Controller
 {
@@ -56,7 +52,7 @@ class GenDataController extends Controller
     public function create($surveyId)
     {
         $survey = TestDate::find($surveyId);
-        $machine = Machine::find($survey->machine_id);
+        $machine = $survey->machine;
         $tubes = $machine->tube;
 
         return view('surveydata.generator.gendata_create', [
@@ -145,10 +141,10 @@ class GenDataController extends Controller
         $genData = GenData::where('survey_id', $surveyId)->get();
 
         // Retrieve machine information
-        $survey = TestDate::find($surveyId);
-        $machine = Machine::find($survey->machine_id);
+        $survey = $genData->first()->survey;
+        $machine = $survey->machine;
         // Retrieve tube information
-        $tube = Tube::find($genData->first()->tube_id);
+        $tube = $genData->first()->tube;
 
         // Retrieve HVL data
         $hvl = HVLData::where('survey_id', $surveyId)->orderBy('kv')->get();
@@ -164,19 +160,32 @@ class GenDataController extends Controller
                   ->width(800)
                   ->legend(true);
 
-        // Retrieve radiation output data
-        $radOutput = RadiationOutput::where('survey_id', $surveyId)->orderBy('kv')->get();
-        $radOutputChart = Charts::create('scatter', 'google')
-                        ->labels($radOutput->pluck('kv'))
-                        ->values($radOutput->pluck('output'))
-                        ->elementLabel('Output')
-                        ->title('Radiation Output')
-                        ->xAxisTitle('kV')
-                        ->yAxisTitle('mGy/mAs @ 40 in.')
-                        ->responsive(false)
-                        ->height(600)
-                        ->width(800)
-                        ->legend(true);
+        // Retrieve radiation output data only if this is a radiographic unit
+        switch ($machine->modality->modality) {
+        case "Portable":
+        case "Radiographic":
+        case "Rad/Fluoro":
+            $radOutput = RadiationOutput::where('survey_id', $surveyId)->orderBy('kv')->get();
+            $radOutputChart = Charts::create('scatter', 'google')
+                            ->labels($radOutput->pluck('kv'))
+                            ->values($radOutput->pluck('output'))
+                            ->elementLabel('Output')
+                            ->title('Radiation Output')
+                            ->xAxisTitle('kV')
+                            ->yAxisTitle('mGy/mAs @ 40 in.')
+                            ->responsive(false)
+                            ->height(600)
+                            ->width(800)
+                            ->legend(true);
+            break;
+        default:
+            $radOutput = null;
+            $radOutputChart = null;
+            break;
+        }
+
+        // Retrieve radiography survey data
+        $radSurveyData = RadSurveyData::where('survey_id', $surveyId)->get();
 
         return view('gendata.show', [
             'gendata' => $genData,
