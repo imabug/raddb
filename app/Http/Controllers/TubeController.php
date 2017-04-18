@@ -141,15 +141,10 @@ class TubeController extends Controller
         // Get the model for the x-ray tube
         $tube = Tube::findOrFail($id);
 
-        // Get the information for the corresponding machine
-        $machine = Machine::select('id', 'description')
-            ->where('id', '=', $tube->machine_id)
-            ->first();
-
         // Show the form
         return view('tubes.tubes_edit', [
             'tube'          => $tube,
-            'machine'       => $machine,
+            'machine'       => $tube->machine,
             'manufacturers' => Manufacturer::get(),
         ]);
     }
