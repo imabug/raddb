@@ -10,6 +10,7 @@
             <th>Focal Spots</th>
             <th>Manuf Date</th>
             <th>Age</th>
+            <th>Status</th>
             <th>Notes</th>
             <th></th>
         </tr>
@@ -25,6 +26,7 @@
             <td>{{ $tube->lfs }} / {{ $tube->mfs }} / {{ $tube->sfs }}</td>
             <td>{{ $tube->manuf_date }}</td>
             <td>{{ $tube->age }}</td>
+            <td>{{ $tube->tube_status }}</td>
             <td>{{ $tube->notes }}</td>
 			<td>
                 @if (Auth::check())
