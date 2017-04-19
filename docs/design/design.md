@@ -82,6 +82,14 @@ The following functionality is required.
 
 ## Reporting
 ### Survey reports
+
+ * Store survey reports
+ * Display survey reports
+
+### Service reports
+ * Store service reports
+ * Display service reports
+
 ### Inventory reports
 
 * Inventory by location
@@ -98,8 +106,10 @@ The following functionality is required.
 
 ### Equipment reports
 
+
 ## Administration
 
+This section is used to maintain the lookup tables
 * Modalities
 * Locations
 * Manufacturers
@@ -107,3 +117,17 @@ The following functionality is required.
 * Test types
 * Equipment contact people
 
+For all of these tables, must be able to view, add, modify, and delete items.
+
+## QA/Survey Data
+
+Provide a method to display QA/survey data stored in the database. A limited subset of survey data is stored for radiography and fluoroscopy units. Other modalities including mammography and CT will be added at a future date.
+
+For survey data, show
+ * List of machines with survey data
+ * For machines with survey data available, show what data is available
+ * Trend graphs
+ * Year to year comparison
+ * Comparison between machines
+ * Comparison by modality
+ 
