@@ -132,3 +132,6 @@ Route::name('test.loadOdsSpreadsheet')->get('test/loadOdsSpreadsheet', 'TestCont
 // Authentication routes
 Auth::routes();
 Route::name('home.index')->get('/home', 'HomeController@index');
+
+// Routes for viewing QA/survey data
+Route::name('qa.index')->get('qa/', 'QAController@index');
