@@ -3,10 +3,10 @@
 namespace RadDB\Http\Controllers;
 
 use Charts;
-use RadDB\Machine;
-use RadDB\TestDates;
 use RadDB\GenData;
 use RadDB\HVLData;
+use RadDB\Machine;
+use RadDB\TestDates;
 use RadDB\RadSurveyData;
 use RadDB\RadiationOutput;
 use Illuminate\Http\Request;
@@ -24,9 +24,10 @@ class QAController extends Controller
         // Get a list of the survey IDs in the gendata table
         $surveys = GenData::select('survey_id')->distinct()->get();
         $machines = TestDate::whereIn('id', $surveys->toArray())->get();
-        
+
         return view('qa.index', [
-            
+            'surveys' => $surveys,
+            'machines' => $machines,
         ]);
     }
 }
