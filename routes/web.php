@@ -137,6 +137,6 @@ Route::name('home.index')->get('/home', 'HomeController@index');
 Route::name('qa.index')->get('qa/', 'QAController@index');
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'voyager'], function () {
     Voyager::routes();
 });
