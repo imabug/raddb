@@ -14,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Work around for MariaDB/MySQL "Specified key was too long" errors
+        Schema::defaultStringLength(191);
     }
 
     /**
