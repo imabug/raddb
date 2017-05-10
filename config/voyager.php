@@ -42,7 +42,7 @@ return [
     */
 
     'models' => [
-        //'namespace' => 'RadDB\\',
+        'namespace' => 'RadDB\\',
     ],
 
     /*
