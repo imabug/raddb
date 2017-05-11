@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class QAController extends Controller
 {
     /**
-     * Index page for QA/survey data section
+     * Index page for QA/survey data section.
      *
      * @return \Illuminate\Http\Response
      */
