@@ -46,7 +46,7 @@
                     <li role="presentation"><a href="{{ route('testequipment.showCalDates') }}">Recent calibration dates</a></li>
                 </ul>
             </li>
-            <li role="presentation" class="dropdown">
+            {{-- <li role="presentation" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li role="presentation"><a href="{{route('locations.index')}}">Locations</a></li>
@@ -55,7 +55,7 @@
                     <li role="presentation"><a href="{{route('testers.index')}}">Testers</a></li>
                     <li role="presentation"><a href="{{route('testtypes.index')}}">Test Types</a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{ url('/logout') }}"
                     onclick="event.preventDefault();

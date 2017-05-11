@@ -104,19 +104,19 @@ Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables
 // Location controller
-Route::resource('admin/locations', 'LocationController');
+// Route::resource('admin/locations', 'LocationController');
 
 // Manufacturer controller
-Route::resource('admin/manufacturers', 'ManufacturerController');
+// Route::resource('admin/manufacturers', 'ManufacturerController');
 
 // Modality controller
-Route::resource('admin/modalities', 'ModalityController');
+// Route::resource('admin/modalities', 'ModalityController');
 
 // Testers controller
-Route::resource('admin/testers', 'TesterController');
+// Route::resource('admin/testers', 'TesterController');
 
 // Test types controller
-Route::resource('admin/testtypes', 'TestTypeController');
+// Route::resource('admin/testtypes', 'TestTypeController');
 
 // Photos controller. Used to handle uploading and updating photos of machines.
 Route::name('photos.create')
@@ -138,7 +138,7 @@ Route::name('home.index')->get('/home', 'HomeController@index');
 // Routes for viewing QA/survey data
 Route::name('qa.index')->get('qa/', 'QAController@index');
 
-
-Route::group(['prefix' => 'voyager'], function () {
+// Voyager admin package https://laravelvoyager.com/
+Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
