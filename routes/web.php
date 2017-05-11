@@ -78,22 +78,26 @@ Route::resource('gendata', 'GenDataController',
 // Operational notes controller
 Route::name('opnotes.createOpNoteFor')
     ->get('opnotes/{$id}/create', 'OpNoteController@create');
-Route::resource('opnotes', 'OpNoteController');
+Route::resource('opnotes', 'OpNoteController',
+    ['except' => ['create']]);
 
 // Recommendation controller
 Route::name('recommendations.createRecFor')
     ->get('recommendations/{id?}/create', 'RecommendationController@create');
-Route::resource('recommendations', 'RecommendationController');
+Route::resource('recommendations', 'RecommendationController',
+    ['except' => ['create']]);
 
 // Test Date controller
 Route::name('surveys.createSurveyFor')
     ->get('surveys/{id?}/create', 'TestDateController@create');
-Route::resource('surveys', 'TestDateController');
+Route::resource('surveys', 'TestDateController',
+    ['except' => ['create']]);
 
 // Survey report controller
 Route::name('surveyreports.create')
     ->get('surveyreports/{id?}/create', 'SurveyReportController@create');
-Route::resource('surveyreports', 'SurveyReportController');
+Route::resource('surveyreports', 'SurveyReportController',
+    ['except' => ['create']]);
 
 // Service report controller
 Route::resource('servicereports', 'ServiceReportController');
@@ -139,6 +143,6 @@ Route::name('home.index')->get('/home', 'HomeController@index');
 Route::name('qa.index')->get('qa/', 'QAController@index');
 
 // Voyager admin package https://laravelvoyager.com/
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Voyager::routes();
 });
