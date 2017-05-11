@@ -32,13 +32,33 @@ Route::name('dashboard.showSchedule')
 Route::name('dashboard.surveyGraph')
     ->get('/dashboard/surveyGraph', 'DashboardController@surveyGraph');
 
-// Machine controller
+// Machine listing controller
 // Listing of inactive machines
 Route::name('machines.inactive')
-    ->get('/machines/inactive', 'MachineController@showInactive');
+    ->get('/machines/inactive', 'MachineListingController@showInactive');
 // Listing of removed machines
 Route::name('machines.removed')
-    ->get('/machines/removed', 'MachineController@showRemoved');
+    ->get('/machines/removed', 'MachineListingController@showRemoved');
+// Show index of machines grouped by location
+Route::name('machines.showLocationIndex')
+    ->get('/machines/locations', 'MachineListingController@showLocationIndex');
+// List of machines for a selected location(s)
+Route::name('machines.showLocation')
+    ->get('/machines/locations/{id}', 'MachineListingController@showLocation');
+// Show index of machines grouped by manufacturer
+Route::name('machines.showManufacturerIndex')
+    ->get('/machines/manufacturers', 'MachineListingController@showManufacturerIndex');
+// List of machines for a selected modality/modalities
+Route::name('machines.showManufacturer')
+    ->get('/machines/manufacturers/{id}', 'MachineListingController@showManufacturer');
+// Show index of machines grouped by modality
+Route::name('machines.showModalityIndex')
+    ->get('/machines/modalities', 'MachineListingController@showModalityIndex');
+// List of machines for a selected modality/modalities
+Route::name('machines.showModality')
+    ->get('/machines/modalities/{id}', 'MachineListingController@showModality');
+
+// Machine controller
 Route::resource('machines', 'MachineController');
 
 // Test equipment controller
@@ -84,30 +104,12 @@ Route::resource('tubes', 'TubeController');
 
 // Routes for managing the lookup tables
 // Location controller
-// Show index of machines grouped by location
-Route::name('locations.showLocationIndex')
-    ->get('locations/', 'LocationController@showLocationIndex');
-// List of machines for a selected location(s)
-Route::name('locations.showLocation')
-    ->get('locations/{id}', 'LocationController@showLocation');
 Route::resource('admin/locations', 'LocationController');
 
 // Manufacturer controller
-// Show index of machines grouped by manufacturer
-Route::name('manufacturers.showManufacturerIndex')
-    ->get('manufacturers/', 'ManufacturerController@showManufacturerIndex');
-// List of machines for a selected modality/modalities
-Route::name('manufacturers.showManufacturer')
-    ->get('manufacturers/{id}', 'ManufacturerController@showManufacturer');
 Route::resource('admin/manufacturers', 'ManufacturerController');
 
 // Modality controller
-// Show index of machines grouped by modality
-Route::name('modalities.showModalityIndex')
-    ->get('modalities/', 'ModalityController@showModalityIndex');
-// List of machines for a selected modality/modalities
-Route::name('modalities.showModality')
-    ->get('modalities/{id}', 'ModalityController@showModality');
 Route::resource('admin/modalities', 'ModalityController');
 
 // Testers controller

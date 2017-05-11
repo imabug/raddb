@@ -206,8 +206,8 @@ Types of testing
 |        | GET|HEAD  | dashboard/showUntested                  | dashboard.showUntested              | RadDB\Http\Controllers\DashboardController@showUntested                  | web                     |
 |        | GET|HEAD  | dashboard/surveyGraph                   | dashboard.surveyGraph               | RadDB\Http\Controllers\DashboardController@surveyGraph                   | web                     |
 |        | GET|HEAD  | home                                    | home.index                          | RadDB\Http\Controllers\HomeController@index                              | web,auth                |
-|        | GET|HEAD  | locations                               | locations.showLocationIndex         | RadDB\Http\Controllers\LocationController@showLocationIndex              | web                     |
-|        | GET|HEAD  | locations/{id}                          | locations.showLocation              | RadDB\Http\Controllers\LocationController@showLocation                   | web                     |
+|        | GET|HEAD  | locations                               | machines.showLocationIndex         | RadDB\Http\Controllers\LocationController@showLocationIndex              | web                     |
+|        | GET|HEAD  | locations/{id}                          | machines.showLocation              | RadDB\Http\Controllers\LocationController@showLocation                   | web                     |
 |        | GET|HEAD  | login                                   | login                               | RadDB\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest               |
 |        | POST      | login                                   |                                     | RadDB\Http\Controllers\Auth\LoginController@login                        | web,guest               |
 |        | POST      | logout                                  | logout                              | RadDB\Http\Controllers\Auth\LoginController@logout                       | web                     |
@@ -220,10 +220,10 @@ Types of testing
 |        | GET|HEAD  | machines/{machine}                      | machines.show                       | RadDB\Http\Controllers\MachineController@show                            | web                     |
 |        | PUT|PATCH | machines/{machine}                      | machines.update                     | RadDB\Http\Controllers\MachineController@update                          | web,auth                |
 |        | GET|HEAD  | machines/{machine}/edit                 | machines.edit                       | RadDB\Http\Controllers\MachineController@edit                            | web                     |
-|        | GET|HEAD  | manufacturers                           | manufacturers.showManufacturerIndex | RadDB\Http\Controllers\ManufacturerController@showManufacturerIndex      | web                     |
-|        | GET|HEAD  | manufacturers/{id}                      | manufacturers.showManufacturer      | RadDB\Http\Controllers\ManufacturerController@showManufacturer           | web                     |
-|        | GET|HEAD  | modalities                              | modalities.showModalityIndex        | RadDB\Http\Controllers\ModalityController@showModalityIndex              | web                     |
-|        | GET|HEAD  | modalities/{id}                         | modalities.showModality             | RadDB\Http\Controllers\ModalityController@showModality                   | web                     |
+|        | GET|HEAD  | manufacturers                           | machines.showManufacturerIndex | RadDB\Http\Controllers\ManufacturerController@showManufacturerIndex      | web                     |
+|        | GET|HEAD  | manufacturers/{id}                      | machines.showManufacturer      | RadDB\Http\Controllers\ManufacturerController@showManufacturer           | web                     |
+|        | GET|HEAD  | modalities                              | machines.showModalityIndex        | RadDB\Http\Controllers\ModalityController@showModalityIndex              | web                     |
+|        | GET|HEAD  | modalities/{id}                         | machines.showModality             | RadDB\Http\Controllers\ModalityController@showModality                   | web                     |
 |        | GET|HEAD  | opnotes                                 | opnotes.index                       | RadDB\Http\Controllers\OpNoteController@index                            | web                     |
 |        | POST      | opnotes                                 | opnotes.store                       | RadDB\Http\Controllers\OpNoteController@store                            | web,auth                |
 |        | GET|HEAD  | opnotes/create                          | opnotes.create                      | RadDB\Http\Controllers\OpNoteController@create                           | web                     |

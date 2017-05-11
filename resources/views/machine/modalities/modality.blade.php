@@ -1,12 +1,11 @@
-<!-- resources/views/machine/location_list.blade.php -->
+<!-- resources/views/machine/modality_list.blade.php -->
 
 @extends('layouts.app')
 
 @section('content')
 <h2>Equipment Inventory</h2>
-<h3>List equipment by manufacturer</h3>
-
-<h3>{{ $manufacturer->manufacturer }} ({{ $n }} units)</h3>
+<h3>List equipment by modality</h3>
+<h3>{{ $modality->modality }} ({{ $n }} units)</h3>
 <table class="table">
     <thead>
         <tr>
@@ -15,7 +14,7 @@
             <th>Model</th>
             <th>SN</th>
             <th>Description</th>
-            <th>Modality</th>
+            <th>Location</th>
             <th>Age</th>
             <th>Room</th>
             <th></th>
@@ -25,19 +24,19 @@
     @foreach ($machines as $machine)
         <tr>
             <td>{{ $machine->id }}</td>
-            <td><a href="{{ route('manufacturers.showManufacturer', $machine->manufacturer_id) }}">{{ $machine->manufacturer->manufacturer }}</a></td>
+            <td><a href="{{ route('machines.showManufacturer', $machine->manufacturer_id) }}">{{ $machine->manufacturer->manufacturer }}</a></td>
             <td>{{ $machine->model }}</td>
             <td>{{ $machine->serial_number }}</td>
-            <td><a href="{{ route('machines.show', $machine->id) }}">{{ $machine->description }}</a></td>
-            <td><a href="{{ route('modalities.showModality', $machine->modality_id) }}">{{ $machine->modality->modality }}</a></td>
+            <td><a href="/machines/{{ $machine->id }}">{{ $machine->description }}</a></td>
+            <td><a href="/locations/{{$machine->location_id}}">{{ $machine->location->location }}</a></td>
             <td>{{ $machine->age }}</td>
             <td>{{ $machine->room }}</td>
             <td>
                 @if (Auth::check())
-                <form class="form-inline" action="{{ route('machines.destroy', $machine->id) }}" method="post">
+                <form class="form-inline" action="/machines/{{ $machine->id }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <a href="{{ route('machines.edit', $machine->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
+                    <a href="/machines/{{ $machine->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
                     <div class="form-group">

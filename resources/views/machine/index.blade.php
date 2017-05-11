@@ -24,12 +24,12 @@
 		@foreach ($machines as $machine)
 		<tr>
 			<td>{{ $machine->id }}</td>
-	        <td><a href="{{ route('modalities.showModality', $machine->modality_id)}}">{{ $machine->modality->modality }}</a></td>
-			<td><a href="{{ route('manufacturers.showManufacturer', $machine->manufacturer_id) }}">{{ $machine->manufacturer->manufacturer }}</a></td>
+	        <td><a href="{{ route('machines.showModality', $machine->modality_id)}}">{{ $machine->modality->modality }}</a></td>
+			<td><a href="{{ route('machines.showManufacturer', $machine->manufacturer_id) }}">{{ $machine->manufacturer->manufacturer }}</a></td>
 			<td>{{ $machine->model }}</td>
 			<td>{{ $machine->serial_number }}</td>
 			<td><a href="{{ route('machines.show', $machine->id) }}">{{ $machine->description }}</a></td>
-			<td><a href="{{ route('locations.showLocation', $machine->location_id) }}">{{ $machine->location->location }}</a></td>
+			<td><a href="{{ route('machines.showLocation', $machine->location_id) }}">{{ $machine->location->location }}</a></td>
 	        <td>{{ $machine->age }}</td>
 			<td>{{ $machine->room }}</td>
 			<td>

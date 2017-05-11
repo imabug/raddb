@@ -143,47 +143,6 @@ class MachineController extends Controller
     }
 
     /**
-     * Show a list of inactive machines.
-     * URI: /machines/inactive
-     * Method: GET.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showInactive()
-    {
-        // Show a list of all the machines in the database
-        $machines = Machine::with('modality', 'manufacturer', 'location')
-            ->inactive()
-            ->get();
-
-        return view('machine.index', [
-            'machineStatus' => 'Inactive',
-            'machines'      => $machines,
-        ]);
-    }
-
-    /**
-     * Show a list of removed machines.
-     * URI: /machines/removed
-     * Method: GET.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showRemoved()
-    {
-        // Show a list of all the machines in the database
-        $machines = Machine::with('modality', 'manufacturer', 'location')
-            ->withTrashed()
-            ->removed()
-            ->get();
-
-        return view('machine.index', [
-            'machineStatus' => 'Removed',
-            'machines'      => $machines,
-        ]);
-    }
-
-    /**
      * Show the form for editing a machine
      * URI: /machines/$id/edit
      * Method: GET.
