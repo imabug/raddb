@@ -23,9 +23,9 @@ class ListingsTest extends TestCase
     {
         return [
             ['machines.index', 'Equipment Inventory - Active'],
-            ['modalities.showModalityIndex', 'List equipment by modality'],
-            ['locations.showLocationIndex', 'List equipment by location'],
-            ['manufacturers.showManufacturerIndex', 'List equipment by manufacturer'],
+            ['machines.showModalityIndex', 'List equipment by modality'],
+            ['machines.showLocationIndex', 'List equipment by location'],
+            ['machines.showManufacturerIndex', 'List equipment by manufacturer'],
             ['machines.inactive', 'Equipment Inventory - Inactive'],
             ['machines.removed', 'Equipment Inventory - Removed'],
             ['testequipment.index', 'Equipment Inventory - Test Equipment'],
