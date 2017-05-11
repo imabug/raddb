@@ -14,6 +14,9 @@
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
+{{-- Only load the Slick and jQuery-File-Upload CSS if the machine detail page is being shown
+    Slick image carousel http://kenwheeler.github.io/slick/ --}}
+@if (Route::currentRouteName() == 'machines.show')
     <!-- Slick image carousel http://kenwheeler.github.io/slick/ -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
     <!-- Add the slick-theme.css if you want default styling -->
@@ -25,7 +28,7 @@
     <!-- CSS adjustments for browsers with JavaScript disabled -->
     <noscript><link rel="stylesheet" href="{{ asset('css/jquery.fileupload-noscript.css') }}"></noscript>
     <noscript><link rel="stylesheet" href="{{ asset('css/jquery.fileupload-ui-noscript.css') }}"></noscript>
-
+@endif
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
