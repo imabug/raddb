@@ -35,7 +35,7 @@ class LocationPolicy
      */
     public function create(User $user)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -47,7 +47,7 @@ class LocationPolicy
      */
     public function update(User $user, Location $location)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -59,6 +59,6 @@ class LocationPolicy
      */
     public function delete(User $user, Location $location)
     {
-        //
+        return Auth::check();
     }
 }
