@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\ImportRadSpreadsheet::class,
         Commands\ImportFluoroSpreadsheet::class,
+        \Spatie\ArtisanDd\DdCommand::class,
     ];
 
     /**
