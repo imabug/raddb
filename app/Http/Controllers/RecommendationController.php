@@ -59,7 +59,7 @@ class RecommendationController extends Controller
                 ->join('machines', 'testdates.machine_id', '=', 'machines.id')
                 ->where('testdates.id', $surveyId)
                 ->first();
-            $recs = $machine->recommendation->where('survey_id', $surveyId);
+            $recs = Recommendation::where('survey_id', $surveyId)->get();
         }
 
         return view('recommendations.rec_create', [
@@ -152,7 +152,7 @@ class RecommendationController extends Controller
         return view('recommendations.recommendations', [
             'surveyID'    => $surveyId,
             'machine'     => $machine,
-            'recs'        => $machine->recommendation->where('survey_id', $surveyID),
+            'recs'        => Recommendation::where('survey_id', $surveyId)->get(),
         ]);
     }
 
