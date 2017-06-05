@@ -68,7 +68,7 @@ class MachineListingController extends Controller
         $machines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->get()
-            ->groupBy('machine.location.location');
+            ->groupBy('location.location');
 
         return view('machine.locations.index', [
             'machines' => $machines,
