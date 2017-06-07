@@ -93,7 +93,8 @@ Route::resource('surveys', 'TestDateController');
 // Survey report controller
 Route::name('surveyreports.create')
     ->get('surveyreports/{id?}/create', 'SurveyReportController@create');
-Route::resource('surveyreports', 'SurveyReportController');
+Route::resource('surveyreports', 'SurveyReportController'
+    ['except' => ['create']]);
 
 // Service report controller
 Route::resource('servicereports', 'ServiceReportController');
