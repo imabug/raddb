@@ -35,7 +35,7 @@ class TestTypePolicy
      */
     public function create(User $user)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -47,7 +47,7 @@ class TestTypePolicy
      */
     public function update(User $user, TestType $testType)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -59,6 +59,6 @@ class TestTypePolicy
      */
     public function delete(User $user, TestType $testType)
     {
-        //
+        return Auth::check();
     }
 }

@@ -35,7 +35,7 @@ class TesterPolicy
      */
     public function create(User $user)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -47,7 +47,7 @@ class TesterPolicy
      */
     public function update(User $user, Tester $tester)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -59,6 +59,6 @@ class TesterPolicy
      */
     public function delete(User $user, Tester $tester)
     {
-        //
+        return Auth::check();
     }
 }

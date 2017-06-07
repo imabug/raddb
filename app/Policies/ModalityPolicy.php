@@ -35,7 +35,7 @@ class ModalityPolicy
      */
     public function create(User $user)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -47,7 +47,7 @@ class ModalityPolicy
      */
     public function update(User $user, Modality $modality)
     {
-        //
+        return Auth::check();
     }
 
     /**
@@ -59,6 +59,6 @@ class ModalityPolicy
      */
     public function delete(User $user, Modality $modality)
     {
-        //
+        return Auth::check();
     }
 }

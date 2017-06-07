@@ -22,6 +22,7 @@ class TestTypesTableSeeder extends Seeder
             ['test_type' => 'Other'],
             ['test_type' => 'Accreditation survey'],
             ['test_type' => 'Calibration'],
+            ['test_type' => 'Shielding plan'],
         ]);
     }
 }
