@@ -1,9 +1,9 @@
 <?php
 
+use TCG\Voyager\Models\Page;
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\DataType;
 use TCG\Voyager\Models\MenuItem;
-use TCG\Voyager\Models\Page;
 use TCG\Voyager\Models\Translation;
 
 class TranslationsTableSeeder extends Seeder
@@ -198,7 +198,7 @@ class TranslationsTableSeeder extends Seeder
             'locale' => $lang,
         ]));
 
-        if (!$_t->exists) {
+        if (! $_t->exists) {
             $_t->fill(array_merge(
                 $keys,
                 ['value' => $value]
