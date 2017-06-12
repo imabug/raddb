@@ -68,7 +68,7 @@ class LocationController extends Controller
 
     /**
      * Update the location.
-     * URI: 
+     * URI:
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request

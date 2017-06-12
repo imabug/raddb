@@ -52,7 +52,7 @@ class ManufacturerController extends Controller
     }
 
     /**
-     * Show the form for editing a manufacturer
+     * Show the form for editing a manufacturer.
      *
      * @param int $id
      *

@@ -51,7 +51,7 @@ class ModalityController extends Controller
     }
 
     /**
-     * Show the form for editing a modality
+     * Show the form for editing a modality.
      *
      * @param int $id
      *
