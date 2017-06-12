@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "cbef44952b86aedf33b2735255a7716d",
-=======
-    "content-hash": "2d2bdf8935734578c1594afdb9882d83",
->>>>>>> master
+    "content-hash": "6abe493eac9e72d2bc2143acc990ef4f",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -2941,16 +2937,16 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "v0.11.10",
+            "version": "v0.11.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "6eeb14e2c26c102cc619208b68673ed8a745bd64"
+                "reference": "10622dc41248ac45747376a873ce3519f92d6f0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/6eeb14e2c26c102cc619208b68673ed8a745bd64",
-                "reference": "6eeb14e2c26c102cc619208b68673ed8a745bd64",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/10622dc41248ac45747376a873ce3519f92d6f0d",
+                "reference": "10622dc41248ac45747376a873ce3519f92d6f0d",
                 "shasum": ""
             },
             "require": {
@@ -2994,7 +2990,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2017-04-26T13:29:33+00:00"
+            "time": "2017-05-24T09:21:25+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

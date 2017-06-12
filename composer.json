@@ -14,8 +14,8 @@
         "laravelcollective/html": "^5.4",
         "nesbot/carbon": "^1.22",
         "phpoffice/phpexcel": "^1.8",
-        "tcg/voyager": "^0.11.10",
         "spatie/laravel-artisan-dd": "^1.0",
+        "tcg/voyager": "^0.11.12",
         "twbs/bootstrap": "^3.3"
     },
     "require-dev": {
