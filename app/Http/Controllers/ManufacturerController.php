@@ -16,9 +16,6 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        return view('admin.manufacturers_index', [
-            'manufacturers' => Manufacturer::get(),
-        ]);
     }
 
     /**
@@ -33,8 +30,6 @@ class ManufacturerController extends Controller
 
     /**
      * Add a new manufacturer to the database.
-     * URI: /admin/manufacturers
-     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -42,17 +37,6 @@ class ManufacturerController extends Controller
      */
     public function store(ManufacturerRequest $request)
     {
-        // Check if action is allowed
-        $this->authorize(Manufacturer::class);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->manufacturer = $request->manufacturer;
-        if ($manufacturer->save()) {
-            $message = 'Manufacturer '.$manufacturer->manufacturer.' added.';
-            Log::info($message);
-        }
-
-        return redirect()->route('manufacturers.index');
     }
 
     /**
@@ -69,8 +53,6 @@ class ManufacturerController extends Controller
 
     /**
      * Show the form for editing a manufacturer
-     * URI: /admin/manufacturers/$id/edit
-     * Method: GET.
      *
      * @param int $id
      *
@@ -78,15 +60,10 @@ class ManufacturerController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.manufacturers_edit', [
-            'manufacturer' => Manufacturer::findOrFail($id),
-        ]);
     }
 
     /**
      * Update the manufacturer.
-     * URI: /admin/manufacturers/$id
-     * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
@@ -95,19 +72,6 @@ class ManufacturerController extends Controller
      */
     public function update(ManufacturerRequest $request, $id)
     {
-        // Check if action is allowed
-        $this->authorize(Manufacturer::class);
-
-        $manufacturer = Manufacturer::find($id);
-
-        $manufacturer->manufacturer = $request->manufacturer;
-
-        if ($manufacturer->save()) {
-            $message = 'Manufacturer '.$manufacturer->id.' edited.';
-            Log::info($message);
-        }
-
-        return redirect()->route('manufacturers.index');
     }
 
     /**
@@ -119,16 +83,5 @@ class ManufacturerController extends Controller
      */
     public function destroy($id)
     {
-        // Check if action is allowed
-        $this->authorize(Manufacturer::class);
-
-        $manufacturer = Manufacturer::find($id);
-
-        if ($manufacturer->delete()) {
-            $message = 'Manufacturer '.$manufacturer->id.' deleted.';
-            Log::notice($message);
-        }
-
-        return redirect()->route('manufacturers.index');
     }
 }

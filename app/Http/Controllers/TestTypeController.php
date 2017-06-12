@@ -15,30 +15,17 @@ class TestTypeController extends Controller
       */
      public function __construct()
      {
-         $this->middleware('auth')->only([
-             'create',
-             'edit',
-             'store',
-             'update',
-             'destroy',
-         ]);
      }
 
     /**
      * Display a listing of test types.
-     * URI: /admin/testtypes
+     * URI:
      * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Show a list of the locations
-        $testtypes = TestType::get();
-
-        return view('admin.testtypes_index', [
-            'testtypes' => $testtypes,
-        ]);
     }
 
     /**
@@ -52,7 +39,7 @@ class TestTypeController extends Controller
 
     /**
      * Add a new test type to the database.
-     * URI: /admin/testtypes
+     * URI:
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
@@ -61,17 +48,6 @@ class TestTypeController extends Controller
      */
     public function store(TestTypeRequest $request)
     {
-        // Check if action is allowed
-        $this->authorize(TestType::class);
-
-        $testtype = new TestType();
-        $testtype->test_type = $request->testtype;
-        if ($testtype->save()) {
-            $message = 'Test type '.$testtype->test_type.' added.';
-            Log::info($message);
-        }
-
-        return redirect()->route('testtypes.index');
     }
 
     /**
@@ -88,7 +64,7 @@ class TestTypeController extends Controller
 
     /**
      * Show the form for editing a test type
-     * URI: /admin/testtypes/$id/edit
+     * URI:
      * Method: GET.
      *
      * @param int $id
@@ -97,14 +73,11 @@ class TestTypeController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.testtypes_edit', [
-            'testtype' => TestType::findOrFail($id),
-        ]);
     }
 
     /**
      * Update the test type.
-     * URI: /admin/testtypes/$id
+     * URI:
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
@@ -114,19 +87,6 @@ class TestTypeController extends Controller
      */
     public function update(TestTypeRequest $request, $id)
     {
-        // Check if action is allowed
-        $this->authorize(TestType::class);
-
-        $testtype = TestType::find($id);
-
-        $testtype->test_type = $request->testtype;
-
-        if ($testtype->save()) {
-            $message = 'Test type '.$testtype->id.' edited.';
-            Log::info($message);
-        }
-
-        return redirect()->route('testtypes.index');
     }
 
     /**
@@ -140,16 +100,5 @@ class TestTypeController extends Controller
      */
     public function destroy($id)
     {
-        // Check if action is allowed
-        $this->authorize(TestType::class);
-
-        $testtype = TestType::find($id);
-
-        if ($testtype->delete()) {
-            $message = 'Test type '.$testtype->id.' deleted.';
-            Log::notice($message);
-        }
-
-        return redirect()->route('testtypes.index');
     }
 }

@@ -96,11 +96,7 @@ Route::resource('surveys', 'TestDateController',
 // Survey report controller
 Route::name('surveyreports.create')
     ->get('surveyreports/{id?}/create', 'SurveyReportController@create');
-<<<<<<< HEAD
 Route::resource('surveyreports', 'SurveyReportController',
-=======
-Route::resource('surveyreports', 'SurveyReportController'
->>>>>>> master
     ['except' => ['create']]);
 
 // Service report controller
@@ -109,22 +105,6 @@ Route::resource('servicereports', 'ServiceReportController');
 // Tube controller
 Route::name('tubes.createTubeFor')->get('tubes/{id}/create', 'TubeController@create');
 Route::resource('tubes', 'TubeController');
-
-// Routes for managing the lookup tables
-// Location controller
-// Route::resource('admin/locations', 'LocationController');
-
-// Manufacturer controller
-// Route::resource('admin/manufacturers', 'ManufacturerController');
-
-// Modality controller
-// Route::resource('admin/modalities', 'ModalityController');
-
-// Testers controller
-// Route::resource('admin/testers', 'TesterController');
-
-// Test types controller
-// Route::resource('admin/testtypes', 'TestTypeController');
 
 // Photos controller. Used to handle uploading and updating photos of machines.
 Route::name('photos.create')

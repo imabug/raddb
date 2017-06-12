@@ -15,27 +15,17 @@ class TesterController extends Controller
       */
      public function __construct()
      {
-         $this->middleware('auth')->only([
-             'create',
-             'edit',
-             'store',
-             'update',
-             'destroy',
-         ]);
      }
 
     /**
      * Show a list of the testers.
-     * URI: /admin/testers
+     * URI:
      * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.testers_index', [
-            'testers' => Tester::get(),
-        ]);
     }
 
     /**
@@ -49,7 +39,7 @@ class TesterController extends Controller
 
     /**
      * Add a new tester to the database.
-     * URI: /admin/testers
+     * URI:
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
@@ -58,18 +48,6 @@ class TesterController extends Controller
      */
     public function store(TesterRequest $request)
     {
-        // Check if action is allowed
-        $this->authorize(Tester::class);
-
-        $tester = new Tester();
-        $tester->name = $request->name;
-        $tester->initials = $request->initials;
-        if ($tester->save()) {
-            $message = 'Tester '.$tester->name.' added.';
-            Log::info($message);
-        }
-
-        return redirect()->route('testers.index');
     }
 
     /**
@@ -86,7 +64,7 @@ class TesterController extends Controller
 
     /**
      * Show the form for editing a tester
-     * URI: /admin/testers/$id/edit
+     * URI:
      * Method: GET.
      *
      * @param int $id
@@ -95,14 +73,11 @@ class TesterController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.testers_edit', [
-            'tester' => Tester::findOrFail($id),
-        ]);
     }
 
     /**
      * Update the tester.
-     * URI: /admin/testers/$id
+     * URI:
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
@@ -112,25 +87,11 @@ class TesterController extends Controller
      */
     public function update(TesterRequest $request, $id)
     {
-        // Check if action is allowed
-        $this->authorize(Tester::class);
-
-        $tester = Tester::find($id);
-
-        $tester->name = $request->name;
-        $tester->initials = $request->initials;
-
-        if ($tester->save()) {
-            $message = 'Tester ID '.$tester->id.' edited.';
-            Log::info($message);
-        }
-
-        return redirect()->route('testers.index');
     }
 
     /**
      * Remove the specified resource from storage.
-     * URI: /admin/testers/$id
+     * URI:
      * Method: DELETE.
      *
      * @param int $id
@@ -139,16 +100,5 @@ class TesterController extends Controller
      */
     public function destroy($id)
     {
-        // Check if action is allowed
-        $this->authorize(Tester::class);
-
-        $tester = Tester::find($id);
-
-        if ($tester->delete()) {
-            $message = 'Tester ID '.$tester->id.' deleted.';
-            Log::notice($message);
-        }
-
-        return redirect()->route('testers.index');
     }
 }
