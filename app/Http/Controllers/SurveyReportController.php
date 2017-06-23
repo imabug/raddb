@@ -84,8 +84,8 @@ class SurveyReportController extends Controller
         $survey = TestDate::find($request->surveyId);
 
         // Get the year of the survey
-        $test_date = date_parse($survey->test_date);
-        $year = $test_date['year'];
+        $testDate = date_parse($survey->test_date);
+        $year = $testDate['year'];
 
         // Append the year to the survey report path
         $path = $path.'/'.$year;
