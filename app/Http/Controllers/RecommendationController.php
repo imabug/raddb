@@ -191,7 +191,7 @@ class RecommendationController extends Controller
         $this->authorize(Recommendation::class);
 
         $message = '';
-        $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');;
+        $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');
 
         $recResolveDate = $request->RecResolveDate;
 
