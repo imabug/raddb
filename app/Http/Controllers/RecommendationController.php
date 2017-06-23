@@ -115,7 +115,7 @@ class RecommendationController extends Controller
                 // Tack on the year of the survey to the storage path
                 $path .= '/'.$recYear['year'];
                 $recommendation->service_report_path = $request->ServiceReport->store($path);
-                $message .= 'Service report uploaded to '.$recommendation->service_report_path.'\n';
+                $message .= "Service report uploaded.\n";
             }
         } else {
             // If the recommendation was not marked as resolved, ignore the rest of the fields
@@ -193,7 +193,13 @@ class RecommendationController extends Controller
         $message = '';
         $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');
 
-        $recResolveDate = $request->RecResolveDate;
+        if (is_null($request->RecResolveDate)) {
+            // Recommendation resolved date wasn't set (should have been).
+            // Use current date as a default.
+            $recommendation->rec_resolve_date = date('Y-m-d');
+        } else {
+            $recommendation->rec_resolve_date = $request->RecResolveDate;
+        }
 
         // If a service report was uploaded, handle it
         // This breaks the way service reports were handled in the previous version. Deal with it.
