@@ -84,6 +84,9 @@ class RecommendationController extends Controller
         $this->authorize(Recommendation::class);
 
         $message = '';
+        // Get the path service reports are stored in.
+        // Default to public/ServiceReports if the environment variable isn't set
+        $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');
 
         $recommendation = new Recommendation();
         $recommendation->survey_id = $request->surveyId;
@@ -107,8 +110,12 @@ class RecommendationController extends Controller
             // If a service report was uploaded, handle it
             // This breaks the way service reports were handled in the previous version. Deal with it.
             if ($request->hasFile('ServiceReport')) {
-                $recommendation->service_report_path = $request->ServiceReport->store('public/ServiceReports');
-                $message .= 'Service report uploaded.';
+                // Get the test date corresponding to the recommendation
+                $recYear = date_parse($recommendation->survey->test_date);
+                // Tack on the year of the survey to the storage path
+                $path .= '/'.$recYear['year'];
+                $recommendation->service_report_path = $request->ServiceReport->store($path);
+                $message .= 'Service report uploaded to '.$recommendation->service_report_path.'\n';
             }
         } else {
             // If the recommendation was not marked as resolved, ignore the rest of the fields
@@ -118,8 +125,8 @@ class RecommendationController extends Controller
         }
 
         if ($recommendation->save()) {
-            $message = 'Recommendation '.$recommendation->id.' added.';
             $status = 'success';
+            $message .= 'Recommendation '.$recommendation->id.' added.';
             Log::info($message);
         } else {
             $status = 'fail';
@@ -184,15 +191,19 @@ class RecommendationController extends Controller
         $this->authorize(Recommendation::class);
 
         $message = '';
-        $serviceReportPath = null;
+        $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');;
 
         $recResolveDate = $request->RecResolveDate;
 
         // If a service report was uploaded, handle it
         // This breaks the way service reports were handled in the previous version. Deal with it.
         if ($request->hasFile('ServiceReport')) {
-            $serviceReportPath = $request->ServiceReport->store('public/ServiceReports');
-            $message .= 'Service report uploaded.';
+            // Get the test date for the associated survey
+            $testDate = date_parse(TestDate::find($surveyID)->test_date);
+            // Tack on the year of the survey to the storage path
+            $path .= '/'.$testDate['year'];
+            $serviceReportPath = $request->ServiceReport->store($path);
+            $message .= "Service report uploaded.\n";
         } else {
             $serviceReportPath = null;
         }
@@ -214,8 +225,8 @@ class RecommendationController extends Controller
             $recommendation->service_report_path = $serviceReportPath;
 
             if ($recommendation->save()) {
-                $message = 'Recommendation '.$recommendation->id.' resolved.';
                 $status = 'success';
+                $message .= 'Recommendation '.$recommendation->id.' resolved.';
                 Log::info($message);
             } else {
                 $status = 'fail';
