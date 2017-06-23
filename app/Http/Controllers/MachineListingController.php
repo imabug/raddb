@@ -55,6 +55,22 @@ class MachineListingController extends Controller
     }
 
     /**
+     * Show a list of machines installed by year
+     * URI: /machines/installed/$yr
+     * Method: GET
+     *
+     * @param int $year
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showInstalled(int $year = null)
+    {
+        if (is_null($year)) {
+            $year = date('y');
+        }
+    }
+
+    /**
      * Display a listing of machines by location
      * URI: /locations
      * Method: GET.

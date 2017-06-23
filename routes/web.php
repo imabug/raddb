@@ -39,6 +39,9 @@ Route::name('machines.inactive')
 // Listing of removed machines
 Route::name('machines.removed')
     ->get('/machines/removed', 'MachineListingController@showRemoved');
+// Listing of installed machines by year
+Route::name('machines.installed')
+    ->get('/machines/installed/{year?}', 'MachineListingController@showInstalled');
 // Show index of machines grouped by location
 Route::name('machines.showLocationIndex')
     ->get('/machines/locations', 'MachineListingController@showLocationIndex');
@@ -77,7 +80,7 @@ Route::resource('gendata', 'GenDataController',
 
 // Operational notes controller
 Route::name('opnotes.createOpNoteFor')
-    ->get('opnotes/{$id}/create', 'OpNoteController@create');
+    ->get('opnotes/{id}/create', 'OpNoteController@create');
 Route::resource('opnotes', 'OpNoteController');
 
 // Recommendation controller
