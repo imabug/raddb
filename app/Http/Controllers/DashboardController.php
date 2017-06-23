@@ -21,22 +21,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Get the list of machines that still need to be surveyed
-        $machinesUntested = $this->untested();
-        $total = Machine::active()->get()->count();
-
-        // Get the list of pending surveys
-        $pendingSurveys = $this->pending();
-
-        // Get the list of machines and their surveys for this year and the previous year
-        $surveySchedule = $this->surveySchedule();
-
         return view('index', [
-            'machinesUntested' => $machinesUntested,
-            'remain'           => $machinesUntested->count(),
-            'total'            => $total,
-            'pendingSurveys'   => $pendingSurveys,
-            'surveySchedule'   => $surveySchedule,
+            'machinesUntested' => $this->untested(),
+            'remain'           => $this->untested()->count(),
+            'total'            => Machine::active()->get()->count(),
+            'pendingSurveys'   => $this->pending(),
+            'surveySchedule'   => $this->surveySchedule(),
         ]);
     }
 
@@ -194,35 +184,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show grid of untested machines.
      * URI: /dashboard/showUntested
@@ -232,14 +193,10 @@ class DashboardController extends Controller
      */
     public function showUntested()
     {
-        // Get the list of machines that still need to be surveyed
-        $machinesUntested = $this->untested();
-        $total = Machine::active()->get()->count();
-
         return view('dashboard.untested', [
-            'machinesUntested' => $machinesUntested,
-            'remain'           => $machinesUntested->count(),
-            'total'            => $total,
+            'machinesUntested' => $this->untested(),
+            'remain'           => $this->untested()->count(),
+            'total'            => Machine::active()->get()->count(),
         ]);
     }
 
@@ -270,42 +227,5 @@ class DashboardController extends Controller
         return view('dashboard.survey_schedule', [
             'surveySchedule'   => $this->surveySchedule(),
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
