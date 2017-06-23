@@ -33,12 +33,6 @@ class TestTypeController extends Controller
      */
     public function index()
     {
-        // Show a list of the locations
-        $testtypes = TestType::get();
-
-        return view('admin.testtypes_index', [
-            'testtypes' => $testtypes,
-        ]);
     }
 
     /**
@@ -61,17 +55,6 @@ class TestTypeController extends Controller
      */
     public function store(TestTypeRequest $request)
     {
-        // Check if action is allowed
-        $this->authorize(TestType::class);
-
-        $testtype = new TestType();
-        $testtype->test_type = $request->testtype;
-        if ($testtype->save()) {
-            $message = 'Test type '.$testtype->test_type.' added.';
-            Log::info($message);
-        }
-
-        return redirect()->route('testtypes.index');
     }
 
     /**
@@ -97,9 +80,6 @@ class TestTypeController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.testtypes_edit', [
-            'testtype' => TestType::findOrFail($id),
-        ]);
     }
 
     /**
@@ -114,19 +94,6 @@ class TestTypeController extends Controller
      */
     public function update(TestTypeRequest $request, $id)
     {
-        // Check if action is allowed
-        $this->authorize(TestType::class);
-
-        $testtype = TestType::find($id);
-
-        $testtype->test_type = $request->testtype;
-
-        if ($testtype->save()) {
-            $message = 'Test type '.$testtype->id.' edited.';
-            Log::info($message);
-        }
-
-        return redirect()->route('testtypes.index');
     }
 
     /**
@@ -140,16 +107,5 @@ class TestTypeController extends Controller
      */
     public function destroy($id)
     {
-        // Check if action is allowed
-        $this->authorize(TestType::class);
-
-        $testtype = TestType::find($id);
-
-        if ($testtype->delete()) {
-            $message = 'Test type '.$testtype->id.' deleted.';
-            Log::notice($message);
-        }
-
-        return redirect()->route('testtypes.index');
     }
 }

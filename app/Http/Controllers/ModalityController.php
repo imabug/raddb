@@ -16,9 +16,6 @@ class ModalityController extends Controller
      */
     public function index()
     {
-        return view('admin.modalities_index', [
-            'modalities' => Modality::get(),
-        ]);
     }
 
     /**
@@ -39,17 +36,6 @@ class ModalityController extends Controller
      */
     public function store(ModalityRequest $request)
     {
-        // Check if action is allowed
-        $this->authorize(Modality::class);
-
-        $modality = new Modality();
-        $modality->modality = $request->modality;
-        if ($modality->save()) {
-            $message = 'Modality '.$modality->modality.' added.';
-            Log::info($message);
-        }
-
-        return redirect()->route('modalities.index');
     }
 
     /**
@@ -75,9 +61,6 @@ class ModalityController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.modalities_edit', [
-            'modality' => Modality::findOrFail($id),
-        ]);
     }
 
     /**
@@ -92,19 +75,6 @@ class ModalityController extends Controller
      */
     public function update(ModalityRequest $request, $id)
     {
-        // Check if action is allowed
-        $this->authorize(Modality::class);
-
-        $modality = Modality::find($id);
-
-        $modality->modality = $request->modality;
-
-        if ($modality->save()) {
-            $message = 'Modality '.$modality->id.' edited.';
-            Log::info($message);
-        }
-
-        return redirect()->route('modalities.index');
     }
 
     /**
@@ -116,16 +86,4 @@ class ModalityController extends Controller
      */
     public function destroy($id)
     {
-        // Check if action is allowed
-        $this->authorize(Modality::class);
-
-        $modality = Modality::find($id);
-
-        if ($modality->delete()) {
-            $message = 'Modality '.$modality->id.' deleted.';
-            Log::notice($message);
-        }
-
-        return redirect()->route('modalities.index');
-    }
 }

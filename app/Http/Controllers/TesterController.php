@@ -33,9 +33,6 @@ class TesterController extends Controller
      */
     public function index()
     {
-        return view('admin.testers_index', [
-            'testers' => Tester::get(),
-        ]);
     }
 
     /**
@@ -58,18 +55,6 @@ class TesterController extends Controller
      */
     public function store(TesterRequest $request)
     {
-        // Check if action is allowed
-        $this->authorize(Tester::class);
-
-        $tester = new Tester();
-        $tester->name = $request->name;
-        $tester->initials = $request->initials;
-        if ($tester->save()) {
-            $message = 'Tester '.$tester->name.' added.';
-            Log::info($message);
-        }
-
-        return redirect()->route('testers.index');
     }
 
     /**
@@ -95,9 +80,6 @@ class TesterController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.testers_edit', [
-            'tester' => Tester::findOrFail($id),
-        ]);
     }
 
     /**
@@ -112,20 +94,6 @@ class TesterController extends Controller
      */
     public function update(TesterRequest $request, $id)
     {
-        // Check if action is allowed
-        $this->authorize(Tester::class);
-
-        $tester = Tester::find($id);
-
-        $tester->name = $request->name;
-        $tester->initials = $request->initials;
-
-        if ($tester->save()) {
-            $message = 'Tester ID '.$tester->id.' edited.';
-            Log::info($message);
-        }
-
-        return redirect()->route('testers.index');
     }
 
     /**
@@ -139,16 +107,5 @@ class TesterController extends Controller
      */
     public function destroy($id)
     {
-        // Check if action is allowed
-        $this->authorize(Tester::class);
-
-        $tester = Tester::find($id);
-
-        if ($tester->delete()) {
-            $message = 'Tester ID '.$tester->id.' deleted.';
-            Log::notice($message);
-        }
-
-        return redirect()->route('testers.index');
     }
 }
