@@ -57,7 +57,7 @@ class MachineListingController extends Controller
     /**
      * Show a list of machines installed by year
      * URI: /machines/installed/$yr
-     * Method: GET
+     * Method: GET.
      *
      * @param int $year
      *
