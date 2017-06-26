@@ -7,6 +7,7 @@ use RadDB\Location;
 use RadDB\Modality;
 use RadDB\Manufacturer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class MachineListingController extends Controller
@@ -57,7 +58,7 @@ class MachineListingController extends Controller
     /**
      * Show a list of machines installed by year
      * URI: /machines/installed/$yr
-     * Method: GET
+     * Method: GET.
      *
      * @param int $year
      *
@@ -66,8 +67,20 @@ class MachineListingController extends Controller
     public function showInstalled(int $year = null)
     {
         if (is_null($year)) {
+            // If no year was specified, use the current year.
             $year = date('y');
         }
+
+        $installedMachines = Machine::with('modality', 'manufacturer', 'location')
+            ->withTrashed()
+            ->removed()
+            ->where(DB::raw('YEAR(remove_date)'), $year)
+            ->get();
+
+        return view('machine.index', [
+            'machineStatus' => 'Installed '.$year,
+            'installedMachines' => $installedMachines,
+        ]);
     }
 
     /**
