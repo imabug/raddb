@@ -41,16 +41,22 @@ class MachineListingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showRemoved()
+    public function showRemoved(int $year = null)
     {
+        if (is_null($year)) {
+            // If no year was specified, use the current year.
+            $year = date('Y');
+        }
+
         // Show a list of all the machines in the database
         $machines = Machine::with('modality', 'manufacturer', 'location')
             ->withTrashed()
             ->removed()
+            ->where(DB::raw('YEAR(remove_date)'), $year)
             ->get();
 
         return view('machine.index', [
-            'machineStatus' => 'Removed',
+            'machineStatus' => 'Removed '.$year,
             'machines'      => $machines,
         ]);
     }
@@ -68,18 +74,17 @@ class MachineListingController extends Controller
     {
         if (is_null($year)) {
             // If no year was specified, use the current year.
-            $year = date('y');
+            $year = date('Y');
         }
 
-        $installedMachines = Machine::with('modality', 'manufacturer', 'location')
-            ->withTrashed()
-            ->removed()
-            ->where(DB::raw('YEAR(remove_date)'), $year)
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->where(DB::raw('YEAR(install_date)'), $year)
             ->get();
 
         return view('machine.index', [
             'machineStatus' => 'Installed '.$year,
-            'installedMachines' => $installedMachines,
+            'machines'      => $machines,
         ]);
     }
 
