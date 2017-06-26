@@ -38,7 +38,7 @@ Route::name('machines.inactive')
     ->get('/machines/inactive', 'MachineListingController@showInactive');
 // Listing of removed machines
 Route::name('machines.removed')
-    ->get('/machines/removed', 'MachineListingController@showRemoved');
+    ->get('/machines/removed/{year?}', 'MachineListingController@showRemoved');
 // Listing of installed machines by year
 Route::name('machines.installed')
     ->get('/machines/installed/{year?}', 'MachineListingController@showInstalled');
