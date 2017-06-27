@@ -2,9 +2,11 @@
 
 namespace RadDB\Http\Controllers;
 
+use RadDB\Tester;
 use RadDB\Machine;
 use RadDB\Location;
 use RadDB\Modality;
+use RadDB\TestDate;
 use RadDB\Manufacturer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -224,5 +226,33 @@ class MachineListingController extends Controller
             'machines' => $machines,
             'n'        => $machines->count(),
         ]);
+    }
+
+    /**
+     * Display a listing of recently surveyed mammography units to satisfy
+     * MQSA continuing experience requirement
+     * URI: /machines/mcexp
+     * Method: GET.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showMammoContExp()
+    {
+        // TODO
+        // Will need to change how this is done to make it more flexible
+        $mamMachId = 8;      // Mammography machines
+        $mamWrkId = 20;      // Mammography workstations
+
+        // Get a list of testers
+        $testers = Tester::get();
+
+        // Get a list of active mammography units
+        $mammoMachines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->where('modality_id', $mamMachId)
+            ->orWhere('modality_id', $mamWrkId)
+            ->get();
+
+        // For each tester, get the two most recent surveys for each $mammoMachines
     }
 }
