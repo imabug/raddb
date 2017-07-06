@@ -193,14 +193,6 @@ class RecommendationController extends Controller
         $message = '';
         $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');
 
-        if (is_null($request->RecResolveDate)) {
-            // Recommendation resolved date wasn't set (should have been).
-            // Use current date as a default.
-            $recommendation->rec_resolve_date = date('Y-m-d');
-        } else {
-            $recommendation->rec_resolve_date = $request->RecResolveDate;
-        }
-
         // If a service report was uploaded, handle it
         // This breaks the way service reports were handled in the previous version. Deal with it.
         if ($request->hasFile('ServiceReport')) {
@@ -224,7 +216,15 @@ class RecommendationController extends Controller
             if (isset($request->ResolvedBy)) {
                 $recommendation->resolved_by = $request->ResolvedBy;
             }
-            $recommendation->rec_resolve_date = $recResolveDate;
+
+            if (is_null($request->RecResolveDate)) {
+                // Recommendation resolved date wasn't set (should have been).
+                // Use current date as a default.
+                $recommendation->rec_resolve_date = date('Y-m-d');
+            } else {
+                $recommendation->rec_resolve_date = $request->RecResolveDate;
+            }
+
             $recommendation->resolved = 1;
             $recommendation->rec_status = 'Complete';
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
