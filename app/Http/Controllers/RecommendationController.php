@@ -109,12 +109,13 @@ class RecommendationController extends Controller
 
             // If a service report was uploaded, handle it
             // This breaks the way service reports were handled in the previous version. Deal with it.
-            if ($request->hasFile('ServiceReport')) {
+            if ($request->hasFile('ServiceReport') && $request->file('ServiceReport')->isValid()) {
                 // Get the test date corresponding to the recommendation
                 $recYear = date_parse($recommendation->survey->test_date);
                 // Tack on the year of the survey to the storage path
                 $path .= '/'.$recYear['year'];
-                $recommendation->service_report_path = $request->ServiceReport->store($path);
+                $serviceReportFileName = $request->file('ServiceReport')->getClientOriginalName();
+                $recommendation->service_report_path = $request->ServiceReport->storeAs($path, $serviceReportFileName);
                 $message .= "Service report uploaded.\n";
             }
         } else {
@@ -195,12 +196,13 @@ class RecommendationController extends Controller
 
         // If a service report was uploaded, handle it
         // This breaks the way service reports were handled in the previous version. Deal with it.
-        if ($request->hasFile('ServiceReport')) {
+        if ($request->hasFile('ServiceReport') && $request->file('ServiceReport')->isValid()) {
             // Get the test date for the associated survey
             $testDate = date_parse(TestDate::find($surveyID)->test_date);
             // Tack on the year of the survey to the storage path
             $path .= '/'.$testDate['year'];
-            $serviceReportPath = $request->ServiceReport->store($path);
+            $serviceReportFileName = $request->file('ServiceReport')->getClientOriginalName();
+            $serviceReportPath = $request->ServiceReport->storeAs($path, $serviceReportFileName);
             $message .= "Service report uploaded.\n";
         } else {
             $serviceReportPath = null;
