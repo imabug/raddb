@@ -92,8 +92,9 @@ class SurveyReportController extends Controller
 
         // Handle the uploaded file
         // This breaks the way service reports were handled in the previous version.
-        if ($request->hasFile('surveyReport')) {
-            $survey->report_file_path = $request->surveyReport->store($path);
+        if ($request->hasFile('surveyReport') && $request->file('surveyReport')->isValid()) {
+            $surveyReportFileName = $request->file('surveyReport')->getClientOriginalName();
+            $survey->report_file_path = $request->surveyReport->storeAs($path, $surveyReportFileName);
         }
 
         if ($survey->save()) {
