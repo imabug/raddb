@@ -82,6 +82,7 @@ class SurveyReportController extends Controller
 
         // Get the survey data
         $survey = TestDate::find($request->surveyId);
+        $surveyReport = $survey->report_file_path;
 
         // Get the year of the survey
         $testDate = date_parse($survey->test_date);
