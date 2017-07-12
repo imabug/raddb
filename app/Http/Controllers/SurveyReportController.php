@@ -93,12 +93,14 @@ class SurveyReportController extends Controller
 
         // Handle the uploaded file
         // This breaks the way service reports were handled in the previous version.
-        // TODO:
-        //     Perform some validation on the file name,
-        //     Check if a file already exists
         if ($request->hasFile('surveyReport') && $request->file('surveyReport')->isValid()) {
             $surveyReportFileName = $request->file('surveyReport')->getClientOriginalName();
-            $survey->report_file_path = $request->surveyReport->storeAs($path, $surveyReportFileName);
+            // Only store the file if there is no file already ($survey->report_file_path == null)
+            // or if the upload file name matches the stored file name
+            if (is_null($survey->report_file_path) ||
+                ($surveyReportFileName === substr(strrchr($survey->report_file_path, '/'),1))) {
+                $survey->report_file_path = $request->surveyReport->storeAs($path, $surveyReportFileName);
+            }
         }
 
         if ($survey->save()) {
