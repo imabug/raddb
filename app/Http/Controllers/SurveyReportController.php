@@ -98,7 +98,7 @@ class SurveyReportController extends Controller
             // Only store the file if there is no file already ($survey->report_file_path == null)
             // or if the upload file name matches the stored file name
             if (is_null($survey->report_file_path) ||
-                ($surveyReportFileName === substr(strrchr($survey->report_file_path, '/'),1))) {
+                ($surveyReportFileName === substr(strrchr($survey->report_file_path, '/'), 1))) {
                 $survey->report_file_path = $request->surveyReport->storeAs($path, $surveyReportFileName);
             }
         }
