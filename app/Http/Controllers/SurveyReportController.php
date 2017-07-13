@@ -104,8 +104,7 @@ class SurveyReportController extends Controller
                 $status = 'success';
                 $message .= 'Survey report for survey '.$survey->id.' stored.';
                 Log::info($message);
-            }
-            else {
+            } else {
                 $status = 'fail';
                 $message .= 'Error uploading survey report. ';
                 $message .= 'Submitted survey report '.$surveyReportFileName.' already exists and was not stored.';
