@@ -98,19 +98,19 @@ class SurveyReportController extends Controller
             // Only store the file if there is no file already ($survey->report_file_path == null)
             // or if the upload file name matches the stored file name
             if (is_null($survey->report_file_path) ||
-                ($surveyReportFileName === substr(strrchr($survey->report_file_path, '/'), 1))) {
+                ($surveyReportFileName !== substr(strrchr($survey->report_file_path, '/'), 1))) {
                 $survey->report_file_path = $request->surveyReport->storeAs($path, $surveyReportFileName);
+                $survey->save();
+                $status = 'success';
+                $message .= 'Survey report for survey '.$survey->id.' stored.';
+                Log::info($message);
             }
-        }
-
-        if ($survey->save()) {
-            $status = 'success';
-            $message .= 'Survey report for survey '.$survey->id.' stored.';
-            Log::info($message);
-        } else {
-            $status = 'fail';
-            $message .= 'Error uploading survey report.';
-            Log::error($message);
+            else {
+                $status = 'fail';
+                $message .= 'Error uploading survey report. ';
+                $message .= 'Submitted survey report '.$surveyReportFileName.' already exists and was not stored.';
+                Log::error($message);
+            }
         }
 
         return redirect()
