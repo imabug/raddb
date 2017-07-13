@@ -77,12 +77,32 @@
 </head>
 <body>
     <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
 @include('layouts.errors')
 @include('layouts.messages')
-        <h1>Radiological Equipment Database</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <h1>Radiological Equipment Database</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
 @include('layouts.sidebar')
-        @yield('content')
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+@yield('content')
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                @include('layouts.footer')
+            </div>
+        </div>
     </div>
-@include('layouts.footer')
 </body>
 </html>
