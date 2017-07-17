@@ -1,4 +1,5 @@
 <nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav nav-tabs">
             <li role="presentation" class="active"><a href="{{ route('index') }}">Home</a></li>
@@ -69,5 +70,6 @@
                 </ul>
             </li>
         </ul>
+    </div>
     </div>
 </nav>
