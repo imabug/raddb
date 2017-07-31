@@ -70,6 +70,12 @@ class ImportRadSpreadsheet extends Command
         // Get the survey ID
         $surveyId = (int) $genFormSheet->getCell('E14')->getCalculatedValue();
 
+        // Check to see if there's data for $surveyId in the GenData table already
+        if (GenData::surveyId($surveyId)->get()->count() > 0) {
+            $this->error('Generator data already exists for this survey. Terminating.');
+            return false;
+        }
+
         echo 'Saving data for survey ID: '.$surveyId."\n";
         // Pull info for this spreadsheet from the database
         $survey = TestDate::find($surveyId);
