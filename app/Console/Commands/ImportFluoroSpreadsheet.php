@@ -60,6 +60,7 @@ class ImportFluoroSpreadsheet extends Command
         // Check to see if there's data for $surveyId in the hvldata table already
         if (HVLData::where('survey_id', $surveyId)->get()->count() > 0) {
             $this->error('Fluoro data already exists for this survey. Terminating.');
+
             return false;
         }
 

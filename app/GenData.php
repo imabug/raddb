@@ -70,8 +70,8 @@ class GenData extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSurveyId($query, $surveyId) {
+    public function scopeSurveyId($query, $surveyId)
+    {
         return $query->where('survey_id', $surveyId);
     }
-
 }
