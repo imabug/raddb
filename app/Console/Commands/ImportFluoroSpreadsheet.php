@@ -59,7 +59,7 @@ class ImportFluoroSpreadsheet extends Command
         $surveyId = (int) $fluoroSheet->getCell('F13')->getCalculatedValue();
         // Check to see if there's data for $surveyId in the hvldata table already
         if (HVLData::where('survey_id', $surveyId)->get()->count() > 0) {
-            $this->error('Generator data already exists for this survey. Terminating.');
+            $this->error('Fluoro data already exists for this survey. Terminating.');
             return false;
         }
 
