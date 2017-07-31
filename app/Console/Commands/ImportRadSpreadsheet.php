@@ -60,12 +60,12 @@ class ImportRadSpreadsheet extends Command
         $spreadsheetFile = $this->argument('file');
 
         // Read the spreadsheet
-        $this->line("Loading spreadsheet");
+        $this->line('Loading spreadsheet');
         $reader = \PHPExcel_IOFactory::createReader('Excel2007');
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load($spreadsheetFile);
         $genFormSheet = $spreadsheet->getSheetByName('Gen_form');
-        $this->line("Spreadsheet loaded.");
+        $this->line('Spreadsheet loaded.');
 
         // Get the survey ID
         $surveyId = (int) $genFormSheet->getCell('E14')->getCalculatedValue();
@@ -73,6 +73,7 @@ class ImportRadSpreadsheet extends Command
         // Check to see if there's data for $surveyId in the GenData table already
         if (GenData::surveyId($surveyId)->get()->count() > 0) {
             $this->error('Generator data already exists for this survey. Terminating.');
+
             return false;
         }
 
