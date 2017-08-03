@@ -49,7 +49,7 @@ class ImportFluoroSpreadsheet extends Command
         $spreadsheetFile = $this->argument('file');
 
         // Read the spreadsheet
-        $this->line('Loading spreadsheet.');
+        $this->info('Loading spreadsheet.');
         $reader = \PHPExcel_IOFactory::createReader('OOCalc');
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load($spreadsheetFile);
@@ -64,7 +64,7 @@ class ImportFluoroSpreadsheet extends Command
             return false;
         }
 
-        $this->line('Saving data for survey ID: '.$surveyId);
+        $this->info('Saving data for survey ID: '.$surveyId);
 
         // Pull info for this spreadsheet from the database
         $survey = TestDate::find($surveyId);
@@ -96,7 +96,7 @@ class ImportFluoroSpreadsheet extends Command
         $HVLData->kv = (float) $hvl_kv;
         $HVLData->hvl = (float) $hvl;
         $HVLData->save();
-        $this->line('HVL data saved.');
+        $this->info('HVL data saved.');
 
         // Get image receptor field sizes (cm)
         $fieldSizes[0] = $fluoroSheet->getCell('O110')->getCalculatedValue();
@@ -137,7 +137,7 @@ class ImportFluoroSpreadsheet extends Command
             }
             $j += 3;
         }
-        $this->line('Fluoro entrance exposure rates saved.');
+        $this->info('Fluoro entrance exposure rates saved.');
         // Store max entrance exposure rates
         $max = new MaxFluoroData();
         $max->survey_id = $survey->id;
@@ -153,7 +153,7 @@ class ImportFluoroSpreadsheet extends Command
         $max->dose3_ma = round($maxEntraceExpRate[0][7], 1);
         $max->dose3_rate = round($maxEntraceExpRate[0][8], 3);
         $max->save();
-        $this->line('Max fluoro entrance exposure rates saved.');
+        $this->info('Max fluoro entrance exposure rates saved.');
 
         // Get pulse/digital entrance exposure rate data
         $doseModes[0] = $fluoroSheet->getCell('Q139')->getCalculatedValue();
@@ -187,7 +187,7 @@ class ImportFluoroSpreadsheet extends Command
             }
             $j += 3;
         }
-        $this->line('Pulse/digital entrance exposure rates saved.');
+        $this->info('Pulse/digital entrance exposure rates saved.');
         // Store max entrance exposure rates
         $max = new MaxFluoroData();
         $max->survey_id = $survey->id;
@@ -203,7 +203,7 @@ class ImportFluoroSpreadsheet extends Command
         $max->dose3_ma = round($maxEntraceExpRate[0][7], 1);
         $max->dose3_rate = round($maxEntraceExpRate[0][8], 3);
         $max->save();
-        $this->line('Max pulse/digital entrance exposure rates saved.');
+        $this->info('Max pulse/digital entrance exposure rates saved.');
 
         // Get dose modes
         $doseModes[0] = $fluoroSheet->getCell('Q107')->getCalculatedValue();
@@ -223,7 +223,7 @@ class ImportFluoroSpreadsheet extends Command
             $ree->rate = $r[4];
             $ree->save();
         }
-        $this->line('Fluoro recepter entrance exposure rates stored.');
+        $this->info('Fluoro recepter entrance exposure rates stored.');
         // Get pulse/digital entrance exposure rate data
         $doseModes[0] = $fluoroSheet->getCell('Q139')->getCalculatedValue();
         $doseModes[1] = $fluoroSheet->getCell('T139')->getCalculatedValue();
@@ -242,6 +242,6 @@ class ImportFluoroSpreadsheet extends Command
             $ree->rate = $r[4];
             $ree->save();
         }
-        $this->line('Pulse/digital receptor entrance exposure rates stored.');
+        $this->info('Pulse/digital receptor entrance exposure rates stored.');
     }
 }

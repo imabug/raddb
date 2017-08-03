@@ -60,12 +60,12 @@ class ImportRadSpreadsheet extends Command
         $spreadsheetFile = $this->argument('file');
 
         // Read the spreadsheet
-        $this->line('Loading spreadsheet');
+        $this->info('Loading spreadsheet');
         $reader = \PHPExcel_IOFactory::createReader('Excel2007');
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load($spreadsheetFile);
         $genFormSheet = $spreadsheet->getSheetByName('Gen_form');
-        $this->line('Spreadsheet loaded.');
+        $this->info('Spreadsheet loaded.');
 
         // Get the survey ID
         $surveyId = (int) $genFormSheet->getCell('E14')->getCalculatedValue();
@@ -77,7 +77,7 @@ class ImportRadSpreadsheet extends Command
             return false;
         }
 
-        $this->line('Saving data for survey ID: '.$surveyId);
+        $this->info('Saving data for survey ID: '.$surveyId);
         // Pull info for this spreadsheet from the database
         $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
@@ -123,7 +123,7 @@ class ImportRadSpreadsheet extends Command
         $radSurvey->lfs_resolution = (float) $lfsResolution;
         $radSurvey->sfs_resolution = (float) $sfsResolution;
         $radSurvey->save();
-        $this->line('Radiographic survey data saved.');
+        $this->info('Radiographic survey data saved.');
 
         // Table bucky SID (cm)
         $tableSid = $genFormSheet->getCell('K543')->getCalculatedValue();
@@ -164,7 +164,7 @@ class ImportRadSpreadsheet extends Command
             $collimatorData->pbl_long = $pblTable[$i][1] == 'NA' ? null : (float) $pblTable[$i][1];
             $collimatorData->save();
         }
-        $this->line('Table receptor collimator data saved');
+        $this->info('Table receptor collimator data saved');
         // Wall receptor
         for ($i = 0; $i <= 1; $i++) {
             $collimatorData = new CollimatorData();
@@ -183,7 +183,7 @@ class ImportRadSpreadsheet extends Command
             $collimatorData->pbl_long = $pblWall[$i][1] == 'NA' ? null : (float) $pblWall[$i][1];
             $collimatorData->save();
         }
-        $this->line('Wall receptor collimator data saved');
+        $this->info('Wall receptor collimator data saved');
 
         // Large/small focus radiation output
         // Measured kV, mGy/mAs @ 40"
@@ -204,7 +204,7 @@ class ImportRadSpreadsheet extends Command
             $radOutput->output = (float) $l[1];
             $radOutput->save();
         }
-        $this->line('Large focus output data saved.');
+        $this->info('Large focus output data saved.');
         foreach ($sfsOutput as $s) {
             $radOutput = new RadiationOutput();
             // Skip the record if it's empty
@@ -219,7 +219,7 @@ class ImportRadSpreadsheet extends Command
             $radOutput->output = (float) $s[1];
             $radOutput->save();
         }
-        $this->line('Small focus output data saved.');
+        $this->info('Small focus output data saved.');
 
         // Load generator test data from cells AA688:BB747 into an array
         $genTestData = $genFormSheet->rangeToArray('AA688:BB747', null, true, false, true);
@@ -265,7 +265,7 @@ class ImportRadSpreadsheet extends Command
             // Store the data
             $genData->save();
         }
-        $this->line('Generator test data saved.');
+        $this->info('Generator test data saved.');
 
         // Get half value layer data
         // kV, HVL (mm Al)
@@ -284,7 +284,7 @@ class ImportRadSpreadsheet extends Command
             $HVLData->hvl = (float) $hvl[1];
             $HVLData->save();
         }
-        $this->line('HVL data saved.');
+        $this->info('HVL data saved.');
 
         return true;
     }
