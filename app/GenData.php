@@ -29,16 +29,16 @@ class GenData extends Model
         'use_flags',
     ];
 
-     /**
-      * Attributes that should be mutated to dates.
-      *
-      * @var array
-      */
-     protected $dates = [
-         'created_at',
-         'deleted_at',
-         'updated_at',
-     ];
+    /**
+    * Attributes that should be mutated to dates.
+    *
+    * @var array
+    */
+    protected $dates = [
+     'created_at',
+     'deleted_at',
+     'updated_at',
+    ];
 
     /**
      * The table associated with the model.
