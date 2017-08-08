@@ -76,7 +76,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-12">
 @include('layouts.errors')
