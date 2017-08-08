@@ -30,10 +30,10 @@ class GenData extends Model
     ];
 
     /**
-    * Attributes that should be mutated to dates.
-    *
-    * @var array
-    */
+     * Attributes that should be mutated to dates.
+     *
+     * @var array
+     */
     protected $dates = [
      'created_at',
      'deleted_at',
