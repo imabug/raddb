@@ -111,6 +111,10 @@ Route::name('photos.create')
 Route::resource('photos', 'MachinePhotoController',
     ['except' => ['create']]);
 
+// Mammography CE controller
+Route::name('mammo.CE')
+    ->get('mammo/{tester_id}/showContExp', 'MammoCEController@showMammoContExp');
+
 // Route for user management
 Route::resource('users', 'UserController');
 
