@@ -28,15 +28,23 @@ class MammoCEController extends Controller
         // Retrieve tester data
         $tester = Tester::find($tester_id);
 
-        // Get a list of active mammography units
-        $mammoMachines = Machine::with('modality', 'manufacturer', 'location', 'testdate')
+        // Get a list of active mammography units tested by $tester
+        $mammoMachines = Machine::with(['modality', 'manufacturer', 'location',
+            'testdate' => function ($query) use($tester) {
+                $query->where('tester1_id', $tester->id)
+                      ->orWhere('tester2_id', $tester->id);
+            }])
             ->active()
             ->where('modality_id', $mamMachId)
-            ->orderBy('modality_id', 'location_id')
+            ->orderBy('modality_id', 'location_id', 'description')
             ->get();
 
-        // Get a list of active mammography workstations
-        $mammoWorkstations = Machine::with('modality', 'manufacturer', 'location', 'testdate')
+        // Get a list of active mammography workstations tested by $tester
+        $mammoWorkstations = Machine::with(['modality', 'manufacturer', 'location',
+            'testdate' => function ($query) use($tester) {
+                $query->where('tester1_id', $tester->id)
+                      ->orWhere('tester2_id', $tester->id);
+            }])
             ->active()
             ->where('modality_id', $mamWrkId)
             ->orderBy('modality_id', 'location_id', 'description')
