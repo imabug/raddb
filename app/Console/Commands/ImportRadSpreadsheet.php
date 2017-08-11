@@ -69,15 +69,6 @@ class ImportRadSpreadsheet extends Command
 
         // Get the survey ID
         $surveyId = (int) $genFormSheet->getCell('E14')->getCalculatedValue();
-
-        // Check to see if there's data for $surveyId in the GenData table already
-        if (GenData::surveyId($surveyId)->get()->count() > 0) {
-            $this->error('Generator data already exists for this survey. Terminating.');
-
-            return false;
-        }
-
-        $this->info('Saving data for survey ID: '.$surveyId);
         // Pull info for this spreadsheet from the database
         $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
@@ -96,6 +87,15 @@ class ImportRadSpreadsheet extends Command
         } else {
             $tubeId = $tubes->first()->id;
         }
+
+        // Check to see if there's data for $surveyId in the GenData table already
+        if (GenData::surveyId($surveyId)->where('tube_id', $tubeId)->get()->count() > 0) {
+            $this->error('Generator data already exists for this survey. Terminating.');
+
+            return false;
+        }
+
+        $this->info('Saving data for survey ID: '.$surveyId);
 
         // SID Indicator accuracy error.
         $sidAccuracyError = $genFormSheet->getCell('G484')->getCalculatedValue();

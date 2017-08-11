@@ -57,14 +57,6 @@ class ImportFluoroSpreadsheet extends Command
 
         // Get the survey ID
         $surveyId = (int) $fluoroSheet->getCell('F13')->getCalculatedValue();
-        // Check to see if there's data for $surveyId in the hvldata table already
-        if (HVLData::where('survey_id', $surveyId)->get()->count() > 0) {
-            $this->error('Fluoro data already exists for this survey. Terminating.');
-
-            return false;
-        }
-
-        $this->info('Saving data for survey ID: '.$surveyId);
 
         // Pull info for this spreadsheet from the database
         $survey = TestDate::find($surveyId);
@@ -85,6 +77,14 @@ class ImportFluoroSpreadsheet extends Command
             $tubeId = $tubes->first()->id;
         }
 
+        // Check to see if there's data for $surveyId in the hvldata table already
+        if (HVLData::where('survey_id', $surveyId)->where('tube_id', $tubeId)->get()->count() > 0) {
+            $this->error('Fluoro data already exists for this survey. Terminating.');
+
+            return false;
+        }
+
+        $this->info('Saving data for survey ID: '.$surveyId);
         // Get HVL
         $hvl = (float) $fluoroSheet->getCell('X174')->getCalculatedValue();
         $hvl_kv = (float) $fluoroSheet->getCell('F137')->getCalculatedValue();
