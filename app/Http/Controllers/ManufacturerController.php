@@ -47,11 +47,11 @@ class ManufacturerController extends Controller
      * URI: /machine/manufacturers/$id
      * Method: GET.
      *
-     * @param string $id
+     * @param int $id
      *
      * @return \\Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         // Show a list of machines for location $id
         $manufacturer = Manufacturer::findOrFail($id); // application will return HTTP 404 if $id doesn't exist

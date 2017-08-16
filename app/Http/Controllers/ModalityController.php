@@ -4,7 +4,6 @@ namespace RadDB\Http\Controllers;
 
 use RadDB\Machine;
 use RadDB\Modality;
-use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\ModalityRequest;
 
 class ModalityController extends Controller
@@ -55,11 +54,11 @@ class ModalityController extends Controller
      * URI: /machines/modalities/$id
      * Method: GET.
      *
-     * @param string $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         // Show a list of machines for modality $id
         $modality = Modality::findOrFail($id); // application will return HTTP 404 if $id doesn't exist

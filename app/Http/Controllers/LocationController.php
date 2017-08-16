@@ -56,11 +56,11 @@ class LocationController extends Controller
      * URI: /machines/locations/$id
      * Method: GET.
      *
-     * @param string $id
+     * @param int $id
      *
      * @return \\Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         // Show a list of machines for location $id
         $location = Location::findOrFail($id); // application will return HTTP 404 if $id doesn't exist
