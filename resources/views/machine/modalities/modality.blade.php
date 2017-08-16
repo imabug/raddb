@@ -36,7 +36,7 @@
                 <form class="form-inline" action="/machines/{{ $machine->id }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <a href="/machines/{{ $machine->id }}/edit" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
+                    <a href="{{ route('machines.edit', $machine->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this machine">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
                     <div class="form-group">
