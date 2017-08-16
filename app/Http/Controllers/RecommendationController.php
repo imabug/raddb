@@ -47,7 +47,7 @@ class RecommendationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($surveyId = null)
+    public function create(int $surveyId = null)
     {
         if (is_null($surveyId)) {
             // No survey id was provided.
@@ -149,7 +149,7 @@ class RecommendationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($surveyId)
+    public function show(int $surveyId)
     {
         // Get the machine description corresponding to the survey ID provided
         $machine = TestDate::select('testdates.machine_id as machine_id', 'machines.description as description')
@@ -182,11 +182,11 @@ class RecommendationController extends Controller
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int                      $surveyID
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRecommendationRequest $request, $surveyID)
+    public function update(UpdateRecommendationRequest $request, int $surveyID)
     {
         // Check if action is allowed
         $this->authorize(Recommendation::class);

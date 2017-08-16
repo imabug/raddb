@@ -147,11 +147,11 @@ class TestDateController extends Controller
      * URI: /surveys/$id/edit
      * Method: Get.
      *
-     * @param int $id
+     * @param int $surveyId
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($surveyId)
+    public function edit(int $surveyId)
     {
         $survey = TestDate::findOrFail($surveyId);
 
@@ -173,7 +173,7 @@ class TestDateController extends Controller
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int                      $surveyId
      *
      * @return \Illuminate\Http\Response
      */

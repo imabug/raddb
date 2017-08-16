@@ -43,10 +43,11 @@ class SurveyReportController extends Controller
      * Method: GET.
      *
      * @param \Illuminate\Http\Request $request
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    public function create(int $id = null)
     {
         $surveys = TestDate::year(date('Y'))
             ->where(function ($query) {
@@ -65,7 +66,6 @@ class SurveyReportController extends Controller
      * URI: /surveyreports
      * Method: PUT.
      *
-     * @param int                      $surveyId
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
@@ -123,7 +123,7 @@ class SurveyReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         $survey = TestDate::findOrFail($id);
         if (Storage::exists($survey->report_file_path)) {

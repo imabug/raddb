@@ -107,9 +107,9 @@ class OpNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        $machine = Machine::find($id);
+        $machine = Machine::findOrFail($id); // Return HTTP 404 if no machine is found
 
         return view('opnotes.opnote_show', [
             'machine' => $machine,
@@ -126,10 +126,10 @@ class OpNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         return view('opnotes.opnote_edit', [
-            'opNote' => OpNote::find($id),
+            'opNote' => OpNote::findOrFail($id),
         ]);
     }
 
@@ -143,12 +143,12 @@ class OpNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(OpNoteUpdateRequest $request, $id)
+    public function update(OpNoteUpdateRequest $request, int $id)
     {
         // Check if action is allowed
         $this->authorize(OpNote::class);
 
-        $opNote = OpNote::find($id);
+        $opNote = OpNote::findOrFail($id);
         $opNote->note = $request->note;
 
         if ($opNote->save()) {

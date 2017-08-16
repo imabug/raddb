@@ -43,7 +43,7 @@ class ServiceReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         $rec = Recommendation::findOrFail($id);
         if (Storage::exists($rec->service_report_path)) {

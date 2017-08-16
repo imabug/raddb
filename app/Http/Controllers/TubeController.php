@@ -47,7 +47,7 @@ class TubeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($machineID)
+    public function create(int $machineID)
     {
         return view('tubes.tubes_create', [
             'machines'      => Machine::get(),
@@ -136,7 +136,7 @@ class TubeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         // Get the model for the x-ray tube
         $tube = Tube::findOrFail($id);
@@ -159,7 +159,7 @@ class TubeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTubeRequest $request, $id)
+    public function update(UpdateTubeRequest $request, int $id)
     {
         // Check if action is allowed
         $this->authorize(Tube::class);
@@ -167,7 +167,7 @@ class TubeController extends Controller
         $message = '';
 
         // Retrieve the model for the tube to be edited
-        $tube = Tube::find($id);
+        $tube = Tube::findOrFail($id);
 
         $tube->machine_id = $request->machine_id;
         $tube->housing_model = $request->hsgModel;
@@ -205,7 +205,7 @@ class TubeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         // Check if action is allowed
         $this->authorize(Tube::class);
@@ -213,7 +213,7 @@ class TubeController extends Controller
         $message = '';
 
         // Retrieve the model for the requested tube
-        $tube = Tube::find($id);
+        $tube = Tube::findOrFail($id);
 
         // Update the x-ray tube status
         $tube->remove_date = date('Y-m-d');
