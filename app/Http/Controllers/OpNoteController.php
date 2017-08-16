@@ -11,21 +11,21 @@ use RadDB\Http\Requests\OpNoteUpdateRequest;
 class OpNoteController extends Controller
 {
     /**
-      * Instantiate a new controller instance.
-      *
-      * @return void
-      */
-     public function __construct()
-     {
-         // Only include these methods in the auth middlware
-         $this->middleware('auth')->only([
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Only include these methods in the auth middlware
+        $this->middleware('auth')->only([
              'create',
              'edit',
              'store',
              'update',
              'destroy',
          ]);
-     }
+    }
 
     /**
      * Display a listing of the resource.
