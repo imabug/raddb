@@ -68,14 +68,14 @@ class DashboardTest extends TestCase
         $page->assertSee('Survey Schedule');
     }
 
-     /**
-      * @test survey graphs
-      * @return void
-      */
-     public function testSurveyGraphs()
-     {
-         $page = $this->get(route('dashboard.surveyGraph'));
-         $page->assertStatus(200);
-         $page->assertSee('Survey Count Graphs');
-     }
+    /**
+     * @test survey graphs
+     * @return void
+     */
+    public function testSurveyGraphs()
+    {
+        $page = $this->get(route('dashboard.surveyGraph'));
+        $page->assertStatus(200);
+        $page->assertSee('Survey Count Graphs');
+    }
 }
