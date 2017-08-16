@@ -20,6 +20,7 @@
                     <li role="presentation"><a href="{{ route('machines.showModalityIndex') }}">List by modality</a></li>
                     <li role="presentation"><a href="{{ route('machines.showLocationIndex') }}">List by location</a></li>
                     <li role="presentation"><a href="{{ route('machines.showManufacturerIndex') }}">List by manufacturer</a></li>
+                    <li role="presentation"><a href="{{ route('machines.installed') }}">Installed machines</a></li>
                     <li role="presentation"><a href="{{ route('machines.inactive') }}">Inactive machines</a></li>
                     <li role="presentation"><a href="{{ route('machines.removed') }}">Removed machines</a></li>
                 </ul>
