@@ -10,12 +10,24 @@ use RadDB\Http\Requests\LocationRequest;
 class LocationController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of machines by location
+     * URI: /machines/locations
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Fetch a list of all the machines grouped by location
+        // Use the location field to group the collection by location
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->get()
+            ->groupBy('location.location');
+
+        return view('machine.locations.index', [
+            'machines' => $machines,
+        ]);
     }
 
     /**
@@ -40,15 +52,28 @@ class LocationController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a listing of machines for a specific location
+     * URI: /machines/locations/$id
+     * Method: GET.
      *
-     * @param int $id
+     * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \\Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        // Show a list of machines for location $id
+        $location = Location::findOrFail($id); // application will return HTTP 404 if $id doesn't exist
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->location($id)
+            ->get();
+
+        return view('machine.locations.location', [
+            'location' => $location,
+            'machines' => $machines,
+            'n'        => $machines->count(),
+        ]);
     }
 
     /**

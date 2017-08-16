@@ -4,18 +4,28 @@ namespace RadDB\Http\Controllers;
 
 use RadDB\Machine;
 use RadDB\Manufacturer;
-use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\ManufacturerRequest;
 
 class ManufacturerController extends Controller
 {
     /**
-     * Show a list of the manufacturers.
+     * Display a listing of machines by manufacturer
+     * URI: /machines/manufacturers
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Fetch a list of all the machines grouped by location
+        // Use the location field to group the collection by location
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->get()
+            ->groupBy('manufacturer.manufacturer');
+
+        return view('machine.manufacturers.index', [
+            'machines' => $machines,
+        ]);
     }
 
     /**
@@ -28,29 +38,33 @@ class ManufacturerController extends Controller
         //
     }
 
-    /**
-     * Add a new manufacturer to the database.
-     * URI: /admin/manufacturers
-     * Method: PUT.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function store(ManufacturerRequest $request)
     {
     }
 
     /**
-     * Display the specified resource.
+     * Display a listing of machines for a specific manufacturer
+     * URI: /machine/manufacturers/$id
+     * Method: GET.
      *
-     * @param int $id
+     * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \\Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        // Show a list of machines for location $id
+        $manufacturer = Manufacturer::findOrFail($id); // application will return HTTP 404 if $id doesn't exist
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->manufacturer($id)
+            ->get();
+
+        return view('machine.manufacturers.manufacturer', [
+            'manufacturer' => $manufacturer,
+            'machines'     => $machines,
+            'n'            => $machines->count(),
+        ]);
     }
 
     /**

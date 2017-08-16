@@ -10,12 +10,24 @@ use RadDB\Http\Requests\ModalityRequest;
 class ModalityController extends Controller
 {
     /**
-     * Show a list of the modalities.
+     * Display a listing of machines grouped by modality
+     * URI: /machines/modalities
+     * Method: GET.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Fetch a list of all the machines grouped by modality
+        // Use the modality field to group the collection by modality
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->get()
+            ->groupBy('modality.modality');
+
+        return view('machine.modalities.index', [
+            'machines' => $machines,
+        ]);
     }
 
     /**
@@ -39,15 +51,28 @@ class ModalityController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a listing of machines for a specific modality
+     * URI: /machines/modalities/$id
+     * Method: GET.
      *
-     * @param int $id
+     * @param string $id
      *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        // Show a list of machines for modality $id
+        $modality = Modality::findOrFail($id); // application will return HTTP 404 if $id doesn't exist
+        $machines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->modality($id)
+            ->get();
+
+        return view('machine.modalities.modality', [
+            'modality' => $modality,
+            'machines' => $machines,
+            'n'        => $machines->count(),
+        ]);
     }
 
     /**
