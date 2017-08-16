@@ -149,41 +149,41 @@ class TestDate extends Model
         return $query->whereYear('test_date', '=', $yr);
     }
 
-     /**
-      * Scope function to return a specific $id.
-      *
-      * @param \Illuminate\Database\Eloquent\Builder $query
-      * @param int id
-      *
-      * @return \Illuminate\Database\Eloquent\Builder
-      */
-     public function scopeId($query, $id)
-     {
-         return $query->where('id', $id);
-     }
+    /**
+     * Scope function to return a specific $id.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeId($query, $id)
+    {
+        return $query->where('id', $id);
+    }
 
-     /**
-      * Scope function to return test dates for a specific type of test.
-      *
-      * @param \Illuminate\Database\Eloquent\Builder $query
-      * @param int $yr
-      *
-      * @return \Illuminate\Database\Eloquent\Builder
-      */
-     public function scopeTestType($query, $id)
-     {
-         return $query->where('type_id', $id);
-     }
+    /**
+     * Scope function to return test dates for a specific type of test.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $yr
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeTestType($query, $id)
+    {
+        return $query->where('type_id', $id);
+    }
 
-     /**
-      * Scope function to return pending test dates (scheduled after the current date).
-      *
-      * @param \Illuminate\Database\Eloquent\Builder $query
-      *
-      * @return \Illuminate\Database\Eloquent\Builder
-      */
-     public function scopePending($query)
-     {
-         return $query->where('testdates.test_date', '>=', date('Y-m-d'));
-     }
+    /**
+     * Scope function to return pending test dates (scheduled after the current date).
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePending($query)
+    {
+        return $query->where('testdates.test_date', '>=', date('Y-m-d'));
+    }
 }
