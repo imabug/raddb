@@ -11,21 +11,21 @@ use RadDB\Http\Requests\StoreMachinePhotoRequest;
 class MachinePhotoController extends Controller
 {
     /**
-      * Instantiate a new controller instance.
-      *
-      * @return void
-      */
-     public function __construct()
-     {
-         // Only apply auth middleware to these methods
-         $this->middleware('auth')->only([
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Only apply auth middleware to these methods
+        $this->middleware('auth')->only([
              'create',
              'store',
              'edit',
              'update',
              'destroy',
          ]);
-     }
+    }
 
     /**
      * Display a listing of the resource.

@@ -9,19 +9,19 @@ use Illuminate\Http\Request;
 class TestEquipmentController extends Controller
 {
     /**
-      * Instantiate a new controller instance.
-      *
-      * @return void
-      */
-     public function __construct()
-     {
-         // Only use middlware auth on these methods
-         $this->middleware('auth')->only([
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Only use middlware auth on these methods
+        $this->middleware('auth')->only([
              'store',
              'update',
              'destroy',
          ]);
-     }
+    }
 
     /**
      * Display a listing of test equipment.
