@@ -108,7 +108,7 @@ class GenDataController extends Controller
             //
             // Columns 17-19,21 contain 1 if the current row is used for that
             // particular measurement, and 0 if it isn't.
-             $genData->use_flags = (($genDataCol[16] ? self::LINEARITY : 0) |
+            $genData->use_flags = (($genDataCol[16] ? self::LINEARITY : 0) |
                                    ($genDataCol[17] ? self::ACCURACY : 0) |
                                    ($genDataCol[18] ? self::BEAMQUAL : 0) |
                                    ($genDataCol[20] ? self::REPRO : 0));

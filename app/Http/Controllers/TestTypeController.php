@@ -9,20 +9,20 @@ use RadDB\Http\Requests\TestTypeRequest;
 class TestTypeController extends Controller
 {
     /**
-      * Instantiate a new controller instance.
-      *
-      * @return void
-      */
-     public function __construct()
-     {
-         $this->middleware('auth')->only([
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only([
              'create',
              'edit',
              'store',
              'update',
              'destroy',
          ]);
-     }
+    }
 
     /**
      * Display a listing of test types.

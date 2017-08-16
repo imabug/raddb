@@ -123,7 +123,7 @@ class TestController extends Controller
             //
             // Columns 17-19,21 contain 1 if the current row is used for that
             // particular measurement, and 0 if it isn't.
-             $genData->use_flags = (($genDataRow['AQ'] ? self::LINEARITY : 0) |
+            $genData->use_flags = (($genDataRow['AQ'] ? self::LINEARITY : 0) |
                                    ($genDataRow['AR'] ? self::ACCURACY : 0) |
                                    ($genDataRow['AS'] ? self::BEAMQUAL : 0) |
                                    ($genDataRow['AU'] ? self::REPRO : 0));
