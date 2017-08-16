@@ -10,7 +10,7 @@ class SurveyDataListingController extends Controller
 {
     /**
      * Display a grid of machines with indicator of survey data availability
-     * for each year
+     * for each year.
      *
      * @return \Illuminate\Http\Response
      */
@@ -18,7 +18,7 @@ class SurveyDataListingController extends Controller
     {
         // Get a list of active machines
         // Ignore any machines that have been removed or are inactive
-        $machines = Machines::with(['modality', 'manufacturer', 'location','testdate'])
+        $machines = Machines::with(['modality', 'manufacturer', 'location', 'testdate'])
             ->active()
             ->orderBy('modality_id', 'location_id', 'description')
             ->get();

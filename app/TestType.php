@@ -16,12 +16,12 @@ class TestType extends Model
      */
     protected $fillable = ['test_type'];
 
-     /**
-      * Attributes that should be mutated to dates.
-      *
-      * @var array
-      */
-     protected $dates = [
+    /**
+     * Attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
          'created_at',
          'deleted_at',
          'updated_at',
