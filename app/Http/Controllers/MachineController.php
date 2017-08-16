@@ -45,6 +45,7 @@ class MachineController extends Controller
         return view('machine.index', [
             'machineStatus' => 'Active',
             'machines'      => $machines,
+            'n'             => $machines->count(),
         ]);
     }
 

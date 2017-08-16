@@ -2,12 +2,9 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\Tester;
 use RadDB\Machine;
-use RadDB\TestDate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class MachineListingController extends Controller
 {
@@ -30,13 +27,16 @@ class MachineListingController extends Controller
         return view('machine.index', [
             'machineStatus' => 'Inactive',
             'machines'      => $machines,
+            'n'             => $machines->count(),
         ]);
     }
 
     /**
      * Show a list of removed machines.
-     * URI: /machines/removed
+     * URI: /machines/removed/{$year?}
      * Method: GET.
+     *
+     * @param int $year
      *
      * @return \Illuminate\Http\Response
      */
@@ -57,12 +57,13 @@ class MachineListingController extends Controller
         return view('machine.index', [
             'machineStatus' => 'Removed '.$year,
             'machines'      => $machines,
+            'n'             => $machines->count(),
         ]);
     }
 
     /**
      * Show a list of machines installed by year
-     * URI: /machines/installed/$yr
+     * URI: /machines/installed/{$year?}
      * Method: GET.
      *
      * @param int $year
@@ -84,6 +85,7 @@ class MachineListingController extends Controller
         return view('machine.index', [
             'machineStatus' => 'Installed '.$year,
             'machines'      => $machines,
+            'n'             => $machines->count(),
         ]);
     }
 }
