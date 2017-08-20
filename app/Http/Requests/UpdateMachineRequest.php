@@ -24,9 +24,9 @@ class UpdateMachineRequest extends FormRequest
     public function rules()
     {
         return [
-            'modality'     => 'required|integer',
+            'modality'     => 'required|exists:modalities,id|integer',
             'description'  => 'required|string|max:60',
-            'manufacturer' => 'required|integer',
+            'manufacturer' => 'required|exists:manufacturers,id|integer',
             'model'        => 'required|string|max:50',
             'serialNumber' => 'required|string|max:20',
             'softwareVersion' => 'string|max:50|nullable',

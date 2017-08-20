@@ -24,11 +24,11 @@ class StoreTubeRequest extends FormRequest
     public function rules()
     {
         return [
-            'machine_id'    => 'required|integer',
-            'hsgManufID'    => 'integer',
+            'machine_id'    => 'required|exists:machines,id|integer',
+            'hsgManufID'    => 'integer|exists:manufacturers,id',
             'hsgModel'      => 'string|nullable|max:30',
             'hsgSN'         => 'string|nullable|max:20',
-            'insertManufID' => 'integer',
+            'insertManufID' => 'integer|exists:manufacturers,id',
             'insertModel'   => 'string|nullable|max:30',
             'insertSN'      => 'string|nullable|max:20',
             'manufDate'     => 'date_format:Y-m-d|nullable',
