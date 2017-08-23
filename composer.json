@@ -12,6 +12,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4",
+        "n7olkachev/laravel-computed-properties": "^1.1",
         "nesbot/carbon": "^1.22",
         "phpoffice/phpexcel": "^1.8",
         "spatie/laravel-artisan-dd": "^1.0",
