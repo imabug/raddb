@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
-            "version": "3.7.2",
+            "version": "3.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/arrilot/laravel-widgets.git",
-                "reference": "b1017c72ab09d762aa075f8cfd9652c5729de239"
+                "reference": "4291f9c87eff2bfb001872a830aa01ba591f4363"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/arrilot/laravel-widgets/zipball/b1017c72ab09d762aa075f8cfd9652c5729de239",
-                "reference": "b1017c72ab09d762aa075f8cfd9652c5729de239",
+                "url": "https://api.github.com/repos/arrilot/laravel-widgets/zipball/4291f9c87eff2bfb001872a830aa01ba591f4363",
+                "reference": "4291f9c87eff2bfb001872a830aa01ba591f4363",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "laravel",
                 "widgets"
             ],
-            "time": "2017-06-06T23:00:07+00:00"
+            "time": "2017-08-19T00:22:09+00:00"
         },
         {
             "name": "consoletvs/charts",
@@ -3896,16 +3896,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "ecb0b2cdaa0add708fe6f329ef65ae0c5225130b"
+                "reference": "9a02332089ac48e704c70f6cefed30c224e3c0b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/ecb0b2cdaa0add708fe6f329ef65ae0c5225130b",
-                "reference": "ecb0b2cdaa0add708fe6f329ef65ae0c5225130b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/9a02332089ac48e704c70f6cefed30c224e3c0b0",
+                "reference": "9a02332089ac48e704c70f6cefed30c224e3c0b0",
                 "shasum": ""
             },
             "require": {
@@ -3941,7 +3941,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-08-03T14:17:41+00:00"
+            "time": "2017-08-20T05:47:52+00:00"
         },
         {
             "name": "phpunit/phpunit",
