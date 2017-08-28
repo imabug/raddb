@@ -298,6 +298,7 @@ class ImportRadSpreadsheet extends Command
         $this->info('HVL data saved.');
 
         $machineSurveyData->save();
+
         return true;
     }
 }
