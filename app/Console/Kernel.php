@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\ImportRadSpreadsheet::class,
         Commands\ImportFluoroSpreadsheet::class,
         \Spatie\ArtisanDd\DdCommand::class,
+        Commands\PopulateMachineSurveyData::class,
     ];
 
     /**
