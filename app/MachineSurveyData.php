@@ -46,7 +46,7 @@ class MachineSurveyData extends Model
     ];
 
     /**
-     * Relationships
+     * Relationships.
      */
     public function machine()
     {
