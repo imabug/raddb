@@ -9,6 +9,7 @@ use RadDB\Machine;
 use RadDB\TestDate;
 use RadDB\FluoroData;
 use RadDB\MaxFluoroData;
+use RadDB\MachineSurveyData;
 use RadDB\ReceptorEntranceExp;
 use Illuminate\Console\Command;
 
@@ -41,10 +42,12 @@ class ImportFluoroSpreadsheet extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return bool
      */
     public function handle()
     {
+        $machineSurveyData = new MachineSurveyData();
+
         $options = $this->option();
         $spreadsheetFile = $this->argument('file');
 
@@ -62,6 +65,9 @@ class ImportFluoroSpreadsheet extends Command
         $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
         $tubes = Tube::where('machine_id', $machine->id)->active()->get();
+
+        $machineSurveyData->survey_id = $survey->id;
+        $machineSurveyData->machine_id = $machine->id;
 
         // There might be more than one tube associated with this machine, so
         // ask the user which tube to associate this spreadsheet with
@@ -96,6 +102,7 @@ class ImportFluoroSpreadsheet extends Command
         $HVLData->kv = (float) $hvl_kv;
         $HVLData->hvl = (float) $hvl;
         $HVLData->save();
+        $machineSurveyData->hvldata = 1;
         $this->info('HVL data saved.');
 
         // Get image receptor field sizes (cm)
@@ -137,6 +144,7 @@ class ImportFluoroSpreadsheet extends Command
             }
             $j += 3;
         }
+        $machineSurveyData->fluorodata = 1;
         $this->info('Fluoro entrance exposure rates saved.');
         // Store max entrance exposure rates
         $max = new MaxFluoroData();
@@ -153,6 +161,7 @@ class ImportFluoroSpreadsheet extends Command
         $max->dose3_ma = round($maxEntraceExpRate[0][7], 1);
         $max->dose3_rate = round($maxEntraceExpRate[0][8], 3);
         $max->save();
+        $machineSurveyData->maxfluorodata = 1;
         $this->info('Max fluoro entrance exposure rates saved.');
 
         // Get pulse/digital entrance exposure rate data
@@ -242,6 +251,10 @@ class ImportFluoroSpreadsheet extends Command
             $ree->rate = $r[4];
             $ree->save();
         }
+        $machineSurveyData->receptorentrance = 1;
         $this->info('Pulse/digital receptor entrance exposure rates stored.');
+
+        $machineSurveyData->save();
+        return true;
     }
 }

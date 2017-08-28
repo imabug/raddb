@@ -11,6 +11,7 @@ use RadDB\TestDate;
 use RadDB\RadSurveyData;
 use RadDB\CollimatorData;
 use RadDB\RadiationOutput;
+use RadDB\MachineSurveyData;
 use Illuminate\Console\Command;
 
 class ImportRadSpreadsheet extends Command
@@ -56,6 +57,8 @@ class ImportRadSpreadsheet extends Command
      */
     public function handle()
     {
+        $machineSurveyData = new MachineSurveyData();
+
         $options = $this->option();
         $spreadsheetFile = $this->argument('file');
 
@@ -73,6 +76,8 @@ class ImportRadSpreadsheet extends Command
         $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
         $tubes = Tube::where('machine_id', $machine->id)->active()->get();
+        $machineSurveyData->survey_id = $survey->id;
+        $machineSurveyData->machine_id = $machine->id;
 
         // There might be more than one tube associated with this machine, so
         // ask the user which tube to associate this spreadsheet with
@@ -123,6 +128,7 @@ class ImportRadSpreadsheet extends Command
         $radSurvey->lfs_resolution = (float) $lfsResolution;
         $radSurvey->sfs_resolution = (float) $sfsResolution;
         $radSurvey->save();
+        $machineSurveyData->radsurveydata = 1;
         $this->info('Radiographic survey data saved.');
 
         // Table bucky SID (cm)
@@ -183,6 +189,7 @@ class ImportRadSpreadsheet extends Command
             $collimatorData->pbl_long = $pblWall[$i][1] == 'NA' ? null : (float) $pblWall[$i][1];
             $collimatorData->save();
         }
+        $machineSurveyData->collimatordata = 1;
         $this->info('Wall receptor collimator data saved');
 
         // Large/small focus radiation output
@@ -219,6 +226,7 @@ class ImportRadSpreadsheet extends Command
             $radOutput->output = (float) $s[1];
             $radOutput->save();
         }
+        $machineSurveyData->radoutputdata = 1;
         $this->info('Small focus output data saved.');
 
         // Load generator test data from cells AA688:BB747 into an array
@@ -265,6 +273,7 @@ class ImportRadSpreadsheet extends Command
             // Store the data
             $genData->save();
         }
+        $machineSurveyData->gendata = 1;
         $this->info('Generator test data saved.');
 
         // Get half value layer data
@@ -284,8 +293,10 @@ class ImportRadSpreadsheet extends Command
             $HVLData->hvl = (float) $hvl[1];
             $HVLData->save();
         }
+        $machineSurveyData->hvldata = 1;
         $this->info('HVL data saved.');
 
+        $machineSurveyData->save();
         return true;
     }
 }
