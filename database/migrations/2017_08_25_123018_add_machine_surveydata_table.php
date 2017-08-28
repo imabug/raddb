@@ -29,7 +29,7 @@ class AddMachineSurveydataTable extends Migration
             $table->foreign('survey_id')->references('id')->on('testdates');
             $table->softDeletes();
             $table->timestamps();
-        })
+        });
     }
 
     /**
