@@ -255,6 +255,7 @@ class ImportFluoroSpreadsheet extends Command
         $this->info('Pulse/digital receptor entrance exposure rates stored.');
 
         $machineSurveyData->save();
+
         return true;
     }
 }
