@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMachineSurveydataTable extends Migration
+class CreateMachineSurveydataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -25,8 +25,6 @@ class AddMachineSurveydataTable extends Migration
             $table->boolean('maxfluorodata')->nullable();
             $table->boolean('receptorentrance')->nullable();
             $table->index(['machine_id', 'survey_id']);
-            $table->foreign('machine_id')->references('id')->on('machines');
-            $table->foreign('survey_id')->references('id')->on('testdates');
             $table->softDeletes();
             $table->timestamps();
         });
