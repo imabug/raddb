@@ -27,6 +27,6 @@ class AddMachineIdToGendataTable extends Migration
     {
         Schema::table('gendata', function (Blueprint $table) {
             $table->dropColumn('machine_id');
-        })
+        });
     }
 }
