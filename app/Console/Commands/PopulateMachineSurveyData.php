@@ -65,7 +65,6 @@ class PopulateMachineSurveyData extends Command
         }
         $bar->finish();
 
-
         $this->info("\nHVLData");
         $bar = $this->output->createProgressBar(count($hvlData));
         foreach ($hvlData as $h) {
