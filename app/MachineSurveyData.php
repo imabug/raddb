@@ -23,7 +23,7 @@ class MachineSurveyData extends Model
      */
     protected $fillable = [
         'machine_id',
-        'survey_id',
+        'id',
         'gendata',
         'collimatordata',
         'radoutputdata',
@@ -55,6 +55,6 @@ class MachineSurveyData extends Model
 
     public function survey()
     {
-        return $this->belongsTo('RadDB\TestDate');
+        return $this->belongsTo('RadDB\TestDate', 'id');
     }
 }

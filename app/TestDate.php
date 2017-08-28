@@ -118,6 +118,11 @@ class TestDate extends Model
         return $this->hasMany('RadDB\ReceptorEntranceExp', 'survey_id');
     }
 
+    public function machineSurveyData()
+    {
+        return $this->hasOne('RadDB\MachineSurveyData');
+    }
+
     /*
      * Scopes
      */
