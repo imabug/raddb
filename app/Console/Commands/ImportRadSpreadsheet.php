@@ -240,6 +240,7 @@ class ImportRadSpreadsheet extends Command
 
             $genData = new GenData();
             $genData->survey_id = $survey->id;
+            $genData->machine_id = $machine->id;
             $genData->tube_id = $tubeId;
             $genData->kv_set = (int) $genDataRow['AA'];
             $genData->ma_set = (int) $genDataRow['AB'];
