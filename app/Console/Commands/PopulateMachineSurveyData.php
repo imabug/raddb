@@ -70,8 +70,8 @@ class PopulateMachineSurveyData extends Command
         foreach ($genData as $v) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
-                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
-                ['gendata' => 1,]
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id],
+                ['gendata' => 1]
             );
             $bar->advance();
         }
@@ -82,8 +82,8 @@ class PopulateMachineSurveyData extends Command
         foreach ($hvlData as $v) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
-                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
-                ['hvldata' => 1,]
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id],
+                ['hvldata' => 1]
             );
             $bar->advance();
         }
@@ -94,8 +94,8 @@ class PopulateMachineSurveyData extends Command
         foreach ($fluoroData as $v) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
-                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
-                ['fluorodata' => 1,]
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id],
+                ['fluorodata' => 1]
             );
             $bar->advance();
         }
@@ -106,8 +106,8 @@ class PopulateMachineSurveyData extends Command
         foreach ($maxFluoroData as $v) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
-                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
-                ['maxfluorodata' => 1,]
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id],
+                ['maxfluorodata' => 1]
             );
             $bar->advance();
         }
@@ -118,8 +118,8 @@ class PopulateMachineSurveyData extends Command
         foreach ($radOutputData as $v) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
-                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
-                ['radoutputdata' => 1,]
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id],
+                ['radoutputdata' => 1]
             );
             $bar->advance();
         }
@@ -130,8 +130,8 @@ class PopulateMachineSurveyData extends Command
         foreach ($radSurveyData as $r) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
-                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
-                ['radsurveydata' => 1,]
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id],
+                ['radsurveydata' => 1]
             );
             $bar->advance();
         }
@@ -142,8 +142,8 @@ class PopulateMachineSurveyData extends Command
         foreach ($collimatorData as $c) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
-                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
-                ['collimatordata' => 1,]
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id],
+                ['collimatordata' => 1]
             );
             $bar->advance();
         }
@@ -154,8 +154,8 @@ class PopulateMachineSurveyData extends Command
         foreach ($receptorEntrance as $r) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
-                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
-                ['receptorentrance' => 1,]
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id],
+                ['receptorentrance' => 1]
             );
             $bar->advance();
         }
