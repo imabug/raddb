@@ -113,7 +113,7 @@ Route::resource('photos', 'MachinePhotoController',
 
 // Mammography CE controller
 Route::name('mammo.CE')
-    ->get('mammo/{tester_id}/showContExp', 'MammoCEController@showMammoContExp');
+    ->get('mammo/{tester_id}/show', 'MammoCEController@show');
 
 // Route for user management
 Route::resource('users', 'UserController');

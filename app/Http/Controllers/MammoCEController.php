@@ -18,7 +18,7 @@ class MammoCEController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showMammoContExp(int $tester_id)
+    public function show(int $tester_id)
     {
         // TODO
         // Will need to change how this is done to make it more flexible
