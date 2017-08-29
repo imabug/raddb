@@ -16,6 +16,17 @@ use Illuminate\Console\Command;
 class PopulateMachineSurveyData extends Command
 {
     /**
+     * The purpose of this command is to take any existing survey data in the database
+     * and populate the machine_surveydata table.
+     * For each machine/survey ID combination contained in the survey data tables
+     * (gendata, hvldata, fluorodata, maxfluorodata, collimatordata, radoutputdata,
+     * radsurveydata, receptorentrance), a 1 is stored in the respective column
+     * in the machine_surveydata table. NULL means there is no data available for
+     * the test.
+     *
+     */
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
