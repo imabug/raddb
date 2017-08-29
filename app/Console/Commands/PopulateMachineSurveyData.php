@@ -67,50 +67,60 @@ class PopulateMachineSurveyData extends Command
 
         $this->info('GenData');
         $bar = $this->output->createProgressBar(count($genData));
-        foreach ($genData as $g) {
-            $machineSurveyData = MachineSurveyData::where('id', $g->survey_id)->where('machine_id', $g->machine_id)->first();
-            $machineSurveyData->gendata = 1;
-            $machineSurveyData->save();
+        foreach ($genData as $v) {
+            $machineSurveyData = new MachineSurveyData();
+            $machineSurveyData::updateOrCreate(
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
+                ['gendata' => 1,]
+            );
             $bar->advance();
         }
         $bar->finish();
 
         $this->info("\nHVLData");
         $bar = $this->output->createProgressBar(count($hvlData));
-        foreach ($hvlData as $h) {
-            $machineSurveyData = MachineSurveyData::where('id', $h->survey_id)->where('machine_id', $h->machine_id)->first();
-            $machineSurveyData->hvldata = 1;
-            $machineSurveyData->save();
+        foreach ($hvlData as $v) {
+            $machineSurveyData = new MachineSurveyData();
+            $machineSurveyData::updateOrCreate(
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
+                ['hvldata' => 1,]
+            );
             $bar->advance();
         }
         $bar->finish();
 
         $this->info("\nFluoroData");
         $bar = $this->output->createProgressBar(count($fluoroData));
-        foreach ($fluoroData as $f) {
-            $machineSurveyData = MachineSurveyData::where('id', $f->survey_id)->where('machine_id', $f->machine_id)->first();
-            $machineSurveyData->fluorodata = 1;
-            $machineSurveyData->save();
+        foreach ($fluoroData as $v) {
+            $machineSurveyData = new MachineSurveyData();
+            $machineSurveyData::updateOrCreate(
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
+                ['fluorodata' => 1,]
+            );
             $bar->advance();
         }
         $bar->finish();
 
         $this->info("\nMaxFluoroData");
         $bar = $this->output->createProgressBar(count($maxFluoroData));
-        foreach ($maxFluoroData as $m) {
-            $machineSurveyData = MachineSurveyData::where('id', $m->survey_id)->where('machine_id', $m->machine_id)->first();
-            $machineSurveyData->maxfluorodata = 1;
-            $machineSurveyData->save();
+        foreach ($maxFluoroData as $v) {
+            $machineSurveyData = new MachineSurveyData();
+            $machineSurveyData::updateOrCreate(
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
+                ['maxfluorodata' => 1,]
+            );
             $bar->advance();
         }
         $bar->finish();
 
         $this->info("\nRadiationOutput");
         $bar = $this->output->createProgressBar(count($radOutputData));
-        foreach ($radOutputData as $r) {
-            $machineSurveyData = MachineSurveyData::where('id', $r->survey_id)->where('machine_id', $r->machine_id)->first();
-            $machineSurveyData->radoutputdata = 1;
-            $machineSurveyData->save();
+        foreach ($radOutputData as $v) {
+            $machineSurveyData = new MachineSurveyData();
+            $machineSurveyData::updateOrCreate(
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
+                ['radoutputdata' => 1,]
+            );
             $bar->advance();
         }
         $bar->finish();
@@ -118,9 +128,11 @@ class PopulateMachineSurveyData extends Command
         $this->info("\nRadSurveyData");
         $bar = $this->output->createProgressBar(count($radSurveyData));
         foreach ($radSurveyData as $r) {
-            $machineSurveyData = MachineSurveyData::where('id', $r->survey_id)->where('machine_id', $r->machine_id)->first();
-            $machineSurveyData->radsurveydata = 1;
-            $machineSurveyData->save();
+            $machineSurveyData = new MachineSurveyData();
+            $machineSurveyData::updateOrCreate(
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
+                ['radsurveydata' => 1,]
+            );
             $bar->advance();
         }
         $bar->finish();
@@ -128,9 +140,11 @@ class PopulateMachineSurveyData extends Command
         $this->info("\nCollimatorData");
         $bar = $this->output->createProgressBar(count($collimatorData));
         foreach ($collimatorData as $c) {
-            $machineSurveyData = MachineSurveyData::where('id', $c->survey_id)->where('machine_id', $c->machine_id)->first();
-            $machineSurveyData->collimatordata = 1;
-            $machineSurveyData->save();
+            $machineSurveyData = new MachineSurveyData();
+            $machineSurveyData::updateOrCreate(
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
+                ['collimatordata' => 1,]
+            );
             $bar->advance();
         }
         $bar->finish();
@@ -138,9 +152,11 @@ class PopulateMachineSurveyData extends Command
         $this->info("\nReceptorEntranceExp");
         $bar = $this->output->createProgressBar(count($receptorEntrance));
         foreach ($receptorEntrance as $r) {
-            $machineSurveyData = MachineSurveyData::where('id', $r->survey_id)->where('machine_id', $r->machine_id)->first();
-            $machineSurveyData->receptorentrance = 1;
-            $machineSurveyData->save();
+            $machineSurveyData = new MachineSurveyData();
+            $machineSurveyData::updateOrCreate(
+                ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
+                ['receptorentrance' => 1,]
+            );
             $bar->advance();
         }
         $bar->finish();
