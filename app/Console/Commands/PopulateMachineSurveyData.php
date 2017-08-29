@@ -23,7 +23,6 @@ class PopulateMachineSurveyData extends Command
      * radsurveydata, receptorentrance), a 1 is stored in the respective column
      * in the machine_surveydata table. NULL means there is no data available for
      * the test.
-     *
      */
 
     /**
