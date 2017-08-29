@@ -39,7 +39,7 @@ class DashboardController extends Controller
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function untested()
+    private function untested()
     {
         // Collection of machines that have already been tested
         $currSurveys = TestDate::select('machine_id')
@@ -64,7 +64,7 @@ class DashboardController extends Controller
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function pending()
+    private function pending()
     {
         $pending = TestDate::select('testdates.id as surveyId',
                 'machines.id as machineId',
@@ -94,7 +94,7 @@ class DashboardController extends Controller
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function surveySchedule()
+    private function surveySchedule()
     {
         // Get the list of machines and their surveys for this year
         // TODO: may not handle machines with multiple surveys in a year very well
