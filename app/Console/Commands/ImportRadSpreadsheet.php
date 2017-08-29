@@ -72,10 +72,12 @@ class ImportRadSpreadsheet extends Command
 
         // Get the survey ID
         $surveyId = (int) $genFormSheet->getCell('E14')->getCalculatedValue();
+
         // Pull info for this spreadsheet from the database
         $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
         $tubes = Tube::where('machine_id', $machine->id)->active()->get();
+
         $machineSurveyData->survey_id = $survey->id;
         $machineSurveyData->machine_id = $machine->id;
 
@@ -104,17 +106,23 @@ class ImportRadSpreadsheet extends Command
 
         // SID Indicator accuracy error.
         $sidAccuracyError = $genFormSheet->getCell('G484')->getCalculatedValue();
+
         // Average illumination in lux.
         $avgIllumination = $genFormSheet->getCell('I504')->getCalculatedValue();
+
         // Beam alignment error.
         $beamAlignmentErr = $genFormSheet->getCell('G537')->getCalculatedValue();
+
         // Radiation/film center distance (cm) for table bucky.
         $radFilmCenterTable = $genFormSheet->getCell('C547')->getCalculatedValue();
+
         // Radiation/film center distance (cm) for wall bucky.
         $radFilmCenterWall = $genFormSheet->getCell('C608')->getCalculatedValue();
+
         // Large/small focal spot resolution (lp/mm)
         $lfsResolution = $genFormSheet->getCell('I672')->getCalculatedValue();
         $sfsResolution = $genFormSheet->getCell('I677')->getCalculatedValue();
+
         // Insert the above data into the radsurveydata table
         $radSurvey = new RadSurveyData();
         $radSurvey->survey_id = $survey->id;
@@ -133,24 +141,30 @@ class ImportRadSpreadsheet extends Command
 
         // Table bucky SID (cm)
         $tableSid = $genFormSheet->getCell('K543')->getCalculatedValue();
+
         // Wall bucky SID (cm)
         $wallSid = $genFormSheet->getCell('C615')->getCalculatedValue();
+
         // Field size indicators, radiation/light field alignment for table bucky
         // First pair - Indicated field size
         // Second pair - Radiation field
         // Third pair - Light field
         $collimationTable = $genFormSheet->rangeToArray('B554:G555', null, true, false, false);
+
         // Automatic collimation (PBL) for table bucky
         // First pair - Cassette size (cm)
         $pblTable = $genFormSheet->rangeToArray('B575:C576', null, true, false, false);
+
         // Field size indicators, radiation/light field alignment for wall bucky
         // First pair - Indicated field size
         // Second pair - Radiation field
         // Third pair - Light field
         $collimationWall = $genFormSheet->rangeToArray('D615:I616', null, true, false, false);
+
         // Automatic collimation (PBL) for wall bucky
         // First pair - Cassette size (cm)
         $pblWall = $genFormSheet->rangeToArray('C637:D638', null, true, false, false);
+
         // Insert the collimator data into the database
         // Table receptor
         for ($i = 0; $i <= 1; $i++) {
@@ -171,6 +185,7 @@ class ImportRadSpreadsheet extends Command
             $collimatorData->save();
         }
         $this->info('Table receptor collimator data saved');
+
         // Wall receptor
         for ($i = 0; $i <= 1; $i++) {
             $collimatorData = new CollimatorData();
@@ -196,6 +211,7 @@ class ImportRadSpreadsheet extends Command
         // Measured kV, mGy/mAs @ 40"
         $lfsOutput = $genFormSheet->rangeToArray('D1394:E1401', null, true, false, false);
         $sfsOutput = $genFormSheet->rangeToArray('D1407:E1412', null, true, false, false);
+
         // Insert the radiation output data into tthe database
         foreach ($lfsOutput as $l) {
             $radOutput = new RadiationOutput();
@@ -231,6 +247,7 @@ class ImportRadSpreadsheet extends Command
 
         // Load generator test data from cells AA688:BB747 into an array
         $genTestData = $genFormSheet->rangeToArray('AA688:BB747', null, true, false, true);
+
         // Insert generator test data into the database
         foreach ($genTestData as $genDataRow) {
             // Skip the record if it's empty
@@ -280,6 +297,7 @@ class ImportRadSpreadsheet extends Command
         // Get half value layer data
         // kV, HVL (mm Al)
         $hvls = $genFormSheet->rangeToArray('Y969:Z978', null, true, false, false);
+
         // Insert the HVL data into the database
         foreach ($hvls as $hvl) {
             $HVLData = new HVLData();
