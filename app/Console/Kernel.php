@@ -13,10 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\ImportRadSpreadsheet::class,
-        Commands\ImportFluoroSpreadsheet::class,
-        \Spatie\ArtisanDd\DdCommand::class,
-        Commands\PopulateMachineSurveyData::class,
+        //
     ];
 
     /**
@@ -40,7 +37,7 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-        
+
         require base_path('routes/console.php');
     }
 }
