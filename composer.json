@@ -15,6 +15,7 @@
         "nesbot/carbon": "^1.22",
         "phpoffice/phpexcel": "^1.8",
         "spatie/laravel-artisan-dd": "^2.0",
+        "spatie/laravel-medialibrary": "^6.0.0",
         "twbs/bootstrap": "^3.3"
     },
     "require-dev": {
