@@ -2,9 +2,9 @@
 
 namespace RadDB\Http\Middleware;
 
-use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
+use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypterMiddleware;
 
-class EncryptCookies extends BaseEncrypter
+class EncryptCookies extends BaseEncrypterMiddleware
 {
     /**
      * The names of the cookies that should not be encrypted.
