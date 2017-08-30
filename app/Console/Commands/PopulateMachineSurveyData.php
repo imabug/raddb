@@ -127,7 +127,7 @@ class PopulateMachineSurveyData extends Command
 
         $this->info("\nRadSurveyData");
         $bar = $this->output->createProgressBar(count($radSurveyData));
-        foreach ($radSurveyData as $r) {
+        foreach ($radSurveyData as $v) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
                 ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
@@ -139,7 +139,7 @@ class PopulateMachineSurveyData extends Command
 
         $this->info("\nCollimatorData");
         $bar = $this->output->createProgressBar(count($collimatorData));
-        foreach ($collimatorData as $c) {
+        foreach ($collimatorData as $v) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
                 ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
@@ -151,7 +151,7 @@ class PopulateMachineSurveyData extends Command
 
         $this->info("\nReceptorEntranceExp");
         $bar = $this->output->createProgressBar(count($receptorEntrance));
-        foreach ($receptorEntrance as $r) {
+        foreach ($receptorEntrance as $v) {
             $machineSurveyData = new MachineSurveyData();
             $machineSurveyData::updateOrCreate(
                 ['id' => $v->survey_id, 'machine_id' => $v->machine_id,],
