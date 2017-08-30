@@ -35,7 +35,7 @@ class StoreRecommendationRequest extends FormRequest
 
         // If 'resolved' was checked, then add validation rules for
         // 'RecResolveDate' and 'ResolvedBy'.
-        if ($request->has('resolved')) {
+        if ($request->filled('resolved')) {
             $rules['RecResolveDate'] = 'required|date_format:Y-m-d';
             $rules['ResolvedBy'] = 'required|string|max:10';
         }
