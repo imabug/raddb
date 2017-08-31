@@ -2,8 +2,8 @@
 
 namespace RadDB\Providers;
 
-use Laravel\Dusk\DuskServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Laravel\Dusk\DuskServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         // Work around for MariaDB/MySQL key too long errors
         Schema::defaultStringLength(191);
 
-        /**
+        /*
          * Blade directive to dump a variable/object inside a template.
          * This is similar to dd(), except that it doesn't interrupt the
          * execution of the app. It does NOT support multiple arguments
@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
          *
          * @example @dump($posts->comments)
          */
-        Blade::directive('dump', function($param) {
+        Blade::directive('dump', function ($param) {
             return "<pre><?php (new \Illuminate\Support\Debug\Dumper)->dump($param); ?></pre>";
         });
     }

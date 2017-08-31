@@ -2,13 +2,13 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\MachineSurveyData;
 use Illuminate\Http\Request;
+use RadDB\MachineSurveyData;
 
 class QADataController extends Controller
 {
     /**
-     * Show what survey data exists for the provided survey_id
+     * Show what survey data exists for the provided survey_id.
      *
      * @param int $survey_id
      *
@@ -16,7 +16,7 @@ class QADataController extends Controller
      */
     public function index(int $survey_id)
     {
-        $surveyData = MachineSurveyData::with('machine','survey')->findOrFail($survey_id);
+        $surveyData = MachineSurveyData::with('machine', 'survey')->findOrFail($survey_id);
 
         return view('qa.survey_data_list', [
             'surveyData' => $surveyData,
