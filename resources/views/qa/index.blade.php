@@ -8,7 +8,7 @@
 @foreach ($machines->chunk(5) as $chunk)
 <tr>
 @foreach ($chunk as $m)
-<td><a href="{{ route('qa.show', $m->id) }}">{{ $m->description }}</a></td>
+<td><a href="{{ route('qa.machineSurveyList', $m->id) }}">{{ $m->description }}</a></td>
 @endforeach
 </tr>
 @endforeach

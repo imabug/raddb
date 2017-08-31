@@ -72,12 +72,6 @@ Route::resource('testequipment', 'TestEquipmentController');
 // Contacts controller - deprecated from previous version
 // Route::resource('contacts', 'ContactController');
 
-// Generator data controller - haven't decided whether to  keep this or not
-Route::name('gendata.create')
-    ->get('surveydata/generator/{surveyId}/create', 'GenDataController@create');
-Route::resource('gendata', 'GenDataController',
-    ['except' => ['create']]);
-
 // Operational notes controller
 Route::name('opnotes.createOpNoteFor')
     ->get('opnotes/{id}/create', 'OpNoteController@create');
@@ -128,7 +122,21 @@ Route::name('home.index')->get('/home', 'HomeController@index');
 
 // Routes for viewing QA/survey data
 Route::name('qa.index')->get('qa/', 'QAController@index');
-Route::name('qa.show')->get('qa/{id}/show', 'QAController@show');
+Route::name('qa.machineSurveyList')->get('qa/{machine_id}/surveyList', 'QAController@show');
+Route::name('qa.surveyDataList')->get('qa/{survey_id}/surveyDataList', 'QADataController@index');
+
+// Survey test data controllers
+Route::name('gendata.create')
+    ->get('surveydata/generator/{surveyId}/create', 'GenDataController@create');
+Route::resource('gendata', 'GenDataController',
+                ['except' => ['create']]);
+Route::resource('collimatordata', 'CollimatorDataController');
+Route::resource('fluorodata', 'FluoroDataController');
+Route::resource('hvldata', 'HVLDataController');
+Route::resource('maxfluorodata', 'MaxFluoroDataController');
+Route::resource('radsurveydata', 'RadSurveyDataController');
+Route::resource('radoutputdata', 'RadiationOutputController');
+Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 
 // Route::group(['prefix' => 'admin'], function () {
 //     Voyager::routes();
