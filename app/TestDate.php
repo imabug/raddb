@@ -120,7 +120,7 @@ class TestDate extends Model
 
     public function machineSurveyData()
     {
-        return $this->hasOne('RadDB\MachineSurveyData');
+        return $this->hasOne('RadDB\MachineSurveyData', 'id', 'id');
     }
 
     /*
