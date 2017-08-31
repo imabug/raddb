@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Generator data for {{ $machine->description }}</h2>
+    <h2>Generator data for {{ $machine->description }} ({{ $survey->test_date }} - Survey ID {{ $survey->id }})</h2>
 <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#raw" aria-controls="raw" role="tab" data-toggle="pill">Raw data</a></li>
     <li role="presentation"><a href="#hvl" aria-controls="hvl" role="tab" data-toggle="pill">HVL</a></li>
