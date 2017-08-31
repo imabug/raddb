@@ -10,8 +10,8 @@ use RadDB\MaxFluoroData;
 use RadDB\RadSurveyData;
 use RadDB\CollimatorData;
 use RadDB\RadiationOutput;
-use RadDB\MachineSurveyData;
 use Illuminate\Http\Request;
+use RadDB\MachineSurveyData;
 use RadDB\ReceptorEntranceExp;
 
 class QAController extends Controller
@@ -30,6 +30,7 @@ class QAController extends Controller
 
         // Get only the active machines
         $machines = Machine::whereIn('id', $machWithSurveyData->toArray())->active()->get();
+
         return view('qa.index', [
             'machines' => $machines,
         ]);
