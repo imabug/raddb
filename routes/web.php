@@ -128,6 +128,7 @@ Route::name('home.index')->get('/home', 'HomeController@index');
 
 // Routes for viewing QA/survey data
 Route::name('qa.index')->get('qa/', 'QAController@index');
+Route::name('qa.show')->get('qa/{id}/show', 'QAController@show');
 
 // Route::group(['prefix' => 'admin'], function () {
 //     Voyager::routes();
