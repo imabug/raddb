@@ -123,7 +123,6 @@ Route::name('home.index')->get('/home', 'HomeController@index');
 // Routes for viewing QA/survey data
 Route::name('qa.index')->get('qa/', 'QAController@index');
 Route::name('qa.machineSurveyList')->get('qa/{machine_id}/surveyList', 'QAController@show');
-Route::name('qa.surveyDataList')->get('qa/{survey_id}/surveyDataList', 'QADataController@index');
 
 // Survey test data controllers
 Route::name('gendata.create')
