@@ -2,6 +2,7 @@
 
 namespace RadDB\Http\Controllers;
 
+use RadDB\TestDate;
 use RadDB\RadSurveyData;
 use Illuminate\Http\Request;
 
@@ -41,12 +42,16 @@ class RadSurveyDataController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \RadDB\RadSurveyData  $radSurveyData
+     * @param  int $surveyId
      * @return \Illuminate\Http\Response
      */
-    public function show(RadSurveyData $radSurveyData)
+    public function show(int $surveyId)
     {
-        //
+        $radSurveyData = RadSurveyData::with('machine', 'survey')->where('survey_id', $surveyId)->first();
+
+        return view('qa.radsurvey.show', [
+            'radSurveyData' => $radSurveyData,
+        ]);
     }
 
     /**
