@@ -169,7 +169,7 @@ return [
         // ConsoleTVs\Charts\ChartsServiceProvider::class,
         // Laravel\Tinker\TinkerServiceProvider::class,
         // Collective\Html\HtmlServiceProvider::class,
-        // TCG\Voyager\VoyagerServiceProvider::class,
+        TCG\Voyager\VoyagerServiceProvider::class,
 
         /*
          * Application Service Providers...
