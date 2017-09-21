@@ -328,16 +328,16 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "5.1.2",
+            "version": "5.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "18dc7881b74ec1d01e65390563a992e6fc76c2b8"
+                "reference": "1b056b57b08593a407cd609d242950ac9488e730"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/18dc7881b74ec1d01e65390563a992e6fc76c2b8",
-                "reference": "18dc7881b74ec1d01e65390563a992e6fc76c2b8",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/1b056b57b08593a407cd609d242950ac9488e730",
+                "reference": "1b056b57b08593a407cd609d242950ac9488e730",
                 "shasum": ""
             },
             "require": {
@@ -374,7 +374,7 @@
                 }
             ],
             "description": "Create charts for laravel using different charts libraries",
-            "time": "2017-08-18T23:42:27+00:00"
+            "time": "2017-09-21T19:58:48+00:00"
         },
         {
             "name": "consoletvs/support",
@@ -1734,16 +1734,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.10",
+            "version": "v5.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6c63130c001bd0b2bec30d330e110be63b5caee6"
+                "reference": "56f1ffd0880255e9ebbf0dbf47024cc5c2941c7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6c63130c001bd0b2bec30d330e110be63b5caee6",
-                "reference": "6c63130c001bd0b2bec30d330e110be63b5caee6",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/56f1ffd0880255e9ebbf0dbf47024cc5c2941c7a",
+                "reference": "56f1ffd0880255e9ebbf0dbf47024cc5c2941c7a",
                 "shasum": ""
             },
             "require": {
@@ -1862,7 +1862,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-09-21T18:00:58+00:00"
+            "time": "2017-09-21T18:59:13+00:00"
         },
         {
             "name": "laravel/tinker",
