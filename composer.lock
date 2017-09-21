@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9b6558c28a5d9f601ffbb888288f1b2",
+    "content-hash": "e2d1ab320f54ada6886d5a37fc49b5c8",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -1734,16 +1734,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.4",
+            "version": "v5.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d3e0493bead126cf7fb9a005c64e6b58a9190e51"
+                "reference": "a0fdfd2c90318c107b6a8d69189ec9a6607379e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d3e0493bead126cf7fb9a005c64e6b58a9190e51",
-                "reference": "d3e0493bead126cf7fb9a005c64e6b58a9190e51",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a0fdfd2c90318c107b6a8d69189ec9a6607379e3",
+                "reference": "a0fdfd2c90318c107b6a8d69189ec9a6607379e3",
                 "shasum": ""
             },
             "require": {
@@ -1862,7 +1862,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-09-13T13:36:29+00:00"
+            "time": "2017-09-20T13:45:36+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3111,16 +3111,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "6.0.0",
+            "version": "6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "0491a18d95be3b8ef3e2e351cd14720d7484070a"
+                "reference": "9ec87b9e5bc73116e95038ba2df92618d60b14f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/0491a18d95be3b8ef3e2e351cd14720d7484070a",
-                "reference": "0491a18d95be3b8ef3e2e351cd14720d7484070a",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/9ec87b9e5bc73116e95038ba2df92618d60b14f1",
+                "reference": "9ec87b9e5bc73116e95038ba2df92618d60b14f1",
                 "shasum": ""
             },
             "require": {
@@ -3185,7 +3185,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2017-08-30T11:44:42+00:00"
+            "time": "2017-09-19T21:30:51+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -4191,16 +4191,16 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "v1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "1999a18315010b55abbed5e7784887d3a0fa642f"
+                "reference": "cf5639e0c6630d02b5ec6c25e650cbc9098ce443"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/1999a18315010b55abbed5e7784887d3a0fa642f",
-                "reference": "1999a18315010b55abbed5e7784887d3a0fa642f",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/cf5639e0c6630d02b5ec6c25e650cbc9098ce443",
+                "reference": "cf5639e0c6630d02b5ec6c25e650cbc9098ce443",
                 "shasum": ""
             },
             "require": {
@@ -4253,7 +4253,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2017-09-19T01:29:54+00:00"
+            "time": "2017-09-19T17:58:26+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
