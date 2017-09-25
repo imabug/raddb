@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
-            "version": "3.7.4",
+            "version": "3.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/arrilot/laravel-widgets.git",
-                "reference": "c746a23c159cc8c021a4086452e50a43048ab317"
+                "reference": "5cf32fc2cb49681adbdf422c15c7b4702c087025"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/arrilot/laravel-widgets/zipball/c746a23c159cc8c021a4086452e50a43048ab317",
-                "reference": "c746a23c159cc8c021a4086452e50a43048ab317",
+                "url": "https://api.github.com/repos/arrilot/laravel-widgets/zipball/5cf32fc2cb49681adbdf422c15c7b4702c087025",
+                "reference": "5cf32fc2cb49681adbdf422c15c7b4702c087025",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "laravel",
                 "widgets"
             ],
-            "time": "2017-09-03T20:37:26+00:00"
+            "time": "2017-09-23T23:52:52+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1628,16 +1628,16 @@
         },
         {
             "name": "larapack/voyager-hooks",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/larapack/voyager-hooks.git",
-                "reference": "58ebbc579f23b231d40caf56939f0ccc1be525ac"
+                "reference": "ad4107167d6eca8e348dfd7e6fa3774fff4afec0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larapack/voyager-hooks/zipball/58ebbc579f23b231d40caf56939f0ccc1be525ac",
-                "reference": "58ebbc579f23b231d40caf56939f0ccc1be525ac",
+                "url": "https://api.github.com/repos/larapack/voyager-hooks/zipball/ad4107167d6eca8e348dfd7e6fa3774fff4afec0",
+                "reference": "ad4107167d6eca8e348dfd7e6fa3774fff4afec0",
                 "shasum": ""
             },
             "require": {
@@ -1669,7 +1669,7 @@
                 "laravel",
                 "voyager"
             ],
-            "time": "2017-08-22T20:55:38+00:00"
+            "time": "2017-09-22T16:10:18+00:00"
         },
         {
             "name": "laravel/dusk",
@@ -1734,16 +1734,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.12",
+            "version": "v5.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "74f5831447817034838b3539c644303036df3d8e"
+                "reference": "bfbe20d32ee9f98c89df852847827407a5127be4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/74f5831447817034838b3539c644303036df3d8e",
-                "reference": "74f5831447817034838b3539c644303036df3d8e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/bfbe20d32ee9f98c89df852847827407a5127be4",
+                "reference": "bfbe20d32ee9f98c89df852847827407a5127be4",
                 "shasum": ""
             },
             "require": {
@@ -1862,7 +1862,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-09-22T13:33:35+00:00"
+            "time": "2017-09-24T19:09:38+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2736,16 +2736,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.7.0",
+            "version": "3.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "0ef23d1b10cf1bc576e9d865a7e9c47982c5715e"
+                "reference": "45cffe822057a09e05f7bd09ec5fb88eeecd2334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/0ef23d1b10cf1bc576e9d865a7e9c47982c5715e",
-                "reference": "0ef23d1b10cf1bc576e9d865a7e9c47982c5715e",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/45cffe822057a09e05f7bd09ec5fb88eeecd2334",
+                "reference": "45cffe822057a09e05f7bd09ec5fb88eeecd2334",
                 "shasum": ""
             },
             "require": {
@@ -2814,7 +2814,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2017-08-04T13:39:04+00:00"
+            "time": "2017-09-22T20:46:04+00:00"
         },
         {
             "name": "seld/cli-prompt",
@@ -3111,16 +3111,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "6.1.0",
+            "version": "6.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "9ec87b9e5bc73116e95038ba2df92618d60b14f1"
+                "reference": "8b384b74edd13b16562cda194eff6613d82df8c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/9ec87b9e5bc73116e95038ba2df92618d60b14f1",
-                "reference": "9ec87b9e5bc73116e95038ba2df92618d60b14f1",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/8b384b74edd13b16562cda194eff6613d82df8c5",
+                "reference": "8b384b74edd13b16562cda194eff6613d82df8c5",
                 "shasum": ""
             },
             "require": {
@@ -3185,7 +3185,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2017-09-19T21:30:51+00:00"
+            "time": "2017-09-24T12:17:03+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -5285,16 +5285,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.3.0",
+            "version": "6.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9501bab711403a1ab5b8378a8adb4ec3db3debdb"
+                "reference": "c0ff817b36a827e64bf5f57bc72278150cf30a77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9501bab711403a1ab5b8378a8adb4ec3db3debdb",
-                "reference": "9501bab711403a1ab5b8378a8adb4ec3db3debdb",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c0ff817b36a827e64bf5f57bc72278150cf30a77",
+                "reference": "c0ff817b36a827e64bf5f57bc72278150cf30a77",
                 "shasum": ""
             },
             "require": {
@@ -5365,7 +5365,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-08-04T05:20:39+00:00"
+            "time": "2017-09-24T07:25:54+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
