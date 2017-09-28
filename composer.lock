@@ -328,16 +328,16 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "5.2.2",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "e166ff32984fc807a99ad2496f50adc92e2bcbdb"
+                "reference": "7d5808a2b713617bb138750adf79bafe37ef0f12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/e166ff32984fc807a99ad2496f50adc92e2bcbdb",
-                "reference": "e166ff32984fc807a99ad2496f50adc92e2bcbdb",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/7d5808a2b713617bb138750adf79bafe37ef0f12",
+                "reference": "7d5808a2b713617bb138750adf79bafe37ef0f12",
                 "shasum": ""
             },
             "require": {
@@ -374,7 +374,7 @@
                 }
             ],
             "description": "Create charts for laravel using different charts libraries",
-            "time": "2017-09-26T16:52:24+00:00"
+            "time": "2017-09-28T11:13:22+00:00"
         },
         {
             "name": "consoletvs/support",
@@ -2364,16 +2364,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.10",
+            "version": "v2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d"
+                "reference": "5da4d3c796c275c55f057af5a643ae297d96b4d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
-                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/5da4d3c796c275c55f057af5a643ae297d96b4d8",
+                "reference": "5da4d3c796c275c55f057af5a643ae297d96b4d8",
                 "shasum": ""
             },
             "require": {
@@ -2408,7 +2408,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-13T16:27:32+00:00"
+            "time": "2017-09-27T21:40:39+00:00"
         },
         {
             "name": "phpoffice/phpexcel",
