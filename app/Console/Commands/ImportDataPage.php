@@ -21,18 +21,18 @@ class ImportDataPage extends Command
     protected $description = 'Command description';
 
     /**
-     * Array of spreadsheet types
+     * Array of spreadsheet types.
      *
      * @var array
      */
     protected $sheetType = [
-        "RAD",
-        "FLUORO",
-        "MAMMO_HOL",
-        "MAMMO_SIE",
-        "SBB",
+        'RAD',
+        'FLUORO',
+        'MAMMO_HOL',
+        'MAMMO_SIE',
+        'SBB',
     ];
-    
+
     /**
      * Create a new command instance.
      *
