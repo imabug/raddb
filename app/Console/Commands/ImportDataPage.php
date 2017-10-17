@@ -33,16 +33,16 @@ class ImportDataPage extends Command
     protected $description = 'Import the DataPage from a spreadsheet';
 
     /**
-     * Array of spreadsheet types
+     * Array of spreadsheet types.
      *
      * @var array
      */
     protected $sheetType = [
-        "RAD",
-        "FLUORO",
-        "MAMMO_HOL",
-        "MAMMO_SIE",
-        "SBB",
+        'RAD',
+        'FLUORO',
+        'MAMMO_HOL',
+        'MAMMO_SIE',
+        'SBB',
     ];
 
     /**
@@ -70,13 +70,13 @@ class ImportDataPage extends Command
 
         // Read the spreadsheet
         $this->info('Loading spreadsheet');
-        switch($ext) {
-            case "xls":
-            case "xlsx":
-            case "xlsm":
+        switch ($ext) {
+            case 'xls':
+            case 'xlsx':
+            case 'xlsm':
                 $reader = \PHPExcel_IOFactory::createReader('Excel2007');
                 break;
-            case "ods":
+            case 'ods':
                 $reader = \PHPExcel_IOFactory::createReader('OOCalc');
                 break;
             default:
@@ -86,6 +86,5 @@ class ImportDataPage extends Command
         $spreadsheet = $reader->load($spreadsheetFile);
         $genFormSheet = $spreadsheet->getSheetByName('DataPage');
         $this->info('Spreadsheet loaded.');
-
     }
 }
