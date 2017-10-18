@@ -25,13 +25,13 @@ class CreateHvlDataTable extends Migration
         });
 
         // Add foreign key constraints
-        Schema::disableForeignKeyConstraints();
-        Schema::table('hvldata', function (Blueprint $table) {
-            $table->foreign('survey_id')->references('id')->on('testdates');
-            $table->foreign('machine_id')->references('id')->on('machines');
-            $table->foreign('tube_id')->references('id')->on('tubes');
-        });
-        Schema::enableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
+        // Schema::table('hvldata', function (Blueprint $table) {
+        //     $table->foreign('survey_id')->references('id')->on('testdates');
+        //     $table->foreign('machine_id')->references('id')->on('machines');
+        //     $table->foreign('tube_id')->references('id')->on('tubes');
+        // });
+        // Schema::enableForeignKeyConstraints();
     }
 
     /**

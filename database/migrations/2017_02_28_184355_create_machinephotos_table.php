@@ -21,7 +21,7 @@ class CreateMachinephotosTable extends Migration
             $table->text('photo_description')->nullable();
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('machine_id')->references('id')->on('machines');
+            // $table->foreign('machine_id')->references('id')->on('machines');
         });
     }
 
