@@ -3,6 +3,7 @@
 namespace RadDB\Console\Commands;
 
 use PHPExcel;
+use PhpParser\Node\Expr\Cast\Array_;
 use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\HVLData;
@@ -58,7 +59,7 @@ class ImportDataPage extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return bool
      */
     public function handle()
     {
@@ -71,21 +72,123 @@ class ImportDataPage extends Command
         // Read the spreadsheet
         $this->info('Loading spreadsheet');
         switch($ext) {
-            case "xls":
-            case "xlsx":
-            case "xlsm":
+            case 'xls':
+            case 'xlsx':
+            case 'xlsm':
                 $reader = \PHPExcel_IOFactory::createReader('Excel2007');
                 break;
-            case "ods":
+            case 'ods':
                 $reader = \PHPExcel_IOFactory::createReader('OOCalc');
                 break;
             default:
+                $this->error('Invalid spreadsheet format. File must be an Excel or LibreOffice spreadsheet.');
                 break;
         }
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load($spreadsheetFile);
-        $genFormSheet = $spreadsheet->getSheetByName('DataPage');
-        $this->info('Spreadsheet loaded.');
+        if (is_null($dataPage = $spreadsheet->getSheetByName('DataPage'))) {
+            $this->error('Spreadsheet has no DataPage');
+
+            return false;
+        }
+        else {
+            $this->info('Spreadsheet loaded.');
+        }
+
+        // Figure out what type of spreadsheet has been loaded
+        $sheetType = $dataPage->getCell('B1')->getCalculatedValue();
+
+        // Pull info for this spreadsheet from the database
+        // Get the survey ID
+        $surveyId = (int) $dataPage->getCell('B2')->getCalculatedValue();
+        $survey = TestDate::find($surveyId);
+        $machine = Machine::find($survey->machine_id);
+        $sheetData = [
+            'surveyId' => $surveyId,
+            'survey' => $survey,
+            'machine' => $machine,
+            'tubes' => Tube::where('machine_id', $machine->id)->active()->get(),
+        ];
+
+        switch($sheetType) {
+            case 'RAD':
+                $status = $this->importRad($sheetData, $dataPage);
+                break;
+            case 'FLUORO':
+                $status = $this->importFluoro($sheetData, $dataPage);
+                break;
+            case 'MAMMO_HOL':
+                $status = $this->importMammoHol($sheetData, $dataPage);
+                break;
+            case 'MAMMO_SIE':
+                $status = $this->importMammoSie($sheetData, $dataPage);
+                break;
+            case 'SBB':
+                $status = $this->importSbb($sheetdata, $dataPage);
+                break;
+            default:
+                $this->error('Not a compatible spreadsheet');
+                break;
+        }
+
+        return $status;
+    }
+
+    /**
+     * Import radiography spreadsheet data
+     *
+     * @param array $sheetData
+     * @param array $dataPage
+     * @return bool
+     */
+    private function importRad($sheetData, $dataPage)
+    {
+
+    }
+
+    /**
+     * Import fluoroscopy spreadsheet data
+     *
+     * @param array $sheetData
+     * @param array $dataPage
+     * @return bool
+     */
+    private function importFluoro($sheetData, $dataPage)
+    {
+
+    }
+
+    /**
+     * Import mammography (Hologic) spreadsheet data
+     *
+     * @param array $sheetData
+     * @param array $dataPage
+     * @return bool
+     */
+    private function importMammoHol($sheetData, $dataPage)
+    {
+
+    }
+    /**
+     * Import mammography (Siemens) spreadsheet data
+     *
+     * @param array $sheetData
+     * @param array $dataPage
+     * @return bool
+     */
+    private function importMammoSie($sheetData, $dataPage)
+    {
+
+    }
+    /**
+     * Import SBB spreadsheet data
+     *
+     * @param array $sheetData
+     * @param array $dataPage
+     * @return bool
+     */
+    private function importSbb($sheetData, $dataPage)
+    {
 
     }
 }
