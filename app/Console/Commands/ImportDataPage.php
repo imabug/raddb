@@ -3,7 +3,6 @@
 namespace RadDB\Console\Commands;
 
 use PHPExcel;
-use PhpParser\Node\Expr\Cast\Array_;
 use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\HVLData;
@@ -16,6 +15,7 @@ use RadDB\CollimatorData;
 use RadDB\RadiationOutput;
 use RadDB\MachineSurveyData;
 use Illuminate\Console\Command;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class ImportDataPage extends Command
 {
@@ -34,16 +34,16 @@ class ImportDataPage extends Command
     protected $description = 'Import the DataPage from a spreadsheet';
 
     /**
-     * Array of spreadsheet types
+     * Array of spreadsheet types.
      *
      * @var array
      */
     protected $sheetType = [
-        "RAD",
-        "FLUORO",
-        "MAMMO_HOL",
-        "MAMMO_SIE",
-        "SBB",
+        'RAD',
+        'FLUORO',
+        'MAMMO_HOL',
+        'MAMMO_SIE',
+        'SBB',
     ];
 
     /**
@@ -71,7 +71,7 @@ class ImportDataPage extends Command
 
         // Read the spreadsheet
         $this->info('Loading spreadsheet');
-        switch($ext) {
+        switch ($ext) {
             case 'xls':
             case 'xlsx':
             case 'xlsm':
@@ -90,8 +90,7 @@ class ImportDataPage extends Command
             $this->error('Spreadsheet has no DataPage');
 
             return false;
-        }
-        else {
+        } else {
             $this->info('Spreadsheet loaded.');
         }
 
@@ -110,7 +109,7 @@ class ImportDataPage extends Command
             'tubes' => Tube::where('machine_id', $machine->id)->active()->get(),
         ];
 
-        switch($sheetType) {
+        switch ($sheetType) {
             case 'RAD':
                 $status = $this->importRad($sheetData, $dataPage);
                 break;
@@ -135,7 +134,7 @@ class ImportDataPage extends Command
     }
 
     /**
-     * Import radiography spreadsheet data
+     * Import radiography spreadsheet data.
      *
      * @param array $sheetData
      * @param array $dataPage
@@ -143,11 +142,10 @@ class ImportDataPage extends Command
      */
     private function importRad($sheetData, $dataPage)
     {
-
     }
 
     /**
-     * Import fluoroscopy spreadsheet data
+     * Import fluoroscopy spreadsheet data.
      *
      * @param array $sheetData
      * @param array $dataPage
@@ -155,11 +153,10 @@ class ImportDataPage extends Command
      */
     private function importFluoro($sheetData, $dataPage)
     {
-
     }
 
     /**
-     * Import mammography (Hologic) spreadsheet data
+     * Import mammography (Hologic) spreadsheet data.
      *
      * @param array $sheetData
      * @param array $dataPage
@@ -167,10 +164,10 @@ class ImportDataPage extends Command
      */
     private function importMammoHol($sheetData, $dataPage)
     {
-
     }
+
     /**
-     * Import mammography (Siemens) spreadsheet data
+     * Import mammography (Siemens) spreadsheet data.
      *
      * @param array $sheetData
      * @param array $dataPage
@@ -178,10 +175,10 @@ class ImportDataPage extends Command
      */
     private function importMammoSie($sheetData, $dataPage)
     {
-
     }
+
     /**
-     * Import SBB spreadsheet data
+     * Import SBB spreadsheet data.
      *
      * @param array $sheetData
      * @param array $dataPage
@@ -189,6 +186,5 @@ class ImportDataPage extends Command
      */
     private function importSbb($sheetData, $dataPage)
     {
-
     }
 }
