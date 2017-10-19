@@ -44,8 +44,8 @@ class CTDailyQCRecord extends Model
     /*
      * Relationships
      */
-     public function machine()
-     {
-         return $this->belongsTo('RadDB\Machine');
-     }
+    public function machine()
+    {
+        return $this->belongsTo('RadDB\Machine');
+    }
 }
