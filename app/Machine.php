@@ -148,6 +148,7 @@ class Machine extends Model
     {
         return $this->hasMany('RadDB\CTDailyQCRecord');
     }
+
     /*
      * Scopes
      */
