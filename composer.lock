@@ -1733,16 +1733,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.17",
+            "version": "v5.5.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "3a16d196bd8d2b7761c9b0060a30a3687c3ea201"
+                "reference": "1cc21baac11551377734b8c17ead17db4c34fe21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3a16d196bd8d2b7761c9b0060a30a3687c3ea201",
-                "reference": "3a16d196bd8d2b7761c9b0060a30a3687c3ea201",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1cc21baac11551377734b8c17ead17db4c34fe21",
+                "reference": "1cc21baac11551377734b8c17ead17db4c34fe21",
                 "shasum": ""
             },
             "require": {
@@ -1783,7 +1783,6 @@
                 "illuminate/database": "self.version",
                 "illuminate/encryption": "self.version",
                 "illuminate/events": "self.version",
-                "illuminate/exception": "self.version",
                 "illuminate/filesystem": "self.version",
                 "illuminate/hashing": "self.version",
                 "illuminate/http": "self.version",
@@ -1861,7 +1860,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-10-17T12:19:22+00:00"
+            "time": "2017-10-19T12:50:26+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2662,16 +2661,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.12",
+            "version": "v0.8.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "1502354ebc70d59d8e3a87c325b0eb78a79da25b"
+                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/1502354ebc70d59d8e3a87c325b0eb78a79da25b",
-                "reference": "1502354ebc70d59d8e3a87c325b0eb78a79da25b",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
+                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
                 "shasum": ""
             },
             "require": {
@@ -2731,7 +2730,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-10-14T17:14:13+00:00"
+            "time": "2017-10-19T06:13:20+00:00"
         },
         {
             "name": "ramsey/uuid",
