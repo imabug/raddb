@@ -22,6 +22,8 @@ class CreateCtdailyqcTable extends Migration
             $table->float('water_sd', 4, 1)->nullable();
             $table->boolean('artifacts')->nullable();
             $table->text('notes')->nullable();
+            $table->index(['machine_id', 'id']);
+            $table->index('qcdate');
             $table->softDeletes();
             $table->timestamps();
         });
