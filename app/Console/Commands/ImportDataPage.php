@@ -34,16 +34,16 @@ class ImportDataPage extends Command
     protected $description = 'Import the DataPage from a spreadsheet';
 
     /**
-     * Array of spreadsheet types
+     * Array of spreadsheet types.
      *
      * @var array
      */
     protected $sheetType = [
-        "RAD",
-        "FLUORO",
-        "MAMMO_HOL",
-        "MAMMO_SIE",
-        "SBB",
+        'RAD',
+        'FLUORO',
+        'MAMMO_HOL',
+        'MAMMO_SIE',
+        'SBB',
     ];
 
     /**
@@ -71,7 +71,7 @@ class ImportDataPage extends Command
 
         // Read the spreadsheet
         $this->info('Loading spreadsheet');
-        switch($ext) {
+        switch ($ext) {
             case 'xls':
             case 'xlsx':
             case 'xlsm':
@@ -91,8 +91,7 @@ class ImportDataPage extends Command
             $this->error('Spreadsheet has no DataPage');
 
             return false;
-        }
-        else {
+        } else {
             $this->info('Spreadsheet loaded.');
         }
 
@@ -103,7 +102,7 @@ class ImportDataPage extends Command
         // Get the survey ID
         $surveyId = (int) $dataPage->getCell('B2')->getCalculatedValue();
 
-        switch($sheetType) {
+        switch ($sheetType) {
             case 'RAD':
                 $status = $this->importRad($surveyId, $dataPage);
                 break;
@@ -130,7 +129,7 @@ class ImportDataPage extends Command
     /**
      * Ask for tube ID.
      * There might be more than one tube associated with this machine, so
-     * ask the user which tube to associate this spreadsheet with
+     * ask the user which tube to associate this spreadsheet with.
      *
      * @param int $machineId
      * @return int $tubeId
@@ -145,6 +144,7 @@ class ImportDataPage extends Command
                 $choice .= $t->id.': '.$t->insert_sn."\n";
                 $tubeChoice[] = $t->id;
             }
+
             return $this->choice($choice, $tubeChoice);
         } else {
             return $tubes->first()->id;
@@ -152,7 +152,7 @@ class ImportDataPage extends Command
     }
 
     /**
-     * Import radiography spreadsheet data
+     * Import radiography spreadsheet data.
      *
      * @param int $surveyId
      * @param array $dataPage
@@ -396,7 +396,7 @@ class ImportDataPage extends Command
     }
 
     /**
-     * Import fluoroscopy spreadsheet data
+     * Import fluoroscopy spreadsheet data.
      *
      * @param int $surveyID
      * @param array $dataPage
@@ -604,7 +604,7 @@ class ImportDataPage extends Command
     }
 
     /**
-     * Import mammography (Hologic) spreadsheet data
+     * Import mammography (Hologic) spreadsheet data.
      *
      * @param int $surveyID
      * @param array $dataPage
@@ -612,10 +612,10 @@ class ImportDataPage extends Command
      */
     private function importMammoHol($surveyId, $dataPage)
     {
-
     }
+
     /**
-     * Import mammography (Siemens) spreadsheet data
+     * Import mammography (Siemens) spreadsheet data.
      *
      * @param int $surveyID
      * @param array $dataPage
@@ -623,10 +623,10 @@ class ImportDataPage extends Command
      */
     private function importMammoSie($surveyId, $dataPage)
     {
-
     }
+
     /**
-     * Import SBB spreadsheet data
+     * Import SBB spreadsheet data.
      *
      * @param int $surveyID
      * @param array $dataPage
@@ -634,6 +634,5 @@ class ImportDataPage extends Command
      */
     private function importSbb($surveyId, $dataPage)
     {
-
     }
 }
