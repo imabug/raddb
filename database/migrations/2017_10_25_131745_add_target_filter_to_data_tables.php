@@ -20,7 +20,7 @@ class AddTargetFilterToDataTables extends Migration
         Schema::table('hvldata', function (Blueprint $table) {
             $table->string('target_filter', 6)->nullable()->after('tube_id');
         });
-        Schema::table('radoutput', function (Blueprint $table) {
+        Schema::table('radoutputdata', function (Blueprint $table) {
             $table->string('target_filter', 6)->nullable()->after('tube_id');
         });
         Schema::table('radsurveydata', function (Blueprint $table) {
@@ -38,7 +38,7 @@ class AddTargetFilterToDataTables extends Migration
         Schema::table('hvldata', function (Blueprint $table) {
             $table->dropColumn('target_filter');
         });
-        Schema::table('radoutput', function (Blueprint $table) {
+        Schema::table('radoutputdata', function (Blueprint $table) {
             $table->dropColumn('target_filter');
         });
         Schema::table('radsurveydata', function (Blueprint $table) {
