@@ -378,23 +378,24 @@
         },
         {
             "name": "consoletvs/support",
-            "version": "2.3.4",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Support.git",
-                "reference": "e974a770d4c7357182340e8e875e4b1616f154a4"
+                "reference": "b60c87f54f05d5ec2853b19062b6475e04abce79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Support/zipball/e974a770d4c7357182340e8e875e4b1616f154a4",
-                "reference": "e974a770d4c7357182340e8e875e4b1616f154a4",
+                "url": "https://api.github.com/repos/ConsoleTVs/Support/zipball/b60c87f54f05d5ec2853b19062b6475e04abce79",
+                "reference": "b60c87f54f05d5ec2853b19062b6475e04abce79",
                 "shasum": ""
             },
             "require": {
                 "ext-bcmath": "*",
                 "illuminate/support": "5.*",
                 "intervention/image": "^2.4",
-                "php": ">=7.0"
+                "php": ">=7.0",
+                "umpirsky/language-list": "^1.0"
             },
             "type": "library",
             "extra": {
@@ -420,7 +421,7 @@
                 }
             ],
             "description": "ConsoleTVs support library",
-            "time": "2017-10-16T15:14:08+00:00"
+            "time": "2017-11-03T13:51:40+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2318,16 +2319,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a"
+                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1e8e1a30e1352f118feff1a8481066ddc2f234a",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/08131e7ff29de6bb9f12275c7d35df71f25f4d89",
+                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89",
                 "shasum": ""
             },
             "require": {
@@ -2365,7 +2366,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-09-02T17:10:46+00:00"
+            "time": "2017-11-04T11:48:34+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2668,16 +2669,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.13",
+            "version": "v0.8.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d"
+                "reference": "91e53c16560bdb8b9592544bb38429ae00d6baee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
-                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/91e53c16560bdb8b9592544bb38429ae00d6baee",
+                "reference": "91e53c16560bdb8b9592544bb38429ae00d6baee",
                 "shasum": ""
             },
             "require": {
@@ -2737,7 +2738,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-10-19T06:13:20+00:00"
+            "time": "2017-11-04T16:06:49+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -3166,16 +3167,16 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "5.1.0",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "ed7e63804defe791b3cb4387275cb913921dd99c"
+                "reference": "b22f4bd526b2a99896479068c6930b784305f058"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/ed7e63804defe791b3cb4387275cb913921dd99c",
-                "reference": "ed7e63804defe791b3cb4387275cb913921dd99c",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/b22f4bd526b2a99896479068c6930b784305f058",
+                "reference": "b22f4bd526b2a99896479068c6930b784305f058",
                 "shasum": ""
             },
             "require": {
@@ -3235,7 +3236,7 @@
                 "laravel-backup",
                 "spatie"
             ],
-            "time": "2017-11-01T16:23:17+00:00"
+            "time": "2017-11-03T15:16:15+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
@@ -4321,16 +4322,16 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "0e27b4935d195ef5537fd3aacd0a1aafa7a1e3df"
+                "reference": "aec0519380d323e6d6a4257441954525955b8a08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/0e27b4935d195ef5537fd3aacd0a1aafa7a1e3df",
-                "reference": "0e27b4935d195ef5537fd3aacd0a1aafa7a1e3df",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/aec0519380d323e6d6a4257441954525955b8a08",
+                "reference": "aec0519380d323e6d6a4257441954525955b8a08",
                 "shasum": ""
             },
             "require": {
@@ -4383,7 +4384,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2017-10-24T13:57:24+00:00"
+            "time": "2017-11-04T04:19:22+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -4482,6 +4483,41 @@
                 "web"
             ],
             "time": "2016-07-25T15:51:55+00:00"
+        },
+        {
+            "name": "umpirsky/language-list",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/umpirsky/language-list.git",
+                "reference": "3079e6ea4d908bd9f8e0b07477c7d8ad3b1d8c8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/umpirsky/language-list/zipball/3079e6ea4d908bd9f8e0b07477c7d8ad3b1d8c8c",
+                "reference": "3079e6ea4d908bd9f8e0b07477c7d8ad3b1d8c8c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "symfony/locale": "^2.7|^3.0",
+                "umpirsky/list-generator": "^1.1"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saša Stamenković",
+                    "email": "umpirsky@gmail.com"
+                }
+            ],
+            "description": "List of all languages with names and ISO 639-1 codes in all languages and all data formats.",
+            "time": "2016-09-26T14:12:15+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -5168,16 +5204,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "5.2.2",
+            "version": "5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "8ed1902a57849e117b5651fc1a5c48110946c06b"
+                "reference": "8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/8ed1902a57849e117b5651fc1a5c48110946c06b",
-                "reference": "8ed1902a57849e117b5651fc1a5c48110946c06b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d",
+                "reference": "8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d",
                 "shasum": ""
             },
             "require": {
@@ -5186,7 +5222,7 @@
                 "php": "^7.0",
                 "phpunit/php-file-iterator": "^1.4.2",
                 "phpunit/php-text-template": "^1.2.1",
-                "phpunit/php-token-stream": "^1.4.11 || ^2.0",
+                "phpunit/php-token-stream": "^2.0",
                 "sebastian/code-unit-reverse-lookup": "^1.0.1",
                 "sebastian/environment": "^3.0",
                 "sebastian/version": "^2.0.1",
@@ -5228,7 +5264,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-08-03T12:40:43+00:00"
+            "time": "2017-11-03T13:47:33+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
