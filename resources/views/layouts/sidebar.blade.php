@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">RadDB</a>
-    </div>
+        </button>
+        <a class="navbar-brand" href="#">RadDB</a>
+    </div><!--/.nav-header -->
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav nav-tabs">
             <li role="presentation" class="active"><a href="{{ route('index') }}">Home</a></li>
@@ -80,6 +80,6 @@
                 </ul>
             </li>
         </ul>
-    </div>
-    </div>
+    </div><!--/.nav-collapse -->
+    </div><!--/.container -->
 </nav>
