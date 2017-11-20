@@ -179,66 +179,47 @@ class ImportDataPage extends Command
 
         $this->info('Saving data for survey ID: '.$surveyId);
 
-        // SID Indicator accuracy error.
-        $sidAccuracyError = $dataPage->getCell('G484')->getCalculatedValue();
-
-        // Average illumination in lux.
-        $avgIllumination = $dataPage->getCell('I504')->getCalculatedValue();
-
-        // Beam alignment error.
-        $beamAlignmentErr = $dataPage->getCell('G537')->getCalculatedValue();
-
-        // Radiation/film center distance (cm) for table bucky.
-        $radFilmCenterTable = $dataPage->getCell('C547')->getCalculatedValue();
-
-        // Radiation/film center distance (cm) for wall bucky.
-        $radFilmCenterWall = $dataPage->getCell('C608')->getCalculatedValue();
-
-        // Large/small focal spot resolution (lp/mm)
-        $lfsResolution = $dataPage->getCell('I672')->getCalculatedValue();
-        $sfsResolution = $dataPage->getCell('I677')->getCalculatedValue();
-
         // Insert the above data into the radsurveydata table
         $radSurvey = new RadSurveyData();
         $radSurvey->survey_id = $survey->id;
         $radSurvey->machine_id = $machine->id;
         $radSurvey->tube_id = $tubeId;
-        $radSurvey->sid_accuracy_error = (float) $sidAccuracyError;
-        $radSurvey->avg_illumination = (float) $avgIllumination;
-        $radSurvey->beam_alignment_error = (float) $beamAlignmentErr;
-        $radSurvey->rad_film_center_table = (float) $radFilmCenterTable;
-        $radSurvey->rad_film_center_wall = (float) $radFilmCenterWall;
-        $radSurvey->lfs_resolution = (float) $lfsResolution;
-        $radSurvey->sfs_resolution = (float) $sfsResolution;
+        $radSurvey->sid_accuracy_error = (float) $dataPage->getCell('B3')->getCalculatedValue();
+        $radSurvey->avg_illumination = (float) $dataPage->getCell('B4')->getCalculatedValue();
+        $radSurvey->beam_alignment_error = (float) $dataPage->getCell('B5')->getCalculatedValue();
+        $radSurvey->rad_film_center_table = (float) $dataPage->getCell('B6')->getCalculatedValue();
+        $radSurvey->rad_film_center_wall = (float) $dataPage->getCell('B7')->getCalculatedValue();
+        $radSurvey->lfs_resolution = (float) $dataPage->getCell('B8')->getCalculatedValue();
+        $radSurvey->sfs_resolution = (float) $dataPage->getCell('B9')->getCalculatedValue();
         $radSurvey->save();
         $machineSurveyData->radsurveydata = 1;
         $this->info('Radiographic survey data saved.');
 
         // Table bucky SID (cm)
-        $tableSid = $dataPage->getCell('K543')->getCalculatedValue();
+        $tableSid = $dataPage->getCell('B10')->getCalculatedValue();
 
         // Wall bucky SID (cm)
-        $wallSid = $dataPage->getCell('C615')->getCalculatedValue();
+        $wallSid = $dataPage->getCell('B11')->getCalculatedValue();
 
         // Field size indicators, radiation/light field alignment for table bucky
         // First pair - Indicated field size
         // Second pair - Radiation field
         // Third pair - Light field
-        $collimationTable = $dataPage->rangeToArray('B554:G555', null, true, false, false);
+        $collimationTable = $dataPage->rangeToArray('B12:G13', null, true, false, false);
 
         // Automatic collimation (PBL) for table bucky
         // First pair - Cassette size (cm)
-        $pblTable = $dataPage->rangeToArray('B575:C576', null, true, false, false);
+        $pblTable = $dataPage->rangeToArray('B14:C15', null, true, false, false);
 
         // Field size indicators, radiation/light field alignment for wall bucky
         // First pair - Indicated field size
         // Second pair - Radiation field
         // Third pair - Light field
-        $collimationWall = $dataPage->rangeToArray('D615:I616', null, true, false, false);
+        $collimationWall = $dataPage->rangeToArray('B16:G17', null, true, false, false);
 
         // Automatic collimation (PBL) for wall bucky
         // First pair - Cassette size (cm)
-        $pblWall = $dataPage->rangeToArray('C637:D638', null, true, false, false);
+        $pblWall = $dataPage->rangeToArray('B18:C19', null, true, false, false);
 
         // Insert the collimator data into the database
         // Table receptor
@@ -284,8 +265,8 @@ class ImportDataPage extends Command
 
         // Large/small focus radiation output
         // Measured kV, mGy/mAs @ 40"
-        $lfsOutput = $dataPage->rangeToArray('D1394:E1401', null, true, false, false);
-        $sfsOutput = $dataPage->rangeToArray('D1407:E1412', null, true, false, false);
+        $lfsOutput = $dataPage->rangeToArray('B20:C27', null, true, false, false);
+        $sfsOutput = $dataPage->rangeToArray('B28:C33', null, true, false, false);
 
         // Insert the radiation output data into tthe database
         foreach ($lfsOutput as $l) {
@@ -321,12 +302,12 @@ class ImportDataPage extends Command
         $this->info('Small focus output data saved.');
 
         // Load generator test data from cells AA688:BB747 into an array
-        $genTestData = $dataPage->rangeToArray('AA688:BB747', null, true, false, true);
+        $genTestData = $dataPage->rangeToArray('B34:AC93', null, true, false, true);
 
         // Insert generator test data into the database
         foreach ($genTestData as $genDataRow) {
             // Skip the record if it's empty
-            if (empty($genDataRow['AZ'])) {
+            if (empty($genDataRow['AA'])) {
                 continue;
             }
 
@@ -334,12 +315,12 @@ class ImportDataPage extends Command
             $genData->survey_id = $survey->id;
             $genData->machine_id = $machine->id;
             $genData->tube_id = $tubeId;
-            $genData->kv_set = (int) $genDataRow['AA'];
-            $genData->ma_set = (int) $genDataRow['AB'];
-            $genData->time_set = (float) $genDataRow['AC'];
-            $genData->mas_set = (float) $genDataRow['AD'];
-            $genData->add_filt = (float) $genDataRow['AF'];
-            $genData->distance = (int) $genDataRow['AH'];
+            $genData->kv_set = (int) $genDataRow['B'];
+            $genData->ma_set = (int) $genDataRow['C'];
+            $genData->time_set = (float) $genDataRow['D'];
+            $genData->mas_set = (float) $genDataRow['E'];
+            $genData->add_filt = (float) $genDataRow['G'];
+            $genData->distance = (int) $genDataRow['I'];
 
             // Take the linearity, accuracy, beam quality and reproducibility flags
             // from the table and pack it all into one byte
@@ -350,18 +331,18 @@ class ImportDataPage extends Command
             //
             // Columns 17-19,21 contain 1 if the current row is used for that
             // particular measurement, and 0 if it isn't.
-            $genData->use_flags = (($genDataRow['AQ'] ? self::LINEARITY : 0) |
-                                   ($genDataRow['AR'] ? self::ACCURACY : 0) |
-                                   ($genDataRow['AS'] ? self::BEAMQUAL : 0) |
-                                   ($genDataRow['AU'] ? self::REPRO : 0));
+            $genData->use_flags = (($genDataRow['R'] ? self::LINEARITY : 0) |
+                                   ($genDataRow['S'] ? self::ACCURACY : 0) |
+                                   ($genDataRow['T'] ? self::BEAMQUAL : 0) |
+                                   ($genDataRow['V'] ? self::REPRO : 0));
 
             // Columns 24-28 contain the actual measurements.
             // If there is no value, then store null
-            $genData->kv_avg = empty($genDataRow['AX']) ? null : (float) $genDataRow['AX'];
-            $genData->kv_max = empty($genDataRow['AY']) ? null : (float) $genDataRow['AY'];
-            $genData->kv_eff = empty($genDataRow['AZ']) ? null : (float) $genDataRow['AZ'];
-            $genData->exp_time = empty($genDataRow['BA']) ? null : (float) $genDataRow['BA'];
-            $genData->exposure = empty($genDataRow['BB']) ? null : (float) $genDataRow['BB'];
+            $genData->kv_avg = empty($genDataRow['Y']) ? null : (float) $genDataRow['AX'];
+            $genData->kv_max = empty($genDataRow['Z']) ? null : (float) $genDataRow['AY'];
+            $genData->kv_eff = empty($genDataRow['AA']) ? null : (float) $genDataRow['AZ'];
+            $genData->exp_time = empty($genDataRow['AB']) ? null : (float) $genDataRow['BA'];
+            $genData->exposure = empty($genDataRow['AC']) ? null : (float) $genDataRow['BB'];
 
             // Store the data
             $genData->save();
@@ -371,7 +352,7 @@ class ImportDataPage extends Command
 
         // Get half value layer data
         // kV, HVL (mm Al)
-        $hvls = $dataPage->rangeToArray('Y969:Z978', null, true, false, false);
+        $hvls = $dataPage->rangeToArray('B94:C103', null, true, false, false);
 
         // Insert the HVL data into the database
         foreach ($hvls as $hvl) {
@@ -398,7 +379,7 @@ class ImportDataPage extends Command
     /**
      * Import fluoroscopy spreadsheet data.
      *
-     * @param int $surveyID
+     * @param int $surveyId
      * @param array $dataPage
      * @return bool
      */
@@ -417,6 +398,7 @@ class ImportDataPage extends Command
         $tubeId = $this->askTubeId($machine->id);
 
         // Check to see if there's data for $surveyId in the hvldata table already
+        // Should come up with a better way of doing this
         if (HVLData::where('survey_id', $surveyId)->where('tube_id', $tubeId)->get()->count() > 0) {
             $this->error('Fluoro data already exists for this survey. Terminating.');
 
@@ -425,36 +407,32 @@ class ImportDataPage extends Command
 
         $this->info('Saving data for survey ID: '.$surveyId);
 
-        // Get HVL
-        $hvl = (float) $dataPage->getCell('X174')->getCalculatedValue();
-        $hvl_kv = (float) $dataPage->getCell('F137')->getCalculatedValue();
-
         // Store HVL to database
         $HVLData = new HVLData();
         $HVLData->survey_id = $survey->id;
         $HVLData->machine_id = $machine->id;
         $HVLData->tube_id = $tubeId;
-        $HVLData->kv = (float) $hvl_kv;
-        $HVLData->hvl = (float) $hvl;
+        $HVLData->kv = (float) $dataPage->getCell('B3')->getCalculatedValue();
+        $HVLData->hvl = (float) $dataPage->getCell('C3')->getCalculatedValue();
         $HVLData->save();
         $machineSurveyData->hvldata = 1;
         $this->info('HVL data saved.');
 
         // Get image receptor field sizes (cm)
-        $fieldSizes[0] = $dataPage->getCell('O110')->getCalculatedValue();
-        $fieldSizes[1] = $dataPage->getCell('O113')->getCalculatedValue();
-        $fieldSizes[2] = $dataPage->getCell('O116')->getCalculatedValue();
-        $fieldSizes[3] = $dataPage->getCell('O119')->getCalculatedValue();
-        $fieldSizes[4] = $dataPage->getCell('O122')->getCalculatedValue();
+        $fieldSizes[0] = $dataPage->getCell('B4')->getCalculatedValue();
+        $fieldSizes[1] = $dataPage->getCell('B5')->getCalculatedValue();
+        $fieldSizes[2] = $dataPage->getCell('B6')->getCalculatedValue();
+        $fieldSizes[3] = $dataPage->getCell('B7')->getCalculatedValue();
+        $fieldSizes[4] = $dataPage->getCell('B8')->getCalculatedValue();
 
         // Get dose modes
-        $doseModes[0] = $dataPage->getCell('Q107')->getCalculatedValue();
-        $doseModes[1] = $dataPage->getCell('T107')->getCalculatedValue();
-        $doseModes[2] = $dataPage->getCell('W107')->getCalculatedValue();
+        $doseModes[0] = $dataPage->getCell('B9')->getCalculatedValue();
+        $doseModes[1] = $dataPage->getCell('B10')->getCalculatedValue();
+        $doseModes[2] = $dataPage->getCell('B11')->getCalculatedValue();
 
         // Get fluoro entrance exposure rate data
-        $entranceExpRate = $dataPage->rangeToArray('P109:Y123', null, true, false, false);
-        $maxEntraceExpRate = $dataPage->rangeToArray('Q124:Y124', null, true, false, false);
+        $entranceExpRate = $dataPage->rangeToArray('B12:K26', null, true, false, false);
+        $maxEntraceExpRate = $dataPage->rangeToArray('B27:K27', null, true, false, false);
 
         // Store entrance exposure rate data
         $j = 0;
@@ -503,12 +481,28 @@ class ImportDataPage extends Command
         $machineSurveyData->maxfluorodata = 1;
         $this->info('Max fluoro entrance exposure rates saved.');
 
+        // Get receptor entrance exposure rate data
+        $receptorEntrExpRate = $dataPage->rangeToArray('B47:F61', null, true, false, false);
+        foreach ($receptorEntrExpRate as $k => $r) {
+            $ree = new ReceptorEntranceExp();
+            $ree->survey_id = $survey->id;
+            $ree->machine_id = $machine->id;
+            $ree->tube_id = $tubeId;
+            $ree->field_size = $r[0];
+            $ree->mode = $doseModes[floor($k / 5)];
+            $ree->kv = $r[1];
+            $ree->ma = $r[2];
+            $ree->rate = $r[4];
+            $ree->save();
+        }
+        $this->info('Fluoro recepter entrance exposure rates stored.');
+
         // Get pulse/digital entrance exposure rate data
-        $doseModes[0] = $dataPage->getCell('Q139')->getCalculatedValue();
-        $doseModes[1] = $dataPage->getCell('T139')->getCalculatedValue();
-        $doseModes[2] = $dataPage->getCell('W139')->getCalculatedValue();
-        $entranceExpRate = $dataPage->rangeToArray('P141:Y155', null, true, false, false);
-        $maxEntraceExpRate = $dataPage->rangeToArray('Q156:Y156', null, true, false, false);
+        $doseModes[0] = $dataPage->getCell('B28')->getCalculatedValue();
+        $doseModes[1] = $dataPage->getCell('B29')->getCalculatedValue();
+        $doseModes[2] = $dataPage->getCell('B30')->getCalculatedValue();
+        $entranceExpRate = $dataPage->rangeToArray('B31:K45', null, true, false, false);
+        $maxEntraceExpRate = $dataPage->rangeToArray('B46:K46', null, true, false, false);
 
         // Store entrance exposure rate data
         $j = 0;
@@ -555,34 +549,8 @@ class ImportDataPage extends Command
         $max->save();
         $this->info('Max pulse/digital entrance exposure rates saved.');
 
-        // Get dose modes
-        $doseModes[0] = $dataPage->getCell('Q107')->getCalculatedValue();
-        $doseModes[1] = $dataPage->getCell('T107')->getCalculatedValue();
-        $doseModes[2] = $dataPage->getCell('W107')->getCalculatedValue();
-
-        // Get receptor entrance exposure rate data
-        $receptorEntrExpRate = $dataPage->rangeToArray('P190:T204', null, true, false, false);
-        foreach ($receptorEntrExpRate as $k => $r) {
-            $ree = new ReceptorEntranceExp();
-            $ree->survey_id = $survey->id;
-            $ree->machine_id = $machine->id;
-            $ree->tube_id = $tubeId;
-            $ree->field_size = $r[0];
-            $ree->mode = $doseModes[floor($k / 5)];
-            $ree->kv = $r[1];
-            $ree->ma = $r[2];
-            $ree->rate = $r[4];
-            $ree->save();
-        }
-        $this->info('Fluoro recepter entrance exposure rates stored.');
-
         // Get pulse/digital entrance exposure rate data
-        $doseModes[0] = $dataPage->getCell('Q139')->getCalculatedValue();
-        $doseModes[1] = $dataPage->getCell('T139')->getCalculatedValue();
-        $doseModes[2] = $dataPage->getCell('W139')->getCalculatedValue();
-
-        // Get pulse/digital entrance exposure rate data
-        $receptorEntrExpRate = $dataPage->rangeToArray('P214:T228', null, true, false, false);
+        $receptorEntrExpRate = $dataPage->rangeToArray('B62:F76', null, true, false, false);
         foreach ($receptorEntrExpRate as $k => $r) {
             $ree = new ReceptorEntranceExp();
             $ree->survey_id = $survey->id;
@@ -606,7 +574,7 @@ class ImportDataPage extends Command
     /**
      * Import mammography (Hologic) spreadsheet data.
      *
-     * @param int $surveyID
+     * @param int $surveyId
      * @param array $dataPage
      * @return bool
      */
@@ -617,7 +585,7 @@ class ImportDataPage extends Command
     /**
      * Import mammography (Siemens) spreadsheet data.
      *
-     * @param int $surveyID
+     * @param int $surveyId
      * @param array $dataPage
      * @return bool
      */
@@ -628,7 +596,7 @@ class ImportDataPage extends Command
     /**
      * Import SBB spreadsheet data.
      *
-     * @param int $surveyID
+     * @param int $surveyId
      * @param array $dataPage
      * @return bool
      */
