@@ -568,6 +568,24 @@ class ImportDataPage extends Command
 
         $machineSurveyData->save();
 
+        // Process data for Leeds test objects
+        // Leeds TO.N3
+        $to_n3 = $dataPage->rangeToArray('B77:C81', null, true, false, false);
+        foreach ($to_n3 as $k=>$r) {
+        }
+
+        // Leeds TO.10
+        $to_10 = $dataPage->rangeToArray('B82:L94', null, true, false, false);
+        foreach ($to_10 as $k=>$r) {
+
+        }
+
+        // Resolution
+        $res = $dataPage->rangeToArray('B95:C99', null, true, false, false);
+        foreach ($res as $k=>$r) {
+
+        }
+
         return true;
     }
 
