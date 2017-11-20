@@ -15,11 +15,17 @@ class CreateFluoroResolutionTable extends Migration
     {
         Schema::create('fluoro_resolution', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('survey_id')->unsigned()->nullable();
+            $table->integer('machine_id')->unsigned()->nullable();
+            $table->integer('tube_id')->unsigned()->nullable();
             $table->float('field_size')->nullable();
             $table->float('resolution')->nullable()->comment('Resolution in lp/mm');
             $table->softDeletes();
             $table->timestamps();
             $table->index('field_size');
+            $table->index('survey_id');
+            $table->index('machine_id');
+            $table->index('tube_id');
         });
     }
 

@@ -15,6 +15,9 @@ class CreateLeedsTo10CdTable extends Migration
     {
         Schema::create('leeds_to10_cd', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('survey_id')->unsigned()->nullable();
+            $table->integer('machine_id')->unsigned()->nullable();
+            $table->integer('tube_id')->unsigned()->nullable();
             $table->float('field_size')->nullable();
             $table->float('A')->nullable();
             $table->float('B')->nullable();
@@ -31,6 +34,9 @@ class CreateLeedsTo10CdTable extends Migration
             $table->softDeletes();
             $table->timestamps();
             $table->index('field_size');
+            $table->index('survey_id');
+            $table->index('machine_id');
+            $table->index('tube_id');
         });
         DB::statement("ALTER TABLE `leeds_to10_cd` comment 'Leeds TO.10 low contrast detail'");
     }
