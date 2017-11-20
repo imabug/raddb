@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateLeedsN3Table extends Migration
 {
     /**
-     * Run the migrations.
+     * Table for Leeds N3 ttest object data.
      *
      * @return void
      */

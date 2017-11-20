@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateLeedsTo10CdTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Table for Leeds TO.10 contrast detail data.
      *
      * @return void
      */

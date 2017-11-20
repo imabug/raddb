@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateFluoroResolutionTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Table for Huttner Type 18 resolution pattern data.
      *
      * @return void
      */

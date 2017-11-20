@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateLeedsTo10TiTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Table for Leeds TO.10 threshold index data.
      *
      * @return void
      */
