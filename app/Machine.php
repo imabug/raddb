@@ -149,6 +149,26 @@ class Machine extends Model
         return $this->hasMany('RadDB\CTDailyQCRecord');
     }
 
+    public function leedsN3()
+    {
+        return $this->hasMany('RadDB\LeedsN3');
+    }
+
+    public function leedsTo10Ci()
+    {
+        return $this->hasMany('RadDB\LeedsTO10CD');
+    }
+
+    public function leedsTo10Ti()
+    {
+        return $this->hasMany('RadDB\LeedsTO10TI');
+    }
+
+    public function fluoroResolution()
+    {
+        return $this->hasMany('RadDB\FluoroResolution');
+    }
+
     /*
      * Scopes
      */
@@ -235,7 +255,6 @@ class Machine extends Model
      * Scope function to return test equipment.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $id
      */
     public function scopeTestEquipment($query)
     {

@@ -99,6 +99,26 @@ class Tube extends Model
         return $this->hasMany('RadDB\ReceptorEntranceExp');
     }
 
+    public function leedsN3()
+    {
+        return $this->hasMany('RadDB\LeedsN3');
+    }
+
+    public function leedsTo10Ci()
+    {
+        return $this->hasMany('RadDB\LeedsTO10CD');
+    }
+
+    public function leedsTo10Ti()
+    {
+        return $this->hasMany('RadDB\LeedsTO10TI');
+    }
+
+    public function fluoroResolution()
+    {
+        return $this->hasMany('RadDB\FluoroResolution');
+    }
+
     /*
      * Scopes
      */

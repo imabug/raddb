@@ -123,6 +123,26 @@ class TestDate extends Model
         return $this->hasOne('RadDB\MachineSurveyData', 'id', 'id');
     }
 
+    public function leedsN3()
+    {
+        return $this->hasMany('RadDB\LeedsN3');
+    }
+
+    public function leedsTo10Ci()
+    {
+        return $this->hasMany('RadDB\LeedsTO10CD');
+    }
+
+    public function leedsTo10Ti()
+    {
+        return $this->hasMany('RadDB\LeedsTO10TI');
+    }
+
+    public function fluoroResolution()
+    {
+        return $this->hasMany('RadDB\FluoroResolution');
+    }
+
     /*
      * Scopes
      */
@@ -158,7 +178,7 @@ class TestDate extends Model
      * Scope function to return a specific $id.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int id
+     * @param int $id
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -171,7 +191,7 @@ class TestDate extends Model
      * Scope function to return test dates for a specific type of test.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $yr
+     * @param int $id
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
