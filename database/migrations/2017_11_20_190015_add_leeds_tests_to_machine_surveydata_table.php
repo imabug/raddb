@@ -16,8 +16,8 @@ class AddLeedsTestsToMachineSurveydataTable extends Migration
         // Add flags for Leeds test objects test data
         Schema::table('machine_surveydata', function (Blueprint $table) {
             $table->boolean('leeds_n3')->nullable()->default(null)->after('receptorentrance');
-            $table->boolean('leeds_to10')->nullable()->default(null);
-            $table->boolean('fluoro_resolution')->nullable()->default(null);
+            $table->boolean('leeds_to10')->nullable()->default(null)->before('deleted_at');
+            $table->boolean('fluoro_resolution')->nullable()->default(null)->before('deleted_at');
         });
     }
 
