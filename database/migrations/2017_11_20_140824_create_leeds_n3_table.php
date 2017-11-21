@@ -15,11 +15,11 @@ class CreateLeedsN3Table extends Migration
     {
         Schema::create('leeds_n3', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('survey_id')->unsigned()->nullable();
-            $table->integer('machine_id')->unsigned()->nullable();
-            $table->integer('tube_id')->unsigned()->nullable();
-            $table->float('field_size')->nullable();
-            $table->float('n3')->nullable()->comment('Leeds N3 low contrast');
+            $table->integer('survey_id')->unsigned()->nullable()->default(null);
+            $table->integer('machine_id')->unsigned()->nullable()->default(null);
+            $table->integer('tube_id')->unsigned()->nullable()->default(null);
+            $table->float('field_size')->nullable()->default(null);
+            $table->float('n3')->nullable()->default(null)->comment('Leeds N3 low contrast');
             $table->softDeletes();
             $table->timestamps();
             $table->index('field_size');

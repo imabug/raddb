@@ -15,22 +15,22 @@ class CreateLeedsTo10CdTable extends Migration
     {
         Schema::create('leeds_to10_cd', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('survey_id')->unsigned()->nullable();
-            $table->integer('machine_id')->unsigned()->nullable();
-            $table->integer('tube_id')->unsigned()->nullable();
-            $table->float('field_size')->nullable();
-            $table->float('A')->nullable();
-            $table->float('B')->nullable();
-            $table->float('C')->nullable();
-            $table->float('D')->nullable();
-            $table->float('E')->nullable();
-            $table->float('F')->nullable();
-            $table->float('G')->nullable();
-            $table->float('H')->nullable();
-            $table->float('J')->nullable();
-            $table->float('K')->nullable();
-            $table->float('L')->nullable();
-            $table->float('M')->nullable();
+            $table->integer('survey_id')->unsigned()->nullable()->default(null);
+            $table->integer('machine_id')->unsigned()->nullable()->default(null);
+            $table->integer('tube_id')->unsigned()->nullable()->default(null);
+            $table->float('field_size')->nullable()->default(null);
+            $table->float('A')->nullable()->default(null);
+            $table->float('B')->nullable()->default(null);
+            $table->float('C')->nullable()->default(null);
+            $table->float('D')->nullable()->default(null);
+            $table->float('E')->nullable()->default(null);
+            $table->float('F')->nullable()->default(null);
+            $table->float('G')->nullable()->default(null);
+            $table->float('H')->nullable()->default(null);
+            $table->float('J')->nullable()->default(null);
+            $table->float('K')->nullable()->default(null);
+            $table->float('L')->nullable()->default(null);
+            $table->float('M')->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
             $table->index('field_size');
