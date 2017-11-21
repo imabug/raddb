@@ -577,13 +577,11 @@ class ImportDataPage extends Command
         // Leeds TO.10
         $to_10 = $dataPage->rangeToArray('B82:L94', null, true, false, false);
         foreach ($to_10 as $k=>$r) {
-
         }
 
         // Resolution
         $res = $dataPage->rangeToArray('B95:C99', null, true, false, false);
         foreach ($res as $k=>$r) {
-
         }
 
         return true;
