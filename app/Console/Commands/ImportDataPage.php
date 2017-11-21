@@ -6,13 +6,17 @@ use PHPExcel;
 use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\HVLData;
+use RadDB\LeedsN3;
 use RadDB\Machine;
 use RadDB\TestDate;
 use RadDB\FluoroData;
+use RadDB\LeedsTO10CD;
+use RadDB\LeedsTO10TI;
 use RadDB\MaxFluoroData;
 use RadDB\RadSurveyData;
 use RadDB\CollimatorData;
 use RadDB\RadiationOutput;
+use RadDB\FluoroResolution;
 use RadDB\MachineSurveyData;
 use RadDB\ReceptorEntranceExp;
 use Illuminate\Console\Command;
@@ -566,25 +570,54 @@ class ImportDataPage extends Command
         $machineSurveyData->receptorentrance = 1;
         $this->info('Pulse/digital receptor entrance exposure rates stored.');
 
-        $machineSurveyData->save();
-
         // Process data for Leeds test objects
         // Leeds TO.N3
+        // Column B - field size
+        // Column C - N3 low contrast resolution
         $to_n3 = $dataPage->rangeToArray('B77:C81', null, true, false, false);
         foreach ($to_n3 as $k=>$r) {
+            $n3 = new LeedsN3();
+            $n3->survey_id = $survey->id;
+            $n3->machine_id = $machine->id;
+            $n3->tube_id = $tubeId;
+            $n3->field_size = $r[0];
+            $n3->n3 = $r[1];
+            $n3->save();
         }
+        $machineSurveyData->leeds_n3 = 1;
 
         // Leeds TO.10
-        $to_10 = $dataPage->rangeToArray('B82:L94', null, true, false, false);
+        // Col B - field size
+        $to_10 = $dataPage->rangeToArray('B82:N92', null, true, false, false);
         foreach ($to_10 as $k=>$r) {
+            $to10_cd = new LeedsTO10CD();
+            $to10_ti = new LeedsTO10TI();
+            $to10_cd->survey_id = $survey->id;
+            $to10_cd->machine_id = $machine->id;
+            $to10_cd->tube_id = $tubeId;
+            $to10_ti->survey_id = $survey->id;
+            $to10_ti->machine_id = $machine->id;
+            $to10_ti->tube_id = $tubeId;
 
         }
+        $machineSurveyData->leeds_to10 = 1;
 
         // Resolution
-        $res = $dataPage->rangeToArray('B95:C99', null, true, false, false);
+        // Col B - Field size
+        // Col C - Resolution (lp/mm)
+        $res = $dataPage->rangeToArray('B93:C97', null, true, false, false);
         foreach ($res as $k=>$r) {
-
+            $fluoroRes = new FluoroResolution();
+            $fluoroRes->survey_id = $survey->id;
+            $fluoroRes->machine_id = $machine->id;
+            $fluoroRes->tube_id = $tubeId;
+            $fluoroRes->field_size = $r[0];
+            $fluoroRes->resolution = $r[1];
+            $fluoroRes->save();
         }
+        $machineSurveyData->fluoro_resolution = 1;
+
+        $machineSurveyData->save();
 
         return true;
     }
