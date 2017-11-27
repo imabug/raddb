@@ -598,7 +598,6 @@ class ImportDataPage extends Command
             $to10_ti->survey_id = $survey->id;
             $to10_ti->machine_id = $machine->id;
             $to10_ti->tube_id = $tubeId;
-
         }
         $machineSurveyData->leeds_to10 = 1;
 
