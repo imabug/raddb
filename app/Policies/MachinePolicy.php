@@ -40,6 +40,17 @@ class MachinePolicy
     }
 
     /**
+     * Determine whether the user can store machines.
+     *
+     * @param \RadDB\User $user
+     * @return mixed
+     */
+    public function store(User $user)
+    {
+        return Auth::check();
+    }
+    
+    /**
      * Determine whether the user can update the machine.
      *
      * @param  \RadDB\User  $user

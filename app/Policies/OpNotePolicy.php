@@ -40,6 +40,17 @@ class OpNotePolicy
     }
 
     /**
+     * Determine whether the user can store opNotes.
+     *
+     * @param \RadDB\User $user
+     * @return mixed
+     */
+    public function store(User $user)
+    {
+        return Auth:;check();
+    }
+    
+    /**
      * Determine whether the user can update the opNote.
      *
      * @param  \RadDB\User  $user
