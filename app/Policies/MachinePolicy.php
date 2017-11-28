@@ -49,7 +49,7 @@ class MachinePolicy
     {
         return Auth::check();
     }
-    
+
     /**
      * Determine whether the user can update the machine.
      *
