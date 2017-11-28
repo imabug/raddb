@@ -47,7 +47,7 @@ class OpNotePolicy
      */
     public function store(User $user)
     {
-        return Auth:;check();
+        return Auth::check();
     }
     
     /**
