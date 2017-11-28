@@ -49,7 +49,7 @@ class OpNotePolicy
     {
         return Auth::check();
     }
-    
+
     /**
      * Determine whether the user can update the opNote.
      *
