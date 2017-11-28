@@ -40,7 +40,7 @@ class MachinePhotoPolicy
     }
 
     /**
-     * Determine whether the user can store machinePhoto
+     * Determine whether the user can store machinePhoto.
      *
      * @param \RadDB\User $user
      * @return mixed
@@ -49,7 +49,7 @@ class MachinePhotoPolicy
     {
         return Auth::check();
     }
-    
+
     /**
      * Determine whether the user can update the machinePhoto.
      *
