@@ -15,15 +15,15 @@ class CreateMachineSurveydataTable extends Migration
     {
         Schema::create('machine_surveydata', function (Blueprint $table) {
             $table->integer('id')->unsigned();
-            $table->integer('machine_id')->unsigned()->nullable();
-            $table->boolean('gendata')->nullable();
-            $table->boolean('collimatordata')->nullable();
-            $table->boolean('radoutputdata')->nullable();
-            $table->boolean('radsurveydata')->nullable();
-            $table->boolean('hvldata')->nullable();
-            $table->boolean('fluorodata')->nullable();
-            $table->boolean('maxfluorodata')->nullable();
-            $table->boolean('receptorentrance')->nullable();
+            $table->integer('machine_id')->unsigned()->nullable()->default(null);
+            $table->boolean('gendata')->nullable()->default(null);
+            $table->boolean('collimatordata')->nullable()->default(null);
+            $table->boolean('radoutputdata')->nullable()->default(null);
+            $table->boolean('radsurveydata')->nullable()->default(null);
+            $table->boolean('hvldata')->nullable()->default(null);
+            $table->boolean('fluorodata')->nullable()->default(null);
+            $table->boolean('maxfluorodata')->nullable()->default(null);
+            $table->boolean('receptorentrance')->nullable()->default(null);
             $table->index(['machine_id', 'id']);
             $table->softDeletes();
             $table->timestamps();
