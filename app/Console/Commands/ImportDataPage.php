@@ -488,6 +488,10 @@ class ImportDataPage extends Command
         // Get receptor entrance exposure rate data
         $receptorEntrExpRate = $dataPage->rangeToArray('B47:F61', null, true, false, false);
         foreach ($receptorEntrExpRate as $k => $r) {
+            // Skip the record if it's empty
+            if (empty($r[0])) {
+                continue;
+            }
             $ree = new ReceptorEntranceExp();
             $ree->survey_id = $survey->id;
             $ree->machine_id = $machine->id;
@@ -556,6 +560,10 @@ class ImportDataPage extends Command
         // Get pulse/digital entrance exposure rate data
         $receptorEntrExpRate = $dataPage->rangeToArray('B62:F76', null, true, false, false);
         foreach ($receptorEntrExpRate as $k => $r) {
+            // Skip the record if it's empty
+            if (empty($r[0])) {
+                continue;
+            }
             $ree = new ReceptorEntranceExp();
             $ree->survey_id = $survey->id;
             $ree->machine_id = $machine->id;
@@ -576,6 +584,10 @@ class ImportDataPage extends Command
         // Column C - N3 low contrast resolution
         $to_n3 = $dataPage->rangeToArray('B77:C81', null, true, false, false);
         foreach ($to_n3 as $k=>$r) {
+            // Skip the record if it's empty
+            if (empty($r[0])) {
+                continue;
+            }
             $n3 = new LeedsN3();
             $n3->survey_id = $survey->id;
             $n3->machine_id = $machine->id;
@@ -586,18 +598,57 @@ class ImportDataPage extends Command
         }
         $machineSurveyData->leeds_n3 = 1;
 
-        // Leeds TO.10
-        // Col B - field size
-        $to_10 = $dataPage->rangeToArray('B82:N92', null, true, false, false);
-        foreach ($to_10 as $k=>$r) {
+        // Leeds TO.10 CD
+        // Col B - field size.
+        // Rows 83-87 - Contrast detail.
+        $to_10 = $dataPage->rangeToArray('B83:N87', null, true, false, false);
+        foreach ($to_10 as $cd) {
+            // Skip the record if it's empty
+            if (empty($cd['B'])) {
+                continue;
+            }
             $to10_cd = new LeedsTO10CD();
-            $to10_ti = new LeedsTO10TI();
             $to10_cd->survey_id = $survey->id;
             $to10_cd->machine_id = $machine->id;
             $to10_cd->tube_id = $tubeId;
+            $to10_cd->field_size = $cd['B'];
+            $to10_cd->A = empty($cd['C']) ? null : (float) $cd['C'];
+            $to10_cd->B = empty($cd['D']) ? null : (float) $cd['D'];
+            $to10_cd->C = empty($cd['E']) ? null : (float) $cd['E'];
+            $to10_cd->D = empty($cd['F']) ? null : (float) $cd['F'];
+            $to10_cd->E = empty($cd['G']) ? null : (float) $cd['G'];
+            $to10_cd->F = empty($cd['H']) ? null : (float) $cd['H'];
+            $to10_cd->G = empty($cd['I']) ? null : (float) $cd['I'];
+            $to10_cd->H = empty($cd['J']) ? null : (float) $cd['J'];
+            $to10_cd->J = empty($cd['K']) ? null : (float) $cd['K'];
+            $to10_cd->K = empty($cd['L']) ? null : (float) $cd['L'];
+            $to10_cd->L = empty($cd['M']) ? null : (float) $cd['M'];
+            $to10_cd->M = empty($cd['N']) ? null : (float) $cd['N'];
+        }
+        // Rows 88-92 - Threshold index.
+        $to_10 = $dataPage->rangeToArray('B88:N92', null, true, false, false);
+        foreach ($to_10 as $ti) {
+            // Skip the record if it's empty
+            if (empty($ti['B'])) {
+                continue;
+            }
+            $to10_ti = new LeedsTO10TI();
             $to10_ti->survey_id = $survey->id;
             $to10_ti->machine_id = $machine->id;
             $to10_ti->tube_id = $tubeId;
+            $to10_ti->field_size = $ti['B'];
+            $to10_ti->A = empty($ti['C']) ? null : (float) $ti['C'];
+            $to10_ti->B = empty($ti['D']) ? null : (float) $ti['D'];
+            $to10_ti->C = empty($ti['E']) ? null : (float) $ti['E'];
+            $to10_ti->D = empty($ti['F']) ? null : (float) $ti['F'];
+            $to10_ti->E = empty($ti['G']) ? null : (float) $ti['G'];
+            $to10_ti->F = empty($ti['H']) ? null : (float) $ti['H'];
+            $to10_ti->G = empty($ti['I']) ? null : (float) $ti['I'];
+            $to10_ti->H = empty($ti['J']) ? null : (float) $ti['J'];
+            $to10_ti->J = empty($ti['K']) ? null : (float) $ti['K'];
+            $to10_ti->K = empty($ti['L']) ? null : (float) $ti['L'];
+            $to10_ti->L = empty($ti['M']) ? null : (float) $ti['M'];
+            $to10_ti->M = empty($ti['N']) ? null : (float) $ti['N'];
         }
         $machineSurveyData->leeds_to10 = 1;
 
@@ -606,6 +657,10 @@ class ImportDataPage extends Command
         // Col C - Resolution (lp/mm)
         $res = $dataPage->rangeToArray('B93:C97', null, true, false, false);
         foreach ($res as $k=>$r) {
+            // Skip the record if it's empty
+            if (empty($r[0])) {
+                continue;
+            }
             $fluoroRes = new FluoroResolution();
             $fluoroRes->survey_id = $survey->id;
             $fluoroRes->machine_id = $machine->id;
