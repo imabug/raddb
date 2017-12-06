@@ -123,7 +123,7 @@ class ImportDataPage extends Command
                 $status = $this->importSbb($surveyId, $dataPage);
                 break;
             default:
-                $this->error('Not a compatible spreadsheet');
+                $status = $this->error('Not a compatible spreadsheet');
                 break;
         }
 
