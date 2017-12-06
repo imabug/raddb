@@ -18,13 +18,22 @@ class AddTargetFilterToDataTables extends Migration
         // Field will contain data in the format "target/filter"
         // i.e. Mo/Mo, Mo/Rh, W/Rh, etc.
         Schema::table('hvldata', function (Blueprint $table) {
-            $table->string('target_filter', 6)->nullable()->after('tube_id');
+            $table->string('target_filter', 6)
+                ->nullable()->default(null)
+                ->comment('Target/filter combo for mammo units')
+                ->after('tube_id');
         });
         Schema::table('radoutputdata', function (Blueprint $table) {
-            $table->string('target_filter', 6)->nullable()->after('tube_id');
+            $table->string('target_filter', 6)
+                ->nullable()->default(null)
+                ->comment('Target/filter combo for mammo units')
+                ->after('tube_id');
         });
         Schema::table('radsurveydata', function (Blueprint $table) {
-            $table->string('target_filter', 6)->nullable()->after('tube_id');
+            $table->string('target_filter', 6)
+                ->nullable()->default(null)
+                ->comment('Target/filter combo for mammo units')
+                ->after('tube_id');
         });
     }
 
