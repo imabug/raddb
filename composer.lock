@@ -1744,16 +1744,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.23",
+            "version": "v5.5.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cb8ec95aa65fbaeeaf94026c8a9f04bb97c13777"
+                "reference": "06135405bb1f736dac5e9529ed1541fc446c9c0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cb8ec95aa65fbaeeaf94026c8a9f04bb97c13777",
-                "reference": "cb8ec95aa65fbaeeaf94026c8a9f04bb97c13777",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/06135405bb1f736dac5e9529ed1541fc446c9c0f",
+                "reference": "06135405bb1f736dac5e9529ed1541fc446c9c0f",
                 "shasum": ""
             },
             "require": {
@@ -1873,7 +1873,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-12-04T14:19:08+00:00"
+            "time": "2017-12-07T01:28:21+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -4397,16 +4397,16 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "v1.0.8",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "b8bfb3c71632f808a2f4902cb68d308e1dbc8f42"
+                "reference": "62fb624d1fde0a3bbc364619858b5004ec8e991c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/b8bfb3c71632f808a2f4902cb68d308e1dbc8f42",
-                "reference": "b8bfb3c71632f808a2f4902cb68d308e1dbc8f42",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/62fb624d1fde0a3bbc364619858b5004ec8e991c",
+                "reference": "62fb624d1fde0a3bbc364619858b5004ec8e991c",
                 "shasum": ""
             },
             "require": {
@@ -4459,7 +4459,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2017-11-27T18:33:58+00:00"
+            "time": "2017-12-07T18:33:31+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
