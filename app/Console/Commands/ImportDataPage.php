@@ -74,15 +74,16 @@ class ImportDataPage extends Command
         list($file, $ext) = explode('.', $spreadsheetFile);
 
         // Read the spreadsheet
-        $this->info('Loading spreadsheet');
         switch ($ext) {
             case 'xls':
             case 'xlsx':
             case 'xlsm':
                 $reader = \PHPExcel_IOFactory::createReader('Excel2007');
+                $this->info('Loading Excel spreadsheet');
                 break;
             case 'ods':
                 $reader = \PHPExcel_IOFactory::createReader('OOCalc');
+                $this->info('Loading OpenOffice/LibreOffice spreadsheet');
                 break;
             default:
                 $this->error('Invalid spreadsheet format. File must be an Excel or LibreOffice spreadsheet.');
@@ -102,24 +103,27 @@ class ImportDataPage extends Command
         // Figure out what type of spreadsheet has been loaded
         $sheetType = $dataPage->getCell('B1')->getCalculatedValue();
 
-        // Pull info for this spreadsheet from the database
         // Get the survey ID
         $surveyId = (int) $dataPage->getCell('B2')->getCalculatedValue();
-
         switch ($sheetType) {
             case 'RAD':
+                $this->info('Processing ' . $sheetType. ' spreadsheet');
                 $status = $this->importRad($surveyId, $dataPage);
                 break;
             case 'FLUORO':
+                $this->info('Processing ' . $sheetType. ' spreadsheet');
                 $status = $this->importFluoro($surveyId, $dataPage);
                 break;
             case 'MAMMO_HOL':
+                $this->info('Processing ' . $sheetType. ' spreadsheet');
                 $status = $this->importMammoHol($surveyId, $dataPage);
                 break;
             case 'MAMMO_SIE':
+                $this->info('Processing ' . $sheetType. ' spreadsheet');
                 $status = $this->importMammoSie($surveyId, $dataPage);
                 break;
             case 'SBB':
+                $this->info('Processing ' . $sheetType. ' spreadsheet');
                 $status = $this->importSbb($surveyId, $dataPage);
                 break;
             default:
@@ -441,6 +445,11 @@ class ImportDataPage extends Command
         // Store entrance exposure rate data
         $j = 0;
         foreach ($fieldSizes as $fs) {
+            if (empty($fs) || $fs == 0) {
+                // Skip if field size is empty or 0
+                continue;
+            }
+
             for ($i = 0; $i <= 2; $i++) {
                 $fluoroData = new FluoroData();
                 $fluoroData->survey_id = $survey->id;
@@ -449,17 +458,17 @@ class ImportDataPage extends Command
                 $fluoroData->field_size = $fs;
                 $fluoroData->atten = $entranceExpRate[$i][0];
                 $fluoroData->dose1_mode = $doseModes[0];
-                $fluoroData->dose1_kv = round($entranceExpRate[$j + $i][1], 1);
-                $fluoroData->dose1_ma = round($entranceExpRate[$j + $i][2], 1);
-                $fluoroData->dose1_rate = round($entranceExpRate[$j + $i][3], 3);
+                $fluoroData->dose1_kv = (float) round($entranceExpRate[$j + $i][1], 1);
+                $fluoroData->dose1_ma = (float) round($entranceExpRate[$j + $i][2], 1);
+                $fluoroData->dose1_rate = (float) round($entranceExpRate[$j + $i][3], 3);
                 $fluoroData->dose2_mode = $doseModes[1];
-                $fluoroData->dose2_kv = round($entranceExpRate[$j + $i][4], 1);
-                $fluoroData->dose2_ma = round($entranceExpRate[$j + $i][5], 1);
-                $fluoroData->dose2_rate = round($entranceExpRate[$j + $i][6], 3);
+                $fluoroData->dose2_kv = (float) round($entranceExpRate[$j + $i][4], 1);
+                $fluoroData->dose2_ma = (float) round($entranceExpRate[$j + $i][5], 1);
+                $fluoroData->dose2_rate = (float) round($entranceExpRate[$j + $i][6], 3);
                 $fluoroData->dose3_mode = $doseModes[2];
-                $fluoroData->dose3_kv = round($entranceExpRate[$j + $i][7], 1);
-                $fluoroData->dose3_ma = round($entranceExpRate[$j + $i][8], 1);
-                $fluoroData->dose3_rate = round($entranceExpRate[$j + $i][9], 3);
+                $fluoroData->dose3_kv = (float) round($entranceExpRate[$j + $i][7], 1);
+                $fluoroData->dose3_ma = (float) round($entranceExpRate[$j + $i][8], 1);
+                $fluoroData->dose3_rate = (float) round($entranceExpRate[$j + $i][9], 3);
                 $fluoroData->save();
             }
             $j += 3;
@@ -472,15 +481,15 @@ class ImportDataPage extends Command
         $max->survey_id = $survey->id;
         $max->machine_id = $machine->id;
         $max->tube_id = $tubeId;
-        $max->dose1_kv = round($maxEntraceExpRate[0][0], 1);
-        $max->dose1_ma = round($maxEntraceExpRate[0][1], 1);
-        $max->dose1_rate = round($maxEntraceExpRate[0][2], 3);
-        $max->dose2_kv = round($maxEntraceExpRate[0][3], 1);
-        $max->dose2_ma = round($maxEntraceExpRate[0][4], 1);
-        $max->dose2_rate = round($maxEntraceExpRate[0][5], 3);
-        $max->dose3_kv = round($maxEntraceExpRate[0][6], 1);
-        $max->dose3_ma = round($maxEntraceExpRate[0][7], 1);
-        $max->dose3_rate = round($maxEntraceExpRate[0][8], 3);
+        $max->dose1_kv = (float) round($maxEntraceExpRate[0][0], 1);
+        $max->dose1_ma = (float) round($maxEntraceExpRate[0][1], 1);
+        $max->dose1_rate = (float) round($maxEntraceExpRate[0][2], 3);
+        $max->dose2_kv = (float) round($maxEntraceExpRate[0][3], 1);
+        $max->dose2_ma = (float) round($maxEntraceExpRate[0][4], 1);
+        $max->dose2_rate = (float) round($maxEntraceExpRate[0][5], 3);
+        $max->dose3_kv = (float) round($maxEntraceExpRate[0][6], 1);
+        $max->dose3_ma = (float) round($maxEntraceExpRate[0][7], 1);
+        $max->dose3_rate = (float) round($maxEntraceExpRate[0][8], 3);
         $max->save();
         $machineSurveyData->maxfluorodata = 1;
         $this->info('Max fluoro entrance exposure rates saved.');
@@ -523,17 +532,17 @@ class ImportDataPage extends Command
                 $fluoroData->field_size = $fs;
                 $fluoroData->atten = $entranceExpRate[$i][0];
                 $fluoroData->dose1_mode = $doseModes[0];
-                $fluoroData->dose1_kv = round($entranceExpRate[$j + $i][1], 1);
-                $fluoroData->dose1_ma = round($entranceExpRate[$j + $i][2], 1);
-                $fluoroData->dose1_rate = round($entranceExpRate[$j + $i][3], 3);
+                $fluoroData->dose1_kv = (float) round($entranceExpRate[$j + $i][1], 1);
+                $fluoroData->dose1_ma = (float) round($entranceExpRate[$j + $i][2], 1);
+                $fluoroData->dose1_rate = (float) round($entranceExpRate[$j + $i][3], 3);
                 $fluoroData->dose2_mode = $doseModes[1];
-                $fluoroData->dose2_kv = round($entranceExpRate[$j + $i][4], 1);
-                $fluoroData->dose2_ma = round($entranceExpRate[$j + $i][5], 1);
-                $fluoroData->dose2_rate = round($entranceExpRate[$j + $i][6], 3);
+                $fluoroData->dose2_kv = (float) round($entranceExpRate[$j + $i][4], 1);
+                $fluoroData->dose2_ma = (float) round($entranceExpRate[$j + $i][5], 1);
+                $fluoroData->dose2_rate = (float) round($entranceExpRate[$j + $i][6], 3);
                 $fluoroData->dose3_mode = $doseModes[2];
-                $fluoroData->dose3_kv = round($entranceExpRate[$j + $i][7], 1);
-                $fluoroData->dose3_ma = round($entranceExpRate[$j + $i][8], 1);
-                $fluoroData->dose3_rate = round($entranceExpRate[$j + $i][9], 3);
+                $fluoroData->dose3_kv = (float) round($entranceExpRate[$j + $i][7], 1);
+                $fluoroData->dose3_ma = (float) round($entranceExpRate[$j + $i][8], 1);
+                $fluoroData->dose3_rate = (float) round($entranceExpRate[$j + $i][9], 3);
                 $fluoroData->save();
             }
             $j += 3;
@@ -545,15 +554,15 @@ class ImportDataPage extends Command
         $max->survey_id = $survey->id;
         $max->machine_id = $machine->id;
         $max->tube_id = $tubeId;
-        $max->dose1_kv = round($maxEntraceExpRate[0][0], 1);
-        $max->dose1_ma = round($maxEntraceExpRate[0][1], 1);
-        $max->dose1_rate = round($maxEntraceExpRate[0][2], 3);
-        $max->dose2_kv = round($maxEntraceExpRate[0][3], 1);
-        $max->dose2_ma = round($maxEntraceExpRate[0][4], 1);
-        $max->dose2_rate = round($maxEntraceExpRate[0][5], 3);
-        $max->dose3_kv = round($maxEntraceExpRate[0][6], 1);
-        $max->dose3_ma = round($maxEntraceExpRate[0][7], 1);
-        $max->dose3_rate = round($maxEntraceExpRate[0][8], 3);
+        $max->dose1_kv = (float) round($maxEntraceExpRate[0][0], 1);
+        $max->dose1_ma = (float) round($maxEntraceExpRate[0][1], 1);
+        $max->dose1_rate = (float) round($maxEntraceExpRate[0][2], 3);
+        $max->dose2_kv = (float) round($maxEntraceExpRate[0][3], 1);
+        $max->dose2_ma = (float) round($maxEntraceExpRate[0][4], 1);
+        $max->dose2_rate = (float) round($maxEntraceExpRate[0][5], 3);
+        $max->dose3_kv = (float) round($maxEntraceExpRate[0][6], 1);
+        $max->dose3_ma = (float) round($maxEntraceExpRate[0][7], 1);
+        $max->dose3_rate = (float) round($maxEntraceExpRate[0][8], 3);
         $max->save();
         $this->info('Max pulse/digital entrance exposure rates saved.');
 
@@ -570,9 +579,9 @@ class ImportDataPage extends Command
             $ree->tube_id = $tubeId;
             $ree->field_size = $r[0];
             $ree->mode = $doseModes[floor($k / 5)];
-            $ree->kv = $r[1];
-            $ree->ma = $r[2];
-            $ree->rate = $r[4];
+            $ree->kv = (float) $r[1];
+            $ree->ma = (float) $r[2];
+            $ree->rate = (float) $r[4];
             $ree->save();
         }
         $machineSurveyData->receptorentrance = 1;
@@ -593,10 +602,11 @@ class ImportDataPage extends Command
             $n3->machine_id = $machine->id;
             $n3->tube_id = $tubeId;
             $n3->field_size = $r[0];
-            $n3->n3 = $r[1];
+            $n3->n3 = (float) $r[1];
             $n3->save();
         }
         $machineSurveyData->leeds_n3 = 1;
+        $this->info('Leeds N3 stored');
 
         // Leeds TO.10 CD
         // Col B - field size.
@@ -624,6 +634,7 @@ class ImportDataPage extends Command
             $to10_cd->K = empty($cd['L']) ? null : (float) $cd['L'];
             $to10_cd->L = empty($cd['M']) ? null : (float) $cd['M'];
             $to10_cd->M = empty($cd['N']) ? null : (float) $cd['N'];
+            $to10_cd->save();
         }
         // Rows 88-92 - Threshold index.
         $to_10 = $dataPage->rangeToArray('B88:N92', null, true, false, false);
@@ -649,6 +660,7 @@ class ImportDataPage extends Command
             $to10_ti->K = empty($ti['L']) ? null : (float) $ti['L'];
             $to10_ti->L = empty($ti['M']) ? null : (float) $ti['M'];
             $to10_ti->M = empty($ti['N']) ? null : (float) $ti['N'];
+            $to10_ti->save();
         }
         $machineSurveyData->leeds_to10 = 1;
 
@@ -666,7 +678,7 @@ class ImportDataPage extends Command
             $fluoroRes->machine_id = $machine->id;
             $fluoroRes->tube_id = $tubeId;
             $fluoroRes->field_size = $r[0];
-            $fluoroRes->resolution = $r[1];
+            $fluoroRes->resolution = (float) $r[1];
             $fluoroRes->save();
         }
         $machineSurveyData->fluoro_resolution = 1;
