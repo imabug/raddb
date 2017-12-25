@@ -3245,16 +3245,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "6.6.3",
+            "version": "6.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "ac8b8df1d2266260a20dc181b528050e09b1c9b4"
+                "reference": "43f7468e3559bc28adadd8b1d8fb2b0b04de8f31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/ac8b8df1d2266260a20dc181b528050e09b1c9b4",
-                "reference": "ac8b8df1d2266260a20dc181b528050e09b1c9b4",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/43f7468e3559bc28adadd8b1d8fb2b0b04de8f31",
+                "reference": "43f7468e3559bc28adadd8b1d8fb2b0b04de8f31",
                 "shasum": ""
             },
             "require": {
@@ -3265,7 +3265,7 @@
                 "illuminate/support": "~5.5.0",
                 "league/flysystem": "^1.0.8",
                 "php": "^7.0",
-                "spatie/image": "^1.3.3",
+                "spatie/image": "^1.4",
                 "spatie/pdf-to-image": "^1.2",
                 "spatie/temporary-directory": "^1.1"
             },
@@ -3321,7 +3321,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2017-11-28T10:07:52+00:00"
+            "time": "2017-12-24T09:54:39+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
