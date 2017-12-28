@@ -137,6 +137,6 @@ Route::resource('radsurveydata', 'RadSurveyDataController');
 Route::resource('radoutputdata', 'RadiationOutputController');
 Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 
-// Route::group(['prefix' => 'admin'], function () {
-//     Voyager::routes();
-// });
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
