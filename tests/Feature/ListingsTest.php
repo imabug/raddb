@@ -22,14 +22,14 @@ class ListingsTest extends TestCase
     public function listingPages()
     {
         return [
-            ['machines.index', 'Equipment Inventory - Active'],
-            ['machines.showModalityIndex', 'List equipment by modality'],
-            ['machines.showLocationIndex', 'List equipment by location'],
-            ['machines.showManufacturerIndex', 'List equipment by manufacturer'],
-            ['machines.inactive', 'Equipment Inventory - Inactive'],
-            ['machines.removed', 'Equipment Inventory - Removed'],
-            ['testequipment.index', 'Equipment Inventory - Test Equipment'],
-            ['testequipment.showCalDates', 'Recent Test Equipment Calibration Dates'],
+            'Machines listing' => ['machines.index', 'Equipment Inventory - Active'],
+            'Modality listing' => ['machines.showModalityIndex', 'List equipment by modality'],
+            'Location listing' => ['machines.showLocationIndex', 'List equipment by location'],
+            'Manufacturer listing' => ['machines.showManufacturerIndex', 'List equipment by manufacturer'],
+            'Inactive machines listing' => ['machines.inactive', 'Equipment Inventory - Inactive'],
+            'Removed machines listing' => ['machines.removed', 'Equipment Inventory - Removed'],
+            'Test equipment listing' => ['testequipment.index', 'Equipment Inventory - Test Equipment'],
+            'Test equipment cal dates listing' => ['testequipment.showCalDates', 'Recent Test Equipment Calibration Dates'],
         ];
     }
 }
