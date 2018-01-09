@@ -125,16 +125,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "9445e12fb3b3db0c4aaeb8e492dd90c2a42b493c"
+                "reference": "db191abd24b0be110c98ba2271ca992e1c70962f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/9445e12fb3b3db0c4aaeb8e492dd90c2a42b493c",
-                "reference": "9445e12fb3b3db0c4aaeb8e492dd90c2a42b493c",
+                "url": "https://api.github.com/repos/composer/composer/zipball/db191abd24b0be110c98ba2271ca992e1c70962f",
+                "reference": "db191abd24b0be110c98ba2271ca992e1c70962f",
                 "shasum": ""
             },
             "require": {
@@ -198,7 +198,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2018-01-04T13:45:25+00:00"
+            "time": "2018-01-05T14:28:42+00:00"
         },
         {
             "name": "composer/semver",
@@ -3245,16 +3245,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "6.6.6",
+            "version": "6.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "9551b7fa121ca1df39c9dc5fcc1781c1b6d28250"
+                "reference": "a2b38d11575401182e6200f9ed25e062a5da8007"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/9551b7fa121ca1df39c9dc5fcc1781c1b6d28250",
-                "reference": "9551b7fa121ca1df39c9dc5fcc1781c1b6d28250",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a2b38d11575401182e6200f9ed25e062a5da8007",
+                "reference": "a2b38d11575401182e6200f9ed25e062a5da8007",
                 "shasum": ""
             },
             "require": {
@@ -3321,7 +3321,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2017-12-30T08:49:48+00:00"
+            "time": "2018-01-07T06:34:55+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -5621,16 +5621,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "5.0.5",
+            "version": "5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "283b9f4f670e3a6fd6c4ff95c51a952eb5c75933"
+                "reference": "33fd41a76e746b8fa96d00b49a23dadfa8334cdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/283b9f4f670e3a6fd6c4ff95c51a952eb5c75933",
-                "reference": "283b9f4f670e3a6fd6c4ff95c51a952eb5c75933",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/33fd41a76e746b8fa96d00b49a23dadfa8334cdf",
+                "reference": "33fd41a76e746b8fa96d00b49a23dadfa8334cdf",
                 "shasum": ""
             },
             "require": {
@@ -5676,7 +5676,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2017-12-10T08:01:53+00:00"
+            "time": "2018-01-06T05:45:45+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
