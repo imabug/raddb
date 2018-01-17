@@ -124,23 +124,23 @@ class ImportDataPage extends Command
         $surveyId = $dataPage->getCell('B2')->getCalculatedValue();
         switch ($sheetType) {
             case 'RAD':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importRad($surveyId, $dataPage);
                 break;
             case 'FLUORO':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importFluoro($surveyId, $dataPage);
                 break;
             case 'MAMMO_HOL':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importMammoHol($surveyId, $dataPage);
                 break;
             case 'MAMMO_SIE':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importMammoSie($surveyId, $dataPage);
                 break;
             case 'SBB':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importSbb($surveyId, $dataPage);
                 break;
             default:
