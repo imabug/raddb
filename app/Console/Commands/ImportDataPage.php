@@ -20,6 +20,8 @@ use RadDB\FluoroResolution;
 use RadDB\MachineSurveyData;
 use RadDB\ReceptorEntranceExp;
 use Illuminate\Console\Command;
+use PhpOffice\PhpSpreadsheet\Reader\Ods;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class ImportDataPage extends Command
 {
@@ -51,6 +53,17 @@ class ImportDataPage extends Command
     ];
 
     /**
+     * Array for survey data that will be passed to the methods importing data
+     *
+     * @var array
+     */
+    protected $surveyData = [
+        'surveyId' => '',
+        'machineId' => '',
+        'tubeId' => '',
+    ];
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -78,11 +91,11 @@ class ImportDataPage extends Command
             case 'xls':
             case 'xlsx':
             case 'xlsm':
-                $reader = \PHPExcel_IOFactory::createReader('Excel2007');
+                $reader = new Xlsx();
                 $this->info('Loading Excel spreadsheet');
                 break;
             case 'ods':
-                $reader = \PHPExcel_IOFactory::createReader('OOCalc');
+                $reader = new Ods();
                 $this->info('Loading OpenOffice/LibreOffice spreadsheet');
                 break;
             default:
@@ -90,21 +103,25 @@ class ImportDataPage extends Command
                 break;
         }
         $reader->setReadDataOnly(true);
-        $spreadsheet = $reader->load($spreadsheetFile);
-        $dataPage = $spreadsheet->getSheetByName('DataPage');
-        if (is_null($dataPage)) {
-            $this->error('Spreadsheet has no DataPage');
-
-            return false;
-        } else {
-            $this->info('Spreadsheet loaded.');
+        try {
+            $spreadsheet = $reader->load($spreadsheetFile);
+        } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
+            die('Error loading file: '.$e->getMessage());
         }
+        $this->info('Spreadsheet loaded.');
+
+        try {
+            $dataPage = $spreadsheet->getSheetByName('DataPage');
+        } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
+            die('Error loading DataPage: '.$e->getMessage());
+        }
+        $this->info('Spreadsheet loaded.');
 
         // Figure out what type of spreadsheet has been loaded
         $sheetType = $dataPage->getCell('B1')->getCalculatedValue();
 
         // Get the survey ID
-        $surveyId = (int) $dataPage->getCell('B2')->getCalculatedValue();
+        $surveyId = $dataPage->getCell('B2')->getCalculatedValue();
         switch ($sheetType) {
             case 'RAD':
                 $this->info('Processing ' . $sheetType. ' spreadsheet');
@@ -163,7 +180,7 @@ class ImportDataPage extends Command
      * Import radiography spreadsheet data.
      *
      * @param int $surveyId
-     * @param array $dataPage
+     * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
     private function importRad($surveyId, $dataPage)
@@ -388,7 +405,7 @@ class ImportDataPage extends Command
      * Import fluoroscopy spreadsheet data.
      *
      * @param int $surveyId
-     * @param array $dataPage
+     * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
     private function importFluoro($surveyId, $dataPage)
@@ -400,7 +417,7 @@ class ImportDataPage extends Command
 
         $machineSurveyData = new MachineSurveyData();
 
-        $machineSurveyData->survey_id = $survey->id;
+        $machineSurveyData->id = $survey->id;
         $machineSurveyData->machine_id = $machine->id;
 
         $tubeId = $this->askTubeId($machine->id);
@@ -692,7 +709,7 @@ class ImportDataPage extends Command
      * Import mammography (Hologic) spreadsheet data.
      *
      * @param int $surveyId
-     * @param array $dataPage
+     * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
     private function importMammoHol($surveyId, $dataPage)
@@ -703,7 +720,7 @@ class ImportDataPage extends Command
      * Import mammography (Siemens) spreadsheet data.
      *
      * @param int $surveyId
-     * @param array $dataPage
+     * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
     private function importMammoSie($surveyId, $dataPage)
@@ -714,7 +731,7 @@ class ImportDataPage extends Command
      * Import SBB spreadsheet data.
      *
      * @param int $surveyId
-     * @param array $dataPage
+     * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
     private function importSbb($surveyId, $dataPage)
