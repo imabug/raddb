@@ -116,23 +116,23 @@ class ImportDataPage extends Command
         switch ($sheetType) {
             case 'RAD':
                 $this->info('Processing ' . $sheetType. ' spreadsheet');
-                $status = $this->importRad($surveyId, $dataPage);
+                $status = $this->importRad($surveyData, $dataPage);
                 break;
             case 'FLUORO':
                 $this->info('Processing ' . $sheetType. ' spreadsheet');
-                $status = $this->importFluoro($surveyId, $dataPage);
+                $status = $this->importFluoro($surveyData, $dataPage);
                 break;
             case 'MAMMO_HOL':
                 $this->info('Processing ' . $sheetType. ' spreadsheet');
-                $status = $this->importMammoHol($surveyId, $dataPage);
+                $status = $this->importMammoHol($surveyData, $dataPage);
                 break;
             case 'MAMMO_SIE':
                 $this->info('Processing ' . $sheetType. ' spreadsheet');
-                $status = $this->importMammoSie($surveyId, $dataPage);
+                $status = $this->importMammoSie($surveyData, $dataPage);
                 break;
             case 'SBB':
                 $this->info('Processing ' . $sheetType. ' spreadsheet');
-                $status = $this->importSbb($surveyId, $dataPage);
+                $status = $this->importSbb($surveyData, $dataPage);
                 break;
             default:
                 $status = $this->error('Not a compatible spreadsheet');
@@ -170,32 +170,32 @@ class ImportDataPage extends Command
     /**
      * Import radiography spreadsheet data.
      *
-     * @param int $surveyId
+     * @param array $surveyData
      * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
-    private function importRad($surveyId, $dataPage)
+    private function importRad($surveyData, $dataPage)
     {
         $machineSurveyData = new MachineSurveyData();
 
-        $machineSurveyData->survey_id = $survey->id;
-        $machineSurveyData->machine_id = $machine->id;
+        $machineSurveyData->survey_id = $surveyData['surveyId'];
+        $machineSurveyData->machine_id = $surveyData['machineId'];
 
 
         // Check to see if there's data for $surveyId in the GenData table already
-        if (GenData::surveyId($surveyId)->where('tube_id', $tubeId)->get()->count() > 0) {
+        if (GenData::surveyId($surveyData['surveyId'])->where('tube_id', $surveyData['tubeId'])->get()->count() > 0) {
             $this->error('Generator data already exists for this survey. Terminating.');
 
             return false;
         }
 
-        $this->info('Saving data for survey ID: '.$surveyId);
+        $this->info('Saving data for survey ID: '.$surveyData['surveyId']);
 
         // Insert the above data into the radsurveydata table
         $radSurvey = new RadSurveyData();
-        $radSurvey->survey_id = $survey->id;
-        $radSurvey->machine_id = $machine->id;
-        $radSurvey->tube_id = $tubeId;
+        $radSurvey->survey_id = $surveyData['surveyId'];
+        $radSurvey->machine_id = $surveyData['machineId'];
+        $radSurvey->tube_id = $surveyData['tubeId'];
         $radSurvey->sid_accuracy_error = (float) $dataPage->getCell('B3')->getCalculatedValue();
         $radSurvey->avg_illumination = (float) $dataPage->getCell('B4')->getCalculatedValue();
         $radSurvey->beam_alignment_error = (float) $dataPage->getCell('B5')->getCalculatedValue();
@@ -237,9 +237,9 @@ class ImportDataPage extends Command
         // Table receptor
         for ($i = 0; $i <= 1; $i++) {
             $collimatorData = new CollimatorData();
-            $collimatorData->survey_id = $survey->id;
-            $collimatorData->machine_id = $machine->id;
-            $collimatorData->tube_id = $tubeId;
+            $collimatorData->survey_id = $surveyData['surveyId'];
+            $collimatorData->machine_id = $surveyData['machineId'];
+            $collimatorData->tube_id = $surveyData['tubeId'];
             $collimatorData->sid = $tableSid;
             $collimatorData->receptor = 'Table';
             $collimatorData->indicated_trans = $collimationTable[$i][0] == 'NA' ? null : (float) $collimationTable[$i][0];
@@ -257,9 +257,9 @@ class ImportDataPage extends Command
         // Wall receptor
         for ($i = 0; $i <= 1; $i++) {
             $collimatorData = new CollimatorData();
-            $collimatorData->survey_id = $survey->id;
-            $collimatorData->machine_id = $machine->id;
-            $collimatorData->tube_id = $tubeId;
+            $collimatorData->survey_id = $surveyData['surveyId'];
+            $collimatorData->machine_id = $surveyData['machineId'];
+            $collimatorData->tube_id = $surveyData['tubeId'];
             $collimatorData->sid = $wallSid;
             $collimatorData->receptor = 'Wall';
             $collimatorData->indicated_trans = $collimationWall[$i][0] == 'NA' ? null : (float) $collimationWall[$i][0];
@@ -287,9 +287,9 @@ class ImportDataPage extends Command
             if (empty($l[0])) {
                 continue;
             }
-            $radOutput->survey_id = $survey->id;
-            $radOutput->machine_id = $machine->id;
-            $radOutput->tube_id = $tubeId;
+            $radOutput->survey_id = $surveyData['surveyId'];
+            $radOutput->machine_id = $surveyData['machineId'];
+            $radOutput->tube_id = $surveyData['tubeId'];
             $radOutput->focus = 'Large';
             $radOutput->kv = (float) $l[0];
             $radOutput->output = (float) $l[1];
@@ -302,9 +302,9 @@ class ImportDataPage extends Command
             if (empty($s[0])) {
                 continue;
             }
-            $radOutput->survey_id = $survey->id;
-            $radOutput->machine_id = $machine->id;
-            $radOutput->tube_id = $tubeId;
+            $radOutput->survey_id = $surveyData['surveyId'];
+            $radOutput->machine_id = $surveyData['machineId'];
+            $radOutput->tube_id = $surveyData['tubeId'];
             $radOutput->focus = 'Small';
             $radOutput->kv = (float) $s[0];
             $radOutput->output = (float) $s[1];
@@ -324,9 +324,9 @@ class ImportDataPage extends Command
             }
 
             $genData = new GenData();
-            $genData->survey_id = $survey->id;
-            $genData->machine_id = $machine->id;
-            $genData->tube_id = $tubeId;
+            $genData->survey_id = $surveyData['surveyId'];
+            $genData->machine_id = $surveyData['machineId'];
+            $genData->tube_id = $surveyData['tubeId'];
             $genData->kv_set = (int) $genDataRow['B'];
             $genData->ma_set = (int) $genDataRow['C'];
             $genData->time_set = (float) $genDataRow['D'];
@@ -369,9 +369,9 @@ class ImportDataPage extends Command
         // Insert the HVL data into the database
         foreach ($hvls as $hvl) {
             $HVLData = new HVLData();
-            $HVLData->survey_id = $survey->id;
-            $HVLData->machine_id = $machine->id;
-            $HVLData->tube_id = $tubeId;
+            $HVLData->survey_id = $surveyData['surveyId'];
+            $HVLData->machine_id = $surveyData['machineId'];
+            $HVLData->tube_id = $surveyData['tubeId'];
             if (empty($hvl[0]) || empty($hvl[1])) {
                 // Skip the record if it's empty
                 continue;
@@ -391,27 +391,27 @@ class ImportDataPage extends Command
     /**
      * Import fluoroscopy spreadsheet data.
      *
-     * @param int $surveyId
+     * @param array $surveyData
      * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
-    private function importFluoro($surveyId, $dataPage)
+    private function importFluoro($surveyData, $dataPage)
     {
         // Pull info for this spreadsheet from the database
         $survey = TestDate::find($surveyId);
         $machine = Machine::find($survey->machine_id);
-        $tubes = Tube::where('machine_id', $machine->id)->active()->get();
+        $tubes = Tube::where('machine_id', $surveyData['machineId'])->active()->get();
 
         $machineSurveyData = new MachineSurveyData();
 
-        $machineSurveyData->id = $survey->id;
-        $machineSurveyData->machine_id = $machine->id;
+        $machineSurveyData->id = $surveyData['surveyId'];
+        $machineSurveyData->machine_id = $surveyData['machineId'];
 
-        $tubeId = $this->askTubeId($machine->id);
+        $surveyData['tubeId'] = $this->askTubeId($surveyData['machineId']);
 
         // Check to see if there's data for $surveyId in the hvldata table already
         // Should come up with a better way of doing this
-        if (HVLData::where('survey_id', $surveyId)->where('tube_id', $tubeId)->get()->count() > 0) {
+        if (HVLData::where('survey_id', $surveyId)->where('tube_id', $surveyData['tubeId'])->get()->count() > 0) {
             $this->error('Fluoro data already exists for this survey. Terminating.');
 
             return false;
@@ -421,9 +421,9 @@ class ImportDataPage extends Command
 
         // Store HVL to database
         $HVLData = new HVLData();
-        $HVLData->survey_id = $survey->id;
-        $HVLData->machine_id = $machine->id;
-        $HVLData->tube_id = $tubeId;
+        $HVLData->survey_id = $surveyData['surveyId'];
+        $HVLData->machine_id = $surveyData['machineId'];
+        $HVLData->tube_id = $surveyData['tubeId'];
         $HVLData->kv = (float) $dataPage->getCell('B3')->getCalculatedValue();
         $HVLData->hvl = (float) $dataPage->getCell('C3')->getCalculatedValue();
         $HVLData->save();
@@ -456,9 +456,9 @@ class ImportDataPage extends Command
 
             for ($i = 0; $i <= 2; $i++) {
                 $fluoroData = new FluoroData();
-                $fluoroData->survey_id = $survey->id;
-                $fluoroData->machine_id = $machine->id;
-                $fluoroData->tube_id = $tubeId;
+                $fluoroData->survey_id = $surveyData['surveyId'];
+                $fluoroData->machine_id = $surveyData['machineId'];
+                $fluoroData->tube_id = $surveyData['tubeId'];
                 $fluoroData->field_size = $fs;
                 $fluoroData->atten = $entranceExpRate[$i][0];
                 $fluoroData->dose1_mode = $doseModes[0];
@@ -482,9 +482,9 @@ class ImportDataPage extends Command
 
         // Store max entrance exposure rates
         $max = new MaxFluoroData();
-        $max->survey_id = $survey->id;
-        $max->machine_id = $machine->id;
-        $max->tube_id = $tubeId;
+        $max->survey_id = $surveyData['surveyId'];
+        $max->machine_id = $surveyData['machineId'];
+        $max->tube_id = $surveyData['tubeId'];
         $max->dose1_kv = (float) round($maxEntraceExpRate[0][0], 1);
         $max->dose1_ma = (float) round($maxEntraceExpRate[0][1], 1);
         $max->dose1_rate = (float) round($maxEntraceExpRate[0][2], 3);
@@ -506,9 +506,9 @@ class ImportDataPage extends Command
                 continue;
             }
             $ree = new ReceptorEntranceExp();
-            $ree->survey_id = $survey->id;
-            $ree->machine_id = $machine->id;
-            $ree->tube_id = $tubeId;
+            $ree->survey_id = $surveyData['surveyId'];
+            $ree->machine_id = $surveyData['machineId'];
+            $ree->tube_id = $surveyData['tubeId'];
             $ree->field_size = $r[0];
             $ree->mode = $doseModes[floor($k / 5)];
             $ree->kv = $r[1];
@@ -530,9 +530,9 @@ class ImportDataPage extends Command
         foreach ($fieldSizes as $fs) {
             for ($i = 0; $i <= 2; $i++) {
                 $fluoroData = new FluoroData();
-                $fluoroData->survey_id = $survey->id;
-                $fluoroData->machine_id = $machine->id;
-                $fluoroData->tube_id = $tubeId;
+                $fluoroData->survey_id = $surveyData['surveyId'];
+                $fluoroData->machine_id = $surveyData['machineId'];
+                $fluoroData->tube_id = $surveyData['tubeId'];
                 $fluoroData->field_size = $fs;
                 $fluoroData->atten = $entranceExpRate[$i][0];
                 $fluoroData->dose1_mode = $doseModes[0];
@@ -555,9 +555,9 @@ class ImportDataPage extends Command
 
         // Store max entrance exposure rates
         $max = new MaxFluoroData();
-        $max->survey_id = $survey->id;
-        $max->machine_id = $machine->id;
-        $max->tube_id = $tubeId;
+        $max->survey_id = $surveyData['surveyId'];
+        $max->machine_id = $surveyData['machineId'];
+        $max->tube_id = $surveyData['tubeId'];
         $max->dose1_kv = (float) round($maxEntraceExpRate[0][0], 1);
         $max->dose1_ma = (float) round($maxEntraceExpRate[0][1], 1);
         $max->dose1_rate = (float) round($maxEntraceExpRate[0][2], 3);
@@ -578,9 +578,9 @@ class ImportDataPage extends Command
                 continue;
             }
             $ree = new ReceptorEntranceExp();
-            $ree->survey_id = $survey->id;
-            $ree->machine_id = $machine->id;
-            $ree->tube_id = $tubeId;
+            $ree->survey_id = $surveyData['surveyId'];
+            $ree->machine_id = $surveyData['machineId'];
+            $ree->tube_id = $surveyData['tubeId'];
             $ree->field_size = $r[0];
             $ree->mode = $doseModes[floor($k / 5)];
             $ree->kv = (float) $r[1];
@@ -602,9 +602,9 @@ class ImportDataPage extends Command
                 continue;
             }
             $n3 = new LeedsN3();
-            $n3->survey_id = $survey->id;
-            $n3->machine_id = $machine->id;
-            $n3->tube_id = $tubeId;
+            $n3->survey_id = $surveyData['surveyId'];
+            $n3->machine_id = $surveyData['machineId'];
+            $n3->tube_id = $surveyData['tubeId'];
             $n3->field_size = $r[0];
             $n3->n3 = (float) $r[1];
             $n3->save();
@@ -622,9 +622,9 @@ class ImportDataPage extends Command
                 continue;
             }
             $to10_cd = new LeedsTO10CD();
-            $to10_cd->survey_id = $survey->id;
-            $to10_cd->machine_id = $machine->id;
-            $to10_cd->tube_id = $tubeId;
+            $to10_cd->survey_id = $surveyData['surveyId'];
+            $to10_cd->machine_id = $surveyData['machineId'];
+            $to10_cd->tube_id = $surveyData['tubeId'];
             $to10_cd->field_size = $cd['B'];
             $to10_cd->A = empty($cd['C']) ? null : (float) $cd['C'];
             $to10_cd->B = empty($cd['D']) ? null : (float) $cd['D'];
@@ -648,9 +648,9 @@ class ImportDataPage extends Command
                 continue;
             }
             $to10_ti = new LeedsTO10TI();
-            $to10_ti->survey_id = $survey->id;
-            $to10_ti->machine_id = $machine->id;
-            $to10_ti->tube_id = $tubeId;
+            $to10_ti->survey_id = $surveyData['surveyId'];
+            $to10_ti->machine_id = $surveyData['machineId'];
+            $to10_ti->tube_id = $surveyData['tubeId'];
             $to10_ti->field_size = $ti['B'];
             $to10_ti->A = empty($ti['C']) ? null : (float) $ti['C'];
             $to10_ti->B = empty($ti['D']) ? null : (float) $ti['D'];
@@ -678,9 +678,9 @@ class ImportDataPage extends Command
                 continue;
             }
             $fluoroRes = new FluoroResolution();
-            $fluoroRes->survey_id = $survey->id;
-            $fluoroRes->machine_id = $machine->id;
-            $fluoroRes->tube_id = $tubeId;
+            $fluoroRes->survey_id = $surveyData['surveyId'];
+            $fluoroRes->machine_id = $surveyData['machineId'];
+            $fluoroRes->tube_id = $surveyData['tubeId'];
             $fluoroRes->field_size = $r[0];
             $fluoroRes->resolution = (float) $r[1];
             $fluoroRes->save();
@@ -695,33 +695,33 @@ class ImportDataPage extends Command
     /**
      * Import mammography (Hologic) spreadsheet data.
      *
-     * @param int $surveyId
+     * @param array $surveyData
      * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
-    private function importMammoHol($surveyId, $dataPage)
+    private function importMammoHol($surveyData, $dataPage)
     {
     }
 
     /**
      * Import mammography (Siemens) spreadsheet data.
      *
-     * @param int $surveyId
+     * @param array $surveyData
      * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
-    private function importMammoSie($surveyId, $dataPage)
+    private function importMammoSie($surveyData, $dataPage)
     {
     }
 
     /**
      * Import SBB spreadsheet data.
      *
-     * @param int $surveyId
+     * @param array $surveyData
      * @param \PhpOffice\PhpSpreadsheet\Reader $dataPage
      * @return bool
      */
-    private function importSbb($surveyId, $dataPage)
+    private function importSbb($surveyData, $dataPage)
     {
     }
 }
