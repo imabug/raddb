@@ -40,19 +40,6 @@ class ImportDataPage extends Command
     protected $description = 'Import the DataPage from a spreadsheet';
 
     /**
-     * Array of spreadsheet types.
-     *
-     * @var array
-     */
-    protected $sheetType = [
-        'RAD',
-        'FLUORO',
-        'MAMMO_HOL',
-        'MAMMO_SIE',
-        'SBB',
-    ];
-
-    /**
      * Array for survey data that will be passed to the methods importing data
      *
      * @var array
@@ -120,8 +107,12 @@ class ImportDataPage extends Command
         // Figure out what type of spreadsheet has been loaded
         $sheetType = $dataPage->getCell('B1')->getCalculatedValue();
 
-        // Get the survey ID
-        $surveyId = $dataPage->getCell('B2')->getCalculatedValue();
+        // Get the survey data for this spreadsheet
+        $surveyData['surveyId'] = $dataPage->getCell('B2')->getCalculatedValue();
+        $survey = TestDate::find($surveyData['surveyId']);
+        $surveyData['machineId'] = $survey->machine_id;
+        $surveyData['tubeId'] = $this->askTubeId($survey->machine_id);
+
         switch ($sheetType) {
             case 'RAD':
                 $this->info('Processing ' . $sheetType. ' spreadsheet');
@@ -185,15 +176,11 @@ class ImportDataPage extends Command
      */
     private function importRad($surveyId, $dataPage)
     {
-        $survey = TestDate::find($surveyId);
-        $machine = Machine::find($survey->machine_id);
-
         $machineSurveyData = new MachineSurveyData();
 
         $machineSurveyData->survey_id = $survey->id;
         $machineSurveyData->machine_id = $machine->id;
 
-        $tubeId = $this->askTubeId($machine->id);
 
         // Check to see if there's data for $surveyId in the GenData table already
         if (GenData::surveyId($surveyId)->where('tube_id', $tubeId)->get()->count() > 0) {
