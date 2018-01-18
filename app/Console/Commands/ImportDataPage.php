@@ -102,7 +102,6 @@ class ImportDataPage extends Command
         } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
             die('Error loading DataPage: '.$e->getMessage());
         }
-        $this->info('Spreadsheet loaded.');
 
         // Figure out what type of spreadsheet has been loaded
         $sheetType = $dataPage->getCell('B1')->getCalculatedValue();
@@ -398,10 +397,6 @@ class ImportDataPage extends Command
     private function importFluoro($surveyData, $dataPage)
     {
         // Pull info for this spreadsheet from the database
-        $survey = TestDate::find($surveyId);
-        $machine = Machine::find($survey->machine_id);
-        $tubes = Tube::where('machine_id', $surveyData['machineId'])->active()->get();
-
         $machineSurveyData = new MachineSurveyData();
 
         $machineSurveyData->id = $surveyData['surveyId'];
@@ -411,13 +406,13 @@ class ImportDataPage extends Command
 
         // Check to see if there's data for $surveyId in the hvldata table already
         // Should come up with a better way of doing this
-        if (HVLData::where('survey_id', $surveyId)->where('tube_id', $surveyData['tubeId'])->get()->count() > 0) {
-            $this->error('Fluoro data already exists for this survey. Terminating.');
+        // if (HVLData::where('survey_id', $surveyData['surveyId'])->where('tube_id', $surveyData['tubeId'])->get()->count() > 0) {
+        //     $this->error('Fluoro data already exists for this survey. Terminating.');
+        //
+        //     return false;
+        // }
 
-            return false;
-        }
-
-        $this->info('Saving data for survey ID: '.$surveyId);
+        $this->info('Saving data for survey ID: '.$surveyData['surveyId']);
 
         // Store HVL to database
         $HVLData = new HVLData();
@@ -426,7 +421,7 @@ class ImportDataPage extends Command
         $HVLData->tube_id = $surveyData['tubeId'];
         $HVLData->kv = (float) $dataPage->getCell('B3')->getCalculatedValue();
         $HVLData->hvl = (float) $dataPage->getCell('C3')->getCalculatedValue();
-        $HVLData->save();
+        // $HVLData->save();
         $machineSurveyData->hvldata = 1;
         $this->info('HVL data saved.');
 
@@ -453,7 +448,6 @@ class ImportDataPage extends Command
                 // Skip if field size is empty or 0
                 continue;
             }
-
             for ($i = 0; $i <= 2; $i++) {
                 $fluoroData = new FluoroData();
                 $fluoroData->survey_id = $surveyData['surveyId'];
@@ -473,7 +467,7 @@ class ImportDataPage extends Command
                 $fluoroData->dose3_kv = (float) round($entranceExpRate[$j + $i][7], 1);
                 $fluoroData->dose3_ma = (float) round($entranceExpRate[$j + $i][8], 1);
                 $fluoroData->dose3_rate = (float) round($entranceExpRate[$j + $i][9], 3);
-                $fluoroData->save();
+                // $fluoroData->save();
             }
             $j += 3;
         }
@@ -494,7 +488,7 @@ class ImportDataPage extends Command
         $max->dose3_kv = (float) round($maxEntraceExpRate[0][6], 1);
         $max->dose3_ma = (float) round($maxEntraceExpRate[0][7], 1);
         $max->dose3_rate = (float) round($maxEntraceExpRate[0][8], 3);
-        $max->save();
+        // $max->save();
         $machineSurveyData->maxfluorodata = 1;
         $this->info('Max fluoro entrance exposure rates saved.');
 
@@ -514,7 +508,7 @@ class ImportDataPage extends Command
             $ree->kv = $r[1];
             $ree->ma = $r[2];
             $ree->rate = $r[4];
-            $ree->save();
+            // $ree->save();
         }
         $this->info('Fluoro recepter entrance exposure rates stored.');
 
@@ -547,7 +541,7 @@ class ImportDataPage extends Command
                 $fluoroData->dose3_kv = (float) round($entranceExpRate[$j + $i][7], 1);
                 $fluoroData->dose3_ma = (float) round($entranceExpRate[$j + $i][8], 1);
                 $fluoroData->dose3_rate = (float) round($entranceExpRate[$j + $i][9], 3);
-                $fluoroData->save();
+                // $fluoroData->save();
             }
             $j += 3;
         }
@@ -567,7 +561,7 @@ class ImportDataPage extends Command
         $max->dose3_kv = (float) round($maxEntraceExpRate[0][6], 1);
         $max->dose3_ma = (float) round($maxEntraceExpRate[0][7], 1);
         $max->dose3_rate = (float) round($maxEntraceExpRate[0][8], 3);
-        $max->save();
+        // $max->save();
         $this->info('Max pulse/digital entrance exposure rates saved.');
 
         // Get pulse/digital entrance exposure rate data
@@ -586,7 +580,7 @@ class ImportDataPage extends Command
             $ree->kv = (float) $r[1];
             $ree->ma = (float) $r[2];
             $ree->rate = (float) $r[4];
-            $ree->save();
+            // $ree->save();
         }
         $machineSurveyData->receptorentrance = 1;
         $this->info('Pulse/digital receptor entrance exposure rates stored.');
@@ -595,7 +589,8 @@ class ImportDataPage extends Command
         // Leeds TO.N3
         // Column B - field size
         // Column C - N3 low contrast resolution
-        $to_n3 = $dataPage->rangeToArray('B77:C81', null, true, false, false);
+        $to_n3 = $dataPage->rangeToArray('B77:C81', null, true, false, true);
+        dd($to_n3);
         foreach ($to_n3 as $k=>$r) {
             // Skip the record if it's empty
             if (empty($r[0])) {
@@ -607,7 +602,8 @@ class ImportDataPage extends Command
             $n3->tube_id = $surveyData['tubeId'];
             $n3->field_size = $r[0];
             $n3->n3 = (float) $r[1];
-            $n3->save();
+            // $n3->save();
+            dump($n3);
         }
         $machineSurveyData->leeds_n3 = 1;
         $this->info('Leeds N3 stored');
@@ -615,7 +611,7 @@ class ImportDataPage extends Command
         // Leeds TO.10 CD
         // Col B - field size.
         // Rows 83-87 - Contrast detail.
-        $to_10 = $dataPage->rangeToArray('B83:N87', null, true, false, false);
+        $to_10 = $dataPage->rangeToArray('B83:N87', null, true, false, true);
         foreach ($to_10 as $cd) {
             // Skip the record if it's empty
             if (empty($cd['B'])) {
@@ -638,7 +634,8 @@ class ImportDataPage extends Command
             $to10_cd->K = empty($cd['L']) ? null : (float) $cd['L'];
             $to10_cd->L = empty($cd['M']) ? null : (float) $cd['M'];
             $to10_cd->M = empty($cd['N']) ? null : (float) $cd['N'];
-            $to10_cd->save();
+            // $to10_cd->save();
+            dump($to10_cd);
         }
         // Rows 88-92 - Threshold index.
         $to_10 = $dataPage->rangeToArray('B88:N92', null, true, false, false);
@@ -664,7 +661,8 @@ class ImportDataPage extends Command
             $to10_ti->K = empty($ti['L']) ? null : (float) $ti['L'];
             $to10_ti->L = empty($ti['M']) ? null : (float) $ti['M'];
             $to10_ti->M = empty($ti['N']) ? null : (float) $ti['N'];
-            $to10_ti->save();
+            // $to10_ti->save();
+            dump($to10_ti);
         }
         $machineSurveyData->leeds_to10 = 1;
 
@@ -683,12 +681,13 @@ class ImportDataPage extends Command
             $fluoroRes->tube_id = $surveyData['tubeId'];
             $fluoroRes->field_size = $r[0];
             $fluoroRes->resolution = (float) $r[1];
-            $fluoroRes->save();
+            // $fluoroRes->save();
+            dump($fluoroRes);
         }
         $machineSurveyData->fluoro_resolution = 1;
 
-        $machineSurveyData->save();
-
+        // $machineSurveyData->save();
+        dump($machineSurveyData);
         return true;
     }
 
