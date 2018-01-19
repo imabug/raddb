@@ -39,7 +39,7 @@ class ImportDataPage extends Command
     protected $description = 'Import the DataPage from a spreadsheet';
 
     /**
-     * Array for survey data that will be passed to the methods importing data
+     * Array for survey data that will be passed to the methods importing data.
      *
      * @var array
      */
@@ -113,23 +113,23 @@ class ImportDataPage extends Command
 
         switch ($sheetType) {
             case 'RAD':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importRad($spreadsheet);
                 break;
             case 'FLUORO':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importFluoro($spreadsheet);
                 break;
             case 'MAMMO_HOL':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importMammoHol($spreadsheet);
                 break;
             case 'MAMMO_SIE':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importMammoSie($spreadsheet);
                 break;
             case 'SBB':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importSbb($spreadsheet);
                 break;
             default:
@@ -690,6 +690,7 @@ class ImportDataPage extends Command
 
         // $machineSurveyData->save();
         dump($machineSurveyData);
+
         return true;
     }
 
