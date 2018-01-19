@@ -40,7 +40,7 @@ class ImportDataPage extends Command
     protected $description = 'Import the DataPage from a spreadsheet';
 
     /**
-     * Array for survey data that will be passed to the methods importing data
+     * Array for survey data that will be passed to the methods importing data.
      *
      * @var array
      */
@@ -114,23 +114,23 @@ class ImportDataPage extends Command
 
         switch ($sheetType) {
             case 'RAD':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importRad($surveyData, $dataPage);
                 break;
             case 'FLUORO':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importFluoro($surveyData, $dataPage);
                 break;
             case 'MAMMO_HOL':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importMammoHol($surveyData, $dataPage);
                 break;
             case 'MAMMO_SIE':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importMammoSie($surveyData, $dataPage);
                 break;
             case 'SBB':
-                $this->info('Processing ' . $sheetType. ' spreadsheet');
+                $this->info('Processing '.$sheetType.' spreadsheet');
                 $status = $this->importSbb($surveyData, $dataPage);
                 break;
             default:
@@ -179,7 +179,6 @@ class ImportDataPage extends Command
 
         $machineSurveyData->survey_id = $surveyData['surveyId'];
         $machineSurveyData->machine_id = $surveyData['machineId'];
-
 
         // Check to see if there's data for $surveyId in the GenData table already
         if (GenData::surveyId($surveyData['surveyId'])->where('tube_id', $surveyData['tubeId'])->get()->count() > 0) {
@@ -688,6 +687,7 @@ class ImportDataPage extends Command
 
         // $machineSurveyData->save();
         dump($machineSurveyData);
+
         return true;
     }
 
