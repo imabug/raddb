@@ -2,6 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
+use DB;
+use Charts;
 use RadDB\Machine;
 use RadDB\Modality;
 use RadDB\Http\Requests\ModalityRequest;
@@ -22,10 +24,19 @@ class ModalityController extends Controller
         $machines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->get()
+            ->groupBy('modality_id','modality.modality');
+
+        // Create a bar chart of the number of machines for each modality
+        $machinesModalityChart = Charts::database(Machine::with('modality')->active()->get(), 'pie', 'google')
+            ->title('Number of machines by modality')
+            ->elementLabel('Number of machines')
+            ->dimensions(1000, 1000)
+            ->labels(Modality::get()->toArray())
             ->groupBy('modality.modality');
 
         return view('machine.modalities.index', [
             'machines' => $machines,
+            'machinesModalityChart' => $machinesModalityChart,
         ]);
     }
 

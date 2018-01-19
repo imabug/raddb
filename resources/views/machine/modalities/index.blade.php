@@ -3,8 +3,14 @@
 @extends('layouts.app')
 
 @section('content')
+{!! Charts::assets(['google']) !!}
 <h2>Equipment Inventory</h2>
 <h3>List equipment by modality</h3>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p>{!! $machinesModalityChart->render() !!}</p>
+    </div>
+</div>
     @foreach ($machines as $key=>$modality)
 <h4>Modality: {{ $key }} ({{ count($modality) }})</h4>
 <table class="table table-striped table-hover">
