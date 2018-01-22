@@ -24,7 +24,7 @@ class ModalityController extends Controller
         $machines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->get()
-            ->groupBy('modality_id','modality.modality');
+            ->groupBy('modality_id', 'modality.modality');
 
         // Create a bar chart of the number of machines for each modality
         $machinesModalityChart = Charts::database(Machine::with('modality')->active()->get(), 'pie', 'google')
