@@ -66,7 +66,7 @@ class DashboardController extends Controller
      */
     private function pending()
     {
-        $pending = TestDate::with('machine','type')
+        $pending = TestDate::with('machine', 'type')
             ->pending()
             ->orderBy('testdates.test_date', 'asc')
             ->get();
