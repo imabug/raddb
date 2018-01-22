@@ -66,14 +66,7 @@ class DashboardController extends Controller
      */
     private function pending()
     {
-        $pending = TestDate::select('testdates.id as surveyId',
-                'machines.id as machineId',
-                'machines.description',
-                'testdates.test_date',
-                'testdates.accession',
-                'testdates.notes')
-            ->leftJoin('machines',
-                'testdates.machine_id', '=', 'machines.id')
+        $pending = TestDate::with('machine','type')
             ->pending()
             ->orderBy('testdates.test_date', 'asc')
             ->get();
