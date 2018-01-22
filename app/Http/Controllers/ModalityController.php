@@ -32,8 +32,8 @@ class ModalityController extends Controller
         }
         // Make an array of some random colours
         $numMachines = $machines->count();
-        for ($i=0;$i<=$numMachines;$i++) {
-            $chartColors[] = '#'.str_pad(dechex(rand(0x000000, 0xFFFFFF)),6,'0',STR_PAD_LEFT);
+        for ($i = 0; $i <= $numMachines; $i++) {
+            $chartColors[] = '#'.str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
         }
         $machinesModalityChart = Charts::create('pie', 'google')
             ->title('Number of machines by modality')
