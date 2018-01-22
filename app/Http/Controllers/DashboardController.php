@@ -118,7 +118,7 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function surveyGraph(Request $request)
+    public function surveyGraph()
     {
         // Get a list of all the years there are surveys for
         $years = TestDate::select(DB::raw('year(test_date) as years'))
