@@ -2,6 +2,7 @@
 
 namespace RadDB\Http\Controllers;
 
+use Charts;
 use RadDB\Machine;
 use RadDB\Location;
 use Illuminate\Support\Facades\Log;
@@ -25,8 +26,25 @@ class LocationController extends Controller
             ->get()
             ->groupBy('location.location');
 
+        // Create a bar chart of the number of machines for each modality
+        foreach ($machines as $key=>$loc) {
+            $chartData[] = count($loc);
+        }
+        // Make an array of some random colours
+        $numMachines = $machines->count();
+        for ($i = 0; $i <= $numMachines; $i++) {
+            $chartColors[] = '#'.str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+        }
+        $machinesLocationChart = Charts::create('pie', 'google')
+            ->title('Number of machines by location')
+            ->elementLabel('Number of machines')
+            ->colors($chartColors)
+            ->labels($machines->keys()->toArray())
+            ->values($chartData);
+
         return view('machine.locations.index', [
             'machines' => $machines,
+            'machinesLocationChart' => $machinesLocationChart,
         ]);
     }
 

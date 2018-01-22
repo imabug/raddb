@@ -3,8 +3,14 @@
 @extends('layouts.app')
 
 @section('content')
+{!! Charts::assets(['google']) !!}
 <h2>Equipment Inventory</h2>
 <h3>List equipment by location</h3>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p>{!! $machinesLocationChart->render() !!}</p>
+    </div>
+</div>
     @foreach ($machines as $key=>$location)
 <h4>Location: {{ $key }} ({{ count($location) }})</h4>
 <table class="table table-striped table-hover">
