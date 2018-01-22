@@ -24,15 +24,23 @@ class ModalityController extends Controller
         $machines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->get()
-            ->groupBy('modality_id','modality.modality');
+            ->groupBy('modality.modality');
 
         // Create a bar chart of the number of machines for each modality
-        $machinesModalityChart = Charts::database(Machine::with('modality')->active()->get(), 'pie', 'google')
+        foreach ($machines as $key=>$modality) {
+            $chartData[] = count($modality);
+        }
+        // Make an array of some random colours
+        $numMachines = $machines->count();
+        for ($i=0;$i<=$numMachines;$i++) {
+            $chartColors[] = '#'.str_pad(dechex(rand(0x000000, 0xFFFFFF)),6,'0',STR_PAD_LEFT);
+        }
+        $machinesModalityChart = Charts::create('pie', 'google')
             ->title('Number of machines by modality')
             ->elementLabel('Number of machines')
-            ->dimensions(1000, 1000)
-            ->labels(Modality::get()->toArray())
-            ->groupBy('modality.modality');
+            ->colors($chartColors)
+            ->labels($machines->keys()->toArray())
+            ->values($chartData);
 
         return view('machine.modalities.index', [
             'machines' => $machines,
