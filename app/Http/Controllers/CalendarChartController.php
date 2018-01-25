@@ -31,7 +31,7 @@ class CalendarChartController extends Controller
             ->labels($labels)
             ->values($data);
 
-        return view('test.calendar',[
+        return view('test.calendar', [
             'calChart' => $calChart,
         ]);
     }
