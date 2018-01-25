@@ -50,6 +50,19 @@ class ImportDataPage extends Command
     ];
 
     /**
+     * Bit flags used to indicate what each line of the generator test data is used for.
+     *
+     * @var const LINEARITY
+     * @var const ACCURACY
+     * @var const BEAMQUAL
+     * @var const REPRO
+     */
+    const LINEARITY = 0b0001;
+    const ACCURACY = 0b0010;
+    const BEAMQUAL = 0b0100;
+    const REPRO = 0b1000;
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -173,9 +186,6 @@ class ImportDataPage extends Command
      */
     private function importRad($spreadsheet)
     {
-        $machineSurveyData->survey_id = $this->surveyData['surveyId'];
-        $machineSurveyData->machine_id = $this->surveyData['machineId'];
-
         // Get the DataPage tab from the spreadsheet.
         $dataPage = $spreadsheet->getSheetByName('DataPage');
 
@@ -184,6 +194,8 @@ class ImportDataPage extends Command
         if (is_null($machineSurveyData)) {
             $machineSurveyData = new MachineSurveyData();
         }
+        $machineSurveyData->survey_id = $this->surveyData['surveyId'];
+        $machineSurveyData->machine_id = $this->surveyData['machineId'];
 
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
 
@@ -282,7 +294,7 @@ class ImportDataPage extends Command
             $this->info('Wall receptor collimator data saved');
         }
 
-        if ($machineSurveyDat->radoutputdata) {
+        if ($machineSurveyData->radoutputdata) {
             $this->info('Radiation output data exists already. Skipping.');
         }
         else {
@@ -366,11 +378,11 @@ class ImportDataPage extends Command
 
                 // Columns 24-28 contain the actual measurements.
                 // If there is no value, then store null
-                $genData->kv_avg = empty($genDataRow['Y']) ? null : (float) $genDataRow['AX'];
-                $genData->kv_max = empty($genDataRow['Z']) ? null : (float) $genDataRow['AY'];
-                $genData->kv_eff = empty($genDataRow['AA']) ? null : (float) $genDataRow['AZ'];
-                $genData->exp_time = empty($genDataRow['AB']) ? null : (float) $genDataRow['BA'];
-                $genData->exposure = empty($genDataRow['AC']) ? null : (float) $genDataRow['BB'];
+                $genData->kv_avg = empty($genDataRow['Y']) ? null : (float) $genDataRow['Y'];
+                $genData->kv_max = empty($genDataRow['Z']) ? null : (float) $genDataRow['Z'];
+                $genData->kv_eff = empty($genDataRow['AA']) ? null : (float) $genDataRow['AA'];
+                $genData->exp_time = empty($genDataRow['AB']) ? null : (float) $genDataRow['AB'];
+                $genData->exposure = empty($genDataRow['AC']) ? null : (float) $genDataRow['AC'];
 
                 // Store the data
                 // $genData->save();
