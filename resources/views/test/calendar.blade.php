@@ -4,9 +4,11 @@
 
 @section('content')
 {!! Charts::assets(['google']) !!}
+@foreach ($calChart as $cal)
 <div class="panel panel-default">
     <div class="panel-body">
-        <p>{!! $calChart->render() !!}</p>
+        <p>{!! $cal->render() !!}</p>
     </div>
 </div>
+@endforeach
 @endsection

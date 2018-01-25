@@ -140,3 +140,5 @@ Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('caltest/', 'CalendarChartController@index');
