@@ -28,8 +28,6 @@ class CreateCollimatordataTable extends Migration
             $table->float('light_long')->nullable();
             $table->float('pbl_cass_trans')->nullable();
             $table->float('pbl_cass_long')->nullable();
-            $table->float('pbl_rad_trans')->nullable();
-            $table->float('pbl_rad_long')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
