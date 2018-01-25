@@ -202,8 +202,7 @@ class ImportDataPage extends Command
         // SID accuracy, illumination, centering, resolution, alignment
         if ($machineSurveyData->radsurveydata) {
             $this->info('Rad survey data exists already. Skipping.');
-        }
-        else {
+        } else {
             $radSurvey = new RadSurveyData();
             $radSurvey->survey_id = $this->surveyData['surveyId'];
             $radSurvey->machine_id = $this->surveyData['machineId'];
@@ -223,8 +222,7 @@ class ImportDataPage extends Command
         //Collimator data
         if ($machineSurveyData->collimatordata) {
             $this->info('Collimator data exists already. Skipping.');
-        }
-        else {
+        } else {
             // Table bucky SID (cm)
             $tableSid = $dataPage->getCell('B10')->getCalculatedValue();
 
@@ -296,8 +294,7 @@ class ImportDataPage extends Command
 
         if ($machineSurveyData->radoutputdata) {
             $this->info('Radiation output data exists already. Skipping.');
-        }
-        else {
+        } else {
             // Large/small focus radiation output
             // Measured kV, mGy/mAs @ 40"
             $lfsOutput = $dataPage->rangeToArray('B20:C27', null, true, false, false);
@@ -340,8 +337,7 @@ class ImportDataPage extends Command
         // Load generator test data from cells AA688:BB747 into an array
         if ($machineSurveyData->gendata) {
             $this->info('Generator data exists already. Skipping.');
-        }
-        else {
+        } else {
             $genTestData = $dataPage->rangeToArray('B34:AC93', null, true, false, true);
 
             // Insert generator test data into the database
@@ -395,8 +391,7 @@ class ImportDataPage extends Command
         // kV, HVL (mm Al)
         if ($machineSurveyData->hvldata) {
             $this->info('HVL data exists already. Skipping.');
-        }
-        else {
+        } else {
             $hvls = $dataPage->rangeToArray('B94:C103', null, true, false, false);
 
             // Insert the HVL data into the database
