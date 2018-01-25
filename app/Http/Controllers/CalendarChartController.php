@@ -32,7 +32,6 @@ class CalendarChartController extends Controller
             $calChart[$yr->years] = Charts::create('calendar', 'google')
                 ->labels($labels)
                 ->values($data);
-
         }
         // SELECT test_date, count(test_date) FROM `testdates` WHERE year(test_date)='2017' group by test_date
 
