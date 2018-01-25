@@ -227,8 +227,7 @@ class ImportDataPage extends Command
 
             // Automatic collimation (PBL) for table bucky
             // First pair - Cassette size (cm)
-            // Second pair - Radiation field size (cm)
-            $pblTable = $dataPage->rangeToArray('B14:E15', null, true, false, false);
+            $pblTable = $dataPage->rangeToArray('B14:C15', null, true, false, false);
 
             // Field size indicators, radiation/light field alignment for wall bucky
             // First pair - Indicated field size (cm)
@@ -238,8 +237,7 @@ class ImportDataPage extends Command
 
             // Automatic collimation (PBL) for wall bucky
             // First pair - Cassette size (cm)
-            // Second pair - Radiation field size (cm)
-            $pblWall = $dataPage->rangeToArray('B18:E19', null, true, false, false);
+            $pblWall = $dataPage->rangeToArray('B18:C19', null, true, false, false);
 
             // Insert the collimator data into the database
             // Table receptor
@@ -258,8 +256,6 @@ class ImportDataPage extends Command
                 $collimatorData->light_long = $collimationTable[$i][5] == 'NA' ? null : (float) $collimationTable[$i][5];
                 $collimatorData->pbl_cass_trans = $pblTable[$i][0] == 'NA' ? null : (float) $pblTable[$i][0];
                 $collimatorData->pbl_cass_long = $pblTable[$i][1] == 'NA' ? null : (float) $pblTable[$i][1];
-                $collimatorData->pbl_rad_trans = $pblTable[$i][2] == 'NA' ? null : (float) $pblTable[$i][2];
-                $collimatorData->pbl_rad_long = $pblTable[$i][3] == 'NA' ? null : (float) $pblTable[$i][3];
                 // $collimatorData->save();
             }
             $this->info('Table receptor collimator data saved');
@@ -280,8 +276,6 @@ class ImportDataPage extends Command
                 $collimatorData->light_long = $collimationWall[$i][5] == 'NA' ? null : (float) $collimationWall[$i][5];
                 $collimatorData->pbl_cass_trans = $pblWall[$i][0] == 'NA' ? null : (float) $pblWall[$i][0];
                 $collimatorData->pbl_cass_long = $pblWall[$i][1] == 'NA' ? null : (float) $pblWall[$i][1];
-                $collimatorData->pbl_rad_trans = $pblWall[$i][2] == 'NA' ? null : (float) $pblWall[$i][2];
-                $collimatorData->pbl_rad_long = $pblWall[$i][3] == 'NA' ? null : (float) $pblWall[$i][3];
                 // $collimatorData->save();
             }
             $machineSurveyData->collimatordata = 1;
