@@ -173,216 +173,245 @@ class ImportDataPage extends Command
      */
     private function importRad($spreadsheet)
     {
-        $machineSurveyData = new MachineSurveyData();
-
         $machineSurveyData->survey_id = $this->surveyData['surveyId'];
         $machineSurveyData->machine_id = $this->surveyData['machineId'];
 
         // Get the DataPage tab from the spreadsheet.
         $dataPage = $spreadsheet->getSheetByName('DataPage');
 
-        // Check to see if there's data for $surveyId in the GenData table already
-        if (GenData::surveyId($this->surveyData['surveyId'])->where('tube_id', $this->surveyData['tubeId'])->get()->count() > 0) {
-            $this->error('Generator data already exists for this survey. Terminating.');
-
-            return false;
+        // Check to see if any survey data has been entered for this survey ID
+        $machineSurveyData = MachineSurveyData::find($this->surveyData['surveyId']);
+        if (is_null($machineSurveyData)) {
+            $machineSurveyData = new MachineSurveyData();
         }
 
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
 
-        // Insert the above data into the radsurveydata table
-        $radSurvey = new RadSurveyData();
-        $radSurvey->survey_id = $this->surveyData['surveyId'];
-        $radSurvey->machine_id = $this->surveyData['machineId'];
-        $radSurvey->tube_id = $this->surveyData['tubeId'];
-        $radSurvey->sid_accuracy_error = (float) $dataPage->getCell('B3')->getCalculatedValue();
-        $radSurvey->avg_illumination = (float) $dataPage->getCell('B4')->getCalculatedValue();
-        $radSurvey->beam_alignment_error = (float) $dataPage->getCell('B5')->getCalculatedValue();
-        $radSurvey->rad_film_center_table = (float) $dataPage->getCell('B6')->getCalculatedValue();
-        $radSurvey->rad_film_center_wall = (float) $dataPage->getCell('B7')->getCalculatedValue();
-        $radSurvey->lfs_resolution = (float) $dataPage->getCell('B8')->getCalculatedValue();
-        $radSurvey->sfs_resolution = (float) $dataPage->getCell('B9')->getCalculatedValue();
-        $radSurvey->save();
-        $machineSurveyData->radsurveydata = 1;
-        $this->info('Radiographic survey data saved.');
-
-        // Table bucky SID (cm)
-        $tableSid = $dataPage->getCell('B10')->getCalculatedValue();
-
-        // Wall bucky SID (cm)
-        $wallSid = $dataPage->getCell('B11')->getCalculatedValue();
-
-        // Field size indicators, radiation/light field alignment for table bucky
-        // First pair - Indicated field size
-        // Second pair - Radiation field
-        // Third pair - Light field
-        $collimationTable = $dataPage->rangeToArray('B12:G13', null, true, false, false);
-
-        // Automatic collimation (PBL) for table bucky
-        // First pair - Cassette size (cm)
-        $pblTable = $dataPage->rangeToArray('B14:C15', null, true, false, false);
-
-        // Field size indicators, radiation/light field alignment for wall bucky
-        // First pair - Indicated field size
-        // Second pair - Radiation field
-        // Third pair - Light field
-        $collimationWall = $dataPage->rangeToArray('B16:G17', null, true, false, false);
-
-        // Automatic collimation (PBL) for wall bucky
-        // First pair - Cassette size (cm)
-        $pblWall = $dataPage->rangeToArray('B18:C19', null, true, false, false);
-
-        // Insert the collimator data into the database
-        // Table receptor
-        for ($i = 0; $i <= 1; $i++) {
-            $collimatorData = new CollimatorData();
-            $collimatorData->survey_id = $this->surveyData['surveyId'];
-            $collimatorData->machine_id = $this->surveyData['machineId'];
-            $collimatorData->tube_id = $this->surveyData['tubeId'];
-            $collimatorData->sid = $tableSid;
-            $collimatorData->receptor = 'Table';
-            $collimatorData->indicated_trans = $collimationTable[$i][0] == 'NA' ? null : (float) $collimationTable[$i][0];
-            $collimatorData->indicated_long = $collimationTable[$i][1] == 'NA' ? null : (float) $collimationTable[$i][1];
-            $collimatorData->rad_trans = $collimationTable[$i][2] == 'NA' ? null : (float) $collimationTable[$i][2];
-            $collimatorData->rad_long = $collimationTable[$i][3] == 'NA' ? null : (float) $collimationTable[$i][3];
-            $collimatorData->light_trans = $collimationTable[$i][4] == 'NA' ? null : (float) $collimationTable[$i][4];
-            $collimatorData->light_long = $collimationTable[$i][5] == 'NA' ? null : (float) $collimationTable[$i][5];
-            $collimatorData->pbl_trans = $pblTable[$i][0] == 'NA' ? null : (float) $pblTable[$i][0];
-            $collimatorData->pbl_long = $pblTable[$i][1] == 'NA' ? null : (float) $pblTable[$i][1];
-            $collimatorData->save();
+        // SID accuracy, illumination, centering, resolution, alignment
+        if ($machineSurveyData->radsurveydata) {
+            $this->info('Rad survey data exists already. Skipping.');
         }
-        $this->info('Table receptor collimator data saved');
-
-        // Wall receptor
-        for ($i = 0; $i <= 1; $i++) {
-            $collimatorData = new CollimatorData();
-            $collimatorData->survey_id = $this->surveyData['surveyId'];
-            $collimatorData->machine_id = $this->surveyData['machineId'];
-            $collimatorData->tube_id = $this->surveyData['tubeId'];
-            $collimatorData->sid = $wallSid;
-            $collimatorData->receptor = 'Wall';
-            $collimatorData->indicated_trans = $collimationWall[$i][0] == 'NA' ? null : (float) $collimationWall[$i][0];
-            $collimatorData->indicated_long = $collimationWall[$i][1] == 'NA' ? null : (float) $collimationWall[$i][1];
-            $collimatorData->rad_trans = $collimationWall[$i][2] == 'NA' ? null : (float) $collimationWall[$i][2];
-            $collimatorData->rad_long = $collimationWall[$i][3] == 'NA' ? null : (float) $collimationWall[$i][3];
-            $collimatorData->light_trans = $collimationWall[$i][4] == 'NA' ? null : (float) $collimationWall[$i][4];
-            $collimatorData->light_long = $collimationWall[$i][5] == 'NA' ? null : (float) $collimationWall[$i][5];
-            $collimatorData->pbl_trans = $pblWall[$i][0] == 'NA' ? null : (float) $pblWall[$i][0];
-            $collimatorData->pbl_long = $pblWall[$i][1] == 'NA' ? null : (float) $pblWall[$i][1];
-            $collimatorData->save();
+        else {
+            $radSurvey = new RadSurveyData();
+            $radSurvey->survey_id = $this->surveyData['surveyId'];
+            $radSurvey->machine_id = $this->surveyData['machineId'];
+            $radSurvey->tube_id = $this->surveyData['tubeId'];
+            $radSurvey->sid_accuracy_error = (float) $dataPage->getCell('B3')->getCalculatedValue();
+            $radSurvey->avg_illumination = (float) $dataPage->getCell('B4')->getCalculatedValue();
+            $radSurvey->beam_alignment_error = (float) $dataPage->getCell('B5')->getCalculatedValue();
+            $radSurvey->rad_film_center_table = (float) $dataPage->getCell('B6')->getCalculatedValue();
+            $radSurvey->rad_film_center_wall = (float) $dataPage->getCell('B7')->getCalculatedValue();
+            $radSurvey->lfs_resolution = (float) $dataPage->getCell('B8')->getCalculatedValue();
+            $radSurvey->sfs_resolution = (float) $dataPage->getCell('B9')->getCalculatedValue();
+            // $radSurvey->save();
+            $machineSurveyData->radsurveydata = 1;
+            $this->info('Radiographic survey data saved.');
         }
-        $machineSurveyData->collimatordata = 1;
-        $this->info('Wall receptor collimator data saved');
 
-        // Large/small focus radiation output
-        // Measured kV, mGy/mAs @ 40"
-        $lfsOutput = $dataPage->rangeToArray('B20:C27', null, true, false, false);
-        $sfsOutput = $dataPage->rangeToArray('B28:C33', null, true, false, false);
+        //Collimator data
+        if ($machineSurveyData->collimatordata) {
+            $this->info('Collimator data exists already. Skipping.');
+        }
+        else {
+            // Table bucky SID (cm)
+            $tableSid = $dataPage->getCell('B10')->getCalculatedValue();
 
-        // Insert the radiation output data into tthe database
-        foreach ($lfsOutput as $l) {
-            $radOutput = new RadiationOutput();
-            // Skip the record if it's empty
-            if (empty($l[0])) {
-                continue;
+            // Wall bucky SID (cm)
+            $wallSid = $dataPage->getCell('B11')->getCalculatedValue();
+
+            // Field size indicators, radiation/light field alignment for table bucky
+            // First pair - Indicated field size (cm)
+            // Second pair - Radiation field (cm)
+            // Third pair - Light field (cm)
+            $collimationTable = $dataPage->rangeToArray('B12:G13', null, true, false, false);
+
+            // Automatic collimation (PBL) for table bucky
+            // First pair - Cassette size (cm)
+            // Second pair - Radiation field size (cm)
+            $pblTable = $dataPage->rangeToArray('B14:E15', null, true, false, false);
+
+            // Field size indicators, radiation/light field alignment for wall bucky
+            // First pair - Indicated field size (cm)
+            // Second pair - Radiation field (cm)
+            // Third pair - Light field (cm)
+            $collimationWall = $dataPage->rangeToArray('B16:G17', null, true, false, false);
+
+            // Automatic collimation (PBL) for wall bucky
+            // First pair - Cassette size (cm)
+            // Second pair - Radiation field size (cm)
+            $pblWall = $dataPage->rangeToArray('B18:E19', null, true, false, false);
+
+            // Insert the collimator data into the database
+            // Table receptor
+            for ($i = 0; $i <= 1; $i++) {
+                $collimatorData = new CollimatorData();
+                $collimatorData->survey_id = $this->surveyData['surveyId'];
+                $collimatorData->machine_id = $this->surveyData['machineId'];
+                $collimatorData->tube_id = $this->surveyData['tubeId'];
+                $collimatorData->sid = $tableSid;
+                $collimatorData->receptor = 'Table';
+                $collimatorData->indicated_trans = $collimationTable[$i][0] == 'NA' ? null : (float) $collimationTable[$i][0];
+                $collimatorData->indicated_long = $collimationTable[$i][1] == 'NA' ? null : (float) $collimationTable[$i][1];
+                $collimatorData->rad_trans = $collimationTable[$i][2] == 'NA' ? null : (float) $collimationTable[$i][2];
+                $collimatorData->rad_long = $collimationTable[$i][3] == 'NA' ? null : (float) $collimationTable[$i][3];
+                $collimatorData->light_trans = $collimationTable[$i][4] == 'NA' ? null : (float) $collimationTable[$i][4];
+                $collimatorData->light_long = $collimationTable[$i][5] == 'NA' ? null : (float) $collimationTable[$i][5];
+                $collimatorData->pbl_cass_trans = $pblTable[$i][0] == 'NA' ? null : (float) $pblTable[$i][0];
+                $collimatorData->pbl_cass_long = $pblTable[$i][1] == 'NA' ? null : (float) $pblTable[$i][1];
+                $collimatorData->pbl_rad_trans = $pblTable[$i][2] == 'NA' ? null : (float) $pblTable[$i][2];
+                $collimatorData->pbl_rad_long = $pblTable[$i][3] == 'NA' ? null : (float) $pblTable[$i][3];
+                // $collimatorData->save();
             }
-            $radOutput->survey_id = $this->surveyData['surveyId'];
-            $radOutput->machine_id = $this->surveyData['machineId'];
-            $radOutput->tube_id = $this->surveyData['tubeId'];
-            $radOutput->focus = 'Large';
-            $radOutput->kv = (float) $l[0];
-            $radOutput->output = (float) $l[1];
-            $radOutput->save();
-        }
-        $this->info('Large focus output data saved.');
-        foreach ($sfsOutput as $s) {
-            $radOutput = new RadiationOutput();
-            // Skip the record if it's empty
-            if (empty($s[0])) {
-                continue;
+            $this->info('Table receptor collimator data saved');
+
+            // Wall receptor
+            for ($i = 0; $i <= 1; $i++) {
+                $collimatorData = new CollimatorData();
+                $collimatorData->survey_id = $this->surveyData['surveyId'];
+                $collimatorData->machine_id = $this->surveyData['machineId'];
+                $collimatorData->tube_id = $this->surveyData['tubeId'];
+                $collimatorData->sid = $wallSid;
+                $collimatorData->receptor = 'Wall';
+                $collimatorData->indicated_trans = $collimationWall[$i][0] == 'NA' ? null : (float) $collimationWall[$i][0];
+                $collimatorData->indicated_long = $collimationWall[$i][1] == 'NA' ? null : (float) $collimationWall[$i][1];
+                $collimatorData->rad_trans = $collimationWall[$i][2] == 'NA' ? null : (float) $collimationWall[$i][2];
+                $collimatorData->rad_long = $collimationWall[$i][3] == 'NA' ? null : (float) $collimationWall[$i][3];
+                $collimatorData->light_trans = $collimationWall[$i][4] == 'NA' ? null : (float) $collimationWall[$i][4];
+                $collimatorData->light_long = $collimationWall[$i][5] == 'NA' ? null : (float) $collimationWall[$i][5];
+                $collimatorData->pbl_cass_trans = $pblWall[$i][0] == 'NA' ? null : (float) $pblWall[$i][0];
+                $collimatorData->pbl_cass_long = $pblWall[$i][1] == 'NA' ? null : (float) $pblWall[$i][1];
+                $collimatorData->pbl_rad_trans = $pblWall[$i][2] == 'NA' ? null : (float) $pblWall[$i][2];
+                $collimatorData->pbl_rad_long = $pblWall[$i][3] == 'NA' ? null : (float) $pblWall[$i][3];
+                // $collimatorData->save();
             }
-            $radOutput->survey_id = $this->surveyData['surveyId'];
-            $radOutput->machine_id = $this->surveyData['machineId'];
-            $radOutput->tube_id = $this->surveyData['tubeId'];
-            $radOutput->focus = 'Small';
-            $radOutput->kv = (float) $s[0];
-            $radOutput->output = (float) $s[1];
-            $radOutput->save();
+            $machineSurveyData->collimatordata = 1;
+            $this->info('Wall receptor collimator data saved');
         }
-        $machineSurveyData->radoutputdata = 1;
-        $this->info('Small focus output data saved.');
+
+        if ($machineSurveyDat->radoutputdata) {
+            $this->info('Radiation output data exists already. Skipping.');
+        }
+        else {
+            // Large/small focus radiation output
+            // Measured kV, mGy/mAs @ 40"
+            $lfsOutput = $dataPage->rangeToArray('B20:C27', null, true, false, false);
+            $sfsOutput = $dataPage->rangeToArray('B28:C33', null, true, false, false);
+
+            // Insert the radiation output data into tthe database
+            foreach ($lfsOutput as $l) {
+                $radOutput = new RadiationOutput();
+                // Skip the record if it's empty
+                if (empty($l[0])) {
+                    continue;
+                }
+                $radOutput->survey_id = $this->surveyData['surveyId'];
+                $radOutput->machine_id = $this->surveyData['machineId'];
+                $radOutput->tube_id = $this->surveyData['tubeId'];
+                $radOutput->focus = 'Large';
+                $radOutput->kv = (float) $l[0];
+                $radOutput->output = (float) $l[1];
+                // $radOutput->save();
+            }
+            $this->info('Large focus output data saved.');
+            foreach ($sfsOutput as $s) {
+                $radOutput = new RadiationOutput();
+                // Skip the record if it's empty
+                if (empty($s[0])) {
+                    continue;
+                }
+                $radOutput->survey_id = $this->surveyData['surveyId'];
+                $radOutput->machine_id = $this->surveyData['machineId'];
+                $radOutput->tube_id = $this->surveyData['tubeId'];
+                $radOutput->focus = 'Small';
+                $radOutput->kv = (float) $s[0];
+                $radOutput->output = (float) $s[1];
+                // $radOutput->save();
+            }
+            $machineSurveyData->radoutputdata = 1;
+            $this->info('Small focus output data saved.');
+        }
 
         // Load generator test data from cells AA688:BB747 into an array
-        $genTestData = $dataPage->rangeToArray('B34:AC93', null, true, false, true);
-
-        // Insert generator test data into the database
-        foreach ($genTestData as $genDataRow) {
-            // Skip the record if it's empty
-            if (empty($genDataRow['AA'])) {
-                continue;
-            }
-
-            $genData = new GenData();
-            $genData->survey_id = $this->surveyData['surveyId'];
-            $genData->machine_id = $this->surveyData['machineId'];
-            $genData->tube_id = $this->surveyData['tubeId'];
-            $genData->kv_set = (int) $genDataRow['B'];
-            $genData->ma_set = (int) $genDataRow['C'];
-            $genData->time_set = (float) $genDataRow['D'];
-            $genData->mas_set = (float) $genDataRow['E'];
-            $genData->add_filt = (float) $genDataRow['G'];
-            $genData->distance = (int) $genDataRow['I'];
-
-            // Take the linearity, accuracy, beam quality and reproducibility flags
-            // from the table and pack it all into one byte
-            // bit 0 - linearity
-            // bit 1 - accuracy
-            // bit 2 - beam quality
-            // bit 3 - reproducibility
-            //
-            // Columns 17-19,21 contain 1 if the current row is used for that
-            // particular measurement, and 0 if it isn't.
-            $genData->use_flags = (($genDataRow['R'] ? self::LINEARITY : 0) |
-                                   ($genDataRow['S'] ? self::ACCURACY : 0) |
-                                   ($genDataRow['T'] ? self::BEAMQUAL : 0) |
-                                   ($genDataRow['V'] ? self::REPRO : 0));
-
-            // Columns 24-28 contain the actual measurements.
-            // If there is no value, then store null
-            $genData->kv_avg = empty($genDataRow['Y']) ? null : (float) $genDataRow['AX'];
-            $genData->kv_max = empty($genDataRow['Z']) ? null : (float) $genDataRow['AY'];
-            $genData->kv_eff = empty($genDataRow['AA']) ? null : (float) $genDataRow['AZ'];
-            $genData->exp_time = empty($genDataRow['AB']) ? null : (float) $genDataRow['BA'];
-            $genData->exposure = empty($genDataRow['AC']) ? null : (float) $genDataRow['BB'];
-
-            // Store the data
-            $genData->save();
+        if ($machineSurveyData->gendata) {
+            $this->info('Generator data exists already. Skipping.');
         }
-        $machineSurveyData->gendata = 1;
-        $this->info('Generator test data saved.');
+        else {
+            $genTestData = $dataPage->rangeToArray('B34:AC93', null, true, false, true);
+
+            // Insert generator test data into the database
+            foreach ($genTestData as $genDataRow) {
+                // Skip the record if it's empty
+                if (empty($genDataRow['AA'])) {
+                    continue;
+                }
+
+                $genData = new GenData();
+                $genData->survey_id = $this->surveyData['surveyId'];
+                $genData->machine_id = $this->surveyData['machineId'];
+                $genData->tube_id = $this->surveyData['tubeId'];
+                $genData->kv_set = (int) $genDataRow['B'];
+                $genData->ma_set = (int) $genDataRow['C'];
+                $genData->time_set = (float) $genDataRow['D'];
+                $genData->mas_set = (float) $genDataRow['E'];
+                $genData->add_filt = (float) $genDataRow['G'];
+                $genData->distance = (int) $genDataRow['I'];
+
+                // Take the linearity, accuracy, beam quality and reproducibility flags
+                // from the table and pack it all into one byte
+                // bit 0 - linearity
+                // bit 1 - accuracy
+                // bit 2 - beam quality
+                // bit 3 - reproducibility
+                //
+                // Columns 17-19,21 contain 1 if the current row is used for that
+                // particular measurement, and 0 if it isn't.
+                $genData->use_flags = (($genDataRow['R'] ? self::LINEARITY : 0) |
+                                       ($genDataRow['S'] ? self::ACCURACY : 0) |
+                                       ($genDataRow['T'] ? self::BEAMQUAL : 0) |
+                                       ($genDataRow['V'] ? self::REPRO : 0));
+
+                // Columns 24-28 contain the actual measurements.
+                // If there is no value, then store null
+                $genData->kv_avg = empty($genDataRow['Y']) ? null : (float) $genDataRow['AX'];
+                $genData->kv_max = empty($genDataRow['Z']) ? null : (float) $genDataRow['AY'];
+                $genData->kv_eff = empty($genDataRow['AA']) ? null : (float) $genDataRow['AZ'];
+                $genData->exp_time = empty($genDataRow['AB']) ? null : (float) $genDataRow['BA'];
+                $genData->exposure = empty($genDataRow['AC']) ? null : (float) $genDataRow['BB'];
+
+                // Store the data
+                // $genData->save();
+            }
+            $machineSurveyData->gendata = 1;
+            $this->info('Generator test data saved.');
+        }
 
         // Get half value layer data
         // kV, HVL (mm Al)
-        $hvls = $dataPage->rangeToArray('B94:C103', null, true, false, false);
-
-        // Insert the HVL data into the database
-        foreach ($hvls as $hvl) {
-            $HVLData = new HVLData();
-            $HVLData->survey_id = $this->surveyData['surveyId'];
-            $HVLData->machine_id = $this->surveyData['machineId'];
-            $HVLData->tube_id = $this->surveyData['tubeId'];
-            if (empty($hvl[0]) || empty($hvl[1])) {
-                // Skip the record if it's empty
-                continue;
-            }
-            $HVLData->kv = (float) $hvl[0];
-            $HVLData->hvl = (float) $hvl[1];
-            $HVLData->save();
+        if ($machineSurveyData->hvldata) {
+            $this->info('HVL data exists already. Skipping.');
         }
-        $machineSurveyData->hvldata = 1;
-        $this->info('HVL data saved.');
+        else {
+            $hvls = $dataPage->rangeToArray('B94:C103', null, true, false, false);
 
-        $machineSurveyData->save();
+            // Insert the HVL data into the database
+            foreach ($hvls as $hvl) {
+                $HVLData = new HVLData();
+                $HVLData->survey_id = $this->surveyData['surveyId'];
+                $HVLData->machine_id = $this->surveyData['machineId'];
+                $HVLData->tube_id = $this->surveyData['tubeId'];
+                if (empty($hvl[0]) || empty($hvl[1])) {
+                    // Skip the record if it's empty
+                    continue;
+                }
+                $HVLData->kv = (float) $hvl[0];
+                $HVLData->hvl = (float) $hvl[1];
+                // $HVLData->save();
+            }
+            $machineSurveyData->hvldata = 1;
+            $this->info('HVL data saved.');
+
+            // $machineSurveyData->save();
+        }
 
         return true;
     }
