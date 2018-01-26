@@ -23,8 +23,8 @@ class CreateMamsurveydataTable extends Migration
             $table->float('mgd_2d', 4, 2)->nullable();
             $table->float('mgd_3d', 4, 2)->nullable();
             $table->float('mgd_combo', 4, 2)->nullable();
-            $table->float('CNR', 5, 2)->nullable();
-            $table->float('SNR', 5, 2)->nullable();
+            $table->float('cnr', 5, 2)->nullable();
+            $table->float('snr', 5, 2)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
