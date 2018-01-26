@@ -20,9 +20,9 @@ class CreateMamsurveydataTable extends Migration
             $table->integer('tube_id')->unsigned()->nullable();
             $table->string('target_filter',6);
             $table->float('avg_illumination')->nullable();
-            $table->float('2D_MGD', 4, 2)->nullable();
-            $table->float('3D_MGD', 4, 2)->nullable();
-            $table->float('Combo_MGD', 4, 2)->nullable();
+            $table->float('mgd_2d', 4, 2)->nullable();
+            $table->float('mgd_3d', 4, 2)->nullable();
+            $table->float('mgd_combo', 4, 2)->nullable();
             $table->float('CNR', 5, 2)->nullable();
             $table->float('SNR', 5, 2)->nullable();
             $table->softDeletes();
