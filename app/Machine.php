@@ -169,6 +169,36 @@ class Machine extends Model
         return $this->hasMany('RadDB\FluoroResolution');
     }
 
+    public function mamSurveyData()
+    {
+        return $this->hasMany('RadDB\MamSurveyData');
+    }
+
+    public function mamHvl()
+    {
+        return $this->hasMany('RadDB\MamHvl');
+    }
+
+    public function mamKvOutput()
+    {
+        return $this->hasMany('RadDB\MamKvOutput');
+    }
+
+    public function mamLinearity()
+    {
+        return $this->hasMany('RadDB\MamLinearity');
+    }
+
+    public function mamResolution()
+    {
+        return $this->hasMany('RadDB\MamResolution');
+    }
+
+    public function mamAcrPhantom()
+    {
+        return $this->hasMany('RadDB\MamAcrPhantom');
+    }
+
     /*
      * Scopes
      */
