@@ -50,16 +50,28 @@ class ImportDataPage extends Command
     ];
 
     /**
-     * Bit flags used to indicate what each line of the generator test data is used for.
+     * Bit flag for exposure linearity data
      *
-     * @var const LINEARITY
-     * @var const ACCURACY
-     * @var const BEAMQUAL
-     * @var const REPRO
+     * @var int
      */
     const LINEARITY = 0b0001;
+
+    /**
+     * Bit flag for kV accuracy
+     * @var int
+     */
     const ACCURACY = 0b0010;
+
+    /**
+     * Bit flag for measurements used in HVL calculation
+     * @var int
+     */
     const BEAMQUAL = 0b0100;
+
+    /**
+     * Bit flag for reproducibility
+     * @var int
+     */
     const REPRO = 0b1000;
 
     /**
@@ -187,7 +199,7 @@ class ImportDataPage extends Command
     /**
      * Import radiography spreadsheet data.
      *
-     * @param $spreadsheet
+     * @param object $spreadsheet
      * @return bool
      */
     private function importRad($spreadsheet)
@@ -426,21 +438,24 @@ class ImportDataPage extends Command
     /**
      * Import fluoroscopy spreadsheet data.
      *
-     * @param $spreadsheet
+     * @param object $spreadsheet
      * @return bool
      */
     private function importFluoro($spreadsheet)
     {
-        // Pull info for this spreadsheet from the database
-        $machineSurveyData = new MachineSurveyData();
+        // Get the DataPage tab from the spreadsheet.
+        $dataPage = $spreadsheet->getSheetByName('DataPage');
+
+        // Check to see if any survey data has been entered for this survey ID
+        $machineSurveyData = MachineSurveyData::find($this->surveyData['surveyId']);
+        if (is_null($machineSurveyData)) {
+            $machineSurveyData = new MachineSurveyData();
+        }
 
         $machineSurveyData->id = $this->surveyData['surveyId'];
         $machineSurveyData->machine_id = $this->surveyData['machineId'];
 
         $this->surveyData['tubeId'] = $this->askTubeId($this->surveyData['machineId']);
-
-        // Get the DataPage tab from the spreadsheet.
-        $dataPage = $spreadsheet->getSheetByName('DataPage');
 
         // Check to see if there's data for $surveyId in the hvldata table already
         // Should come up with a better way of doing this
@@ -453,15 +468,19 @@ class ImportDataPage extends Command
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
 
         // Store HVL to database
-        $HVLData = new HVLData();
-        $HVLData->survey_id = $this->surveyData['surveyId'];
-        $HVLData->machine_id = $this->surveyData['machineId'];
-        $HVLData->tube_id = $this->surveyData['tubeId'];
-        $HVLData->kv = (float) $dataPage->getCell('B3')->getCalculatedValue();
-        $HVLData->hvl = (float) $dataPage->getCell('C3')->getCalculatedValue();
-        // $HVLData->save();
-        $machineSurveyData->hvldata = 1;
-        $this->info('HVL data saved.');
+        if ($machineSurveyData->hvldata) {
+            $this->info('HVL data exists already. Skipping.');
+        } else {
+            $HVLData = new HVLData();
+            $HVLData->survey_id = $this->surveyData['surveyId'];
+            $HVLData->machine_id = $this->surveyData['machineId'];
+            $HVLData->tube_id = $this->surveyData['tubeId'];
+            $HVLData->kv = (float) $dataPage->getCell('B3')->getCalculatedValue();
+            $HVLData->hvl = (float) $dataPage->getCell('C3')->getCalculatedValue();
+            // $HVLData->save();
+            $machineSurveyData->hvldata = 1;
+            $this->info('HVL data saved.');
+        }
 
         // Get image receptor field sizes (cm)
         $fieldSizes[0] = $dataPage->getCell('B4')->getCalculatedValue();
@@ -480,75 +499,88 @@ class ImportDataPage extends Command
         $maxEntraceExpRate = $dataPage->rangeToArray('B27:K27', null, true, false, false);
 
         // Store entrance exposure rate data
-        $j = 0;
-        foreach ($fieldSizes as $fs) {
-            if (empty($fs) || $fs == 0) {
-                // Skip if field size is empty or 0
-                continue;
+        if ($machineSurveyData->fluorodata_1) {
+            $this->info('Fluoro SEE data exists already. Skipping.');
+        } else {
+            $j = 0;
+            foreach ($fieldSizes as $fs) {
+                if (empty($fs) || $fs == 0) {
+                    // Skip if field size is empty or 0
+                    continue;
+                }
+                for ($i = 0; $i <= 2; $i++) {
+                    $fluoroData = new FluoroData();
+                    $fluoroData->survey_id = $this->surveyData['surveyId'];
+                    $fluoroData->machine_id = $this->surveyData['machineId'];
+                    $fluoroData->tube_id = $this->surveyData['tubeId'];
+                    $fluoroData->field_size = $fs;
+                    $fluoroData->atten = $entranceExpRate[$i][0];
+                    $fluoroData->dose1_mode = $doseModes[0];
+                    $fluoroData->dose1_kv = (float) round($entranceExpRate[$j + $i][1], 1);
+                    $fluoroData->dose1_ma = (float) round($entranceExpRate[$j + $i][2], 1);
+                    $fluoroData->dose1_rate = (float) round($entranceExpRate[$j + $i][3], 3);
+                    $fluoroData->dose2_mode = $doseModes[1];
+                    $fluoroData->dose2_kv = (float) round($entranceExpRate[$j + $i][4], 1);
+                    $fluoroData->dose2_ma = (float) round($entranceExpRate[$j + $i][5], 1);
+                    $fluoroData->dose2_rate = (float) round($entranceExpRate[$j + $i][6], 3);
+                    $fluoroData->dose3_mode = $doseModes[2];
+                    $fluoroData->dose3_kv = (float) round($entranceExpRate[$j + $i][7], 1);
+                    $fluoroData->dose3_ma = (float) round($entranceExpRate[$j + $i][8], 1);
+                    $fluoroData->dose3_rate = (float) round($entranceExpRate[$j + $i][9], 3);
+                    // $fluoroData->save();
+                }
+                $j += 3;
             }
-            for ($i = 0; $i <= 2; $i++) {
-                $fluoroData = new FluoroData();
-                $fluoroData->survey_id = $this->surveyData['surveyId'];
-                $fluoroData->machine_id = $this->surveyData['machineId'];
-                $fluoroData->tube_id = $this->surveyData['tubeId'];
-                $fluoroData->field_size = $fs;
-                $fluoroData->atten = $entranceExpRate[$i][0];
-                $fluoroData->dose1_mode = $doseModes[0];
-                $fluoroData->dose1_kv = (float) round($entranceExpRate[$j + $i][1], 1);
-                $fluoroData->dose1_ma = (float) round($entranceExpRate[$j + $i][2], 1);
-                $fluoroData->dose1_rate = (float) round($entranceExpRate[$j + $i][3], 3);
-                $fluoroData->dose2_mode = $doseModes[1];
-                $fluoroData->dose2_kv = (float) round($entranceExpRate[$j + $i][4], 1);
-                $fluoroData->dose2_ma = (float) round($entranceExpRate[$j + $i][5], 1);
-                $fluoroData->dose2_rate = (float) round($entranceExpRate[$j + $i][6], 3);
-                $fluoroData->dose3_mode = $doseModes[2];
-                $fluoroData->dose3_kv = (float) round($entranceExpRate[$j + $i][7], 1);
-                $fluoroData->dose3_ma = (float) round($entranceExpRate[$j + $i][8], 1);
-                $fluoroData->dose3_rate = (float) round($entranceExpRate[$j + $i][9], 3);
-                // $fluoroData->save();
-            }
-            $j += 3;
+            $machineSurveyData->fluorodata_1 = 1;
+            $this->info('Fluoro entrance exposure rates saved.');
         }
-        $machineSurveyData->fluorodata = 1;
-        $this->info('Fluoro entrance exposure rates saved.');
 
         // Store max entrance exposure rates
-        $max = new MaxFluoroData();
-        $max->survey_id = $this->surveyData['surveyId'];
-        $max->machine_id = $this->surveyData['machineId'];
-        $max->tube_id = $this->surveyData['tubeId'];
-        $max->dose1_kv = (float) round($maxEntraceExpRate[0][0], 1);
-        $max->dose1_ma = (float) round($maxEntraceExpRate[0][1], 1);
-        $max->dose1_rate = (float) round($maxEntraceExpRate[0][2], 3);
-        $max->dose2_kv = (float) round($maxEntraceExpRate[0][3], 1);
-        $max->dose2_ma = (float) round($maxEntraceExpRate[0][4], 1);
-        $max->dose2_rate = (float) round($maxEntraceExpRate[0][5], 3);
-        $max->dose3_kv = (float) round($maxEntraceExpRate[0][6], 1);
-        $max->dose3_ma = (float) round($maxEntraceExpRate[0][7], 1);
-        $max->dose3_rate = (float) round($maxEntraceExpRate[0][8], 3);
-        // $max->save();
-        $machineSurveyData->maxfluorodata = 1;
-        $this->info('Max fluoro entrance exposure rates saved.');
+        if ($machineSurveyData->maxfluorodata_1) {
+            $this->info('Max SEE already exists. Skipping.');
+        } else {
+            $max = new MaxFluoroData();
+            $max->survey_id = $this->surveyData['surveyId'];
+            $max->machine_id = $this->surveyData['machineId'];
+            $max->tube_id = $this->surveyData['tubeId'];
+            $max->dose1_kv = (float) round($maxEntraceExpRate[0][0], 1);
+            $max->dose1_ma = (float) round($maxEntraceExpRate[0][1], 1);
+            $max->dose1_rate = (float) round($maxEntraceExpRate[0][2], 3);
+            $max->dose2_kv = (float) round($maxEntraceExpRate[0][3], 1);
+            $max->dose2_ma = (float) round($maxEntraceExpRate[0][4], 1);
+            $max->dose2_rate = (float) round($maxEntraceExpRate[0][5], 3);
+            $max->dose3_kv = (float) round($maxEntraceExpRate[0][6], 1);
+            $max->dose3_ma = (float) round($maxEntraceExpRate[0][7], 1);
+            $max->dose3_rate = (float) round($maxEntraceExpRate[0][8], 3);
+            // $max->save();
+            $machineSurveyData->maxfluorodata_1 = 1;
+            $this->info('Max fluoro entrance exposure rates saved.');
+        }
 
         // Get receptor entrance exposure rate data
-        $receptorEntrExpRate = $dataPage->rangeToArray('B47:F61', null, true, false, false);
-        foreach ($receptorEntrExpRate as $k => $r) {
-            // Skip the record if it's empty
-            if (empty($r[0])) {
-                continue;
+        if ($machineSurveyData->receptorentrance_1) {
+            $this->info('Receptor entrance exposure data already exists. Skipping');
+        } else {
+            $receptorEntrExpRate = $dataPage->rangeToArray('B47:F61', null, true, false, false);
+            foreach ($receptorEntrExpRate as $k => $r) {
+                // Skip the record if it's empty
+                if (empty($r[0])) {
+                    continue;
+                }
+                $ree = new ReceptorEntranceExp();
+                $ree->survey_id = $this->surveyData['surveyId'];
+                $ree->machine_id = $this->surveyData['machineId'];
+                $ree->tube_id = $this->surveyData['tubeId'];
+                $ree->field_size = $r[0];
+                $ree->mode = $doseModes[floor($k / 5)];
+                $ree->kv = $r[1];
+                $ree->ma = $r[2];
+                $ree->rate = $r[4];
+                // $ree->save();
+                $machineSurveyData->receptorentrance_1 = 1;
+                $this->info('Fluoro recepter entrance exposure rates stored.');
             }
-            $ree = new ReceptorEntranceExp();
-            $ree->survey_id = $this->surveyData['surveyId'];
-            $ree->machine_id = $this->surveyData['machineId'];
-            $ree->tube_id = $this->surveyData['tubeId'];
-            $ree->field_size = $r[0];
-            $ree->mode = $doseModes[floor($k / 5)];
-            $ree->kv = $r[1];
-            $ree->ma = $r[2];
-            $ree->rate = $r[4];
-            // $ree->save();
         }
-        $this->info('Fluoro recepter entrance exposure rates stored.');
 
         // Get pulse/digital entrance exposure rate data
         $doseModes[0] = $dataPage->getCell('B28')->getCalculatedValue();
@@ -557,175 +589,198 @@ class ImportDataPage extends Command
         $entranceExpRate = $dataPage->rangeToArray('B31:K45', null, true, false, false);
         $maxEntraceExpRate = $dataPage->rangeToArray('B46:K46', null, true, false, false);
 
-        // Store entrance exposure rate data
-        $j = 0;
-        foreach ($fieldSizes as $fs) {
-            for ($i = 0; $i <= 2; $i++) {
-                $fluoroData = new FluoroData();
-                $fluoroData->survey_id = $this->surveyData['surveyId'];
-                $fluoroData->machine_id = $this->surveyData['machineId'];
-                $fluoroData->tube_id = $this->surveyData['tubeId'];
-                $fluoroData->field_size = $fs;
-                $fluoroData->atten = $entranceExpRate[$i][0];
-                $fluoroData->dose1_mode = $doseModes[0];
-                $fluoroData->dose1_kv = (float) round($entranceExpRate[$j + $i][1], 1);
-                $fluoroData->dose1_ma = (float) round($entranceExpRate[$j + $i][2], 1);
-                $fluoroData->dose1_rate = (float) round($entranceExpRate[$j + $i][3], 3);
-                $fluoroData->dose2_mode = $doseModes[1];
-                $fluoroData->dose2_kv = (float) round($entranceExpRate[$j + $i][4], 1);
-                $fluoroData->dose2_ma = (float) round($entranceExpRate[$j + $i][5], 1);
-                $fluoroData->dose2_rate = (float) round($entranceExpRate[$j + $i][6], 3);
-                $fluoroData->dose3_mode = $doseModes[2];
-                $fluoroData->dose3_kv = (float) round($entranceExpRate[$j + $i][7], 1);
-                $fluoroData->dose3_ma = (float) round($entranceExpRate[$j + $i][8], 1);
-                $fluoroData->dose3_rate = (float) round($entranceExpRate[$j + $i][9], 3);
-                // $fluoroData->save();
+        // Store pulse/digital entrance exposure rate data
+        if ($machineSurveyData->fluorodata_2) {
+            $this->info('Pulse/digital SEE data already exists. Skipping.');
+        } else {
+            $j = 0;
+            foreach ($fieldSizes as $fs) {
+                for ($i = 0; $i <= 2; $i++) {
+                    $fluoroData = new FluoroData();
+                    $fluoroData->survey_id = $this->surveyData['surveyId'];
+                    $fluoroData->machine_id = $this->surveyData['machineId'];
+                    $fluoroData->tube_id = $this->surveyData['tubeId'];
+                    $fluoroData->field_size = $fs;
+                    $fluoroData->atten = $entranceExpRate[$i][0];
+                    $fluoroData->dose1_mode = $doseModes[0];
+                    $fluoroData->dose1_kv = (float) round($entranceExpRate[$j + $i][1], 1);
+                    $fluoroData->dose1_ma = (float) round($entranceExpRate[$j + $i][2], 1);
+                    $fluoroData->dose1_rate = (float) round($entranceExpRate[$j + $i][3], 3);
+                    $fluoroData->dose2_mode = $doseModes[1];
+                    $fluoroData->dose2_kv = (float) round($entranceExpRate[$j + $i][4], 1);
+                    $fluoroData->dose2_ma = (float) round($entranceExpRate[$j + $i][5], 1);
+                    $fluoroData->dose2_rate = (float) round($entranceExpRate[$j + $i][6], 3);
+                    $fluoroData->dose3_mode = $doseModes[2];
+                    $fluoroData->dose3_kv = (float) round($entranceExpRate[$j + $i][7], 1);
+                    $fluoroData->dose3_ma = (float) round($entranceExpRate[$j + $i][8], 1);
+                    $fluoroData->dose3_rate = (float) round($entranceExpRate[$j + $i][9], 3);
+                    // $fluoroData->save();
+                }
+                $j += 3;
             }
-            $j += 3;
+            $machineSurveyData->fluorodata_2 = 1;
+            $this->info('Pulse/digital entrance exposure rates saved.');
         }
-        $this->info('Pulse/digital entrance exposure rates saved.');
 
-        // Store max entrance exposure rates
-        $max = new MaxFluoroData();
-        $max->survey_id = $this->surveyData['surveyId'];
-        $max->machine_id = $this->surveyData['machineId'];
-        $max->tube_id = $this->surveyData['tubeId'];
-        $max->dose1_kv = (float) round($maxEntraceExpRate[0][0], 1);
-        $max->dose1_ma = (float) round($maxEntraceExpRate[0][1], 1);
-        $max->dose1_rate = (float) round($maxEntraceExpRate[0][2], 3);
-        $max->dose2_kv = (float) round($maxEntraceExpRate[0][3], 1);
-        $max->dose2_ma = (float) round($maxEntraceExpRate[0][4], 1);
-        $max->dose2_rate = (float) round($maxEntraceExpRate[0][5], 3);
-        $max->dose3_kv = (float) round($maxEntraceExpRate[0][6], 1);
-        $max->dose3_ma = (float) round($maxEntraceExpRate[0][7], 1);
-        $max->dose3_rate = (float) round($maxEntraceExpRate[0][8], 3);
-        // $max->save();
-        $this->info('Max pulse/digital entrance exposure rates saved.');
+
+        // Store pulse/digital max entrance exposure rates
+        if ($machineSurveyData->maxfluorodata_1) {
+            $this->info('Max SEE already exists. Skipping.');
+        } else {
+            $max = new MaxFluoroData();
+            $max->survey_id = $this->surveyData['surveyId'];
+            $max->machine_id = $this->surveyData['machineId'];
+            $max->tube_id = $this->surveyData['tubeId'];
+            $max->dose1_kv = (float) round($maxEntraceExpRate[0][0], 1);
+            $max->dose1_ma = (float) round($maxEntraceExpRate[0][1], 1);
+            $max->dose1_rate = (float) round($maxEntraceExpRate[0][2], 3);
+            $max->dose2_kv = (float) round($maxEntraceExpRate[0][3], 1);
+            $max->dose2_ma = (float) round($maxEntraceExpRate[0][4], 1);
+            $max->dose2_rate = (float) round($maxEntraceExpRate[0][5], 3);
+            $max->dose3_kv = (float) round($maxEntraceExpRate[0][6], 1);
+            $max->dose3_ma = (float) round($maxEntraceExpRate[0][7], 1);
+            $max->dose3_rate = (float) round($maxEntraceExpRate[0][8], 3);
+            // $max->save();
+            $machineSurveyData->maxfluorodata_2 = 1;
+            $this->info('Max pulse/digital entrance exposure rates saved.');
+        }
 
         // Get pulse/digital entrance exposure rate data
-        $receptorEntrExpRate = $dataPage->rangeToArray('B62:F76', null, true, false, false);
-        foreach ($receptorEntrExpRate as $k => $r) {
-            // Skip the record if it's empty
-            if (empty($r[0])) {
-                continue;
+        if ($machineSurveyData->receptorentrance_2) {
+            $this->info('Receptor entrance exposure data already exists. Skipping');
+        } else {
+            $receptorEntrExpRate = $dataPage->rangeToArray('B62:F76', null, true, false, false);
+            foreach ($receptorEntrExpRate as $k => $r) {
+                // Skip the record if it's empty
+                if (empty($r[0])) {
+                    continue;
+                }
+                $ree = new ReceptorEntranceExp();
+                $ree->survey_id = $this->surveyData['surveyId'];
+                $ree->machine_id = $this->surveyData['machineId'];
+                $ree->tube_id = $this->surveyData['tubeId'];
+                $ree->field_size = $r[0];
+                $ree->mode = $doseModes[floor($k / 5)];
+                $ree->kv = (float) $r[1];
+                $ree->ma = (float) $r[2];
+                $ree->rate = (float) $r[4];
+                // $ree->save();
             }
-            $ree = new ReceptorEntranceExp();
-            $ree->survey_id = $this->surveyData['surveyId'];
-            $ree->machine_id = $this->surveyData['machineId'];
-            $ree->tube_id = $this->surveyData['tubeId'];
-            $ree->field_size = $r[0];
-            $ree->mode = $doseModes[floor($k / 5)];
-            $ree->kv = (float) $r[1];
-            $ree->ma = (float) $r[2];
-            $ree->rate = (float) $r[4];
-            // $ree->save();
+            $machineSurveyData->receptorentrance_2 = 1;
+            $this->info('Pulse/digital receptor entrance exposure rates stored.');
         }
-        $machineSurveyData->receptorentrance = 1;
-        $this->info('Pulse/digital receptor entrance exposure rates stored.');
 
         // Process data for Leeds test objects
         // Leeds TO.N3
         // Column B - field size
         // Column C - N3 low contrast resolution
-        $to_n3 = $dataPage->rangeToArray('B77:C81', null, true, false, true);
-        dump($to_n3);
-        foreach ($to_n3 as $k=>$r) {
-            // Skip the record if it's empty
-            if (empty($r[0])) {
-                continue;
+        if ($machineSurveyData->leeds_n3) {
+            $this->info('Leeds N3 data exists already. Skipping');
+        } else {
+            $to_n3 = $dataPage->rangeToArray('B77:C81', null, true, false, true);
+            foreach ($to_n3 as $k=>$r) {
+                // Skip the record if it's empty
+                if (empty($r[0])) {
+                    continue;
+                }
+                $n3 = new LeedsN3();
+                $n3->survey_id = $this->surveyData['surveyId'];
+                $n3->machine_id = $this->surveyData['machineId'];
+                $n3->tube_id = $this->surveyData['tubeId'];
+                $n3->field_size = $r[0];
+                $n3->n3 = (float) $r[1];
+                // $n3->save();
             }
-            $n3 = new LeedsN3();
-            $n3->survey_id = $this->surveyData['surveyId'];
-            $n3->machine_id = $this->surveyData['machineId'];
-            $n3->tube_id = $this->surveyData['tubeId'];
-            $n3->field_size = $r[0];
-            $n3->n3 = (float) $r[1];
-            // $n3->save();
+            $machineSurveyData->leeds_n3 = 1;
+            $this->info('Leeds N3 stored');
         }
-        $machineSurveyData->leeds_n3 = 1;
-        $this->info('Leeds N3 stored');
 
         // Leeds TO.10 CD
         // Col B - field size.
         // Rows 83-87 - Contrast detail.
-        $to_10 = $dataPage->rangeToArray('B83:N87', null, true, false, true);
-        dump($to_10);
-        foreach ($to_10 as $cd) {
-            // Skip the record if it's empty
-            if (empty($cd['B'])) {
-                continue;
+        if ($machineSurveyData->leeds_to10) {
+            $this->info('Leeds TO.10 data exists. Skipping');
+        } else {
+            $to_10 = $dataPage->rangeToArray('B83:N87', null, true, false, true);
+            foreach ($to_10 as $cd) {
+                // Skip the record if it's empty
+                if (empty($cd['B'])) {
+                    continue;
+                }
+                $to10_cd = new LeedsTO10CD();
+                $to10_cd->survey_id = $this->surveyData['surveyId'];
+                $to10_cd->machine_id = $this->surveyData['machineId'];
+                $to10_cd->tube_id = $this->surveyData['tubeId'];
+                $to10_cd->field_size = $cd['B'];
+                $to10_cd->A = empty($cd['C']) ? null : (float) $cd['C'];
+                $to10_cd->B = empty($cd['D']) ? null : (float) $cd['D'];
+                $to10_cd->C = empty($cd['E']) ? null : (float) $cd['E'];
+                $to10_cd->D = empty($cd['F']) ? null : (float) $cd['F'];
+                $to10_cd->E = empty($cd['G']) ? null : (float) $cd['G'];
+                $to10_cd->F = empty($cd['H']) ? null : (float) $cd['H'];
+                $to10_cd->G = empty($cd['I']) ? null : (float) $cd['I'];
+                $to10_cd->H = empty($cd['J']) ? null : (float) $cd['J'];
+                $to10_cd->J = empty($cd['K']) ? null : (float) $cd['K'];
+                $to10_cd->K = empty($cd['L']) ? null : (float) $cd['L'];
+                $to10_cd->L = empty($cd['M']) ? null : (float) $cd['M'];
+                $to10_cd->M = empty($cd['N']) ? null : (float) $cd['N'];
+                // $to10_cd->save();
             }
-            $to10_cd = new LeedsTO10CD();
-            $to10_cd->survey_id = $this->surveyData['surveyId'];
-            $to10_cd->machine_id = $this->surveyData['machineId'];
-            $to10_cd->tube_id = $this->surveyData['tubeId'];
-            $to10_cd->field_size = $cd['B'];
-            $to10_cd->A = empty($cd['C']) ? null : (float) $cd['C'];
-            $to10_cd->B = empty($cd['D']) ? null : (float) $cd['D'];
-            $to10_cd->C = empty($cd['E']) ? null : (float) $cd['E'];
-            $to10_cd->D = empty($cd['F']) ? null : (float) $cd['F'];
-            $to10_cd->E = empty($cd['G']) ? null : (float) $cd['G'];
-            $to10_cd->F = empty($cd['H']) ? null : (float) $cd['H'];
-            $to10_cd->G = empty($cd['I']) ? null : (float) $cd['I'];
-            $to10_cd->H = empty($cd['J']) ? null : (float) $cd['J'];
-            $to10_cd->J = empty($cd['K']) ? null : (float) $cd['K'];
-            $to10_cd->K = empty($cd['L']) ? null : (float) $cd['L'];
-            $to10_cd->L = empty($cd['M']) ? null : (float) $cd['M'];
-            $to10_cd->M = empty($cd['N']) ? null : (float) $cd['N'];
-            // $to10_cd->save();
-        }
-        // Rows 88-92 - Threshold index.
-        $to_10 = $dataPage->rangeToArray('B88:N92', null, true, false, false);
-        dump($to_10);
-        foreach ($to_10 as $ti) {
-            // Skip the record if it's empty
-            if (empty($ti['B'])) {
-                continue;
+            // Rows 88-92 - Threshold index.
+            $to_10 = $dataPage->rangeToArray('B88:N92', null, true, false, false);
+            foreach ($to_10 as $ti) {
+                // Skip the record if it's empty
+                if (empty($ti['B'])) {
+                    continue;
+                }
+                $to10_ti = new LeedsTO10TI();
+                $to10_ti->survey_id = $this->surveyData['surveyId'];
+                $to10_ti->machine_id = $this->surveyData['machineId'];
+                $to10_ti->tube_id = $this->surveyData['tubeId'];
+                $to10_ti->field_size = $ti['B'];
+                $to10_ti->A = empty($ti['C']) ? null : (float) $ti['C'];
+                $to10_ti->B = empty($ti['D']) ? null : (float) $ti['D'];
+                $to10_ti->C = empty($ti['E']) ? null : (float) $ti['E'];
+                $to10_ti->D = empty($ti['F']) ? null : (float) $ti['F'];
+                $to10_ti->E = empty($ti['G']) ? null : (float) $ti['G'];
+                $to10_ti->F = empty($ti['H']) ? null : (float) $ti['H'];
+                $to10_ti->G = empty($ti['I']) ? null : (float) $ti['I'];
+                $to10_ti->H = empty($ti['J']) ? null : (float) $ti['J'];
+                $to10_ti->J = empty($ti['K']) ? null : (float) $ti['K'];
+                $to10_ti->K = empty($ti['L']) ? null : (float) $ti['L'];
+                $to10_ti->L = empty($ti['M']) ? null : (float) $ti['M'];
+                $to10_ti->M = empty($ti['N']) ? null : (float) $ti['N'];
+                // $to10_ti->save();
             }
-            $to10_ti = new LeedsTO10TI();
-            $to10_ti->survey_id = $this->surveyData['surveyId'];
-            $to10_ti->machine_id = $this->surveyData['machineId'];
-            $to10_ti->tube_id = $this->surveyData['tubeId'];
-            $to10_ti->field_size = $ti['B'];
-            $to10_ti->A = empty($ti['C']) ? null : (float) $ti['C'];
-            $to10_ti->B = empty($ti['D']) ? null : (float) $ti['D'];
-            $to10_ti->C = empty($ti['E']) ? null : (float) $ti['E'];
-            $to10_ti->D = empty($ti['F']) ? null : (float) $ti['F'];
-            $to10_ti->E = empty($ti['G']) ? null : (float) $ti['G'];
-            $to10_ti->F = empty($ti['H']) ? null : (float) $ti['H'];
-            $to10_ti->G = empty($ti['I']) ? null : (float) $ti['I'];
-            $to10_ti->H = empty($ti['J']) ? null : (float) $ti['J'];
-            $to10_ti->J = empty($ti['K']) ? null : (float) $ti['K'];
-            $to10_ti->K = empty($ti['L']) ? null : (float) $ti['L'];
-            $to10_ti->L = empty($ti['M']) ? null : (float) $ti['M'];
-            $to10_ti->M = empty($ti['N']) ? null : (float) $ti['N'];
-            // $to10_ti->save();
+            $machineSurveyData->leeds_to10 = 1;
+            $this->info('Leeds TO.10 stored');
         }
-        $machineSurveyData->leeds_to10 = 1;
 
         // Resolution
         // Col B - Field size
         // Col C - Resolution (lp/mm)
-        $res = $dataPage->rangeToArray('B93:C97', null, true, false, false);
-        dump($res);
-        foreach ($res as $k=>$r) {
-            // Skip the record if it's empty
-            if (empty($r[0])) {
-                continue;
+        if ($machineSurveyData->fluoro_resolution) {
+            $this->info('Fluoro resolution data exists. Skipping.');
+        } else {
+            $res = $dataPage->rangeToArray('B93:C97', null, true, false, false);
+            foreach ($res as $k=>$r) {
+                // Skip the record if it's empty
+                if (empty($r[0])) {
+                    continue;
+                }
+                $fluoroRes = new FluoroResolution();
+                $fluoroRes->survey_id = $this->surveyData['surveyId'];
+                $fluoroRes->machine_id = $this->surveyData['machineId'];
+                $fluoroRes->tube_id = $this->surveyData['tubeId'];
+                $fluoroRes->field_size = $r[0];
+                $fluoroRes->resolution = (float) $r[1];
+                // $fluoroRes->save();
             }
-            $fluoroRes = new FluoroResolution();
-            $fluoroRes->survey_id = $this->surveyData['surveyId'];
-            $fluoroRes->machine_id = $this->surveyData['machineId'];
-            $fluoroRes->tube_id = $this->surveyData['tubeId'];
-            $fluoroRes->field_size = $r[0];
-            $fluoroRes->resolution = (float) $r[1];
-            // $fluoroRes->save();
-            dump($fluoroRes);
+            $machineSurveyData->fluoro_resolution = 1;
+            $this->info('Fluoro resolution stored');
         }
-        $machineSurveyData->fluoro_resolution = 1;
 
         // $machineSurveyData->save();
-        dump($machineSurveyData);
 
         return true;
     }
@@ -733,7 +788,7 @@ class ImportDataPage extends Command
     /**
      * Import mammography (Hologic) spreadsheet data.
      *
-     * @param $spreadsheet
+     * @param object $spreadsheet
      * @return bool
      */
     private function importMammoHol($spreadsheet)
@@ -743,7 +798,7 @@ class ImportDataPage extends Command
     /**
      * Import mammography (Siemens) spreadsheet data.
      *
-     * @param $spreadsheet
+     * @param object $spreadsheet
      * @return bool
      */
     private function importMammoSie($spreadsheet)
@@ -753,7 +808,7 @@ class ImportDataPage extends Command
     /**
      * Import SBB spreadsheet data.
      *
-     * @param $spreadsheet
+     * @param object $spreadsheet
      * @return bool
      */
     private function importSbb($spreadsheet)
