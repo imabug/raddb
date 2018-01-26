@@ -200,7 +200,7 @@ class ImportDataPage extends Command
         if (is_null($machineSurveyData)) {
             $machineSurveyData = new MachineSurveyData();
         }
-        $machineSurveyData->survey_id = $this->surveyData['surveyId'];
+        $machineSurveyData->id = $this->surveyData['surveyId'];
         $machineSurveyData->machine_id = $this->surveyData['machineId'];
 
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
@@ -221,7 +221,7 @@ class ImportDataPage extends Command
             $radSurvey->rad_film_center_wall = (float) $dataPage->getCell('B7')->getCalculatedValue();
             $radSurvey->lfs_resolution = (float) $dataPage->getCell('B8')->getCalculatedValue();
             $radSurvey->sfs_resolution = (float) $dataPage->getCell('B9')->getCalculatedValue();
-            // $radSurvey->save();
+            $radSurvey->save();
             $machineSurveyData->radsurveydata = 1;
             $this->info('Radiographic survey data saved.');
         }
@@ -274,7 +274,7 @@ class ImportDataPage extends Command
                 $collimatorData->light_long = $collimationTable[$i][5] == 'NA' ? null : (float) $collimationTable[$i][5];
                 $collimatorData->pbl_cass_trans = $pblTable[$i][0] == 'NA' ? null : (float) $pblTable[$i][0];
                 $collimatorData->pbl_cass_long = $pblTable[$i][1] == 'NA' ? null : (float) $pblTable[$i][1];
-                // $collimatorData->save();
+                $collimatorData->save();
             }
             $this->info('Table receptor collimator data saved');
 
@@ -294,7 +294,7 @@ class ImportDataPage extends Command
                 $collimatorData->light_long = $collimationWall[$i][5] == 'NA' ? null : (float) $collimationWall[$i][5];
                 $collimatorData->pbl_cass_trans = $pblWall[$i][0] == 'NA' ? null : (float) $pblWall[$i][0];
                 $collimatorData->pbl_cass_long = $pblWall[$i][1] == 'NA' ? null : (float) $pblWall[$i][1];
-                // $collimatorData->save();
+                $collimatorData->save();
             }
             $machineSurveyData->collimatordata = 1;
             $this->info('Wall receptor collimator data saved');
@@ -322,7 +322,7 @@ class ImportDataPage extends Command
                 $radOutput->focus = 'Large';
                 $radOutput->kv = (float) $l[0];
                 $radOutput->output = (float) $l[1];
-                // $radOutput->save();
+                $radOutput->save();
             }
             $this->info('Large focus output data saved.');
             foreach ($sfsOutput as $s) {
@@ -337,7 +337,7 @@ class ImportDataPage extends Command
                 $radOutput->focus = 'Small';
                 $radOutput->kv = (float) $s[0];
                 $radOutput->output = (float) $s[1];
-                // $radOutput->save();
+                $radOutput->save();
             }
             $machineSurveyData->radoutputdata = 1;
             $this->info('Small focus output data saved.');
@@ -391,7 +391,7 @@ class ImportDataPage extends Command
                 $genData->exposure = empty($genDataRow['AC']) ? null : (float) $genDataRow['AC'];
 
                 // Store the data
-                // $genData->save();
+                $genData->save();
             }
             $machineSurveyData->gendata = 1;
             $this->info('Generator test data saved.');
@@ -417,12 +417,12 @@ class ImportDataPage extends Command
                 }
                 $HVLData->kv = (float) $hvl[0];
                 $HVLData->hvl = (float) $hvl[1];
-                // $HVLData->save();
+                $HVLData->save();
             }
             $machineSurveyData->hvldata = 1;
             $this->info('HVL data saved.');
 
-            // $machineSurveyData->save();
+            $machineSurveyData->save();
         }
 
         return true;
