@@ -457,14 +457,6 @@ class ImportDataPage extends Command
 
         $this->surveyData['tubeId'] = $this->askTubeId($this->surveyData['machineId']);
 
-        // Check to see if there's data for $surveyId in the hvldata table already
-        // Should come up with a better way of doing this
-        // if (HVLData::where('survey_id', $this->surveyData['surveyId'])->where('tube_id', $this->surveyData['tubeId'])->get()->count() > 0) {
-        //     $this->error('Fluoro data already exists for this survey. Terminating.');
-        //
-        //     return false;
-        // }
-
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
 
         // Store HVL to database
@@ -792,6 +784,23 @@ class ImportDataPage extends Command
      */
     private function importMammoHol($spreadsheet)
     {
+        // Get the DataPage tab from the spreadsheet.
+        $dataPage = $spreadsheet->getSheetByName('DataPage');
+
+        // Check to see if any survey data has been entered for this survey ID
+        $machineSurveyData = MachineSurveyData::find($this->surveyData['surveyId']);
+        if (is_null($machineSurveyData)) {
+            $machineSurveyData = new MachineSurveyData();
+        }
+
+        $machineSurveyData->id = $this->surveyData['surveyId'];
+        $machineSurveyData->machine_id = $this->surveyData['machineId'];
+
+        $this->surveyData['tubeId'] = $this->askTubeId($this->surveyData['machineId']);
+
+        $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
+
+        return true;
     }
 
     /**
@@ -802,6 +811,23 @@ class ImportDataPage extends Command
      */
     private function importMammoSie($spreadsheet)
     {
+        // Get the DataPage tab from the spreadsheet.
+        $dataPage = $spreadsheet->getSheetByName('DataPage');
+
+        // Check to see if any survey data has been entered for this survey ID
+        $machineSurveyData = MachineSurveyData::find($this->surveyData['surveyId']);
+        if (is_null($machineSurveyData)) {
+            $machineSurveyData = new MachineSurveyData();
+        }
+
+        $machineSurveyData->id = $this->surveyData['surveyId'];
+        $machineSurveyData->machine_id = $this->surveyData['machineId'];
+
+        $this->surveyData['tubeId'] = $this->askTubeId($this->surveyData['machineId']);
+
+        $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
+
+        return true;
     }
 
     /**
@@ -812,5 +838,22 @@ class ImportDataPage extends Command
      */
     private function importSbb($spreadsheet)
     {
+        // Get the DataPage tab from the spreadsheet.
+        $dataPage = $spreadsheet->getSheetByName('DataPage');
+
+        // Check to see if any survey data has been entered for this survey ID
+        $machineSurveyData = MachineSurveyData::find($this->surveyData['surveyId']);
+        if (is_null($machineSurveyData)) {
+            $machineSurveyData = new MachineSurveyData();
+        }
+
+        $machineSurveyData->id = $this->surveyData['surveyId'];
+        $machineSurveyData->machine_id = $this->surveyData['machineId'];
+
+        $this->surveyData['tubeId'] = $this->askTubeId($this->surveyData['machineId']);
+
+        $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
+
+        return true;
     }
 }
