@@ -42,18 +42,18 @@ class MamKvOutput extends Model
     /*
      * Relationships
      */
-     public function machine()
-     {
-         return $this->belongsTo('RadDB\Machine');
-     }
+    public function machine()
+    {
+        return $this->belongsTo('RadDB\Machine');
+    }
 
-     public function survey()
-     {
-         return $this->belongsTo('RadDB\TestDate');
-     }
+    public function survey()
+    {
+        return $this->belongsTo('RadDB\TestDate');
+    }
 
-     public function tube()
-     {
-         return $this->belongsTo('RadDB\Tube');
-     }
+    public function tube()
+    {
+        return $this->belongsTo('RadDB\Tube');
+    }
 }

@@ -833,7 +833,6 @@ class ImportDataPage extends Command
         if ($machineSurveyData->mamresolution) {
             $this->info('Mammo resolution data exists already. Skipping');
         } else {
-
         }
 
         // Get half value layer data
