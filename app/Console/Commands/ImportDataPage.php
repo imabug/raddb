@@ -50,26 +50,26 @@ class ImportDataPage extends Command
     ];
 
     /**
-     * Bit flag for exposure linearity data
+     * Bit flag for exposure linearity data.
      *
      * @var int
      */
     const LINEARITY = 0b0001;
 
     /**
-     * Bit flag for kV accuracy
+     * Bit flag for kV accuracy.
      * @var int
      */
     const ACCURACY = 0b0010;
 
     /**
-     * Bit flag for measurements used in HVL calculation
+     * Bit flag for measurements used in HVL calculation.
      * @var int
      */
     const BEAMQUAL = 0b0100;
 
     /**
-     * Bit flag for reproducibility
+     * Bit flag for reproducibility.
      * @var int
      */
     const REPRO = 0b1000;
@@ -621,7 +621,6 @@ class ImportDataPage extends Command
             $machineSurveyData->fluorodata_2 = 1;
             $this->info('Pulse/digital entrance exposure rates saved.');
         }
-
 
         // Store pulse/digital max entrance exposure rates
         if ($machineSurveyData->maxfluorodata_1) {
