@@ -14,7 +14,7 @@ class AddMammoFieldsToMachineSurveydataTable extends Migration
     public function up()
     {
         Schema::table('machine_surveydata', function (Blueprint $table) {
-            $table->boolean('mamhvl')->default(0)->after('maxfluorodata_2')->comment('Mammo HVL');
+            $table->boolean('mamhvl')->default(0)->after('fluoro_resolution')->comment('Mammo HVL');
             $table->boolean('mamkvoutput')->default(0)->after('mamhvl')->comment('Mammo kV accuracy/output');
             $table->boolean('mamsurveydata')->default(0)->after('mamkvoutput')->comment('Mammo light field, MGD, SNR/CNR');
             $table->boolean('mamresolution')->default(0)->after('mamsurveydata')->comment('Mammo resolution');
