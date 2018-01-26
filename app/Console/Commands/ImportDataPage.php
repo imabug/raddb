@@ -168,7 +168,7 @@ class ImportDataPage extends Command
         if (is_null($tubes)) {
             // No tubes associated with this machine
             return null;
-        })
+        }
 
         if ($tubes->count() > 1) {
             $choice = "Enter the tube ID this spreadsheet belongs to\n";
