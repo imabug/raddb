@@ -800,6 +800,33 @@ class ImportDataPage extends Command
 
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
 
+        // Get half value layer data
+        // kV, HVL (mm Al)
+        if ($machineSurveyData->hvldata) {
+            $this->info('HVL data exists already. Skipping.');
+        } else {
+            $hvls = $dataPage->rangeToArray('B30:D42', null, true, false, false);
+
+            // Insert the HVL data into the database
+            foreach ($hvls as $hvl) {
+                $HVLData = new HVLData();
+                $HVLData->survey_id = $this->surveyData['surveyId'];
+                $HVLData->machine_id = $this->surveyData['machineId'];
+                $HVLData->tube_id = $this->surveyData['tubeId'];
+                if (empty($hvl[1]) || empty($hvl[2])) {
+                    // Skip the record if it's empty
+                    continue;
+                }
+                $HVLData->kv = (float) $hvl[1];
+                $HVLData->hvl = (float) $hvl[2];
+                $HVLData->save();
+            }
+            $machineSurveyData->hvldata = 1;
+            $this->info('HVL data saved.');
+
+            $machineSurveyData->save();
+        }
+
         return true;
     }
 
