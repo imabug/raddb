@@ -3,14 +3,19 @@
 namespace RadDB\Console\Commands;
 
 use RadDB\Tube;
+use RadDB\MamHvl;
 use RadDB\GenData;
 use RadDB\HVLData;
 use RadDB\LeedsN3;
-use RadDB\Machine;
 use RadDB\TestDate;
 use RadDB\FluoroData;
 use RadDB\LeedsTO10CD;
 use RadDB\LeedsTO10TI;
+use RadDB\MamKvOutput;
+use RadDB\MamLinearity;
+use RadDB\MamAcrPhantom;
+use RadDB\MamResolution;
+use RadDB\MamSurveyData;
 use RadDB\MaxFluoroData;
 use RadDB\RadSurveyData;
 use RadDB\CollimatorData;
@@ -800,12 +805,43 @@ class ImportDataPage extends Command
 
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
 
+        // Get survey data
+        // Light field, MGD, CNR/SNR
+        if ($machineSurveyData->mamsurveydata) {
+            $this->info('Mammo light field, MGD and CNR/SNR data exists already. Skipping.');
+        } else {
+            $lightField = $dataPage->getCell('B3')->getCalculatedValue();
+            $mgd_2d = $dataPage->getCell('B7')->getCalculatedValue();
+            $mgd_3d = $dataPage->getCell('B8')->getCalculatedValue();
+            $mgd_combo = $dataPage->getCell('B9')->getCalculatedValue();
+            $snr = $dataPage->getCell('B41')->getCalculatedValue();
+            $cnr = $dataPage->getCell('B42')->getCalculatedValue();
+
+            $mamSurveyData = new MamSurveyData();
+            $mamSurveyData->survey_id = $this->surveyData['surveyId'];
+            $mamSurveyData->machine_id = $this->surveyData['machineId'];
+            $mamSurveyData->tube_id = $this->surveyData['tubeId'];
+            $mamSurveyData->avg_illumination = empty($lightField) ? null : $lightField;
+            $mamSurveyData->mgd_2d = empty($mgd_2d) ? null : $mgd_2d;
+            $mamSurveyData->mgd_3d = $mgd_3d == 'NA' ? null : $mgd_3d;
+            $mamSurveyData->mgd_combo = $mgd_combo == 'NA' ? null : $mgd_combo;
+            $mamSurveyData->snr = empty($snr) ? null : $snr;
+            $mamSurveyData->cnr = empty($cnr) ? null : $cnr;
+        }
+
+        // Get resolution data
+        if ($machineSurveyData->mamresolution) {
+            $this->info('Mammo resolution data exists already. Skipping');
+        } else {
+
+        }
+
         // Get half value layer data
         // kV, HVL (mm Al)
         if ($machineSurveyData->hvldata) {
-            $this->info('HVL data exists already. Skipping.');
+            $this->info('Mammo HVL data exists already. Skipping.');
         } else {
-            $hvls = $dataPage->rangeToArray('B30:D42', null, true, false, false);
+            $hvls = $dataPage->rangeToArray('B23:D35', null, true, false, false);
 
             // Insert the HVL data into the database
             foreach ($hvls as $hvl) {
