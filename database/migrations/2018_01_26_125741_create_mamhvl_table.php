@@ -18,7 +18,7 @@ class CreateMamhvlTable extends Migration
             $table->integer('survey_id')->unsigned();
             $table->integer('machine_id')->unsigned();
             $table->integer('tube_id')->unsigned()->nullable();
-            $table->string('target_filter',6);
+            $table->string('target_filter', 6);
             $table->tinyInteger('kv')->unsigned();
             $table->float('hvl', 3, 2)->comment('mm Al');
             $table->softDeletes();

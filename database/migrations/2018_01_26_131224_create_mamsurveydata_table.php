@@ -18,7 +18,7 @@ class CreateMamsurveydataTable extends Migration
             $table->integer('survey_id')->unsigned();
             $table->integer('machine_id')->unsigned();
             $table->integer('tube_id')->unsigned()->nullable();
-            $table->string('target_filter',6);
+            $table->string('target_filter', 6);
             $table->float('avg_illumination')->nullable();
             $table->float('2D_MGD', 4, 2)->nullable();
             $table->float('3D_MGD', 4, 2)->nullable();
