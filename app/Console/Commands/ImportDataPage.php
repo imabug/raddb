@@ -165,7 +165,7 @@ class ImportDataPage extends Command
     {
         $tubes = Tube::where('machine_id', $machineId)->active()->get();
 
-        if (is_null($tubes) {
+        if (is_null($tubes)) {
             // No tubes associated with this machine
             return null;
         })
