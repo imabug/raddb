@@ -18,7 +18,7 @@ class CreateMamresolutionTable extends Migration
             $table->integer('survey_id')->unsigned();
             $table->integer('machine_id')->unsigned();
             $table->integer('tube_id')->unsigned()->nullable();
-            $table->string('target_filter',6);
+            $table->string('target_filter', 6);
             $table->enum('mode', ['2D', '3D'])->default('2D');
             $table->enum('fs_size', ['Large', 'Small'])->default('Large');
             $table->tinyInteger('kv');
