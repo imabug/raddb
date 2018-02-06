@@ -1586,16 +1586,16 @@
         },
         {
             "name": "larapack/hooks",
-            "version": "v1.0.7",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/larapack/hooks.git",
-                "reference": "779ad2a35a70ad9ab76a30628f3a9bbe0a8f2013"
+                "reference": "a3d84cbd6c13e0bedede6d560026f474aa5c7995"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larapack/hooks/zipball/779ad2a35a70ad9ab76a30628f3a9bbe0a8f2013",
-                "reference": "779ad2a35a70ad9ab76a30628f3a9bbe0a8f2013",
+                "url": "https://api.github.com/repos/larapack/hooks/zipball/a3d84cbd6c13e0bedede6d560026f474aa5c7995",
+                "reference": "a3d84cbd6c13e0bedede6d560026f474aa5c7995",
                 "shasum": ""
             },
             "require": {
@@ -1627,7 +1627,7 @@
                 "hooks",
                 "laravel"
             ],
-            "time": "2018-01-25T08:50:54+00:00"
+            "time": "2018-02-02T13:17:22+00:00"
         },
         {
             "name": "larapack/voyager-hooks",
@@ -1683,16 +1683,16 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v2.0.11",
+            "version": "v2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "06ef9bd6e9411cbbe1d444c08cff8384f5b06769"
+                "reference": "fcd441f1dab962d9def79d9038055c7fa9df38c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/06ef9bd6e9411cbbe1d444c08cff8384f5b06769",
-                "reference": "06ef9bd6e9411cbbe1d444c08cff8384f5b06769",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/fcd441f1dab962d9def79d9038055c7fa9df38c0",
+                "reference": "fcd441f1dab962d9def79d9038055c7fa9df38c0",
                 "shasum": ""
             },
             "require": {
@@ -1740,20 +1740,20 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2018-01-26T13:36:30+00:00"
+            "time": "2018-02-05T15:10:23+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.33",
+            "version": "v5.5.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ef7880e665390f999f4def7c9f78133636f973cf"
+                "reference": "1de7c0aec13eadbdddc2d1ba4019b064b2c6b966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ef7880e665390f999f4def7c9f78133636f973cf",
-                "reference": "ef7880e665390f999f4def7c9f78133636f973cf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1de7c0aec13eadbdddc2d1ba4019b064b2c6b966",
+                "reference": "1de7c0aec13eadbdddc2d1ba4019b064b2c6b966",
                 "shasum": ""
             },
             "require": {
@@ -1874,7 +1874,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-01-30T15:06:13+00:00"
+            "time": "2018-02-06T15:36:55+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3202,16 +3202,16 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "5.1.5",
+            "version": "5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "3d66bda66530d42eddfb3faa0f60f3e9ae8a7f08"
+                "reference": "0b656e9eb37dab39ac8a294193034b839fef1cfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/3d66bda66530d42eddfb3faa0f60f3e9ae8a7f08",
-                "reference": "3d66bda66530d42eddfb3faa0f60f3e9ae8a7f08",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/0b656e9eb37dab39ac8a294193034b839fef1cfc",
+                "reference": "0b656e9eb37dab39ac8a294193034b839fef1cfc",
                 "shasum": ""
             },
             "require": {
@@ -3230,7 +3230,7 @@
             "require-dev": {
                 "mockery/mockery": "^1.0",
                 "orchestra/testbench": "~3.5.0",
-                "phpunit/phpunit": "^6.2"
+                "phpunit/phpunit": "^6.5 || ^7.0"
             },
             "suggest": {
                 "guzzlehttp/guzzle": "Allows notifications to be sent via Slack"
@@ -3271,20 +3271,20 @@
                 "laravel-backup",
                 "spatie"
             ],
-            "time": "2018-01-20T14:31:30+00:00"
+            "time": "2018-02-06T12:28:07+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "6.6.7",
+            "version": "6.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "a2b38d11575401182e6200f9ed25e062a5da8007"
+                "reference": "74da0ccccec00731e5d6894623f192c37dc3488c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a2b38d11575401182e6200f9ed25e062a5da8007",
-                "reference": "a2b38d11575401182e6200f9ed25e062a5da8007",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/74da0ccccec00731e5d6894623f192c37dc3488c",
+                "reference": "74da0ccccec00731e5d6894623f192c37dc3488c",
                 "shasum": ""
             },
             "require": {
@@ -3351,7 +3351,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2018-01-07T06:34:55+00:00"
+            "time": "2018-02-05T09:01:10+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
