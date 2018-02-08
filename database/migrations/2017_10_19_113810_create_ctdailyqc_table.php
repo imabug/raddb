@@ -21,6 +21,7 @@ class CreateCtdailyqcTable extends Migration
             $table->float('water_hu', 4, 1)->nullable();
             $table->float('water_sd', 4, 1)->nullable();
             $table->enum('artifacts', ['Y', 'N'])->nullable();
+            $table->string('initials', 4);
             $table->text('notes')->nullable();
             $table->index(['machine_id', 'id']);
             $table->index('qcdate');
