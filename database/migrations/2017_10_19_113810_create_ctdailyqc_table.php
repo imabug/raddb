@@ -17,10 +17,10 @@ class CreateCtdailyqcTable extends Migration
             $table->increments('id');
             $table->integer('machine_id')->unsigned()->nullable();
             $table->date('qcdate')->nullable();
-            $table->enum('scan_type', ['A', 'H'])->nullable();
+            $table->enum('scan_type', ['Axial', 'Helical'])->nullable();
             $table->float('water_hu', 4, 1)->nullable();
             $table->float('water_sd', 4, 1)->nullable();
-            $table->boolean('artifacts')->nullable();
+            $table->enum('artifacts', ['Y', 'N'])->nullable();
             $table->text('notes')->nullable();
             $table->index(['machine_id', 'id']);
             $table->index('qcdate');
