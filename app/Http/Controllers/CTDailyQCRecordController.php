@@ -42,7 +42,7 @@ class CTDailyQCRecordController extends Controller
     {
         $message = '';
         $status = '';
-dd($request);
+        dd($request);
         $ctQcRec = CTDailyQCRecord::create([
             'machine_id'    => $request->machine_id,
             'qcdate'        => $request->qcdate,
@@ -55,11 +55,10 @@ dd($request);
 
         if (is_null($ctQcRec)) {
             $status = 'fail';
-            $message = "Unable to add QC record.";
-        }
-        else {
+            $message = 'Unable to add QC record.';
+        } else {
             $status = 'success';
-            $message = "QC record added.";
+            $message = 'QC record added.';
         }
 
         return redirect()
