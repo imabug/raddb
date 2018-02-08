@@ -120,7 +120,7 @@ Route::name('home.index')->get('/home', 'HomeController@index');
 Route::name('qa.index')->get('qa/', 'QAController@index');
 Route::name('qa.machineSurveyList')->get('qa/{machine_id}/surveyList', 'QAController@show');
 
-// Survey test data controllers
+// Survey test data routes
 Route::name('gendata.create')
     ->get('surveydata/generator/{surveyId}/create', 'GenDataController@create');
 Route::resource('gendata', 'GenDataController',
@@ -133,6 +133,10 @@ Route::resource('radsurveydata', 'RadSurveyDataController');
 Route::resource('radoutputdata', 'RadiationOutputController');
 Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 
+// CT Daily QC routes
+Route::resource('ctdailyqcrecord', 'CTDailyQCRecordController');
+
+// Voyager routes
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
