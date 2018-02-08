@@ -112,10 +112,6 @@ Route::name('mammo.CE')
 // Route for user management
 Route::resource('users', 'UserController');
 
-// Route for experiments and tests
-Route::name('test.loadXlsSpreadsheet')->get('test/loadXlsSpreadsheet', 'TestController@loadXlsSpreadsheet');
-Route::name('test.loadOdsSpreadsheet')->get('test/loadOdsSpreadsheet', 'TestController@loadOdsSpreadsheet');
-
 // Authentication routes
 Auth::routes();
 Route::name('home.index')->get('/home', 'HomeController@index');
