@@ -22,6 +22,7 @@ class CTDailyQCRecord extends Model
      * @var array
      */
     protected $fillable = [
+        'machine_id',
         'qcdate',
         'scan_type',
         'water_hu',
