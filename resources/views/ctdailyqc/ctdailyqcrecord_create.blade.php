@@ -16,20 +16,16 @@
     		<option value="{{ $ct->id }}">{{ $ct->description }}</option>
     		@endforeach
         </select> <span class="text-danger">*</span></p>
+        <p><label for="qcdate">Date:</label><input class="form-control" type="date" id="qcdate" name="qcdate" size="10" required></p>
         <table class="table">
             <thead>
-                <th>Date</th>
                 <th>Scan mode</th>
                 <th>Water HU</th>
                 <th>Water SD</th>
                 <th>Artifacts?</th>
-                <th>Initials</th>
             </thead>
             <tbody>
                 <tr>
-                    <td rowspan="2">
-                        <input class="form-control" type="date" id="qcdate" name="qcdate" size="10" required>
-                    </td>
                     <td>
                         <input type="text" class="form-control" name="scan_type[]" value="Axial" readonly tabindex="-1">
                     </td>
@@ -46,7 +42,6 @@
                         </select>
                     </td>
                     <td rowspan="2">
-                        <input type="text" class="form-control" name="initials" required>
                     </td>
                 </tr>
                 <tr>
@@ -68,7 +63,8 @@
                 </tr>
             </tbody>
         </table>
-		<p><label for="notes">Notes:</label><br /> <textarea class="form-control" id="notes" name="notes" rows="3" cols="70" placeholder="Enter any notes about the test"></textarea></p>
+        <p><label for="initials">Initials:</label><input type="text" class="form-control" name="initials" required></p>
+		<p><label for="notes">Notes:</label><textarea class="form-control" id="notes" name="notes" rows="3" cols="70" placeholder="Enter any notes about the test"></textarea></p>
 
 		<p><button class="form-control" type="SUBMIT">Add QC record</button></p>
 	</div>

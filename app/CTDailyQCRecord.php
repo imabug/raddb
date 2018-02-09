@@ -28,6 +28,7 @@ class CTDailyQCRecord extends Model
         'water_hu',
         'water_sd',
         'artifacts',
+        'initials',
         'notes',
     ];
 

@@ -42,14 +42,28 @@ class CTDailyQCRecordController extends Controller
     {
         $message = '';
         $status = '';
-dd($request);
+
+        // Store axial QC data
         $ctQcRec = CTDailyQCRecord::create([
             'machine_id'    => $request->machine_id,
             'qcdate'        => $request->qcdate,
-            'scan_type'     => $request->scan_type,
-            'water_hu'      => $request->water_hu,
-            'water_sd'      => $request->water_sd,
-            'artifacts'     => $request->artifacts,
+            'scan_type'     => $request->scan_type[0],
+            'water_hu'      => $request->water_hu[0],
+            'water_sd'      => $request->water_sd[0],
+            'artifacts'     => $request->artifacts[0],
+            'initials'      => $request->initials,
+            'notes'         => $request->notes,
+        ]);
+
+        // Store helical QC data
+        $ctQcRec = CTDailyQCRecord::create([
+            'machine_id'    => $request->machine_id,
+            'qcdate'        => $request->qcdate,
+            'scan_type'     => $request->scan_type[1],
+            'water_hu'      => $request->water_hu[1],
+            'water_sd'      => $request->water_sd[1],
+            'artifacts'     => $request->artifacts[1],
+            'initials'      => $request->initials,
             'notes'         => $request->notes,
         ]);
 
