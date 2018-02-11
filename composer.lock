@@ -4427,16 +4427,16 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "v1.0.14",
+            "version": "v1.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "e9c530f0f9406e09107b3113a3232f97e0bb7230"
+                "reference": "7b5bed7db88f211670ea4d3fd32f382dfe218dde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/e9c530f0f9406e09107b3113a3232f97e0bb7230",
-                "reference": "e9c530f0f9406e09107b3113a3232f97e0bb7230",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/7b5bed7db88f211670ea4d3fd32f382dfe218dde",
+                "reference": "7b5bed7db88f211670ea4d3fd32f382dfe218dde",
                 "shasum": ""
             },
             "require": {
@@ -4456,7 +4456,7 @@
                 "orchestra/testbench": "~3.4.0|~3.5.0",
                 "orchestra/testbench-browser-kit": "~3.4.0|~3.5.0",
                 "orchestra/testbench-core": "~3.4.0|~3.5.0",
-                "phpunit/phpcov": "~3.0|dev-master",
+                "phpunit/phpcov": "~3.0|~4.0",
                 "phpunit/phpunit": "~5.7.14|~6.1"
             },
             "type": "library",
@@ -4489,7 +4489,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2018-01-17T11:55:02+00:00"
+            "time": "2018-02-06T16:37:40+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
