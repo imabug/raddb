@@ -2090,16 +2090,16 @@
         },
         {
             "name": "league/glide",
-            "version": "1.2.2",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/glide.git",
-                "reference": "8077f529a07ded3eed6c5dcf7f688249b626ddf3"
+                "reference": "bd29f65c9666abd72e66916e0573801e435ca878"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/glide/zipball/8077f529a07ded3eed6c5dcf7f688249b626ddf3",
-                "reference": "8077f529a07ded3eed6c5dcf7f688249b626ddf3",
+                "url": "https://api.github.com/repos/thephpleague/glide/zipball/bd29f65c9666abd72e66916e0573801e435ca878",
+                "reference": "bd29f65c9666abd72e66916e0573801e435ca878",
                 "shasum": ""
             },
             "require": {
@@ -2147,7 +2147,7 @@
                 "manipulation",
                 "processing"
             ],
-            "time": "2017-05-09T17:41:49+00:00"
+            "time": "2018-02-12T23:28:25+00:00"
         },
         {
             "name": "monolog/monolog",
