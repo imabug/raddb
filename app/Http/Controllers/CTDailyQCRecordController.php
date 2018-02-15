@@ -69,11 +69,10 @@ class CTDailyQCRecordController extends Controller
 
         if (is_null($ctQcRec)) {
             $status = 'fail';
-            $message = "Unable to add QC record.";
-        }
-        else {
+            $message = 'Unable to add QC record.';
+        } else {
             $status = 'success';
-            $message = "QC record added.";
+            $message = 'QC record added.';
         }
 
         return redirect()
