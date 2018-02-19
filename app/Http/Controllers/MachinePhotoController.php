@@ -49,13 +49,9 @@ class MachinePhotoController extends Controller
     {
         $this->authorize('create', MachinePhoto::class);
 
-        // $id is the machine ID to add the photo to.
-        $machine = Machine::find($id);
-        $photos = MachinePhoto::where('machine_id', $id)->get();
-
         return view('photos.photos_create', [
-            'machine' => $machine,
-            'photos' => $photos,
+            'machine' => Machine::find($id),
+            'photos' => MachinePhoto::where('machine_id', $id)->get(),
         ]);
     }
 
@@ -71,9 +67,10 @@ class MachinePhotoController extends Controller
 
         $message = '';
         $machineId = $request->machineId;
+        $machine = Machine::find($machineId);
 
-        $path = env('MACHINE_PHOTO_PATH', 'public/photos/machines');
         // Store each photo in subdirectories by machine ID
+        $path = env('MACHINE_PHOTO_PATH', 'public/photos/machines');
         $path = $path.'/'.$machineId;
 
         $machinePhoto = new MachinePhoto();
@@ -82,13 +79,13 @@ class MachinePhotoController extends Controller
 
         if ($request->hasFile('photo')) {
             // Store the photo and thumbnail
-            $machinePhoto->machine_photo_path = $request->file('photo')->store($path);
+            $photoPath = $request->file('photo')->store($path);
+            $machinePhoto->machine_photo_path = $photoPath;
+            $machine->addMedia($photoPath)
+                    ->preservingOriginal()
+                    ->toMediaCollection('machine_photos');
 
-            if (is_null($request->photoDescription)) {
-                $machinePhoto->photo_description = null;
-            } else {
-                $machinePhoto->photo_description = $request->photoDescription;
-            }
+            $machinePhoto->photo_description = $request->photoDescription;
 
             // Save the record to the database
             if ($machinePhoto->save()) {

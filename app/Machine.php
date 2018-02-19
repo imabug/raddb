@@ -3,12 +3,16 @@
 namespace RadDB;
 
 use Carbon\Carbon;
+use Spatie\MediaLibrary\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 
-class Machine extends Model
+class Machine extends Model implements HasMediaConversions
 {
     use SoftDeletes;
+    use HasMediaTrait;
 
     /**
      * Attributes that are mass assignable.
@@ -313,4 +317,15 @@ class Machine extends Model
             return 'N/A';
         }
     }
+
+    /**
+     * Media conversions using the spatie/laravel-medialibrary package
+     *
+     * @param \Spatie\MediaLibrary\Media $media
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')->width(150);
+    }
+
 }
