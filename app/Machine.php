@@ -319,7 +319,7 @@ class Machine extends Model implements HasMediaConversions
     }
 
     /**
-     * Media conversions using the spatie/laravel-medialibrary package
+     * Media conversions using the spatie/laravel-medialibrary package.
      *
      * @param \Spatie\MediaLibrary\Media $media
      */
@@ -327,5 +327,4 @@ class Machine extends Model implements HasMediaConversions
     {
         $this->addMediaConversion('thumb')->width(150);
     }
-
 }
