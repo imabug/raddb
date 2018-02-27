@@ -134,11 +134,7 @@ Route::resource('radoutputdata', 'RadiationOutputController');
 Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 
 // CT Daily QC routes
-Route::name('ctdailyqcrecord.create')
-    ->get('ctdailyqcrecord/create', 'CTDailyQCRecordController@create');
-Route::name('ctdailyqcrecord.store')
-    ->post('ctdailyqcrecord/store', 'CTDailyQCRecordController@store');
-// Route::resource('ctdailyqcrecord', 'CTDailyQCRecordController');
+Route::resource('ctdailyqc', 'CTDailyQCRecordController');
 
 // Voyager routes
 Route::group(['prefix' => 'admin'], function () {

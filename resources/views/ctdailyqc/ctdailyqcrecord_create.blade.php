@@ -5,14 +5,14 @@
 @section('content')
 <h2>Add a machine</h2>
 
-<form class="form-inline" action="{{route('ctdailyqcrecord.store')}}" method="POST">
+<form class="form-inline" action="{{route('ctdailyqc.store')}}" method="POST">
 	<div class="form-group">
 
 		{{ csrf_field() }}
 		<p><label for="scanner">Scanner:</label>
 		<select id="scanner" name="machine_id" size="1" class="form-control" autofocus>
 			<option>Select scanner</option>
-    		@foreach ($ct_scanners as $ct)
+    		@foreach ($ctScanners as $ct)
     		<option value="{{ $ct->id }}">{{ $ct->description }}</option>
     		@endforeach
         </select> <span class="text-danger">*</span></p>

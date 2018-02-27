@@ -10,13 +10,17 @@ use RadDB\Http\Requests\CTDailyQCRecordRequest;
 class CTDailyQCRecordController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of CT scanners that the user will select from to
+     * show QC data for.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('ctdailyqc.ctdailyqcrecord_index', [
+            'ctScanners' => Machine::with('location', 'manufacturer')
+                            ->modality(7)->active()->get(),
+        ]);
     }
 
     /**
@@ -27,8 +31,8 @@ class CTDailyQCRecordController extends Controller
     public function create()
     {
         return view('ctdailyqc.ctdailyqcrecord_create', [
-            'ct_scanners' => Machine::with('location', 'manufacturer')
-                             ->modality(7)->active()->get(),
+            'ctScanners' => Machine::with('location', 'manufacturer')
+                            ->modality(7)->active()->get(),
         ]);
     }
 
@@ -70,25 +74,34 @@ class CTDailyQCRecordController extends Controller
         if (is_null($ctQcRec)) {
             $status = 'fail';
             $message = 'Unable to add QC record.';
+            Log::error($message);
         } else {
             $status = 'success';
             $message = 'QC record added.';
+            Log::info($message);
         }
 
         return redirect()
-            ->route('ctdailyqcrecord.create')
+            ->route('ctdailyqc.create')
             ->with($status, $message);
     }
 
     /**
-     * Display the specified resource.
+     * Display the daily QC records for the selected CT scanner.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $ctScanner = Machine::find($id);
+        $ctQcRecords = CTDailyQCRecord::where('machine_id', $id)->with('machine')->get();
+
+        return view('ctdailyqc.ctdailyqcrecord_show', [
+            'ctScanner' => $ctScanner,
+            'ctQcRecords' => $ctQcRecords,
+            'numRecords' => $ctQcRecords->count(),
+        ]);
     }
 
     /**
