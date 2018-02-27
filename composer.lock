@@ -3102,16 +3102,16 @@
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.0.12",
+            "version": "1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "73906c29290baf047727ba5c1df6d7a3f1e3df22"
+                "reference": "e2388cb0152b4d5454b7b714c3301ae350b04074"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/73906c29290baf047727ba5c1df6d7a3f1e3df22",
-                "reference": "73906c29290baf047727ba5c1df6d7a3f1e3df22",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/e2388cb0152b4d5454b7b714c3301ae350b04074",
+                "reference": "e2388cb0152b4d5454b7b714c3301ae350b04074",
                 "shasum": ""
             },
             "require": {
@@ -3147,7 +3147,7 @@
                 "image-optimizer",
                 "spatie"
             ],
-            "time": "2018-02-22T18:36:53+00:00"
+            "time": "2018-02-26T13:36:42+00:00"
         },
         {
             "name": "spatie/laravel-artisan-dd",
@@ -3203,16 +3203,16 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "5.2.2",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "629895220883c3e0064e1c7723dea47eab447c58"
+                "reference": "aabb32bbf73b6888badd1119594859c4a1d3f645"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/629895220883c3e0064e1c7723dea47eab447c58",
-                "reference": "629895220883c3e0064e1c7723dea47eab447c58",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/aabb32bbf73b6888badd1119594859c4a1d3f645",
+                "reference": "aabb32bbf73b6888badd1119594859c4a1d3f645",
                 "shasum": ""
             },
             "require": {
@@ -3272,7 +3272,7 @@
                 "laravel-backup",
                 "spatie"
             ],
-            "time": "2018-02-23T13:43:23+00:00"
+            "time": "2018-02-26T14:15:48+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
@@ -5568,16 +5568,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.5.6",
+            "version": "6.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3330ef26ade05359d006041316ed0fa9e8e3cefe"
+                "reference": "6bd77b57707c236833d2b57b968e403df060c9d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3330ef26ade05359d006041316ed0fa9e8e3cefe",
-                "reference": "3330ef26ade05359d006041316ed0fa9e8e3cefe",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6bd77b57707c236833d2b57b968e403df060c9d9",
+                "reference": "6bd77b57707c236833d2b57b968e403df060c9d9",
                 "shasum": ""
             },
             "require": {
@@ -5648,7 +5648,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-02-01T05:57:37+00:00"
+            "time": "2018-02-26T07:01:09+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
