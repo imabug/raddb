@@ -47,7 +47,7 @@ class CTDailyQCRecordController extends Controller
         $message = '';
         $status = '';
 
-        // Store axial QC data
+        // Store axial QC record
         $ctQcRec = CTDailyQCRecord::create([
             'machine_id'    => $request->machine_id,
             'qcdate'        => $request->qcdate,
@@ -59,7 +59,7 @@ class CTDailyQCRecordController extends Controller
             'notes'         => $request->notes,
         ]);
 
-        // Store helical QC data
+        // Store helical QC record
         $ctQcRec = CTDailyQCRecord::create([
             'machine_id'    => $request->machine_id,
             'qcdate'        => $request->qcdate,
@@ -82,7 +82,7 @@ class CTDailyQCRecordController extends Controller
         }
 
         return redirect()
-            ->route('ctdailyqc.create')
+            ->route('ctdailyqc.show', ['id' => $request->machine_id])
             ->with($status, $message);
     }
 
