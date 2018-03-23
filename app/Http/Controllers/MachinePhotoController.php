@@ -146,7 +146,7 @@ class MachinePhotoController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $this->authorize('destroy', MachinePhoto::class);
+        $this->authorize(MachinePhoto::class);
         $message = '';
         $machineId = $request->machineId;
 
