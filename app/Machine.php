@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class Machine extends Model implements HasMediaConversions
+class Machine extends Model implements HasMedia
 {
     use SoftDeletes;
     use HasMediaTrait;
