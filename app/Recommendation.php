@@ -3,9 +3,15 @@
 namespace RadDB;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 class Recommendation extends Model
 {
+    use SoftDeletes;
+    use HasMediaTrait;
+
     /**
      * Attributes that are mass assignable.
      *
@@ -40,11 +46,6 @@ class Recommendation extends Model
     public function survey()
     {
         return $this->belongsTo('RadDB\TestDate');
-    }
-
-    public function serviceReports()
-    {
-        return $this->morphMany('RadDB\Report', 'report');
     }
 
     /*
