@@ -21,9 +21,9 @@
         @else
             <td>{{ $ss->prevSurveyDate }}</td>
         @endif
-		@if (Storage::exists($ss->prevSurveyReport))
+        @if (Storage::disk('SurveyReports')->exists($ss->prevSurveyReport))
             <td>{{ $ss->prevSurveyID }}
-                <a href="{{ Storage::url($ss->prevSurveyReport) }}" target="_blank" title="Survey report" alt="Survey report">
+                <a href="{{ Storage::disk('SurveyReports')->url($ss->prevSurveyReport) }}" target="_blank" title="Survey report" alt="Survey report">
                     <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                 </a>
             </td>
@@ -35,9 +35,9 @@
         @else
             <td>{{ $ss->currSurveyDate }}</td>
         @endif
-		@if (Storage::exists($ss->currSurveyReport))
+        @if (Storage::disk('SurveyReports')->exists($ss->currSurveyReport))
             <td>{{ $ss->currSurveyID}}
-                <a href="{{ Storage::url($ss->currSurveyReport) }}" target="_blank" title="Survey report" alt="Survey report">
+                <a href="{{ Storage::disk('SurveyReports')->url($ss->currSurveyReport) }}" target="_blank" title="Survey report" alt="Survey report">
                     <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                 </a>
             </td>

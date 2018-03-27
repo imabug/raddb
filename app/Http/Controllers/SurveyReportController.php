@@ -77,9 +77,6 @@ class SurveyReportController extends Controller
 
         $message = '';
 
-        // Get the path to store the survey report
-        $path = env('SURVEY_REPORT_PATH', 'public/SurveyReports');
-
         // Get the survey data
         $survey = TestDate::find($request->surveyId);
         $surveyReport = $survey->report_file_path;
@@ -87,9 +84,6 @@ class SurveyReportController extends Controller
         // Get the year of the survey
         $testDate = date_parse($survey->test_date);
         $year = $testDate['year'];
-
-        // Append the year to the survey report path
-        $path = $path.'/'.$year;
 
         // Handle the uploaded file
         // This breaks the way service reports were handled in the previous version.
@@ -99,7 +93,9 @@ class SurveyReportController extends Controller
             // or if the upload file name matches the stored file name
             if (is_null($survey->report_file_path) ||
                 ($surveyReportFileName !== substr(strrchr($survey->report_file_path, '/'), 1))) {
-                $survey->report_file_path = $request->surveyReport->storeAs($path, $surveyReportFileName);
+                // Store the survey report to the SurveyReports disk
+                $survey->report_file_path = $request->surveyReport
+                                            ->storeAs($year, $surveyReportFileName, 'SurveyReports');
                 $survey->save();
                 $status = 'success';
                 $message .= 'Survey report for survey '.$survey->id.' stored.';
@@ -127,7 +123,7 @@ class SurveyReportController extends Controller
     {
         $survey = TestDate::findOrFail($id);
         if (Storage::exists($survey->report_file_path)) {
-            return redirect(Storage::url($survey->report_file_path));
+            return redirect(Storage::disk('SurveyReports')->url($survey->report_file_path));
         } else {
             return redirect()->route('machines.show', $id);
         }

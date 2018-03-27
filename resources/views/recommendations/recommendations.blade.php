@@ -28,8 +28,8 @@
                     @endif
                     <td>{{ $rec->rec_add_ts }}</td>
                     <td>{{ $rec->rec_resolve_date }}</td>
-                    @if (Storage::exists($rec->service_report_path))
-                    <td><a href="{{ Storage::url($rec->service_report_path) }}" target="_blank">{{ $rec->wo_number }}</a></td>
+                    @if (Storage::disk('ServiceReports')->exists($rec->service_report_path))
+                    <td><a href="{{ Storage::disk('ServiceReports')->url($rec->service_report_path) }}" target="_blank">{{ $rec->wo_number }}</a></td>
                     @else
                     <td>{{ $rec->wo_number }}</td>
                     @endif

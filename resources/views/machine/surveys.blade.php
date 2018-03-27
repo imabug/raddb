@@ -18,8 +18,8 @@
             <td>{{ $survey->type->test_type }}</td>
             <td>{{ $survey->accession }}</td>
             <td>{{ $survey->notes }}</td>
-            @if (Storage::exists($survey->report_file_path))
-            <td><a href="{{ Storage::url($survey->report_file_path) }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            @if (Storage::disk('SurveyReports')->exists($survey->report_file_path))
+            <td><a href="{{ Storage::disk('SurveyReports')->url($survey->report_file_path) }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @else
             <td></td>
             @endif
