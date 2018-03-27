@@ -72,7 +72,7 @@ return [
         'MachinePhotos' => [
             'driver'     => 'local',
             'root'       => storage_path('app/public/photos/machines'),
-            'url'        => env('APP_URL').'/storage//photos/machines',
+            'url'        => env('APP_URL').'/storage/photos/machines',
             'visibility' => 'public',
         ],
 
