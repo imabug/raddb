@@ -70,20 +70,19 @@ class MachinePhotoController extends Controller
         $machine = Machine::find($machineId);
 
         // Store each photo in subdirectories by machine ID
-        $path = env('MACHINE_PHOTO_PATH', 'public/photos/machines');
-        $path = $path.'/'.$machineId;
-
         $machinePhoto = new MachinePhoto();
 
         $machinePhoto->machine_id = $machineId;
 
         if ($request->hasFile('photo')) {
             // Store the photo and thumbnail
-            $photoPath = $request->file('photo')->store($path);
+            $photoPath = $request->file('photo')->store($machineId, 'MachinePhotos');
             $machinePhoto->machine_photo_path = $photoPath;
-            $machine->addMedia($photoPath)
-                    ->preservingOriginal()
-                    ->toMediaCollection('machine_photos');
+            // dd ($photoPath);
+            // Associate the photo with the machine (spatie/medialibrary)
+            // $machine->addMedia($photoPath)
+            //         ->preservingOriginal()
+            //         ->toMediaCollection('machine_photos');
 
             $machinePhoto->photo_description = $request->photoDescription;
 

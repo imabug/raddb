@@ -55,8 +55,8 @@
                 @foreach ($photos as $photo)
                     <div class="image">
                         <h3>
-                            <a href="{{ Storage::url($photo->machine_photo_path) }}" target="_blank">
-                            <img src="{{ Storage::url($photo->machine_photo_path) }}" alt="{{ $photo->photo_description}}" width="150"></a>
+                            <a href="{{ Storage::disk('MachinePhotos')->url($photo->machine_photo_path) }}" target="_blank">
+                            <img src="{{ Storage::disk('MachinePhotos')->url($photo->machine_photo_path) }}" alt="{{ $photo->photo_description}}" width="150"></a>
                             @if (Auth::check())
                             <form class="form-inline" action="{{ route('photos.destroy', $photo->id) }}" method="post">
                                 <div class="form-group">
