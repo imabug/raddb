@@ -323,8 +323,8 @@ class Machine extends Model implements HasMedia
      *
      * @param \Spatie\MediaLibrary\Media $media
      */
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')->width(150);
-    }
+    // public function registerMediaConversions(Media $media = null)
+    // {
+    //     $this->addMediaConversion('thumb')->width(150);
+    // }
 }
