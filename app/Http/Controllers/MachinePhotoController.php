@@ -75,14 +75,14 @@ class MachinePhotoController extends Controller
         $machinePhoto->machine_id = $machineId;
 
         if ($request->hasFile('photo')) {
-            // Store the photo and thumbnail
+            // Store the photo to the MachinePhotos disk
             $photoPath = $request->file('photo')->store($machineId, 'MachinePhotos');
             $machinePhoto->machine_photo_path = $photoPath;
-            // dd ($photoPath);
+ 
             // Associate the photo with the machine (spatie/medialibrary)
-            // $machine->addMedia($photoPath)
-            //         ->preservingOriginal()
-            //         ->toMediaCollection('machine_photos');
+            $machine->addMediaFromRequest('photo')
+                ->preservingOriginal()
+                ->toMediaCollection('machine_photos', 'MachinePhotos');
 
             $machinePhoto->photo_description = $request->photoDescription;
 
