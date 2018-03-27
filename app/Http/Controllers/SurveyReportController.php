@@ -86,6 +86,9 @@ class SurveyReportController extends Controller
         $year = $testDate['year'];
 
         // Handle the uploaded file
+        $survey->addMediaFromRequest('surveyReport')
+            ->preservingOriginal()
+            ->toMediaCollection('survey_reports', 'SurveyReports');
         // This breaks the way service reports were handled in the previous version.
         if ($request->hasFile('surveyReport') && $request->file('surveyReport')->isValid()) {
             $surveyReportFileName = $request->file('surveyReport')->getClientOriginalName();
