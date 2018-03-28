@@ -132,7 +132,7 @@ class MachineController extends Controller
     public function show($id)
     {
         $machine = Machine::findOrFail($id);
-        $machinePhotos = $machine->getMedia();
+        $machinePhotos = $machine->getMedia('machine_photos');
 
         return view('machine.detail', [
             'machine'         => $machine,
