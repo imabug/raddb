@@ -78,7 +78,6 @@
                     <div class="form-group">
                         {{ csrf_field() }}
                         <input class="form-control" type="hidden" name="machineId" value="{{ $machine->id }}">
-                        <p><label for="photoDescription">Photo description: </label><input class="form-control" type="text" id="photoDescription" name="photoDescription"></p>
                         <p><label for="photo">Upload photo: </label> <input class="form-control" type="file" id="photo" name="photo" >
                         <button class="form-control" type="submit">Add photo</button></p>
                     </div>
