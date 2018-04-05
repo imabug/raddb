@@ -318,7 +318,7 @@ class Machine extends Model implements HasMedia
         }
     }
 
-    /**
+    /*
      * Media conversions using the spatie/laravel-medialibrary package.
      *
      * @param \Spatie\MediaLibrary\Media $media
