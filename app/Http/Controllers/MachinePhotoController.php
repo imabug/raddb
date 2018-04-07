@@ -75,7 +75,7 @@ class MachinePhotoController extends Controller
             // Store the photo to the MachinePhotos disk
             // $photoPath = $request->file('photo')->store($machineId, 'MachinePhotos');
             // $machinePhoto->machine_photo_path = $photoPath;
- 
+
             // Associate the photo with the machine (spatie/medialibrary)
             // Collection name: machine_photos
             // Filesystem disk: MachinePhotos
