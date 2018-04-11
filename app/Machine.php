@@ -317,14 +317,4 @@ class Machine extends Model implements HasMedia
             return 'N/A';
         }
     }
-
-    /**
-     * Media conversions using the spatie/laravel-medialibrary package.
-     *
-     * @param \Spatie\MediaLibrary\Media $media
-     */
-    // public function registerMediaConversions(Media $media = null)
-    // {
-    //     $this->addMediaConversion('thumb')->width(150);
-    // }
 }
