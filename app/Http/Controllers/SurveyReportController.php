@@ -86,11 +86,13 @@ class SurveyReportController extends Controller
         $year = $testDate['year'];
 
         // Handle the uploaded file
-        $survey->addMediaFromRequest('surveyReport')
-            ->preservingOriginal()
-            ->toMediaCollection('survey_reports', 'SurveyReports');
         // This breaks the way service reports were handled in the previous version.
         if ($request->hasFile('surveyReport') && $request->file('surveyReport')->isValid()) {
+            // Need to think about how to implement storing survey reports using
+            // spatie/medialibrary to mimic the way they're currently being stored.
+            // $survey->addMediaFromRequest('surveyReport')
+            //     ->preservingOriginal()
+            //     ->toMediaCollection('survey_reports', 'SurveyReports');
             $surveyReportFileName = $request->file('surveyReport')->getClientOriginalName();
             // Only store the file if there is no file already ($survey->report_file_path == null)
             // or if the upload file name matches the stored file name
