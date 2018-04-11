@@ -72,10 +72,6 @@ class MachinePhotoController extends Controller
         $machine = Machine::find($machineId);
 
         if ($request->hasFile('photo')) {
-            // Store the photo to the MachinePhotos disk
-            // $photoPath = $request->file('photo')->store($machineId, 'MachinePhotos');
-            // $machinePhoto->machine_photo_path = $photoPath;
- 
             // Associate the photo with the machine (spatie/medialibrary)
             // Collection name: machine_photos
             // Filesystem disk: MachinePhotos
@@ -86,19 +82,6 @@ class MachinePhotoController extends Controller
             $status = 'success';
             $message .= 'Photo for machine '.$machineId.' saved.';
             Log::info($message);
-
-            // $machinePhoto->photo_description = $request->photoDescription;
-
-            // Save the record to the database
-            // if ($machinePhoto->save()) {
-            //     $status = 'success';
-            //     $message .= 'Photo for machine '.$machineId.' saved.';
-            //     Log::info($message);
-            // } else {
-            //     $status = 'fail';
-            //     $message .= 'Error saving photo.';
-            //     Log::error($message);
-            // }
         }
 
         return redirect()
