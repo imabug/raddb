@@ -4428,22 +4428,22 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "v1.0.17",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "5a4e960a0134d0be1a1d9ee851b12407ef583419"
+                "reference": "717b31f0368cb3e0cb5468fbca34ca410f8ce0b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/5a4e960a0134d0be1a1d9ee851b12407ef583419",
-                "reference": "5a4e960a0134d0be1a1d9ee851b12407ef583419",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/717b31f0368cb3e0cb5468fbca34ca410f8ce0b2",
+                "reference": "717b31f0368cb3e0cb5468fbca34ca410f8ce0b2",
                 "shasum": ""
             },
             "require": {
                 "arrilot/laravel-widgets": "^3.7",
                 "doctrine/dbal": "^2.5",
-                "illuminate/support": "~5.4.0|~5.5.0",
+                "illuminate/support": "~5.4.0|~5.5.0|~5.6.0",
                 "intervention/image": "^2.4",
                 "larapack/doctrine-support": "~0.1.4",
                 "larapack/voyager-hooks": "~1.0.5",
@@ -4452,19 +4452,20 @@
             "require-dev": {
                 "codeclimate/php-test-reporter": "dev-master",
                 "laravel/browser-kit-testing": "~1.0.0|~2.0.0",
-                "laravel/framework": "~5.4.36|~5.5.0",
-                "orchestra/database": "~3.4.0|~3.5.0",
-                "orchestra/testbench": "~3.4.0|~3.5.0",
-                "orchestra/testbench-browser-kit": "~3.4.0|~3.5.0",
-                "orchestra/testbench-core": "~3.4.0|~3.5.0",
+                "laravel/framework": "~5.4.36|~5.5.0|~5.6.0",
+                "orchestra/database": "~3.4.0|~3.5.0|~3.6.0",
+                "orchestra/testbench": "~3.4.0|~3.5.0|~3.6.0",
+                "orchestra/testbench-browser-kit": "~3.4.0|~3.5.0|~3.6.0",
+                "orchestra/testbench-core": "~3.4.0|~3.5.0|~3.6.0",
                 "phpunit/phpcov": "~3.0|~4.0",
-                "phpunit/phpunit": "~5.7.14|~6.1"
+                "phpunit/phpunit": "~5.7.14|~6.1|~7.0"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "TCG\\Voyager\\VoyagerServiceProvider"
+                        "TCG\\Voyager\\VoyagerServiceProvider",
+                        "TCG\\Voyager\\Providers\\VoyagerDummyServiceProvider"
                     ]
                 }
             },
@@ -4490,7 +4491,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2018-03-28T18:45:09+00:00"
+            "time": "2018-04-19T12:29:25+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
