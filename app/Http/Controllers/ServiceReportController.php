@@ -47,7 +47,7 @@ class ServiceReportController extends Controller
     {
         $rec = Recommendation::findOrFail($id);
         if (Storage::exists($rec->service_report_path)) {
-            return redirect(Storage::disk('ServiceReports')->url($rec->service_report_path));
+            return redirect(Storage::disk('local')->url($rec->service_report_path));
         } else {
             return redirect()->route('recommendations.show'.$rec->survey_id);
         }

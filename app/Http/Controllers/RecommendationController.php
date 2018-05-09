@@ -112,7 +112,7 @@ class RecommendationController extends Controller
                 $serviceReportFileName = $request->file('ServiceReport')->getClientOriginalName();
                 // Store the service report to the ServiceReports disk
                 $recommendation->service_report_path = $request->ServiceReport
-                                                     ->storeAs($recYear['year'], $serviceReportFileName, 'ServiceReports');
+                                                     ->storeAs($recYear['year'], $serviceReportFileName, 'local');
                 $message .= "Service report uploaded.\n";
             }
         } else {

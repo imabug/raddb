@@ -18,8 +18,8 @@
     <span class="glyphicon glyphicon-ok" aria-hidden-"true"></span>
 @endif
             </td>
-            @if (Storage::disk('ServiceReports')->exists($rec->service_report_path))
-            <td><a href="{{ Storage::disk('ServiceReports')->url($rec->service_report_path) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+            @if (Storage::disk('local')->exists($rec->service_report_path))
+            <td><a href="{{ Storage::disk('local')->url($rec->service_report_path) }}" target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
             @else
             <td></td>
             @endif

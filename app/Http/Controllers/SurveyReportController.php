@@ -100,7 +100,7 @@ class SurveyReportController extends Controller
                 ($surveyReportFileName !== substr(strrchr($survey->report_file_path, '/'), 1))) {
                 // Store the survey report to the SurveyReports disk
                 $survey->report_file_path = $request->surveyReport
-                                            ->storeAs($year, $surveyReportFileName, 'SurveyReports');
+                                            ->storeAs($year, $surveyReportFileName, 'local');
                 $survey->save();
                 $status = 'success';
                 $message .= 'Survey report for survey '.$survey->id.' stored.';
@@ -128,7 +128,7 @@ class SurveyReportController extends Controller
     {
         $survey = TestDate::findOrFail($id);
         if (Storage::exists($survey->report_file_path)) {
-            return redirect(Storage::disk('SurveyReports')->url($survey->report_file_path));
+            return redirect(Storage::disk('local')->url($survey->report_file_path));
         } else {
             return redirect()->route('machines.show', $id);
         }
