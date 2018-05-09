@@ -308,11 +308,11 @@ class Machine extends Model implements HasMedia
      */
     public function getAgeAttribute()
     {
-        // Calculate the age of the unit based on install_date or manuf_date
-        if (! is_null($this->attributes['install_date'])) {
-            return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
-        } elseif (! is_null($this->attributes['manuf_date'])) {
+        // Calculate the age of the unit based on manuf_date or install_date
+        if (! is_null($this->attributes['manuf_date'])) {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
+        } elseif (! is_null($this->attributes['install_date'])) {
+            return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
         } else {
             return 'N/A';
         }
