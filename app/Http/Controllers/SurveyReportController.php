@@ -128,7 +128,7 @@ class SurveyReportController extends Controller
     {
         $survey = TestDate::findOrFail($id);
         if (Storage::exists($survey->report_file_path)) {
-            return redirect(Storage::disk('SurveyReports')->url($survey->report_file_path));
+            return redirect(Storage::disk('local')->url($survey->report_file_path));
         } else {
             return redirect()->route('machines.show', $id);
         }
