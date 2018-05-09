@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -175,7 +176,6 @@ return [
         RadDB\Providers\AuthServiceProvider::class,
         RadDB\Providers\EventServiceProvider::class,
         RadDB\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -224,6 +224,8 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         'Charts'       => ConsoleTVs\Charts\Facades\Charts::class,
+        'Form'         => Collective\Html\FormFacade::class,
+        'Html'         => Collective\Html\HtmlFacade::class,
     ],
 
 ];

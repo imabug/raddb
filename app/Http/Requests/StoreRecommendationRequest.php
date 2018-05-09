@@ -27,7 +27,7 @@ class StoreRecommendationRequest extends FormRequest
         // Build the validation rules
         $rules = [
             'surveyId'       => 'required|exists:testdates,id|integer',
-            'recommendation' => 'required|string|max:500',
+            'recommendation' => 'required|string|max:1000',
             'resolved'       => 'integer',
             'WONum'          => 'string|nullable|max:20',
             'ServiceReport'  => 'file|mimes:pdf',

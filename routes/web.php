@@ -112,10 +112,6 @@ Route::name('mammo.CE')
 // Route for user management
 Route::resource('users', 'UserController');
 
-// Route for experiments and tests
-Route::name('test.loadXlsSpreadsheet')->get('test/loadXlsSpreadsheet', 'TestController@loadXlsSpreadsheet');
-Route::name('test.loadOdsSpreadsheet')->get('test/loadOdsSpreadsheet', 'TestController@loadOdsSpreadsheet');
-
 // Authentication routes
 Auth::routes();
 Route::name('home.index')->get('/home', 'HomeController@index');
@@ -124,7 +120,7 @@ Route::name('home.index')->get('/home', 'HomeController@index');
 Route::name('qa.index')->get('qa/', 'QAController@index');
 Route::name('qa.machineSurveyList')->get('qa/{machine_id}/surveyList', 'QAController@show');
 
-// Survey test data controllers
+// Survey test data routes
 Route::name('gendata.create')
     ->get('surveydata/generator/{surveyId}/create', 'GenDataController@create');
 Route::resource('gendata', 'GenDataController',
@@ -137,6 +133,10 @@ Route::resource('radsurveydata', 'RadSurveyDataController');
 Route::resource('radoutputdata', 'RadiationOutputController');
 Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 
+// CT Daily QC routes
+Route::resource('ctdailyqc', 'CTDailyQCRecordController');
+
+// Voyager routes
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

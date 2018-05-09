@@ -55,8 +55,8 @@
                 @foreach ($photos as $photo)
                     <div class="image">
                         <h3>
-                            <a href="{{ Storage::url($photo->machine_photo_path) }}" target="_blank">
-                            <img src="{{ Storage::url($photo->machine_photo_path) }}" alt="{{ $photo->photo_description}}" width="150"></a>
+                            <a href="{{ $photo->getUrl() }}" target="_blank">
+                            <img src="{{ $photo->getUrl() }}" width="150"></a>
                             @if (Auth::check())
                             <form class="form-inline" action="{{ route('photos.destroy', $photo->id) }}" method="post">
                                 <div class="form-group">
@@ -78,7 +78,6 @@
                     <div class="form-group">
                         {{ csrf_field() }}
                         <input class="form-control" type="hidden" name="machineId" value="{{ $machine->id }}">
-                        <p><label for="photoDescription">Photo description: </label><input class="form-control" type="text" id="photoDescription" name="photoDescription"></p>
                         <p><label for="photo">Upload photo: </label> <input class="form-control" type="file" id="photo" name="photo" >
                         <button class="form-control" type="submit">Add photo</button></p>
                     </div>

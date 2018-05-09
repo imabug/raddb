@@ -5,7 +5,7 @@ namespace RadDB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CTDailyQCRecord extends Model
+class MamSurveyData extends Model
 {
     use SoftDeletes;
 
@@ -14,7 +14,7 @@ class CTDailyQCRecord extends Model
      *
      * @var string
      */
-    protected $table = 'ctdailyqc';
+    protected $table = 'mamsurveydata';
 
     /**
      * Attributes that are mass assignable.
@@ -22,14 +22,13 @@ class CTDailyQCRecord extends Model
      * @var array
      */
     protected $fillable = [
-        'machine_id',
-        'qcdate',
-        'scan_type',
-        'water_hu',
-        'water_sd',
-        'artifacts',
-        'initials',
-        'notes',
+        'target_filter',
+        'avg_illumination',
+        '2D_MGD',
+        '3D_MGD',
+        'Combo_MGD',
+        'CNR',
+        'SNR',
     ];
 
     /**
@@ -49,5 +48,15 @@ class CTDailyQCRecord extends Model
     public function machine()
     {
         return $this->belongsTo('RadDB\Machine');
+    }
+
+    public function survey()
+    {
+        return $this->belongsTo('RadDB\TestDate');
+    }
+
+    public function tube()
+    {
+        return $this->belongsTo('RadDB\Tube');
     }
 }

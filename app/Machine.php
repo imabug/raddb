@@ -3,12 +3,16 @@
 namespace RadDB;
 
 use Carbon\Carbon;
+use Spatie\MediaLibrary\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class Machine extends Model
+class Machine extends Model implements HasMedia
 {
     use SoftDeletes;
+    use HasMediaTrait;
 
     /**
      * Attributes that are mass assignable.
@@ -169,6 +173,36 @@ class Machine extends Model
         return $this->hasMany('RadDB\FluoroResolution');
     }
 
+    public function mamSurveyData()
+    {
+        return $this->hasMany('RadDB\MamSurveyData');
+    }
+
+    public function mamHvl()
+    {
+        return $this->hasMany('RadDB\MamHvl');
+    }
+
+    public function mamKvOutput()
+    {
+        return $this->hasMany('RadDB\MamKvOutput');
+    }
+
+    public function mamLinearity()
+    {
+        return $this->hasMany('RadDB\MamLinearity');
+    }
+
+    public function mamResolution()
+    {
+        return $this->hasMany('RadDB\MamResolution');
+    }
+
+    public function mamAcrPhantom()
+    {
+        return $this->hasMany('RadDB\MamAcrPhantom');
+    }
+
     /*
      * Scopes
      */
@@ -274,11 +308,11 @@ class Machine extends Model
      */
     public function getAgeAttribute()
     {
-        // Calculate the age of the unit based on install_date or manuf_date
-        if (! is_null($this->attributes['install_date'])) {
-            return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
-        } elseif (! is_null($this->attributes['manuf_date'])) {
+        // Calculate the age of the unit based on manuf_date or install_date
+        if (! is_null($this->attributes['manuf_date'])) {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
+        } elseif (! is_null($this->attributes['install_date'])) {
+            return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
         } else {
             return 'N/A';
         }

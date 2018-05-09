@@ -84,9 +84,6 @@ class RecommendationController extends Controller
         $this->authorize(Recommendation::class);
 
         $message = '';
-        // Get the path service reports are stored in.
-        // Default to public/ServiceReports if the environment variable isn't set
-        $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');
 
         $recommendation = new Recommendation();
         $recommendation->survey_id = $request->surveyId;
@@ -112,10 +109,10 @@ class RecommendationController extends Controller
             if ($request->hasFile('ServiceReport') && $request->file('ServiceReport')->isValid()) {
                 // Get the test date corresponding to the recommendation
                 $recYear = date_parse($recommendation->survey->test_date);
-                // Tack on the year of the survey to the storage path
-                $path .= '/'.$recYear['year'];
                 $serviceReportFileName = $request->file('ServiceReport')->getClientOriginalName();
-                $recommendation->service_report_path = $request->ServiceReport->storeAs($path, $serviceReportFileName);
+                // Store the service report to the ServiceReports disk
+                $recommendation->service_report_path = $request->ServiceReport
+                                                     ->storeAs($recYear['year'], $serviceReportFileName, 'ServiceReports');
                 $message .= "Service report uploaded.\n";
             }
         } else {
@@ -199,10 +196,10 @@ class RecommendationController extends Controller
         if ($request->hasFile('ServiceReport') && $request->file('ServiceReport')->isValid()) {
             // Get the test date for the associated survey
             $testDate = date_parse(TestDate::find($surveyID)->test_date);
-            // Tack on the year of the survey to the storage path
-            $path .= '/'.$testDate['year'];
             $serviceReportFileName = $request->file('ServiceReport')->getClientOriginalName();
-            $serviceReportPath = $request->ServiceReport->storeAs($path, $serviceReportFileName);
+            // Store the service report to the ServiceReports disk
+            $serviceReportPath = $request->ServiceReport
+                               ->storeAs($testDate['year'], $serviceReportFileName, 'ServiceReports');
             $message .= "Service report uploaded.\n";
         } else {
             $serviceReportPath = null;

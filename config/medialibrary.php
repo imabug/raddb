@@ -6,13 +6,13 @@ return [
      * The filesystems on which to store added files and derived images by default. Choose
      * one or more of the filesystems you configured in app/config/filesystems.php
      */
-    'default_filesystem' => 'public',
+    'default_filesystem' => 'machine_photos',
 
     /*
      * The maximum file size of an item in bytes. Adding a file
      * that is larger will result in an exception.
      */
-    'max_file_size' => 1024 * 1024 * 10,
+    'max_file_size' => 2048 * 2048 * 10,
 
     /*
      * This queue will be used to generate derived images.
@@ -46,7 +46,7 @@ return [
         /*
          * The domain that should be prepended when generating urls.
          */
-        'domain' => 'https://xxxxxxx.s3.amazonaws.com',
+        'domain' => '',
     ],
 
     'remote' => [

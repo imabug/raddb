@@ -55,6 +55,27 @@ return [
             'visibility' => 'public',
         ],
 
+        'SurveyReports' => [
+            'driver'     => 'local',
+            'root'       => storage_path('app/public/SurveyReports'),
+            'url'        => env('APP_URL').'/storage/SurveyReports',
+            'visibility' => 'public',
+        ],
+
+        'ServiceReports' => [
+            'driver'     => 'local',
+            'root'       => storage_path('app/public/ServiceReports'),
+            'url'        => env('APP_URL').'/storage/ServiceReports',
+            'visibility' => 'public',
+        ],
+
+        'MachinePhotos' => [
+            'driver'     => 'local',
+            'root'       => storage_path('app/public/photos/machines'),
+            'url'        => env('APP_URL').'/storage/photos/machines',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key'    => env('AWS_ACCESS_KEY_ID'),

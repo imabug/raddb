@@ -47,15 +47,13 @@ class MachinePhotoController extends Controller
      */
     public function create($id)
     {
-        $this->authorize('create', MachinePhoto::class);
+        $this->authorize('create', Machine::class);
 
-        // $id is the machine ID to add the photo to.
         $machine = Machine::find($id);
-        $photos = MachinePhoto::where('machine_id', $id)->get();
 
         return view('photos.photos_create', [
             'machine' => $machine,
-            'photos' => $photos,
+            'photos' => $machine->getMedia('machine_photos'),
         ]);
     }
 
@@ -71,35 +69,19 @@ class MachinePhotoController extends Controller
 
         $message = '';
         $machineId = $request->machineId;
-
-        $path = env('MACHINE_PHOTO_PATH', 'public/photos/machines');
-        // Store each photo in subdirectories by machine ID
-        $path = $path.'/'.$machineId;
-
-        $machinePhoto = new MachinePhoto();
-
-        $machinePhoto->machine_id = $machineId;
+        $machine = Machine::find($machineId);
 
         if ($request->hasFile('photo')) {
-            // Store the photo and thumbnail
-            $machinePhoto->machine_photo_path = $request->file('photo')->store($path);
+            // Associate the photo with the machine (spatie/medialibrary)
+            // Collection name: machine_photos
+            // Filesystem disk: MachinePhotos
+            $machine->addMediaFromRequest('photo')
+                ->preservingOriginal()
+                ->toMediaCollection('machine_photos', 'MachinePhotos');
 
-            if (is_null($request->photoDescription)) {
-                $machinePhoto->photo_description = null;
-            } else {
-                $machinePhoto->photo_description = $request->photoDescription;
-            }
-
-            // Save the record to the database
-            if ($machinePhoto->save()) {
-                $status = 'success';
-                $message .= 'Photo for machine '.$machineId.' saved.';
-                Log::info($message);
-            } else {
-                $status = 'fail';
-                $message .= 'Error saving photo.';
-                Log::error($message);
-            }
+            $status = 'success';
+            $message .= 'Photo for machine '.$machineId.' saved.';
+            Log::info($message);
         }
 
         return redirect()
@@ -115,7 +97,7 @@ class MachinePhotoController extends Controller
      */
     public function show($id)
     {
-        return MachinePhoto::where('machine_id', $id)->get();
+        return Machine::find($id)->getMedia('machine_photos');
     }
 
     /**
@@ -149,24 +131,28 @@ class MachinePhotoController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $this->authorize('destroy', MachinePhoto::class);
-        $message = '';
-        $machineId = $request->machineId;
+        // spatie/medialibrary doesn't have a facility for removing media (yet)
+        // so none of this applies yet. Will probably have to manually remove media
+        // from the media table.
 
-        $machinePhoto = MachinePhoto::find($id);
+        // $this->authorize(Machine::class);
+        // $message = '';
+        // $machineId = $request->machineId;
 
-        if ($machinePhoto->delete()) {
-            $status = 'success';
-            $message .= 'Photo for machine '.$machineId.' deleted.';
-            Log::info($message);
-        } else {
-            $status = 'fail';
-            $message .= 'Error deleting photo.';
-            Log::error($message);
-        }
+        // $machinePhoto = Machine::find($id)->getMedia('machine_photos');
 
-        return redirect()
-            ->route('machines.show', $machineId)
-            ->with($status, $message);
+        // if ($machinePhoto->delete()) {
+        //     $status = 'success';
+        //     $message .= 'Photo for machine '.$machineId.' deleted.';
+        //     Log::info($message);
+        // } else {
+        //     $status = 'fail';
+        //     $message .= 'Error deleting photo.';
+        //     Log::error($message);
+        // }
+
+        // return redirect()
+        //     ->route('machines.show', $machineId)
+        //     ->with($status, $message);
     }
 }

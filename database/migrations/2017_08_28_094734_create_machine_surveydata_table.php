@@ -1,4 +1,4 @@
-<?php
+->default(0)<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,15 +15,15 @@ class CreateMachineSurveydataTable extends Migration
     {
         Schema::create('machine_surveydata', function (Blueprint $table) {
             $table->integer('id')->unsigned();
-            $table->integer('machine_id')->unsigned()->nullable()->default(null);
-            $table->boolean('gendata')->nullable()->default(null);
-            $table->boolean('collimatordata')->nullable()->default(null);
-            $table->boolean('radoutputdata')->nullable()->default(null);
-            $table->boolean('radsurveydata')->nullable()->default(null);
-            $table->boolean('hvldata')->nullable()->default(null);
-            $table->boolean('fluorodata')->nullable()->default(null);
-            $table->boolean('maxfluorodata')->nullable()->default(null);
-            $table->boolean('receptorentrance')->nullable()->default(null);
+            $table->integer('machine_id')->unsigned()->default(0);
+            $table->boolean('gendata')->default(0);
+            $table->boolean('collimatordata')->default(0);
+            $table->boolean('radoutputdata')->default(0);
+            $table->boolean('radsurveydata')->default(0);
+            $table->boolean('hvldata')->default(0);
+            $table->boolean('fluorodata')->default(0);
+            $table->boolean('maxfluorodata')->default(0);
+            $table->boolean('receptorentrance')->default(0);
             $table->index(['machine_id', 'id']);
             $table->softDeletes();
             $table->timestamps();

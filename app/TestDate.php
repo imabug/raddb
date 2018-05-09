@@ -4,10 +4,13 @@ namespace RadDB;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class TestDate extends Model
+class TestDate extends Model implements HasMedia
 {
     use SoftDeletes;
+    use HasMediaTrait;
 
     /**
      * The table associated with the model.
@@ -141,6 +144,36 @@ class TestDate extends Model
     public function fluoroResolution()
     {
         return $this->hasMany('RadDB\FluoroResolution');
+    }
+
+    public function mamSurveyData()
+    {
+        return $this->hasMany('RadDB\MamSurveyData');
+    }
+
+    public function mamHvl()
+    {
+        return $this->hasMany('RadDB\MamHvl');
+    }
+
+    public function mamKvOutput()
+    {
+        return $this->hasMany('RadDB\MamKvOutput');
+    }
+
+    public function mamLinearity()
+    {
+        return $this->hasMany('RadDB\MamLinearity');
+    }
+
+    public function mamResolution()
+    {
+        return $this->hasMany('RadDB\MamResolution');
+    }
+
+    public function mamAcrPhantom()
+    {
+        return $this->hasMany('RadDB\MamAcrPhantom');
     }
 
     /*

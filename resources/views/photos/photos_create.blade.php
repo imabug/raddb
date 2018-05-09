@@ -9,7 +9,11 @@
 @foreach ($photos->chunk(4) as $photo_chunk)
         <tr>
     @foreach ($photo_chunk as $photo)
-            <td><a href="{{ Storage::url($photo->machine_photo_path) }}" target="_blank"><img src="{{ Storage::url($photo->machine_photo_path)}}" alt="{{ $photo->photo_description }}" width="150"></a></td>
+            <td>
+                <a href="{{ Storage::disk('MachinePhotos')->url($photo->machine_photo_path) }}" target="_blank">
+                    <img src="{{ Storage::disk('MachinePhotos')->url($photo->machine_photo_path)}}" alt="{{ $photo->photo_description }}" width="150">
+                </a>
+            </td>
     @endforeach
         </tr>
 @endforeach

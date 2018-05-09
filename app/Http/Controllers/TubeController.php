@@ -181,6 +181,7 @@ class TubeController extends Controller
         $tube->lfs = $request->lfs;
         $tube->mfs = $request->mfs;
         $tube->sfs = $request->sfs;
+        $tube->tube_status = $request->tube_status;
         $tube->notes = $request->notes;
 
         if ($tube->save()) {
