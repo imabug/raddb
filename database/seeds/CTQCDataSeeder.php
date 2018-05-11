@@ -11,6 +11,6 @@ class CTQCDataSeeder extends Seeder
      */
     public function run()
     {
-        factory(RadDB\CTDailyQCRecord::class,100)->create();
+        factory(RadDB\CTDailyQCRecord::class,300)->create();
     }
 }
