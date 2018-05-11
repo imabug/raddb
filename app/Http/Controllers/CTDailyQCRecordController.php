@@ -2,6 +2,7 @@
 
 namespace RadDB\Http\Controllers;
 
+use Charts;
 use RadDB\Machine;
 use RadDB\CTDailyQCRecord;
 use Illuminate\Support\Facades\Log;
@@ -95,7 +96,10 @@ class CTDailyQCRecordController extends Controller
     public function show($id)
     {
         $ctScanner = Machine::find($id);
-        $ctQcRecords = CTDailyQCRecord::where('machine_id', $id)->with('machine')->get();
+        $ctQcRecords = CTDailyQCRecord::where('machine_id', $id)
+            ->with('machine')
+            ->orderBy('qcdate', 'desc')
+            ->get();
 
         return view('ctdailyqc.ctdailyqcrecord_show', [
             'ctScanner' => $ctScanner,
