@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-/**
+/*
  * Model factory to generate random CT QC data.
  * A random date within the most recent three months is used for the QC date.
  */
