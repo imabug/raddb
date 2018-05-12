@@ -59,33 +59,56 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
-            function drawChart() {
+            google.charts.load('current', {'packages':['corechart', 'controls']});
+            google.charts.setOnLoadCallback(drawDashboard);
+            function drawDashboard() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('date', 'qcdate');
                 data.addColumn('number', 'hu');
                 data.addColumn({id:'min', type:'number', role:'interval'});
                 data.addColumn({id:'max', type:'number', role:'interval'});
+                data.addColumn({type: 'string', role: 'style'});
 
                 data.addRows([
                     @foreach($ctQcRecords as $ctQcRec)
-                    [new Date(Date.parse('{{$ctQcRec->qcdate}}')), {{$ctQcRec->water_hu}}, -7, 7],
+                    [new Date(Date.parse('{{$ctQcRec->qcdate}}')), {{$ctQcRec->water_hu}}, -7, 7,
+                     @if(($ctQcRec->water_hu <= -7) || ($ctQcRec->water_hu >= 7))
+                     'point {fill-color: red}'
+                     @else
+                     null
+                     @endif
+                    ],
                     @endforeach
                 ]);
 
-                var options_lines = {
-                    title: 'CT QC data',
-                    intervals: {'style':'line'},
-                    legend: 'none',
-                    hAxis: {title: 'QC Date'},
-                    vAxis: {title: 'Water HU'}
-                };
-                var chart_lines = new google.visualization.ScatterChart(document.getElementById('chart_lines'));
-                chart_lines.draw(data, options_lines);
+                var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+                var rangeSlider = new google.visualization.ControlWrapper({
+                        'controlType': 'ChartRangeFilter',
+                        'containerId': 'filter_div',
+                        'options': {
+                            'filterColumnLabel': 'qcdate'
+                        }
+                    });
+                var chart_lines = new google.visualization.ChartWrapper({
+                        'chartType': 'ScatterChart',
+                        'containerId': 'chart_lines',
+                        'options': {
+                            title: 'CT QC data',
+                            intervals: {'style':'line'},
+                            legend: 'none',
+                            hAxis: {title: 'QC Date'},
+                            vAxis: {title: 'Water HU'}
+                        }
+                    });
+
+                dashboard.bind(rangeSlider, chart_lines);
+                dashboard.draw(data);
             }
         </script>
-        <div id="chart_lines" style="height: 500px;"></div>
+        <div id="dashboard_div">
+            <div id="chart_lines" style="height: 500px;"></div>
+            <div id="filter_div"></div>
+        </div>
 
         @foreach ($ctQcRecords as $ctQcRec)
         <tr>
