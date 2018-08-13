@@ -135,24 +135,5 @@ class MachinePhotoController extends Controller
         // so none of this applies yet. Will probably have to manually remove media
         // from the media table.
 
-        // $this->authorize(Machine::class);
-        // $message = '';
-        // $machineId = $request->machineId;
-
-        // $machinePhoto = Machine::find($id)->getMedia('machine_photos');
-
-        // if ($machinePhoto->delete()) {
-        //     $status = 'success';
-        //     $message .= 'Photo for machine '.$machineId.' deleted.';
-        //     Log::info($message);
-        // } else {
-        //     $status = 'fail';
-        //     $message .= 'Error deleting photo.';
-        //     Log::error($message);
-        // }
-
-        // return redirect()
-        //     ->route('machines.show', $machineId)
-        //     ->with($status, $message);
     }
 }
