@@ -81,7 +81,7 @@ class SurveyReportController extends Controller
         $survey = TestDate::find($request->surveyId);
 
         if ($request->hasFile('surveyReport')) {
-            // Associate the photo with the test report
+            // Associate the photo with the test report (spatie/medialibary)
             // Collection name: survey_report
             // Filesystem disk: SurveyReports
             $survey->addMediaFromRequest('surveyReport')
