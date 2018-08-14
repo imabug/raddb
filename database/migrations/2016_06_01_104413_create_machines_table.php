@@ -18,7 +18,7 @@ class CreateMachinesTable extends Migration
             $table->string('description', 60)->nullable();
             $table->integer('manufacturer_id')->default(0)->unsigned();
             $table->string('vend_site_id', 25)->nullable();
-            $table->string('model', 20)->nullable();
+            $table->string('model', 50)->nullable();
             $table->string('serial_number', 20)->nullable();
             $table->date('manuf_date')->nullable();
             $table->date('install_date')->nullable();
