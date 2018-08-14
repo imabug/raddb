@@ -15,10 +15,10 @@ class CreateTubesTable extends Migration
         Schema::create('tubes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('machine_id')->default(0)->unsigned();
-            $table->string('housing_model', 30)->nullable();
+            $table->string('housing_model', 50)->nullable();
             $table->string('housing_sn', 20)->nullable();
             $table->integer('housing_manuf_id')->default(0)->unsigned();
-            $table->string('insert_model', 30)->nullable();
+            $table->string('insert_model', 50)->nullable();
             $table->string('insert_sn', 20)->nullable();
             $table->integer('insert_manuf_id')->default(0)->unsigned();
             $table->date('manuf_date')->nullable();

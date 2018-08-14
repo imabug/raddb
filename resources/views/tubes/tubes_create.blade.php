@@ -29,7 +29,7 @@
 		@endforeach
 
 		</select></p>
-	<p><label for="hsgModel">Housing Model:</label> <input class="form-control" type="TEXT" id="hsgModel" name="hsgModel" size="20"></p>
+	<p><label for="hsgModel">Housing Model:</label> <input class="form-control" type="TEXT" id="hsgModel" name="hsgModel" size="50"></p>
 	<p><label for="hsgSN">Housing SN:</label> <input class="form-control" type="TEXT" id="hsgSN" name="hsgSN" size="20"></p>
 	<p><label for="insertManufID">Insert Manufacturer:</label>
 		<select class="form-control" id="insertManufID" name="insertManufID" size="1">
@@ -40,7 +40,7 @@
 		@endforeach
 
 		</select></p>
-	<p><label for="insertModel">Insert Model:</label> <input class="form-control" type="text" id="insertModel" name="insertModel" size="20" ></p>
+	<p><label for="insertModel">Insert Model:</label> <input class="form-control" type="text" id="insertModel" name="insertModel" size="50" ></p>
 	<p><label for="insertSN">Insert SN:</label> <input class="form-control" type="text" id="insertSN" name="insertSN" size="20" ></p>
 	<p><label for="manufDate">Manufacture Date:</label> <input class="form-control" type="date" id="manufDate" name="manufDate" size="10" ></p>
 	<p><label for="installDate">Install date:</label> <input class="form-control" type="date" id="installDate" name="installDate" size="10" ></p>

@@ -26,10 +26,10 @@ class StoreTubeRequest extends FormRequest
         return [
             'machine_id'    => 'required|exists:machines,id|integer',
             'hsgManufID'    => 'integer|exists:manufacturers,id',
-            'hsgModel'      => 'string|nullable|max:30',
+            'hsgModel'      => 'string|nullable|max:50',
             'hsgSN'         => 'string|nullable|max:20',
             'insertManufID' => 'integer|exists:manufacturers,id',
-            'insertModel'   => 'string|nullable|max:30',
+            'insertModel'   => 'string|nullable|max:50',
             'insertSN'      => 'string|nullable|max:20',
             'manufDate'     => 'date_format:Y-m-d|nullable',
             'installDate'   => 'date_format:Y-m-d|nullable',
