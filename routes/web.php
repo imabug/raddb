@@ -74,7 +74,7 @@ Route::resource('testequipment', 'TestEquipmentController');
 
 // Operational notes controller
 Route::name('opnotes.createOpNoteFor')
-    ->get('opnotes/{id}/create', 'OpNoteController@create');
+    ->get('opnotes/{machineId}/create', 'OpNoteController@create');
 Route::resource('opnotes', 'OpNoteController');
 
 // Recommendation controller
