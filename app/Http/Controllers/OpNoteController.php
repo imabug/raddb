@@ -38,8 +38,8 @@ class OpNoteController extends Controller
     }
 
     /**
-     * Show the form for creating an operational note for machine $id.
-     * URI: /opnotes/{$id}/create
+     * Show the form for creating an operational note for machine $machineId.
+     * URI: /opnotes/{$machineId}/create
      * Method: GET.
      *
      * @param int $id
@@ -99,17 +99,17 @@ class OpNoteController extends Controller
     }
 
     /**
-     * Display operational notes for machine $id.
-     * URI: /opnotes/$id
+     * Display operational notes for machine $machineId.
+     * URI: /opnotes/$machineId
      * Method: GET.
      *
-     * @param int $id
+     * @param int $machineId
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show(int $machineId)
     {
-        $machine = Machine::findOrFail($id); // Return HTTP 404 if no machine is found
+        $machine = Machine::findOrFail($machineId); // Return HTTP 404 if no machine is found
 
         return view('opnotes.opnote_show', [
             'machine' => $machine,
