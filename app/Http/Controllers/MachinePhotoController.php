@@ -134,6 +134,5 @@ class MachinePhotoController extends Controller
         // spatie/medialibrary doesn't have a facility for removing media (yet)
         // so none of this applies yet. Will probably have to manually remove media
         // from the media table.
-
     }
 }
