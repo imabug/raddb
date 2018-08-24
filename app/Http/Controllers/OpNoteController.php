@@ -59,7 +59,7 @@ class OpNoteController extends Controller
         }
 
         return view('opnotes.opnote_create', [
-            'machineID' => $id,
+            'machineId' => $id,
             'machines' => $machines,
             'opNotes' => $opNotes,
         ]);

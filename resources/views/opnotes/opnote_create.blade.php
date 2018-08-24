@@ -3,12 +3,12 @@
 @extends('layouts.app')
 
 @section('content')
-@if($machines->count() > 1)
+@if(is_null($machineId))
 <h2>Add operational note</h2>
 @else
-<h2>Operational notes for {{ $machineDesc }}</h2>
+<h2>Add operational note for {{ $machines->description }}</h2>
 @endif
-@if(!is_null($opNotes))
+
 <ol>
 @foreach ($opNotes as $opNote)
     <li>{{ $opNote->note }}
@@ -17,12 +17,12 @@
     </li>
 @endforeach
 </ol>
-@endif
+
 <form class="form-inline" action="{{ route('opnotes.store')}}" method="post">
     <div class="form-group">
         {{ csrf_field() }}
         <p>
-        @if($machines->count() > 1)
+        @if(is_null($machineId))
         <label for="machineId">Select a machine: </label>
         <select class="form-control" name="machineId">
         @foreach ($machines as $machine)
@@ -30,11 +30,11 @@
         @endforeach
         </select>
         @else
-        <input type="hidden" name="machineId" value="{{ $machine->id }}">
+        <input type="hidden" name="machineId" value="{{ $machines->id }}">
         @endif
         </p>
         <p><label for="note">Operational note</label><br>
-            <textarea name="note" rows="8" cols="80" placeholder="Enter operational note"></textarea></p>
+           <textarea name="note" rows="8" cols="80" placeholder="Enter operational note"></textarea></p>
         <p><button type="submit" name="submit">Submit</button></p>
     </div>
 </form>
