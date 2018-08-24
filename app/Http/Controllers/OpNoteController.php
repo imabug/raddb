@@ -46,20 +46,20 @@ class OpNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    public function create($machineId = null)
     {
-        if (is_null($id)) {
+        if (is_null($machineId)) {
             // No machine was specified. Pull a list of active machines to use in the form
             $machines = Machine::active()->get();
             $opNotes = null;
         } else {
             // A machine was specified. Pull the machine model and any existing operational notes
-            $machines = Machine::find($id);
+            $machines = Machine::find($machineId);
             $opNotes = $machines->opnote;
         }
 
         return view('opnotes.opnote_create', [
-            'machineId' => $id,
+            'machineId' => $machineId,
             'machines' => $machines,
             'opNotes' => $opNotes,
         ]);
