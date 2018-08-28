@@ -20,7 +20,7 @@
         "phpoffice/phpspreadsheet": "^1.0",
         "spatie/laravel-artisan-dd": "^2.0",
         "spatie/laravel-backup": "^5.2",
-        "spatie/laravel-medialibrary": "^6.0.0",
+        "spatie/laravel-medialibrary": "^7.0",
         "symfony/yaml": "^4.0",
         "twbs/bootstrap": "^3.3"
     },

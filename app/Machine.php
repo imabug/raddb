@@ -3,11 +3,11 @@
 namespace RadDB;
 
 use Carbon\Carbon;
-use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 
 class Machine extends Model implements HasMedia
 {
