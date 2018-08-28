@@ -3,10 +3,9 @@
 namespace RadDB;
 
 use Illuminate\Notifications\Notifiable;
-use TCG\Voyager\Models\User as VoyagerUser;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends VoyagerUser
+class User extends Authenticatable
 {
     use Notifiable;
 
