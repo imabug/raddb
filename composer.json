@@ -22,7 +22,6 @@
         "spatie/laravel-backup": "^5.2",
         "spatie/laravel-medialibrary": "^6.0.0",
         "symfony/yaml": "^3.3",
-        "tcg/voyager": "^1.0",
         "twbs/bootstrap": "^3.3"
     },
     "require-dev": {
