@@ -13,6 +13,10 @@
 	</thead>
 	<tbody>
 @foreach ($pendingSurveys as $pending)
+    if (is_null($pending->machine)) {
+        break;
+    }
+    else {
 		<tr>
 			<td><a href="{{ route('surveys.edit', $pending->id)}}">{{ $pending->id }}</a></td>
 			<td><a href="{{ route('machines.show', $pending->machine->id) }}">{{ $pending->machine->description }}</a></td>
@@ -24,6 +28,7 @@
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
             </td>
 		</tr>
+    }
 @endforeach
 	</tbody>
 </table>
