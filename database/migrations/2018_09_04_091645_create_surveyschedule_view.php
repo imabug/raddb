@@ -6,15 +6,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateSurveyscheduleView extends Migration
 {
-
     /**
-     * SQL used to create the view
+     * SQL used to create the view.
      *
      * @return string
      */
     private function createView(): string
     {
-        return <<<SQL
+        return <<<'SQL'
 create view surveyschedule_view as 
 select machines.id,machines.description,
 lastyear_view.survey_id as prevSurveyID ,
@@ -34,13 +33,13 @@ SQL;
     }
 
     /**
-     * SQL used to drop the view if it exists
+     * SQL used to drop the view if it exists.
      *
      * @return string
      */
     private function dropView(): string
     {
-        return <<<SQL
+        return <<<'SQL'
 drop view if exists 'surveyschedule_view'
 SQL;
     }
