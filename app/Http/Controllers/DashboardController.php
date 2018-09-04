@@ -6,8 +6,8 @@ use DB;
 use Charts;
 use RadDB\Machine;
 use RadDB\TestDate;
-use RadDB\SurveyScheduleView;
 use Illuminate\Http\Request;
+use RadDB\SurveyScheduleView;
 
 class DashboardController extends Controller
 {
@@ -72,7 +72,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Get the list of machines and their surveys for this year and the previous year
+     * Get the list of machines and their surveys for this year and the previous year.
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
