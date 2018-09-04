@@ -17,13 +17,19 @@ class CreateSurveyscheduleView extends Migration
         return <<<SQL
 create view surveyschedule_view as 
 select machines.id,machines.description,
-lastyear_view.survey_id as prev_survey_id, lastyear_view.test_date as prev_test_date,
-thisyear_view.survey_id as curr_survey_id, thisyear_view.test_date as curr_test_date
+    lastyear_view.survey_id as prevSurveyID ,
+    lastyear_view.test_date as prevSurveyDate,
+    lastyear_view.report_file_path as prevSurveyReport,
+    lastyear_view.recCount as prevRecCount,
+    thisyear_view.survey_id as currSurveyID,
+    thisyear_view.test_date as currSurveyDate,
+    thisyear_view.report_file_path as currSurveyReport,
+    thisyear_view.recCount as currRecCount
 from machines
 left join thisyear_view on machines.id = thisyear_view.machine_id
 left join lastyear_view on machines.id = lastyear_view.machine_id
 where machines.machine_status="Active"
-order by prev_test_date
+order by lastyear_view.test_date
 SQL;
     }
 
