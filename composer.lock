@@ -1144,16 +1144,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.35",
+            "version": "v5.6.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "02abbe2091404ebe032a6d5a83075031b7072ebe"
+                "reference": "38d838bab9434af79e8ab274ae63f52f7ed45d6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/02abbe2091404ebe032a6d5a83075031b7072ebe",
-                "reference": "02abbe2091404ebe032a6d5a83075031b7072ebe",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/38d838bab9434af79e8ab274ae63f52f7ed45d6e",
+                "reference": "38d838bab9434af79e8ab274ae63f52f7ed45d6e",
                 "shasum": ""
             },
             "require": {
@@ -1279,7 +1279,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-08-27T13:18:24+00:00"
+            "time": "2018-09-04T13:15:09+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2370,16 +2370,16 @@
         },
         {
             "name": "spatie/db-dumper",
-            "version": "2.10.0",
+            "version": "2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/db-dumper.git",
-                "reference": "ee745fba17bcf77c916f231a571bbde8dae8e001"
+                "reference": "1192bb0df9f49ee1f0bdecb7aa921d2647b4c7c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/ee745fba17bcf77c916f231a571bbde8dae8e001",
-                "reference": "ee745fba17bcf77c916f231a571bbde8dae8e001",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/1192bb0df9f49ee1f0bdecb7aa921d2647b4c7c7",
+                "reference": "1192bb0df9f49ee1f0bdecb7aa921d2647b4c7c7",
                 "shasum": ""
             },
             "require": {
@@ -2416,7 +2416,7 @@
                 "mysqldump",
                 "spatie"
             ],
-            "time": "2018-04-27T15:10:51+00:00"
+            "time": "2018-08-30T12:10:16+00:00"
         },
         {
             "name": "spatie/image",
@@ -2521,25 +2521,24 @@
         },
         {
             "name": "spatie/laravel-artisan-dd",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-artisan-dd.git",
-                "reference": "1480cc93ecbb36f903ef28ddf94d9c812b6f9946"
+                "reference": "d25ad696b3d98f23e15fb1ec19ea1751db7c4176"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-artisan-dd/zipball/1480cc93ecbb36f903ef28ddf94d9c812b6f9946",
-                "reference": "1480cc93ecbb36f903ef28ddf94d9c812b6f9946",
+                "url": "https://api.github.com/repos/spatie/laravel-artisan-dd/zipball/d25ad696b3d98f23e15fb1ec19ea1751db7c4176",
+                "reference": "d25ad696b3d98f23e15fb1ec19ea1751db7c4176",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "~5.5.0|~5.6.0",
-                "illuminate/support": "~5.5.0|~5.6.0",
+                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0",
                 "php": "^7.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.5.0|~3.6.0",
+                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
                 "phpunit/phpunit": "^6.3|^7.0"
             },
             "type": "library",
@@ -2569,7 +2568,7 @@
                 "laravel-artisan-dd",
                 "spatie"
             ],
-            "time": "2018-02-08T11:39:13+00:00"
+            "time": "2018-08-28T15:22:25+00:00"
         },
         {
             "name": "spatie/laravel-backup",
