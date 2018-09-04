@@ -21,13 +21,13 @@ class SurveyScheduleView extends Model
         return $this->belongsTo('RadDB\Machine', 'id');
     }
 
-    public function prev_survey()
+    public function prevSurvey()
     {
-        return $this->belongsTo('RadDB\TestDate');
+        return $this->belongsTo('RadDB\TestDate', 'prevSurveyID');
     }
 
-    public function curr_survey()
+    public function currSurvey()
     {
-        return $this->belongsTo('RadDB\TestDate');
+        return $this->belongsTo('RadDB\TestDate', 'currSurveyID');
     }
 }
