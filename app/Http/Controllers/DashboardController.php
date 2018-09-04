@@ -6,6 +6,7 @@ use DB;
 use Charts;
 use RadDB\Machine;
 use RadDB\TestDate;
+use RadDB\SurveyScheduleView;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -46,13 +47,11 @@ class DashboardController extends Controller
             ->year(date('Y'))
             ->get();
         // Untested machines are the ones that aren't in the above list
-        $untested = Machine::select('id', 'description')
+        return Machine::select('id', 'description')
             ->active()
             ->whereNotIn('id', $currSurveys->toArray())
             ->orderBy('description')
             ->get();
-
-        return $untested;
     }
 
     /**
@@ -66,24 +65,14 @@ class DashboardController extends Controller
      */
     private function pending()
     {
-        $pending = TestDate::with('machine', 'type')
+        return TestDate::with('machine', 'type')
             ->pending()
             ->orderBy('testdates.test_date', 'asc')
             ->get();
-
-        return $pending;
     }
 
     /**
      * Get the list of machines and their surveys for this year and the previous year
-     * select machines.id,machines.description,
-     * lastyear_view.survey_id as prev_survey_id, lastyear_view.test_date as prev_test_date,
-     * thisyear_view.survey_id as curr_survey_id, thisyear_view.test_date as curr_test_date
-     * from machines
-     * left join thisyear_view on machines.id = thisyear_view.machine_id
-     * left join lastyear_view on machines.id = lastyear_view.machine_id
-     * where machines.machine_status="Active"
-     * order by prev_test_date.
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
@@ -91,23 +80,8 @@ class DashboardController extends Controller
     {
         // Get the list of machines and their surveys for this year
         // TODO: may not handle machines with multiple surveys in a year very well
-        $surveySchedule = Machine::select('machines.id',
-                'machines.description',
-                'lastyear_view.survey_id as prevSurveyID',
-                'lastyear_view.test_date as prevSurveyDate',
-                'lastyear_view.report_file_path as prevSurveyReport',
-                'lastyear_view.recCount as prevRecCount',
-                'thisyear_view.survey_id as currSurveyID',
-                'thisyear_view.test_date as currSurveyDate',
-                'thisyear_view.report_file_path as currSurveyReport',
-                'thisyear_view.recCount as currRecCount')
-            ->active()
-            ->leftJoin('thisyear_view', 'machines.id', '=', 'thisyear_view.machine_id')
-            ->leftJoin('lastyear_view', 'machines.id', '=', 'lastyear_view.machine_id')
-            ->orderBy('lastyear_view.test_date', 'asc')
-            ->get();
 
-        return $surveySchedule;
+        return SurveyScheduleView::get();
     }
 
     /**
