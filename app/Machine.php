@@ -203,6 +203,11 @@ class Machine extends Model implements HasMedia
         return $this->hasMany('RadDB\MamAcrPhantom');
     }
 
+    public function surveySchedule()
+    {
+        return $this->hasOne('RadDB\SurveyScheduleView', 'id');
+    }
+
     /*
      * Scopes
      */
