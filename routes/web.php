@@ -136,7 +136,3 @@ Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 // CT Daily QC routes
 Route::resource('ctdailyqc', 'CTDailyQCRecordController');
 
-// Voyager routes
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
