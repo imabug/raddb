@@ -135,4 +135,3 @@ Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 
 // CT Daily QC routes
 Route::resource('ctdailyqc', 'CTDailyQCRecordController');
-
