@@ -2149,16 +2149,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.7",
+            "version": "v0.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "4f5b6c090948773a8bfeea6a0f07ab7d0b24e932"
+                "reference": "ed3c32c4304e1a678a6e0f9dc11dd2d927d89555"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4f5b6c090948773a8bfeea6a0f07ab7d0b24e932",
-                "reference": "4f5b6c090948773a8bfeea6a0f07ab7d0b24e932",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/ed3c32c4304e1a678a6e0f9dc11dd2d927d89555",
+                "reference": "ed3c32c4304e1a678a6e0f9dc11dd2d927d89555",
                 "shasum": ""
             },
             "require": {
@@ -2219,7 +2219,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2018-08-11T15:54:43+00:00"
+            "time": "2018-09-05T11:40:09+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -2575,16 +2575,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.4.1",
+            "version": "7.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "146355b4c9473bacef56fd8520d73e0cc406ffec"
+                "reference": "3babc8069e37df1a5a94bc2d096ef8f9da7deb49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/146355b4c9473bacef56fd8520d73e0cc406ffec",
-                "reference": "146355b4c9473bacef56fd8520d73e0cc406ffec",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/3babc8069e37df1a5a94bc2d096ef8f9da7deb49",
+                "reference": "3babc8069e37df1a5a94bc2d096ef8f9da7deb49",
                 "shasum": ""
             },
             "require": {
@@ -2650,7 +2650,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2018-08-24T09:18:57+00:00"
+            "time": "2018-09-05T09:31:23+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
