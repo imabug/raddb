@@ -49,6 +49,7 @@ class SurveyReportController extends Controller
      */
     public function create(int $id = null)
     {
+        // Get a list of surveys for the current year that don't have an associated survey report
         $surveys = TestDate::year(date('Y'))
             ->where(function ($query) {
                 $query->whereNull('report_file_path')
