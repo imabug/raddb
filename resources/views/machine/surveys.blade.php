@@ -7,7 +7,6 @@
             <th>Test Type</th>
             <th>Accession</th>
             <th>Notes</th>
-            <th>Survey Report</th>
         </tr>
     </thead>
     <tbody>
@@ -18,11 +17,6 @@
             <td>{{ $survey->type->test_type }}</td>
             <td>{{ $survey->accession }}</td>
             <td>{{ $survey->notes }}</td>
-            @if (Storage::disk('local')->exists($survey->report_file_path))
-            <td><a href="{{ Storage::disk('local')->url($survey->report_file_path) }} " target="_blank"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-            @else
-            <td></td>
-            @endif
         </tr>
     @endforeach
     </tbody>

@@ -21,29 +21,13 @@
         @else
             <td>{{ $ss->prevSurveyDate }}</td>
         @endif
-        @if (Storage::disk('local')->exists($ss->prevSurveyReport))
-            <td>{{ $ss->prevSurveyID }}
-                <a href="{{ Storage::disk('local')->url($ss->prevSurveyReport) }}" target="_blank" title="Survey report" alt="Survey report">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                </a>
-            </td>
-		@else
             <td>{{ $ss->prevSurveyID }}</td>
-		@endif
         @if ($ss->currRecCount > 0)
             <td><a href="{{ route('recommendations.show', $ss->currSurveyID)}}" title="Recommendations" alt="Recommendations">{{ $ss->currSurveyDate }}</a></td>
         @else
             <td>{{ $ss->currSurveyDate }}</td>
         @endif
-        @if (Storage::disk('local')->exists($ss->currSurveyReport))
-            <td>{{ $ss->currSurveyID}}
-                <a href="{{ Storage::disk('local')->url($ss->currSurveyReport) }}" target="_blank" title="Survey report" alt="Survey report">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                </a>
-            </td>
-		@else
             <td>{{ $ss->currSurveyID }}</td>
-		@endif
 		</tr>
 @endforeach
 	</tbody>
