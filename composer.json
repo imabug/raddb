@@ -1,10 +1,13 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "imabug/raddb",
+    "description": "Radiology Equipment Database.",
     "keywords": [
-        "framework",
-        "laravel"
+        "laravel",
+        "radiology",
+        "inventory",
+        "equipment"
     ],
+    "homepage": "https://github.com/imabug/raddb",
     "license": "MIT",
     "type": "project",
     "require": {
