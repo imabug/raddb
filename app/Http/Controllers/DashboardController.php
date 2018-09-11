@@ -81,7 +81,8 @@ class DashboardController extends Controller
         // Get the list of machines and their surveys for this year
         // TODO: may not handle machines with multiple surveys in a year very well
 
-        return SurveyScheduleView::get();
+        return SurveyScheduleView::with('machine', 'prevSurvey', 'currSurvey')
+            ->get();
     }
 
     /**
