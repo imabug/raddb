@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class RemoveSurveyReportFieldsFromViews extends Migration
 {
     /**
-     * SQL used to modify the view
+     * SQL used to modify the view.
      *
      * @return string
      */
