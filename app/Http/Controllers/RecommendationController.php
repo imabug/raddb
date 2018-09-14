@@ -55,16 +55,14 @@ class RecommendationController extends Controller
             $machine = null;
         } else {
             // Get the machine description corresponding to the survey ID provided
-            $machine = TestDate::select('testdates.machine_id as machine_id', 'machines.description as description')
-                ->join('machines', 'testdates.machine_id', '=', 'machines.id')
-                ->where('testdates.id', $surveyId)
-                ->first();
+            $survey = TestDate::with('machine')->find($surveyId);
+            $serviceReports = $survey->getMedia('service_report');
             $recs = Recommendation::where('survey_id', $surveyId)->get();
         }
 
         return view('recommendations.rec_create', [
-            'surveyId'    => $surveyId,
-            'machine'     => $machine,
+            'survey'      => $survey,
+            'serviceReports' => $serviceReports,
             'recs'        => $recs,
         ]);
     }
@@ -147,14 +145,12 @@ class RecommendationController extends Controller
     public function show(int $surveyId)
     {
         // Get the machine description corresponding to the survey ID provided
-        $machine = TestDate::select('testdates.machine_id as machine_id', 'machines.description as description')
-            ->join('machines', 'testdates.machine_id', '=', 'machines.id')
-            ->where('testdates.id', $surveyId)
-            ->first();
+        $survey = TestDate::with('machine')->find($surveyId);
+        $serviceReports = $survey->getMedia('service_report');
 
         return view('recommendations.recommendations', [
-            'surveyID'    => $surveyId,
-            'machine'     => $machine,
+            'survey'      => $survey,
+            'serviceReports' => $serviceReports,
             'recs'        => Recommendation::where('survey_id', $surveyId)->get(),
         ]);
     }
