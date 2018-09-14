@@ -105,14 +105,12 @@ class RecommendationController extends Controller
             $recommendation->resolved_by = $request->ResolvedBy;
 
             // If a service report was uploaded, handle it
-            // This breaks the way service reports were handled in the previous version. Deal with it.
             if ($request->hasFile('ServiceReport') && $request->file('ServiceReport')->isValid()) {
-                // Get the test date corresponding to the recommendation
-                $recYear = date_parse($recommendation->survey->test_date);
-                $serviceReportFileName = $request->file('ServiceReport')->getClientOriginalName();
-                // Store the service report to the ServiceReports disk
-                $recommendation->service_report_path = $request->ServiceReport
-                                                     ->storeAs($recYear['year'], $serviceReportFileName, 'local');
+                // Associate the submitted file with the recommendation (spatie/medialibrary)
+                // Collection name: service_reports
+                // Filesystem disk: ServiceReports
+                $recommendation->addMediaFromRequest('ServiceReport')
+                    ->toMediaCollection('service_report', 'ServiceReports');
                 $message .= "Service report uploaded.\n";
             }
         } else {
@@ -191,18 +189,16 @@ class RecommendationController extends Controller
         $message = '';
         $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');
 
+        $survey = TestDate::find($surveyID);
+
         // If a service report was uploaded, handle it
-        // This breaks the way service reports were handled in the previous version. Deal with it.
         if ($request->hasFile('ServiceReport') && $request->file('ServiceReport')->isValid()) {
-            // Get the test date for the associated survey
-            $testDate = date_parse(TestDate::find($surveyID)->test_date);
-            $serviceReportFileName = $request->file('ServiceReport')->getClientOriginalName();
-            // Store the service report to the ServiceReports disk
-            $serviceReportPath = $request->ServiceReport
-                               ->storeAs($testDate['year'], $serviceReportFileName, 'ServiceReports');
+            // Associate the submitted file with the survey (spatie/medialibrary)
+            // Collection name: service_reports
+            // Filesystem disk: ServiceReports
+            $survey->addMediaFromRequest('ServiceReport')
+                ->toMediaCollection('service_report', 'ServiceReports');
             $message .= "Service report uploaded.\n";
-        } else {
-            $serviceReportPath = null;
         }
 
         foreach ($request->recID as $recId) {
@@ -227,7 +223,6 @@ class RecommendationController extends Controller
             $recommendation->resolved = 1;
             $recommendation->rec_status = 'Complete';
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
-            $recommendation->service_report_path = $serviceReportPath;
 
             if ($recommendation->save()) {
                 $status = 'success';
