@@ -58,7 +58,7 @@ class ImportSurveyReports extends Command
                     ->toMediaCollection('survey_report', 'SurveyReports');
             }
             $s->report_file = $file;
-            $s->save();
+            
         }
     }
 }
