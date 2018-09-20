@@ -41,7 +41,7 @@ class ImportSurveyReports extends Command
     public function handle()
     {
         $surveys = TestDate::whereNotNull('report_file_path')->get();
-
+        
         foreach ($surveys as $s) {
             // See if the report_file_path starts with 'public/SurveyReports'
             if (substr($s->report_file_path, 0, 20) == 'public/SurveyReports') {
@@ -56,9 +56,8 @@ class ImportSurveyReports extends Command
             if (file_exists($file)) {
                 $s->addMedia($file)
                     ->toMediaCollection('survey_report', 'SurveyReports');
+                $this->info($file . 'added to medialibrary');
             }
-            $s->report_file = $file;
-            
         }
     }
 }
