@@ -8,7 +8,15 @@
     <div class="form-group">
         {{ csrf_field() }}
         @if (isset($recs))
-        <h3>Survey recommendations for <a href="{{ route('machines.show', $survey->machines->id) }}">{{ $survey->machine->description }}</a> (Survey ID {{ $survey->id }})</h3>
+        <h3>Survey recommendations for <a href="{{ route('machines.show', $survey->machine->id) }}">{{ $survey->machine->description }}</a> (Survey ID {{ $survey->id }})</h3>
+@if ($serviceReports->count() > 0)
+        <h3>Service Reports</h3>
+<ol>
+@foreach ($serviceReports as $sr)
+    <li><a href="{{ $serviceReports->getURL() }}" target="_blank">{{ $serviceReports->name }}</a>
+@endforeach
+</ol>
+@endif
         <p>Unresolved recommendations are in bold with the checkbox in front</p>
         <table class="table table-hover">
             <thead>
@@ -34,18 +42,9 @@
             </tbody>
         </table>
         @endif
-        <div class="col-md-6">>
-            <p>Service Reports</p>
-            <ol>
-            @foreach ($serviceReports as $sr)
-                <li><a href="{{ $serviceReports->getURL() }}" target="_blank">{{ $serviceReports->name }}</a>
-            @endforeach
-            </ol>
-        </div>
-
         <hr>
         @if (Auth::check())
-        <p><label for="surveyId">Survey ID: </label><input class="form-control" type="text" id="surveyId" name="surveyId" value="{{ $surveyId or '' }}" > <span class="text-danger">*</span></p>
+        <p><label for="surveyId">Survey ID: </label><input class="form-control" type="text" id="surveyId" name="surveyId" value="{{ $survey->id ?? '' }}" > <span class="text-danger">*</span></p>
         <p><label for="recommendation">Recommendation: </label><textarea class="form-control" id="recommendation" name="recommendation" rows="4" cols="80" placeholder="Enter recommendation"></textarea> <span class="text-danger">*</span></p>
         <p><label for="resolved">Resolved: </label> <input class="form-control" type="checkbox" id="resolved" name="resolved" value="1" ></p>
         <p><label for="WONum">Biomed Work Order Number:</label> <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" ></p>

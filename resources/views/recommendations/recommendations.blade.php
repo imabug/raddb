@@ -4,6 +4,14 @@
 
 @section('content')
 <h2>Survey recommendations for <a href="{{ route('machines.show', $survey->machine->id) }}">{{ $survey->machine->description }}</a> (Survey ID {{ $survey->id }})</h2>
+@if ($serviceReports->count() > 0)
+<h3>Service Reports</h3>
+<ol>
+@foreach ($serviceReports as $sr)
+    <li><a href="{{ $serviceReports->getURL() }}" target="_blank">{{ $serviceReports->name }}</a>
+@endforeach
+</ol>
+@endif
 <p>Unresolved recommendations are in bold with the checkbox in front</p>
 <p>
 <form class="form-inline" action="{{ route('recommendations.update', $survey->id) }}" method="post" enctype="multipart/form-data">
@@ -33,14 +41,6 @@
             @endforeach
             </tbody>
         </table>
-        <div class="col-md-6">>
-            <p>Service Reports</p>
-            <ol>
-            @foreach ($serviceReports as $sr)
-                <li><a href="{{ $serviceReports->getURL() }}" target="_blank">{{ $serviceReports->name }}</a>
-            @endforeach
-            </ol>
-        </div>
         <hr>
         @if (Auth::check())
         <p>
