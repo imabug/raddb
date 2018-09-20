@@ -8,7 +8,7 @@
 <h3>Service Reports</h3>
 <ol>
 @foreach ($serviceReports as $sr)
-    <li><a href="{{ $serviceReports->getURL() }}" target="_blank">{{ $serviceReports->name }}</a>
+    <li><a href="{{ $sr->getURL() }}" target="_blank">{{ $sr->name }}</a>
 @endforeach
 </ol>
 @endif
