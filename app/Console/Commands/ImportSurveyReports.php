@@ -41,22 +41,22 @@ class ImportSurveyReports extends Command
     public function handle()
     {
         $surveys = TestDate::whereNotNull('report_file_path')->get();
-        
+
         foreach ($surveys as $s) {
             // See if the report_file_path starts with 'public/SurveyReports'
             if (substr($s->report_file_path, 0, 20) == 'public/SurveyReports') {
-                $file = '/opt/www/raddb/public/storage/oldSurveyReports/' . substr($s->report_file_path, 21);
+                $file = '/opt/www/raddb/public/storage/oldSurveyReports/'.substr($s->report_file_path, 21);
             }
             if (substr($s->report_file_path, 0, 13) == 'SurveyReports') {
-                $file = '/opt/www/raddb/public/storage/oldSurveyreports/' . substr($s->report_file_path, 14);
+                $file = '/opt/www/raddb/public/storage/oldSurveyreports/'.substr($s->report_file_path, 14);
             }
             if (substr($s->report_file_path, 0, 4) == '2018') {
-                $file = '/opt/www/raddb/public/storage/oldSurveyReports/' . $s->report_file_path;
+                $file = '/opt/www/raddb/public/storage/oldSurveyReports/'.$s->report_file_path;
             }
             if (file_exists($file)) {
                 $s->addMedia($file)
                     ->toMediaCollection('survey_report', 'SurveyReports');
-                $this->info($file . 'added to medialibrary');
+                $this->info($file.'added to medialibrary');
             }
         }
     }
