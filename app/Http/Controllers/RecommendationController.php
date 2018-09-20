@@ -84,6 +84,8 @@ class RecommendationController extends Controller
         $message = '';
 
         $recommendation = new Recommendation();
+        $survey = TestDate::find($request->surveyId);
+
         $recommendation->survey_id = $request->surveyId;
         $recommendation->recommendation = $request->recommendation;
         if (isset($request->resolved)) {
@@ -107,7 +109,7 @@ class RecommendationController extends Controller
                 // Associate the submitted file with the recommendation (spatie/medialibrary)
                 // Collection name: service_reports
                 // Filesystem disk: ServiceReports
-                $recommendation->addMediaFromRequest('ServiceReport')
+                $survey->addMediaFromRequest('ServiceReport')
                     ->toMediaCollection('service_report', 'ServiceReports');
                 $message .= "Service report uploaded.\n";
             }
