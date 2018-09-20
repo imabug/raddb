@@ -2,8 +2,11 @@
 
 namespace RadDB;
 
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Recommendation extends Model
 {
