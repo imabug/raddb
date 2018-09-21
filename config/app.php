@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Radiology Equipment Database',
+    'name' => env('APP_NAME', 'Radiology Equipment Database'),
 
     /*
     |--------------------------------------------------------------------------
