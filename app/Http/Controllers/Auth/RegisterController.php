@@ -3,8 +3,8 @@
 namespace RadDB\Http\Controllers\Auth;
 
 use RadDB\User;
-use RadDB\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use RadDB\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
