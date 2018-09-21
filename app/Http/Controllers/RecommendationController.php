@@ -52,7 +52,7 @@ class RecommendationController extends Controller
         if (is_null($surveyId)) {
             // No survey id was provided.
             $recs = null;
-            $machine = null;
+            $serviceReports = null;
             $survey = null;
         } else {
             // Get the machine description corresponding to the survey ID provided
