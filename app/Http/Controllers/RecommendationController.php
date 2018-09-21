@@ -53,6 +53,7 @@ class RecommendationController extends Controller
             // No survey id was provided.
             $recs = null;
             $machine = null;
+            $survey = null;
         } else {
             // Get the machine description corresponding to the survey ID provided
             $survey = TestDate::with('machine')->find($surveyId);
