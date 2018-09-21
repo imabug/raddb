@@ -31,9 +31,12 @@ class TestEquipmentController extends Controller
      */
     public function index()
     {
+        $machines = Machine::active()->testEquipment()->get();
+
         return view('machine.index', [
             'machineStatus' => 'Test Equipment',
-            'machines' => Machine::active()->testEquipment()->get(),
+            'machines' => $machines,
+            'n' => $machines->count(),
         ]);
     }
 
