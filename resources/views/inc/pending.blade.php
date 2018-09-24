@@ -13,11 +13,8 @@
 	</thead>
 	<tbody>
 @foreach ($pendingSurveys as $pending)
-    @if (is_null($pending->machine)) {
-        break;
-    }
-    @else {
-		<tr>
+    @unless (is_null($pending->machine)) 
+ 		<tr>
 			<td><a href="{{ route('surveys.edit', $pending->id)}}">{{ $pending->id }}</a></td>
 			<td><a href="{{ route('machines.show', $pending->machine->id) }}">{{ $pending->machine->description }}</a></td>
 			<td>{{ $pending->test_date}}</td>
@@ -28,8 +25,7 @@
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
             </td>
 		</tr>
-    }
-@endif
+    @endunless
 @endforeach
 	</tbody>
 </table>
