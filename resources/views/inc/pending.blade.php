@@ -13,10 +13,10 @@
 	</thead>
 	<tbody>
 @foreach ($pendingSurveys as $pending)
-    if (is_null($pending->machine)) {
+    @if (is_null($pending->machine)) {
         break;
     }
-    else {
+    @else {
 		<tr>
 			<td><a href="{{ route('surveys.edit', $pending->id)}}">{{ $pending->id }}</a></td>
 			<td><a href="{{ route('machines.show', $pending->machine->id) }}">{{ $pending->machine->description }}</a></td>
@@ -29,6 +29,7 @@
             </td>
 		</tr>
     }
+@endif
 @endforeach
 	</tbody>
 </table>
