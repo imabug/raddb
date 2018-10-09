@@ -26,6 +26,7 @@ class ChangeDescModelSizeInMachinesTable extends Migration
      */
     public function down()
     {
+        // Change field sizes back to what they were before
         Schema::table('machines', function (Blueprint $table) {
             $table->string('model', 50)->change();
             $table->string('description', 60)->change();
