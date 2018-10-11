@@ -11,11 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Dashboard routes
+/*
+ * Dashboard routes
+ */
 Route::name('index')->get('/', 'DashboardController@index'); // Survey schedule
 Route::name('dashboard.dashboard')
     ->get('/dashboard', 'DashboardController@teststatus');
@@ -32,95 +30,122 @@ Route::name('dashboard.showSchedule')
 Route::name('dashboard.surveyGraph')
     ->get('/dashboard/surveyGraph', 'DashboardController@surveyGraph');
 
-// Machine listing controller
-// Listing of inactive machines
+/*
+ * Machine listings
+ */
+// Inactive machines
 Route::name('machines.inactive')
     ->get('/machines/inactive', 'MachineListingController@showInactive');
-// Listing of removed machines
+// Removed machines
 Route::name('machines.removed')
     ->get('/machines/removed/{year?}', 'MachineListingController@showRemoved');
-// Listing of installed machines by year
+// Installed machines by year
 Route::name('machines.installed')
     ->get('/machines/installed/{year?}', 'MachineListingController@showInstalled');
-// Show index of machines grouped by location
+// Index of machines grouped by location
 Route::name('machines.showLocationIndex')
     ->get('/machines/locations', 'LocationController@index');
 // List of machines for a selected location(s)
 Route::name('machines.showLocation')
     ->get('/machines/locations/{id}', 'LocationController@show');
-// Show index of machines grouped by manufacturer
+// Index of machines grouped by manufacturer
 Route::name('machines.showManufacturerIndex')
     ->get('/machines/manufacturers', 'ManufacturerController@index');
 // List of machines for a selected modality/modalities
 Route::name('machines.showManufacturer')
     ->get('/machines/manufacturers/{id}', 'ManufacturerController@show');
-// Show index of machines grouped by modality
+// Index of machines grouped by modality
 Route::name('machines.showModalityIndex')
     ->get('/machines/modalities', 'ModalityController@index');
 // List of machines for a selected modality/modalities
 Route::name('machines.showModality')
     ->get('/machines/modalities/{id}', 'ModalityController@show');
 
-// Machine controller
+/*
+ * Machine controller
+ */
 Route::resource('machines', 'MachineController');
 
-// Test equipment controller
+/*
+ * Test equipment controller
+ */
 Route::name('testequipment.showCalDates')
     ->get('/testequipment/caldates', 'TestEquipmentController@showCalDates');
 Route::resource('testequipment', 'TestEquipmentController');
 
-// Contacts controller - deprecated from previous version
-// Route::resource('contacts', 'ContactController');
-
-// Operational notes controller
+/*
+ * Operational notes controller
+ */
 Route::name('opnotes.createOpNoteFor')
     ->get('opnotes/{machineId?}/create', 'OpNoteController@create');
 Route::resource('opnotes', 'OpNoteController');
 
-// Recommendation controller
+/*
+ * Recommendation controller
+ */
 Route::name('recommendations.createRecFor')
     ->get('recommendations/{id?}/create', 'RecommendationController@create');
 Route::resource('recommendations', 'RecommendationController');
 
-// Test Date controller
+/*
+ * Test Date controller
+ */
 Route::name('surveys.createSurveyFor')
     ->get('surveys/{id?}/create', 'TestDateController@create');
 Route::resource('surveys', 'TestDateController');
 
-// Survey report controller
+/*
+ * Survey report controller
+ */
 Route::name('surveyreports.create')
     ->get('surveyreports/{id?}/create', 'SurveyReportController@create');
 Route::resource('surveyreports', 'SurveyReportController');
 
-// Service report controller
+/*
+ * Service report controller
+ */
 Route::resource('servicereports', 'ServiceReportController');
 
-// Tube controller
+/*
+ * Tube controller
+ */
 Route::name('tubes.createTubeFor')->get('tubes/{id}/create', 'TubeController@create');
 Route::resource('tubes', 'TubeController');
 
-// Photos controller. Used to handle uploading and updating photos of machines.
+/*
+ * Photos controller. Used to handle uploading and updating photos of machines.
+ */
 Route::name('photos.create')
     ->get('photos/{id}/create', 'MachinePhotoController@create');
 Route::resource('photos', 'MachinePhotoController',
     ['except' => ['create']]);
 
-// Mammography CE controller
+/*
+ * Mammography CE controller
+ */
 Route::name('mammo.CE')
     ->get('mammo/{tester_id}/show', 'MammoCEController@show');
 
-// Route for user management
+/*
+ * Route for user management
+ */
 Route::resource('users', 'UserController');
 
-// Authentication routes
+/*
+ * Authentication routes
+ */
 Auth::routes();
 Route::name('home.index')->get('/home', 'HomeController@index');
 
-// Routes for viewing QA/survey data
+/*
+ * Routes for viewing QA/survey data
+ */
 Route::name('qa.index')->get('qa/', 'QAController@index');
 Route::name('qa.machineSurveyList')->get('qa/{machine_id}/surveyList', 'QAController@show');
 
-// Survey test data routes
+/*
+ * Survey test data routes
+ */
 Route::name('gendata.create')
     ->get('surveydata/generator/{surveyId}/create', 'GenDataController@create');
 Route::resource('gendata', 'GenDataController',
