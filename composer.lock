@@ -1773,16 +1773,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.0.4",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "fa6ee28600d21d49b2b4e1006b48426cec8e579c"
+                "reference": "d0230c5c77a7e3cfa69446febf340978540958c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/fa6ee28600d21d49b2b4e1006b48426cec8e579c",
-                "reference": "fa6ee28600d21d49b2b4e1006b48426cec8e579c",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/d0230c5c77a7e3cfa69446febf340978540958c0",
+                "reference": "d0230c5c77a7e3cfa69446febf340978540958c0",
                 "shasum": ""
             },
             "require": {
@@ -1798,7 +1798,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -1820,7 +1820,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-09-18T07:03:24+00:00"
+            "time": "2018-10-10T09:24:14+00:00"
         },
         {
             "name": "opis/closure",
@@ -2469,16 +2469,16 @@
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "0cc312a83186afc586df0cb034c4303c3d7cf629"
+                "reference": "620ee03c6ef0bfb5f0646e595de15965f55c4c61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/0cc312a83186afc586df0cb034c4303c3d7cf629",
-                "reference": "0cc312a83186afc586df0cb034c4303c3d7cf629",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/620ee03c6ef0bfb5f0646e595de15965f55c4c61",
+                "reference": "620ee03c6ef0bfb5f0646e595de15965f55c4c61",
                 "shasum": ""
             },
             "require": {
@@ -2514,7 +2514,7 @@
                 "image-optimizer",
                 "spatie"
             ],
-            "time": "2018-09-10T10:21:45+00:00"
+            "time": "2018-10-10T13:05:23+00:00"
         },
         {
             "name": "spatie/laravel-artisan-dd",
