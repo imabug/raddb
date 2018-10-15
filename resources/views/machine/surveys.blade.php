@@ -7,6 +7,7 @@
             <th>Test Type</th>
             <th>Accession</th>
             <th>Notes</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -17,6 +18,13 @@
             <td>{{ $survey->type->test_type }}</td>
             <td>{{ $survey->accession }}</td>
             <td>{{ $survey->notes }}</td>
+            <td>
+        @if($survey->hasMedia('survey_report'))
+                <a href="{{ $survey->getFirstMediaUrl('survey_report') }}" target="_blank" title="Survey report" alt="Survey report">
+                      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                </a>
+        @endif
+             </td>
         </tr>
     @endforeach
     </tbody>
