@@ -1,3 +1,5 @@
+<!-- resources/views/machine/surveys.blade.php -->
+
 <h3><span class="label label-default">Survey Information</span></h3>
 <table class="table">
     <thead>

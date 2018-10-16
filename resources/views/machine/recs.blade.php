@@ -1,3 +1,5 @@
+<!-- resources/views/machine/recs.blade.php -->
+
 <h3><span class="label label-default">Survey Recommendations</span></h3>
 <table class="table">
     <thead>

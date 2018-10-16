@@ -3,7 +3,12 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Machine Information</h2>
+@if ($machine->machine_status == "Inactive" || $machine->machine_status == "Removed")
+<h2><span class="label label-danger">{{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</span></h2>
+@else
+<h2><span class="label label-primary">{{ $machine->modality->modality }}: {{ $machine->description }} ({{ $machine->vend_site_id }})</span></h2>
+@endif
+
 <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="pill">Machine Info</a></li>
     <li role="presentation"><a href="#tubes" aria-controls="tubes" role="tab" data-toggle="pill">Tubes</a></li>

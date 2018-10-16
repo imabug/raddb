@@ -1,3 +1,5 @@
+<!-- resources/views/machine/tubes.blade.php -->
+
 <h3><span class="label label-default">Tube Information</span></h3>
 <table class="table">
     <thead>
