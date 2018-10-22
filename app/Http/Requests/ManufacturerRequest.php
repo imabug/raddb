@@ -24,7 +24,7 @@ class ManufacturerRequest extends FormRequest
     public function rules()
     {
         return [
-            'manufacturer' => 'required|string|max:20',
+            'manufacturer' => 'required|string|max:50',
         ];
     }
 }
