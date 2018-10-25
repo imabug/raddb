@@ -17,7 +17,6 @@ class ResizeManufacturerField extends Migration
         Schema::table('manufacturers', function (Blueprint $table) {
             $table->string('manufacturer', 50)->change();
         });
-
     }
 
     /**
