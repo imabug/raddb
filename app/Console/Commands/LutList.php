@@ -45,7 +45,7 @@ class LutList extends Command
         $table = strtolower($this->argument('table'));
         $headers = ['ID', $table];
 
-        switch($table) {
+        switch ($table) {
         case 'location':
             $body = Location::all(['id', 'location'])->toArray();
             break;
@@ -65,6 +65,7 @@ class LutList extends Command
             break;
         }
         $this->table($headers, $body);
+
         return true;
     }
 }

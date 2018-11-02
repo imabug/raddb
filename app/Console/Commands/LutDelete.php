@@ -53,7 +53,7 @@ class LutDelete extends Command
             'table' => $table,
         ]);
 
-        switch($table) {
+        switch ($table) {
         case 'location':
             $lut = Location::where('location', $tableValue)->first();
             break;
@@ -74,7 +74,7 @@ class LutDelete extends Command
         }
 
         // Ask for confirmation
-        if($this->confirm('Deleting '.$table.' ID:'.$lut->id.'. Do you wish to continue?')) {
+        if ($this->confirm('Deleting '.$table.' ID:'.$lut->id.'. Do you wish to continue?')) {
             $lut->delete();
         }
 

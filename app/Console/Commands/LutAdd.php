@@ -48,7 +48,7 @@ class LutAdd extends Command
         $tableValue = $this->argument('value');
         $headers = ['ID', $table];
 
-        switch($table) {
+        switch ($table) {
         case 'location':
             $location = Location::create(['location' => $tableValue]);
             $body = Location::all(['id', 'location'])->toArray();
