@@ -44,6 +44,7 @@ class LutList extends Command
     {
         $table = strtolower($this->argument('table'));
         $headers = ['ID', $table];
+        $body = null;
 
         switch ($table) {
         case 'location':
@@ -62,9 +63,12 @@ class LutList extends Command
             $body = TestType::all(['id', 'test_type'])->toArray();
             break;
         default:
+            $this->error('Usage: php artisan lut:list <table>');
             break;
         }
-        $this->table($headers, $body);
+        if (! is_null($body)) {
+            $this->table($headers, $body);
+        }
 
         return true;
     }

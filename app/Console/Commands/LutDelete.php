@@ -47,6 +47,7 @@ class LutDelete extends Command
         $table = strtolower($this->argument('table'));
         $tableValue = $this->argument('value');
         $headers = ['ID', $table];
+        $lut = null;
 
         // Show the lookup table
         $this->call('lut:list', [
@@ -70,20 +71,23 @@ class LutDelete extends Command
             $lut = TestType::where('test_type', $tableValue)->first();
             break;
         default:
+            $this->error('Usage: php artisan lut:delete <table> <value>');
             break;
         }
 
-        // Ask for confirmation
-        if ($this->confirm('Deleting '.$table.' ID:'.$lut->id.'. Do you wish to continue?')) {
-            $lut->delete();
+        if (! is_null($lut)) {
+            // Ask for confirmation
+            if ($this->confirm('Deleting '.$table.' ID:'.$lut->id.'. Do you wish to continue?')) {
+                $lut->delete();
+            }
+
+            // Show the lookup table
+            $this->call('lut:list', [
+                'table' => $table,
+            ]);
+
+            $this->info($table.' ID:'.$lut->id.' deleted.');
         }
-
-        // Show the lookup table
-        $this->call('lut:list', [
-            'table' => $table,
-        ]);
-
-        $this->info($table.' ID:'.$lut->id.' deleted.');
 
         return true;
     }

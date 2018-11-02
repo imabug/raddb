@@ -25,7 +25,7 @@ class LutAdd extends Command
      *
      * @var string
      */
-    protected $description = 'Add a new entry to one of the lookup tables.  Lookup table is one of location, manufacturer, modality, tester, or testtype';
+    protected $description = 'Add a new entry to one of the lookup tables.';
 
     /**
      * Create a new command instance.
@@ -47,6 +47,7 @@ class LutAdd extends Command
         $table = strtolower($this->argument('table'));
         $tableValue = $this->argument('value');
         $headers = ['ID', $table];
+        $body = null;
 
         switch ($table) {
         case 'location':
@@ -70,9 +71,12 @@ class LutAdd extends Command
             $body = TestType::all(['id', 'test_type'])->toArray();
             break;
         default:
+            $this->error('Usage: php artisan lut:add <table> <value>');
             break;
         }
-        $this->table($headers, $body);
+        if (! is_null($body)) {
+            $this->table($headers, $body);
+        }
 
         return true;
     }
