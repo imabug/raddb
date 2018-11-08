@@ -7,6 +7,7 @@ use RadDB\Location;
 use RadDB\Modality;
 use RadDB\Manufacturer;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Validator;
 
 class MachineAdd extends Command
 {
@@ -70,6 +71,19 @@ class MachineAdd extends Command
         $machine->notes = $this->ask('Enter any special notes for this machine');
         $machine->machine_status = 'Active';
 
+        $validator = Validator::make($machine, [
+            'description' => 'required|string|max:100',
+            'location_id' => 'required|integer|exists:location',
+            'modality_id' => 'required|integer|exists:modality',
+            'manufacturer_id' => 'required|integer|exists:manufacturer',
+            'model' => 'string|max:50',
+            'serial_number' => 'string',
+            'manuf_date' => 'date',
+            'install_date' => 'date',
+            'room' => 'string|max:20',
+            'vend_site_id' => 'string|max:30',
+            'notes' => 'string',
+        ]);
         dump($machine);
     }
 }
