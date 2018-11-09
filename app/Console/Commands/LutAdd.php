@@ -72,11 +72,12 @@ class LutAdd extends Command
             break;
         default:
             $this->error('Usage: php artisan lut:add <table> <value>');
+            return 0;
             break;
         }
-        if (! is_null($body)) {
-            $this->table($headers, $body);
-        }
+
+        // Show the lookup table with the new value.
+        $this->table($headers, $body);
 
         return true;
     }
