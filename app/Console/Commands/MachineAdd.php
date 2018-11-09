@@ -71,19 +71,37 @@ class MachineAdd extends Command
         $machine->notes = $this->ask('Enter any special notes for this machine');
         $machine->machine_status = 'Active';
 
-        $validator = Validator::make($machine, [
+        $validator = Validator::make($machine->toArray(), [
             'description' => 'required|string|max:100',
-            'location_id' => 'required|integer|exists:location',
-            'modality_id' => 'required|integer|exists:modality',
-            'manufacturer_id' => 'required|integer|exists:manufacturer',
-            'model' => 'string|max:50',
-            'serial_number' => 'string',
-            'manuf_date' => 'date',
-            'install_date' => 'date',
-            'room' => 'string|max:20',
-            'vend_site_id' => 'string|max:30',
-            'notes' => 'string',
+            'location_id' => 'required|integer|exists:locations,id',
+            'modality_id' => 'required|integer|exists:modalities,id',
+            'manufacturer_id' => 'required|integer|exists:manufacturers,id',
+            'model' => 'required|string|max:50',
+            'serial_number' => 'required|string|max:20',
+            'manuf_date' => 'required|date',
+            'install_date' => 'required|date',
+            'room' => 'required|string|max:20',
+            'vend_site_id' => 'string|nullable',
+            'notes' => 'string|nullable',
         ]);
-        dump($machine);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                $this->error($message);
+            }
+            return 0;
+        }
+        else {
+            // Everything passed.  Save the new machine.
+            $machine->save();
+            // Now add a new tube for the machine.
+            $this->call('tube:add', [
+                'machine_id' => $machine->id,
+            ]);
+        }
+
+        return true;
     }
 }
