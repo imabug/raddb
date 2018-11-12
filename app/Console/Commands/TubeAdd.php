@@ -53,8 +53,7 @@ class TubeAdd extends Command
             $machHeader = ['ID', 'Machine'];
             $this->table($machHeader, $machines->toArray());
             $tube->machine_id = $this->ask('Enter the machine ID to add a tube for');
-        }
-        else {
+        } else {
             $tube->machine_id = $this->argument('machine_id');
         }
 
@@ -67,6 +66,7 @@ class TubeAdd extends Command
             foreach ($errors->all() as $message) {
                 $this->error($message);
             }
+
             return 0;
         }
 
@@ -85,6 +85,7 @@ class TubeAdd extends Command
             foreach ($errors->all() as $message) {
                 $this->error($message);
             }
+
             return 0;
         }
 
@@ -119,12 +120,13 @@ class TubeAdd extends Command
             foreach ($errors->all() as $message) {
                 $this->error($message);
             }
+
             return 0;
-        }
-        else {
+        } else {
             // Everything validated.  Save the new tube.
             $tube->save();
         }
+
         return true;
     }
 }
