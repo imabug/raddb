@@ -2,6 +2,7 @@
 
 namespace RadDB\Console\Commands;
 
+use RadDB\TestDate;
 use Illuminate\Console\Command;
 
 class SurveyReportAdd extends Command
@@ -11,14 +12,14 @@ class SurveyReportAdd extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'surveyreport:add {survey_id} {report_file}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Upload a survey report to the database';
 
     /**
      * Create a new command instance.
@@ -37,6 +38,12 @@ class SurveyReportAdd extends Command
      */
     public function handle()
     {
-        //
+        $survey_id = $this->argument('survey_id');
+        $report_file = $this->argument('report_file');
+
+        $survey = TestDate::findOrFail($survey_id);
+
+        $survey->addMediaFromFile('report_file')
+            ->toMediaCollection('survey_report', 'SurveyReports');
     }
 }
