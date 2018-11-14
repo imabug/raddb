@@ -43,7 +43,7 @@ class SurveyReportAdd extends Command
 
         $survey = TestDate::findOrFail($survey_id);
 
-        $survey->addMediaFromFile('report_file')
+        $survey->addMedia('report_file')
             ->toMediaCollection('survey_report', 'SurveyReports');
     }
 }
