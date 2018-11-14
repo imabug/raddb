@@ -55,6 +55,7 @@ class ImportSurveyReports extends Command
             }
             if (file_exists($file)) {
                 $s->addMedia($file)
+                    ->preservingOriginal()
                     ->toMediaCollection('survey_report', 'SurveyReports');
                 $this->info($file.'added to medialibrary');
             }
