@@ -72,6 +72,7 @@ class LutAdd extends Command
             break;
         default:
             $this->error('Usage: php artisan lut:add <table> <value>');
+
             return 0;
             break;
         }
