@@ -91,9 +91,9 @@ class MachineAdd extends Command
             foreach ($errors->all() as $message) {
                 $this->error($message);
             }
+
             return 0;
-        }
-        else {
+        } else {
             // Everything passed.  Save the new machine.
             $machine->save();
             // Now add a new tube for the machine.
