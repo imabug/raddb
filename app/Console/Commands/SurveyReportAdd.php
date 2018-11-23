@@ -38,12 +38,13 @@ class SurveyReportAdd extends Command
      */
     public function handle()
     {
-        $survey_id = $this->argument('survey_id');
-        $report_file = $this->argument('report_file');
+        $surveyId = $this->argument('survey_id');
+        $reportFile = $this->argument('report_file');
 
-        $survey = TestDate::findOrFail($survey_id);
+        $survey = TestDate::findOrFail($surveyId);
 
-        $survey->addMedia('report_file')
+        $survey->addMedia($reportFile)
+            ->preservingOriginal()
             ->toMediaCollection('survey_report', 'SurveyReports');
     }
 }
