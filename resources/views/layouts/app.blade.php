@@ -14,20 +14,13 @@
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
-{{-- Only load the Slick and jQuery-File-Upload CSS if the machine detail page is being shown
+{{-- Only load the Slick CSS if the machine detail page is being shown
     Slick image carousel http://kenwheeler.github.io/slick/ --}}
 @if (Route::currentRouteName() == 'machines.show')
     <!-- Slick image carousel http://kenwheeler.github.io/slick/ -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css">
-    <!-- jQuery-File-Upload css https://github.com/blueimp/jQuery-File-Upload -->
-    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-    <link rel="stylesheet" href="{{ asset('css/jquery.fileupload.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/jquery.fileupload-ui.css') }}">
-    <!-- CSS adjustments for browsers with JavaScript disabled -->
-    <noscript><link rel="stylesheet" href="{{ asset('css/jquery.fileupload-noscript.css') }}"></noscript>
-    <noscript><link rel="stylesheet" href="{{ asset('css/jquery.fileupload-ui-noscript.css') }}"></noscript>
 @endif
   <!-- JQuery -->
   <script
@@ -48,19 +41,11 @@
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
-{{-- Only load the Slick and jQuery-File-Uploadjavascript if the machine detail page is being shown
+{{-- Only load the Slick if the machine detail page is being shown
     Slick image carousel http://kenwheeler.github.io/slick/ --}}
 @if (Route::currentRouteName() == 'machines.show')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/slick_cfg.js') }}"></script>
-    <!-- blueimp jQuery-File-Upload https://github.com/blueimp/jQuery-File-Upload -->
-    <script src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
-    <script src="{{ asset('js/jquery.fileupload.js') }}"></script>
-    <script src="{{ asset('js/jquery.fileupload-process.js') }}"></script>
-    <script src="{{ asset('js/jquery.fileupload-image.js') }}"></script>
-    <script src="{{ asset('js/jquery.fileupload-validate.js') }}"></script>
-    <script src="{{ asset('js/jquery.fileupload-ui.js') }}"></script>
-    <script src="{{ asset('js/jquery.fileupload-main.js')}}"></script>
 @endif
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
