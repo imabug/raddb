@@ -100,7 +100,7 @@ class ImportDataPage extends Command
         $spreadsheetFile = $this->argument('file');
 
         // Get the file extension
-        list($file, $ext) = explode('.', $spreadsheetFile);
+        [$file, $ext] = explode('.', $spreadsheetFile);
 
         // Read the spreadsheet
         switch ($ext) {
