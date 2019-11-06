@@ -160,3 +160,8 @@ Route::resource('receptorentrance', 'ReceptorEntranceExpController');
 
 // CT Daily QC routes
 Route::resource('ctdailyqc', 'CTDailyQCRecordController');
+
+/*
+ * Reporting routes
+ */
+Route::name('ar.effort')->get('ar/effort', 'ARController@effort');
