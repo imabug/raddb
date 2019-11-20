@@ -2,10 +2,10 @@
 
 namespace RadDB\Console\Commands;
 
-use RadDB\Machine;
-use RadDB\TestDate;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use RadDB\Machine;
+use RadDB\TestDate;
 
 class ImportSurveyReports extends Command
 {

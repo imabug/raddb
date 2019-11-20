@@ -2,11 +2,11 @@
 
 namespace RadDB\Http\Controllers;
 
-use DB;
 use Charts;
+use DB;
+use RadDB\Http\Requests\ModalityRequest;
 use RadDB\Machine;
 use RadDB\Modality;
-use RadDB\Http\Requests\ModalityRequest;
 
 class ModalityController extends Controller
 {

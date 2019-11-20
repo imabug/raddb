@@ -2,9 +2,9 @@
 
 namespace RadDB\Policies;
 
-use RadDB\User;
-use RadDB\Manufacturer;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use RadDB\Manufacturer;
+use RadDB\User;
 
 class ManufacturerPolicy
 {

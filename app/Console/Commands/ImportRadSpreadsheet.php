@@ -2,17 +2,17 @@
 
 namespace RadDB\Console\Commands;
 
+use Illuminate\Console\Command;
 use PHPExcel;
-use RadDB\Tube;
+use RadDB\CollimatorData;
 use RadDB\GenData;
 use RadDB\HVLData;
 use RadDB\Machine;
-use RadDB\TestDate;
-use RadDB\RadSurveyData;
-use RadDB\CollimatorData;
-use RadDB\RadiationOutput;
 use RadDB\MachineSurveyData;
-use Illuminate\Console\Command;
+use RadDB\RadiationOutput;
+use RadDB\RadSurveyData;
+use RadDB\TestDate;
+use RadDB\Tube;
 
 class ImportRadSpreadsheet extends Command
 {

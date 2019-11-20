@@ -2,11 +2,11 @@
 
 namespace RadDB\Http\Controllers\Auth;
 
-use RadDB\User;
-use Illuminate\Support\Facades\Hash;
-use RadDB\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use RadDB\Http\Controllers\Controller;
+use RadDB\User;
 
 class RegisterController extends Controller
 {

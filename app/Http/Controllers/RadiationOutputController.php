@@ -3,9 +3,9 @@
 namespace RadDB\Http\Controllers;
 
 use Charts;
-use RadDB\TestDate;
-use RadDB\RadiationOutput;
 use Illuminate\Http\Request;
+use RadDB\RadiationOutput;
+use RadDB\TestDate;
 
 class RadiationOutputController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Controllers\Auth;
 
-use RadDB\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use RadDB\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {

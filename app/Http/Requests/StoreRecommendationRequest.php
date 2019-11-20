@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Requests;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class StoreRecommendationRequest extends FormRequest
 {

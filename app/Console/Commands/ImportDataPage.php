@@ -2,30 +2,30 @@
 
 namespace RadDB\Console\Commands;
 
-use RadDB\Tube;
-use RadDB\MamHvl;
-use RadDB\GenData;
-use RadDB\HVLData;
-use RadDB\LeedsN3;
-use RadDB\TestDate;
-use RadDB\FluoroData;
-use RadDB\LeedsTO10CD;
-use RadDB\LeedsTO10TI;
-use RadDB\MamKvOutput;
-use RadDB\MamLinearity;
-use RadDB\MamAcrPhantom;
-use RadDB\MamResolution;
-use RadDB\MamSurveyData;
-use RadDB\MaxFluoroData;
-use RadDB\RadSurveyData;
-use RadDB\CollimatorData;
-use RadDB\RadiationOutput;
-use RadDB\FluoroResolution;
-use RadDB\MachineSurveyData;
-use RadDB\ReceptorEntranceExp;
 use Illuminate\Console\Command;
 use PhpOffice\PhpSpreadsheet\Reader\Ods;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+use RadDB\CollimatorData;
+use RadDB\FluoroData;
+use RadDB\FluoroResolution;
+use RadDB\GenData;
+use RadDB\HVLData;
+use RadDB\LeedsN3;
+use RadDB\LeedsTO10CD;
+use RadDB\LeedsTO10TI;
+use RadDB\MachineSurveyData;
+use RadDB\MamAcrPhantom;
+use RadDB\MamHvl;
+use RadDB\MamKvOutput;
+use RadDB\MamLinearity;
+use RadDB\MamResolution;
+use RadDB\MamSurveyData;
+use RadDB\MaxFluoroData;
+use RadDB\RadiationOutput;
+use RadDB\RadSurveyData;
+use RadDB\ReceptorEntranceExp;
+use RadDB\TestDate;
+use RadDB\Tube;
 
 class ImportDataPage extends Command
 {
@@ -100,7 +100,7 @@ class ImportDataPage extends Command
         $spreadsheetFile = $this->argument('file');
 
         // Get the file extension
-        list($file, $ext) = explode('.', $spreadsheetFile);
+        [$file, $ext] = explode('.', $spreadsheetFile);
 
         // Read the spreadsheet
         switch ($ext) {

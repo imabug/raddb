@@ -2,9 +2,9 @@
 
 namespace RadDB\Policies;
 
-use RadDB\User;
-use RadDB\Location;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use RadDB\Location;
+use RadDB\User;
 
 class LocationPolicy
 {

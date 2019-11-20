@@ -2,9 +2,9 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\TestType;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\TestTypeRequest;
+use RadDB\TestType;
 
 class TestTypeController extends Controller
 {
