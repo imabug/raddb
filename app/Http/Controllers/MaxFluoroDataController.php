@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\MaxFluoroData;
 use Illuminate\Http\Request;
+use RadDB\MaxFluoroData;
 
 class MaxFluoroDataController extends Controller
 {

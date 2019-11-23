@@ -3,11 +3,11 @@
 namespace RadDB\Http\Controllers;
 
 use Charts;
+use Illuminate\Http\Request;
 use RadDB\GenData;
 use RadDB\HVLData;
-use RadDB\RadSurveyData;
 use RadDB\RadiationOutput;
-use Illuminate\Http\Request;
+use RadDB\RadSurveyData;
 
 class GenDataController extends Controller
 {

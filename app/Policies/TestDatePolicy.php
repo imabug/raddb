@@ -2,10 +2,10 @@
 
 namespace RadDB\Policies;
 
-use RadDB\User;
-use RadDB\TestDate;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
+use RadDB\TestDate;
+use RadDB\User;
 
 class TestDatePolicy
 {

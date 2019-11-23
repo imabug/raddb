@@ -2,9 +2,9 @@
 
 namespace RadDB\Policies;
 
-use RadDB\User;
-use RadDB\TestType;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use RadDB\TestType;
+use RadDB\User;
 
 class TestTypePolicy
 {

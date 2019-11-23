@@ -2,16 +2,16 @@
 
 namespace RadDB\Http\Controllers;
 
+use Illuminate\Http\Request;
+use RadDB\CollimatorData;
+use RadDB\FluoroData;
 use RadDB\GenData;
 use RadDB\HVLData;
 use RadDB\Machine;
-use RadDB\FluoroData;
-use RadDB\MaxFluoroData;
-use RadDB\RadSurveyData;
-use RadDB\CollimatorData;
-use RadDB\RadiationOutput;
-use Illuminate\Http\Request;
 use RadDB\MachineSurveyData;
+use RadDB\MaxFluoroData;
+use RadDB\RadiationOutput;
+use RadDB\RadSurveyData;
 use RadDB\ReceptorEntranceExp;
 
 class QAController extends Controller

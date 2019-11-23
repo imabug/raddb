@@ -2,16 +2,16 @@
 
 namespace RadDB\Console\Commands;
 
+use Illuminate\Console\Command;
 use PHPExcel;
-use RadDB\Tube;
+use RadDB\FluoroData;
 use RadDB\HVLData;
 use RadDB\Machine;
-use RadDB\TestDate;
-use RadDB\FluoroData;
-use RadDB\MaxFluoroData;
 use RadDB\MachineSurveyData;
+use RadDB\MaxFluoroData;
 use RadDB\ReceptorEntranceExp;
-use Illuminate\Console\Command;
+use RadDB\TestDate;
+use RadDB\Tube;
 
 class ImportFluoroSpreadsheet extends Command
 {

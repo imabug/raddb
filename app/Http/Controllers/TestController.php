@@ -2,12 +2,12 @@
 
 namespace RadDB\Http\Controllers;
 
+use Illuminate\Http\Request;
 use PHPExcel;
-use RadDB\Tube;
 use RadDB\GenData;
 use RadDB\Machine;
 use RadDB\TestDate;
-use Illuminate\Http\Request;
+use RadDB\Tube;
 
 class TestController extends Controller
 {

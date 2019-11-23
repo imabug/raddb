@@ -3,10 +3,10 @@
 namespace RadDB\Http\Controllers;
 
 use Charts;
-use RadDB\Machine;
-use RadDB\CTDailyQCRecord;
 use Illuminate\Support\Facades\Log;
+use RadDB\CTDailyQCRecord;
 use RadDB\Http\Requests\CTDailyQCRecordRequest;
+use RadDB\Machine;
 
 class CTDailyQCRecordController extends Controller
 {
