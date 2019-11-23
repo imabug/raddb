@@ -2,9 +2,9 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\Tester;
-use RadDB\Machine;
 use Illuminate\Http\Request;
+use RadDB\Machine;
+use RadDB\Tester;
 
 class MammoCEController extends Controller
 {

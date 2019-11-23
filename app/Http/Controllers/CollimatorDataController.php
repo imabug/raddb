@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\CollimatorData;
 use Illuminate\Http\Request;
+use RadDB\CollimatorData;
 
 class CollimatorDataController extends Controller
 {

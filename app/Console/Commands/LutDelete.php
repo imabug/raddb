@@ -2,12 +2,12 @@
 
 namespace RadDB\Console\Commands;
 
-use RadDB\Tester;
-use RadDB\Location;
-use RadDB\Modality;
-use RadDB\TestType;
-use RadDB\Manufacturer;
 use Illuminate\Console\Command;
+use RadDB\Location;
+use RadDB\Manufacturer;
+use RadDB\Modality;
+use RadDB\Tester;
+use RadDB\TestType;
 
 class LutDelete extends Command
 {

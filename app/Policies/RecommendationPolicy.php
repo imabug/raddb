@@ -2,10 +2,10 @@
 
 namespace RadDB\Policies;
 
-use RadDB\User;
-use RadDB\Recommendation;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
+use RadDB\Recommendation;
+use RadDB\User;
 
 class RecommendationPolicy
 {
