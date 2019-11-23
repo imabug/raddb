@@ -172,6 +172,7 @@ return [
         // RadDB\Providers\BroadcastServiceProvider::class,
         RadDB\Providers\AuthServiceProvider::class,
         RadDB\Providers\EventServiceProvider::class,
+        // RadDB\Providers\TelescopeServiceProvider::class,
         RadDB\Providers\RouteServiceProvider::class,
     ],
 
