@@ -2,11 +2,11 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\Machine;
-use RadDB\MachinePhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\StoreMachinePhotoRequest;
+use RadDB\Machine;
+use RadDB\MachinePhoto;
 
 class MachinePhotoController extends Controller
 {

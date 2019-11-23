@@ -2,9 +2,9 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\TestDate;
-use RadDB\RadSurveyData;
 use Illuminate\Http\Request;
+use RadDB\RadSurveyData;
+use RadDB\TestDate;
 
 class RadSurveyDataController extends Controller
 {

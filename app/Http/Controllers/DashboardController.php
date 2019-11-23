@@ -2,12 +2,12 @@
 
 namespace RadDB\Http\Controllers;
 
-use DB;
 use Charts;
-use RadDB\Machine;
-use RadDB\TestDate;
+use DB;
 use Illuminate\Http\Request;
+use RadDB\Machine;
 use RadDB\SurveyScheduleView;
+use RadDB\TestDate;
 
 class DashboardController extends Controller
 {

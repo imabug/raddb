@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\FluoroData;
 use Illuminate\Http\Request;
+use RadDB\FluoroData;
 
 class FluoroDataController extends Controller
 {

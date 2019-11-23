@@ -2,11 +2,11 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\OpNote;
-use RadDB\Machine;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\OpNoteStoreRequest;
 use RadDB\Http\Requests\OpNoteUpdateRequest;
+use RadDB\Machine;
+use RadDB\OpNote;
 
 class OpNoteController extends Controller
 {

@@ -3,9 +3,9 @@
 namespace RadDB\Http\Controllers;
 
 use Charts;
+use Illuminate\Http\Request;
 use RadDB\HVLData;
 use RadDB\TestDate;
-use Illuminate\Http\Request;
 
 class HVLDataController extends Controller
 {

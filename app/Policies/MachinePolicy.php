@@ -2,10 +2,10 @@
 
 namespace RadDB\Policies;
 
-use RadDB\User;
-use RadDB\Machine;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
+use RadDB\Machine;
+use RadDB\User;
 
 class MachinePolicy
 {
