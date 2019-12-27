@@ -2,12 +2,12 @@
 
 namespace RadDB\Http\Controllers;
 
-use Charts;
 use DB;
 use Illuminate\Http\Request;
 use RadDB\Machine;
 use RadDB\SurveyScheduleView;
 use RadDB\TestDate;
+use RadDB\Charts\SurveyGraph;
 
 class DashboardController extends Controller
 {
@@ -102,21 +102,25 @@ class DashboardController extends Controller
             ->get();
         // Create a bar chart for each year
         foreach ($years as $y) {
-            $yearCharts[$y->years] = Charts::database(TestDate::year($y->years)->get(), 'bar', 'google')
-                ->dateColumn('test_date')
-                ->title('Monthly survey count for '.$y->years)
-                ->elementLabel('Number of surveys')
-                ->dimensions(1000, 700)
-                ->monthFormat('M Y')
-                ->groupByMonth($y->years, true);
+            $chartData = DB::select('select count(*) from testdates where year(test_date)=:y group by month(test_date)', $y);
+            $yearCharts[$y->years] = new SurveyGraph;
+            $yearCharts[$y->years]->labels(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']);
+            $yearCharts[$y->years]->dataset($y, 'bar', $chartData);
+                // Charts::database(TestDate::year($y->years)->get(), 'bar', 'google')
+                // ->dateColumn('test_date')
+                // ->title('Monthly survey count for '.$y->years)
+                // ->elementLabel('Number of surveys')
+                // ->dimensions(1000, 700)
+                // ->monthFormat('M Y')
+                // ->groupByMonth($y->years, true);
         }
         // Create a bar chart showing total number of surveys done in each year
-        $allYears = Charts::database(TestDate::get(), 'bar', 'google')
-            ->dateColumn('test_date')
-            ->title('Survey count for all years')
-            ->elementLabel('Number of surveys')
-            ->dimensions(1000, 700)
-            ->groupByYear($years->count());
+        // $allYears = Charts::database(TestDate::get(), 'bar', 'google')
+        //     ->dateColumn('test_date')
+        //     ->title('Survey count for all years')
+        //     ->elementLabel('Number of surveys')
+        //     ->dimensions(1000, 700)
+        //     ->groupByYear($years->count());
 
         return view('dashboard.survey_graph', [
             'yearCharts' => $yearCharts,
