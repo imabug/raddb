@@ -4,6 +4,7 @@ namespace RadDB\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use RadDB\Http\Controllers\Controller;
+use RadDB\Providers\RouteServiceProvider;
 
 class ResetPasswordController extends Controller
 {
@@ -25,6 +26,6 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
 }
