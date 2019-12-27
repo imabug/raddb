@@ -16,7 +16,7 @@
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "^4.0",
         "laravel/dusk": "^5.0",
-        "laravel/framework": "^5.8",
+        "laravel/framework": "^6.0",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^0.3.17",
         "maddhatter/laravel-fullcalendar": "^1.3",
