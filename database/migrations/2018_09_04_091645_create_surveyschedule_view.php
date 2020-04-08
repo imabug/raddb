@@ -14,15 +14,13 @@ class CreateSurveyscheduleView extends Migration
     private function createView(): string
     {
         return <<<'SQL'
-create view surveyschedule_view as 
+create view surveyschedule_view as
 select machines.id,machines.description,
 lastyear_view.survey_id as prevSurveyID ,
 lastyear_view.test_date as prevSurveyDate,
-lastyear_view.report_file_path as prevSurveyReport,
 lastyear_view.recCount as prevRecCount,
 thisyear_view.survey_id as currSurveyID,
 thisyear_view.test_date as currSurveyDate,
-thisyear_view.report_file_path as currSurveyReport,
 thisyear_view.recCount as currRecCount
 from machines
 left join thisyear_view on machines.id = thisyear_view.machine_id
