@@ -317,6 +317,6 @@ class ImportRadSpreadsheet extends Command
 
         $machineSurveyData->save();
 
-        return true;
+        return 1;
     }
 }

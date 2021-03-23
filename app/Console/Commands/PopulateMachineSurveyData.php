@@ -161,6 +161,6 @@ class PopulateMachineSurveyData extends Command
         }
         $bar->finish();
 
-        return true;
+        return 1;
     }
 }

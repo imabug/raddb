@@ -127,6 +127,6 @@ class TubeAdd extends Command
             $tube->save();
         }
 
-        return true;
+        return 1;
     }
 }

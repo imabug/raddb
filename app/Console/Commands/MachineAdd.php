@@ -102,6 +102,6 @@ class MachineAdd extends Command
             ]);
         }
 
-        return true;
+        return 1;
     }
 }

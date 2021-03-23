@@ -89,6 +89,6 @@ class LutDelete extends Command
             $this->info($table.' ID:'.$lut->id.' deleted.');
         }
 
-        return true;
+        return 1;
     }
 }
