@@ -4,7 +4,7 @@ namespace RadDB\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use RadDB\Http\Controllers\Controller;
-use RadDB\Poviders\RouteServiceProvider;
+use RadDB\Providers\RouteServiceProvider;
 
 class LoginController extends Controller
 {
