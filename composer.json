@@ -12,7 +12,6 @@
     "type": "project",
     "require": {
         "php": "^7.3",
-        "consoletvs/charts": "^6.5",
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "^4.0",
         "laravel/dusk": "^5.0",
@@ -26,8 +25,8 @@
     },
     "require-dev": {
         "facade/ignition": "^1.4",
+        "fakerphp/faker": "^1.13",
         "filp/whoops": "^2.0",
-        "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0"
     },
     "autoload": {
