@@ -14,11 +14,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \RadDB\Http\Middleware\CheckForMaintenanceMode::class,
+        \RadDB\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \RadDB\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \RadDB\Http\Middleware\TrustProxies::class,
+        \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
@@ -31,14 +32,14 @@ class Kernel extends HttpKernel
             \RadDB\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\Session\Middleware\AuthenticateSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \RadDB\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
-            'throttle:60,1',
+            'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
