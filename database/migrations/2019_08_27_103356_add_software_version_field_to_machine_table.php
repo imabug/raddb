@@ -13,7 +13,7 @@ class AddSoftwareVersionFieldToMachineTable extends Migration
      */
     public function up()
     {
-        Schema::table('machine', function (Blueprint $table) {
+        Schema::table('machines', function (Blueprint $table) {
             $table->string('software_version', 50)
                 ->nullable()
                 ->comment('Machine software version');
@@ -27,7 +27,7 @@ class AddSoftwareVersionFieldToMachineTable extends Migration
      */
     public function down()
     {
-        Schema::table('machine', function (Blueprint $table) {
+        Schema::table('machines', function (Blueprint $table) {
             $table->dropColumn('software_version');
         });
     }

@@ -13,8 +13,8 @@ class AddPacsStationnameFieldToMachineTable extends Migration
      */
     public function up()
     {
-        Schema::table('machine', function (Blueprint $table) {
-            $table->string('pac_sstation', 50)
+        Schema::table('machines', function (Blueprint $table) {
+            $table->string('pacs_station', 50)
                 ->nullable()
                 ->comment('PACS station name');
         });
@@ -27,7 +27,7 @@ class AddPacsStationnameFieldToMachineTable extends Migration
      */
     public function down()
     {
-        Schema::table('machine', function (Blueprint $table) {
+        Schema::table('machines', function (Blueprint $table) {
             $table->dropColumn('pacs_station');
         });
     }
