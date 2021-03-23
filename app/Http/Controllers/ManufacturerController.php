@@ -24,25 +24,8 @@ class ManufacturerController extends Controller
             ->get()
             ->groupBy('manufacturer.manufacturer');
 
-        // Create a bar chart of the number of machines for each modality
-        foreach ($machines as $key=>$modality) {
-            $chartData[] = count($modality);
-        }
-        // Make an array of some random colours
-        $numMachines = $machines->count();
-        for ($i = 0; $i <= $numMachines; $i++) {
-            $chartColors[] = '#'.str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
-        }
-        $machinesManufChart = Charts::create('pie', 'google')
-            ->title('Number of machines by manufacturer')
-            ->elementLabel('Number of machines')
-            ->colors($chartColors)
-            ->labels($machines->keys()->toArray())
-            ->values($chartData);
-
         return view('machine.manufacturers.index', [
             'machines' => $machines,
-            'machinesManufChart' => $machinesManufChart,
         ]);
     }
 
