@@ -27,7 +27,7 @@ class UpdateTestDateRequest extends FormRequest
             'machineID' => 'required|exists:machines,id|integer',
             'test_date' => 'required|date_format:Y-m-d',
             'tester1ID' => 'required|exists:testers,id|integer',
-            'tester2ID' => 'integer|exists:testers,id',
+            'tester2ID' => 'integer|nullable|exists:testers,id',
             'test_type' => 'required|exists:testtypes,id|integer',
             'notes'     => 'string|nullable|max:65535',
             'accession' => 'string|nullable|max:50',

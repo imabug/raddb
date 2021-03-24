@@ -103,7 +103,7 @@ class TestDateController extends Controller
         $testdate->machine_id = $request->machineID;
         $testdate->tester1_id = $request->tester1ID;
         if (empty($request->tester2ID)) {
-            $testdate->tester2_id = 10;
+            $testdate->tester2_id = null;
         } else {
             $testdate->tester2_id = $request->tester2ID;
         }

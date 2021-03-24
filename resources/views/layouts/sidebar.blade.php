@@ -19,7 +19,6 @@
                     <li role="presentation"><a href="{{ route('dashboard.showUntested')}}">Surveys to be scheduled</a></li>
                     <li role="presentation"><a href="{{ route('dashboard.showPending')}}">Pending surveys</a></li>
                     <li role="presentation"><a href="{{ route('dashboard.showSchedule')}}">Survey schedule</a></li>
-                    <li role="presentation"><a href="{{ route('dashboard.surveyGraph') }}">Survey graphs</a></li>
                 </ul>
             </li>
             <li role="presentation" class="dropdown">

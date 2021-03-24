@@ -163,7 +163,8 @@ class ImportDataPage extends Command
                 $status = $this->importSbb($spreadsheet);
                 break;
             default:
-                $status = $this->error('Not a compatible spreadsheet');
+                $status = 0;
+                $this->error('Not a compatible spreadsheet');
                 break;
         }
 
@@ -437,7 +438,7 @@ class ImportDataPage extends Command
             $machineSurveyData->save();
         }
 
-        return true;
+        return 1;
     }
 
     /**
@@ -778,7 +779,7 @@ class ImportDataPage extends Command
 
         // $machineSurveyData->save();
 
-        return true;
+        return 1;
     }
 
     /**
@@ -862,7 +863,7 @@ class ImportDataPage extends Command
             $machineSurveyData->save();
         }
 
-        return true;
+        return 1;
     }
 
     /**
@@ -889,7 +890,7 @@ class ImportDataPage extends Command
 
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
 
-        return true;
+        return 1;
     }
 
     /**
@@ -916,6 +917,6 @@ class ImportDataPage extends Command
 
         $this->info('Saving data for survey ID: '.$this->surveyData['surveyId']);
 
-        return true;
+        return 1;
     }
 }

@@ -2,12 +2,12 @@
 
 namespace RadDB\Http\Controllers;
 
-use Charts;
 use DB;
 use Illuminate\Http\Request;
 use RadDB\Machine;
 use RadDB\SurveyScheduleView;
 use RadDB\TestDate;
+use RadDB\Charts\SurveyGraph;
 
 class DashboardController extends Controller
 {
@@ -83,45 +83,6 @@ class DashboardController extends Controller
 
         return SurveyScheduleView::with('machine', 'prevSurvey', 'currSurvey')
             ->get();
-    }
-
-    /**
-     * Display a bar chart showing the count of surveys per month for the specified year.
-     * Uses the ConsoleTVs/Charts package from https://erik.cat/projects/Charts.
-     * URI: /dashboard/surveyGraph
-     * Method: GET.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function surveyGraph()
-    {
-        // Get a list of all the years there are surveys for
-        $years = TestDate::select(DB::raw('year(test_date) as years'))
-            ->distinct()
-            ->orderBy('years', 'desc')
-            ->get();
-        // Create a bar chart for each year
-        foreach ($years as $y) {
-            $yearCharts[$y->years] = Charts::database(TestDate::year($y->years)->get(), 'bar', 'google')
-                ->dateColumn('test_date')
-                ->title('Monthly survey count for '.$y->years)
-                ->elementLabel('Number of surveys')
-                ->dimensions(1000, 700)
-                ->monthFormat('M Y')
-                ->groupByMonth($y->years, true);
-        }
-        // Create a bar chart showing total number of surveys done in each year
-        $allYears = Charts::database(TestDate::get(), 'bar', 'google')
-            ->dateColumn('test_date')
-            ->title('Survey count for all years')
-            ->elementLabel('Number of surveys')
-            ->dimensions(1000, 700)
-            ->groupByYear($years->count());
-
-        return view('dashboard.survey_graph', [
-            'yearCharts' => $yearCharts,
-            'allYears' => $allYears,
-        ]);
     }
 
     /**

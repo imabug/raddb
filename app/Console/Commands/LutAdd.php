@@ -80,6 +80,6 @@ class LutAdd extends Command
         // Show the lookup table with the new value.
         $this->table($headers, $body);
 
-        return true;
+        return 1;
     }
 }

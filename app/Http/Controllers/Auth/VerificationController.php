@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace RadDB\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use RadDB\Http\Controllers\Controller;
+use RadDB\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller
@@ -25,7 +26,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.

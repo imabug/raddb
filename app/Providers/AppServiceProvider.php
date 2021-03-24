@@ -5,6 +5,7 @@ namespace RadDB\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 use Laravel\Dusk\DuskServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,6 +35,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('dump', function ($param) {
             return "<pre><?php (new \Illuminate\Support\Debug\Dumper)->dump($param); ?></pre>";
         });
+
+        // Continue using Bootstrap's paginator
+        Paginator::useBootstrap();
     }
 
     /**

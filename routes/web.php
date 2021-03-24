@@ -27,8 +27,8 @@ Route::name('dashboard.showPending')
 Route::name('dashboard.showSchedule')
     ->get('/dashboard/showSchedule', 'DashboardController@showSchedule');
 // Count of surveys per month
-Route::name('dashboard.surveyGraph')
-    ->get('/dashboard/surveyGraph', 'DashboardController@surveyGraph');
+// Route::name('dashboard.surveyGraph')
+//     ->get('/dashboard/surveyGraph', 'DashboardController@surveyGraph');
 
 /*
  * Machine listings

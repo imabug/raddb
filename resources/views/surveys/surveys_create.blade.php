@@ -27,7 +27,7 @@
 <p>
     <label for="tester1ID">Tested by: </label>
     <select class="form-control" id="tester1ID" name="tester1ID" size="1">
-    <option value="10" selected="="selected""></option>
+    <option value="" selected="="selected""></option>
     @foreach ($testers as $tester)
     <option value="{{ $tester->id }}">{{ $tester->initials }}</option>
     @endforeach
@@ -36,7 +36,7 @@
 <p>
     <label for="tester2ID">Tested by: </label>
     <select class="form-control" id="tester2ID" name="tester2ID" size="1">
-    <option value="10" selected="="selected""></option>
+    <option value="" selected="="selected""></option>
     @foreach ($testers as $tester)
     <option value="{{ $tester->id }}">{{ $tester->initials }}</option>
     @endforeach
