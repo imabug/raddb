@@ -38,12 +38,14 @@ return [
 
         'array' => [
             'driver' => 'array',
+            'serialize' => false,
         ],
 
         'database' => [
             'driver'     => 'database',
             'table'      => 'cache',
             'connection' => null,
+            'lock_connection' => null,
         ],
 
         'file' => [
@@ -73,6 +75,7 @@ return [
         'redis' => [
             'driver'     => 'redis',
             'connection' => 'cache',
+            'lock_connection' => 'default',
         ],
 
         'dynamodb' => [
