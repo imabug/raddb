@@ -10,12 +10,14 @@
 @endif
 
 <ol>
+@if(!is_null($opNotes))
 @foreach ($opNotes as $opNote)
     <li>{{ $opNote->note }}
         <a href="{{ route('opnotes.edit', $opNote->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Edit operational note">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
     </li>
 @endforeach
+@endif
 </ol>
 
 <form class="form-inline" action="{{ route('opnotes.store')}}" method="post">
