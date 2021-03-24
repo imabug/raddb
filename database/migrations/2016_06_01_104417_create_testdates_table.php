@@ -18,7 +18,7 @@ class CreateTestdatesTable extends Migration
             $table->date('test_date')->nullable();
             $table->date('report_sent_date')->nullable();
             $table->integer('tester1_id')->default(0)->unsigned();
-            $table->integer('tester2_id')->default(0)->unsigned();
+            $table->integer('tester2_id')->nullable()->unsigned();
             $table->integer('type_id')->default(0)->unsigned();
             $table->text('notes')->nullable();
             $table->integer('accession')->default(0)->unsigned();
