@@ -45,6 +45,11 @@ class Machine extends Model implements HasMedia
         // 'install_date'
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('machine_photos');
+    }
+
     /*
      * Relationships
      */

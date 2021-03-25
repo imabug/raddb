@@ -44,6 +44,10 @@ class TestDate extends Model implements HasMedia
         'updated_at',
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('survey_reports');
+    }
     /*
      * Relationships
      */
