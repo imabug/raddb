@@ -75,11 +75,12 @@ class SurveyReportController extends Controller
             // Associate the photo with the test report (spatie/medialibary)
             // Collection name: survey_report
             // Filesystem disk: SurveyReports
+            // TODO: Check to see if the survey has an existing survey report
             $survey->addMediaFromRequest('surveyReport')
                 ->withCustomProperties([
                     'hash' => hash_file('sha512', $request->surveyReport, false),
                 ])
-                ->toMediaCollection('survey_report', 'SurveyReports');
+                ->toMediaCollection('survey_reports', 'SurveyReports');
             $status = 'success';
             $message .= 'Survey report for '.$request->surveyId.' saved.';
             Log::info($message);
