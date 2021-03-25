@@ -43,7 +43,8 @@ class Recommendation extends Model
 
     public function registerMediaCollection(): void
     {
-        $this->addMediaCollection('service_reports');
+        $this->addMediaCollection('service_reports')
+            ->useDisk('ServiceReports');
     }
 
     /*
