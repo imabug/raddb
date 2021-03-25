@@ -77,7 +77,7 @@ class SurveyReportController extends Controller
             // Filesystem disk: SurveyReports
             $survey->addMediaFromRequest('surveyReport')
                 ->withCustomProperties([
-                    'hash'->hash_file('sha512', $request->surveyReport, false),
+                    'hash' => hash_file('sha512', $request->surveyReport, false),
                 ])
                 ->toMediaCollection('survey_report', 'SurveyReports');
             $status = 'success';
