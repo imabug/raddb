@@ -47,7 +47,8 @@ class Machine extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('machine_photos');
+        $this->addMediaCollection('machine_photos')
+            ->useDisk('MachinePhotos');
     }
 
     /*
