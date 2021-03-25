@@ -188,7 +188,11 @@ class TestDateController extends Controller
 
         $testdate->test_date = $request->test_date;
         $testdate->tester1_id = $request->tester1ID;
-        $testdate->tester2_id = $request->tester2ID;
+        if (empty($request->tester2ID)) {
+            $testdate->tester2_id = null;
+        } else {
+            $testdate->tester2_id = $request->tester2ID;
+        }
         $testdate->notes = $request->notes;
         $testdate->accession = $request->accession;
         $testdate->type_id = $request->test_type;
