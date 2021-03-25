@@ -41,6 +41,11 @@ class Recommendation extends Model
         'updated_at',
     ];
 
+    public function registerMediaCollection(): void
+    {
+        $this->addMediaCollection('service_reports');
+    }
+
     /*
      * Relationships
      */

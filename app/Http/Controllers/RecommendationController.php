@@ -57,7 +57,7 @@ class RecommendationController extends Controller
         } else {
             // Get the machine description corresponding to the survey ID provided
             $survey = TestDate::with('machine')->find($surveyId);
-            $serviceReports = $survey->getMedia('service_report');
+            $serviceReports = $survey->getMedia('service_reports');
             $recs = Recommendation::where('survey_id', $surveyId)->get();
         }
 
@@ -111,7 +111,7 @@ class RecommendationController extends Controller
                 // Collection name: service_reports
                 // Filesystem disk: ServiceReports
                 $survey->addMediaFromRequest('ServiceReport')
-                    ->toMediaCollection('service_report', 'ServiceReports');
+                    ->toMediaCollection('service_reports', 'ServiceReports');
                 $message .= "Service report uploaded.\n";
             }
         } else {
@@ -196,7 +196,7 @@ class RecommendationController extends Controller
             // Collection name: service_reports
             // Filesystem disk: ServiceReports
             $survey->addMediaFromRequest('ServiceReport')
-                ->toMediaCollection('service_report', 'ServiceReports');
+                ->toMediaCollection('service_reports', 'ServiceReports');
             $message .= "Service report uploaded.\n";
         }
 

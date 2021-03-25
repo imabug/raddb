@@ -7,9 +7,10 @@ use RadDB\Machine;
 use RadDB\Location;
 use RadDB\Modality;
 use RadDB\Manufacturer;
+use RadDB\TestDate;
 use Illuminate\Http\Request;
 
-class AR extends Controller
+class AnnReportController extends Controller
 {
     /**
      * Show a summary of the estimated effort for testing all active machines
@@ -40,5 +41,15 @@ class AR extends Controller
             'n' => $n,
             'tubes' => $tubes,
         ]);
+    }
+
+    /**
+     * Generate a mammography continued experience report
+     * URI: /ar/mamcexp
+     */
+    public function mammContExp()
+    {
+        // Get a list of the mammo machines
+        $machines = Machine::with('manufacturer', 'location', 'testdate')->active()->modality(8)->get()->groupBy('location.location');
     }
 }
