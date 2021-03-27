@@ -250,4 +250,19 @@ class TestDate extends Model implements HasMedia
     {
         return $query->where('testdates.test_date', '>=', date('Y-m-d'));
     }
+
+    /**
+     * Scope function to return the n most recent routine annual survey test dates
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $n
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeRecent($query, $n)
+    {
+        return $query->where('type_id', 1)
+            ->orderby('test_date', 'desc')
+            ->limit($n);
+    }
 }
