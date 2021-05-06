@@ -1,7 +1,7 @@
 <?php
 
-it('has homepage page', function () {
-    $response = $this->get('/');
+use function Pest\Laravel\get;
 
-    $response->assertStatus(200);
+it('has home page', function () {
+    get('/')->assertStatus(200);
 });
