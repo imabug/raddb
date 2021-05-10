@@ -2,24 +2,24 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ListingsTest extends TestCase
 {
-    use WithoutMiddleware;
 
     /**
      * Test to see that the Listings pages load.
-     * @dataProvider listingPages
+     * @dataProvider listingRoutes
      * @return void
      */
-    public function testListingPagesLoadProperly($routeName, $value)
+    public function testListingRoutesLoadProperly($routeName, $value)
     {
         $this->get(route($routeName))->assertSee($value);
     }
 
-    public function listingPages()
+    public function listingRoutes()
     {
         return [
             'Machines listing' => ['machines.index', 'Equipment Inventory - Active'],
