@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
@@ -20,7 +19,7 @@ class ListingsTest extends TestCase
         $this->get(route($routeName))->assertSee($value);
     }
 
-    public function listingRoutes()
+    public function listingRoutes(): array
     {
         return [
             'Machines listing' => ['machines.index', 'Equipment Inventory - Active'],
