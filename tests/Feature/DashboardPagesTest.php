@@ -14,7 +14,7 @@ class DashboardPagesTest extends TestCase
      * @dataProvider dashboardRoutes
      * @return void
      */
-    public function test_DashboardPagesLoadProperly($routeName, $value)
+    public function testDashboardRoutesLoadProperly($routeName, $value)
     {
         $this->get(route($routeName))->assertSee($value);
     }
@@ -35,7 +35,7 @@ class DashboardPagesTest extends TestCase
      * @dataProvider dashboardPages
      * @return void
      */
-    public function test_DashboardPagesLoadViaHttp($pageName, $value)
+    public function testDashboardPagesLoadViaHttp($pageName, $value)
     {
         $this->get($pageName)->assertStatus(200);
     }

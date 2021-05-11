@@ -14,12 +14,9 @@ class HomePageTest extends TestCase
      *
      * @return void
      */
-    public function test_IndexPageLoadsViaHttp()
+    public function testIndexPageLoadsViaHttp()
     {
-        $this->withoutExceptionHandling();
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->get('/')->assertStatus(200);
     }
 
     /**
