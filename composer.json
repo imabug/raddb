@@ -26,6 +26,7 @@
         "twbs/bootstrap": "^3.4"
     },
     "require-dev": {
+        "brianium/paratest": "^6.3",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.13",
         "filp/whoops": "^2.0",
