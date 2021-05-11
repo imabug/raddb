@@ -2,11 +2,8 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
-use RadDB\Dashboard;
-use RadDB\Machine;
-use RadDB\SurveyScheduleView;
-use RadDB\TestDate;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class DashboardControllerTest extends TestCase
 {
@@ -15,8 +12,9 @@ class DashboardControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function testIndexViewIsRendered()
     {
-        $this->assertTrue(true);
+        $this->view('index')->assertSee('Radiological Equipment Database');
+        $this->view('index')->assertSee('Survey Schedule');
     }
 }
