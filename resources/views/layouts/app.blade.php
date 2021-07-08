@@ -24,12 +24,12 @@
 @endif
   <!-- JQuery -->
   <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
   <script
-  src="https://code.jquery.com/jquery-migrate-3.1.0.min.js"
-  integrity="sha256-ycJeXbll9m7dHKeaPbXBkZH8BuP99SmPm/8q5O+SbBc="
+  src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"
+  integrity="sha256-Ap4KLoCf1rXb52q+i3p0k2vjBsmownyBTE1EqlRiMwA="
   crossorigin="anonymous"></script>
   <script
     src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
