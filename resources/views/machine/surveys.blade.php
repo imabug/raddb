@@ -4,18 +4,18 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Survey ID</th>
-            <th>Test Date</th>
-            <th>Test Type</th>
-            <th>Accession</th>
-            <th>Notes</th>
-            <th></th>
+     <th scope="col">Survey ID</th>
+     <th scope="col">Test Date</th>
+     <th scope="col">Test Type</th>
+     <th scope="col">Accession</th>
+     <th scope="col">Notes</th>
+     <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
     @foreach ($surveys as $survey)
         <tr>
-            <td><a href="{{ route('recommendations.show', $survey->id) }}">{{ $survey->id }}</a></td>
+            <th scope="row"><a href="{{ route('recommendations.show', $survey->id) }}">{{ $survey->id }}</a></th>
             <td>{{ $survey->test_date }}</td>
             <td>{{ $survey->type->test_type }}</td>
             <td>{{ $survey->accession }}</td>

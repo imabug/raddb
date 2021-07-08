@@ -4,16 +4,16 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Survey ID</th>
-            <th>Recommendation</th>
-            <th>Resolved</th>
-            <th>Service Report</th>
+     <th scope="col">Survey ID</th>
+     <th scope="col">Recommendation</th>
+     <th scope="col">Resolved</th>
+     <th scope="col">Service Report</th>
         </tr>
     </thead>
     <tbody>
     @foreach ($recommendations as $rec)
         <tr>
-            <td><a href="{{ route('recommendations.show', $rec->survey_id) }}">{{ $rec->survey_id }}</a></td>
+            <th scope="row"><a href="{{ route('recommendations.show', $rec->survey_id) }}">{{ $rec->survey_id }}</a></th>
             <td>{{ $rec->recommendation }}</td>
             <td>
 @if($rec->resolved)
