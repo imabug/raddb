@@ -9,6 +9,7 @@
      rel="stylesheet"
      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
      crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 {{-- Only load the Slick CSS if the machine detail page is being shown
     Slick image carousel http://kenwheeler.github.io/slick/ --}}
 @if (Route::currentRouteName() == 'machines.show')
