@@ -51,8 +51,8 @@
                    <li role="presentation"><a class="dropdown-item" href="{{ route('testequipment.showCalDates') }}">Recent calibration dates</a></li>
                </ul>
            </li>
-           <li>
-               <a href="{{ url('/logout') }}"
+           <li role="presentation" class="nav-item">
+               <a class="nav-link" href="{{ url('/logout') }}"
                    onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                    Logout
