@@ -21,7 +21,7 @@
     <div role="tabpanel" class="tab-pane" id="pending" aria-labelledby="survey-pills-pending">
         @include('inc.pending')
     </div>
-    <div role="tabpanel" class="tab-pane" id="untested" aria-labelledby="survey-pills-untested">
+     <div role="tabpanel" class="tab-pane" id="untested" aria-labelledby="survey-pills-untested">
         @include('inc.untested')
     </div>
 </div>
