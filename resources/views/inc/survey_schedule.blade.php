@@ -1,20 +1,20 @@
 <h2><span class="label label-default">Survey Schedule</span></h2>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-sm">
 	<thead>
 		<tr>
-			<th>ID</th>
-            <th>Description</th>
-            <th>Previous</th>
-            <th>Prev SurveyID</th>
-            <th>Current</th>
-            <th>Curr SurveyID</th>
+			<th scope="col">ID</th>
+            <th scope="col">Description</th>
+            <th scope="col">Previous</th>
+            <th scope="col">Prev SurveyID</th>
+            <th scope="col">Current</th>
+            <th scope="col">Curr SurveyID</th>
 		</tr>
 	</thead>
 	<tbody>
 @foreach ($surveySchedule as $ss)
 		<tr>
-			<td>{{ $ss->id }}</td>
+			<th scope="row">{{ $ss->id }}</th>
 			<td><a href="{{ route('machines.show', $ss->id) }}">{{ $ss->description }}</a></td>
 @if ($ss->prevRecCount > 0)
             <td><a href="{{ route('recommendations.show', $ss->prevSurveyID)}}" title="Recommendations" alt="Recommendations">{{ $ss->prevSurveyDate }}</a></td>
