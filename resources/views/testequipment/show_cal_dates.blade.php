@@ -4,25 +4,25 @@
 
 @section('content')
 <h2>Recent Test Equipment Calibration Dates</h2>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-sm">
 	<thead>
 		<tr>
-			<th>ID</th>
-			<th>Manufacturer</th>
-			<th>Model</th>
-			<th>SN</th>
-			<th>Description</th>
-			<th>Location</th>
-	        <th>Age</th>
-			<th>Room</th>
-			<th>Last calibration</th>
+     <th scope="col">ID</th>
+     <th scope="col">Manufacturer</th>
+     <th scope="col">Model</th>
+     <th scope="col">SN</th>
+     <th scope="col">Description</th>
+     <th scope="col">Location</th>
+     <th scope="col">Age</th>
+     <th scope="col">Room</th>
+     <th scope="col">Last calibration</th>
 		</tr>
 	</thead>
 	<tbody>
 
     @foreach ($testequipment as $t)
         <tr>
-            <td>{{ $t->id }}</td>
+            <th scope="row">{{ $t->id }}</th>
             <td>{{ $t->manufacturer->manufacturer }}</td>
             <td>{{ $t->model }}</td>
             <td>{{ $t->serial_number }}</td>
