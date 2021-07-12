@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col input-group mb-3">
       <span class="input-group-text">Machine:</span>
-      <input class="form-control" type="text" value="{{ $machine->description }}" aria-label="Machine description" />
+      <input class="form-control" type="text" value="{{ $machine->description }}" aria-label="Machine description" readonly />
     </div>
     <div class="col input-group mb-3">
       <span class="input-group-text">Date tested:</span>
