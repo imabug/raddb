@@ -5,11 +5,13 @@
 @section('content')
 <h2>Edit operational note</h2>
 <form class="form-inline" action="{{ route('opnotes.update', $opNote->id) }}" method="post">
-    <div class="form-group">
-        {{ csrf_field() }}
-        {{ method_field('PUT') }}
-        <p><textarea name="note" rows="8" cols="80">{{ $opNote->note }}</textarea></p>
-        <p><button type="submit" name="submit">Submit</button></p>
+{{ csrf_field() }}
+{{ method_field('PUT') }}
+    <div class="row">
+     <div class="col input-group mb-3">
+        <textarea name="note" rows="8" cols="80" aria-label="Edit operational note">{{ $opNote->note }}</textarea>
+     </div>
     </div>
+    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
 </form>
 @endsection
