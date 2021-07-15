@@ -75,12 +75,15 @@
         </div>
         @if (Auth::check())
             <form class="form-inline" action="{{ route('photos.store') }}" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    {{ csrf_field() }}
-                    <input class="form-control" type="hidden" name="machineId" value="{{ $machine->id }}">
-                    <p><label for="photo">Upload photo: </label> <input class="form-control" type="file" id="photo" name="photo" >
-                    <button class="form-control" type="submit">Add photo</button></p>
+              {{ csrf_field() }}
+              <input class="form-control" type="hidden" name="machineId" value="{{ $machine->id }}">
+                <div class="row">
+                    <div class="col input-group mb-3">
+                        <span class="input-group-text">Upload photo:</span>
+                        <input class="form-control" type="file" id="photo" name="photo" aria-label="Select photo for upload">
+                    </div>
                 </div>
+                <button class="btn btn-primary" type="submit">Add photo</button></p>
             </form>
         @endif
     </div>
