@@ -1,7 +1,7 @@
 <!-- resources/views/machine/recs.blade.php -->
 
 <h3><span class="label label-default">Survey Recommendations</span></h3>
-<table class="table">
+<table class="table table-striped table-hover table-sm">
     <thead>
         <tr>
      <th scope="col">Survey ID</th>

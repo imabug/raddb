@@ -15,10 +15,11 @@
 <p>Unresolved recommendations are in bold with the checkbox in front</p>
 <p>
 <form class="form-inline" action="{{ route('recommendations.update', $survey->id) }}" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        {{ csrf_field() }}
+    {{ csrf_field() }}
         {{ method_field('PUT') }}
-        <table class="table">
+    <div class="row">
+      <div class="col input-group mb-3">
+        <table class="table table-striped table-hover table-sm">
             <thead>
                 <tr>
                     <th>Resolved</th><th>Recommendation</th><th>Date Added</th><th>Date Resolved</th><th>Work Order</th>
@@ -41,21 +42,41 @@
             @endforeach
             </tbody>
         </table>
-        <hr>
-        @if (Auth::check())
-        <p>
-            <a href="{{ route('recommendations.createRecFor', $survey->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Modify this tube">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                Add new recommendation
-            </a>
-        </p>
-        <p><label for="WONum">Biomed Work Order Number:</label> <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" ></p>
-        <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date"> <span class="text-danger">*</span></p>
-        <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" > (Max file size: {{ ini_get('post_max_size') }})</p>
-        <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" > <span class="text-danger">*</span></p>
-        <p><button class="form-control" type="SUBMIT">Resolve recommendations</button></p>
-        @endif
+      </div>
     </div>
+    <hr>
+@if (Auth::check())
+    <div class="row">
+      <div class="col input-group mb-3">
+        <a href="{{ route('recommendations.createRecFor', $survey->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Add new recommendation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+          </svg>Add new recommendation
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Biomed Work Order Number:</span>
+        <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" aria-label="Enter biomed work order number">
+      </div>
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Resolution date:</span>
+        <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date" aria-label="Enter resolution date (required)"> <span class="text-danger">*</span>
+      </div>
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Resolved by:</span>
+        <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" aria-label="Enter name of person resolving the issue"> <span class="text-danger">*</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Upload service report:</span>
+        <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" aria-label="Select service report file to upload"> (Max file size: {{ ini_get('post_max_size') }})
+      </div>
+    </div>
+@endif
+     <button class="btn btn-primary" type="SUBMIT">Resolve recommendations</button>
 </form>
 </p>
 <p><span class="text-danger">*</span> Required field when resolving recommendations</p>

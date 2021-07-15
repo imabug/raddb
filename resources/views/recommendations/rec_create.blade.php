@@ -4,21 +4,23 @@
 
 @section('content')
 <h2>Add new recommendations</h2>
-<form class="form-inline" action="{{ route('recommendations.store') }}" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        {{ csrf_field() }}
-        @if (isset($recs))
-        <h3>Survey recommendations for <a href="{{ route('machines.show', $survey->machine->id) }}">{{ $survey->machine->description }}</a> (Survey ID {{ $survey->id }})</h3>
+@if (isset($recs))
+  <h3>Survey recommendations for <a href="{{ route('machines.show', $survey->machine->id) }}">{{ $survey->machine->description }}</a> (Survey ID {{ $survey->id }})</h3>
 @if ($serviceReports->count() > 0)
-        <h3>Service Reports</h3>
-<ol>
+  <h3>Service Reports</h3>
+    <ol>
 @foreach ($serviceReports as $sr)
-    <li><a href="{{ $sr->getURL() }}" target="_blank">{{ $sr->name }}</a>
+      <li><a href="{{ $sr->getURL() }}" target="_blank">{{ $sr->name }}</a>
 @endforeach
-</ol>
+    </ol>
 @endif
+
+<form class="form-inline" action="{{ route('recommendations.store') }}" method="post" enctype="multipart/form-data">
+{{ csrf_field() }}
+    <div class="row">
+     <div class="col input-group mb-3">
         <p>Unresolved recommendations are in bold with the checkbox in front</p>
-        <table class="table table-hover">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Resolved</th><th>Recommendation</th><th>Date Added</th><th>Date Resolved</th><th>Work Order</th>
@@ -28,10 +30,12 @@
             @foreach ($recs as $rec)
                 <tr>
                     @if ($rec->resolved)
-                    <td><span class="glyphicon glyphicon-ok" aria-hidden-"true"></span></td>
+                    <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+     <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+     </svg></td>
                     <td>{{ $rec->recommendation }}</td>
                     @else
-                    <td><input class="form-control" type="checkbox" id="recID" name="recID[]" value="{{ $rec->id }}" ></td>
+                    <td><input class="form-check-input" type="checkbox" id="recID" name="recID[]" value="{{ $rec->id }}" ></td>
                     <td><b>{{ $rec->recommendation }}</b></td>
                     @endif
                     <td>{{ $rec->rec_add_ts }}</td>
@@ -42,18 +46,48 @@
             </tbody>
         </table>
         @endif
-        <hr>
-        @if (Auth::check())
-        <p><label for="surveyId">Survey ID: </label><input class="form-control" type="text" id="surveyId" name="surveyId" value="{{ $survey->id ?? '' }}" > <span class="text-danger">*</span></p>
-        <p><label for="recommendation">Recommendation: </label><textarea class="form-control" id="recommendation" name="recommendation" rows="4" cols="80" placeholder="Enter recommendation"></textarea> <span class="text-danger">*</span></p>
-        <p><label for="resolved">Resolved: </label> <input class="form-control" type="checkbox" id="resolved" name="resolved" value="1" ></p>
-        <p><label for="WONum">Biomed Work Order Number:</label> <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" ></p>
-        <p><label for="RecResolveDate">Resolution date:</label> <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date" size="20" maxlength="20" ></p>
-        <p><label for="ServiceReport">Upload service report:</label> <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" > (Max file size: {{ ini_get('post_max_size') }})</p>
-        <p><label for="ResolvedBy">Resolved by:</label> <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" ></p>
-        <p><button type="SUBMIT">Add recommendations</button></p>
-        @endif
+     </div>
     </div>
+    <hr>
+@if (Auth::check())
+    <div class="row">
+     <div class="col input-group mb-3">
+       <span class="input-group-text">Survey ID:</span>
+       <input class="form-control" type="text" id="surveyId" name="surveyId" value="{{ $survey->id ?? '' }}" aria-label="Enter survey ID (required)"> <span class="text-danger">*</span>
+     </div>
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Resolved:</span>
+        <input class="form-check-input" type="checkbox" id="resolved" name="resolved" value="1" aria-label="Check box to mark as resolved">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Biomed Work Order Number:</span>
+        <input class="form-control" type="text" id="WONum" name="WONum" size="20" maxlength="20" aria-label="Enter biomed work order number">
+      </div>
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Resolution date:</span>
+        <input class="form-control" id="RecResolveDate" name="RecResolveDate" type="date" size="20" maxlength="20" aria-label="Enter resolution date">
+      </div>
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Resolved by:</span>
+        <input class="form-control" id="ResolvedBy" name="ResolvedBy" type="text" size="20" maxlength="20" aria-label="Enter the name of the person resolving the issue">
+      </div>
+    </div>
+    <div class="row">
+     <div class="col input-group mb-3">
+     <span class="input-group-text">Recommendation:</span>
+     <textarea class="form-control" id="recommendation" name="recommendation" rows="4" cols="80" placeholder="Enter recommendation" aria-label="Enter recommendation"></textarea> <span class="text-danger">*</span>
+     </div>
+    </div>
+    <div class="row">
+      <div class="col input-group mb-3">
+        <span class="input-group-text">Upload service report:</span>
+        <input class="form-control" type="file" id="ServiceReport" name="ServiceReport" aria-label="Select service report file to upload"> (Max file size: {{ ini_get('post_max_size') }})
+      </div>
+    </div>
+    <button class="btn btn-primary" type="SUBMIT">Add recommendations</button>
+@endif
 </form>
 <p><span class="text-danger">*</span> Required field</p>
 
