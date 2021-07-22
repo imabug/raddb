@@ -7,10 +7,10 @@
 <p>Report generated {{ $reportDate }}</p>
 <h3>Mammography Units</h3>
 @foreach ($mammoMachines as $mamm)
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th colspan="2">{{ $mamm->description }}</th>
+            <th scope="col" colspan="2">{{ $mamm->description }}</th>
         </tr>
     </thead>
     <tbody>
@@ -25,10 +25,10 @@
 
 <h3>Mammography Workstations</h3>
 @foreach ($mammoWorkstations as $wrk)
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th colspan="2">{{ $wrk->description }}</th>
+            <th scope="col" colspan="2">{{ $wrk->description }}</th>
         </tr>
     </thead>
     <tbody>
