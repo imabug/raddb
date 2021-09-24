@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace RadDB\Http\Controllers\Auth;
 
 use RadDB\Http\Controllers\Controller;
 use RadDB\Providers\RouteServiceProvider;

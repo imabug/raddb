@@ -1,1 +1,1 @@
-<p class="text-center"><small>Built with <a href="https://www.laravel.com" target="_blank">Laravel</a> and <a href="http://php.net" target="_blank">PHP</a>. Uses <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://glyphicons.com/" target="_blank">Glyphicons</a></small></p>
+<p class="text-center"><small>Built with <a href="https://www.laravel.com" target="_blank">Laravel</a> and <a href="http://php.net" target="_blank">PHP</a>. Uses <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></small></p>
