@@ -2,13 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\Tube;
 use RadDB\Machine;
-use RadDB\Location;
-use RadDB\Modality;
-use RadDB\Manufacturer;
 use RadDB\TestDate;
-use RadDB\TestType;
 use Illuminate\Http\Request;
 
 class AnnReportController extends Controller
@@ -21,7 +16,9 @@ class AnnReportController extends Controller
     {
         // Get the list of all active machines
         $machines = Machine::with('modality', 'manufacturer', 'location', 'tube')
-                  ->active()->get()->groupBy('modality.modality');
+            ->active()
+            ->get()
+            ->groupBy('modality.modality');
 
         foreach ($machines as $key=>$modality) {
             $n[$key] = count($modality);
@@ -75,31 +72,42 @@ class AnnReportController extends Controller
      */
     public function annrep(int $year)
     {
-        $testTypes = TestType::get();
-        $locations = Location::get();
-        $modalities = Modality::get();
+        // Get all the surveys performed in $year
         $surveys = TestDate::with('machine', 'type')
             -> year($year)
-            -> get();
-        $machines = Machine::active()
-            ->get();
+            -> get()
+            -> groupBy('type.test_type');
 
-        foreach ($testTypes as $t) {
-            $c = $surveys->where('type_id', $t->id)->count();
-            if ($c > 0) $surveyTypeCount[$t->test_type] = $c;
+        $total = 0;
+        foreach ($surveys as $type=>$s) {
+            $surveyTypeCount[$type] = $s->count();
+            $total += $s->count();
         }
         arsort($surveyTypeCount);
-        $surveyTypeCount["Total"] = $surveys->count();
+        $surveyTypeCount["Total surveys"] = $total;
 
-        foreach ($modalities as $m) {
-            $c = $machines->where('modality_id', $m->id)->count();
-            if ($c > 0) $modalitiesCount[$m->modality] = $c;
+        // Get all the active machines grouped by modality
+        $machines = Machine::with('modality')
+            -> active()
+            -> get()
+            -> groupBy('modality.modality');
+
+        $total = 0;
+        foreach ($machines as $modality=>$m) {
+            $modalitiesCount[$modality] = $m->count();
+            $total += $m->count();
         }
         arsort($modalitiesCount);
+        $modalitiesCount["Total machines"] = $total;
 
-        foreach($locations as $l) {
-            $c = $machines->where('location_id', $l->id)->count();
-            if ($c > 0) $locationsCount[$l->location] = $c;
+        // Get all the active machines grouped by location
+        $machines = Machine::with('modality')
+            -> active()
+            -> get()
+            -> groupBy('location.location');
+
+        foreach($machines as $location=>$m) {
+            $locationsCount[$location] = $m->count();
         }
         arsort($locationsCount);
 
