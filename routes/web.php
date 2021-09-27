@@ -164,5 +164,6 @@ Route::resource('ctdailyqc', 'CTDailyQCRecordController');
 /*
  * Reporting routes
  */
-Route::name('ar.effort')->get('/ar/effort', 'ARController@effort');
+Route::name('ar.effort')->get('/ar/effort', 'AnnReportController@effort');
 Route::name('ar.cexp')->get('/ar/cexp', 'AnnReportController@mammContExp');
+Route::name('ar.annrep')->get('ar/{year}/annrep/', 'AnnReportController@annrep');
