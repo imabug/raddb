@@ -21,7 +21,7 @@
     </tbody>
     </table>
 
-    <h3>Imaging Equipment Inventory</h3>
+    <h3>Imaging Equipment Inventory ({{$modalitiesCount->count()-1}} modalities)</h3>
     <table class="table table-striped table-hover table-sm">
       <thead>
         <th scope="col">Modality</th>
@@ -37,7 +37,7 @@
       </tbody>
     </table>
 
-    <h3>Locations</h3>
+             <h3>Locations ({{$locationsCount->count()}} locations)</h3>
      <table class="table table-striped table-hover table-sm">
        <thead>
          <th scope="col">Modality</th>
