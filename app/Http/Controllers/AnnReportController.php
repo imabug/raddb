@@ -50,6 +50,19 @@ class AnnReportController extends Controller
     public function mammContExp()
     {
         // Get a list of the mammo machines
-        $machines = Machine::with('manufacturer', 'location', 'testdate')->active()->modality(8)->get()->groupBy('location.location');
+        // Get a list of active mammography machines
+        $mammMachines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->modality(8)
+            ->get();
+        $sbbMachines = Machine::with('modality', 'manufacturer', 'location')
+            ->active()
+            ->modality(15)
+            ->get();
+
+        return view('ar.cexp', [
+            'mammMachines' => $mammMachines,
+            'sbbMachines' => $sbbMachines,
+        ]);
     }
 }
