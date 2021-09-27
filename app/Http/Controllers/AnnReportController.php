@@ -49,17 +49,26 @@ class AnnReportController extends Controller
     {
         // Get a list of the mammo machines
         // Get a list of active mammography machines
-        $mammMachines = Machine::with('modality', 'manufacturer', 'location')
-            ->active()
-            ->modality(8)
-            ->get();
+        $mammMachines = Machine::with('modality', 'manufacturer', 'location', 'testdate')
+            -> active()
+            -> modality(8)
+            -> get();
+        foreach($mammMachines as $m) {
+            // Get the two most recent survey dates
+            $recent = $m->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->take(2);
+            $mammDates[$m->description] = [
+                'location' => $m->location,
+                'date1' => $recent->pop()->test_date,
+                'date1' => $recent->pop()->test_date,
+            ];
+        }
         $sbbMachines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->modality(15)
             ->get();
 
         return view('ar.cexp', [
-            'mammMachines' => $mammMachines,
+            'mammDates' => $mammDates,
             'sbbMachines' => $sbbMachines,
         ]);
     }

@@ -15,13 +15,12 @@
      <th scope="col">Survey date</th>
      </thead>
      <tbody>
-     @foreach ($mammMachines as $mamm)
+     @foreach ($mammDates as $desc => $m)
      <tr>
-     <th scope="row">{{ $mamm->id }}</th>
-     <td>{{$mamm->description}}</td>
-     <td>{{$mamm->location->location}}</td>
-     <td>{{$mamm->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->shift()->test_date}}</td>
-     <td>{{$mamm->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->shift(2)->pop()->test_date}}</td>
+     <td>{{$desc}}</td>
+     <td>{{$m->location->location}}</td>
+     <td>{{$m->date1}}</td>
+     <td>{{$m->date2}}</td>
      </tr>
      @endforeach
      </tbody>
