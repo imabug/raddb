@@ -113,9 +113,9 @@ class AnnReportController extends Controller
 
         return view('ar.annrep', [
             'year' => $year,
-            'surveyTypeCount' => $surveyTypeCount,
-            'modalitiesCount' => $modalitiesCount,
-            'locationsCount' => $locationsCount,
+            'surveyTypeCount' => collect($surveyTypeCount),
+            'modalitiesCount' => collect($modalitiesCount),
+            'locationsCount' => collect($locationsCount),
         ]);
     }
 }
