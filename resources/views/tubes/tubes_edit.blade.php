@@ -91,15 +91,15 @@
   <div class="row">
     <div class="col input-group mb-3">
      <span class="input-group-text">Large FS (mm):</span>
-     <input class="form-control" type="text" id="lfs" name="lfs" size="4" value="{{ empty($tube->lfs) ? '0.0' : $tube->lfs }}" aria-label="Enter large focal spot size (mm)">
+     <input class="form-control" type="text" id="lfs" name="lfs" size="4" value="{{ $tube->lfs }}" aria-label="Enter large focal spot size (mm)">
     </div>
     <div class="col input-group mb-3">
      <span class="input-group-text">Medium FS (mm):</span>
-     <input class="form-control" type="text" id="mfs" name="mfs" size="4" value="{{ empty($tube->mfs) ? '0.0' : $tube->mfs }}" aria-label="Enter medium focal spot size (mm)">
+     <input class="form-control" type="text" id="mfs" name="mfs" size="4" value="{{ $tube->mfs }}" aria-label="Enter medium focal spot size (mm)">
     </div>
     <div class="col input-group mb-3">
      <span class="input-group-text">Small FS (mm):</span>
-     <input class="form-control" type="text" id="sfs" name="sfs" size="4" value="{{ empty($tube->sfs) ? '0.0' : $tube->sfs }}" aria-label="Enter small focal spot size (mm)">
+     <input class="form-control" type="text" id="sfs" name="sfs" size="4" value="{{ $tube->sfs }}" aria-label="Enter small focal spot size (mm)">
     </div>
   </div>
   <div class="row">
