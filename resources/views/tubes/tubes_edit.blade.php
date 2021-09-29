@@ -6,8 +6,8 @@
 <h2>Edit a tube</h2>
 <p>
 <form class="form-inline" action="{{route('tubes.update', $tube->id)}}" method="POST">
-{{ csrf_field() }}
-{{ method_field('PUT') }}
+     @csrf
+     @method('PUT')
 <input type="hidden" id="machine_id" name="machine_id" value="{{ $machine->id }}" >
 <input type="hidden" id="tube_id" name="tube_id" value="{{$tube->id}}">
   <div class="row">
@@ -17,7 +17,7 @@
     </div>
     <div class="col input-group mb-3">
      <span class="input-group-text">Status:</span>
-     <select class="form-control" id="tube_status" name="tube_status" size="1" aria-label="Select x-ray tube status">
+     <select class="form-select" id="tube_status" name="tube_status" size="1" aria-label="Select x-ray tube status">
        <option>Select status</option>
        <option value="Active"
      @if ($tube->tube_status == "Active")
@@ -35,7 +35,7 @@
  <div class="row">
     <div class="col input-group mb-3">
      <span class="input-group-text">Housing Manufacturer:</span>
-     <select class="form-control" id="hsgManufID" name="hsgManufID" size="1" aria-label="Select x-ray tube housing manufacturer">
+     <select class="form-select" id="hsgManufID" name="hsgManufID" size="1" aria-label="Select x-ray tube housing manufacturer">
        <option>Select manufacturer</option>
      @foreach ($manufacturers as $manufacturer)
        <option value="{{ $manufacturer->id }}"
@@ -58,7 +58,7 @@
   <div class="row">
     <div class="col input-group mb-3">
      <span class="input-group-text">Insert Manufacturer:</span>
-     <select class="form-control" id="insertManufID" name="insertManufID" size="1" aria-label="Select x-ray tube insert manufacturer">
+     <select class="form-select" id="insertManufID" name="insertManufID" size="1" aria-label="Select x-ray tube insert manufacturer">
        <option>Select manufacturer</option>
      @foreach ($manufacturers as $manufacturer)
        <option value="{{ $manufacturer->id }}"
@@ -91,15 +91,15 @@
   <div class="row">
     <div class="col input-group mb-3">
      <span class="input-group-text">Large FS (mm):</span>
-     <input class="form-control" type="text" id="lfs" name="lfs" size="4" value="{{ $tube->lfs or '0' }}" aria-label="Enter large focal spot size (mm)">
+     <input class="form-control" type="text" id="lfs" name="lfs" size="4" value="{{ empty($tube->lfs) ? '0.0' : $tube->lfs }}" aria-label="Enter large focal spot size (mm)">
     </div>
     <div class="col input-group mb-3">
      <span class="input-group-text">Medium FS (mm):</span>
-     <input class="form-control" type="text" id="mfs" name="mfs" size="4" value="{{ $tube->mfs or '0' }}" aria-label="Enter medium focal spot size (mm)">
+     <input class="form-control" type="text" id="mfs" name="mfs" size="4" value="{{ empty($tube->mfs) ? '0.0' : $tube->mfs }}" aria-label="Enter medium focal spot size (mm)">
     </div>
     <div class="col input-group mb-3">
      <span class="input-group-text">Small FS (mm):</span>
-     <input class="form-control" type="text" id="sfs" name="sfs" size="4" value="{{ $tube->sfs or '0' }}" aria-label="Enter small focal spot size (mm)">
+     <input class="form-control" type="text" id="sfs" name="sfs" size="4" value="{{ empty($tube->sfs) ? '0.0' : $tube->sfs }}" aria-label="Enter small focal spot size (mm)">
     </div>
   </div>
   <div class="row">
