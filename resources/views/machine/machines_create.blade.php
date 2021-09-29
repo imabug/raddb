@@ -6,11 +6,11 @@
 <h2>Add a machine</h2>
 
 <form class="form-inline" action="{{route('machines.store')}}" method="POST">
-{{ csrf_field() }}
+@csrf
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Modality:</span>
-           <select id="modality" name="modality" size="1" class="form-control" autofocus aria-label="Select modality (required)">
+           <select id="modality" name="modality" size="1" class="form-select" autofocus aria-label="Select modality (required)">
              <option>Select modality</option>
 
      @foreach ($modalities as $modality)
@@ -24,7 +24,7 @@
        </div>
        <div class="col input-group mb-3">
          <span class="input-group-text">Machine status:</span>
-         <select class="form-control" id="status" name="status" size="1" aria-label="Select machine status (required)">
+         <select class="form-select" id="status" name="status" size="1" aria-label="Select machine status (required)">
            <option>Select status</option>
            <option value="Active" selected="selected">Active</option>
            <option value="Inactive">Inactive</option>
@@ -35,7 +35,7 @@
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Manufacturer:</span>
-         <select class="form-control" id="manufacturer" name="manufacturer" size="1" aria-label="Enter machine manufacturer (required)">
+         <select class="form-select" id="manufacturer" name="manufacturer" size="1" aria-label="Enter machine manufacturer (required)">
            <option>Select manufacturer</option>
      @foreach ($manufacturers as $manufacturer)
            <option value="{{ $manufacturer->id }}">{{ $manufacturer->manufacturer }}</option>
@@ -74,7 +74,7 @@
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Location:</span>
-         <select class="form-control" id="location" name="location" size="1">
+         <select class="form-select" id="location" name="location" size="1">
            <option>Select location</option>
      @foreach ($locations as $location)
            <option value="{{ $location->id }}">{{ $location->location }}</option>
