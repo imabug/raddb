@@ -8,7 +8,7 @@
 <form class="form-inline" action="{{route('ctdailyqc.store')}}" method="POST">
 	<div class="form-group">
 
-		{{ csrf_field() }}
+        @csrf
 		<p><label for="scanner">Scanner:</label>
 		<select id="scanner" name="machine_id" size="1" class="form-control" autofocus>
 			<option>Select scanner</option>

@@ -9,7 +9,7 @@
 @endif
 </h2>
 <form class="form-inline" action="{{ route('surveys.store') }}" method="POST">
-{{ csrf_field() }}
+@csrf
     <div class="row">
       <div class="col input-group mb-3">
         <span class="input-group-text">Machine:</span>

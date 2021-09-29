@@ -25,8 +25,8 @@
         @if (Auth::check())
         <p>
 				<form class="row gy-1 gx-2 align-items-center" action="{{ route('machines.destroy', $machine->id) }}" method="post">
-					{{ csrf_field() }}
-					{{ method_field('DELETE') }}
+                    @csrf
+                    @method('DELETE')
 					<div class="col-auto">
                         <a href="{{ route('machines.edit', $machine->id) }}" data-toggle="tooltip" title="Modify this machine">
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Modify this machine">
@@ -57,8 +57,8 @@
                     @if (Auth::check())
                     <form class="form-inline" action="{{ route('photos.destroy', $photo->id) }}" method="post">
                         <div class="form-group">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
+                            @csrf
+                            @method('DELETE')
                             <input class="form-control" type="hidden" name="machineId" value="{{ $machine->id }}">
                             <button type="submit" class="form-control btn btn-danger btn-xs" data-toggle="tooltip" title="Remove this image">
                         <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -75,7 +75,7 @@
         </div>
         @if (Auth::check())
             <form class="form-inline" action="{{ route('photos.store') }}" method="post" enctype="multipart/form-data">
-              {{ csrf_field() }}
+              @csrf
               <input class="form-control" type="hidden" name="machineId" value="{{ $machine->id }}">
                 <div class="row">
                     <div class="col input-group mb-3">

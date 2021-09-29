@@ -6,7 +6,7 @@
 <h2>Add survey report</h2>
 
 <form class="form-inline" action="{{ route('surveyreports.store') }}" method="post" enctype="multipart/form-data">
-{{ csrf_field() }}
+@csrf
   <div class="row">
     <div class="col input-group mb-3">
       <span class="input-group-text">Survey ID: </span>

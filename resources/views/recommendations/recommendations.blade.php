@@ -15,8 +15,8 @@
 <p>Unresolved recommendations are in bold with the checkbox in front</p>
 <p>
 <form class="form-inline" action="{{ route('recommendations.update', $survey->id) }}" method="post" enctype="multipart/form-data">
-    {{ csrf_field() }}
-    {{ method_field('PUT') }}
+    @csrf
+    @method('PUT')
     <div class="row">
       <div class="col input-group mb-3">
         <table class="table table-striped table-hover table-sm">

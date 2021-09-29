@@ -6,12 +6,12 @@
 <h2>Edit a machine</h2>
 
 <form class="form-inline" action="{{ route('machines.update', $machine->id) }}" method="POST">
-{{ csrf_field() }}
-{{ method_field('PUT') }}
+@csrf
+     @method('PUT')
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Modality:</span>
-         <select class="form-control" id="modality" name="modality" size="1" aria-label="Select modality (required)">
+         <select class="form-select" id="modality" name="modality" size="1" aria-label="Select modality (required)">
            <option>Select modality</option>
 @foreach ($modalities as $modality)
            <option value="{{ $modality->id }}"
@@ -28,7 +28,7 @@
        </div>
        <div class="col input-group mb-3">
          <span class="input-group-text">Machine status:</label>
-         <select class="form-control" id="status" name="status" size="1" aria-label="Select machine status">
+         <select class="form-select" id="status" name="status" size="1" aria-label="Select machine status">
 @if ($machine->machine_status == "Active")
            <option value="Active" selected>Active</option>
 @else
@@ -50,7 +50,7 @@
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Manufacturer:</span>
-         <select class="form-control" id="manufacturer" name="manufacturer" size="1" aria-label="Select machine manufacturer">
+         <select class="form-select" id="manufacturer" name="manufacturer" size="1" aria-label="Select machine manufacturer">
            <option>Select manufacturer</option>
 @foreach ($manufacturers as $manufacturer)
            <option value="{{ $manufacturer->id }}"
@@ -94,7 +94,7 @@
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Location:</span>
-         <select class="form-control" id="location" name="location" size="1" aria-label="Select location">
+         <select class="form-select" id="location" name="location" size="1" aria-label="Select location">
            <option>Select location</option>
 @foreach ($locations as $location)
            <option value="{{ $location->id }}"

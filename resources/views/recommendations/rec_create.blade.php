@@ -16,7 +16,7 @@
 @endif
 
 <form class="form-inline" action="{{ route('recommendations.store') }}" method="post" enctype="multipart/form-data">
-{{ csrf_field() }}
+@csrf
     <div class="row">
      <div class="col input-group mb-3">
         <p>Unresolved recommendations are in bold with the checkbox in front</p>

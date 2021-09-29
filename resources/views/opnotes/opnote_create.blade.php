@@ -26,7 +26,7 @@
 </ol>
 
 <form class="form-inline" action="{{ route('opnotes.store')}}" method="post">
-{{ csrf_field() }}
+@csrf
   <div class="row">
      <div class="col input-group mb-3">
 @if(is_null($machineId))

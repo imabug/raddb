@@ -6,11 +6,11 @@
 <h2>Add a tube</h2>
 <p>
 <form class="form-inline" action="{{ route('tubes.store') }}" method="POST">
-{{ csrf_field() }}
+@csrf
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Machine:</span>
-         <select class="form-control" id="machine_id" name="machine_id" size="1" aria-label="Select machine (required)">
+         <select class="form-select" id="machine_id" name="machine_id" size="1" aria-label="Select machine (required)">
            <option>Select machine</option>
 
      @foreach ($machines as $machine)
@@ -26,7 +26,7 @@
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Housing Manufacturer:</span>
-         <select class="form-control" id="hsgManufID" name="hsgManufID" size="1" aria-label="Enter x-ray tube housing manufacturer">
+         <select class="form-select" id="hsgManufID" name="hsgManufID" size="1" aria-label="Enter x-ray tube housing manufacturer">
            <option>Select manufacturer</option>
 
      @foreach ($manufacturers as $manufacturer)
@@ -47,7 +47,7 @@
      <div class="row">
        <div class="col input-group mb-3">
          <span class="input-group-text">Insert Manufacturer:</span>
-         <select class="form-control" id="insertManufID" name="insertManufID" size="1" aria-label="Enter x-ray tube manufacturer">
+         <select class="form-select" id="insertManufID" name="insertManufID" size="1" aria-label="Enter x-ray tube manufacturer">
            <option>Select manufacturer</option>
 
      @foreach ($manufacturers as $manufacturer)

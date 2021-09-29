@@ -5,8 +5,8 @@
 @section('content')
 <h2>Edit a survey for {{ $machine->description }}</h2>
 <form class="form-inline" action="{{ route('surveys.update', $survey->id) }}" method="POST">
-{{ csrf_field() }}
-{{ method_field('PUT') }}
+@csrf
+@method('PUT')
   <input class="form-control" type="hidden" id="id" name="id" value="{{ $survey->id }}" >
   <input class="form-control" type="hidden" id="machineID" name="machineID" value="{{ $machine->id }}" >
   <div class="row">
@@ -24,7 +24,7 @@
     </div>
     <div class="col input-group mb-3">
       <span class="input-group-text">Type of test:</span>
-      <select class="form-control" id="test_type" name="test_type" size="1">
+      <select class="form-select" id="test_type" name="test_type" size="1">
      @foreach ($testtypes as $tt)
         <option value="{{ $tt->id }}"
      @if ($tt->id == $testtype->id)
@@ -38,7 +38,7 @@
   <div class="row">
     <div class="col input-group mb-3">
       <span class="input-group-text">Tested by: </span>
-      <select class="form-control" id="tester1ID" name="tester1ID" size="1" aria-label="Select tester 1 (required)">
+      <select class="form-select" id="tester1ID" name="tester1ID" size="1" aria-label="Select tester 1 (required)">
         <option value="10" selected="="selected""></option>
     @foreach ($testers as $t)
         <option value="{{ $t->id }}"
@@ -51,7 +51,7 @@
     </div>
     <div class="col input-group mb-3">
       <span class="input-group-text">Tested by: </span>
-      <select class="form-control" id="tester2ID" name="tester2ID" size="1" aria-label="select tester 2">
+      <select class="form-select" id="tester2ID" name="tester2ID" size="1" aria-label="select tester 2">
         <option value="10" selected="="selected""></option>
      @foreach ($testers as $t)
         <option value="{{ $t->id }}"

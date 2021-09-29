@@ -22,7 +22,7 @@
 @endif
 <form class="form-inline" action="{{ route('photos.store') }}" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        {{ csrf_field() }}
+        @csrf
         <input class="form-control" type="hidden" name="machineId" value="{{ $machine->id }}">
         <p><label for="photoDescription">Photo description: </label><input class="form-control" type="text" id="photoDescription" name="photoDescription"></p>
         <p><label for="photo">Upload photo: </label> <input class="form-control" type="file" id="photo" name="photo" ></p>
