@@ -162,3 +162,4 @@ Route::name('ar.cexp')->get('/ar/cexp', 'AnnReportController@mammContExp');
 Route::name('ar.annrep')->get('ar/{year}/annrep/', 'AnnReportController@annrep');
 
 // Experimental routes
+Route::name('test.tabletest')->get('/test/tabletest', 'TestController@tabletest');
