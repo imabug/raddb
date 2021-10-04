@@ -121,12 +121,6 @@ Route::resource('photos', 'MachinePhotoController',
     ['except' => ['create']]);
 
 /*
- * Mammography CE controller
- */
-Route::name('mammo.CE')
-    ->get('mammo/{tester_id}/show', 'MammoCEController@show');
-
-/*
  * Route for user management
  */
 Route::resource('users', 'UserController');
@@ -164,6 +158,7 @@ Route::resource('ctdailyqc', 'CTDailyQCRecordController');
 /*
  * Reporting routes
  */
-Route::name('ar.effort')->get('/ar/effort', 'AnnReportController@effort');
 Route::name('ar.cexp')->get('/ar/cexp', 'AnnReportController@mammContExp');
 Route::name('ar.annrep')->get('ar/{year}/annrep/', 'AnnReportController@annrep');
+
+// Experimental routes
