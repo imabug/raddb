@@ -6,7 +6,7 @@
 @if(is_null($machineId))
 <h2>Add operational note</h2>
 @else
-<h2>Add operational note for {{ $machines->description }}</h2>
+<h2>Add operational note for <a href="{{route('machines.show', $machineId) }}">{{ $machines->description }}</a></h2>
 @endif
 
 <ol>
