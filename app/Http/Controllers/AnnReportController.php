@@ -56,20 +56,48 @@ class AnnReportController extends Controller
         foreach($mammMachines as $m) {
             // Get the two most recent survey dates
             $recent = $m->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->take(2);
-            $mammDates[$m->description] = [
-                'location' => $m->location,
-                'date1' => $recent->pop()->test_date,
-                'date1' => $recent->pop()->test_date,
-            ];
+            if ($recent->count() < 2) {
+                $mammDates[$m->description] = [
+                    'location' => $m->location->location,
+                    'date1' => $recent->pop()->test_date,
+                    'date2' => "",
+                ];
+            }
+            else {
+                $mammDates[$m->description] = [
+                    'location' => $m->location->location,
+                    'date1' => $recent->pop()->test_date,
+                    'date2' => $recent->pop()->test_date,
+                ];
+            }
         }
+
         $sbbMachines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->modality(15)
             ->get();
 
+        foreach($sbbMachines as $m) {
+            // Get the two most recent survey dates
+            $recent = $m->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->take(2);
+            if ($recent->count() < 2) {
+                $sbbDates[$m->description] = [
+                    'location' => $m->location->location,
+                    'date1' => $recent->pop()->test_date,
+                    'date2' => "",
+                ];
+            }
+            else {
+                $sbbDates[$m->description] = [
+                    'location' => $m->location->location,
+                    'date1' => $recent->pop()->test_date,
+                    'date2' => $recent->pop()->test_date,
+                ];
+            }
+        }
         return view('ar.cexp', [
             'mammDates' => $mammDates,
-            'sbbMachines' => $sbbMachines,
+            'sbbDates' => $sbbDates,
         ]);
     }
 
