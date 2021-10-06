@@ -8,6 +8,8 @@ class Testtables extends Component
 {
     public function render()
     {
-        return view('livewire.testtables');
+        return view('livewire.testtables')
+            ->extends('layouts.app')
+            ->section('content');
     }
 }
