@@ -51,7 +51,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
+    @livewireStyles
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
@@ -83,5 +83,6 @@
             </div>
         </div>
     </div>
+    @livewireScripts
 </body>
 </html>
