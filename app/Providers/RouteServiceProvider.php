@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'RadDB\Http\Controllers';
+    protected $namespace = null;
 
     /**
      * The path to the "home" route for your application
