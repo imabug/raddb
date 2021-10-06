@@ -35,7 +35,9 @@ use RadDB\Http\Livewire\Testtables;
 /*
  * Dashboard routes
  */
-Route::name('index')->get('/', [DashboardController::class, 'index']); // Survey schedule
+// Survey schedule
+Route::name('index')
+    ->get('/', [DashboardController::class, 'index']);
 Route::name('dashboard.dashboard')
     ->get('/dashboard', [DashboardController::class, 'teststatus']);
 // Untested machines
@@ -99,21 +101,24 @@ Route::resource('testequipment', TestEquipmentController::class);
  */
 Route::name('opnotes.createOpNoteFor')
     ->get('opnotes/{machineId?}/create', [OpNoteController::class, 'create']);
-Route::resource('opnotes', OpNoteController::class);
+Route::resource('opnotes', OpNoteController::class,
+                ['except' => ['create']]);
 
 /*
  * Recommendation controller
  */
 Route::name('recommendations.createRecFor')
     ->get('recommendations/{id?}/create', [RecommendationController::class, 'create']);
-Route::resource('recommendations', RecommendationController::class);
+Route::resource('recommendations', RecommendationController::class,
+                ['except' => ['create']]);
 
 /*
  * Test Date controller
  */
 Route::name('surveys.createSurveyFor')
     ->get('surveys/{id?}/create', [TestDateController::class, 'create']);
-Route::resource('surveys', TestDateController::class);
+Route::resource('surveys', TestDateController::class,
+                ['except' => ['create']]);
 
 /*
  * Survey report controller
@@ -131,8 +136,10 @@ Route::resource('servicereports', ServiceReportController::class);
 /*
  * Tube controller
  */
-Route::name('tubes.createTubeFor')->get('tubes/{id}/create', [TubeController::class, 'create']);
-Route::resource('tubes', TubeController::class);
+Route::name('tubes.createTubeFor')
+    ->get('tubes/{id}/create', [TubeController::class, 'create']);
+Route::resource('tubes', TubeController::class,
+                ['except' => ['create']]);
 
 /*
  * Photos controller. Used to handle uploading and updating photos of machines.
@@ -140,7 +147,7 @@ Route::resource('tubes', TubeController::class);
 Route::name('photos.create')
     ->get('photos/{id}/create', [MachinePhotoController::class, 'create']);
 Route::resource('photos', MachinePhotoController::class,
-    ['except' => ['create']]);
+                ['except' => ['create']]);
 
 /*
  * Route for user management
