@@ -156,30 +156,6 @@ Auth::routes();
 Route::name('home.index')->get('/home', [HomeController::class, 'index']);
 
 /*
- * Routes for viewing QA/survey data
- */
-// Route::name('qa.index')->get('qa/', 'QAController@index');
-// Route::name('qa.machineSurveyList')->get('qa/{machine_id}/surveyList', 'QAController@show');
-
-/*
- * Survey test data routes
- */
-// Route::name('gendata.create')
-//     ->get('surveydata/generator/{surveyId}/create', 'GenDataController@create');
-// Route::resource('gendata', 'GenDataController',
-//                 ['except' => ['create']]);
-// Route::resource('collimatordata', 'CollimatorDataController');
-// Route::resource('fluorodata', 'FluoroDataController');
-// Route::resource('hvldata', 'HVLDataController');
-// Route::resource('maxfluorodata', 'MaxFluoroDataController');
-// Route::resource('radsurveydata', 'RadSurveyDataController');
-// Route::resource('radoutputdata', 'RadiationOutputController');
-// Route::resource('receptorentrance', 'ReceptorEntranceExpController');
-
-// CT Daily QC routes
-//Route::resource('ctdailyqc', 'CTDailyQCRecordController');
-
-/*
  * Reporting routes
  */
 Route::name('ar.cexp')->get('/ar/cexp', [AnnReportController::class, 'mammContExp']);
