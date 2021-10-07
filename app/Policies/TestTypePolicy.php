@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 use App\Models\TestType;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class TestTypePolicy
 {
@@ -19,8 +19,9 @@ class TestTypePolicy
     /**
      * Determine whether the user can view the testType.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\TestType  $testType
+     * @param \App\Models\User     $user
+     * @param \App\Models\TestType $testType
+     *
      * @return mixed
      */
     public function view(User $user, TestType $testType)
@@ -31,7 +32,8 @@ class TestTypePolicy
     /**
      * Determine whether the user can create testTypes.
      *
-     * @param  \App\Models\User  $user
+     * @param \App\Models\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -42,8 +44,9 @@ class TestTypePolicy
     /**
      * Determine whether the user can update the testType.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\TestType  $testType
+     * @param \App\Models\User     $user
+     * @param \App\Models\TestType $testType
+     *
      * @return mixed
      */
     public function update(User $user, TestType $testType)
@@ -54,8 +57,9 @@ class TestTypePolicy
     /**
      * Determine whether the user can delete the testType.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\TestType  $testType
+     * @param \App\Models\User     $user
+     * @param \App\Models\TestType $testType
+     *
      * @return mixed
      */
     public function delete(User $user, TestType $testType)

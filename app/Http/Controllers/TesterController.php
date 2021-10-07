@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\TesterRequest;
 use App\Models\Tester;
 
@@ -16,12 +15,12 @@ class TesterController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only([
-             'create',
-             'edit',
-             'store',
-             'update',
-             'destroy',
-         ]);
+            'create',
+            'edit',
+            'store',
+            'update',
+            'destroy',
+        ]);
     }
 
     /**

@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Location;
 use App\Models\Manufacturer;
 use App\Models\Modality;
 use App\Models\Tester;
 use App\Models\TestType;
+use Illuminate\Console\Command;
 
 class LutDelete extends Command
 {
@@ -75,7 +75,7 @@ class LutDelete extends Command
             break;
         }
 
-        if (! is_null($lut)) {
+        if (!is_null($lut)) {
             // Ask for confirmation
             if ($this->confirm('Deleting '.$table.' ID:'.$lut->id.'. Do you wish to continue?')) {
                 $lut->delete();

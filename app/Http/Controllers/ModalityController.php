@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Http\Requests\ModalityRequest;
 use App\Models\Machine;
 use App\Models\Modality;

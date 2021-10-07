@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\Models\Media;
 
 class Machine extends Model implements HasMedia
 {
@@ -102,10 +101,12 @@ class Machine extends Model implements HasMedia
 
     public function recommendation()
     {
-        return $this->hasManyThrough('App\Models\Recommendation',
-                                     'App\Models\TestDate',
-                                     'machine_id',
-                                     'survey_id');
+        return $this->hasManyThrough(
+            'App\Models\Recommendation',
+            'App\Models\TestDate',
+            'machine_id',
+            'survey_id'
+        );
     }
 
     public function surveySchedule()
@@ -219,9 +220,9 @@ class Machine extends Model implements HasMedia
     public function getAgeAttribute()
     {
         // Calculate the age of the unit based on manuf_date or install_date
-        if (! is_null($this->attributes['manuf_date'])) {
+        if (!is_null($this->attributes['manuf_date'])) {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
-        } elseif (! is_null($this->attributes['install_date'])) {
+        } elseif (!is_null($this->attributes['install_date'])) {
             return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
         } else {
             return 'N/A';

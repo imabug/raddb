@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreMachinePhotoRequest;
 use App\Models\Machine;
 use App\Models\MachinePhoto;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MachinePhotoController extends Controller
 {
@@ -19,12 +19,12 @@ class MachinePhotoController extends Controller
     {
         // Only apply auth middleware to these methods
         $this->middleware('auth')->only([
-             'create',
-             'store',
-             'edit',
-             'update',
-             'destroy',
-         ]);
+            'create',
+            'store',
+            'edit',
+            'update',
+            'destroy',
+        ]);
     }
 
     /**
@@ -42,7 +42,8 @@ class MachinePhotoController extends Controller
      * URI: photos/{id}/create
      * Method: GET.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function create($id)
@@ -53,14 +54,15 @@ class MachinePhotoController extends Controller
 
         return view('photos.photos_create', [
             'machine' => $machine,
-            'photos' => $machine->getMedia('machine_photos'),
+            'photos'  => $machine->getMedia('machine_photos'),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreMachinePhotoRequest $request)
@@ -92,7 +94,8 @@ class MachinePhotoController extends Controller
     /**
      * Display the photos for machine $id.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function show($id)
@@ -103,7 +106,8 @@ class MachinePhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -114,8 +118,9 @@ class MachinePhotoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -126,7 +131,8 @@ class MachinePhotoController extends Controller
     /**
      * Remove photo with id $id.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)

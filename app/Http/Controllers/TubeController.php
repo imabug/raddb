@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreTubeRequest;
 use App\Http\Requests\UpdateTubeRequest;
 use App\Models\Machine;
 use App\Models\Manufacturer;
 use App\Models\Tube;
+use Illuminate\Support\Facades\Log;
 
 class TubeController extends Controller
 {
