@@ -1,18 +1,9 @@
 php:
   preset: laravel
   version: 8
-  enabled:
-    - alpha_ordered_imports
   disabled:
     - no_unused_imports
-    - length_ordered_imports
-    - unused_use
   finder:
     not-name:
       - index.php
       - server.php
-js:
-  finder:
-    not-name:
-      - webpack.mix.js
-css: true
