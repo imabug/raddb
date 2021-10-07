@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model'  => RadDB\User::class,
+            'model'  => RadDB\Models\User::class,
         ],
 
         // 'users' => [
