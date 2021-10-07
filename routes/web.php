@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 use RadDB\Http\Controllers\DashboardController;
 use RadDB\Http\Controllers\MachineListingController;
 use RadDB\Http\Controllers\LocationController;

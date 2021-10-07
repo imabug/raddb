@@ -1,8 +1,10 @@
 php:
   preset: laravel
+  version: 8
   enabled:
     - alpha_ordered_imports
   disabled:
+    - no_unused_imports
     - length_ordered_imports
     - unused_use
   finder:
