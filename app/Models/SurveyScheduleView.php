@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,16 +18,16 @@ class SurveyScheduleView extends Model
      */
     public function machine()
     {
-        return $this->belongsTo('RadDB\Models\Machine', 'id');
+        return $this->belongsTo('App\Models\Machine', 'id');
     }
 
     public function prevSurvey()
     {
-        return $this->belongsTo('RadDB\Models\TestDate', 'prevSurveyID');
+        return $this->belongsTo('App\Models\TestDate', 'prevSurveyID');
     }
 
     public function currSurvey()
     {
-        return $this->belongsTo('RadDB\Models\TestDate', 'currSurveyID');
+        return $this->belongsTo('App\Models\TestDate', 'currSurveyID');
     }
 }

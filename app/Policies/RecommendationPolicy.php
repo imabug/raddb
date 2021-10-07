@@ -1,11 +1,11 @@
 <?php
 
-namespace RadDB\Policies;
+namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-use RadDB\Models\Recommendation;
-use RadDB\Models\User;
+use App\Models\Recommendation;
+use App\Models\User;
 
 class RecommendationPolicy
 {
@@ -19,8 +19,8 @@ class RecommendationPolicy
     /**
      * Determine whether the user can view the recommendation.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Recommendation  $recommendation
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Recommendation  $recommendation
      * @return mixed
      */
     public function view(User $user, Recommendation $recommendation)
@@ -31,7 +31,7 @@ class RecommendationPolicy
     /**
      * Determine whether the user can create recommendations.
      *
-     * @param  \RadDB\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -42,8 +42,8 @@ class RecommendationPolicy
     /**
      * Determine whether the user can update the recommendation.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Recommendation  $recommendation
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Recommendation  $recommendation
      * @return mixed
      */
     public function update(User $user, Recommendation $recommendation)
@@ -54,8 +54,8 @@ class RecommendationPolicy
     /**
      * Determine whether the user can delete the recommendation.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Recommendation  $recommendation
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Recommendation  $recommendation
      * @return mixed
      */
     public function delete(User $user, Recommendation $recommendation)

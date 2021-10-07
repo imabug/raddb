@@ -1,12 +1,12 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\OpNoteStoreRequest;
-use RadDB\Http\Requests\OpNoteUpdateRequest;
-use RadDB\Models\Machine;
-use RadDB\Models\OpNote;
+use App\Http\Requests\OpNoteStoreRequest;
+use App\Http\Requests\OpNoteUpdateRequest;
+use App\Models\Machine;
+use App\Models\OpNote;
 
 class OpNoteController extends Controller
 {

@@ -1,12 +1,11 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Charts;
 use DB;
-use RadDB\Http\Requests\ModalityRequest;
-use RadDB\Machine;
-use RadDB\Modality;
+use App\Http\Requests\ModalityRequest;
+use App\Models\Machine;
+use App\Models\Modality;
 
 class ModalityController extends Controller
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace RadDB\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use RadDB\Http\Controllers\Controller;
-use RadDB\Providers\RouteServiceProvider;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller

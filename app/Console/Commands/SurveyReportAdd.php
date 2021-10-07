@@ -1,8 +1,8 @@
 <?php
 
-namespace RadDB\Console\Commands;
+namespace App\Console\Commands;
 
-use RadDB\Models\TestDate;
+use App\Models\TestDate;
 use Illuminate\Console\Command;
 
 class SurveyReportAdd extends Command

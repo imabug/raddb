@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypterMiddleware;
 

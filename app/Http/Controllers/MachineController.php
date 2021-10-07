@@ -1,13 +1,13 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\UpdateMachineRequest;
-use RadDB\Models\Location;
-use RadDB\Models\Machine;
-use RadDB\Models\Manufacturer;
-use RadDB\Models\Modality;
+use App\Http\Requests\UpdateMachineRequest;
+use App\Models\Location;
+use App\Models\Machine;
+use App\Models\Manufacturer;
+use App\Models\Modality;
 
 class MachineController extends Controller
 {

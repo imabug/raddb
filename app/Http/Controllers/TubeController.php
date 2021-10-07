@@ -1,13 +1,13 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\StoreTubeRequest;
-use RadDB\Http\Requests\UpdateTubeRequest;
-use RadDB\Models\Machine;
-use RadDB\Models\Manufacturer;
-use RadDB\Models\Tube;
+use App\Http\Requests\StoreTubeRequest;
+use App\Http\Requests\UpdateTubeRequest;
+use App\Models\Machine;
+use App\Models\Manufacturer;
+use App\Models\Tube;
 
 class TubeController extends Controller
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace RadDB\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use RadDB\Models\Machine;
-use RadDB\Models\TestDate;
+use App\Models\Machine;
+use App\Models\TestDate;
 
 class ImportSurveyReports extends Command
 {

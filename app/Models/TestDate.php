@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -54,37 +54,37 @@ class TestDate extends Model implements HasMedia
      */
     public function machine()
     {
-        return $this->belongsTo('RadDB\Models\Machine');
+        return $this->belongsTo('App\Models\Machine');
     }
 
     public function type()
     {
-        return $this->belongsTo('RadDB\Models\TestType');
+        return $this->belongsTo('App\Models\TestType');
     }
 
     public function tester1()
     {
-        return $this->belongsTo('RadDB\Models\Tester');
+        return $this->belongsTo('App\Models\Tester');
     }
 
     public function tester2()
     {
-        return $this->belongsTo('RadDB\Models\Tester');
+        return $this->belongsTo('App\Models\Tester');
     }
 
     public function recommendations()
     {
-        return $this->hasMany('RadDB\Models\Recommendation', 'survey_id');
+        return $this->hasMany('App\Models\Recommendation', 'survey_id');
     }
 
     public function thisyear()
     {
-        return $this->belongsTo('RadDB\Models\ThisYear', 'survey_id');
+        return $this->belongsTo('App\Models\ThisYear', 'survey_id');
     }
 
     public function lastyear()
     {
-        return $this->belongsTo('RadDB\Models\LastYear', 'survey_id');
+        return $this->belongsTo('App\Models\LastYear', 'survey_id');
     }
 
     /*

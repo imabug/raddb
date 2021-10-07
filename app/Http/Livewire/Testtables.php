@@ -1,9 +1,9 @@
 <?php
 
-namespace RadDB\Http\Livewire;
+namespace App\Http\Livewire;
 
 use Livewire\Component;
-use RadDB\Machine;
+use App\Machine;
 
 class Testtables extends Component
 {

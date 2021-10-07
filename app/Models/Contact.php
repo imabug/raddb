@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +9,6 @@ class Contact extends Model
     // Relationships
     public function location()
     {
-        return $this->belongsTo('RadDB\Models\Location');
+        return $this->belongsTo('App\Models\Location');
     }
 }

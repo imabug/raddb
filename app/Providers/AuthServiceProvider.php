@@ -1,30 +1,30 @@
 <?php
 
-namespace RadDB\Providers;
+namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use RadDB\Models\Location;
-use RadDB\Models\Machine;
-use RadDB\Models\MachinePhoto;
-use RadDB\Models\Manufacturer;
-use RadDB\Models\Modality;
-use RadDB\Models\OpNote;
-use RadDB\Policies\LocationPolicy;
-use RadDB\Policies\MachinePhotoPolicy;
-use RadDB\Policies\MachinePolicy;
-use RadDB\Policies\ManufacturerPolicy;
-use RadDB\Policies\ModalityPolicy;
-use RadDB\Policies\OpNotePolicy;
-use RadDB\Policies\RecommendationPolicy;
-use RadDB\Policies\TestDatePolicy;
-use RadDB\Policies\TesterPolicy;
-use RadDB\Policies\TestTypePolicy;
-use RadDB\Policies\TubePolicy;
-use RadDB\Models\Recommendation;
-use RadDB\Models\TestDate;
-use RadDB\Models\Tester;
-use RadDB\Models\TestType;
-use RadDB\Models\Tube;
+use App\Models\Location;
+use App\Models\Machine;
+use App\Models\MachinePhoto;
+use App\Models\Manufacturer;
+use App\Models\Modality;
+use App\Models\OpNote;
+use App\Policies\LocationPolicy;
+use App\Policies\MachinePhotoPolicy;
+use App\Policies\MachinePolicy;
+use App\Policies\ManufacturerPolicy;
+use App\Policies\ModalityPolicy;
+use App\Policies\OpNotePolicy;
+use App\Policies\RecommendationPolicy;
+use App\Policies\TestDatePolicy;
+use App\Policies\TesterPolicy;
+use App\Policies\TestTypePolicy;
+use App\Policies\TubePolicy;
+use App\Models\Recommendation;
+use App\Models\TestDate;
+use App\Models\Tester;
+use App\Models\TestType;
+use App\Models\Tube;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'RadDB\Model'         => 'RadDB\Policies\ModelPolicy',
+        //'App\Models\Model'         => 'App\Policies\ModelPolicy',
         Location::class       => LocationPolicy::class,
         Machine::class        => MachinePolicy::class,
         MachinePhoto::class   => MachinePhotoPolicy::class,

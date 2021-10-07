@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Charts;
+namespace App\Charts;
 
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 

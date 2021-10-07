@@ -1,11 +1,11 @@
 <?php
 
-namespace RadDB\Policies;
+namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-use RadDB\Models\OpNote;
-use RadDB\Models\User;
+use App\Models\OpNote;
+use App\Models\User;
 
 class OpNotePolicy
 {
@@ -19,8 +19,8 @@ class OpNotePolicy
     /**
      * Determine whether the user can view the opNote.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\OpNote  $opNote
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\OpNote  $opNote
      * @return mixed
      */
     public function view(User $user, OpNote $opNote)
@@ -31,7 +31,7 @@ class OpNotePolicy
     /**
      * Determine whether the user can create opNotes.
      *
-     * @param  \RadDB\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -42,7 +42,7 @@ class OpNotePolicy
     /**
      * Determine whether the user can store opNotes.
      *
-     * @param \RadDB\Models\User $user
+     * @param \App\Models\User $user
      * @return mixed
      */
     public function store(User $user)
@@ -53,8 +53,8 @@ class OpNotePolicy
     /**
      * Determine whether the user can update the opNote.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\OpNote  $opNote
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\OpNote  $opNote
      * @return mixed
      */
     public function update(User $user, OpNote $opNote)
@@ -65,8 +65,8 @@ class OpNotePolicy
     /**
      * Determine whether the user can delete the opNote.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\OpNote  $opNote
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\OpNote  $opNote
      * @return mixed
      */
     public function delete(User $user, OpNote $opNote)

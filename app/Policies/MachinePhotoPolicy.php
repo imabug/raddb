@@ -1,11 +1,11 @@
 <?php
 
-namespace RadDB\Policies;
+namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-use RadDB\Models\MachinePhoto;
-use RadDB\Models\User;
+use App\Models\MachinePhoto;
+use App\Models\User;
 
 class MachinePhotoPolicy
 {
@@ -19,8 +19,8 @@ class MachinePhotoPolicy
     /**
      * Determine whether the user can view the machinePhoto.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\MachinePhoto  $machinePhoto
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\MachinePhoto  $machinePhoto
      * @return mixed
      */
     public function view(User $user, MachinePhoto $machinePhoto)
@@ -31,7 +31,7 @@ class MachinePhotoPolicy
     /**
      * Determine whether the user can create machinePhotos.
      *
-     * @param  \RadDB\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -42,7 +42,7 @@ class MachinePhotoPolicy
     /**
      * Determine whether the user can store machinePhoto.
      *
-     * @param \RadDB\Models\User $user
+     * @param \App\Models\User $user
      * @return mixed
      */
     public function store(User $user)
@@ -53,8 +53,8 @@ class MachinePhotoPolicy
     /**
      * Determine whether the user can update the machinePhoto.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\MachinePhoto  $machinePhoto
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\MachinePhoto  $machinePhoto
      * @return mixed
      */
     public function update(User $user, MachinePhoto $machinePhoto)
@@ -65,8 +65,8 @@ class MachinePhotoPolicy
     /**
      * Determine whether the user can delete the machinePhoto.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\MachinePhoto  $machinePhoto
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\MachinePhoto  $machinePhoto
      * @return mixed
      */
     public function delete(User $user, MachinePhoto $machinePhoto)

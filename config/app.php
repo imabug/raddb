@@ -167,12 +167,12 @@ return [
         /*
          * Application Service Providers...
          */
-        RadDB\Providers\AppServiceProvider::class,
-        // RadDB\Providers\BroadcastServiceProvider::class,
-        RadDB\Providers\AuthServiceProvider::class,
-        RadDB\Providers\EventServiceProvider::class,
-        // RadDB\Providers\TelescopeServiceProvider::class,
-        RadDB\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        // App\Providers\TelescopeServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
     ],
 
     /*

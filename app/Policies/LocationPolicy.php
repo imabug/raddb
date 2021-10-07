@@ -1,11 +1,11 @@
 <?php
 
-namespace RadDB\Policies;
+namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-use RadDB\Models\Location;
-use RadDB\Models\User;
+use App\Models\Location;
+use App\Models\User;
 
 class LocationPolicy
 {
@@ -19,8 +19,8 @@ class LocationPolicy
     /**
      * Determine whether the user can view the location.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Location  $location
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Location  $location
      * @return mixed
      */
     public function view(User $user, Location $location)
@@ -31,7 +31,7 @@ class LocationPolicy
     /**
      * Determine whether the user can create locations.
      *
-     * @param  \RadDB\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -42,8 +42,8 @@ class LocationPolicy
     /**
      * Determine whether the user can update the location.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Location  $location
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Location  $location
      * @return mixed
      */
     public function update(User $user, Location $location)
@@ -54,8 +54,8 @@ class LocationPolicy
     /**
      * Determine whether the user can delete the location.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Location  $location
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Location  $location
      * @return mixed
      */
     public function delete(User $user, Location $location)

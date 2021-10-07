@@ -1,9 +1,9 @@
 <?php
 
-namespace RadDB\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use RadDB\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {
@@ -19,5 +19,4 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
-
 }

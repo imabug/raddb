@@ -1,13 +1,13 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
-use RadDB\Models\Machine;
-use RadDB\Models\SurveyScheduleView;
-use RadDB\Models\TestDate;
-use RadDB\Charts\SurveyGraph;
+use App\Models\Machine;
+use App\Models\SurveyScheduleView;
+use App\Models\TestDate;
+use App\Charts\SurveyGraph;
 
 class DashboardController extends Controller
 {

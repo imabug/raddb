@@ -1,9 +1,9 @@
 <?php
 
-namespace RadDB\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use RadDB\Http\Controllers\Controller;
-use RadDB\Providers\RouteServiceProvider;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
 class ConfirmPasswordController extends Controller
@@ -13,9 +13,9 @@ class ConfirmPasswordController extends Controller
     | Confirm Password Controller
     |--------------------------------------------------------------------------
     |
-    | This controller is responsible for handling password confirmations
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
+    | This controller is responsible for handling password confirmations and
+    | uses a simple trait to include the behavior. You're free to explore
+    | this trait and override any functions that require customization.
     |
     */
 

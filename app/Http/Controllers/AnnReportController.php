@@ -1,9 +1,9 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
-use RadDB\Models\Machine;
-use RadDB\Models\TestDate;
+use App\Models\Machine;
+use App\Models\TestDate;
 use Illuminate\Http\Request;
 
 class AnnReportController extends Controller

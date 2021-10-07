@@ -1,13 +1,13 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\UpdateTestDateRequest;
-use RadDB\Models\Machine;
-use RadDB\Models\TestDate;
-use RadDB\Models\Tester;
-use RadDB\Models\TestType;
+use App\Http\Requests\UpdateTestDateRequest;
+use App\Models\Machine;
+use App\Models\TestDate;
+use App\Models\Tester;
+use App\Models\TestType;
 
 class TestDateController extends Controller
 {

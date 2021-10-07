@@ -1,10 +1,10 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use RadDB\Models\Machine;
+use App\Models\Machine;
 
 class MachineListingController extends Controller
 {

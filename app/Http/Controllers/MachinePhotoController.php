@@ -1,12 +1,12 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\StoreMachinePhotoRequest;
-use RadDB\Models\Machine;
-use RadDB\Models\MachinePhoto;
+use App\Http\Requests\StoreMachinePhotoRequest;
+use App\Models\Machine;
+use App\Models\MachinePhoto;
 
 class MachinePhotoController extends Controller
 {

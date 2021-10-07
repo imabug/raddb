@@ -1,11 +1,11 @@
 <?php
 
-namespace RadDB\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use RadDB\Providers\RouteServiceProvider;
+use App\Providers\RouteServiceProvider;
 
 class RedirectIfAuthenticated
 {

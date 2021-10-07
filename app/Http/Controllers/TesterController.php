@@ -1,10 +1,10 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\TesterRequest;
-use RadDB\Models\Tester;
+use App\Http\Requests\TesterRequest;
+use App\Models\Tester;
 
 class TesterController extends Controller
 {

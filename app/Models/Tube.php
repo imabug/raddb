@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Models;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -46,17 +46,17 @@ class Tube extends Model
      */
     public function machine()
     {
-        return $this->belongsTo('RadDB\Models\Machine');
+        return $this->belongsTo('App\Models\Machine');
     }
 
     public function housing_manuf()
     {
-        return $this->belongsTo('RadDB\Models\Manufacturer');
+        return $this->belongsTo('App\Models\Manufacturer');
     }
 
     public function insert_manuf()
     {
-        return $this->belongsTo('RadDB\Models\Manufacturer');
+        return $this->belongsTo('App\Models\Manufacturer');
     }
 
     /*

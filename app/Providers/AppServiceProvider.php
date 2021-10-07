@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;

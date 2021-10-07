@@ -1,12 +1,12 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Charts;
 use Illuminate\Support\Facades\Log;
-use RadDB\Http\Requests\LocationRequest;
-use RadDB\Models\Location;
-use RadDB\Models\Machine;
+use App\Http\Requests\LocationRequest;
+use App\Models\Location;
+use App\Models\Machine;
 
 class LocationController extends Controller
 {

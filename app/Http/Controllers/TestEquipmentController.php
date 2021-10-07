@@ -1,10 +1,10 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use RadDB\Models\Machine;
-use RadDB\Models\TestDate;
+use App\Models\Machine;
+use App\Models\TestDate;
 
 class TestEquipmentController extends Controller
 {

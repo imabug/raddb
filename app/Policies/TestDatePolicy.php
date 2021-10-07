@@ -1,11 +1,11 @@
 <?php
 
-namespace RadDB\Policies;
+namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-use RadDB\Models\TestDate;
-use RadDB\Models\User;
+use App\Models\TestDate;
+use App\Models\User;
 
 class TestDatePolicy
 {
@@ -19,8 +19,8 @@ class TestDatePolicy
     /**
      * Determine whether the user can view the testDate.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\TestDate  $testDate
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TestDate  $testDate
      * @return mixed
      */
     public function view(User $user, TestDate $testDate)
@@ -31,7 +31,7 @@ class TestDatePolicy
     /**
      * Determine whether the user can create testDates.
      *
-     * @param  \RadDB\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -42,7 +42,7 @@ class TestDatePolicy
     /**
      * Determine whether the user can add survey reports.
      *
-     * @param  \RadDB\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function storeSurveyReport(User $user)
@@ -53,8 +53,8 @@ class TestDatePolicy
     /**
      * Determine whether the user can update the testDate.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\TestDate  $testDate
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TestDate  $testDate
      * @return mixed
      */
     public function update(User $user, TestDate $testDate)
@@ -65,8 +65,8 @@ class TestDatePolicy
     /**
      * Determine whether the user can delete the testDate.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\TestDate  $testDate
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TestDate  $testDate
      * @return mixed
      */
     public function delete(User $user, TestDate $testDate)

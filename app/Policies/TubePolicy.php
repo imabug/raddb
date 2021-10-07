@@ -1,11 +1,11 @@
 <?php
 
-namespace RadDB\Policies;
+namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-use RadDB\Models\Tube;
-use RadDB\Models\User;
+use App\Models\Tube;
+use App\Models\User;
 
 class TubePolicy
 {
@@ -19,8 +19,8 @@ class TubePolicy
     /**
      * Determine whether the user can view the tube.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Tube  $tube
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Tube  $tube
      * @return mixed
      */
     public function view(User $user, Tube $tube)
@@ -31,7 +31,7 @@ class TubePolicy
     /**
      * Determine whether the user can create tubes.
      *
-     * @param  \RadDB\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -42,8 +42,8 @@ class TubePolicy
     /**
      * Determine whether the user can update the tube.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Tube  $tube
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Tube  $tube
      * @return mixed
      */
     public function update(User $user, Tube $tube)
@@ -54,8 +54,8 @@ class TubePolicy
     /**
      * Determine whether the user can delete the tube.
      *
-     * @param  \RadDB\Models\User  $user
-     * @param  \RadDB\Models\Tube  $tube
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Tube  $tube
      * @return mixed
      */
     public function delete(User $user, Tube $tube)

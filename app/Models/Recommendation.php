@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -52,7 +52,7 @@ class Recommendation extends Model
      */
     public function survey()
     {
-        return $this->belongsTo('RadDB\Models\TestDate');
+        return $this->belongsTo('App\Models\TestDate');
     }
 
     /*

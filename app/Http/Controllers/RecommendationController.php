@@ -1,13 +1,13 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use RadDB\Http\Requests\StoreRecommendationRequest;
-use RadDB\Http\Requests\UpdateRecommendationRequest;
-use RadDB\Models\Recommendation;
-use RadDB\Models\TestDate;
+use App\Http\Requests\StoreRecommendationRequest;
+use App\Http\Requests\UpdateRecommendationRequest;
+use App\Models\Recommendation;
+use App\Models\TestDate;
 
 class RecommendationController extends Controller
 {

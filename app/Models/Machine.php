@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB\Models;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -56,61 +56,61 @@ class Machine extends Model implements HasMedia
      */
     public function location()
     {
-        return $this->belongsTo('RadDB\Models\Location');
+        return $this->belongsTo('App\Models\Location');
     }
 
     public function modality()
     {
-        return $this->belongsTo('RadDB\Models\Modality');
+        return $this->belongsTo('App\Models\Modality');
     }
 
     public function manufacturer()
     {
-        return $this->belongsTo('RadDB\Models\Manufacturer');
+        return $this->belongsTo('App\Models\Manufacturer');
     }
 
     public function tube()
     {
-        return $this->hasMany('RadDB\Models\Tube');
+        return $this->hasMany('App\Models\Tube');
     }
 
     public function opnote()
     {
-        return $this->hasMany('RadDB\Models\OpNote');
+        return $this->hasMany('App\Models\OpNote');
     }
 
     public function testdate()
     {
-        return $this->hasMany('RadDB\Models\TestDate');
+        return $this->hasMany('App\Models\TestDate');
     }
 
     public function thisyear()
     {
-        return $this->hasMany('RadDB\Models\ThisYear');
+        return $this->hasMany('App\Models\ThisYear');
     }
 
     public function lastyear()
     {
-        return $this->hasMany('RadDB\Models\LastYear');
+        return $this->hasMany('App\Models\LastYear');
     }
 
     public function testdateRecent()
     {
-        return $this->hasMany('RadDB\Models\TestDate')
+        return $this->hasMany('App\Models\TestDate')
             ->latest('test_date')->first();
     }
 
     public function recommendation()
     {
-        return $this->hasManyThrough('RadDB\Models\Recommendation',
-                                     'RadDB\Models\TestDate',
+        return $this->hasManyThrough('App\Models\Recommendation',
+                                     'App\Models\TestDate',
                                      'machine_id',
                                      'survey_id');
     }
 
     public function surveySchedule()
     {
-        return $this->hasOne('RadDB\Models\SurveyScheduleView', 'id');
+        return $this->hasOne('App\Models\SurveyScheduleView', 'id');
     }
 
     /*

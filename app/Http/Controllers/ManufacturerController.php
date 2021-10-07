@@ -1,10 +1,10 @@
 <?php
 
-namespace RadDB\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Charts;
-use RadDB\Models\Machine;
-use RadDB\Models\Manufacturer;
+use App\Models\Machine;
+use App\Models\Manufacturer;
 
 class ManufacturerController extends Controller
 {

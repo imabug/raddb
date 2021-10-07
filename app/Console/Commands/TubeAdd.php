@@ -1,10 +1,10 @@
 <?php
 
-namespace RadDB\Console\Commands;
+namespace App\Console\Commands;
 
-use RadDB\Models\Tube;
-use RadDB\Models\Machine;
-use RadDB\Models\Manufacturer;
+use App\Models\Tube;
+use App\Models\Machine;
+use App\Models\Manufacturer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 

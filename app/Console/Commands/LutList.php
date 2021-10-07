@@ -1,13 +1,13 @@
 <?php
 
-namespace RadDB\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use RadDB\Models\Location;
-use RadDB\Models\Manufacturer;
-use RadDB\Models\Modality;
-use RadDB\Models\Tester;
-use RadDB\Models\TestType;
+use App\Models\Location;
+use App\Models\Manufacturer;
+use App\Models\Modality;
+use App\Models\Tester;
+use App\Models\TestType;
 
 class LutList extends Command
 {
