@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Machine;
 use App\Models\SurveyScheduleView;
 use App\Models\TestDate;
-use App\Charts\SurveyGraph;
 
 class DashboardController extends Controller
 {

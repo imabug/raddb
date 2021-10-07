@@ -50,9 +50,6 @@ Route::name('dashboard.showPending')
 // Survey schedule
 Route::name('dashboard.showSchedule')
     ->get('/dashboard/showSchedule', [DashboardController::class, 'showSchedule']);
-// Count of surveys per month
-// Route::name('dashboard.surveyGraph')
-//     ->get('/dashboard/surveyGraph', 'DashboardController@surveyGraph');
 
 /*
  * Machine listings
