@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Charts;
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\LocationRequest;
 use App\Models\Location;
 use App\Models\Machine;

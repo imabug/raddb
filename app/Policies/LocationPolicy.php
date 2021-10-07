@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Location;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class LocationPolicy
 {
@@ -19,8 +19,9 @@ class LocationPolicy
     /**
      * Determine whether the user can view the location.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Location  $location
+     * @param \App\Models\User     $user
+     * @param \App\Models\Location $location
+     *
      * @return mixed
      */
     public function view(User $user, Location $location)
@@ -31,7 +32,8 @@ class LocationPolicy
     /**
      * Determine whether the user can create locations.
      *
-     * @param  \App\Models\User  $user
+     * @param \App\Models\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -42,8 +44,9 @@ class LocationPolicy
     /**
      * Determine whether the user can update the location.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Location  $location
+     * @param \App\Models\User     $user
+     * @param \App\Models\Location $location
+     *
      * @return mixed
      */
     public function update(User $user, Location $location)
@@ -54,8 +57,9 @@ class LocationPolicy
     /**
      * Determine whether the user can delete the location.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Location  $location
+     * @param \App\Models\User     $user
+     * @param \App\Models\Location $location
+     *
      * @return mixed
      */
     public function delete(User $user, Location $location)

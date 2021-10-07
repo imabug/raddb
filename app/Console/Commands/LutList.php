@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Location;
 use App\Models\Manufacturer;
 use App\Models\Modality;
 use App\Models\Tester;
 use App\Models\TestType;
+use Illuminate\Console\Command;
 
 class LutList extends Command
 {
@@ -66,7 +66,7 @@ class LutList extends Command
             $this->error('Usage: php artisan lut:list <table>');
             break;
         }
-        if (! is_null($body)) {
+        if (!is_null($body)) {
             $this->table($headers, $body);
         }
 

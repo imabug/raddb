@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\Models\Media;
 
 class TestDate extends Model implements HasMedia
 {
@@ -49,6 +48,7 @@ class TestDate extends Model implements HasMedia
         $this->addMediaCollection('survey_reports')
             ->useDisk('SurveyReports');
     }
+
     /*
      * Relationships
      */
@@ -122,7 +122,7 @@ class TestDate extends Model implements HasMedia
      * Scope function to return a specific $id.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $id
+     * @param int                                   $id
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -135,7 +135,7 @@ class TestDate extends Model implements HasMedia
      * Scope function to return test dates for a specific type of test.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $id
+     * @param int                                   $id
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -157,10 +157,10 @@ class TestDate extends Model implements HasMedia
     }
 
     /**
-     * Scope function to return the n most recent routine annual survey test dates
+     * Scope function to return the n most recent routine annual survey test dates.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $n
+     * @param int                                   $n
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

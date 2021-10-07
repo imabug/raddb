@@ -134,7 +134,7 @@ return [
             '-mt', // multithreading for some speed improvements.
             '-q 90', //quality factor that brings the least noticeable changes.
         ],
-   ],
+    ],
 
     /*
      * The path where to store temporary files while performing image conversions.
@@ -153,7 +153,7 @@ return [
      * thumbnails and have installed the php-ffmpeg/php-ffmpeg composer
      * dependency.
      */
-    'ffmpeg_binaries' => '/usr/bin/ffmpeg',
+    'ffmpeg_binaries'  => '/usr/bin/ffmpeg',
     'ffprobe_binaries' => '/usr/bin/ffprobe',
 
     /*
@@ -161,7 +161,7 @@ return [
      * your custom jobs extend the ones provided by the package.
      */
     'jobs' => [
-        'perform_conversions' => Spatie\MediaLibrary\Conversions\Jobs\PerformConversionsJob::class,
+        'perform_conversions'        => Spatie\MediaLibrary\Conversions\Jobs\PerformConversionsJob::class,
         'generate_responsive_images' => Spatie\MediaLibrary\ResponsiveImages\Jobs\GenerateResponsiveImagesJob::class,
     ],
 

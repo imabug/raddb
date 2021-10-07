@@ -2,13 +2,17 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\Location;
 use App\Models\Machine;
 use App\Models\MachinePhoto;
 use App\Models\Manufacturer;
 use App\Models\Modality;
 use App\Models\OpNote;
+use App\Models\Recommendation;
+use App\Models\TestDate;
+use App\Models\Tester;
+use App\Models\TestType;
+use App\Models\Tube;
 use App\Policies\LocationPolicy;
 use App\Policies\MachinePhotoPolicy;
 use App\Policies\MachinePolicy;
@@ -20,11 +24,7 @@ use App\Policies\TestDatePolicy;
 use App\Policies\TesterPolicy;
 use App\Policies\TestTypePolicy;
 use App\Policies\TubePolicy;
-use App\Models\Recommendation;
-use App\Models\TestDate;
-use App\Models\Tester;
-use App\Models\TestType;
-use App\Models\Tube;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {

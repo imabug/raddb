@@ -11,27 +11,26 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnnReportController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\MachineListingController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MachineController;
+use App\Http\Controllers\MachineListingController;
+use App\Http\Controllers\MachinePhotoController;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\ModalityController;
-use App\Http\Controllers\MachineController;
-use App\Http\Controllers\TestEquipmentController;
 use App\Http\Controllers\OpNoteController;
 use App\Http\Controllers\RecommendationController;
-use App\Http\Controllers\TestDateController;
-use App\Http\Controllers\SurveyReportController;
 use App\Http\Controllers\ServiceReportController;
+use App\Http\Controllers\SurveyReportController;
+use App\Http\Controllers\TestDateController;
+use App\Http\Controllers\TestEquipmentController;
 use App\Http\Controllers\TubeController;
-use App\Http\Controllers\MachinePhotoController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AnnReportController;
-
-// Livewire components
 use App\Http\Livewire\Testtables;
+// Livewire components
+use Illuminate\Support\Facades\Route;
 
 /*
  * Dashboard routes
@@ -120,8 +119,11 @@ Route::resource('surveys', TestDateController::class);
  */
 Route::name('surveyreports.create')
     ->get('surveyreports/create/{id?}', [SurveyReportController::class, 'create']);
-Route::resource('surveyreports', SurveyReportController::class,
-                ['except' => ['create']]);
+Route::resource(
+    'surveyreports',
+    SurveyReportController::class,
+    ['except' => ['create']]
+);
 
 /*
  * Service report controller
@@ -133,16 +135,22 @@ Route::resource('servicereports', ServiceReportController::class);
  */
 Route::name('tubes.createTubeFor')
     ->get('tubes/{id}/create', [TubeController::class, 'create']);
-Route::resource('tubes', TubeController::class,
-                ['except' => ['create']]);
+Route::resource(
+    'tubes',
+    TubeController::class,
+    ['except' => ['create']]
+);
 
 /*
  * Photos controller. Used to handle uploading and updating photos of machines.
  */
 Route::name('photos.create')
     ->get('photos/{id}/create', [MachinePhotoController::class, 'create']);
-Route::resource('photos', MachinePhotoController::class,
-                ['except' => ['create']]);
+Route::resource(
+    'photos',
+    MachinePhotoController::class,
+    ['except' => ['create']]
+);
 
 /*
  * Route for user management
