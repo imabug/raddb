@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB;
+namespace RadDB\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,16 +30,16 @@ class Manufacturer extends Model
     // Relationships
     public function machine()
     {
-        return $this->hasMany('RadDB\Machine');
+        return $this->hasMany('RadDB\Models\Machine');
     }
 
     public function tube_housing_manuf()
     {
-        return $this->hasMany('RadDB\Tube');
+        return $this->hasMany('RadDB\Models\Tube');
     }
 
     public function tube_ins_manuf()
     {
-        return $this->hasMany('RadDB\Tube');
+        return $this->hasMany('RadDB\Models\Tube');
     }
 }

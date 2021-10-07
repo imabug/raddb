@@ -2,10 +2,10 @@
 
 namespace RadDB\Console\Commands;
 
-use RadDB\Machine;
-use RadDB\Location;
-use RadDB\Modality;
-use RadDB\Manufacturer;
+use RadDB\Models\Machine;
+use RadDB\Models\Location;
+use RadDB\Models\Modality;
+use RadDB\Models\Manufacturer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 

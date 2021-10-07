@@ -4,10 +4,10 @@ namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PHPExcel;
-use RadDB\GenData;
-use RadDB\Machine;
-use RadDB\TestDate;
-use RadDB\Tube;
+use RadDB\Models\GenData;
+use RadDB\Models\Machine;
+use RadDB\Models\TestDate;
+use RadDB\Models\Tube;
 
 class TestController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB;
+namespace RadDB\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -41,7 +41,7 @@ class MachinePhoto extends Model
      */
     public function machine()
     {
-        return $this->belongsTo('RadDB\Machine');
+        return $this->belongsTo('RadDB\Models\Machine');
     }
 
     /*

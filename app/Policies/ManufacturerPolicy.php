@@ -3,8 +3,9 @@
 namespace RadDB\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use RadDB\Manufacturer;
-use RadDB\User;
+use Illuminate\Support\Facades\Auth;
+use RadDB\Models\Manufacturer;
+use RadDB\Models\User;
 
 class ManufacturerPolicy
 {
@@ -18,8 +19,8 @@ class ManufacturerPolicy
     /**
      * Determine whether the user can view the manufacturer.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Manufacturer  $manufacturer
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Manufacturer  $manufacturer
      * @return mixed
      */
     public function view(User $user, Manufacturer $manufacturer)
@@ -30,7 +31,7 @@ class ManufacturerPolicy
     /**
      * Determine whether the user can create manufacturers.
      *
-     * @param  \RadDB\User  $user
+     * @param  \RadDB\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -41,8 +42,8 @@ class ManufacturerPolicy
     /**
      * Determine whether the user can update the manufacturer.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Manufacturer  $manufacturer
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Manufacturer  $manufacturer
      * @return mixed
      */
     public function update(User $user, Manufacturer $manufacturer)
@@ -53,8 +54,8 @@ class ManufacturerPolicy
     /**
      * Determine whether the user can delete the manufacturer.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Manufacturer  $manufacturer
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Manufacturer  $manufacturer
      * @return mixed
      */
     public function delete(User $user, Manufacturer $manufacturer)

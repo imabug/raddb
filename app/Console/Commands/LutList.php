@@ -3,11 +3,11 @@
 namespace RadDB\Console\Commands;
 
 use Illuminate\Console\Command;
-use RadDB\Location;
-use RadDB\Manufacturer;
-use RadDB\Modality;
-use RadDB\Tester;
-use RadDB\TestType;
+use RadDB\Models\Location;
+use RadDB\Models\Manufacturer;
+use RadDB\Models\Modality;
+use RadDB\Models\Tester;
+use RadDB\Models\TestType;
 
 class LutList extends Command
 {

@@ -5,8 +5,8 @@ namespace RadDB\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\StoreMachinePhotoRequest;
-use RadDB\Machine;
-use RadDB\MachinePhoto;
+use RadDB\Models\Machine;
+use RadDB\Models\MachinePhoto;
 
 class MachinePhotoController extends Controller
 {

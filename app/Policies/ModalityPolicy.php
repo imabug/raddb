@@ -3,8 +3,9 @@
 namespace RadDB\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use RadDB\Modality;
-use RadDB\User;
+use Illuminate\Support\Facades\Auth;
+use RadDB\Models\Modality;
+use RadDB\Models\User;
 
 class ModalityPolicy
 {
@@ -18,8 +19,8 @@ class ModalityPolicy
     /**
      * Determine whether the user can view the modality.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Modality  $modality
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Modality  $modality
      * @return mixed
      */
     public function view(User $user, Modality $modality)
@@ -30,7 +31,7 @@ class ModalityPolicy
     /**
      * Determine whether the user can create modalities.
      *
-     * @param  \RadDB\User  $user
+     * @param  \RadDB\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -41,8 +42,8 @@ class ModalityPolicy
     /**
      * Determine whether the user can update the modality.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Modality  $modality
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Modality  $modality
      * @return mixed
      */
     public function update(User $user, Modality $modality)
@@ -53,8 +54,8 @@ class ModalityPolicy
     /**
      * Determine whether the user can delete the modality.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Modality  $modality
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Modality  $modality
      * @return mixed
      */
     public function delete(User $user, Modality $modality)

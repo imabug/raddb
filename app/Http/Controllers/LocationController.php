@@ -5,8 +5,8 @@ namespace RadDB\Http\Controllers;
 use Charts;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\LocationRequest;
-use RadDB\Location;
-use RadDB\Machine;
+use RadDB\Models\Location;
+use RadDB\Models\Machine;
 
 class LocationController extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace RadDB\Console\Commands;
 
-use RadDB\Tube;
-use RadDB\Machine;
-use RadDB\Manufacturer;
+use RadDB\Models\Tube;
+use RadDB\Models\Machine;
+use RadDB\Models\Manufacturer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 

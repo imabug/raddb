@@ -5,9 +5,9 @@ namespace RadDB\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\StoreTubeRequest;
 use RadDB\Http\Requests\UpdateTubeRequest;
-use RadDB\Machine;
-use RadDB\Manufacturer;
-use RadDB\Tube;
+use RadDB\Models\Machine;
+use RadDB\Models\Manufacturer;
+use RadDB\Models\Tube;
 
 class TubeController extends Controller
 {

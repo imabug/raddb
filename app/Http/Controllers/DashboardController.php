@@ -4,9 +4,9 @@ namespace RadDB\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
-use RadDB\Machine;
-use RadDB\SurveyScheduleView;
-use RadDB\TestDate;
+use RadDB\Models\Machine;
+use RadDB\Models\SurveyScheduleView;
+use RadDB\Models\TestDate;
 use RadDB\Charts\SurveyGraph;
 
 class DashboardController extends Controller

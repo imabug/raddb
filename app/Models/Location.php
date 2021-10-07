@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB;
+namespace RadDB\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,11 +30,11 @@ class Location extends Model
     // Relationships
     public function machine()
     {
-        return $this->hasMany('RadDB\Machine');
+        return $this->hasMany('RadDB\Models\Machine');
     }
 
     public function contact()
     {
-        return $this->hasMany('RadDB\Contact');
+        return $this->hasMany('RadDB\Models\Contact');
     }
 }

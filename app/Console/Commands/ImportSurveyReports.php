@@ -4,8 +4,8 @@ namespace RadDB\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use RadDB\Machine;
-use RadDB\TestDate;
+use RadDB\Models\Machine;
+use RadDB\Models\TestDate;
 
 class ImportSurveyReports extends Command
 {

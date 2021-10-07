@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB;
+namespace RadDB\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -37,6 +37,6 @@ class TestType extends Model
     // Relationships
     public function testdate()
     {
-        return $this->hasMany('RadDB\TestDate');
+        return $this->hasMany('RadDB\Models\TestDate');
     }
 }

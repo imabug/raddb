@@ -3,8 +3,9 @@
 namespace RadDB\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use RadDB\Tester;
-use RadDB\User;
+use Illuminate\Support\Facades\Auth;
+use RadDB\Models\Tester;
+use RadDB\Models\User;
 
 class TesterPolicy
 {
@@ -18,8 +19,8 @@ class TesterPolicy
     /**
      * Determine whether the user can view the tester.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Tester  $tester
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Tester  $tester
      * @return mixed
      */
     public function view(User $user, Tester $tester)
@@ -30,7 +31,7 @@ class TesterPolicy
     /**
      * Determine whether the user can create testers.
      *
-     * @param  \RadDB\User  $user
+     * @param  \RadDB\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -41,8 +42,8 @@ class TesterPolicy
     /**
      * Determine whether the user can update the tester.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Tester  $tester
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Tester  $tester
      * @return mixed
      */
     public function update(User $user, Tester $tester)
@@ -53,8 +54,8 @@ class TesterPolicy
     /**
      * Determine whether the user can delete the tester.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\Tester  $tester
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\Tester  $tester
      * @return mixed
      */
     public function delete(User $user, Tester $tester)

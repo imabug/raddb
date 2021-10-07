@@ -3,8 +3,8 @@
 namespace RadDB\Http\Controllers;
 
 use Charts;
-use RadDB\Machine;
-use RadDB\Manufacturer;
+use RadDB\Models\Machine;
+use RadDB\Models\Manufacturer;
 
 class ManufacturerController extends Controller
 {

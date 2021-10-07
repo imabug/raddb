@@ -3,15 +3,15 @@
 namespace RadDB\Console\Commands;
 
 use Illuminate\Console\Command;
-use RadDB\CollimatorData;
-use RadDB\FluoroData;
-use RadDB\GenData;
-use RadDB\HVLData;
-use RadDB\MachineSurveyData;
-use RadDB\MaxFluoroData;
-use RadDB\RadiationOutput;
-use RadDB\RadSurveyData;
-use RadDB\ReceptorEntranceExp;
+use RadDB\Models\CollimatorData;
+use RadDB\Models\FluoroData;
+use RadDB\Models\GenData;
+use RadDB\Models\HVLData;
+use RadDB\Models\MachineSurveyData;
+use RadDB\Models\MaxFluoroData;
+use RadDB\Models\RadiationOutput;
+use RadDB\Models\RadSurveyData;
+use RadDB\Models\ReceptorEntranceExp;
 
 class PopulateMachineSurveyData extends Command
 {

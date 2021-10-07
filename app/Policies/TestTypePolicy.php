@@ -3,8 +3,9 @@
 namespace RadDB\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use RadDB\TestType;
-use RadDB\User;
+use Illuminate\Support\Facades\Auth;
+use RadDB\Models\TestType;
+use RadDB\Models\User;
 
 class TestTypePolicy
 {
@@ -18,8 +19,8 @@ class TestTypePolicy
     /**
      * Determine whether the user can view the testType.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\TestType  $testType
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\TestType  $testType
      * @return mixed
      */
     public function view(User $user, TestType $testType)
@@ -30,7 +31,7 @@ class TestTypePolicy
     /**
      * Determine whether the user can create testTypes.
      *
-     * @param  \RadDB\User  $user
+     * @param  \RadDB\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -41,8 +42,8 @@ class TestTypePolicy
     /**
      * Determine whether the user can update the testType.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\TestType  $testType
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\TestType  $testType
      * @return mixed
      */
     public function update(User $user, TestType $testType)
@@ -53,8 +54,8 @@ class TestTypePolicy
     /**
      * Determine whether the user can delete the testType.
      *
-     * @param  \RadDB\User  $user
-     * @param  \RadDB\TestType  $testType
+     * @param  \RadDB\Models\User  $user
+     * @param  \RadDB\Models\TestType  $testType
      * @return mixed
      */
     public function delete(User $user, TestType $testType)

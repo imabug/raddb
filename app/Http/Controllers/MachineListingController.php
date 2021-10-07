@@ -4,7 +4,7 @@ namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use RadDB\Machine;
+use RadDB\Models\Machine;
 
 class MachineListingController extends Controller
 {

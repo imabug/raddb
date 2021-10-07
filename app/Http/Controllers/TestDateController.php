@@ -4,10 +4,10 @@ namespace RadDB\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\UpdateTestDateRequest;
-use RadDB\Machine;
-use RadDB\TestDate;
-use RadDB\Tester;
-use RadDB\TestType;
+use RadDB\Models\Machine;
+use RadDB\Models\TestDate;
+use RadDB\Models\Tester;
+use RadDB\Models\TestType;
 
 class TestDateController extends Controller
 {

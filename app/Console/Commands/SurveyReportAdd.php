@@ -2,7 +2,7 @@
 
 namespace RadDB\Console\Commands;
 
-use RadDB\TestDate;
+use RadDB\Models\TestDate;
 use Illuminate\Console\Command;
 
 class SurveyReportAdd extends Command

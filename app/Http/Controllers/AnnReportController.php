@@ -2,8 +2,8 @@
 
 namespace RadDB\Http\Controllers;
 
-use RadDB\Machine;
-use RadDB\TestDate;
+use RadDB\Models\Machine;
+use RadDB\Models\TestDate;
 use Illuminate\Http\Request;
 
 class AnnReportController extends Controller

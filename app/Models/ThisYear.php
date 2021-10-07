@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB;
+namespace RadDB\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,11 +18,11 @@ class ThisYear extends Model
      */
     public function machine()
     {
-        return $this->belongsTo('RadDB\Machine');
+        return $this->belongsTo('RadDB\Models\Machine');
     }
 
     public function survey()
     {
-        return $this->belongsTo('RadDB\TestDate', 'id');
+        return $this->belongsTo('RadDB\Models\TestDate', 'id');
     }
 }

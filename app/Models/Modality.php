@@ -1,6 +1,6 @@
 <?php
 
-namespace RadDB;
+namespace RadDB\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -37,6 +37,6 @@ class Modality extends Model
     // Relationships
     public function machine()
     {
-        return $this->hasMany('RadDB\Machine');
+        return $this->hasMany('RadDB\Models\Machine');
     }
 }

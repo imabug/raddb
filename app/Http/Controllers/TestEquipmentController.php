@@ -3,8 +3,8 @@
 namespace RadDB\Http\Controllers;
 
 use Illuminate\Http\Request;
-use RadDB\Machine;
-use RadDB\TestDate;
+use RadDB\Models\Machine;
+use RadDB\Models\TestDate;
 
 class TestEquipmentController extends Controller
 {

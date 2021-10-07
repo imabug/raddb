@@ -4,10 +4,10 @@ namespace RadDB\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 use RadDB\Http\Requests\UpdateMachineRequest;
-use RadDB\Location;
-use RadDB\Machine;
-use RadDB\Manufacturer;
-use RadDB\Modality;
+use RadDB\Models\Location;
+use RadDB\Models\Machine;
+use RadDB\Models\Manufacturer;
+use RadDB\Models\Modality;
 
 class MachineController extends Controller
 {

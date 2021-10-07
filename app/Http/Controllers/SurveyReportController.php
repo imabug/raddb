@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use RadDB\Http\Requests\StoreSurveyReportRequest;
-use RadDB\TestDate;
+use RadDB\Models\TestDate;
 
 class SurveyReportController extends Controller
 {
