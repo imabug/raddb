@@ -41,7 +41,7 @@
                <ul class="dropdown-menu" aria-labelledby="navbarSurveys">
                    <li role="presentation"><a class="dropdown-item" href="{{ route('surveys.create') }}">Add survey</a></li>
                    <li role="presentation"><a class="dropdown-item" href="{{ route('recommendations.create') }}">Add survey recommendation</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('surveyreports.create') }}">Add survey report</a></li>
+                   <li role="presentation"><a class="dropdown-item" href="{{ route('surveyreports.create', ['id' => null]) }}">Add survey report</a></li>
                </ul>
            </li>
            <li role="presentation" class="nav-item dropdown">
