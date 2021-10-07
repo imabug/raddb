@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Machine;
-use App\Models\TestDate;
+use Illuminate\Http\Request;
 
 class TestEquipmentController extends Controller
 {
@@ -17,10 +16,10 @@ class TestEquipmentController extends Controller
     {
         // Only use middlware auth on these methods
         $this->middleware('auth')->only([
-             'store',
-             'update',
-             'destroy',
-         ]);
+            'store',
+            'update',
+            'destroy',
+        ]);
     }
 
     /**
@@ -35,8 +34,8 @@ class TestEquipmentController extends Controller
 
         return view('machine.index', [
             'machineStatus' => 'Test Equipment',
-            'machines' => $machines,
-            'n' => $machines->count(),
+            'machines'      => $machines,
+            'n'             => $machines->count(),
         ]);
     }
 
@@ -53,7 +52,8 @@ class TestEquipmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -64,7 +64,8 @@ class TestEquipmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -100,7 +101,8 @@ class TestEquipmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -111,8 +113,9 @@ class TestEquipmentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -123,7 +126,8 @@ class TestEquipmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

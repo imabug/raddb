@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Charts;
 use App\Models\Machine;
 use App\Models\Manufacturer;
 

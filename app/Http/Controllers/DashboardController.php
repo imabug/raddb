@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use Illuminate\Http\Request;
 use App\Models\Machine;
 use App\Models\SurveyScheduleView;
 use App\Models\TestDate;

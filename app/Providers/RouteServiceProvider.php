@@ -20,11 +20,11 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = null;
 
     /**
-     * The path to the "home" route for your application
+     * The path to the "home" route for your application.
      *
      * @var string
      */
-    public const HOME ='/';
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, etc.

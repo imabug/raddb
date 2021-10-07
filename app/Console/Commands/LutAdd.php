@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Location;
 use App\Models\Manufacturer;
 use App\Models\Modality;
 use App\Models\Tester;
 use App\Models\TestType;
+use Illuminate\Console\Command;
 
 class LutAdd extends Command
 {

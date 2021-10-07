@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\TestTypeRequest;
-use App\Models\TestType;
 
 class TestTypeController extends Controller
 {
@@ -16,12 +14,12 @@ class TestTypeController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only([
-             'create',
-             'edit',
-             'store',
-             'update',
-             'destroy',
-         ]);
+            'create',
+            'edit',
+            'store',
+            'update',
+            'destroy',
+        ]);
     }
 
     /**

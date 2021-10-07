@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\OpNoteStoreRequest;
 use App\Http\Requests\OpNoteUpdateRequest;
 use App\Models\Machine;
 use App\Models\OpNote;
+use Illuminate\Support\Facades\Log;
 
 class OpNoteController extends Controller
 {
@@ -19,12 +19,12 @@ class OpNoteController extends Controller
     {
         // Only include these methods in the auth middlware
         $this->middleware('auth')->only([
-             'create',
-             'edit',
-             'store',
-             'update',
-             'destroy',
-         ]);
+            'create',
+            'edit',
+            'store',
+            'update',
+            'destroy',
+        ]);
     }
 
     /**
@@ -60,8 +60,8 @@ class OpNoteController extends Controller
 
         return view('opnotes.opnote_create', [
             'machineId' => $machineId,
-            'machines' => $machines,
-            'opNotes' => $opNotes,
+            'machines'  => $machines,
+            'opNotes'   => $opNotes,
         ]);
     }
 

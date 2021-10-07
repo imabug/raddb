@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Machine;
 use App\Models\Location;
-use App\Models\Modality;
+use App\Models\Machine;
 use App\Models\Manufacturer;
+use App\Models\Modality;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,7 +49,7 @@ class MachineAdd extends Command
         $modHeader = ['ID', 'Modality'];
         $manufHeader = ['ID', 'Manufacturer'];
 
-        $machine = new Machine;
+        $machine = new Machine();
 
         $machine->description = $this->ask('Give a descriptive name for this machine');
 
@@ -72,17 +72,17 @@ class MachineAdd extends Command
         $machine->machine_status = 'Active';
 
         $validator = Validator::make($machine->toArray(), [
-            'description' => 'required|string|max:100',
-            'location_id' => 'required|integer|exists:locations,id',
-            'modality_id' => 'required|integer|exists:modalities,id',
+            'description'     => 'required|string|max:100',
+            'location_id'     => 'required|integer|exists:locations,id',
+            'modality_id'     => 'required|integer|exists:modalities,id',
             'manufacturer_id' => 'required|integer|exists:manufacturers,id',
-            'model' => 'required|string|max:50',
-            'serial_number' => 'required|string|max:20',
-            'manuf_date' => 'required|date',
-            'install_date' => 'required|date',
-            'room' => 'required|string|max:20',
-            'vend_site_id' => 'string|nullable',
-            'notes' => 'string|nullable',
+            'model'           => 'required|string|max:50',
+            'serial_number'   => 'required|string|max:20',
+            'manuf_date'      => 'required|date',
+            'install_date'    => 'required|date',
+            'room'            => 'required|string|max:20',
+            'vend_site_id'    => 'string|nullable',
+            'notes'           => 'string|nullable',
         ]);
 
         if ($validator->fails()) {

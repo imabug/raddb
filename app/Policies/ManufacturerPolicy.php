@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Manufacturer;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class ManufacturerPolicy
 {
@@ -19,8 +19,9 @@ class ManufacturerPolicy
     /**
      * Determine whether the user can view the manufacturer.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Manufacturer  $manufacturer
+     * @param \App\Models\User         $user
+     * @param \App\Models\Manufacturer $manufacturer
+     *
      * @return mixed
      */
     public function view(User $user, Manufacturer $manufacturer)
@@ -31,7 +32,8 @@ class ManufacturerPolicy
     /**
      * Determine whether the user can create manufacturers.
      *
-     * @param  \App\Models\User  $user
+     * @param \App\Models\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -42,8 +44,9 @@ class ManufacturerPolicy
     /**
      * Determine whether the user can update the manufacturer.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Manufacturer  $manufacturer
+     * @param \App\Models\User         $user
+     * @param \App\Models\Manufacturer $manufacturer
+     *
      * @return mixed
      */
     public function update(User $user, Manufacturer $manufacturer)
@@ -54,8 +57,9 @@ class ManufacturerPolicy
     /**
      * Determine whether the user can delete the manufacturer.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Manufacturer  $manufacturer
+     * @param \App\Models\User         $user
+     * @param \App\Models\Manufacturer $manufacturer
+     *
      * @return mixed
      */
     public function delete(User $user, Manufacturer $manufacturer)

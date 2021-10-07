@@ -2,12 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class HomePageTest extends TestCase
 {
-
     /**
      * A basic feature test example.
      *
@@ -19,11 +17,12 @@ class HomePageTest extends TestCase
     }
 
     /**
-     * Test index route
+     * Test index route.
+     *
      * @return void
      */
     public function testIndexRouteLoads()
     {
-        $this->get(route('index'))->assertSee("Radiological Equipment Database");
+        $this->get(route('index'))->assertSee('Radiological Equipment Database');
     }
 }
