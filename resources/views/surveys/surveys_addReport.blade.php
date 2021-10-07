@@ -12,8 +12,10 @@
       <span class="input-group-text">Survey ID: </span>
       <input class="form-control" type="number" id="surveyId" name="surveyId" list="surveys" aria-label="Enter machine ID">
     </div>
+  </div>
+  <div class="row">
     <div class="col input-group mb-3">
-      <span class="input-group-text">Upload survey report: </span>
+      <span class="input-group-text">Survey report: </span>
       <input class="form-control" type="file" id="surveyReport" name="surveyReport" aria-label="Survey report to upload">
     </div>
   </div>

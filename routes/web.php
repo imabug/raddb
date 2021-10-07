@@ -12,26 +12,26 @@
 */
 
 use Illuminate\Support\Facades\Route;
-use RadDB\Http\Controllers\DashboardController;
-use RadDB\Http\Controllers\MachineListingController;
-use RadDB\Http\Controllers\LocationController;
-use RadDB\Http\Controllers\ManufacturerController;
-use RadDB\Http\Controllers\ModalityController;
-use RadDB\Http\Controllers\MachineController;
-use RadDB\Http\Controllers\TestEquipmentController;
-use RadDB\Http\Controllers\OpNoteController;
-use RadDB\Http\Controllers\RecommendationController;
-use RadDB\Http\Controllers\TestDateController;
-use RadDB\Http\Controllers\SurveyReportController;
-use RadDB\Http\Controllers\ServiceReportController;
-use RadDB\Http\Controllers\TubeController;
-use RadDB\Http\Controllers\MachinePhotoController;
-use RadDB\Http\Controllers\UserController;
-use RadDB\Http\Controllers\HomeController;
-use RadDB\Http\Controllers\AnnReportController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MachineListingController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ManufacturerController;
+use App\Http\Controllers\ModalityController;
+use App\Http\Controllers\MachineController;
+use App\Http\Controllers\TestEquipmentController;
+use App\Http\Controllers\OpNoteController;
+use App\Http\Controllers\RecommendationController;
+use App\Http\Controllers\TestDateController;
+use App\Http\Controllers\SurveyReportController;
+use App\Http\Controllers\ServiceReportController;
+use App\Http\Controllers\TubeController;
+use App\Http\Controllers\MachinePhotoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AnnReportController;
 
 // Livewire components
-use RadDB\Http\Livewire\Testtables;
+use App\Http\Livewire\Testtables;
 
 /*
  * Dashboard routes
@@ -102,30 +102,27 @@ Route::resource('testequipment', TestEquipmentController::class);
  */
 Route::name('opnotes.createOpNoteFor')
     ->get('opnotes/{machineId?}/create', [OpNoteController::class, 'create']);
-Route::resource('opnotes', OpNoteController::class,
-                ['except' => ['create']]);
+Route::resource('opnotes', OpNoteController::class);
 
 /*
  * Recommendation controller
  */
 Route::name('recommendations.createRecFor')
     ->get('recommendations/{id?}/create', [RecommendationController::class, 'create']);
-Route::resource('recommendations', RecommendationController::class,
-                ['except' => ['create']]);
+Route::resource('recommendations', RecommendationController::class);
 
 /*
  * Test Date controller
  */
 Route::name('surveys.createSurveyFor')
     ->get('surveys/{id?}/create', [TestDateController::class, 'create']);
-Route::resource('surveys', TestDateController::class,
-                ['except' => ['create']]);
+Route::resource('surveys', TestDateController::class);
 
 /*
  * Survey report controller
  */
 Route::name('surveyreports.create')
-    ->get('surveyreports/{id?}/create', [SurveyReportController::class, 'create']);
+    ->get('surveyreports/create/{id?}', [SurveyReportController::class, 'create']);
 Route::resource('surveyreports', SurveyReportController::class,
                 ['except' => ['create']]);
 
