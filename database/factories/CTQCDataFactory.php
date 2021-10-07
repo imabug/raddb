@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Factories;
 
 use Faker\Generator as Faker;
@@ -11,12 +12,12 @@ use Faker\Generator as Faker;
 $factory->define(RadDB\CTDailyQCRecord::class, function (Faker $faker) {
     return [
         'machine_id' => '130',
-        'qcdate' => $faker->dateTimeBetween('-3 months', 'now')->format('Y-m-d'),
-        'scan_type' => $faker->randomElement(['Axial', 'Helical']),
-        'water_hu' => $faker->randomFloat(1, -15, 15),
-        'water_sd' => $faker->randomFloat(1, 0, 10),
-        'artifacts' => $faker->randomElement(['Y', 'N']),
-        'initials' => 'EM',
-        'notes' => $faker->sentence(),
+        'qcdate'     => $faker->dateTimeBetween('-3 months', 'now')->format('Y-m-d'),
+        'scan_type'  => $faker->randomElement(['Axial', 'Helical']),
+        'water_hu'   => $faker->randomFloat(1, -15, 15),
+        'water_sd'   => $faker->randomFloat(1, 0, 10),
+        'artifacts'  => $faker->randomElement(['Y', 'N']),
+        'initials'   => 'EM',
+        'notes'      => $faker->sentence(),
     ];
 });

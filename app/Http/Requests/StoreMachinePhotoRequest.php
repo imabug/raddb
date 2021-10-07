@@ -24,8 +24,8 @@ class StoreMachinePhotoRequest extends FormRequest
     public function rules()
     {
         return [
-            'machineId'     => 'required|exists:machines,id|integer',
-            'photo' => 'required|file|mimes:jpeg,png,gif',
+            'machineId'        => 'required|exists:machines,id|integer',
+            'photo'            => 'required|file|mimes:jpeg,png,gif',
             'photoDescription' => 'string',
         ];
     }

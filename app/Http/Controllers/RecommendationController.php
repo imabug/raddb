@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreRecommendationRequest;
 use App\Http\Requests\UpdateRecommendationRequest;
 use App\Models\Recommendation;
 use App\Models\TestDate;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class RecommendationController extends Controller
 {
@@ -20,12 +20,12 @@ class RecommendationController extends Controller
     {
         // Only include these methods in the auth middlware
         $this->middleware('auth')->only([
-             'create',
-             'edit',
-             'store',
-             'update',
-             'destroy',
-         ]);
+            'create',
+            'edit',
+            'store',
+            'update',
+            'destroy',
+        ]);
     }
 
     /**
@@ -62,9 +62,9 @@ class RecommendationController extends Controller
         }
 
         return view('recommendations.rec_create', [
-            'survey'      => $survey,
+            'survey'         => $survey,
             'serviceReports' => $serviceReports,
-            'recs'        => $recs,
+            'recs'           => $recs,
         ]);
     }
 
@@ -152,9 +152,9 @@ class RecommendationController extends Controller
         $serviceReports = $survey->getMedia('service_report');
 
         return view('recommendations.recommendations', [
-            'survey'      => $survey,
+            'survey'         => $survey,
             'serviceReports' => $serviceReports,
-            'recs'        => Recommendation::where('survey_id', $surveyId)->get(),
+            'recs'           => Recommendation::where('survey_id', $surveyId)->get(),
         ]);
     }
 

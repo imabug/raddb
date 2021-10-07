@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\UpdateMachineRequest;
 use App\Models\Location;
 use App\Models\Machine;
 use App\Models\Manufacturer;
 use App\Models\Modality;
+use Illuminate\Support\Facades\Log;
 
 class MachineController extends Controller
 {
@@ -20,12 +20,12 @@ class MachineController extends Controller
     {
         // Only apply auth middleware to these methods
         $this->middleware('auth')->only([
-             'create',
-             'edit',
-             'store',
-             'update',
-             'destroy',
-         ]);
+            'create',
+            'edit',
+            'store',
+            'update',
+            'destroy',
+        ]);
     }
 
     /**

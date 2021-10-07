@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Tube;
 use App\Models\Machine;
 use App\Models\Manufacturer;
+use App\Models\Tube;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,7 +45,7 @@ class TubeAdd extends Command
 
         $manufHeader = ['ID', 'Manufacturer'];
 
-        $tube = new Tube;
+        $tube = new Tube();
 
         if (is_null($this->argument('machine_id'))) {
             // No machine ID was provided.  Display a list of all the machines and ask for a machine ID to add the new tube to.
@@ -78,7 +78,7 @@ class TubeAdd extends Command
         // Validate the manufacturer ID provided.
         $validator = Validator::make($tube->toArray(), [
             'housing_manuf_id' => 'required|integer|exists:manufacturers,id',
-            'insert_manuf_id' => 'required|integer|exists:manufacturers,id',
+            'insert_manuf_id'  => 'required|integer|exists:manufacturers,id',
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -105,15 +105,15 @@ class TubeAdd extends Command
         // Validate the rest of the tube information.
         $validator = Validator::make($tube->toArray(), [
             'housing_model' => 'required|string|max:50',
-            'housing_sn' => 'required|string|max:20',
-            'insert_model' => 'required|string|max:50',
-            'insert_sn' => 'required|string|max:20',
-            'manuf_date' => 'required|date',
-            'install_date' => 'required|date',
-            'lfs' => 'required|numeric',
-            'mfs' => 'nullable|numeric',
-            'sfs' => 'required|numeric',
-            'notes' => 'nullable|string',
+            'housing_sn'    => 'required|string|max:20',
+            'insert_model'  => 'required|string|max:50',
+            'insert_sn'     => 'required|string|max:20',
+            'manuf_date'    => 'required|date',
+            'install_date'  => 'required|date',
+            'lfs'           => 'required|numeric',
+            'mfs'           => 'nullable|numeric',
+            'sfs'           => 'required|numeric',
+            'notes'         => 'nullable|string',
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors();

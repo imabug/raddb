@@ -22,10 +22,10 @@ class Tester extends Model
      * @var array
      */
     protected $dates = [
-         'created_at',
-         'deleted_at',
-         'updated_at',
-     ];
+        'created_at',
+        'deleted_at',
+        'updated_at',
+    ];
 
     // Relationships
     public function testdate()

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\UpdateTestDateRequest;
 use App\Models\Machine;
 use App\Models\TestDate;
 use App\Models\Tester;
 use App\Models\TestType;
+use Illuminate\Support\Facades\Log;
 
 class TestDateController extends Controller
 {
@@ -20,12 +20,12 @@ class TestDateController extends Controller
     {
         // Only use these methods with the auth middlware
         $this->middleware('auth')->only([
-             'create',
-             'edit',
-             'store',
-             'update',
-             'destroy',
-         ]);
+            'create',
+            'edit',
+            'store',
+            'update',
+            'destroy',
+        ]);
     }
 
     /**
@@ -108,10 +108,10 @@ class TestDateController extends Controller
             $testdate->tester2_id = $request->tester2ID;
         }
         $testdate->type_id = $request->test_type;
-        if (! empty($request->notes)) {
+        if (!empty($request->notes)) {
             $testdate->notes = $request->notes;
         }
-        if (! empty($request->accession)) {
+        if (!empty($request->accession)) {
             $testdate->accession = $request->accession;
         }
 

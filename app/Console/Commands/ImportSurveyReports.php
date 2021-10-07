@@ -2,10 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
-use App\Models\Machine;
 use App\Models\TestDate;
+use Illuminate\Console\Command;
 
 class ImportSurveyReports extends Command
 {
