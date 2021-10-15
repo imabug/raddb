@@ -27,7 +27,7 @@ class MachineListTable extends DataTableComponent
             Column::make('Model', 'model')
                 ->sortable()
                 ->searchable(),
-            Column::make('SN','serial_number'),
+            Column::make('SN', 'serial_number'),
             Column::make('Description', 'description'),
             Column::make('Location', 'location.location')
                 ->sortable()
