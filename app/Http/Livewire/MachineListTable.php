@@ -19,19 +19,16 @@ class MachineListTable extends DataTableComponent
         return [
             Column::make('ID', 'id'),
             Column::make('Modality', 'modality.modality')
-                ->sortable()
-                ->searchable(),
+                ->sortable(),
             Column::make('Manufacturer', 'manufacturer.manufacturer')
-                ->sortable()
-                ->searchable(),
+                ->sortable(),
             Column::make('Model', 'model')
-                ->sortable()
-                ->searchable(),
+                ->sortable(),
             Column::make('SN','serial_number'),
-            Column::make('Description', 'description'),
-            Column::make('Location', 'location.location')
-                ->sortable()
+            Column::make('Description', 'description')
                 ->searchable(),
+            Column::make('Location', 'location.location')
+                ->sortable(),
             Column::make('Age', 'age'),
             Column::make('Room', 'room'),
         ];
@@ -39,7 +36,9 @@ class MachineListTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return Machine::with('modality', 'manufacturer', 'location')
+        return Machine::query()
+            ->with(['modality', 'manufacturer', 'location'])
             ->active();
     }
+
 }
