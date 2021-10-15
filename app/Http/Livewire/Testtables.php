@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Machine;
+use App\Models\Machine;
 use Livewire\Component;
 
 class Testtables extends Component
