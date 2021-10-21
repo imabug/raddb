@@ -41,4 +41,8 @@ class MachineListTable extends DataTableComponent
             ->active();
     }
 
+    public function rowView(): string
+    {
+        return 'livewire-tables.machines-list-row';
+    }
 }
