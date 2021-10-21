@@ -1,13 +1,13 @@
 <x-livewire-tables::table.cell>
-  {{$row->id}}
+  {{ $row->id }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  <a href="{{route('machines.showModality', $row->modality->id)}}">{{$row->modality->modality}}</a>
+  <a href="{{ route('machines.showModality', $row->modality->id) }}">{{ $row->modality->modality }}</a>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  <a href="{{route('machines.showManufacturer', $row->manufacturer->id)}}">{{$row->manufacturer->manufacturer}}</a>
+  <a href="{{ route('machines.showManufacturer', $row->manufacturer->id) }}">{{ $row->manufacturer->manufacturer }}</a>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
@@ -15,23 +15,23 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{$row->serial_number}}
+  {{ $row->serial_number }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  <a href="{{route('machines.show', $row->id)}}">{{$row->description}}</a>
+  <a href="{{ route('machines.show', $row->id) }}">{{ $row->description }}</a>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  <a href="{{route('machines.showLocation', $row->location->id)}}">{{$row->location->location}}</a>
+  <a href="{{ route('machines.showLocation', $row->location->id) }}">{{ $row->location->location }}</a>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{$row->age}}
+  {{ $row->age }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{$row->room}}
+  {{ $row->room }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
