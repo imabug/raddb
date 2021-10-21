@@ -37,15 +37,17 @@ class MachineController extends Controller
      */
     public function index()
     {
-        // Show a list of all the machines in the database
-        $machines = Machine::with('modality', 'manufacturer', 'location')
+        // Get a count of the active machines in the database
+        $n = Machine::with('modality', 'manufacturer', 'location')
             ->active()
-            ->get();
+            ->get()
+            ->count();
 
+        // The list of machines is displayed in the view by the
+        // MachineListTable Livewire component
         return view('machine.index', [
             'machineStatus' => 'Active',
-            'machines'      => $machines,
-            'n'             => $machines->count(),
+            'n'             => $n,
         ]);
     }
 
