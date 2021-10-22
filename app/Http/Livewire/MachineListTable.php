@@ -9,6 +9,7 @@ use App\Models\Modality;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 /**
  * Livewire datatables component that provides a list of
@@ -20,6 +21,9 @@ class MachineListTable extends DataTableComponent
     public string $defaultSortDirection = 'asc';
     public bool $singleColumnSorting = false;
     public bool $paginationEnabled = false;
+    public array $filters = [
+        'status' => 'Active',
+    ];
 
     public function columns(): array
     {
@@ -50,11 +54,25 @@ class MachineListTable extends DataTableComponent
         ];
     }
 
+    public function filters(): array
+    {
+        return [
+            'status' => Filter::make('Status')
+                ->select([
+                    '' => 'All',
+                    'Active' => 'Active',
+                    'Removed' => 'Removed',
+                    'Inactive' => 'Inactive',
+                ]),
+        ];
+    }
+
     public function query(): Builder
     {
         return Machine::query()
             ->with(['modality', 'manufacturer', 'location'])
-            ->active();
+            ->when($this->getFilter('status'),
+                   fn ($query, $status) => $query->where('machine_status', $status));
     }
 
     public function rowView(): string
