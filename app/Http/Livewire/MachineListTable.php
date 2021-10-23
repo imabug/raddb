@@ -13,7 +13,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 /**
  * Livewire datatables component that provides a list of
- * machines for the machines listing view (/machines/)
+ * machines for the machines listing view (/machines/).
  */
 class MachineListTable extends DataTableComponent
 {
@@ -30,22 +30,22 @@ class MachineListTable extends DataTableComponent
         return [
             Column::make('ID', 'id'),
             Column::make('Modality', 'modality.modality')
-                ->sortable(function(Builder $query, $direction) {
+                ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Modality::select('modality')->whereColumn('id', 'modality_id'), $direction);
                 }),
             Column::make('Manufacturer', 'manufacturer.manufacturer')
-                ->sortable(function(Builder $query, $direction) {
+                ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Manufacturer::select('manufacturer')->whereColumn('id', 'manufacturer_id'), $direction);
                 }),
             Column::make('Model', 'model')
                 ->sortable(),
-            Column::make('SN','serial_number'),
+            Column::make('SN', 'serial_number'),
             Column::make('Description', 'description')
                 ->searchable(),
             Column::make('Location', 'location.location')
-                ->sortable(function(Builder $query, $direction) {
+                ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Location::select('location')->whereColumn('id', 'location_id'), $direction);
                 }),
@@ -59,9 +59,9 @@ class MachineListTable extends DataTableComponent
         return [
             'status' => Filter::make('Status')
                 ->select([
-                    '' => 'All',
-                    'Active' => 'Active',
-                    'Removed' => 'Removed',
+                    ''         => 'All',
+                    'Active'   => 'Active',
+                    'Removed'  => 'Removed',
                     'Inactive' => 'Inactive',
                 ]),
         ];
@@ -71,8 +71,10 @@ class MachineListTable extends DataTableComponent
     {
         return Machine::query()
             ->with(['modality', 'manufacturer', 'location'])
-            ->when($this->getFilter('status'),
-                   fn ($query, $status) => $query->where('machine_status', $status));
+            ->when(
+                $this->getFilter('status'),
+                fn ($query, $status) => $query->where('machine_status', $status)
+            );
     }
 
     public function rowView(): string
