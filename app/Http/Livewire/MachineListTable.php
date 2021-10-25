@@ -22,10 +22,10 @@ class MachineListTable extends DataTableComponent
     public bool $singleColumnSorting = false;
     public bool $paginationEnabled = false;
     public array $filters = [
-        'status' => 'Active',
-        'modality' => '',
+        'status'       => 'Active',
+        'modality'     => '',
         'manufacturer' => '',
-        'location' => '',
+        'location'     => '',
     ];
     private array $modalityArray = ['' => 'All'];
     private array $manufArray = ['' => 'All'];
