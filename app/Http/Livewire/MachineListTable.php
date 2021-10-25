@@ -23,7 +23,13 @@ class MachineListTable extends DataTableComponent
     public bool $paginationEnabled = false;
     public array $filters = [
         'status' => 'Active',
+        'modality' => '',
+        'manufacturer' => '',
+        'location' => '',
     ];
+    private array $modalityArray = ['' => 'All'];
+    private array $manufArray = ['' => 'All'];
+    private array $locArray = ['' => 'All'];
 
     public function columns(): array
     {
@@ -56,6 +62,18 @@ class MachineListTable extends DataTableComponent
 
     public function filters(): array
     {
+        foreach (Modality::get('modality') as $m) {
+            $this->modalityArray[$m->modality] = $m->modality;
+        }
+
+        foreach (Manufacturer::get('manufacturer') as $m) {
+            $this->manufArray[$m->manufacturer] = $m->manufacturer;
+        }
+
+        foreach (Location::get('location') as $l) {
+            $this->locArray[$l->location] = $l->location;
+        }
+
         return [
             'status' => Filter::make('Status')
                 ->select([
@@ -64,6 +82,12 @@ class MachineListTable extends DataTableComponent
                     'Removed'  => 'Removed',
                     'Inactive' => 'Inactive',
                 ]),
+            'modality' => Filter::make('Modality')
+                ->select($this->modalityArray),
+            'manufacturer' => Filter::make('Manufacturer')
+                ->select($this->manufArray),
+            'location' => Filter::make('Location')
+                ->select($this->locArray),
         ];
     }
 
@@ -74,6 +98,24 @@ class MachineListTable extends DataTableComponent
             ->when(
                 $this->getFilter('status'),
                 fn ($query, $status) => $query->where('machine_status', $status)
+            )
+            ->when(
+                $this->getFilter('modality'),
+                fn ($query, $modality) => $query
+                    ->where(Modality::select('modality')
+                    ->whereColumn('id', 'modality_id'), $modality)
+            )
+            ->when(
+                $this->getFilter('manufacturer'),
+                fn ($query, $manufacturer) => $query
+                    ->where(Manufacturer::select('manufacturer')
+                    ->whereColumn('id', 'manufacturer_id'), $manufacturer)
+            )
+            ->when(
+                $this->getFilter('location'),
+                fn ($query, $location) => $query
+                    ->where(Location::select('location')
+                    ->whereColumn('id', 'location_id'), $location)
             );
     }
 
