@@ -24,10 +24,10 @@ class MachineListTable extends DataTableComponent
 
     // Default filters.
     public array $filters = [
-        'status' => 'Active',
-        'modality' => '',
+        'status'       => 'Active',
+        'modality'     => '',
         'manufacturer' => '',
-        'location' => '',
+        'location'     => '',
     ];
 
     // Arrays for filter items.
