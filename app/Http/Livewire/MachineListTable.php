@@ -21,12 +21,16 @@ class MachineListTable extends DataTableComponent
     public string $defaultSortDirection = 'asc';
     public bool $singleColumnSorting = false;
     public bool $paginationEnabled = false;
+
+    // Default filters.
     public array $filters = [
         'status' => 'Active',
         'modality' => '',
         'manufacturer' => '',
         'location' => '',
     ];
+
+    // Arrays for filter items.
     private array $modalityArray = ['' => 'All'];
     private array $manufArray = ['' => 'All'];
     private array $locArray = ['' => 'All'];
@@ -62,6 +66,8 @@ class MachineListTable extends DataTableComponent
 
     public function filters(): array
     {
+        // Build arrays for modality, manufacturer, and location.
+        // TODO See if this can be cached.
         foreach (Modality::get('modality') as $m) {
             $this->modalityArray[$m->modality] = $m->modality;
         }
@@ -103,19 +109,19 @@ class MachineListTable extends DataTableComponent
                 $this->getFilter('modality'),
                 fn ($query, $modality) => $query
                     ->where(Modality::select('modality')
-                    ->whereColumn('id', 'modality_id'), $modality)
+                        ->whereColumn('id', 'modality_id'), $modality)
             )
             ->when(
                 $this->getFilter('manufacturer'),
                 fn ($query, $manufacturer) => $query
                     ->where(Manufacturer::select('manufacturer')
-                    ->whereColumn('id', 'manufacturer_id'), $manufacturer)
+                        ->whereColumn('id', 'manufacturer_id'), $manufacturer)
             )
             ->when(
                 $this->getFilter('location'),
                 fn ($query, $location) => $query
                     ->where(Location::select('location')
-                    ->whereColumn('id', 'location_id'), $location)
+                        ->whereColumn('id', 'location_id'), $location)
             );
     }
 
