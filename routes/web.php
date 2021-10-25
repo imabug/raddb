@@ -54,32 +54,32 @@ Route::name('dashboard.showSchedule')
  * Machine listings
  */
 // Inactive machines
-Route::name('machines.inactive')
-    ->get('/machines/inactive', [MachineListingController::class, 'showInactive']);
-// Removed machines
-Route::name('machines.removed')
-    ->get('/machines/removed/{year?}', [MachineListingController::class, 'showRemoved']);
-// Installed machines by year
-Route::name('machines.installed')
-    ->get('/machines/installed/{year?}', [MachineListingController::class, 'showInstalled']);
-// Index of machines grouped by location
-Route::name('machines.showLocationIndex')
-    ->get('/machines/locations', [LocationController::class, 'index']);
-// List of machines for a selected location(s)
-Route::name('machines.showLocation')
-    ->get('/machines/locations/{id}', [LocationController::class, 'show']);
-// Index of machines grouped by manufacturer
-Route::name('machines.showManufacturerIndex')
-    ->get('/machines/manufacturers', [ManufacturerController::class, 'index']);
-// List of machines for a selected modality/modalities
-Route::name('machines.showManufacturer')
-    ->get('/machines/manufacturers/{id}', [ManufacturerController::class, 'show']);
-// Index of machines grouped by modality
-Route::name('machines.showModalityIndex')
-    ->get('/machines/modalities', [ModalityController::class, 'index']);
-// List of machines for a selected modality/modalities
-Route::name('machines.showModality')
-    ->get('/machines/modalities/{id}', [ModalityController::class, 'show']);
+// Route::name('machines.inactive')
+//     ->get('/machines/inactive', [MachineListingController::class, 'showInactive']);
+// // Removed machines
+// Route::name('machines.removed')
+//     ->get('/machines/removed/{year?}', [MachineListingController::class, 'showRemoved']);
+// // Installed machines by year
+// Route::name('machines.installed')
+//     ->get('/machines/installed/{year?}', [MachineListingController::class, 'showInstalled']);
+// // Index of machines grouped by location
+// Route::name('machines.showLocationIndex')
+//     ->get('/machines/locations', [LocationController::class, 'index']);
+// // List of machines for a selected location(s)
+// Route::name('machines.showLocation')
+//     ->get('/machines/locations/{id}', [LocationController::class, 'show']);
+// // Index of machines grouped by manufacturer
+// Route::name('machines.showManufacturerIndex')
+//     ->get('/machines/manufacturers', [ManufacturerController::class, 'index']);
+// // List of machines for a selected modality/modalities
+// Route::name('machines.showManufacturer')
+//     ->get('/machines/manufacturers/{id}', [ManufacturerController::class, 'show']);
+// // Index of machines grouped by modality
+// Route::name('machines.showModalityIndex')
+//     ->get('/machines/modalities', [ModalityController::class, 'index']);
+// // List of machines for a selected modality/modalities
+// Route::name('machines.showModality')
+//     ->get('/machines/modalities/{id}', [ModalityController::class, 'show']);
 
 /*
  * Machine controller

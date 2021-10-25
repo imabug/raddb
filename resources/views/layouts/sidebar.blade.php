@@ -20,12 +20,6 @@
                <a href="#" class="nav-link dropdown-toggle" id="navbarListings" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings<span class="caret"></span></a>
                <ul class="dropdown-menu" aria-labelledby="navbarListings">
                    <li role="presentation"><a class="dropdown-item" href="{{ route('machines.index') }}">List machines</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('machines.showModalityIndex') }}">List by modality</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('machines.showLocationIndex') }}">List by location</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('machines.showManufacturerIndex') }}">List by manufacturer</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('machines.installed') }}">Installed machines</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('machines.inactive') }}">Inactive machines</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('machines.removed') }}">Removed machines</a></li>
                </ul>
            </li>
            @if (Auth::check())
