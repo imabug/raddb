@@ -16,7 +16,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MachineController;
-use App\Http\Controllers\MachineListingController;
 use App\Http\Controllers\MachinePhotoController;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\ModalityController;
@@ -52,6 +51,8 @@ Route::name('dashboard.showSchedule')
 
 /*
  * Machine listings
+ * These are redundant now that the machine listings has sorting and filtering capabilities
+ * Will eventually be removed.
  */
 // Inactive machines
 // Route::name('machines.inactive')
