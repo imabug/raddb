@@ -17,9 +17,9 @@ class SurveyScheduleTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-,
-            Column::make('Description', 'description'),
+            Column::make('ID', 'id'),
+            Column::make('Description', 'description')
+                ->searchable(),
             Column::make('Previous', 'prevSurveyDate')
                 ->sortable(),
             Column::make('Prev Survey ID', 'prevSurveyID'),
