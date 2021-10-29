@@ -42,12 +42,6 @@ Route::name('dashboard.dashboard')
 // Untested machines
 Route::name('dashboard.showUntested')
     ->get('/dashboard/showUntested', [DashboardController::class, 'showUntested']);
-// Pending surveys
-Route::name('dashboard.showPending')
-    ->get('/dashboard/showPending', [DashboardController::class, 'showPending']);
-// Survey schedule
-Route::name('dashboard.showSchedule')
-    ->get('/dashboard/showSchedule', [DashboardController::class, 'showSchedule']);
 
 /*
  * Machine listings
