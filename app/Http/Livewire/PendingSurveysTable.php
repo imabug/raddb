@@ -36,7 +36,8 @@ class PendingSurveysTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return TestDate::with('machine', 'type')
+        return TestDate::query()
+            ->with('machine', 'type')
             ->pending();
     }
 }
