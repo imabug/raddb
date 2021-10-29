@@ -39,9 +39,6 @@ Route::name('index')
     ->get('/', [DashboardController::class, 'index']);
 Route::name('dashboard.dashboard')
     ->get('/dashboard', [DashboardController::class, 'teststatus']);
-// Untested machines
-Route::name('dashboard.showUntested')
-    ->get('/dashboard/showUntested', [DashboardController::class, 'showUntested']);
 
 /*
  * Machine listings

@@ -109,20 +109,4 @@ class DashboardController extends Controller
             'machines' => $machines,
         ]);
     }
-
-    /**
-     * Show grid of untested machines.
-     * URI: /dashboard/showUntested
-     * Method: GET.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showUntested()
-    {
-        return view('dashboard.untested', [
-            'machinesUntested' => $this->untested(),
-            'remain'           => $this->untested()->count(),
-            'total'            => Machine::active()->get()->count(),
-        ]);
-    }
 }
