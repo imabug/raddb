@@ -12,8 +12,6 @@
                <ul class="dropdown-menu" aria-labelledby="navbarDashboards">
                    <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.dashboard')}}">Survey status</a></li>
                    <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.showUntested')}}">Surveys to be scheduled</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.showPending')}}">Pending surveys</a></li>
-                   <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.showSchedule')}}">Survey schedule</a></li>
                </ul>
            </li>
            <li role="presentation" class="nav-item dropdown">

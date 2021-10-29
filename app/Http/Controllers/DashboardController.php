@@ -125,33 +125,4 @@ class DashboardController extends Controller
             'total'            => Machine::active()->get()->count(),
         ]);
     }
-
-    /**
-     * Show the list of pending surveys
-     * URI: /dashboard/showPending
-     * Method: GET.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showPending()
-    {
-        return view('dashboard.pending', [
-            'pendingSurveys'   => $this->pending(),
-        ]);
-    }
-
-    /**
-     * Show the survey schedule for the year
-     * URI: /dashboard/showSchedule
-     * Method: GET.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showSchedule()
-    {
-        // Get the list of machines and their surveys for this year and the previous year
-        return view('dashboard.survey_schedule', [
-            'surveySchedule'   => $this->surveySchedule(),
-        ]);
-    }
 }
