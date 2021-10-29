@@ -16,7 +16,8 @@
 </ul>
 <div class="tab-content" id="surveyTabs">
   <div role="tabpanel" class="tab-pane show active" id="survey_schedule" aria-labelledby="survey-pills-schedule">
-        @include('inc.survey_schedule')
+    <livewire:survey-schedule-table />
+    {{-- @include('inc.survey_schedule') --}}}}
     </div>
     <div role="tabpanel" class="tab-pane" id="pending" aria-labelledby="survey-pills-pending">
       <livewire:pending-surveys-table />
