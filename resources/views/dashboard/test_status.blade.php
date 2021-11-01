@@ -25,7 +25,7 @@
 @foreach ($mod_chunk as $m)
 <td class="text-center">
     <a href="{{ route('machines.show', $m->id) }}">{{ $m->description}}</a><br />
-    {{ $m->location->location }}<br />
+    <a href="/machines?filters[status]=Active&filters[location]={{ $m->location->location }}">{{ $m->location->location }}</a><br />
 @foreach ($m->testdate as $td)
     @if ($loop->first)
 @php

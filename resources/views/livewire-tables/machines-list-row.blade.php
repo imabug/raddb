@@ -3,11 +3,11 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{ $row->modality->modality }}
+  <a href="/machines?filters[status]=Active&filters[modality]={{ $row->modality->modality }}">{{ $row->modality->modality }}</a>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{ $row->manufacturer->manufacturer }}
+  <a href="/machines?filters[status]=Active&filters[manufacturer]={{ $row->manufacturer->manufacturer }}">{{ $row->manufacturer->manufacturer }}</a>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
@@ -23,7 +23,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{ $row->location->location }}
+  <a href="/machines?filters[status]=Active&filters[location]={{ $row->location->location }}">{{ $row->location->location }}</a>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
