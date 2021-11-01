@@ -27,8 +27,6 @@ use App\Http\Controllers\TestDateController;
 use App\Http\Controllers\TestEquipmentController;
 use App\Http\Controllers\TubeController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\ShowMachines;
-// Livewire components
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -162,4 +160,4 @@ Route::name('ar.cexp')->get('/ar/cexp', [AnnReportController::class, 'mammContEx
 Route::name('ar.annrep')->get('ar/{year}/annrep/', [AnnReportController::class, 'annrep']);
 
 // Experimental routes
-Route::name('test.testtables')->get('/test/testtables', ShowMachines::class);
+//Route::name('test.testtables')->get('/test/testtables', ShowMachines::class);
