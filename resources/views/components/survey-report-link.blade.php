@@ -1,0 +1,3 @@
+<div>
+    {{$surveyID}} - {{ $surveyLink }}
+</div>
