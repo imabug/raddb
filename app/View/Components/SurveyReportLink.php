@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 class SurveyReportLink extends Component
 {
     /**
-     * Survey ID
+     * Survey ID.
      *
      * @int $surveyID
      */
     public $surveyID;
 
     /**
-     * Survey report link
+     * Survey report link.
      *
      * @string $surveyLink
      */
@@ -26,6 +26,7 @@ class SurveyReportLink extends Component
      *
      *
      * @param int $surveyID
+     *
      * @return void
      */
     public function __construct(?int $surveyID)
@@ -37,7 +38,7 @@ class SurveyReportLink extends Component
         if (!is_null($survey) && $survey->hasMedia('survey_report')) {
             $this->surveyLink = $survey->getFirstMediaUrl('survey_report');
         } else {
-            $this->surveyLink = "No media";
+            $this->surveyLink = 'No media';
         }
     }
 
