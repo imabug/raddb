@@ -3,11 +3,11 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  <a href="{{ route('machines.showModality', $row->modality->id) }}">{{ $row->modality->modality }}</a>
+  {{ $row->modality->modality }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  <a href="{{ route('machines.showManufacturer', $row->manufacturer->id) }}">{{ $row->manufacturer->manufacturer }}</a>
+  {{ $row->manufacturer->manufacturer }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
@@ -23,7 +23,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  <a href="{{ route('machines.showLocation', $row->location->id) }}">{{ $row->location->location }}</a>
+  {{ $row->location->location }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
