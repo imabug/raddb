@@ -23,8 +23,8 @@ class DashboardController extends Controller
             'machinesUntested' => $this->untested(),
             'remain'           => $this->untested()->count(),
             'total'            => Machine::active()->get()->count(),
-            'pendingSurveys'   => $this->pending(),
-            'surveySchedule'   => $this->surveySchedule(),
+            // 'pendingSurveys'   => $this->pending(),
+            // 'surveySchedule'   => $this->surveySchedule(),
         ]);
     }
 
