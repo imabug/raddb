@@ -45,7 +45,7 @@ class TestDate extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('survey_report')
+        $this->addMediaCollection('survey_reports')
             ->useDisk('SurveyReports');
     }
 
