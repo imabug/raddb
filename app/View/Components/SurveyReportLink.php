@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 class SurveyReportLink extends Component
 {
     /**
-     * Survey ID
+     * Survey ID.
      *
      * @int $surveyID
      */
     public $surveyID;
 
     /**
-     * Survey report link
+     * Survey report link.
      *
      * @string $surveyLink
      */
@@ -26,6 +26,7 @@ class SurveyReportLink extends Component
      *
      *
      * @param int $surveyID
+     *
      * @return void
      */
     public function __construct(?int $surveyID)
