@@ -37,7 +37,7 @@ class SurveyReportLink extends Component
         if (!is_null($survey) && $survey->hasMedia('survey_report')) {
             $this->surveyLink = $survey->getFirstMediaUrl('survey_report');
         } else {
-            $this->surveyLink = "No media";
+            $this->surveyLink = null;
         }
     }
 

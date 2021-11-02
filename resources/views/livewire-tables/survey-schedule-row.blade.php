@@ -11,8 +11,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{ $row->prevSurveyID }}
-  <x-survey-report-link :surveyID="$row->prevSurveyID" />
+  {{ $row->prevSurveyID }} <x-survey-report-link :surveyID="$row->prevSurveyID" />
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
@@ -20,6 +19,5 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{ $row->currSurveyID }}
-  <x-survey-report-link :surveyID="$row->currSurveyID" />
+  {{ $row->currSurveyID }} <x-survey-report-link :surveyID="$row->currSurveyID" />
 </x-livewire-tables::table.cell>
