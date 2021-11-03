@@ -1501,16 +1501,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.68.1",
+            "version": "v8.69.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "abe985ff1fb82dd04aab03bc1dc56e83fe61a59f"
+                "reference": "545181da688db64fed6d8427e55f630a90ca0d32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/abe985ff1fb82dd04aab03bc1dc56e83fe61a59f",
-                "reference": "abe985ff1fb82dd04aab03bc1dc56e83fe61a59f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/545181da688db64fed6d8427e55f630a90ca0d32",
+                "reference": "545181da688db64fed6d8427e55f630a90ca0d32",
                 "shasum": ""
             },
             "require": {
@@ -1669,7 +1669,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-10-27T12:31:46+00:00"
+            "time": "2021-11-02T13:53:22+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -1864,16 +1864,16 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v3.3.0",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "07d725813350c695c779382cbd6dac0ab8665537"
+                "reference": "a449e3364d9780a80a49894a3af9795c85af806f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/07d725813350c695c779382cbd6dac0ab8665537",
-                "reference": "07d725813350c695c779382cbd6dac0ab8665537",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/a449e3364d9780a80a49894a3af9795c85af806f",
+                "reference": "a449e3364d9780a80a49894a3af9795c85af806f",
                 "shasum": ""
             },
             "require": {
@@ -1916,9 +1916,9 @@
                 "ui"
             ],
             "support": {
-                "source": "https://github.com/laravel/ui/tree/v3.3.0"
+                "source": "https://github.com/laravel/ui/tree/v3.3.1"
             },
-            "time": "2021-05-25T16:45:33+00:00"
+            "time": "2021-11-02T17:04:20+00:00"
         },
         {
             "name": "league/commonmark",
@@ -3929,16 +3929,16 @@
         },
         {
             "name": "rappasoft/laravel-livewire-tables",
-            "version": "v1.20.0",
+            "version": "v1.20.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rappasoft/laravel-livewire-tables.git",
-                "reference": "7f672d87d4e35fc1e7409a0743e7c9aca4ee6a72"
+                "reference": "e73ad11d00df34d562ac55550de9705647d1bbb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rappasoft/laravel-livewire-tables/zipball/7f672d87d4e35fc1e7409a0743e7c9aca4ee6a72",
-                "reference": "7f672d87d4e35fc1e7409a0743e7c9aca4ee6a72",
+                "url": "https://api.github.com/repos/rappasoft/laravel-livewire-tables/zipball/e73ad11d00df34d562ac55550de9705647d1bbb8",
+                "reference": "e73ad11d00df34d562ac55550de9705647d1bbb8",
                 "shasum": ""
             },
             "require": {
@@ -3989,7 +3989,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rappasoft/laravel-livewire-tables/issues",
-                "source": "https://github.com/rappasoft/laravel-livewire-tables/tree/v1.20.0"
+                "source": "https://github.com/rappasoft/laravel-livewire-tables/tree/v1.20.1"
             },
             "funding": [
                 {
@@ -3997,7 +3997,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-26T00:11:07+00:00"
+            "time": "2021-11-02T03:20:46+00:00"
         },
         {
             "name": "spatie/image",
