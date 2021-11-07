@@ -37,7 +37,7 @@ class SurveyListTable extends DataTableComponent
     public function query(): Builder
     {
         return TestDate::query()
-            ->with('machine','type')
+            ->with('machine', 'type')
             ->where('machine_id', $this->machine);
     }
 
