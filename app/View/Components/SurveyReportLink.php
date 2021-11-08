@@ -35,8 +35,8 @@ class SurveyReportLink extends Component
 
         $survey = TestDate::find($this->surveyID);
 
-        if (!is_null($survey) && $survey->hasMedia('survey_report')) {
-            $this->surveyLink = $survey->getFirstMediaUrl('survey_report');
+        if (!is_null($survey) && $survey->hasMedia('survey_reports')) {
+            $this->surveyLink = $survey->getFirstMediaUrl('survey_reports');
         } else {
             $this->surveyLink = null;
         }
