@@ -43,7 +43,7 @@ class TestDate extends Model implements HasMedia
         'updated_at',
     ];
 
-    public function registerMediaCollections(): void
+    public function registerMediaCollections(Media $media = null): void
     {
         $this->addMediaCollection('survey_reports')
             ->useDisk('SurveyReports');
