@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Operational notes for <a href="{{route('machines.show', $machineId) }}">{{ $machines->description }}</a></h2>
+    <h2>Operational notes for <a href="{{route('machines.show', $machine->id) }}">{{ $machine->description }}</a></h2>
 <ol>
     @foreach ($opNotes as $opNote)
     <li>{{ $opNote->note }}
