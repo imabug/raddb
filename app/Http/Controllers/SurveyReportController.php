@@ -73,7 +73,7 @@ class SurveyReportController extends Controller
 
         if ($request->hasFile('surveyReport')) {
             // Associate the photo with the test report (spatie/medialibary)
-            // Collection name: survey_report
+            // Collection name: survey_reports
             // Filesystem disk: SurveyReports
             // TODO: Check to see if the survey has an existing survey report
             $survey->addMediaFromRequest('surveyReport')
@@ -100,7 +100,7 @@ class SurveyReportController extends Controller
      */
     public function show(int $id)
     {
-        return TestDate::find($id)->getMedia('survey_report');
+        return TestDate::find($id)->getMedia('survey_reports');
     }
 
     /**
