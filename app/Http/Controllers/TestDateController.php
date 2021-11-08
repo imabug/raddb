@@ -39,18 +39,6 @@ class TestDateController extends Controller
     }
 
     /**
-     * Fetch the survey report path for a survey.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getSurveyReportPath($id)
-    {
-        return TestDate::select('report_file_path')->findOrFail($id);
-    }
-
-    /**
      * Show a form for creating a new survey.
      * This method is called with an optional parameter $id which corresponds to
      * the machine ID the survey is being created for.
