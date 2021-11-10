@@ -83,8 +83,8 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-@include('layouts.errors')
-@include('layouts.messages')
+              <x-messages.error />
+              <x-messages.status />
             </div>
         </div>
         <div class="row">
