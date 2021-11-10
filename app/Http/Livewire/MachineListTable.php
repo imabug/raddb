@@ -35,6 +35,11 @@ class MachineListTable extends DataTableComponent
     private array $manufArray = ['' => 'All'];
     private array $locArray = ['' => 'All'];
 
+    public function setTableClass(): string
+    {
+        return 'table table-striped table-hover';
+    }
+
     public function columns(): array
     {
         return [

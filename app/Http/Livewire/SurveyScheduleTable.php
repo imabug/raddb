@@ -14,6 +14,11 @@ class SurveyScheduleTable extends DataTableComponent
     public bool $singleColumnSorting = false;
     public bool $paginationEnabled = false;
 
+    public function setTableClass(): string
+    {
+        return 'table table-striped table-hover';
+    }
+
     public function columns(): array
     {
         return [

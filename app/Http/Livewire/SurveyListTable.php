@@ -22,6 +22,11 @@ class SurveyListTable extends DataTableComponent
         $this->machine = $machine;
     }
 
+    public function setTableClass(): string
+    {
+        return 'table table-striped table-hover';
+    }
+
     public function columns(): array
     {
         return [
