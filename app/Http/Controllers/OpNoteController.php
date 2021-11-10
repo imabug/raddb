@@ -42,7 +42,7 @@ class OpNoteController extends Controller
      * URI: /opnotes/{$machineId}/create
      * Method: GET.
      *
-     * @param int $id
+     * @param int $machineId
      *
      * @return \Illuminate\Http\Response
      */
