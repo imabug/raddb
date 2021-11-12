@@ -14,26 +14,27 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-{{-- Only load the Slick CSS if the machine detail page is being shown
-    Slick image carousel http://kenwheeler.github.io/slick/ --}}
-@if (Route::currentRouteName() == 'machines.show')
-<!-- Slick image carousel http://kenwheeler.github.io/slick/ -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<!-- Add the slick-theme.css if you want default styling -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-@endif
+    {{-- Only load the Slick CSS if the machine detail page is being shown
+              Slick image carousel http://kenwheeler.github.io/slick/ --}}
+    @if (Route::currentRouteName() == 'machines.show')
+      <!-- Slick image carousel http://kenwheeler.github.io/slick/ -->
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+      <!-- Add the slick-theme.css if you want default styling -->
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    @endif
+    <!-- Livewire CSS -->
     @livewireStyles
     <style>
-        [x-cloak] { display: none !important; }
+     [x-cloak] { display: none !important; }
     </style>
 
-<!-- JQuery -->
+    <!-- JQuery -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -54,58 +55,60 @@
     <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-{{-- Only load the Slick if the machine detail page is being shown
-    Slick image carousel http://kenwheeler.github.io/slick/ --}}
-@if (Route::currentRouteName() == 'machines.show')
-<!-- Slick image carousel JS -->
-    <script
-      type="text/javascript"
-      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script
-      type="text/javascript"
-      src="{{ asset('js/slick_cfg.js') }}"></script>
-@endif
+    {{-- Only load the Slick if the machine detail page is being shown
+              Slick image carousel http://kenwheeler.github.io/slick/ --}}
+    @if (Route::currentRouteName() == 'machines.show')
+      <!-- Slick image carousel JS -->
+      <script
+        type="text/javascript"
+        src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+      <script
+        type="text/javascript"
+        src="{{ asset('js/slick_cfg.js') }}"></script>
+    @endif
 
-<!-- CSRF Token -->
+    <!-- Livewire JS -->
+    @livewireScripts
+
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<!-- Scripts -->
+    <!-- Scripts -->
     <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
+     window.Laravel = <?php echo json_encode([
+       'csrfToken' => csrf_token(),
+     ]); ?>
     </script>
     <title>{{ config('app.name', 'Laravel') }}</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-              <x-messages.error />
-              <x-messages.status />
-            </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <x-messages.error />
+          <x-messages.status />
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-                <h1>Radiological Equipment Database</h1>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <h1>Radiological Equipment Database</h1>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-@include('layouts.sidebar')
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          @include('layouts.sidebar')
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-@yield('content')
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          @yield('content')
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-                @include('layouts.footer')
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          @include('layouts.footer')
         </div>
+      </div>
     </div>
-    @livewireScripts
-</body>
+  </body>
 </html>
