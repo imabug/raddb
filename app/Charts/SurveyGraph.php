@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Charts;
 
@@ -57,14 +57,14 @@ class SurveyGraph extends BaseChart
     public function handler(Request $request): Chartisan
     {
         $chart = Chartisan::build()
-            ->labels(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']);
+            ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
 
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
             ->orderBy('years', 'desc')
             ->get();
 
-        foreach($years as $y) {
+        foreach ($years as $y) {
             $chartData = DB::select('select count(*) as c from testdates where year(test_date)=:y group by month(test_date)', [$y->years]);
             dump($y->years, $chartData);
             $chart->dataset((string) $y->years, $chartData);
