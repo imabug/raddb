@@ -27,7 +27,7 @@
         "rappasoft/laravel-livewire-tables": "^1.19",
         "spatie/laravel-medialibrary": "^9.4.4",
         "symfony/yaml": "^4.2",
-        "twbs/bootstrap": "^3.4"
+        "twbs/bootstrap": "^5.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
