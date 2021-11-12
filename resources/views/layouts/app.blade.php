@@ -13,7 +13,7 @@
       crossorigin="anonymous">
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
     {{-- Only load the Slick CSS if the machine detail page is being shown
               Slick image carousel http://kenwheeler.github.io/slick/ --}}
     @if (Route::currentRouteName() == 'machines.show')
