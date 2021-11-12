@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Charts $charts)
     {
         // Work around for MariaDB/MySQL key too long errors
         // Not required as long as MySQL > 5.7 or Mariadb > 10.2.2
@@ -38,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
 
         // Continue using Bootstrap's paginator
         Paginator::useBootstrap();
+
+        // Register Charts (consoleTVs/Charts)
+        $charts->register([
+            \App\Charts\SurveyGraph::class,
+        ]);
     }
 
     /**
