@@ -19,11 +19,6 @@ class ShowOpnotes extends Component
         $this->machineId = $machineId;
     }
 
-    public function setMachineId()
-    {
-
-    }
-
     public function render()
     {
         if (!is_null($this->machineId)) {
