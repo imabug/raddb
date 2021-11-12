@@ -51,10 +51,8 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"></script>
-<!-- Alpine.js -->
-    <script
-      defer
-      src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 {{-- Only load the Slick if the machine detail page is being shown
     Slick image carousel http://kenwheeler.github.io/slick/ --}}
