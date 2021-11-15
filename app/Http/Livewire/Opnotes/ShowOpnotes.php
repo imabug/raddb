@@ -27,6 +27,7 @@ class ShowOpnotes extends Component
         } else {
             $opNotes = null;
         }
+
         return view('livewire.opnotes.show-opnotes', [
             'opNotes' => $opNotes,
         ]);
