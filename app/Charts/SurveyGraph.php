@@ -61,13 +61,16 @@ class SurveyGraph extends BaseChart
 
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
-            ->orderBy('years', 'desc')
+            ->orderBy('years', 'asc')
             ->get();
 
         foreach($years as $y) {
             $chartData = DB::select('select count(*) as c from testdates where year(test_date)=:y group by month(test_date)', [$y->years]);
-            dump($y->years, $chartData);
-            $chart->dataset((string) $y->years, $chartData);
+            foreach ($chartData as $cd) {
+                $c[] = $cd->c;
+            }
+            $chart->dataset((string) $y->years, $c);
+            unset($c);
         }
 
         return $chart;
