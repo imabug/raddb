@@ -113,7 +113,7 @@ class DashboardController extends Controller
 
     /**
      * Show graph of the total number of yearly surveys
-     * using Lavacharts (http://lavacharts.com/)
+     * using Lavacharts (http://lavacharts.com/).
      */
     public function showYearlySurveyCount()
     {
@@ -139,13 +139,15 @@ class DashboardController extends Controller
             ->addNumberColumn('Num Surveys')
             ->addRows($y);
 
-        \Lava::ColumnChart('Yearly Survey Count',
-                          $yearlySurveyCounts,
-                          [
-                              'title' => 'Yearly survey counts',
-                              'titleTextStyle' => [
-                                  'ontSize' => 14],
-                          ]);
+        \Lava::ColumnChart(
+            'Yearly Survey Count',
+            $yearlySurveyCounts,
+            [
+                'title'          => 'Yearly survey counts',
+                'titleTextStyle' => [
+                    'ontSize' => 14, ],
+            ]
+        );
 
         return view('dashboard.yearly_survey_count');
     }
