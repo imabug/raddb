@@ -19,7 +19,7 @@
   --}}
   
   <!-- Chart's container -->
-  <div id="chart" style="height: 300px;"></div>
+  <div id="chart" style="height: 600px;"></div>
   <!-- Charting library -->
   <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
   <!-- Chartisan -->
@@ -29,6 +29,8 @@
    const chart = new Chartisan({
      el: '#chart',
      url: "@chart('survey_graph')",
+     hooks: new ChartisanHooks()
+       .colors(),
    });
   </script>
   
