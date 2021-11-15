@@ -1,23 +1,7 @@
 <!-- resources/views/dashboard/survey_graph.blade.php -->
 @extends('layouts.app')
 @section('content')
-  <h2>Survey Count Graphs</h2>
-  {{--
-  {!! Charts::assets(['google']) !!}
-  <div class="panel panel-default">
-  <div class="panel-body">
-  <p>{!! $allYears->render() !!}</p>
-  </div>
-  </div>
-  @foreach ($yearCharts as $yearChart)
-  <div class="panel panel-default">
-  <div class="panel-body">
-  <p>{!! $yearChart->render() !!}</p>
-  </div>
-  </div>
-
-  --}}
-  
+  <h2>Survey Count Graphs</h2> 
   <!-- Chart's container -->
   <div id="chart" style="height: 600px;"></div>
   <!-- Charting library -->
@@ -33,5 +17,4 @@
        .colors(),
    });
   </script>
-  
 @endsection
