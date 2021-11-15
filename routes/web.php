@@ -37,7 +37,8 @@ Route::name('index')
     ->get('/', [DashboardController::class, 'index']);
 Route::name('dashboard.dashboard')
     ->get('/dashboard', [DashboardController::class, 'teststatus']);
-Route::view('/dashboard/surveyGraph', 'dashboard.survey_graph');
+Route::view('/dashboard/surveyGraph', 'dashboard.survey_graph')
+    ->name('dashboard.survey_graph');
 /*
  * Machine listings
  * These are redundant now that the machine listings has sorting and filtering capabilities
