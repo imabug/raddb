@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Machine;
 use App\Models\SurveyScheduleView;
 use App\Models\TestDate;
+use Khill\Lavacharts\Lavacharts;
 
 class DashboardController extends Controller
 {
@@ -108,5 +109,44 @@ class DashboardController extends Controller
         return view('dashboard.test_status', [
             'machines' => $machines,
         ]);
+    }
+
+    /**
+     * Show graph of the total number of yearly surveys
+     * using Lavacharts (http://lavacharts.com/)
+     */
+    public function showYearlySurveyCount()
+    {
+        // Get a count of all surveys except for these test type_id's
+        // 8 - Other
+        // 10 - Calibration
+        $yearCounts = TestDate::whereNotIn('type_id', [8, 10])
+            ->get()
+            ->countBy(function ($item, $key) {
+                return substr($item['test_date'], 0, 4);
+            })
+            ->sortKeys()
+            ->toArray();
+
+        // $yearCounts is an associative array.  Need a 2D array
+        // to pass to \Lava::DataTable()
+        foreach ($yearCounts as $yr => $count) {
+            $y[] = [(string) $yr, $count];
+        }
+
+        $yearlySurveyCounts = \Lava::DataTable()
+            ->addStringColumn('Year')
+            ->addNumberColumn('Num Surveys')
+            ->addRows($y);
+
+        \Lava::ColumnChart('Yearly Survey Count',
+                          $yearlySurveyCounts,
+                          [
+                              'title' => 'Yearly survey counts',
+                              'titleTextStyle' => [
+                                  'ontSize' => 14],
+                          ]);
+
+        return view('dashboard.yearly_survey_count');
     }
 }
