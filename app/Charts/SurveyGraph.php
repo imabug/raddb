@@ -56,7 +56,7 @@ class SurveyGraph extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        $chart = Chartisan::build()
+        $surveyCountsChart = Chartisan::build()
             ->labels(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']);
 
         $years = TestDate::select(DB::raw('year(test_date) as years'))
@@ -65,14 +65,18 @@ class SurveyGraph extends BaseChart
             ->get();
 
         foreach($years as $y) {
+            $c = array(); // Temporary array used to hold survey counts by month
             $chartData = DB::select('select count(*) as c from testdates where year(test_date)=:y group by month(test_date)', [$y->years]);
+            // DB::select returns an array where each array element is a PHP stdClass object with the query result.
+            // Convert this to an array with plain numeric elements.
             foreach ($chartData as $cd) {
                 $c[] = $cd->c;
             }
-            $chart->dataset((string) $y->years, $c);
+            $surveyCountsChart->dataset((string) $y->years, $c);
+            // Get rid of the array variable before the loop starts over.
             unset($c);
         }
 
-        return $chart;
+        return $surveyCountsChart;
     }
 }
