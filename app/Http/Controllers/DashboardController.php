@@ -113,15 +113,15 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show graphs of survey counts using Lavacharts
+     * Show graphs of survey counts using Lavacharts.
      */
     public function showSurveyCounts()
     {
         //
-        $months = [1 => "Jan", 2 => "Feb", 3 => "Mar",
-                   4 => "Apr", 5 => "May", 6 => "Jun",
-                   7 => "Jul", 8 => "Aug", 9 => "Sep",
-                   10 => "Oct", 11 => "Nov", 12 => "Dec"];
+        $months = [1 => 'Jan', 2 => 'Feb', 3 => 'Mar',
+            4        => 'Apr', 5 => 'May', 6 => 'Jun',
+            7        => 'Jul', 8 => 'Aug', 9 => 'Sep',
+            10       => 'Oct', 11 => 'Nov', 12 => 'Dec', ];
 
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
@@ -145,23 +145,25 @@ class DashboardController extends Controller
             // Convert this to an array with plain numeric elements.
             foreach ($chartData as $cd) {
                 // Replace the count data for the month in the $c array
-                $c[($cd->m)-1] = [$months[$cd->m], $cd->c];
+                $c[($cd->m) - 1] = [$months[$cd->m], $cd->c];
             }
 
             // Set up the data table for the chart
             $surveyCounts = \Lava::DataTable()
-                ->addStringColumn("Month")
-                ->addNumberColumn("Num Surveys")
+                ->addStringColumn('Month')
+                ->addNumberColumn('Num Surveys')
                 ->addRows($c);
 
             // Create a column chart
-            \Lava::ColumnChart('Survey count - '.$y->years,
-                               $surveyCounts,
-                               [
-                                   'title' => 'Survey counts - '.$y->years,
-                                   'titleTextStyle' => [
-                                       'fontSize' => 14],
-                               ]);
+            \Lava::ColumnChart(
+                'Survey count - '.$y->years,
+                $surveyCounts,
+                [
+                    'title'          => 'Survey counts - '.$y->years,
+                    'titleTextStyle' => [
+                        'fontSize' => 14, ],
+                ]
+            );
 
             // Clear variables for the next loop iteration
             unset($c);
@@ -192,13 +194,15 @@ class DashboardController extends Controller
             ->addNumberColumn('Num Surveys')
             ->addRows($y);
 
-        \Lava::ColumnChart('Yearly Survey Count',
-                          $yearlySurveyCounts,
-                          [
-                              'title' => 'Yearly survey counts',
-                              'titleTextStyle' => [
-                                  'fontSize' => 14],
-                          ]);
+        \Lava::ColumnChart(
+            'Yearly Survey Count',
+            $yearlySurveyCounts,
+            [
+                'title'          => 'Yearly survey counts',
+                'titleTextStyle' => [
+                    'fontSize' => 14, ],
+            ]
+        );
 
         return view('dashboard.survey_counts', [
             'years' => $years,
