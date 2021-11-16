@@ -26,7 +26,7 @@
         "phpoffice/phpspreadsheet": "^1.9",
         "rappasoft/laravel-livewire-tables": "^1.19",
         "spatie/laravel-medialibrary": "^9.4.4",
-        "symfony/yaml": "^4.2",
+        "symfony/yaml": "^5.3",
         "twbs/bootstrap": "^5.1"
     },
     "require-dev": {
