@@ -134,9 +134,14 @@ class DashboardController extends Controller
                 $c[] = [$m, 0];
             }
 
+            // Get the number of surveys in each month for
+            // the current year.  The count will include non-equipment
+            // related tests and calibrations, but those numbers are pretty
+            // small and won't significantly affect things.
             $chartData = DB::select('select month(test_date) as m, count(*) as c from testdates where year(test_date)=:y group by month(test_date)', [$y->years]);
 
-            // DB::select returns an array where each array element is a PHP stdClass object with the query result.
+            // DB::select returns an array where each array element is
+            // a PHP stdClass object with the query result.
             // Convert this to an array with plain numeric elements.
             foreach ($chartData as $cd) {
                 // Replace the count data for the month in the $c array
