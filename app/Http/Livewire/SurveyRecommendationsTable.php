@@ -43,8 +43,8 @@ class SurveyRecommendationsTable extends DataTableComponent
             ->whereHas(
                 'survey',
                 function ($query) {
-                           $query->where('machine_id', $this->machine);
-                       }
+                    $query->where('machine_id', $this->machine);
+                }
             );
     }
 
