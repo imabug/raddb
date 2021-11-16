@@ -37,11 +37,9 @@ Route::name('index')
     ->get('/', [DashboardController::class, 'index']);
 Route::name('dashboard.dashboard')
     ->get('/dashboard', [DashboardController::class, 'teststatus']);
-Route::view('/dashboard/surveyGraph', 'dashboard.survey_graph')
-    ->name('dashboard.survey_graph');
-Route::name('dashboard.showYearlySurveyCount')
-    ->get('/dashboard/showYearlySurveyCount', [DashboardController::class, 'showYearlySurveyCount']);
+Route::view('/dashboard/surveyGraph', 'dashboard.survey_graph');
 Route::name('dashboard.surveyCounts')
+    ->name('dashboard.survey_graph')
     ->get('/dashboard/surveyCount', [DashboardController::class, 'showSurveyCounts']);
 
 /*
