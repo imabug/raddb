@@ -168,6 +168,7 @@ class DashboardController extends Controller
             unset($surveyCounts);
         }
 
+        // Clear $y temp variable
         unset($y);
 
         // Get a count of all surveys except for these test type_id's
