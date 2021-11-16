@@ -125,7 +125,7 @@ class DashboardController extends Controller
 
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
-            ->orderBy('years', 'asc')
+            ->orderBy('years', 'desc')
             ->get();
 
         foreach ($years as $y) {
