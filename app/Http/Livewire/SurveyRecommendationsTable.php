@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Machine;
 use App\Models\Recommendation;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -41,9 +40,12 @@ class SurveyRecommendationsTable extends DataTableComponent
     public function query(): Builder
     {
         return Recommendation::query()
-            ->whereHas('survey',
-                       function ($query) {
-                           $query->where('machine_id', $this->machine);});
+            ->whereHas(
+                'survey',
+                function ($query) {
+                           $query->where('machine_id', $this->machine);
+                       }
+            );
     }
 
     public function rowView(): string
