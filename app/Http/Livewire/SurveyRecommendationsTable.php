@@ -40,9 +40,12 @@ class SurveyRecommendationsTable extends DataTableComponent
     public function query(): Builder
     {
         return Recommendation::query()
-            ->whereHas('survey',
-                       function ($query) {
-                           $query->where('machine_id', $this->machine);});
+            ->whereHas(
+                'survey',
+                function ($query) {
+                    $query->where('machine_id', $this->machine);
+                }
+            );
     }
 
     public function rowView(): string
