@@ -162,6 +162,9 @@ class DashboardController extends Controller
                     'title'          => 'Survey counts - '.$y->years,
                     'titleTextStyle' => [
                         'fontSize' => 14, ],
+                    'legend' => [
+                        'position' => 'none',
+                    ],
                 ]
             );
 
@@ -202,6 +205,9 @@ class DashboardController extends Controller
                 'title'          => 'Yearly survey counts',
                 'titleTextStyle' => [
                     'fontSize' => 14, ],
+                'legend' => [
+                    'position' => 'none',
+                ],
             ]
         );
 
