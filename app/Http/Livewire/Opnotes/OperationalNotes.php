@@ -16,8 +16,7 @@ class OperationalNotes extends Component
         if (!is_null($machineId)) {
             $this->machine = Machine::find($machineId);
             $this->opNotes = OpNote::where('machine_id', $machineId)->get();
-        }
-        else {
+        } else {
             $this->machine = Machine::active()->get();
         }
     }
