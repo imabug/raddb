@@ -3,7 +3,7 @@
 @section('content')
   <div class="row">
     <h2>Operational notes</h2>
-    <div class="col input-gropu mb-3"
+    <div class="col input-group mb-3"
       <form wire:submit.prevent="getNotes">
         <span class="input-group-text">Machine:</span>
         <select wire:model="m">
@@ -15,5 +15,14 @@
         <button type="submit">Get Notes</button>
       </form>
     </div>
+    @if(!is_null($opNotes))
+    <div>
+      <ol>
+      @foreach ($opNotes as $o)
+        <li>$o->note</li>
+      @endforeach
+      </ol>
+    </div>
+    @endif
   </div>
 @endsection
