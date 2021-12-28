@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Opnotes;
 
 use App\Models\Machine;
-use App\Models\OpNote;
 use Livewire\Component;
 
 class OperationalNotes extends Component
