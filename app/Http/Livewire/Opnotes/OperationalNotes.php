@@ -10,16 +10,16 @@ class OperationalNotes extends Component
 {
     public $machine = null;
     public $opNotes = null;
+    public $m = null;
 
-    public function mount(?int $machineId = null)
+    public function mount()
     {
-        if (!is_null($machineId)) {
-            $this->machine = Machine::find($machineId);
-            $this->opNotes = OpNote::where('machine_id', $machineId)->get();
-        }
-        else {
-            $this->machine = Machine::active()->get();
-        }
+        $this->machine = Machine::active()->with('opnote')->get();
+    }
+
+    public function getNotes()
+    {
+        $this->opNotes = $this->machine->where('id', $m)->opnote;
     }
 
     public function render()
