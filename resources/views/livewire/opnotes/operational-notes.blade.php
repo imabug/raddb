@@ -19,7 +19,7 @@
     <div>
       <ol>
       @foreach ($opNotes as $o)
-        <li>$o->note</li>
+        <li wire:key="{{$o->id}}">$o->note</li>
       @endforeach
       </ol>
     </div>

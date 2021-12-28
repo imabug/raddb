@@ -19,7 +19,7 @@ class OperationalNotes extends Component
 
     public function getNotes()
     {
-        $this->opNotes = $this->machine->where('id', $m)->opnote;
+        $this->opNotes = Machine::find($m)->opnote()->get();
     }
 
     public function render()
