@@ -19,7 +19,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-  {{ $row->note }}
+  {{ $row->notes }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
