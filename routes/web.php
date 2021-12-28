@@ -88,10 +88,10 @@ Route::resource('testequipment', TestEquipmentController::class);
 /*
  * Operational notes controller
  */
+Route::name('opnotes.operationalNotes')
+    ->get('opnotes/opnotes/', \App\Http\Livewire\Opnotes\OperationalNotes::class);
 Route::name('opnotes.createOpNoteFor')
     ->get('opnotes/{machineId?}/create', [OpNoteController::class, 'create']);
-Route::name('opnotes.operationalNotes')
-    ->get('opnotes/opnotes/{machineId?}', \App\Http\Livewire\Opnotes\OperationalNotes::class);
 Route::resource('opnotes', OpNoteController::class);
 /*
  * Recommendation controller
