@@ -2,7 +2,6 @@
   <h2>Operational notes</h2>
   <div class="col input-group mb-3"
     <form class="form-inline">
-      @csrf
       <span class="input-group-text">Machine:</span>
       <select id="selectedMachine" name="selectedMachine" class="form-select" aria-label="Select a machine" wire:model="selectedMachine">
         <option>Select a machine</option>
@@ -10,7 +9,7 @@
           <option value="{{$m->id}}">{{$m->description}}</option>
         @endforeach
       </select>
-      <button wire:click="getNotes" type="submit">Get Notes</button>
+      <button type="submit" wire:click="getNotes">Get Notes</button>
     </form>
   </div>
   <div>
