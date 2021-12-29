@@ -7,18 +7,19 @@ use Livewire\Component;
 
 class OperationalNotes extends Component
 {
-    public $machine;
+    public $machines;
     public $opNotes;
-    public $mNotes;
+    public int $selectedMachine;
 
     public function mount()
     {
-        $this->machine = Machine::active()->with('opnote')->get();
+        $this->selectedMachine = 0;
+        $this->machines = Machine::active()->with('opnote')->get();
     }
 
     public function getNotes()
     {
-        $this->opNotes = Machine::find($this->mNotes)->opnote()->get();
+        $this->opNotes = $this->machines->find($this->selectedMachine)->opnote()->get();
     }
 
     public function render()
