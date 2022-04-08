@@ -51,5 +51,4 @@ class AppServiceProvider extends ServiceProvider
         // Continue using Bootstrap's paginator
         Paginator::useBootstrap();
     }
-
 }

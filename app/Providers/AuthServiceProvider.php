@@ -25,7 +25,6 @@ use App\Policies\TesterPolicy;
 use App\Policies\TestTypePolicy;
 use App\Policies\TubePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
