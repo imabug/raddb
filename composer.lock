@@ -6832,7 +6832,7 @@
                 {
                     "url": "https://www.doctrine-project.org/sponsorship.html",
                     "type": "custom"
-            },
+                },
                 {
                     "url": "https://www.patreon.com/phpdoctrine",
                     "type": "patreon"
