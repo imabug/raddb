@@ -15,5 +15,4 @@ yarn-error.log
 .phpunit.result.cache
 .ac-php-conf.json
 .serenata
-docker-compose.override.yml
 /.vscode
