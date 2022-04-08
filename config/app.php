@@ -189,7 +189,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Lava'         => Khill\Lavacharts\Laravel\LavachartsFacade::class,
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
     ])->toArray(),
 
 ];
