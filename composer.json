@@ -10,6 +10,20 @@
     "homepage": "https://github.com/imabug/raddb",
     "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+            "name": "Eugene Mah",
+            "email": "eugenemah@gmail.com",
+            "homepage": "https://v16.imablog.net/"
+        }
+    ],
+    "support": {
+        "email": "eugenemah@gmail.com",
+        "issues": "https://github.com/imabug/raddb/issues",
+        "source": "https://github.com/imabug/raddb",
+        "wiki": "https://github.com/imabug/raddb/wiki",
+        "docs": "https://github.com/imabug/raddb/wiki"
+    },
     "require": {
         "php": "^8.0",
         "doctrine/dbal": "^3.3",
