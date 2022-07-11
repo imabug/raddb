@@ -47,24 +47,24 @@ class LutList extends Command
         $body = null;
 
         switch ($table) {
-        case 'location':
-            $body = Location::all(['id', 'location'])->toArray();
-            break;
-        case 'manufacturer':
-            $body = Manufacturer::all(['id', 'manufacturer'])->toArray();
-            break;
-        case 'modality':
-            $body = Modality::all(['id', 'modality'])->toArray();
-            break;
-        case 'tester':
-            $body = Tester::all(['id', 'name'])->toArray();
-            break;
-        case 'testtype':
-            $body = TestType::all(['id', 'test_type'])->toArray();
-            break;
-        default:
-            $this->error('Usage: php artisan lut:list <table>');
-            break;
+            case 'location':
+                $body = Location::all(['id', 'location'])->toArray();
+                break;
+            case 'manufacturer':
+                $body = Manufacturer::all(['id', 'manufacturer'])->toArray();
+                break;
+            case 'modality':
+                $body = Modality::all(['id', 'modality'])->toArray();
+                break;
+            case 'tester':
+                $body = Tester::all(['id', 'name'])->toArray();
+                break;
+            case 'testtype':
+                $body = TestType::all(['id', 'test_type'])->toArray();
+                break;
+            default:
+                $this->error('Usage: php artisan lut:list <table>');
+                break;
         }
         if (!is_null($body)) {
             $this->table($headers, $body);

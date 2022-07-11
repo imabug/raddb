@@ -55,24 +55,24 @@ class LutDelete extends Command
         ]);
 
         switch ($table) {
-        case 'location':
-            $lut = Location::where('location', $tableValue)->first();
-            break;
-        case 'manufacturer':
-            $lut = Manufacturer::where('manufacturer', $tableValue)->first();
-            break;
-        case 'modality':
-            $lut = Modality::where('modality', $tableValue)->first();
-            break;
-        case 'tester':
-            $lut = Tester::where('tester', $tableValue)->first();
-            break;
-        case 'testtype':
-            $lut = TestType::where('test_type', $tableValue)->first();
-            break;
-        default:
-            $this->error('Usage: php artisan lut:delete <table> <value>');
-            break;
+            case 'location':
+                $lut = Location::where('location', $tableValue)->first();
+                break;
+            case 'manufacturer':
+                $lut = Manufacturer::where('manufacturer', $tableValue)->first();
+                break;
+            case 'modality':
+                $lut = Modality::where('modality', $tableValue)->first();
+                break;
+            case 'tester':
+                $lut = Tester::where('tester', $tableValue)->first();
+                break;
+            case 'testtype':
+                $lut = TestType::where('test_type', $tableValue)->first();
+                break;
+            default:
+                $this->error('Usage: php artisan lut:delete <table> <value>');
+                break;
         }
 
         if (!is_null($lut)) {

@@ -50,31 +50,31 @@ class LutAdd extends Command
         $body = null;
 
         switch ($table) {
-        case 'location':
-            $location = Location::create(['location' => $tableValue]);
-            $body = Location::all(['id', 'location'])->toArray();
-            break;
-        case 'manufacturer':
-            $manufacturer = Manufacturer::create(['manufacturer' => $tableValue]);
-            $body = Manufacturer::all(['id', 'manufacturer'])->toArray();
-            break;
-        case 'modality':
-            $modality = Modality::create(['modality' => $tableValue]);
-            $body = Modality::all(['id', 'modality'])->toArray();
-            break;
-        case 'tester':
-            $tester = Tester::create(['tester' => $tableValue]);
-            $body = Tester::all(['id', 'name'])->toArray();
-            break;
-        case 'testtype':
-            $testtype = TestType::create(['test_type' => $tableValue]);
-            $body = TestType::all(['id', 'test_type'])->toArray();
-            break;
-        default:
-            $this->error('Usage: php artisan lut:add <table> <value>');
+            case 'location':
+                $location = Location::create(['location' => $tableValue]);
+                $body = Location::all(['id', 'location'])->toArray();
+                break;
+            case 'manufacturer':
+                $manufacturer = Manufacturer::create(['manufacturer' => $tableValue]);
+                $body = Manufacturer::all(['id', 'manufacturer'])->toArray();
+                break;
+            case 'modality':
+                $modality = Modality::create(['modality' => $tableValue]);
+                $body = Modality::all(['id', 'modality'])->toArray();
+                break;
+            case 'tester':
+                $tester = Tester::create(['tester' => $tableValue]);
+                $body = Tester::all(['id', 'name'])->toArray();
+                break;
+            case 'testtype':
+                $testtype = TestType::create(['test_type' => $tableValue]);
+                $body = TestType::all(['id', 'test_type'])->toArray();
+                break;
+            default:
+                $this->error('Usage: php artisan lut:add <table> <value>');
 
-            return 0;
-            break;
+                return 0;
+                break;
         }
 
         // Show the lookup table with the new value.
