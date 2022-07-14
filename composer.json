@@ -10,35 +10,47 @@
     "homepage": "https://github.com/imabug/raddb",
     "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+            "name": "Eugene Mah",
+            "email": "eugenemah@gmail.com",
+            "homepage": "https://v16.imablog.net/"
+        }
+    ],
+    "support": {
+        "email": "eugenemah@gmail.com",
+        "issues": "https://github.com/imabug/raddb/issues",
+        "source": "https://github.com/imabug/raddb",
+        "wiki": "https://github.com/imabug/raddb/wiki",
+        "docs": "https://github.com/imabug/raddb/wiki"
+    },
     "require": {
-        "php": "^7.4|^8.0",
-        "doctrine/dbal": "^3.1",
-        "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^3.0",
-        "guzzlehttp/guzzle": "^7.3",
+        "php": "^8.0.2",
+        "doctrine/dbal": "^3.3",
+        "guzzlehttp/guzzle": "^7.4",
         "khill/lavacharts": "^3.1",
-        "laravel/framework": "^8.54",
-        "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.0",
-        "livewire/livewire": "^2.6",
-        "nesbot/carbon": "^2.0",
-        "phpoffice/phpspreadsheet": "^1.9",
-        "rappasoft/laravel-livewire-tables": "^1.19",
+        "laravel/framework": "^9.19",
+        "laravel/sanctum": "^2.15",
+        "laravel/tinker": "^2.7",
+        "laravel/ui": "^3.4",
+        "livewire/livewire": "^2.10",
+        "nesbot/carbon": "^2.57",
+        "phpoffice/phpspreadsheet": "^1.22",
+        "rappasoft/laravel-livewire-tables": "^2.0",
         "spatie/laravel-medialibrary": "^9.4.4",
         "symfony/yaml": "^6.1",
         "twbs/bootstrap": "^5.1"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
-        "fakerphp/faker": "^1.13",
-        "laravel/sail": "^1.0.1",
-        "laravel/dusk": "^6.14",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
-        "pestphp/pest": "^1.18",
-        "pestphp/pest-plugin-laravel": "^1.1",
-        "phpunit/phpunit": "^9.5.8"
+        "fakerphp/faker": "^1.19",
+        "laravel/dusk": "^6.22",
+        "laravel/sail": "^1.13",
+        "mockery/mockery": "^1.5",
+        "nunomaduro/collision": "^6.2",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.2",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.2"
     },
     "autoload": {
         "psr-4": {
@@ -69,7 +81,7 @@
             "php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ]
 },
     "config": {

@@ -11,6 +11,18 @@ use Laravel\Dusk\DuskServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        if ($this->app->environment('testing')) {
+            $this->app->register(DuskServiceProvider::class);
+        }
+    }
+
+    /**
      * Bootstrap any application services.
      *
      * @return void
@@ -38,17 +50,5 @@ class AppServiceProvider extends ServiceProvider
 
         // Continue using Bootstrap's paginator
         Paginator::useBootstrap();
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        if ($this->app->environment('testing')) {
-            $this->app->register(DuskServiceProvider::class);
-        }
     }
 }

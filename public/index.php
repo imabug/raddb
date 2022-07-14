@@ -3,11 +3,6 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
-/**
- * Laravel - A PHP Framework For Web Artisans.
- *
- * @author   Taylor Otwell <taylor@laravel.com>
- */
 define('LARAVEL_START', microtime(true));
 
 /*
@@ -21,8 +16,8 @@ define('LARAVEL_START', microtime(true));
   |
 */
 
-if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
-    require __DIR__.'/../storage/framework/maintenance.php';
+if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
+    require $maintenance;
 }
 
 /*
