@@ -9,11 +9,13 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class PendingSurveysTable extends DataTableComponent
 {
-    public string $defaultSortColumn = 'test_date';
-    public string $defaultSortDirection = 'asc';
-    public bool $singleColumnSorting = false;
-    public bool $paginationEnabled = false;
-    public bool $showSearch = false;
+    public function configure(): void
+    {
+        $this->setDefaultSort('test_date', 'asc');
+        $this->setSingleSortingDisabled();
+        $this->setPaginationDisabled();
+        $this->setSearchDisabled();
+    }
 
     public function columns(): array
     {

@@ -9,10 +9,13 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class SurveyScheduleTable extends DataTableComponent
 {
-    public string $defaultSortColumn = 'prevSurveyDate';
-    public string $defaultSortDirection = 'asc';
-    public bool $singleColumnSorting = false;
-    public bool $paginationEnabled = false;
+
+    public function configure(): void
+    {
+        $this->setDefaultSort('prevSurveyDate', 'asc');
+        $this->setSingleSortingDisabled();
+        $this->setPaginationDisabled();
+    }
 
     public function setTableClass(): string
     {

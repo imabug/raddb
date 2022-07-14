@@ -9,11 +9,13 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class CalibrationDatesTable extends DataTableComponent
 {
-    public string $defaultSortColumn = 'id';
-    public string $defaultSortDirection = 'asc';
-    public bool $singleColumnSorting = false;
-    public bool $paginationEnabled = false;
-    public bool $showSearch = false;
+    public function configure(): void
+    {
+        $this->setDefaultSort('id', 'asc');
+        $this->setSingleSortingDisabled();
+        $this->setPaginationDisabled();
+        $this->setSearchDisabled();
+    }
 
     public function columns(): array
     {

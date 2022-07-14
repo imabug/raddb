@@ -17,23 +17,41 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
  */
 class MachineListTable extends DataTableComponent
 {
-    public string $defaultSortColumn = 'id';
-    public string $defaultSortDirection = 'asc';
-    public bool $singleColumnSorting = false;
-    public bool $paginationEnabled = false;
+    public function configure(): void
+    {
+        $this->setDefaultSort('id', 'asc');
+        $this->setSingleSortingDisabled();
+        $this->setPaginationDisabled();
+        $this->setSearchDisabled();
+    }
 
     // Default filters.
-    public array $filters = [
-        'status'       => 'Active',
-        'modality'     => '',
-        'manufacturer' => '',
-        'location'     => '',
-    ];
-
-    // Arrays for filter items.
-    private array $modalityArray = ['' => 'All'];
-    private array $manufArray = ['' => 'All'];
-    private array $locArray = ['' => 'All'];
+    public function filters(): array
+    {
+        return [
+            MultiSelectFilter::make('Status')
+                ->options([
+                    Modality::query()
+                        ->orderBy('modality')
+                        ->get()
+                        ->keyBy('id')
+                        ->map(fn($modality) => $modality->name)
+                        ->toArray(),
+                    Manufacturer::query()
+                        ->orderBy('manufacturer')
+                        ->get()
+                        ->keyBy('id')
+                        ->map(fn($manufacturer) => $manufacturer->name)
+                        ->toArray(),
+                    Location::query()
+                        ->orderBy('location')
+                        ->get()
+                        ->keyBy('id')
+                        ->map(fn($location) => $location->name)
+                        ->toArray(),
+                ]),
+        ];
+    }
 
     public function setTableClass(): string
     {

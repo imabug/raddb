@@ -9,16 +9,12 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class RecommendationsForSurveyTable extends DataTableComponent
 {
-    public string $defaultSortColumn = 'id';
-    public string $defaultSortDirection = 'asc';
-    public bool $singleColumnSorting = false;
-    public bool $paginationEnabled = false;
-
-    public $surveyId;
-
-    public function mount($surveyId)
+    public function config(): void
     {
-        $this->surveyId = $surveyId;
+        $this->setPrimaryKey('surveyId');
+        $this->setDefaultSort('id', 'asc');
+        $this->setSingleSortingDisabled();
+        $this->setPaginationDisabled();
     }
 
     public function columns(): array

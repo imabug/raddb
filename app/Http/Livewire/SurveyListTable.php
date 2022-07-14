@@ -9,17 +9,19 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class SurveyListTable extends DataTableComponent
 {
-    public string $defaultSortColumn = 'test_date';
-    public string $defaultSortDirection = 'asc';
-    public bool $singleColumnSorting = false;
-    public bool $paginationEnabled = false;
-    public bool $showSearch = false;
-
     public $machine;
 
     public function mount($machine)
     {
         $this->machine = $machine;
+    }
+
+    public function configure(): void
+    {
+        $this->setDefaultSort('test_date', 'asc');
+        $this->setSingleSortingDisabled();
+        $this->setPaginationDisabled();
+        $this->setSearchDisabled();
     }
 
     public function setTableClass(): string
