@@ -35,19 +35,19 @@ class MachineListTable extends DataTableComponent
                         ->orderBy('modality')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($modality) => $modality->name)
+                        ->map(fn ($modality) => $modality->name)
                         ->toArray(),
                     Manufacturer::query()
                         ->orderBy('manufacturer')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($manufacturer) => $manufacturer->name)
+                        ->map(fn ($manufacturer) => $manufacturer->name)
                         ->toArray(),
                     Location::query()
                         ->orderBy('location')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($location) => $location->name)
+                        ->map(fn ($location) => $location->name)
                         ->toArray(),
                 ]),
         ];

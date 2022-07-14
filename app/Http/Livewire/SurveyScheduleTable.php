@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class SurveyScheduleTable extends DataTableComponent
 {
-
     public function configure(): void
     {
         $this->setDefaultSort('prevSurveyDate', 'asc');
