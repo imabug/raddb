@@ -16,3 +16,5 @@ yarn-error.log
 .ac-php-conf.json
 .serenata
 /.vscode
+auth.json
+
