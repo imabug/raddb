@@ -11,6 +11,7 @@ class CalibrationDatesTable extends DataTableComponent
 {
     public function configure(): void
     {
+        $this->setPrimaryKey('id');
         $this->setDefaultSort('id', 'asc');
         $this->setSingleSortingDisabled();
         $this->setPaginationDisabled();
@@ -31,7 +32,7 @@ class CalibrationDatesTable extends DataTableComponent
         ];
     }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
         return Machine::with([
             'manufacturer',

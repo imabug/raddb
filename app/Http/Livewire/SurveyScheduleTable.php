@@ -12,14 +12,14 @@ class SurveyScheduleTable extends DataTableComponent
 
     public function configure(): void
     {
-        $this->setDefaultSort('prevSurveyDate', 'asc');
-        $this->setSingleSortingDisabled();
-        $this->setPaginationDisabled();
-    }
-
-    public function setTableClass(): string
-    {
-        return 'table table-striped table-hover';
+        $this->setPrimaryKey('id')
+            ->setDefaultSort('prevSurveyDate', 'asc')
+            ->setSingleSortingDisabled()
+            ->setPaginationDisabled()
+            ->setEagerLoadAllRelationsEnabled()
+            ->setTableAttributes([
+                'class' => 'table table-striped table-hover',
+            ]);
     }
 
     public function columns(): array
@@ -37,14 +37,14 @@ class SurveyScheduleTable extends DataTableComponent
         ];
     }
 
-    public function rowView(): string
-    {
-        // Use a custom row view so that things like the manufacturer,
-        // modality, description, location can be made clickable URLs
-        return 'livewire-tables.survey-schedule-row';
-    }
+    // public function rowView(): string
+    // {
+    //     // Use a custom row view so that things like the manufacturer,
+    //     // modality, description, location can be made clickable URLs
+    //     return 'livewire-tables.survey-schedule-row';
+    // }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
         return SurveyScheduleView::query()
             ->with('machine', 'prevSurvey', 'currSurvey');

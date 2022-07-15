@@ -11,10 +11,14 @@ class PendingSurveysTable extends DataTableComponent
 {
     public function configure(): void
     {
-        $this->setDefaultSort('test_date', 'asc');
-        $this->setSingleSortingDisabled();
-        $this->setPaginationDisabled();
-        $this->setSearchDisabled();
+        $this->setPrimaryKey('id')
+            ->setDefaultSort('test_date', 'asc')
+            ->setSingleSortingDisabled()
+            ->setPaginationDisabled()
+            ->setSearchDisabled()
+            ->setTableAttributes([
+                'class' => 'table table-striped table-hover',
+            ]);
     }
 
     public function columns(): array
@@ -27,16 +31,11 @@ class PendingSurveysTable extends DataTableComponent
                 ->sortable(),
             Column::make('Test Type', 'type.test_type'),
             Column::make('Accession'),
-            Column::make('Survey Note'),
+            Column::make('Survey Note', 'notes'),
         ];
     }
 
-    public function rowView(): string
-    {
-        return 'livewire-tables.pending-surveys-row';
-    }
-
-    public function query(): Builder
+    public function builder(): Builder
     {
         return TestDate::query()
             ->with('machine', 'type')

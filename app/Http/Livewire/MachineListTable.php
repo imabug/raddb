@@ -9,7 +9,8 @@ use App\Models\Modality;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 /**
  * Livewire datatables component that provides a list of
@@ -19,43 +20,59 @@ class MachineListTable extends DataTableComponent
 {
     public function configure(): void
     {
-        $this->setDefaultSort('id', 'asc');
-        $this->setSingleSortingDisabled();
-        $this->setPaginationDisabled();
-        $this->setSearchDisabled();
+        $this->setPrimaryKey('id')
+            ->setDefaultSort('id', 'asc')
+            ->setSingleSortingDisabled()
+            ->setPaginationDisabled()
+            ->setSearchDisabled()
+            ->setColumnSelectDisabled()
+            ->setFiltersVisibilityEnabled()
+            ->setEagerLoadAllRelationsEnabled()
+            ->setFilterLayoutPopover()
+            ->setTableAttributes([
+                'class' => 'table table-striped table-hover',
+            ]);
     }
 
     // Default filters.
     public function filters(): array
     {
         return [
-            MultiSelectFilter::make('Status')
+            SelectFilter::make('Status')
                 ->options([
+                    'Active'   => 'Active',
+                    'Removed'  => 'Removed',
+                    'Inactive' => 'Inactive',
+                    ''         => 'All',
+              ]),
+            MultiSelectFilter::make('Modality')
+                ->options(
                     Modality::query()
                         ->orderBy('modality')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($modality) => $modality->name)
-                        ->toArray(),
+                        ->map(fn($modality) => $modality->modality)
+                        ->toArray()
+                ),
+            MultiSelectFilter::make('Manufacturer')
+                ->options(
                     Manufacturer::query()
                         ->orderBy('manufacturer')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($manufacturer) => $manufacturer->name)
-                        ->toArray(),
+                        ->map(fn($manufacturer) => $manufacturer->manufacturer)
+                        ->toArray()
+                ),
+            MultiSelectFilter::make('Location')
+                ->options(
                     Location::query()
                         ->orderBy('location')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($location) => $location->name)
-                        ->toArray(),
-                ]),
+                        ->map(fn($location) => $location->location)
+                        ->toArray()
+                ),
         ];
-    }
-
-    public function setTableClass(): string
-    {
-        return 'table table-striped table-hover';
     }
 
     public function columns(): array
@@ -82,76 +99,43 @@ class MachineListTable extends DataTableComponent
                     return $query
                         ->orderBy(Location::select('location')->whereColumn('id', 'location_id'), $direction);
                 }),
-            Column::make('Age', 'age'),
+            // Column::make('Age', 'age'),
             Column::make('Room', 'room'),
         ];
     }
 
-    public function filters(): array
-    {
-        // Build arrays for modality, manufacturer, and location.
-        // TODO See if this can be cached.
-        foreach (Modality::get('modality') as $m) {
-            $this->modalityArray[$m->modality] = $m->modality;
-        }
-
-        foreach (Manufacturer::get('manufacturer') as $m) {
-            $this->manufArray[$m->manufacturer] = $m->manufacturer;
-        }
-
-        foreach (Location::get('location') as $l) {
-            $this->locArray[$l->location] = $l->location;
-        }
-
-        return [
-            'status' => Filter::make('Status')
-                ->select([
-                    ''         => 'All',
-                    'Active'   => 'Active',
-                    'Removed'  => 'Removed',
-                    'Inactive' => 'Inactive',
-                ]),
-            'modality' => Filter::make('Modality')
-                ->select($this->modalityArray),
-            'manufacturer' => Filter::make('Manufacturer')
-                ->select($this->manufArray),
-            'location' => Filter::make('Location')
-                ->select($this->locArray),
-        ];
-    }
-
-    public function query(): Builder
+    public function builder(): Builder
     {
         return Machine::query()
             ->with(['modality', 'manufacturer', 'location'])
             ->when(
-                $this->getFilter('status'),
+                $this->getAppliedFilterWithValue('status'),
                 fn ($query, $status) => $query->where('machine_status', $status)
             )
             ->when(
-                $this->getFilter('modality'),
+                $this->getAppliedFilterWithValue('modality'),
                 fn ($query, $modality) => $query
                     ->where(Modality::select('modality')
                         ->whereColumn('id', 'modality_id'), $modality)
             )
             ->when(
-                $this->getFilter('manufacturer'),
+                $this->getAppliedFilterWithValue('manufacturer'),
                 fn ($query, $manufacturer) => $query
                     ->where(Manufacturer::select('manufacturer')
                         ->whereColumn('id', 'manufacturer_id'), $manufacturer)
             )
             ->when(
-                $this->getFilter('location'),
+                $this->getAppliedFilterWithValue('location'),
                 fn ($query, $location) => $query
                     ->where(Location::select('location')
                         ->whereColumn('id', 'location_id'), $location)
             );
     }
 
-    public function rowView(): string
-    {
-        // Use a custom row view so that things like the manufacturer,
-        // modality, description, location can be made clickable URLs
-        return 'livewire-tables.machines-list-row';
-    }
+    // public function rowView(): string
+    // {
+    //     // Use a custom row view so that things like the manufacturer,
+    //     // modality, description, location can be made clickable URLs
+    //     return 'livewire-tables.machines-list-row';
+    // }
 }
