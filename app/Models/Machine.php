@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -215,17 +216,19 @@ class Machine extends Model implements HasMedia
     /**
      * Add an age attribute based on either install or manufacture date.
      *
-     * @return int
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
-    public function getAgeAttribute()
+    public function age(): Attribute
     {
         // Calculate the age of the unit based on manuf_date or install_date
         if (!is_null($this->attributes['manuf_date'])) {
-            return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
+            $age = Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date']);
         } elseif (!is_null($this->attributes['install_date'])) {
-            return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
-        } else {
-            return 'N/A';
+            $age = Carbon::createFromFormat('Y-m-d', $this->attributes['install_date']);
         }
+
+        return Attribute::make(
+            get: fn ($value) => $age,
+        );
     }
 }
