@@ -45,6 +45,13 @@ class Machine extends Model implements HasMedia
         // 'install_date'
     ];
 
+    /*
+     * Accessors to append to the model
+     *
+     * @var array
+     */
+    protected $appends = ['age'];
+
     public function registerMediaCollections(Media $media = null): void
     {
         $this->addMediaCollection('machine_photos')
