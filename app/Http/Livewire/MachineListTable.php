@@ -9,8 +9,8 @@ use App\Models\Modality;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 /**
  * Livewire datatables component that provides a list of
@@ -44,14 +44,14 @@ class MachineListTable extends DataTableComponent
                     'Removed'  => 'Removed',
                     'Inactive' => 'Inactive',
                     ''         => 'All',
-              ]),
+                ]),
             MultiSelectFilter::make('Modality')
                 ->options(
                     Modality::query()
                         ->orderBy('modality')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($modality) => $modality->modality)
+                        ->map(fn ($modality) => $modality->modality)
                         ->toArray()
                 ),
             MultiSelectFilter::make('Manufacturer')
@@ -60,7 +60,7 @@ class MachineListTable extends DataTableComponent
                         ->orderBy('manufacturer')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($manufacturer) => $manufacturer->manufacturer)
+                        ->map(fn ($manufacturer) => $manufacturer->manufacturer)
                         ->toArray()
                 ),
             MultiSelectFilter::make('Location')
@@ -69,7 +69,7 @@ class MachineListTable extends DataTableComponent
                         ->orderBy('location')
                         ->get()
                         ->keyBy('id')
-                        ->map(fn($location) => $location->location)
+                        ->map(fn ($location) => $location->location)
                         ->toArray()
                 ),
         ];
