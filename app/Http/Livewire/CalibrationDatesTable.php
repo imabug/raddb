@@ -11,11 +11,12 @@ class CalibrationDatesTable extends DataTableComponent
 {
     public function configure(): void
     {
-        $this->setPrimaryKey('id');
-        $this->setDefaultSort('id', 'asc');
-        $this->setSingleSortingDisabled();
-        $this->setPaginationDisabled();
-        $this->setSearchDisabled();
+        $this->setPrimaryKey('id')
+            ->setDefaultSort('id', 'asc')
+            ->setSingleSortingDisabled()
+            ->setPaginationDisabled()
+            ->setSearchDisabled()
+            ->setColumnSelectDisabled();
     }
 
     public function columns(): array
@@ -26,7 +27,7 @@ class CalibrationDatesTable extends DataTableComponent
             Column::make('Model', 'model'),
             Column::make('Serial Number', 'serial_number'),
             Column::make('Description', 'description'),
-            Column::make('Age', 'age'),
+            // Column::make('Age', 'age'),
             Column::make('Room', 'room'),
             Column::make('Last calibration', 'testdate'),
         ];
@@ -43,8 +44,8 @@ class CalibrationDatesTable extends DataTableComponent
             ->testEquipment();
     }
 
-    public function rowView(): string
-    {
-        return 'livewire-tables.calibration-dates-row';
-    }
+    // public function rowView(): string
+    // {
+    //     return 'livewire-tables.calibration-dates-row';
+    // }
 }

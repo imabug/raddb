@@ -11,10 +11,15 @@ class RecommendationsForSurveyTable extends DataTableComponent
 {
     public function config(): void
     {
-        $this->setPrimaryKey('surveyId');
-        $this->setDefaultSort('id', 'asc');
-        $this->setSingleSortingDisabled();
-        $this->setPaginationDisabled();
+        $this->setPrimaryKey('id')
+            ->setDefaultSort('id', 'asc')
+            ->setSingleSortingDisabled()
+            ->setPaginationDisabled()
+            ->setSearchDisabled()
+            ->setTableAttributes([
+                'class' => 'table table-striped table-hover',
+            ])
+            ->setColumnSelectDisabled();
     }
 
     public function columns(): array
@@ -28,14 +33,14 @@ class RecommendationsForSurveyTable extends DataTableComponent
         ];
     }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
         return Recommendation::query()
             ->where('survey_id', $this->surveyId);
     }
 
-    public function rowView(): string
-    {
-        return 'livewire-tables.recommendations-for-survey-row';
-    }
+    // public function rowView(): string
+    // {
+    //     return 'livewire-tables.recommendations-for-survey-row';
+    // }
 }

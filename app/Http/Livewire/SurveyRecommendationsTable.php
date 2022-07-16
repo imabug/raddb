@@ -9,11 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class SurveyRecommendationsTable extends DataTableComponent
 {
-    public string $defaultSortColumn = 'id';
-    public string $defaultSortDirection = 'asc';
-    public bool $singleColumnSorting = false;
-    public bool $paginationEnabled = false;
-
     public $machine;
 
     public function mount($machine)
@@ -21,9 +16,16 @@ class SurveyRecommendationsTable extends DataTableComponent
         $this->machine = $machine;
     }
 
-    public function setTableClass(): string
+    public function configure(): void
     {
-        return 'table table-striped table-hover';
+        $this->setPrimaryKey('id')
+            ->setDefaultSort('id', 'asc')
+            ->setSingleSortingDisabled()
+            ->setPaginationDisabled()
+            ->setColumnSelectDisabled()
+            ->setTableAttributes([
+                'class' => 'table table-striped table-hover',
+            ]);
     }
 
     public function columns(): array
@@ -48,8 +50,8 @@ class SurveyRecommendationsTable extends DataTableComponent
             );
     }
 
-    public function rowView(): string
-    {
-        return 'livewire-tables.recommendation-list-row';
-    }
+    // public function rowView(): string
+    // {
+    //     return 'livewire-tables.recommendation-list-row';
+    // }
 }

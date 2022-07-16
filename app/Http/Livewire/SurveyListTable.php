@@ -18,15 +18,14 @@ class SurveyListTable extends DataTableComponent
 
     public function configure(): void
     {
-        $this->setDefaultSort('test_date', 'asc');
-        $this->setSingleSortingDisabled();
-        $this->setPaginationDisabled();
-        $this->setSearchDisabled();
-    }
-
-    public function setTableClass(): string
-    {
-        return 'table table-striped table-hover';
+        $this->setPrimaryKey('id')
+            ->setDefaultSort('test_date', 'asc')
+            ->setSingleSortingDisabled()
+            ->setPaginationDisabled()
+            ->setTableAttributes([
+                'class' => 'table table-striped table-hover',
+            ])
+            ->setSearchDisabled();
     }
 
     public function columns(): array
@@ -41,15 +40,15 @@ class SurveyListTable extends DataTableComponent
         ];
     }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
         return TestDate::query()
             ->with('machine', 'type')
             ->where('machine_id', $this->machine);
     }
 
-    public function rowView(): string
-    {
-        return 'livewire-tables.survey-list-row';
-    }
+    // public function rowView(): string
+    // {
+    //     return 'livewire-tables.survey-list-row';
+    // }
 }
