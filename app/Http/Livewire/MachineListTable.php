@@ -27,6 +27,7 @@ class MachineListTable extends DataTableComponent
             ->setSearchDisabled()
             ->setColumnSelectDisabled()
             ->setFiltersVisibilityEnabled()
+            ->setFilterLayoutSlideDown()
             ->setEagerLoadAllRelationsEnabled()
             ->setFilterLayoutPopover()
             ->setTableAttributes([
@@ -83,22 +84,30 @@ class MachineListTable extends DataTableComponent
                 ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Modality::select('modality')->whereColumn('id', 'modality_id'), $direction);
-                }),
+                })
+                ->format(
+                    fn($value, $row, Column $column) => '<a href="/machines?[filters][status]=Active&[filters][modality]='.$row->modality->modality.'">'.$row->modality->modality.'</a>'),
             Column::make('Manufacturer', 'manufacturer.manufacturer')
                 ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Manufacturer::select('manufacturer')->whereColumn('id', 'manufacturer_id'), $direction);
-                }),
+                })
+                ->format(
+                    fn($value, $row, Column $column) => '<a href="/machines?[filters][status]=Active&[filters][manufacturer]='.$row->manufacturer->manufacturer.'">'.$row->manufacturer->manufacturer.'</a>'),
             Column::make('Model', 'model')
                 ->sortable(),
             Column::make('SN', 'serial_number'),
             Column::make('Description', 'description')
-                ->searchable(),
+                ->searchable()
+                ->format(
+                    fn($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'),
             Column::make('Location', 'location.location')
                 ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Location::select('location')->whereColumn('id', 'location_id'), $direction);
-                }),
+                })
+                ->format(
+                    fn($value, $row, Column $column) => '<a href="/machines?[filters][status]=Active&[filters][location]='.$row->location->location.'">'.$row->location->location.'</a>'),
             // Column::make('Age', 'age'),
             Column::make('Room', 'room'),
         ];

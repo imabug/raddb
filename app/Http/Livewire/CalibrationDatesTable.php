@@ -16,7 +16,10 @@ class CalibrationDatesTable extends DataTableComponent
             ->setSingleSortingDisabled()
             ->setPaginationDisabled()
             ->setSearchDisabled()
-            ->setColumnSelectDisabled();
+            ->setColumnSelectDisabled()
+            ->setTableAttributes([
+                'class' => 'table table-striped table-hover',
+            ]);
     }
 
     public function columns(): array
