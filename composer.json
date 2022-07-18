@@ -37,7 +37,7 @@
         "nesbot/carbon": "^2.57",
         "phpoffice/phpspreadsheet": "^1.22",
         "rappasoft/laravel-livewire-tables": "^2.0",
-        "spatie/laravel-medialibrary": "^9.4.4",
+        "spatie/laravel-medialibrary": "^10.4.1",
         "symfony/yaml": "^6.1",
         "twbs/bootstrap": "^5.1"
     },
