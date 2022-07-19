@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a771284ca877ee43b97a1da462315535",
+    "content-hash": "80152d06c491872c4f2651082c99362c",
     "packages": [
         {
             "name": "brick/math",
@@ -4160,27 +4160,27 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "9.12.2",
+            "version": "10.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "9ed0f4a6017f8f0b5b4ef2d9ee7a89a0d0e4919d"
+                "reference": "cfab5c62ec09c2a59df745e451d6559e3b55966b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/9ed0f4a6017f8f0b5b4ef2d9ee7a89a0d0e4919d",
-                "reference": "9ed0f4a6017f8f0b5b4ef2d9ee7a89a0d0e4919d",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/cfab5c62ec09c2a59df745e451d6559e3b55966b",
+                "reference": "cfab5c62ec09c2a59df745e451d6559e3b55966b",
                 "shasum": ""
             },
             "require": {
                 "ext-exif": "*",
                 "ext-fileinfo": "*",
                 "ext-json": "*",
-                "illuminate/bus": "^9.0",
-                "illuminate/console": "^9.0",
-                "illuminate/database": "^9.0",
-                "illuminate/pipeline": "^9.0",
-                "illuminate/support": "^9.0",
+                "illuminate/bus": "^9.18",
+                "illuminate/console": "^9.18",
+                "illuminate/database": "^9.18",
+                "illuminate/pipeline": "^9.18",
+                "illuminate/support": "^9.18",
                 "intervention/image": "^2.7",
                 "maennchen/zipstream-php": "^2.0",
                 "php": "^8.0",
@@ -4202,7 +4202,7 @@
                 "mockery/mockery": "^1.4",
                 "nunomaduro/larastan": "^2.0",
                 "orchestra/testbench": "7.*",
-                "pestphp/pest": "^1.20",
+                "pestphp/pest": "^1.21",
                 "phpstan/extension-installer": "^1.1",
                 "spatie/laravel-ray": "^1.28",
                 "spatie/pdf-to-image": "^2.1",
@@ -4252,7 +4252,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/9.12.2"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.4.1"
             },
             "funding": [
                 {
@@ -4264,7 +4264,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-22T13:27:17+00:00"
+            "time": "2022-06-24T14:49:01+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -6616,16 +6616,16 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v5.1.3",
+            "version": "5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "1a6fdfae6be09b09eaced8f0e442ca6f7680a61e"
+                "reference": "edf9c40956d19e6ab3f9151bfe0dfac6be06fa21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/1a6fdfae6be09b09eaced8f0e442ca6f7680a61e",
-                "reference": "1a6fdfae6be09b09eaced8f0e442ca6f7680a61e",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/edf9c40956d19e6ab3f9151bfe0dfac6be06fa21",
+                "reference": "edf9c40956d19e6ab3f9151bfe0dfac6be06fa21",
                 "shasum": ""
             },
             "replace": {
@@ -6660,9 +6660,9 @@
             ],
             "support": {
                 "issues": "https://github.com/twbs/bootstrap/issues",
-                "source": "https://github.com/twbs/bootstrap/tree/v5.1.3"
+                "source": "https://github.com/twbs/bootstrap/tree/5.2.0"
             },
-            "time": "2021-10-09T06:43:19+00:00"
+            "time": "2022-07-19T15:43:58+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
