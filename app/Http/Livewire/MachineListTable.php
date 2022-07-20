@@ -108,7 +108,9 @@ class MachineListTable extends DataTableComponent
                 })
                 ->format(
                     fn($value, $row, Column $column) => '<a href="/machines?[filters][status]=Active&[filters][location]='.$row->location->location.'">'.$row->location->location.'</a>'),
-            // Column::make('Age', 'age'),
+            Column::make('Age', 'age')
+                ->format(
+                    fn($value, $row, Column $column) => $row->age),
             Column::make('Room', 'room'),
         ];
     }
