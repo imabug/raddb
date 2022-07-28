@@ -59,6 +59,10 @@ class Tube extends Model
         return $this->belongsTo('App\Models\Manufacturer');
     }
 
+    public function genData()
+    {
+        return $this->hasMany('App\Models\GenData');
+    }
     /*
      * Scopes
      */

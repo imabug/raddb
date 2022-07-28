@@ -122,6 +122,10 @@ class Machine extends Model implements HasMedia
         return $this->hasOne('App\Models\SurveyScheduleView', 'id');
     }
 
+    public function genData()
+    {
+        return $this->hasMany('App\Models\GenData');
+    }
     /*
      * Scopes
      */

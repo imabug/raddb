@@ -87,6 +87,10 @@ class TestDate extends Model implements HasMedia
         return $this->belongsTo('App\Models\LastYear', 'survey_id');
     }
 
+    public function genData()
+    {
+        return $this->hasMany('App\Models\GenData');
+    }
     /*
      * Scopes
      */
