@@ -37,13 +37,15 @@ class ImportGenData extends Command
         $progressBar = $this->output->createProgressBar();
         $progressBar->start();
 
+        // Load the spreadsheet
         $surveyFile = $this->argument('file');
 
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $spreadsheet = new Spreadsheet();
+
         $reader->setReadDataOnly(true)
             ->setLoadSheetsOnly(["Gen_form", "Sheet1"]);
 
-        $spreadsheet = new Spreadsheet();
         $spreadsheet = $reader->load($surveyFile);
 
         $progressBar->advance();
@@ -94,6 +96,10 @@ class ImportGenData extends Command
          * AT: Half value layer (mm Al)
          */
         foreach ($genData as $row) {
+            if (! is_numeric($row['AO'])) {
+                // No measurement here, so we can skip this row
+                break;
+            }
             $g = new GenData();
             $g->survey_id = $surveyId;
             $g->tube_id = $tube->id;
@@ -103,12 +109,12 @@ class ImportGenData extends Command
             $g->time_set = $row['AE'];
             $g->mas_set = $row['AF'];
             $g->add_filt = $row['AG'];
-            $g->kv_eff = is_numeric($row['AO']) ? $row['AO'] : null;
-            $g->exp_time = is_numeric($row['AP']) ? $row['AP']/1000 : null;
-            $g->exposure = is_numeric($row['AQ']) ? $row['AQ'] : null;
-            $g->dose_rate = is_numeric($row['AR']) ? $row['AR'] : null;
-            $g->tot_filt = is_numeric($row['AS']) ? $row['AS'] : null;
-            $g->hvl = is_numeric($row['AT']) ? $row['AT'] : null;
+            $g->kv_eff = $row['AO'];
+            $g->exp_time = $row['AP']/1000 : null;
+            $g->exposure = $row['AQ'] : null;
+            $g->dose_rate = $row['AR'] : null;
+            $g->tot_filt = $row['AS'] : null;
+            $g->hvl = $row['AT'] : null;
 
             $g->save();
             $progressBar->advance();
