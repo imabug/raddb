@@ -34,6 +34,9 @@ class ImportGenData extends Command
      */
     public function handle()
     {
+        $progressBar = $this->output->createProgressBar();
+        $progressBar->start();
+
         $surveyFile = $this->argument('file');
 
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -42,6 +45,8 @@ class ImportGenData extends Command
 
         $spreadsheet = new Spreadsheet();
         $spreadsheet = $reader->load($surveyFile);
+
+        $progressBar->advance();
 
         // Get the survey ID (cell E14)
         $surveyId = $spreadsheet
@@ -98,40 +103,18 @@ class ImportGenData extends Command
             $g->time_set = $row['AE'];
             $g->mas_set = $row['AF'];
             $g->add_filt = $row['AG'];
-            $g->kv_eff = $row['AO'];
-            $g->exp_time = $row['AP']/1000;
-            $g->exposure = $row['AQ'];
-            $g->dose_rate = $row['AR'];
-            $g->tot_filt = $row['AS'];
-            $g->hvl = $row['AT'];
+            $g->kv_eff = is_numeric($row['AO']) ? $row['AO'] : null;
+            $g->exp_time = is_numeric($row['AP']) ? $row['AP']/1000 : null;
+            $g->exposure = is_numeric($row['AQ']) ? $row['AQ'] : null;
+            $g->dose_rate = is_numeric($row['AR']) ? $row['AR'] : null;
+            $g->tot_filt = is_numeric($row['AS']) ? $row['AS'] : null;
+            $g->hvl = is_numeric($row['AT']) ? $row['AT'] : null;
 
-            // Validate the data
-            $validator = Validator::make($g->toArray(), [
-                'kv_set' => 'required|nullable|numeric',
-                'ma_set' => 'required|nullable|numeric',
-                'time_set' => 'required|nullable|numeric',
-                'mas_set' => 'required|nullable|numeric',
-                'add_filt' => 'required|nullable|numeric',
-                'kv_eff' => 'required|nullable|numeric',
-                'exp_time' => 'required|nullable|numeric',
-                'exposure' => 'required|nullable|numeric',
-                'dose_rate' => 'required|nullable|numeric',
-                'tot_filt' => 'required|nullable|numeric',
-                'hvl' => 'required|nullable|numeric',
-            ]);
-
-            if ($validator->fails()) {
-                // Something went wrong
-                $error = $validator->errors();
-                foreach ($errors->all() as $message) {
-                    $this->error($message);
-                }
-            } else {
-                // Everything validated.  Save generator data
-                $g->save();
-            }
+            $g->save();
+            $progressBar->advance();
         }
 
+        $progressBar->finish();
         $this->info('Generator data for Survey ID: ' . $surveyId . ' (' . $machine->description . ') saved.');
         return 1;
     }
