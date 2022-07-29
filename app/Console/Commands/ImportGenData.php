@@ -7,9 +7,7 @@ use App\Models\Machine;
 use App\Models\TestDate;
 use App\Models\Tube;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ImportGenData extends Command
 {
@@ -41,7 +39,7 @@ class ImportGenData extends Command
 
         // Load the spreadsheet
         $surveyFile = $this->argument('file');
-        if (! is_null($this->option('data'))) {
+        if (!is_null($this->option('data'))) {
             $dataBlock = $this->option('data');
         }
 
@@ -49,7 +47,7 @@ class ImportGenData extends Command
         $spreadsheet = new Spreadsheet();
 
         $reader->setReadDataOnly(true)
-            ->setLoadSheetsOnly(["Gen_form", "Sheet1"]);
+            ->setLoadSheetsOnly(['Gen_form', 'Sheet1']);
 
         $spreadsheet = $reader->load($surveyFile);
 
@@ -67,6 +65,7 @@ class ImportGenData extends Command
             $progressBar->finish();
             $this->newLine();
             $this->info('Generator data for this survey already exists.  Exiting');
+
             return 1;
         }
 
@@ -89,7 +88,7 @@ class ImportGenData extends Command
             // Ask the user which tube should be associated with the generator data
             $this->newLine();
             foreach ($tubes as $tube) {
-                $this->line($tube->id . ': ' . $tube->housing_model . ' SN: ' . $tube->housing_sn . ' ' . $tube->notes);
+                $this->line($tube->id.': '.$tube->housing_model.' SN: '.$tube->housing_sn.' '.$tube->notes);
                 $tubeChoice[] = $tube->id;
             }
             $tubeId = $this->choice(
@@ -97,7 +96,8 @@ class ImportGenData extends Command
                 $tubeChoice,
                 $defaultIndex = 0,
                 $maxAttempts = null,
-                $allowMultipleSelections = false);
+                $allowMultipleSelections = false
+            );
         } else {
             $tubeId = $tubes->first()->id;
         }
@@ -105,8 +105,13 @@ class ImportGenData extends Command
         // Load the generator data in block AC637:AT678
         $genData = $spreadsheet
             ->getActiveSheet()
-            ->rangeToArray('AC637:AT678',
-                NULL, TRUE, TRUE, TRUE);
+            ->rangeToArray(
+                'AC637:AT678',
+                null,
+                true,
+                true,
+                true
+            );
 
         $progressBar->advance();
 
@@ -127,7 +132,7 @@ class ImportGenData extends Command
          * AT: Half value layer (mm Al)
          */
         foreach ($genData as $row) {
-            if (! is_numeric($row['AO'])) {
+            if (!is_numeric($row['AO'])) {
                 // No measurement here, so we can skip this row
                 continue;
             }
@@ -153,7 +158,8 @@ class ImportGenData extends Command
 
         $progressBar->finish();
         $this->newLine();
-        $this->info('Generator data for Survey ID: ' . $surveyId . ' (' . $machine->description . ') saved.');
+        $this->info('Generator data for Survey ID: '.$surveyId.' ('.$machine->description.') saved.');
+
         return 1;
     }
 }
