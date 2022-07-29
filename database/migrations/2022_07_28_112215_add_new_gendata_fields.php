@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float('hvl')
                 ->nullable()
                 ->comment('Half value layer (mm Al)');
-        })
+        });
     }
 
     /**
