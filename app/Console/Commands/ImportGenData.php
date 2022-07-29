@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\GenData;
 use App\Models\Machine;
 use App\Models\TestDate;
+use App\Models\Tube;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -60,6 +61,15 @@ class ImportGenData extends Command
             ->getCell('E14')
             ->getCalculatedValue();
 
+        // Check to see if data for this survey ID already exists.
+        if (GenData::where('survey_id', $surveyId)->get()->count() > 0) {
+            // There's already data for this $surveyId present.  Exit.
+            $progressBar->finish();
+            $this->newLine();
+            $this->info('Generator data for this survey already exists.  Exiting');
+            return 1;
+        }
+
         // Get test date data
         $testDate = TestDate::with('machine')
             ->find($surveyId);
@@ -70,11 +80,26 @@ class ImportGenData extends Command
         // Get tube information
         // There will usually be only one tube, but for RF rooms,
         // need to make sure we get the radiographic tube
-        if ($machine->tube->count() > 1) {
-            $tube = $machine->tube->where('notes', 'Radiographic tube');
-        }
-        else {
-            $tube = $machine->tube->first();
+        $tubes = Tube::active()
+            ->where('machine_id', $machine->id)
+            ->get();
+
+        if ($tubes->count() > 1) {
+            // More than one tube for this machine.
+            // Ask the user which tube should be associated with the generator data
+            $this->newLine();
+            foreach ($tubes as $tube) {
+                $this->line($tube->id . ': ' . $tube->housing_model . ' SN: ' . $tube->housing_sn . ' ' . $tube->notes);
+                $tubeChoice[] = $tube->id;
+            }
+            $tubeId = $this->choice(
+                'Select the tube to associate ',
+                $tubeChoice,
+                $defaultIndex = 0,
+                $maxAttempts = null,
+                $allowMultipleSelections = false);
+        } else {
+            $tubeId = $tubes->first()->id;
         }
 
         // Load the generator data in block AC637:AT678
@@ -104,11 +129,11 @@ class ImportGenData extends Command
         foreach ($genData as $row) {
             if (! is_numeric($row['AO'])) {
                 // No measurement here, so we can skip this row
-                break;
+                continue;
             }
             $g = new GenData();
             $g->survey_id = $surveyId;
-            $g->tube_id = $tube->id;
+            $g->tube_id = $tubeId;
             $g->machine_id = $machine->id;
             $g->kv_set = $row['AC'];
             $g->ma_set = $row['AD'];
@@ -127,6 +152,7 @@ class ImportGenData extends Command
         }
 
         $progressBar->finish();
+        $this->newLine();
         $this->info('Generator data for Survey ID: ' . $surveyId . ' (' . $machine->description . ') saved.');
         return 1;
     }
