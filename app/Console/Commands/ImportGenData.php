@@ -6,9 +6,7 @@ use App\Models\GenData;
 use App\Models\Machine;
 use App\Models\TestDate;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ImportGenData extends Command
 {
@@ -40,7 +38,7 @@ class ImportGenData extends Command
 
         // Load the spreadsheet
         $surveyFile = $this->argument('file');
-        if (! is_null($this->option('data'))) {
+        if (!is_null($this->option('data'))) {
             $dataBlock = $this->option('data');
         }
 
@@ -48,7 +46,7 @@ class ImportGenData extends Command
         $spreadsheet = new Spreadsheet();
 
         $reader->setReadDataOnly(true)
-            ->setLoadSheetsOnly(["Gen_form", "Sheet1"]);
+            ->setLoadSheetsOnly(['Gen_form', 'Sheet1']);
 
         $spreadsheet = $reader->load($surveyFile);
 
@@ -72,16 +70,20 @@ class ImportGenData extends Command
         // need to make sure we get the radiographic tube
         if ($machine->tube->count() > 1) {
             $tube = $machine->tube->where('notes', 'Radiographic tube');
-        }
-        else {
+        } else {
             $tube = $machine->tube->first();
         }
 
         // Load the generator data in block AC637:AT678
         $genData = $spreadsheet
             ->getActiveSheet()
-            ->rangeToArray('AC637:AT678',
-                NULL, TRUE, TRUE, TRUE);
+            ->rangeToArray(
+                'AC637:AT678',
+                null,
+                true,
+                true,
+                true
+            );
 
         $progressBar->advance();
 
@@ -102,7 +104,7 @@ class ImportGenData extends Command
          * AT: Half value layer (mm Al)
          */
         foreach ($genData as $row) {
-            if (! is_numeric($row['AO'])) {
+            if (!is_numeric($row['AO'])) {
                 // No measurement here, so we can skip this row
                 break;
             }
@@ -127,7 +129,8 @@ class ImportGenData extends Command
         }
 
         $progressBar->finish();
-        $this->info('Generator data for Survey ID: ' . $surveyId . ' (' . $machine->description . ') saved.');
+        $this->info('Generator data for Survey ID: '.$surveyId.' ('.$machine->description.') saved.');
+
         return 1;
     }
 }
