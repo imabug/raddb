@@ -116,11 +116,11 @@ class ImportGenData extends Command
             $g->mas_set = $row['AF'];
             $g->add_filt = $row['AG'];
             $g->kv_eff = $row['AO'];
-            $g->exp_time = $row['AP']/1000 : null;
-            $g->exposure = $row['AQ'] : null;
-            $g->dose_rate = $row['AR'] : null;
-            $g->tot_filt = $row['AS'] : null;
-            $g->hvl = $row['AT'] : null;
+            $g->exp_time = $row['AP'] / 1000;
+            $g->exposure = $row['AQ'];
+            $g->dose_rate = $row['AR'];
+            $g->tot_filt = $row['AS'];
+            $g->hvl = $row['AT'];
 
             $g->save();
             $progressBar->advance();
