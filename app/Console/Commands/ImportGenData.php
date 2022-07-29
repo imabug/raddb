@@ -7,6 +7,7 @@ use App\Models\Machine;
 use App\Models\TestDate;
 use App\Models\Tube;
 use Illuminate\Console\Command;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ImportGenData extends Command
@@ -17,8 +18,7 @@ class ImportGenData extends Command
      * @var string
      */
     protected $signature = 'import:gendata
-                            {file : Excel spreadsheet to load generator data from}
-                            {--data=? : Excel cell range of the generator data (e.g. A1:B2)}';
+                            {file : Excel spreadsheet to load generator data from}';
 
     /**
      * The console command description.
@@ -39,17 +39,14 @@ class ImportGenData extends Command
 
         // Load the spreadsheet
         $surveyFile = $this->argument('file');
-        if (!is_null($this->option('data'))) {
-            $dataBlock = $this->option('data');
-        }
 
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $reader = new Xlsx();
         $spreadsheet = new Spreadsheet();
 
-        $reader->setReadDataOnly(true)
-            ->setLoadSheetsOnly(['Gen_form', 'Sheet1']);
-
-        $spreadsheet = $reader->load($surveyFile);
+        $spreadsheet = $reader
+            ->setReadDataOnly(true)
+            ->setLoadSheetsOnly(['Gen_form', 'Sheet1'])
+            ->load($surveyFile);
 
         $progressBar->advance();
 
@@ -76,7 +73,9 @@ class ImportGenData extends Command
         // Get machine information
         $machine = $testDate->machine;
 
-        // Get tube information
+        // Get tube information.  Only active tubes are retrieved.
+        // This means the command will error out if we try to add
+        // generator data for an inactive/removed tube.
         // There will usually be only one tube, but for RF rooms,
         // need to make sure we get the radiographic tube
         $tubes = Tube::active()
@@ -125,7 +124,7 @@ class ImportGenData extends Command
          * AG: Added filtration
          * AH - AN: Unused for generator data acquired using the RTI Barracuda/Piranha
          * AO: Measured kV
-         * AP: Exposure time (ms)
+         * AP: Exposure time (seconds)
          * AQ: Dose (mGy)
          * AR: Dose rate (mGy/s)
          * AS: Filtration (mm Al)
@@ -146,7 +145,7 @@ class ImportGenData extends Command
             $g->mas_set = $row['AF'];
             $g->add_filt = $row['AG'];
             $g->kv_eff = $row['AO'];
-            $g->exp_time = $row['AP'] / 1000;
+            $g->exp_time = $row['AP'] / 1000;  // Convert measured exposure time to seconds
             $g->exposure = $row['AQ'];
             $g->dose_rate = $row['AR'];
             $g->tot_filt = $row['AS'];
