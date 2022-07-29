@@ -18,7 +18,8 @@ class ImportGenData extends Command
      * @var string
      */
     protected $signature = 'import:gendata
-                            {file : Excel spreadsheet to load generator data from}';
+                            {file : Excel spreadsheet to load generator data from}
+                            {--data=? : Excel cell range of the generator data (e.g. A1:B2)}';
 
     /**
      * The console command description.
@@ -39,6 +40,9 @@ class ImportGenData extends Command
 
         // Load the spreadsheet
         $surveyFile = $this->argument('file');
+        if (! is_null($this->option('data'))) {
+            $dataBlock = $this->option('data');
+        }
 
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $spreadsheet = new Spreadsheet();
@@ -78,6 +82,8 @@ class ImportGenData extends Command
             ->getActiveSheet()
             ->rangeToArray('AC637:AT678',
                 NULL, TRUE, TRUE, TRUE);
+
+        $progressBar->advance();
 
         /*
          * Insert the data into the database
