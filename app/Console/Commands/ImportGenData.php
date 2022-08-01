@@ -76,7 +76,7 @@ class ImportGenData extends Command
         // Get tube information.
         // There will usually be only one tube, but for RF rooms,
         // need to make sure we get the radiographic tube
-        $tubes = Tube::->where('machine_id', $machine->id)->get();
+        $tubes = Tube::where('machine_id', $machine->id)->get();
 
         if ($tubes->count() > 1) {
             // More than one tube for this machine.
