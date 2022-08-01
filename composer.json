@@ -32,7 +32,7 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.4",
+        "laravel/ui": "^4.0",
         "livewire/livewire": "^2.10",
         "nesbot/carbon": "^2.57",
         "phpoffice/phpspreadsheet": "^1.22",
