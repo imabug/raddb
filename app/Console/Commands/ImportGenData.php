@@ -73,21 +73,17 @@ class ImportGenData extends Command
         // Get machine information
         $machine = $testDate->machine;
 
-        // Get tube information.  Only active tubes are retrieved.
-        // This means the command will error out if we try to add
-        // generator data for an inactive/removed tube.
+        // Get tube information.
         // There will usually be only one tube, but for RF rooms,
         // need to make sure we get the radiographic tube
-        $tubes = Tube::active()
-            ->where('machine_id', $machine->id)
-            ->get();
+        $tubes = Tube::->where('machine_id', $machine->id)->get();
 
         if ($tubes->count() > 1) {
             // More than one tube for this machine.
             // Ask the user which tube should be associated with the generator data
             $this->newLine();
             foreach ($tubes as $tube) {
-                $this->line($tube->id.': '.$tube->housing_model.' SN: '.$tube->housing_sn.' '.$tube->notes);
+                $this->line($tube->id.': '.$tube->housing_model.' SN: '.$tube->housing_sn.' '.$tube->notes.' Status:'.$tube->status);
                 $tubeChoice[] = $tube->id;
             }
             $tubeId = $this->choice(
