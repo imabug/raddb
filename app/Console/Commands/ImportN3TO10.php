@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\GenData;
 use App\Models\LeedsN3;
 use App\Models\LeedsTO10;
 use App\Models\Machine;
@@ -65,6 +64,7 @@ class ImportN3TO10 extends Command
             $progressBar->finish();
             $this->newLine();
             $this->info('Leeds N3 and TO.10 data for this survey already exists.  Exiting');
+
             return 1;
         }
 
@@ -152,7 +152,8 @@ class ImportN3TO10 extends Command
                 null,
                 true,
                 true,
-                true);
+                true
+            );
         $progressBar->advance();
 
         /*
