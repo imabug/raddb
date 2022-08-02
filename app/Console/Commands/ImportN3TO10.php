@@ -2,11 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\GenData;
-use App\Models\LeedsN3;
-use App\Models\Machine;
-use App\Models\TestDate;
-use App\Models\Tube;
 use Illuminate\Console\Command;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
