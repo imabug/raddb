@@ -122,7 +122,7 @@ class ImportN3TO10 extends Command
          * J: N3 data
          */
         foreach ($leeds as $row) {
-            if (~is_numeric($row['D'])) {
+            if (!is_numeric($row['D'])) {
                 // No measurement here, so we can skip this row
                 continue;
             }
