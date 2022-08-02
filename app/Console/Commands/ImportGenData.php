@@ -66,6 +66,12 @@ class ImportGenData extends Command
             return 1;
         }
 
+        // Get measurement distance/SDD (cell C699)
+        $sdd = $spreadsheet
+            ->getActiveSheet()
+            ->getCell('C699')
+            ->getCalculatedValue();
+
         // Get test date data
         $testDate = TestDate::with('machine')
             ->find($surveyId);
@@ -83,7 +89,7 @@ class ImportGenData extends Command
             // Ask the user which tube should be associated with the generator data
             $this->newLine();
             foreach ($tubes as $tube) {
-                $this->line($tube->id.': '.$tube->housing_model.' SN: '.$tube->housing_sn.' '.$tube->notes.' Status:'.$tube->status);
+                $this->line($tube->id.': '.$tube->housing_model.' SN: '.$tube->housing_sn.' '.$tube->notes.' Status:'.$tube->tube_status);
                 $tubeChoice[] = $tube->id;
             }
             $tubeId = $this->choice(
@@ -140,6 +146,7 @@ class ImportGenData extends Command
             $g->time_set = $row['AE'];
             $g->mas_set = $row['AF'];
             $g->add_filt = $row['AG'];
+            $g->distance = $sdd;
             $g->kv_eff = $row['AO'];
             $g->exp_time = $row['AP'] / 1000;  // Convert measured exposure time to seconds
             $g->exposure = $row['AQ'];
