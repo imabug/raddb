@@ -63,6 +63,11 @@ class Tube extends Model
     {
         return $this->hasMany('App\Models\GenData');
     }
+
+    public function leedsn3()
+    {
+        return $this->hasMany(LeedsN3::class);
+    }
     /*
      * Scopes
      */
