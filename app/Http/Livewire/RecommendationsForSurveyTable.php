@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class RecommendationsForSurveyTable extends DataTableComponent
 {
-    public function config(): void
+    public function configure(): void
     {
         $this->setPrimaryKey('id')
             ->setDefaultSort('id', 'asc')
