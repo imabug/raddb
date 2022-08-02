@@ -110,7 +110,7 @@ class ImportN3TO10 extends Command
                 'D401:K405',
                 null,
                 true,
-                ture,
+                true,
                 true
             );
         $progressBar->advance();
@@ -136,6 +136,8 @@ class ImportN3TO10 extends Command
             $progressBar->advance();
         }
 
+        $this->info(' Leeds N3 data for Survey ID: '.$surveyId.' ('.$machine->description.') saved.');
+
         /*
          * Get Leeds TO10 data (C414:M426)
          * Contrast detail
@@ -160,6 +162,7 @@ class ImportN3TO10 extends Command
          * Insert TO.10 data into the database
          */
 
+        $progressBar->finish();
         return 0;
     }
 }
