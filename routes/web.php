@@ -22,6 +22,7 @@ use App\Http\Controllers\ModalityController;
 use App\Http\Controllers\OpNoteController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\ServiceReportController;
+use App\Http\Controllers\SurveyCalendarController;
 use App\Http\Controllers\SurveyReportController;
 use App\Http\Controllers\TestDateController;
 use App\Http\Controllers\TestEquipmentController;
@@ -39,6 +40,8 @@ Route::name('dashboard.dashboard')
     ->get('/dashboard', [DashboardController::class, 'teststatus']);
 Route::name('dashboard.survey_graph')
     ->get('/dashboard/surveyCount', [DashboardController::class, 'showSurveyCounts']);
+Route::name('dashboard.survey_calendar')
+    ->get('/dashboard/surveyCalendar', [SurveyCalendarController::class, 'index']);
 
 /*
  * Machine listings
