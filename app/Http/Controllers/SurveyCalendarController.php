@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\TestDate;
 use Illuminate\Support\Facades\DB;
-use Khill\Lavacharts\Lavacharts;
 
 class SurveyCalendarController extends Controller
 {
@@ -33,7 +32,8 @@ class SurveyCalendarController extends Controller
             // Add survey date and count data to the data table
             foreach ($chartData as $d=>$count) {
                 $surveyCalendar->addRow(
-                    [$d, $count]);
+                    [$d, $count]
+                );
             }
 
             // Create a column chart
@@ -41,14 +41,14 @@ class SurveyCalendarController extends Controller
                 'Daily survey count - '.$y->years,
                 $surveyCalendar,
                 [
-                    'title' => 'Daily survey counts - '.$y->years,
+                    'title'          => 'Daily survey counts - '.$y->years,
                     'titleTextStyle' => [
                         'fontSize' => 14,
-                        'color' => 'black',],
+                        'color'    => 'black', ],
                     'yearLabel' => [
-                        'color' => 'black',],
+                        'color' => 'black', ],
                     'legend' => [
-                        'position' => 'top',],
+                        'position' => 'top', ],
                     'colorAxis' => [
                         'colors' => ['#c0d4ff', '#4273e0'],
                     ],
