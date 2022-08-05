@@ -48,16 +48,6 @@ Route::name('dashboard.survey_calendar')
  * These are redundant now that the machine listings has sorting and filtering capabilities
  * Will eventually be removed.
  */
-// Inactive machines
-// Route::name('machines.inactive')
-//     ->get('/machines/inactive', [MachineListingController::class, 'showInactive']);
-// // Removed machines
-// Route::name('machines.removed')
-//     ->get('/machines/removed/{year?}', [MachineListingController::class, 'showRemoved']);
-// // Installed machines by year
-// Route::name('machines.installed')
-//     ->get('/machines/installed/{year?}', [MachineListingController::class, 'showInstalled']);
-// // Index of machines grouped by location
 // Route::name('machines.showLocationIndex')
 //     ->get('/machines/locations', [LocationController::class, 'index']);
 // // List of machines for a selected location(s)
