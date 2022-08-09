@@ -126,7 +126,7 @@ class ImportN3TO10 extends Command
                 // No measurement here, so we can skip this row
                 continue;
             }
-            $n3 = new LeedsN3;
+            $n3 = new LeedsN3();
             $n3->survey_id = $surveyId;
             $n3->machine_id = $machine->id;
             $n3->tube_id = $tubeId;
