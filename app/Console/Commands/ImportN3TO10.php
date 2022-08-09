@@ -165,6 +165,6 @@ class ImportN3TO10 extends Command
 
         $progressBar->finish();
 
-        return 0;
+        return 1;
     }
 }
