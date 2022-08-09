@@ -104,7 +104,7 @@ class ImportN3TO10 extends Command
         // Get Leeds test data (D401:K405)
         // Field size is D401:D405
         // N3 data is J401:J405
-        $leeds = $spreadsheet
+        $leedsN3 = $spreadsheet
             ->getActiveSheet()
             ->rangeToArray(
                 'D401:K405',
@@ -121,17 +121,18 @@ class ImportN3TO10 extends Command
          * D: field size
          * J: N3 data
          */
-        foreach ($leeds as $row) {
+        foreach ($leedsN3 as $row) {
             if (!is_numeric($row['D'])) {
                 // No measurement here, so we can skip this row
                 continue;
             }
-            $n3 = new LeedsN3();
+            $n3 = new LeedsN3;
             $n3->survey_id = $surveyId;
             $n3->machine_id = $machine->id;
             $n3->tube_id = $tubeId;
             $n3->field_size = $row['D'];
             $n3->n3 = $row['J'];
+
             $n3->save();
             $progressBar->advance();
         }

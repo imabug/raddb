@@ -137,7 +137,7 @@ class ImportGenData extends Command
                 // No measurement here, so we can skip this row
                 continue;
             }
-            $g = new GenData();
+            $g = new GenData;
             $g->survey_id = $surveyId;
             $g->tube_id = $tubeId;
             $g->machine_id = $machine->id;
