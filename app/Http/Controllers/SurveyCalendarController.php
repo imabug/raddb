@@ -25,7 +25,11 @@ class SurveyCalendarController extends Controller
                 ->addNumberColumn('Num Surveys');
 
             // Get the number of surveys for each day of the current year $y
+            // Exclude these type_ids
+            // 8 - Other
+            // 10 - Calibration
             $chartData = TestDate::year($y->years)
+                ->whereNotIn('type_id', [8, 10])
                 ->get()
                 ->countBy('test_date');
 
