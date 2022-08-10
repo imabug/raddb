@@ -26,10 +26,10 @@ class MachineListTable extends DataTableComponent
             ->setPaginationDisabled()
             ->setSearchDisabled()
             ->setColumnSelectDisabled()
+            ->setFiltersEnabled()
             ->setFiltersVisibilityEnabled()
             ->setFilterLayoutSlideDown()
             ->setEagerLoadAllRelationsEnabled()
-            ->setFilterLayoutPopover()
             ->setTableAttributes([
                 'class' => 'table table-striped table-hover',
             ]);
@@ -39,14 +39,25 @@ class MachineListTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            SelectFilter::make('Status')
+            SelectFilter::make('Status', 'machine_status')
                 ->options([
-                    'Active'   => 'Active',
+                    ''   => 'Active',
                     'Removed'  => 'Removed',
                     'Inactive' => 'Inactive',
-                    ''         => 'All',
-                ]),
-            MultiSelectFilter::make('Modality')
+                    'All'         => 'All',
+                ])
+                ->filter(function(Builder $builder, string $value) {
+                    if ($value === '') {
+                        $builder->where('machine_status', 'Active');
+                    } elseif ($value === 'Removed') {
+                        $builder->where('machine_status', 'Removed');
+                    } elseif ($value === 'Inactive') {
+                        $builder->where('machine_status', 'Inactive');
+                    } elseif ($value === 'All') {
+                        $builder->whereNot('machine_status', '');
+                    }
+                }),
+            SelectFilter::make('Modality')
                 ->options(
                     Modality::query()
                         ->orderBy('modality')
@@ -55,7 +66,7 @@ class MachineListTable extends DataTableComponent
                         ->map(fn ($modality) => $modality->modality)
                         ->toArray()
                 ),
-            MultiSelectFilter::make('Manufacturer')
+            SelectFilter::make('Manufacturer')
                 ->options(
                     Manufacturer::query()
                         ->orderBy('manufacturer')
@@ -64,7 +75,7 @@ class MachineListTable extends DataTableComponent
                         ->map(fn ($manufacturer) => $manufacturer->manufacturer)
                         ->toArray()
                 ),
-            MultiSelectFilter::make('Location')
+            SelectFilter::make('Location')
                 ->options(
                     Location::query()
                         ->orderBy('location')
@@ -84,18 +95,12 @@ class MachineListTable extends DataTableComponent
                 ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Modality::select('modality')->whereColumn('id', 'modality_id'), $direction);
-                })
-                ->format(
-                    fn ($value, $row, Column $column) => '<a href="/machines?[filters][status]=Active&[filters][modality]='.$row->modality->modality.'">'.$row->modality->modality.'</a>'
-                ),
+                }),
             Column::make('Manufacturer', 'manufacturer.manufacturer')
                 ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Manufacturer::select('manufacturer')->whereColumn('id', 'manufacturer_id'), $direction);
-                })
-                ->format(
-                    fn ($value, $row, Column $column) => '<a href="/machines?[filters][status]=Active&[filters][manufacturer]='.$row->manufacturer->manufacturer.'">'.$row->manufacturer->manufacturer.'</a>'
-                ),
+                }),
             Column::make('Model', 'model')
                 ->sortable(),
             Column::make('SN', 'serial_number'),
@@ -103,19 +108,17 @@ class MachineListTable extends DataTableComponent
                 ->searchable()
                 ->format(
                     fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
-                ),
+                )
+                ->html(),
             Column::make('Location', 'location.location')
                 ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Location::select('location')->whereColumn('id', 'location_id'), $direction);
-                })
-                ->format(
-                    fn ($value, $row, Column $column) => '<a href="/machines?[filters][status]=Active&[filters][location]='.$row->location->location.'">'.$row->location->location.'</a>'
-                ),
-            Column::make('Age', 'age')
-                ->format(
-                    fn ($value, $row, Column $column) => $row->age
-                ),
+                }),
+            // Column::make('Age', 'age')
+            //     ->format(
+            //         fn ($value, $row, Column $column) => $row->age
+            //     ),
             Column::make('Room', 'room'),
         ];
     }
@@ -124,10 +127,6 @@ class MachineListTable extends DataTableComponent
     {
         return Machine::query()
             ->with(['modality', 'manufacturer', 'location'])
-            ->when(
-                $this->getAppliedFilterWithValue('status'),
-                fn ($query, $status) => $query->where('machine_status', $status)
-            )
             ->when(
                 $this->getAppliedFilterWithValue('modality'),
                 fn ($query, $modality) => $query
