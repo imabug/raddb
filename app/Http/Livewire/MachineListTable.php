@@ -64,7 +64,10 @@ class MachineListTable extends DataTableComponent
                         ->keyBy('id')
                         ->map(fn ($modality) => $modality->modality)
                         ->toArray()
-                ),
+                )
+                ->filter(function(Builder $builder, string $value) {
+                    $builder->where('modality_id', $value);
+                }),
             SelectFilter::make('Manufacturer')
                 ->options(
                     Manufacturer::query()
@@ -73,7 +76,10 @@ class MachineListTable extends DataTableComponent
                         ->keyBy('id')
                         ->map(fn ($manufacturer) => $manufacturer->manufacturer)
                         ->toArray()
-                ),
+                )
+                ->filter(function(Builder $builder, string $value) {
+                    $builder->where('Manufacturer_id', $value);
+                }),
             SelectFilter::make('Location')
                 ->options(
                     Location::query()
@@ -82,7 +88,10 @@ class MachineListTable extends DataTableComponent
                         ->keyBy('id')
                         ->map(fn ($location) => $location->location)
                         ->toArray()
-                ),
+                )
+                ->filter(function(Builder $builder, string $value) {
+                    $builder->where('location_id', $value);
+                }),
         ];
     }
 
@@ -125,25 +134,7 @@ class MachineListTable extends DataTableComponent
     public function builder(): Builder
     {
         return Machine::query()
-            ->with(['modality', 'manufacturer', 'location'])
-            ->when(
-                $this->getAppliedFilterWithValue('modality'),
-                fn ($query, $modality) => $query
-                    ->where(Modality::select('modality')
-                        ->whereColumn('id', 'modality_id'), $modality)
-            )
-            ->when(
-                $this->getAppliedFilterWithValue('manufacturer'),
-                fn ($query, $manufacturer) => $query
-                    ->where(Manufacturer::select('manufacturer')
-                        ->whereColumn('id', 'manufacturer_id'), $manufacturer)
-            )
-            ->when(
-                $this->getAppliedFilterWithValue('location'),
-                fn ($query, $location) => $query
-                    ->where(Location::select('location')
-                        ->whereColumn('id', 'location_id'), $location)
-            );
+            ->with(['modality', 'manufacturer', 'location']);
     }
 
     // public function rowView(): string
