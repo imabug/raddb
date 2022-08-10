@@ -35,11 +35,13 @@ class SurveyRecommendationsTable extends DataTableComponent
             Column::make('Recommendation', 'recommendation')
                 ->searchable(),
             Column::make('Resolved', 'resolved'),
-            Column::make('Service Report'),
+            // Need to figure out how to integrate with spatie/laravel-medialibrary to
+            // get the service report link
+            //Column::make('Service Report'),
         ];
     }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
         return Recommendation::query()
             ->whereHas(
