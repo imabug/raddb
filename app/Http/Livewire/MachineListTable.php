@@ -40,12 +40,12 @@ class MachineListTable extends DataTableComponent
         return [
             SelectFilter::make('Status', 'machine_status')
                 ->options([
-                    ''   => 'Active',
-                    'Removed'  => 'Removed',
-                    'Inactive' => 'Inactive',
+                    ''            => 'Active',
+                    'Removed'     => 'Removed',
+                    'Inactive'    => 'Inactive',
                     'All'         => 'All',
                 ])
-                ->filter(function(Builder $builder, string $value) {
+                ->filter(function (Builder $builder, string $value) {
                     if ($value === '') {
                         $builder->where('machine_status', 'Active');
                     } elseif ($value === 'Removed') {

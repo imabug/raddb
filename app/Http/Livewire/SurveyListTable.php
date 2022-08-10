@@ -40,7 +40,7 @@ class SurveyListTable extends DataTableComponent
             // Need to figure out how to integrate this with spatie/laravel-medialibrary
             // to get the survey report link
             LinkColumn::make('Survey report')
-                ->title(fn($row) => 'Report')
+                ->title(fn ($row) => 'Report')
                 ->location(
                     function ($row) {
                         $reports = $row->getMedia();
