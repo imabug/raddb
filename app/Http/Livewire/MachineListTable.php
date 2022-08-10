@@ -57,7 +57,7 @@ class MachineListTable extends DataTableComponent
                         ->map(fn ($modality) => $modality->modality)
                         ->toArray()
                 )
-                ->filter(function(Builder $builder, string $value) {
+                ->filter(function (Builder $builder, string $value) {
                     $builder->where('modality_id', $value);
                 }),
             SelectFilter::make('Manufacturer')
@@ -69,7 +69,7 @@ class MachineListTable extends DataTableComponent
                         ->map(fn ($manufacturer) => $manufacturer->manufacturer)
                         ->toArray()
                 )
-                ->filter(function(Builder $builder, string $value) {
+                ->filter(function (Builder $builder, string $value) {
                     $builder->where('Manufacturer_id', $value);
                 }),
             SelectFilter::make('Location')
@@ -81,7 +81,7 @@ class MachineListTable extends DataTableComponent
                         ->map(fn ($location) => $location->location)
                         ->toArray()
                 )
-                ->filter(function(Builder $builder, string $value) {
+                ->filter(function (Builder $builder, string $value) {
                     $builder->where('location_id', $value);
                 }),
         ];
