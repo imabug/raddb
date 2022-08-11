@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
  * Dashboard routes
  */
 // Survey schedule
-Route::controller(DashboardController::class)->group(function() {
+Route::controller(DashboardController::class)->group(function () {
     Route::name('index')
         ->get('/', 'index');
     Route::name('dashboard.dashboard')
