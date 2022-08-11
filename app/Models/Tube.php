@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -42,26 +43,33 @@ class Tube extends Model
     ];
 
     /*
+     * Accessors to append to the model
+     *
+     * @var array
+     */
+    protected $appends = ['age'];
+
+    /*
      * Relationships
      */
     public function machine()
     {
-        return $this->belongsTo('App\Models\Machine');
+        return $this->belongsTo(Machine::class);
     }
 
     public function housing_manuf()
     {
-        return $this->belongsTo('App\Models\Manufacturer');
+        return $this->belongsTo(Manufacturer::class);
     }
 
     public function insert_manuf()
     {
-        return $this->belongsTo('App\Models\Manufacturer');
+        return $this->belongsTo(Manufacturer::class);
     }
 
     public function genData()
     {
-        return $this->hasMany('App\Models\GenData');
+        return $this->hasMany(GenData::class);
     }
 
     public function leedsn3()
@@ -104,17 +112,19 @@ class Tube extends Model
     /**
      * Add an age attribute based on either install or manufacture date.
      *
-     * @return int
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
-    public function getAgeAttribute()
+    public function age(): Attribute
     {
-        // Calculate the age of the tube based on install_date or manuf_date
-        if (!is_null($this->attributes['install_date'])) {
-            return Carbon::createFromFormat('Y-m-d', $this->attributes['install_date'])->age;
-        } elseif (!is_null($this->attributes['manuf_date'])) {
-            return Carbon::createFromFormat('Y-m-d', $this->attributes['manuf_date'])->age;
-        } else {
-            return 'N/A';
+        // Calculate the age of the unit based on manuf_date or install_date
+        return Attribute::make(
+            get: function ($value, $attributes) {
+                if (!is_null($attributes['manuf_date'])) {
+                    return Carbon::createFromFormat('Y-m-d', $attributes['manuf_date'])->age;
+                } elseif (!is_null($attributes['install_date'])) {
+                    return Carbon::createFromFormat('Y-m-d', $attributes['install_date'])->age;
+                }
         }
+        );
     }
 }
