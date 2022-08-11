@@ -32,7 +32,6 @@ class MachineListTable extends DataTableComponent
             ->setTableAttributes([
                 'class' => 'table table-striped table-hover',
             ]);
-        $this->emit('setFilter', 'machine_status', 'Active');
     }
 
     // Default filters.
