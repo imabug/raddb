@@ -29,21 +29,21 @@ class CalibrationDatesTable extends DataTableComponent
             Column::make('Manufacturer', 'manufacturer.manufacturer'),
             Column::make('Model', 'model'),
             Column::make('Serial Number', 'serial_number'),
-            Column::make('Description', 'description'),
+            Column::make('Description', 'description')
+                ->format(
+                    fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
+                )
+                ->html(),
             // Column::make('Age', 'age'),
             Column::make('Room', 'room'),
-            Column::make('Last calibration', 'testdate'),
+            Column::make('Last calibration', 'testdate.test_date'),
         ];
     }
 
     public function builder(): Builder
     {
-        return Machine::with([
-            'manufacturer',
-            'testdate' => function ($query) {
-                $query->where('type_id', '10')->latest('test_date');
-            }, ])
-            ->active()
+        return Machine::query()
+            ->with(['manufacturer', 'testdate'])
             ->testEquipment();
     }
 
