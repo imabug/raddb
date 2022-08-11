@@ -54,42 +54,42 @@ class TestDate extends Model implements HasMedia
      */
     public function machine()
     {
-        return $this->belongsTo('App\Models\Machine');
+        return $this->belongsTo(Machine::class);
     }
 
     public function type()
     {
-        return $this->belongsTo('App\Models\TestType');
+        return $this->belongsTo(TestType::class);
     }
 
     public function tester1()
     {
-        return $this->belongsTo('App\Models\Tester');
+        return $this->belongsTo(Tester::class);
     }
 
     public function tester2()
     {
-        return $this->belongsTo('App\Models\Tester');
+        return $this->belongsTo(Tester::class);
     }
 
     public function recommendations()
     {
-        return $this->hasMany('App\Models\Recommendation', 'survey_id');
+        return $this->hasMany(Recommendation::class, 'survey_id');
     }
 
     public function thisyear()
     {
-        return $this->belongsTo('App\Models\ThisYear', 'survey_id');
+        return $this->belongsTo(ThisYear::class, 'survey_id');
     }
 
     public function lastyear()
     {
-        return $this->belongsTo('App\Models\LastYear', 'survey_id');
+        return $this->belongsTo(LastYear::class, 'survey_id');
     }
 
     public function genData()
     {
-        return $this->hasMany('App\Models\GenData');
+        return $this->hasMany(GenData::class);
     }
 
     public function leedsn3()

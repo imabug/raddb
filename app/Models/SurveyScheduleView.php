@@ -18,16 +18,16 @@ class SurveyScheduleView extends Model
      */
     public function machine()
     {
-        return $this->belongsTo('App\Models\Machine', 'id');
+        return $this->belongsTo(Machine::class, 'id');
     }
 
     public function prevSurvey()
     {
-        return $this->belongsTo('App\Models\TestDate', 'prevSurveyID');
+        return $this->belongsTo(TestDate::class, 'prevSurveyID');
     }
 
     public function currSurvey()
     {
-        return $this->belongsTo('App\Models\TestDate', 'currSurveyID');
+        return $this->belongsTo(TestDate::class, 'currSurveyID');
     }
 }

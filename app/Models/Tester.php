@@ -30,6 +30,6 @@ class Tester extends Model
     // Relationships
     public function testdate()
     {
-        return $this->hasMany('App\Models\TestDate');
+        return $this->hasMany(TestDate::class);
     }
 }

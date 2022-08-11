@@ -18,11 +18,11 @@ class LastYear extends Model
      */
     public function machine()
     {
-        return $this->belongsTo('App\Models\Machine');
+        return $this->belongsTo(Machine::class);
     }
 
     public function survey()
     {
-        return $this->belongsTo('App\Models\TestDate', 'id');
+        return $this->belongsTo(TestDate::class, 'id');
     }
 }

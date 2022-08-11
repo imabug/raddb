@@ -30,16 +30,16 @@ class Manufacturer extends Model
     // Relationships
     public function machine()
     {
-        return $this->hasMany('App\Models\Machine');
+        return $this->hasMany(Machine::class);
     }
 
     public function tube_housing_manuf()
     {
-        return $this->hasMany('App\Models\Tube');
+        return $this->hasMany(Tube::class);
     }
 
     public function tube_ins_manuf()
     {
-        return $this->hasMany('App\Models\Tube');
+        return $this->hasMany(Tube::class);
     }
 }

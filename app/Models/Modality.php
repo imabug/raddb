@@ -37,6 +37,6 @@ class Modality extends Model
     // Relationships
     public function machine()
     {
-        return $this->hasMany('App\Models\Machine');
+        return $this->hasMany(Machine::class);
     }
 }

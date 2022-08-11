@@ -37,6 +37,6 @@ class OpNote extends Model
     // Relationships
     public function machine()
     {
-        return $this->belongsTo('App\Models\Machine');
+        return $this->belongsTo(Machine::class);
     }
 }

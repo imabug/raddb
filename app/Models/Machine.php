@@ -63,55 +63,55 @@ class Machine extends Model implements HasMedia
      */
     public function location()
     {
-        return $this->belongsTo('App\Models\Location');
+        return $this->belongsTo(Location::class);
     }
 
     public function modality()
     {
-        return $this->belongsTo('App\Models\Modality');
+        return $this->belongsTo(Modality::class);
     }
 
     public function manufacturer()
     {
-        return $this->belongsTo('App\Models\Manufacturer');
+        return $this->belongsTo(Manufacturer::class);
     }
 
     public function tube()
     {
-        return $this->hasMany('App\Models\Tube');
+        return $this->hasMany(Tube::class);
     }
 
     public function opnote()
     {
-        return $this->hasMany('App\Models\OpNote');
+        return $this->hasMany(OpNote::class);
     }
 
     public function testdate()
     {
-        return $this->hasMany('App\Models\TestDate');
+        return $this->hasMany(TestDate::class);
     }
 
     public function thisyear()
     {
-        return $this->hasMany('App\Models\ThisYear');
+        return $this->hasMany(ThisYear::class);
     }
 
     public function lastyear()
     {
-        return $this->hasMany('App\Models\LastYear');
+        return $this->hasMany(LastYear::class);
     }
 
     public function testdateRecent()
     {
-        return $this->hasMany('App\Models\TestDate')
+        return $this->hasMany(TestDate::class)
             ->latest('test_date')->first();
     }
 
     public function recommendation()
     {
         return $this->hasManyThrough(
-            'App\Models\Recommendation',
-            'App\Models\TestDate',
+            Recommendation::class,
+            TestDate::class,
             'machine_id',
             'survey_id'
         );
@@ -119,12 +119,12 @@ class Machine extends Model implements HasMedia
 
     public function surveySchedule()
     {
-        return $this->hasOne('App\Models\SurveyScheduleView', 'id');
+        return $this->hasOne(SurveyScheduleView::class, 'id');
     }
 
     public function genData()
     {
-        return $this->hasMany('App\Models\GenData');
+        return $this->hasMany(GenData::class);
     }
 
     public function leedsn3()

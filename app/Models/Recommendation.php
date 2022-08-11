@@ -50,7 +50,7 @@ class Recommendation extends Model
      */
     public function survey()
     {
-        return $this->belongsTo('App\Models\TestDate');
+        return $this->belongsTo(TestDate::class);
     }
 
     /*

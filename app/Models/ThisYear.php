@@ -23,6 +23,6 @@ class ThisYear extends Model
 
     public function survey()
     {
-        return $this->belongsTo('App\Models\TestDate', 'id');
+        return $this->belongsTo(TestDate::class, 'id');
     }
 }

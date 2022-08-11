@@ -30,11 +30,6 @@ class Location extends Model
     // Relationships
     public function machine()
     {
-        return $this->hasMany('App\Models\Machine');
-    }
-
-    public function contact()
-    {
-        return $this->hasMany('App\Models\Contact');
+        return $this->hasMany(Machine::class);
     }
 }
