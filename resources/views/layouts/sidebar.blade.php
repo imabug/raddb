@@ -40,7 +40,7 @@
           <li role="presentation" class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarTestEquip" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test Equipment<span class="caret"></span></a>
             <ul class="dropdown-menu" aria-labelledby="navbarTestEquip">
-              <li role="presentation"><a class="dropdown-item" href="/machines?filters[status]=Active&filters[modality]=Test+equipment">List Test Equipment</a></li>
+              <li role="presentation"><a class="dropdown-item" href="/machines?table[filters][machine_status]=Active&table[filters][modality]=19">List Test Equipment</a></li>
               <li role="presentation"><a class="dropdown-item" href="{{ route('testequipment.showCalDates') }}">Recent calibration dates</a></li>
             </ul>
           </li>
