@@ -14,11 +14,8 @@
 use App\Http\Controllers\AnnReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\MachinePhotoController;
-use App\Http\Controllers\ManufacturerController;
-use App\Http\Controllers\ModalityController;
 use App\Http\Controllers\OpNoteController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\ServiceReportController;
