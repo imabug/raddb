@@ -31,12 +31,14 @@ use Illuminate\Support\Facades\Route;
  * Dashboard routes
  */
 // Survey schedule
-Route::name('index')
-    ->get('/', [DashboardController::class, 'index']);
-Route::name('dashboard.dashboard')
-    ->get('/dashboard', [DashboardController::class, 'teststatus']);
-Route::name('dashboard.survey_graph')
-    ->get('/dashboard/surveyCount', [DashboardController::class, 'showSurveyCounts']);
+Route::controller(DashboardController::class)->group(function() {
+    Route::name('index')
+        ->get('/', 'index');
+    Route::name('dashboard.dashboard')
+        ->get('/dashboard', 'teststatus');
+    Route::name('dashboard.survey_graph')
+        ->get('/dashboard/surveyCount', 'showSurveyCounts');
+});
 Route::name('dashboard.survey_calendar')
     ->get('/dashboard/surveyCalendar', [SurveyCalendarController::class, 'index']);
 
