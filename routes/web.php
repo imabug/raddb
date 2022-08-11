@@ -44,29 +44,6 @@ Route::name('dashboard.survey_calendar')
     ->get('/dashboard/surveyCalendar', [SurveyCalendarController::class, 'index']);
 
 /*
- * Machine listings
- * These are redundant now that the machine listings has sorting and filtering capabilities
- * Will eventually be removed.
- */
-// Route::name('machines.showLocationIndex')
-//     ->get('/machines/locations', [LocationController::class, 'index']);
-// // List of machines for a selected location(s)
-// Route::name('machines.showLocation')
-//     ->get('/machines/locations/{id}', [LocationController::class, 'show']);
-// // Index of machines grouped by manufacturer
-// Route::name('machines.showManufacturerIndex')
-//     ->get('/machines/manufacturers', [ManufacturerController::class, 'index']);
-// // List of machines for a selected modality/modalities
-// Route::name('machines.showManufacturer')
-//     ->get('/machines/manufacturers/{id}', [ManufacturerController::class, 'show']);
-// // Index of machines grouped by modality
-// Route::name('machines.showModalityIndex')
-//     ->get('/machines/modalities', [ModalityController::class, 'index']);
-// // List of machines for a selected modality/modalities
-// Route::name('machines.showModality')
-//     ->get('/machines/modalities/{id}', [ModalityController::class, 'show']);
-
-/*
  * Machine controller
  */
 Route::resource('machines', MachineController::class);
