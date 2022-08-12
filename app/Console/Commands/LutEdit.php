@@ -61,7 +61,7 @@ class LutEdit extends Command
                 $body = Tester::all(['id', 'name'])->toArray();
                 $model = app('App\Models\Tester');
                 $field = 'name';
-                $this-info('Editing Tester table');
+                $this->info('Editing Tester table');
                 break;
             case 'testtype':
                 $body = TestType::all(['id', 'test_type'])->toArray();
@@ -87,6 +87,7 @@ class LutEdit extends Command
         // Check to make sure the value isn't already in the table
         if ($model::firstWhere($field, $value)) {
             $this->ask('Value already exists in the table.');
+
             return 0;
         } else {
             $lut->$field = $value;
