@@ -45,8 +45,7 @@ class LutDelete extends Command
     public function handle()
     {
         $table = strtolower($this->argument('table'));
-        $tableValue = $this->argument('value');
-        $headers = ['ID', $table];
+        $value = $this->argument('value');
         $lut = null;
 
         // Show the lookup table
@@ -56,19 +55,24 @@ class LutDelete extends Command
 
         switch ($table) {
             case 'location':
-                $lut = Location::where('location', $tableValue)->first();
+                $lut = Location::where('location', $value)->firstOrFail();
+                $lutValue = $lut->location;
                 break;
             case 'manufacturer':
-                $lut = Manufacturer::where('manufacturer', $tableValue)->first();
+                $lut = Manufacturer::where('manufacturer', $value)->firstOrFail();
+                $lutValue = $lut->manufacturer;
                 break;
             case 'modality':
-                $lut = Modality::where('modality', $tableValue)->first();
+                $lut = Modality::where('modality', $value)->firstOrFail();
+                $lutValue = $lut->modality;
                 break;
             case 'tester':
-                $lut = Tester::where('tester', $tableValue)->first();
+                $lut = Tester::where('tester', $value)->firstOrFail();
+                $lutValue = $lut->tester;
                 break;
             case 'testtype':
-                $lut = TestType::where('test_type', $tableValue)->first();
+                $lut = TestType::where('test_type', $value)->firstOrFail();
+                $lutValue = $lut->test_type;
                 break;
             default:
                 $this->error('Usage: php artisan lut:delete <table> <value>');
@@ -77,7 +81,7 @@ class LutDelete extends Command
 
         if (!is_null($lut)) {
             // Ask for confirmation
-            if ($this->confirm('Deleting '.$table.' ID:'.$lut->id.'. Do you wish to continue?')) {
+            if ($this->confirm('Deleting '.$table.' ID:'.$lut->id.' Value: '.$lutValue.'. Do you wish to continue?')) {
                 $lut->delete();
             }
 
