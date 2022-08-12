@@ -87,7 +87,7 @@ class LutEdit extends Command
         // Check to make sure the value isn't already in the table
         if ($model::firstWhere($field, $value)) {
             $this->ask('Value already exists in the table.');
-            return 0
+            return 0;
         } else {
             $lut->$field = $value;
             $lut->save();
