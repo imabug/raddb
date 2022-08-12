@@ -45,29 +45,29 @@ class LutAdd extends Command
     public function handle()
     {
         $table = strtolower($this->argument('table'));
-        $tableValue = $this->argument('value');
+        $value = $this->argument('value');
         $headers = ['ID', $table];
         $body = null;
 
         switch ($table) {
             case 'location':
-                $location = Location::create(['location' => $tableValue]);
+                $location = Location::create(['location' => $value]);
                 $body = Location::all(['id', 'location'])->toArray();
                 break;
             case 'manufacturer':
-                $manufacturer = Manufacturer::create(['manufacturer' => $tableValue]);
+                $manufacturer = Manufacturer::create(['manufacturer' => $value]);
                 $body = Manufacturer::all(['id', 'manufacturer'])->toArray();
                 break;
             case 'modality':
-                $modality = Modality::create(['modality' => $tableValue]);
+                $modality = Modality::create(['modality' => $value]);
                 $body = Modality::all(['id', 'modality'])->toArray();
                 break;
             case 'tester':
-                $tester = Tester::create(['tester' => $tableValue]);
+                $tester = Tester::create(['tester' => $value]);
                 $body = Tester::all(['id', 'name'])->toArray();
                 break;
             case 'testtype':
-                $testtype = TestType::create(['test_type' => $tableValue]);
+                $testtype = TestType::create(['test_type' => $value]);
                 $body = TestType::all(['id', 'test_type'])->toArray();
                 break;
             default:
