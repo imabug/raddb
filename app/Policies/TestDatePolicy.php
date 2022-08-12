@@ -11,9 +11,9 @@ class TestDatePolicy
 {
     use HandlesAuthorization;
 
-    public function before($user, $ability)
+    public function before(User $user, $ability)
     {
-        return $user->isAdmin();
+        return $user->is_admin;
     }
 
     /**
