@@ -34,9 +34,9 @@ class CalibrationDatesTable extends DataTableComponent
                     fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
                 )
                 ->html(),
-            // Column::make('Age', 'age'),
+            //Column::make('Age', 'age'),
             Column::make('Room', 'room'),
-            Column::make('Last calibration', 'testdate.test_date'),
+            //Column::make('Last calibration', 'testdate.test_date'),
         ];
     }
 
