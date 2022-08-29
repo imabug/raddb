@@ -43,7 +43,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.20",
-        "laravel/dusk": "^6.25.1",
+        "laravel/dusk": "^7.0",
         "laravel/sail": "^1.15.3",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^6.2.1",
