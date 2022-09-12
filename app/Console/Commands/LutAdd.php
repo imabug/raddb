@@ -17,8 +17,7 @@ class LutAdd extends Command
      * @var string
      */
     protected $signature = 'lut:add
-                            {table : The lookup table to add to}
-                            {value : Value to add to the lookup table}';
+                            {table : The lookup table to add to}';
 
     /**
      * The console command description.
@@ -45,40 +44,40 @@ class LutAdd extends Command
     public function handle()
     {
         $table = strtolower($this->argument('table'));
-        $value = $this->argument('value');
-        $headers = ['ID', $table];
-        $body = null;
 
         switch ($table) {
             case 'location':
-                $location = Location::create(['location' => $value]);
-                $body = Location::all(['id', 'location'])->toArray();
+                $l = new Location();
+                $l->location = $this->ask('Enter a new location');
+                $l->save(); // Need to do some validation on the new location before saving
                 break;
             case 'manufacturer':
-                $manufacturer = Manufacturer::create(['manufacturer' => $value]);
-                $body = Manufacturer::all(['id', 'manufacturer'])->toArray();
+                $m = new Manufacturer();
+                $m->manufacturer = $this->ask('Enter a new manufacturer');
+                $m->save();
                 break;
             case 'modality':
-                $modality = Modality::create(['modality' => $value]);
-                $body = Modality::all(['id', 'modality'])->toArray();
+                $m = new Modality();
+                $m->modality = $this->ask('Enter a new modality');
+                $m->save();
                 break;
             case 'tester':
-                $tester = Tester::create(['tester' => $value]);
-                $body = Tester::all(['id', 'name'])->toArray();
+                $t = new Tester();
+                $t->name = $this->ask('Enter new tester\'s name');
+                $t->initials = $this->ask('Enter tester\'s initials');
+                $t->save();
                 break;
             case 'testtype':
-                $testtype = TestType::create(['test_type' => $value]);
-                $body = TestType::all(['id', 'test_type'])->toArray();
+                $testtype = new TestType();
+                $t->test_type = $this->ask('Enter new test type');
+                $t->save();
                 break;
             default:
-                $this->error('Usage: php artisan lut:add <table> <value>');
+                $this->error('Usage: php artisan lut:add <table>');
 
                 return 0;
                 break;
         }
-
-        // Show the lookup table with the new value.
-        $this->table($headers, $body);
 
         return 1;
     }
