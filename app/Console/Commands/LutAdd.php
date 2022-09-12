@@ -8,6 +8,7 @@ use App\Models\Modality;
 use App\Models\Tester;
 use App\Models\TestType;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Validator;
 
 class LutAdd extends Command
 {
@@ -47,30 +48,36 @@ class LutAdd extends Command
 
         switch ($table) {
             case 'location':
-                $l = new Location();
-                $l->location = $this->ask('Enter a new location');
-                $l->save(); // Need to do some validation on the new location before saving
+                $lut = new Location();
+                $lut->location = $this->ask('Enter a new location');
+                $validator = Validator::make($lut->location, [
+                    'location' => 'required|string']);
                 break;
             case 'manufacturer':
-                $m = new Manufacturer();
-                $m->manufacturer = $this->ask('Enter a new manufacturer');
-                $m->save();
+                $lut = new Manufacturer();
+                $lut->manufacturer = $this->ask('Enter a new manufacturer');
+                $validator = Validator::make($lut->manufacturer, [
+                    'manufacturer' => 'required|string']);
                 break;
             case 'modality':
-                $m = new Modality();
-                $m->modality = $this->ask('Enter a new modality');
-                $m->save();
+                $lut = new Modality();
+                $lut->modality = $this->ask('Enter a new modality');
+                $validator = Validator::make($lut->modality, [
+                    'modality' => 'required|string']);
                 break;
             case 'tester':
-                $t = new Tester();
-                $t->name = $this->ask('Enter new tester\'s name');
-                $t->initials = $this->ask('Enter tester\'s initials');
-                $t->save();
+                $lut = new Tester();
+                $lut->name = $this->ask('Enter new tester\'s name');
+                $lut->initials = $this->ask('Enter tester\'s initials');
+                $validator = Validator::make($lut->tester, [
+                    'name' => 'required|string',
+                    'initials' => 'string']);
                 break;
             case 'testtype':
-                $testtype = new TestType();
-                $t->test_type = $this->ask('Enter new test type');
-                $t->save();
+                $lut = new TestType();
+                $lut->test_type = $this->ask('Enter new test type');
+                $validator = Validator::make($lut->test_type, [
+                    'test_type' => 'required|string|max:4']);
                 break;
             default:
                 $this->error('Usage: php artisan lut:add <table>');
@@ -78,6 +85,15 @@ class LutAdd extends Command
                 return 0;
                 break;
         }
+
+        // Perform some validation
+        if ($validator->fails()) {
+            $this->error('There were problems with the '.$table.' values provided.');
+            return 0;
+        }
+
+        $lut->save();
+        $this->info('New '.$table.' entry saved.');
 
         return 1;
     }
