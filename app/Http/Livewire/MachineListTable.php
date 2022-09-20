@@ -9,6 +9,7 @@ use App\Models\Modality;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 /**
@@ -90,6 +91,12 @@ class MachineListTable extends DataTableComponent
     {
         return [
             Column::make('ID', 'id'),
+            Column::make('Description', 'description')
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
+                )
+                ->html(),
             Column::make('Modality', 'modality.modality')
                 ->sortable(function (Builder $query, $direction) {
                     return $query
@@ -103,21 +110,11 @@ class MachineListTable extends DataTableComponent
             Column::make('Model', 'model')
                 ->sortable(),
             Column::make('SN', 'serial_number'),
-            Column::make('Description', 'description')
-                ->searchable()
-                ->format(
-                    fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
-                )
-                ->html(),
             Column::make('Location', 'location.location')
                 ->sortable(function (Builder $query, $direction) {
                     return $query
                         ->orderBy(Location::select('location')->whereColumn('id', 'location_id'), $direction);
                 }),
-            // Column::make('Age', 'age')
-            //     ->format(
-            //         fn ($value, $row, Column $column) => $row->age
-            //     ),
             Column::make('Room', 'room'),
         ];
     }
