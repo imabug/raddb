@@ -6,7 +6,6 @@ use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class SurveyListTable extends DataTableComponent
 {
@@ -40,7 +39,8 @@ class SurveyListTable extends DataTableComponent
             Column::make('Survey Report')
                 ->label(
                     fn ($row, Column $column) => view('livewire-tables.survey-report-view')
-                        ->withRow($row)),
+                        ->withRow($row)
+                ),
         ];
     }
 
