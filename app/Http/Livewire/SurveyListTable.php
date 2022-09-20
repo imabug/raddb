@@ -37,18 +37,10 @@ class SurveyListTable extends DataTableComponent
             Column::make('Test type', 'type.test_type'),
             Column::make('Accession', 'accession'),
             Column::make('Notes', 'notes'),
-            // Need to figure out how to integrate this with spatie/laravel-medialibrary
-            // to get the survey report link
-            LinkColumn::make('Survey report')
-                ->title(fn ($row) => 'Report')
-                ->location(
-                    function ($row) {
-                        $reports = $row->getMedia();
-                        if ($reports->count() > 0) {
-                            return $reports->getUrl();
-                        }
-                    }
-                ),
+            Column::make('Survey Report')
+                ->label(
+                    fn ($row, Column $column) => view('livewire-tables.survey-report-view')
+                        ->withRow($row)),
         ];
     }
 
