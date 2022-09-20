@@ -15,6 +15,7 @@ class PendingSurveysTable extends DataTableComponent
             ->setDefaultSort('test_date', 'asc')
             ->setSingleSortingDisabled()
             ->setPaginationDisabled()
+            ->setColumnSelectDisabled()
             ->setSearchDisabled()
             ->setTableAttributes([
                 'class' => 'table table-striped table-hover',

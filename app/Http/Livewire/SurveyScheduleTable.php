@@ -15,6 +15,7 @@ class SurveyScheduleTable extends DataTableComponent
             ->setDefaultSort('prevSurveyDate', 'asc')
             ->setSingleSortingDisabled()
             ->setPaginationDisabled()
+            ->setColumnSelectDisabled()
             ->setEagerLoadAllRelationsEnabled()
             ->setTableAttributes([
                 'class' => 'table table-striped table-hover',

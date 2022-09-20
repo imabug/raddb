@@ -22,6 +22,7 @@ class SurveyListTable extends DataTableComponent
             ->setDefaultSort('test_date', 'asc')
             ->setSingleSortingDisabled()
             ->setPaginationDisabled()
+            ->setColumnSelectDisabled()
             ->setTableAttributes([
                 'class' => 'table table-striped table-hover',
             ])
