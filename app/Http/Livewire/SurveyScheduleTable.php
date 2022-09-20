@@ -33,10 +33,12 @@ class SurveyScheduleTable extends DataTableComponent
                 ->html(),
             Column::make('Previous', 'prevSurveyDate')
                 ->sortable(),
-            Column::make('Prev Survey ID', 'prevSurveyID'),
+            Column::make('Prev Survey ID', 'prevSurveyID')
+                ->view('livewire-tables.survey-id-view'),
             Column::make('Current', 'currSurveyDate')
                 ->sortable(),
-            Column::make('Current Survey ID', 'currSurveyID'),
+            Column::make('Current Survey ID', 'currSurveyID')
+                ->view('livewire-tables.survey-id-view'),
         ];
     }
 
