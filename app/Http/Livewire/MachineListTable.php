@@ -121,7 +121,8 @@ class MachineListTable extends DataTableComponent
                 ),
             Column::make('Edit')
                 ->label(
-                    fn ($row, Column $column) => view('livewire-tables.edit-delete')->withRow($row)),
+                    fn ($row, Column $column) => view('livewire-tables.edit-delete')->withRow($row)
+                ),
         ];
     }
 
