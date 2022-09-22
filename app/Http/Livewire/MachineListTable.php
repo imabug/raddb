@@ -115,6 +115,9 @@ class MachineListTable extends DataTableComponent
                         ->orderBy(Location::select('location')->whereColumn('id', 'location_id'), $direction);
                 }),
             Column::make('Room', 'room'),
+            Column::make('Age')
+                ->label(
+                    fn($row, Column $column) => Machine::find($row->id)->age),
         ];
     }
 
