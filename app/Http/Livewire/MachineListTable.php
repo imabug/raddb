@@ -119,6 +119,9 @@ class MachineListTable extends DataTableComponent
                 ->label(
                     fn ($row, Column $column) => Machine::find($row->id)->age
                 ),
+            Column::make('Edit')
+                ->label(
+                    fn ($row, Column $column) => view('livewire-tables.edit-delete')->withRow($row)),
         ];
     }
 
