@@ -33,6 +33,10 @@ class PendingSurveysTable extends DataTableComponent
             Column::make('Test Type', 'type.test_type'),
             Column::make('Accession'),
             Column::make('Survey Note', 'notes'),
+            Column::make('Edit')
+                ->label(
+                    fn ($row, Column $column) => view('livewire-tables.edit-survey')->withRow($row)
+                ),
         ];
     }
 
