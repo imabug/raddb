@@ -117,7 +117,8 @@ class MachineListTable extends DataTableComponent
             Column::make('Room', 'room'),
             Column::make('Age')
                 ->label(
-                    fn($row, Column $column) => Machine::find($row->id)->age),
+                    fn ($row, Column $column) => Machine::find($row->id)->age
+                ),
         ];
     }
 
