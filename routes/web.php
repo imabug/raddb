@@ -29,6 +29,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
+Route::name('home.index')
+    ->get('/home', [HomeController::class, 'index']);
 Route::name('index')
     ->get('/', [HomeController::class, 'index']);
 /*
@@ -36,7 +38,7 @@ Route::name('index')
  */
 Route::prefix('dashboard')->group(function () {
     Route::name('dashboard.dashboard')
-        ->get('/dashboard', [DashboardSurveyStatusController::class, 'teststatus']);
+        ->get('/', [DashboardSurveyStatusController::class, 'teststatus']);
     Route::name('dashboard.surveyCount')
         ->get('/surveyCount', [DashboardSurveyCountController::class, 'index']);
     Route::name('dashboard.surveyCalendar')
