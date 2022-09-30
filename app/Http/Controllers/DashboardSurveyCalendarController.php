@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TestDate;
 use Illuminate\Support\Facades\DB;
 
-class SurveyCalendarController extends Controller
+class DashboardSurveyCalendarController extends Controller
 {
     /*
      * Show a page of Google Calendar Charts for each year of surveys.

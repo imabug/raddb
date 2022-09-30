@@ -40,7 +40,7 @@ Route::controller(DashboardController::class)->group(function () {
         ->get('/dashboard/surveyCount', 'showSurveyCounts');
 });
 Route::name('dashboard.survey_calendar')
-    ->get('/dashboard/surveyCalendar', [SurveyCalendarController::class, 'index']);
+    ->get('/dashboard/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
 
 /*
  * Machine controller
