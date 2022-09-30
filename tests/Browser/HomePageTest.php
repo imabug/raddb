@@ -1,6 +1,13 @@
 <?php
 
-use Laravel\Dusk\Browser
+use Laravel\Dusk\Browser;
+
+it('has home page', function () {
+    $this->browse(function (Browser $browser) {
+        $browser->visit('/')
+            ->assertSee('Radiological Equipment Database');
+    });
+});
 // namespace Tests\Feature;
 
 // use Tests\TestCase;
