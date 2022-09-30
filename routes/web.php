@@ -44,16 +44,6 @@ Route::prefix('dashboard')->group(function () {
     Route::name('dashboard.surveyCalendar')
         ->get('/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
 });
-// Route::group(function () {
-//     Route::name('index')
-//         ->get('/', 'index');
-//     Route::name('dashboard.dashboard')
-//         ->get('/dashboard', 'teststatus');
-//     Route::name('dashboard.survey_graph')
-//         ->get('/dashboard/surveyCount', 'showSurveyCounts');
-// });
-// Route::name('dashboard.survey_calendar')
-//     ->get('/dashboard/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
 
 /*
  * Machine controller
@@ -70,10 +60,12 @@ Route::resource('testequipment', TestEquipmentController::class);
 /*
  * Operational notes controller
  */
-Route::name('opnotes.operationalNotes')
-    ->get('opnotes/opnotes/', \App\Http\Livewire\Opnotes\OperationalNotes::class);
-Route::name('opnotes.createOpNoteFor')
-    ->get('opnotes/{machineId?}/create', [OpNoteController::class, 'create']);
+Route::prefix('opnotes')->group(function () {
+    Route::name('opnotes.operationalNotes')
+        ->get('/opnotes', \App\Http\Livewire\Opnotes\OperationalNotes::class);
+    Route::name('opnotes.createOpNoteFor')
+        ->get('/{machineId?}/create', [OpNoteController::class, 'create']);
+});
 Route::resource('opnotes', OpNoteController::class);
 /*
  * Recommendation controller
