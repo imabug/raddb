@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Machine;
 use App\Models\SurveyScheduleView;
 use App\Models\TestDate;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
