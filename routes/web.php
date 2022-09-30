@@ -28,8 +28,9 @@ use App\Http\Controllers\TubeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+Auth::routes();
 Route::name('index')
-    ->get('/', [DashboardSurveyStatusController::class, 'index']);
+    ->get('/', [HomeController::class, 'index']);
 /*
  * Dashboard routes
  */
@@ -128,12 +129,6 @@ Route::resource(
  * Route for user management
  */
 Route::resource('users', UserController::class);
-
-/*
- * Authentication routes
- */
-Auth::routes();
-Route::name('home.index')->get('/home', [HomeController::class, 'index']);
 
 /*
  * Reporting routes
