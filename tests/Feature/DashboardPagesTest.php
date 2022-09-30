@@ -1,18 +1,18 @@
 <?php
 
 test('Survey status page exists', function () {
-    $response = $this->get('/dashboard');
-    $response->assertStatus(200);
+    $response = $this->get('/dashboard')
+        ->assertStatus(200);
 });
 
 test('Survey graph page exists', function () {
-    $response = $this->get('/dashboard/surveyCount');
-    $response->assertStatus(200);
+    $response = $this->get('/dashboard/surveyCount')
+        ->assertStatus(200);
 });
 
 test('Survey calendar page exists', function () {
-    $response = $this->get('/dashboard/surveyCalendar');
-    $response->assertStatus(200);
+    $response = $this->get('/dashboard/surveyCalendar')
+        ->assertStatus(200);
 });
 // namespace Tests\Feature;
 
