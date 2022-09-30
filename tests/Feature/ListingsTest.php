@@ -2,11 +2,11 @@
 
 use function Pest\Laravel\get;
 
-test('Lising page exists', function($url) {
+test('Lising page exists', function ($url) {
     get($url)->assertStatus(200);
 })->with([
-    'Machines listing' => '/machines',
-    'Test equipment listing' => '/testequipment',
+    'Machines listing'                          => '/machines',
+    'Test equipment listing'                    => '/testequipment',
     'Test equipment calibration dates liisting' => '/testequipment/caldates',
 ]);
 // namespace Tests\Feature;
