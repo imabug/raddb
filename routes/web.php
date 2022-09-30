@@ -12,14 +12,15 @@
 */
 
 use App\Http\Controllers\AnnReportController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardSurveyCalendarController;
+use App\Http\Controllers\DashboardSurveyCountController;
+use App\Http\Controllers\DashboardSurveyStatusController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\MachinePhotoController;
 use App\Http\Controllers\OpNoteController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\ServiceReportController;
-use App\Http\Controllers\SurveyCalendarController;
 use App\Http\Controllers\SurveyReportController;
 use App\Http\Controllers\TestDateController;
 use App\Http\Controllers\TestEquipmentController;
@@ -27,20 +28,29 @@ use App\Http\Controllers\TubeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::name('index')
+    ->get('/', [DashboardSurveyStatusController::class, 'index']);
 /*
  * Dashboard routes
  */
-// Survey schedule
-Route::controller(DashboardController::class)->group(function () {
-    Route::name('index')
-        ->get('/', 'index');
+Route::prefix('dashboard')->group(function () {
     Route::name('dashboard.dashboard')
-        ->get('/dashboard', 'teststatus');
-    Route::name('dashboard.survey_graph')
-        ->get('/dashboard/surveyCount', 'showSurveyCounts');
+        ->get('/dashboard', [DashboardSurveyStatusController::class, 'teststatus']);
+    Route::name('dashboard.surveyCount')
+        ->get('/surveyCount', [DashboardSurveyCountController::class, 'index']);
+    Route::name('dashboard.surveyCalendar')
+        ->get('/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
 });
-Route::name('dashboard.survey_calendar')
-    ->get('/dashboard/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
+// Route::group(function () {
+//     Route::name('index')
+//         ->get('/', 'index');
+//     Route::name('dashboard.dashboard')
+//         ->get('/dashboard', 'teststatus');
+//     Route::name('dashboard.survey_graph')
+//         ->get('/dashboard/surveyCount', 'showSurveyCounts');
+// });
+// Route::name('dashboard.survey_calendar')
+//     ->get('/dashboard/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
 
 /*
  * Machine controller
