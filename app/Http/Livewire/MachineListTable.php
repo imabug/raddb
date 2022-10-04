@@ -20,12 +20,15 @@ class MachineListTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id')
+            ->setSortingEnabled()
             ->setDefaultSort('id', 'asc')
             ->setSingleSortingDisabled()
             ->setPaginationDisabled()
-            ->setSearchDisabled()
+            ->setSearchEnabled()
+            ->setSearchVisibilityEnabled()
             ->setColumnSelectDisabled()
             ->setFiltersEnabled()
+            ->setFilterPillsEnabled()
             ->setFiltersVisibilityEnabled()
             ->setFilterLayoutSlideDown()
             ->setEagerLoadAllRelationsEnabled()
@@ -107,7 +110,8 @@ class MachineListTable extends DataTableComponent
                         ->orderBy(Manufacturer::select('manufacturer')->whereColumn('id', 'manufacturer_id'), $direction);
                 }),
             Column::make('Model', 'model')
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make('SN', 'serial_number'),
             Column::make('Location', 'location.location')
                 ->sortable(function (Builder $query, $direction) {
