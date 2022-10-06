@@ -14,7 +14,6 @@ class SurveyScheduleTable extends DataTableComponent
         $this->setPrimaryKey('id')
             ->setSortingEnabled()
             ->setDefaultSort('prevSurveyDate', 'asc')
-            ->setSingleSortingDisabled()
             ->setPaginationDisabled()
             ->setSearchEnabled()
             ->setSearchVisibilityEnabled()
