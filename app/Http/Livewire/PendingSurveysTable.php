@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Machine;
 use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -27,7 +28,17 @@ class PendingSurveysTable extends DataTableComponent
         return [
             Column::make('Survey ID', 'id')
                 ->sortable(),
-            Column::make('Description', 'machine.description'),
+            Column::make('Description', 'machine.description')
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) =>
+                        '<a href="'.
+                        route('machines.show', TestDate::find($row->id)->machine_id).
+                        '">'.
+                        Machine::find(TestDate::find($row->id)->machine_id)->description.
+                        '</a>'
+                )
+                ->html(),
             Column::make('Date scheduled', 'test_date')
                 ->sortable(),
             Column::make('Test Type', 'type.test_type'),
