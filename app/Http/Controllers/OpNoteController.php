@@ -74,12 +74,11 @@ class OpNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(OpNoteStoreRequest $request)
+    public function store(OpNoteStoreRequest $request, OpNote $opNote)
     {
         // Check if action is allowed
         $this->authorize(OpNote::class);
 
-        $opNote = new OpNote();
         $opNote->machine_id = $request->machineId;
         $opNote->note = $request->note;
 

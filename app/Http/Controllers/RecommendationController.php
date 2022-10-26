@@ -77,14 +77,13 @@ class RecommendationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRecommendationRequest $request)
+    public function store(StoreRecommendationRequest $request, Recommendation $recommendation)
     {
         // Check if action is allowed
         $this->authorize(Recommendation::class);
 
         $message = '';
 
-        $recommendation = new Recommendation();
         $survey = TestDate::find($request->surveyId);
 
         $recommendation->survey_id = $request->surveyId;

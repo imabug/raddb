@@ -65,14 +65,13 @@ class TubeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTubeRequest $request)
+    public function store(StoreTubeRequest $request, Tube $tube)
     {
         // Check if action is allowed
         $this->authorize(Tube::class);
 
         $message = '';
 
-        $tube = new Tube();
         $tube->machine_id = $request->machine_id;
         $tube->housing_model = $request->hsgModel;
         $tube->housing_sn = $request->hsgSN;

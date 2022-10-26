@@ -78,14 +78,12 @@ class TestDateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(UpdateTestDateRequest $request)
+    public function store(UpdateTestDateRequest $request, TestDate $testdate)
     {
         // Check if action is allowed
         $this->authorize(TestDate::class);
 
         $message = '';
-
-        $testdate = new TestDate();
 
         $testdate->test_date = $request->test_date;
         $testdate->machine_id = $request->machineID;

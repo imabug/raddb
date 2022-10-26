@@ -68,14 +68,14 @@ class MachineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(UpdateMachineRequest $request)
+    public function store(UpdateMachineRequest $request, Machine $machine)
     {
         // Check if action is allowed
         $this->authorize(Machine::class);
 
         $message = '';
 
-        $machine = new Machine();
+        // $machine = new Machine();
         $machine->modality_id = $request->modality;
         $machine->description = $request->description;
         $machine->manufacturer_id = $request->manufacturer;
