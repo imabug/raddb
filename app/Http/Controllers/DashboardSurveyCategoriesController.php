@@ -48,7 +48,7 @@ class DashboardSurveyCategoriesController extends Controller
                 $surveyCategories,
                 [
                     'is3D'           => true,
-                    'title'          => 'Survey counts - '.$y->years.' ('.TestDate::year($y->years)->count().')',
+                    'title'          => 'Survey counts - '.$y->years.' ('.$chartData->sum().')',
                     'titleTextStyle' => [
                         'fontSize' => 14,
                         'color'    => 'black', ],
