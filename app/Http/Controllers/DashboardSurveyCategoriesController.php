@@ -47,11 +47,11 @@ class DashboardSurveyCategoriesController extends Controller
                 'Yearly survey counts by test type - '.$y->years,
                 $surveyCategories,
                 [
-                    'is3D' => true,
-                    'title' => 'Survey counts - '.$y->years.' ('.TestDate::year($y->years)->count().')',
+                    'is3D'           => true,
+                    'title'          => 'Survey counts - '.$y->years.' ('.TestDate::year($y->years)->count().')',
                     'titleTextStyle' => [
                         'fontSize' => 14,
-                        'color' => 'black', ],
+                        'color'    => 'black', ],
                     'legend' => [
                         'position' => 'top', ],
                     'colorAxis' => [
