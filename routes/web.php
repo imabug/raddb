@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\AnnReportController;
 use App\Http\Controllers\DashboardSurveyCalendarController;
+use App\Http\Controllers\DashboardSurveyCategoriesController;
 use App\Http\Controllers\DashboardSurveyCountController;
 use App\Http\Controllers\DashboardSurveyStatusController;
 use App\Http\Controllers\HomeController;
@@ -43,6 +44,8 @@ Route::prefix('dashboard')->group(function () {
         ->get('/surveyCount', [DashboardSurveyCountController::class, 'index']);
     Route::name('dashboard.surveyCalendar')
         ->get('/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
+    Route::name('dashboard.surveyCategories')
+        ->get('/surveyCategories', [DashboardSurveyCategoriesController::class, 'index']);
 });
 
 /*
