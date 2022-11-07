@@ -47,6 +47,10 @@ class PendingSurveysTable extends DataTableComponent
                 ->label(
                     fn ($row, Column $column) => view('livewire-tables.edit-survey')->withRow($row)
                 ),
+            Column::make('Cancel')
+                ->label(
+                    fn ($row, Column $column) => view('livewire-tables.cancel-survey')->withRow($row)
+                ),
         ];
     }
 

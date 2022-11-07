@@ -29,16 +29,6 @@ class TestDateController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show a form for creating a new survey.
      * This method is called with an optional parameter $id which corresponds to
      * the machine ID the survey is being created for.
@@ -199,14 +189,30 @@ class TestDateController extends Controller
     }
 
     /**
-     * Not implemented. Should not be able to remove surveys from the database.
+     * Cancel a survey.
      *
-     * @param int $id
+     * @param int $surveyId
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function cancel($surveyId)
     {
-        //
+        // Check if action is allowed
+        $this->authorize(TestDate::class);
+
+        $testdate = TestDate::findOrFail($id);
+        if ($testdate->delete()) {
+            $status = 'success';
+            $message .= 'Survey '.$testdate->id.' canceled.';
+            Log::info($message);
+        } else {
+            $status = 'fail';
+            $message .= 'Unable to cancel survey.';
+            Log::error($message);
+        }
+
+        return redirect()
+            ->route('index')
+            ->with($status, $message);
     }
 }
