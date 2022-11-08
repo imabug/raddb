@@ -192,7 +192,7 @@ class TestDateController extends Controller
      * Cancel a survey.
      * This method is called with the survey Id (required) to cancel.
      * URI: /surveys/$surveyId/cancel
-     * Method: POST
+     * Method: POST.
      *
      * @param int $surveyId
      *
