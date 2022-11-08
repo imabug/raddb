@@ -24,7 +24,7 @@ class TestDateController extends Controller
             'edit',
             'store',
             'update',
-            'destroy',
+            'cancel',
         ]);
     }
 
@@ -190,6 +190,9 @@ class TestDateController extends Controller
 
     /**
      * Cancel a survey.
+     * This method is called with the survey Id (required) to cancel.
+     * URI: /surveys/$surveyId/cancel
+     * Method: POST
      *
      * @param int $surveyId
      *
@@ -200,7 +203,9 @@ class TestDateController extends Controller
         // Check if action is allowed
         $this->authorize(TestDate::class);
 
-        $testdate = TestDate::findOrFail($id);
+        $message = '';
+
+        $testdate = TestDate::findOrFail($surveyId);
         if ($testdate->delete()) {
             $status = 'success';
             $message .= 'Survey '.$testdate->id.' canceled.';
