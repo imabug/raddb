@@ -24,7 +24,7 @@ from machines
 left join thisyear_view on machines.id = thisyear_view.machine_id
 left join lastyear_view on machines.id = lastyear_view.machine_id
 where machines.machine_status="Active"
-order by lastyear_view.test_date
+order by lastyear_view.machine_id, lastyear_view.test_date
 SQL;
     }
 
