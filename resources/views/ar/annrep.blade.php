@@ -5,20 +5,20 @@
     @section('content')
     <h2>Medical Physics Annual Report Data for {{$year}}</h2>
 
-    <h3>Survey Type Breakdown</h3>
+    <h3>Survey Type Breakdown ({{$surveyTotal}} surveys)</h3>
     <table class="table table-striped table-hover table-sm">
-    <thead>
-    <th scope="col">Test Type</th>
-    <th scope="col">Number</th>
-    </thead>
-    <tbody>
-     @foreach($surveyTypeCount as $type => $count)
-        <tr>
+      <thead>
+        <th scope="col">Test Type</th>
+        <th scope="col">Number</th>
+      </thead>
+      <tbody>
+        @foreach($surveyTypeCount as $type => $count)
+          <tr>
             <td>{{$type}}</td>
             <td>{{$count}} ({{round(($count/$surveyTotal*100), 1)}}%)</td>
-        </tr>
-    @endforeach
-    </tbody>
+          </tr>
+        @endforeach
+      </tbody>
     </table>
 
     <h3>Imaging Equipment Inventory ({{$modalitiesCount->count()}} modalities)</h3>
