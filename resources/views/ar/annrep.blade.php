@@ -15,7 +15,7 @@
      @foreach($surveyTypeCount as $type => $count)
         <tr>
             <td>{{$type}}</td>
-            <td>{{$count}}</td>
+            <td>{{$count}} ({{round(($count/$surveyTypeCount['Total surveys']*100), 1)}}%)</td>
         </tr>
     @endforeach
     </tbody>
@@ -31,7 +31,7 @@
      @foreach($modalitiesCount as $modality => $count)
        <tr>
          <td>{{$modality}}</td>
-         <td>{{$count}}</td>
+         <td>{{$count}} ({{round(($count/$modalitiesCount['Total machines']*100), 1)}}%)</td>
        </tr>
      @endforeach
       </tbody>
