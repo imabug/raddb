@@ -84,7 +84,7 @@ class AnnReportController extends Controller
             $surveyTypeCount[$type] = $s->count();
         }
         arsort($surveyTypeCount);
-        $surveyTypeCount['Total surveys'] = $surveys->count();
+        $surveyTotal = $surveys->count();
 
         // Get all the active machines
         $machines = Machine::with('modality', 'location')
@@ -97,7 +97,7 @@ class AnnReportController extends Controller
             $modalitiesCount[$modality] = $m->count();
         }
         arsort($modalitiesCount);
-        $modalitiesCount['Total machines'] = $machines->count();
+        $machineTotal = $machines->count();
 
         // Group by location and count them up
         $loc = $machines->groupBy('location.location');
@@ -108,6 +108,8 @@ class AnnReportController extends Controller
 
         return view('ar.annrep', [
             'year'            => $year,
+            'surveyTotal'     => $surveyTotal,
+            'machineTotal'    => $machineTotal,
             'surveyTypeCount' => collect($surveyTypeCount),
             'modalitiesCount' => collect($modalitiesCount),
             'locationsCount'  => collect($locationsCount),

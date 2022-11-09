@@ -15,13 +15,13 @@
      @foreach($surveyTypeCount as $type => $count)
         <tr>
             <td>{{$type}}</td>
-            <td>{{$count}} ({{round(($count/$surveyTypeCount['Total surveys']*100), 1)}}%)</td>
+            <td>{{$count}} ({{round(($count/$surveyTotal*100), 1)}}%)</td>
         </tr>
     @endforeach
     </tbody>
     </table>
 
-    <h3>Imaging Equipment Inventory ({{$modalitiesCount->count()-1}} modalities)</h3>
+    <h3>Imaging Equipment Inventory ({{$modalitiesCount->count()}} modalities)</h3>
     <table class="table table-striped table-hover table-sm">
       <thead>
         <th scope="col">Modality</th>
@@ -31,25 +31,25 @@
      @foreach($modalitiesCount as $modality => $count)
        <tr>
          <td>{{$modality}}</td>
-         <td>{{$count}} ({{round(($count/$modalitiesCount['Total machines']*100), 1)}}%)</td>
+         <td>{{$count}} ({{round(($count/$machineTotal*100), 1)}}%)</td>
        </tr>
      @endforeach
       </tbody>
     </table>
 
-             <h3>Locations ({{$locationsCount->count()}} locations)</h3>
-     <table class="table table-striped table-hover table-sm">
-       <thead>
-         <th scope="col">Modality</th>
-         <th scope="col">Number</th>
-       </thead>
-       <tbody>
-       @foreach($locationsCount as $location => $count)
-           <td>{{$location}}</td>
-           <td>{{$count}}</td>
-         </tr>
-       @endforeach
-       </tbody>
-     </table>
+    <h3>Locations ({{$locationsCount->count()}} locations)</h3>
+    <table class="table table-striped table-hover table-sm">
+      <thead>
+        <th scope="col">Modality</th>
+        <th scope="col">Number</th>
+      </thead>
+      <tbody>
+        @foreach($locationsCount as $location => $count)
+          <td>{{$location}}</td>
+          <td>{{$count}}</td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
 
     @endsection
