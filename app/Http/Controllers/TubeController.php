@@ -81,21 +81,9 @@ class TubeController extends Controller
         $tube->insert_manuf_id = $request->insertManufID;
         $tube->manuf_date = $request->manufDate;
         $tube->install_date = $request->installDate;
-        if (empty($request->lfs)) {
-            $tube->lfs = 0.0;
-        } else {
-            $tube->lfs = $request->lfs;
-        }
-        if (empty($request->mfs)) {
-            $tube->mfs = 0.0;
-        } else {
-            $tube->mfs = $request->mfs;
-        }
-        if (empty($request->sfs)) {
-            $tube->sfs = 0.0;
-        } else {
-            $tube->sfs = $request->sfs;
-        }
+        $tube->lfs = $request->has('lfs') ? $request->lfs : 0.0;
+        $tube->mfs = $request->has('mfs') ? $request->mfs : 0.0;
+        $tube->sfs = $request->has('sfs') ? $request->sfs : 0.0;
         $tube->notes = $request->notes;
         $tube->tube_status = 'Active';
 
