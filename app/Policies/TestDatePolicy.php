@@ -67,14 +67,14 @@ class TestDatePolicy
     }
 
     /**
-     * Determine whether the user can delete the testDate.
+     * Determine whether the user can cancel the testDate.
      *
      * @param \App\Models\User     $user
      * @param \App\Models\TestDate $testDate
      *
      * @return mixed
      */
-    public function delete(User $user, TestDate $testDate)
+    public function cancel(User $user, TestDate $testDate)
     {
         //
     }

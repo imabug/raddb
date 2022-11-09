@@ -82,6 +82,8 @@ Route::resource('recommendations', RecommendationController::class);
  */
 Route::name('surveys.createSurveyFor')
     ->get('surveys/{id?}/create', [TestDateController::class, 'create']);
+Route::name('surveys.cancel')
+    ->post('surveys/{surveyId}/cancel', [TestDateController::class, 'cancel']);
 Route::resource('surveys', TestDateController::class);
 
 /*
@@ -89,11 +91,7 @@ Route::resource('surveys', TestDateController::class);
  */
 Route::name('surveyreports.create')
     ->get('surveyreports/create/{id?}', [SurveyReportController::class, 'create']);
-Route::resource(
-    'surveyreports',
-    SurveyReportController::class,
-    ['except' => ['create']]
-);
+Route::resource('surveyreports', SurveyReportController::class, ['except' => ['create']]);
 
 /*
  * Service report controller

@@ -24,18 +24,8 @@ class TestDateController extends Controller
             'edit',
             'store',
             'update',
-            'destroy',
+            'cancel',
         ]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
     }
 
     /**
@@ -199,14 +189,35 @@ class TestDateController extends Controller
     }
 
     /**
-     * Not implemented. Should not be able to remove surveys from the database.
+     * Cancel a survey.
+     * This method is called with the survey Id (required) to cancel.
+     * URI: /surveys/$surveyId/cancel
+     * Method: POST.
      *
-     * @param int $id
+     * @param int $surveyId
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function cancel($surveyId)
     {
-        //
+        // Check if action is allowed
+        $this->authorize(TestDate::class);
+
+        $message = '';
+
+        $testdate = TestDate::findOrFail($surveyId);
+        if ($testdate->delete()) {
+            $status = 'success';
+            $message .= 'Survey '.$testdate->id.' canceled.';
+            Log::info($message);
+        } else {
+            $status = 'fail';
+            $message .= 'Unable to cancel survey.';
+            Log::error($message);
+        }
+
+        return redirect()
+            ->route('index')
+            ->with($status, $message);
     }
 }
