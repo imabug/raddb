@@ -68,7 +68,7 @@ class AnnReportController extends Controller
 
     /**
      * Present data that will be used in the annual report
-     * URI: /ar/annrep.
+     * URI: /ar/$year/annrep.
      *
      * @param int $year
      */
@@ -77,38 +77,31 @@ class AnnReportController extends Controller
         // Get all the surveys performed in $year
         $surveys = TestDate::with('machine', 'type')
             ->year($year)
-            ->get()
-            ->groupBy('type.test_type');
+            ->get();
 
-        $total = 0;
-        foreach ($surveys as $type=>$s) {
+        $sType = $surveys->groupBy('type.test_type');
+        foreach ($sType as $type=>$s) {
             $surveyTypeCount[$type] = $s->count();
-            $total += $s->count();
         }
         arsort($surveyTypeCount);
-        $surveyTypeCount['Total surveys'] = $total;
+        $surveyTypeCount['Total surveys'] = $surveys->count();
 
-        // Get all the active machines grouped by modality
-        $machines = Machine::with('modality')
+        // Get all the active machines
+        $machines = Machine::with('modality', 'location')
             ->active()
-            ->get()
-            ->groupBy('modality.modality');
+            ->get();
 
-        $total = 0;
-        foreach ($machines as $modality=>$m) {
+        // Group by modality and count them up
+        $mod = $machines->groupBy('modality.modality');
+        foreach ($mod as $modality=>$m) {
             $modalitiesCount[$modality] = $m->count();
-            $total += $m->count();
         }
         arsort($modalitiesCount);
-        $modalitiesCount['Total machines'] = $total;
+        $modalitiesCount['Total machines'] = $machines->count();
 
-        // Get all the active machines grouped by location
-        $machines = Machine::with('modality')
-            ->active()
-            ->get()
-            ->groupBy('location.location');
-
-        foreach ($machines as $location=>$m) {
+        // Group by location and count them up
+        $loc = $machines->groupBy('location.location');
+        foreach ($loc as $location=>$m) {
             $locationsCount[$location] = $m->count();
         }
         arsort($locationsCount);
