@@ -88,20 +88,16 @@ class RecommendationController extends Controller
 
         $recommendation->survey_id = $request->surveyId;
         $recommendation->recommendation = $request->recommendation;
+        $recommendation->resolved = 0;
+        $recommendation->rec_status = 'New';
+        $recommendation->rec_add_ts = date('Y-m-d H:i:s');
+        // New recommendation was also marked as resolved
         if (isset($request->resolved)) {
-            // New recommendation was also marked as resolved
             $recommendation->resolved = 1;
             $recommendation->rec_status = 'Complete';
-            $recommendation->rec_add_ts = date('Y-m-d H:i:s');
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
             $recommendation->wo_number = $request->WONum;
-            if (is_null($request->RecResolveDate)) {
-                // Recommendation resolved date wasn't set (should have been).
-                // Use current date as a default.
-                $recommendation->rec_resolve_date = date('Y-m-d');
-            } else {
-                $recommendation->rec_resolve_date = $request->RecResolveDate;
-            }
+            $recommendation->rec_resolve_date = $request->has('RecResolveDate') ? $request->RecResolveDate : date('Y-m-d');
             $recommendation->resolved_by = $request->ResolvedBy;
 
             // If a service report was uploaded, handle it
@@ -113,11 +109,6 @@ class RecommendationController extends Controller
                     ->toMediaCollection('service_reports', 'ServiceReports');
                 $message .= "Service report uploaded.\n";
             }
-        } else {
-            // If the recommendation was not marked as resolved, ignore the rest of the fields
-            $recommendation->resolved = 0;
-            $recommendation->rec_status = 'New';
-            $recommendation->rec_add_ts = date('Y-m-d H:i:s');
         }
 
         if ($recommendation->save()) {
@@ -185,7 +176,6 @@ class RecommendationController extends Controller
         $this->authorize(Recommendation::class);
 
         $message = '';
-        $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');
 
         $survey = TestDate::find($surveyID);
 
@@ -203,21 +193,9 @@ class RecommendationController extends Controller
             // Retrieve the Recommendations
             $recommendation = Recommendation::findOrFail($recId);
 
-            if (isset($request->WONum)) {
-                $recommendation->wo_number = $request->WONum;
-            }
-            if (isset($request->ResolvedBy)) {
-                $recommendation->resolved_by = $request->ResolvedBy;
-            }
-
-            if (is_null($request->RecResolveDate)) {
-                // Recommendation resolved date wasn't set (should have been).
-                // Use current date as a default.
-                $recommendation->rec_resolve_date = date('Y-m-d');
-            } else {
-                $recommendation->rec_resolve_date = $request->RecResolveDate;
-            }
-
+            $recommendation->wo_number = $request->has('WONum') ? $request->WONum : null;
+            $recommendation->resolved_by = $request->has('ResolvedBy') ? $request->ResolvedBy : null;
+            $recommendation->rec_resolve_date = $request->has('RecResolveDate') ? $request->RecResolveDate : date('Y-m-d');
             $recommendation->resolved = 1;
             $recommendation->rec_status = 'Complete';
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
