@@ -9,11 +9,10 @@ class AnnReportController extends Controller
 {
     /**
      * Generate a mammography continued experience report
-     * URI: /ar/mamcexp.
+     * URI: /ar/cexp.
      */
     public function mammContExp()
     {
-        // Get a list of the mammo machines
         // Get a list of active mammography machines
         $mammMachines = Machine::with('modality', 'manufacturer', 'location', 'testdate')
             ->active()
@@ -22,21 +21,14 @@ class AnnReportController extends Controller
         foreach ($mammMachines as $m) {
             // Get the two most recent survey dates
             $recent = $m->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->take(2);
-            if ($recent->count() < 2) {
-                $mammDates[$m->description] = [
-                    'location' => $m->location->location,
-                    'date1'    => $recent->pop()->test_date,
-                    'date2'    => '',
-                ];
-            } else {
-                $mammDates[$m->description] = [
-                    'location' => $m->location->location,
-                    'date1'    => $recent->pop()->test_date,
-                    'date2'    => $recent->pop()->test_date,
-                ];
-            }
+            $mammDates[$m->description] = [
+                'location' => $m->location->location,
+                'date1'    => $recent->pop()->test_date,
+                'date2'    => ($recent->count() == 1) ? $recent->pop()->test_date : '',
+            ];
         }
 
+        // Get a list of active stereotactic breast biopsy machines
         $sbbMachines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->modality(15)
@@ -45,19 +37,11 @@ class AnnReportController extends Controller
         foreach ($sbbMachines as $m) {
             // Get the two most recent survey dates
             $recent = $m->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->take(2);
-            if ($recent->count() < 2) {
-                $sbbDates[$m->description] = [
-                    'location' => $m->location->location,
-                    'date1'    => $recent->pop()->test_date,
-                    'date2'    => '',
-                ];
-            } else {
-                $sbbDates[$m->description] = [
-                    'location' => $m->location->location,
-                    'date1'    => $recent->pop()->test_date,
-                    'date2'    => $recent->pop()->test_date,
-                ];
-            }
+            $sbbDates[$m->description] = [
+                'location' => $m->location->location,
+                'date1'    => $recent->pop()->test_date,
+                'date2'    => ($recent->count() == 1) ? $recent->pop()->test_date : '',
+            ];
         }
 
         return view('ar.cexp', [
