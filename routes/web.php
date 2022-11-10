@@ -65,11 +65,11 @@ Route::resource('testequipment', TestEquipmentController::class);
  */
 Route::prefix('opnotes')->group(function () {
     Route::name('opnotes.operationalNotes')
-        ->get('/opnotes', \App\Http\Livewire\Opnotes\OperationalNotes::class);
+        ->get('/', \App\Http\Livewire\Opnotes\OperationalNotes::class);
     Route::name('opnotes.createOpNoteFor')
         ->get('/{machineId?}/create', [OpNoteController::class, 'create']);
 });
-Route::resource('opnotes', OpNoteController::class);
+Route::resource('opnotes', OpNoteController::class, ['except' => ['index']]);
 /*
  * Recommendation controller
  */
