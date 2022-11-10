@@ -30,7 +30,7 @@ class OperationalNotes extends Component
     {
         OpNote::create([
             'machine_id' => $id,
-            'note' => $note,
+            'note'       => $note,
         ]);
 
         $this->note = '';
