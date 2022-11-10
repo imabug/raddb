@@ -16,7 +16,7 @@ class OpNote extends Model
      */
     protected $fillable = [
         'machine_id',
-        'note'
+        'note',
     ];
 
     /**
