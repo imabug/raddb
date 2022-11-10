@@ -28,16 +28,6 @@ class OpNoteController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating an operational note for machine $machineId.
      * URI: /opnotes/{$machineId}/create
      * Method: GET.
