@@ -19,6 +19,16 @@ class OperationalNotes extends Component
             ->with('opnote')
             ->orderBy('description')
             ->get();
+
+        // Set the first machine in the list as the default
+        $this->selectedMachine = $this->machines
+            ->first()
+            ->id;
+
+        // Get the opnotes for $this->selectedMachine
+        $this->opNotes = $this->machines
+            ->find($this->selectedMachine)
+            ->opnote;
     }
 
     public function updatedSelectedMachine()
@@ -34,6 +44,7 @@ class OperationalNotes extends Component
         ]);
 
         $this->note = '';
+        $this->opNotes = OpNote::where('machine_id', $this->selectedMachine)->get();
 
         session()->flash('message', 'Op note added.');
     }
@@ -42,13 +53,13 @@ class OperationalNotes extends Component
     {
         OpNote::find($id)->delete();
 
+        $this->opNotes = OpNote::where('machine_id', $this->selectedMachine)->get();
+
         session()->flash('message', 'Op note '.$id.' removed.');
     }
 
     public function render()
     {
-        return view('livewire.opnotes.operational-notes', [
-            'machines' => $this->machines,
-        ])->extends('layouts.app');
+        return view('livewire.opnotes.operational-notes')->extends('layouts.app');
     }
 }

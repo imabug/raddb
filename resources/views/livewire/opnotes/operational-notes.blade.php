@@ -8,7 +8,7 @@
     @endif
   </div>
   <div class="row">
-    <span class="input-group-text">Machine:</span>
+    <span class="input-group-text">Machine: {{$selectedMachine}}</span>
     <select id="selectedMachine" name="selectedMachine" class="form-control" aria-label="Select a machine" wire:model="selectedMachine">
       @foreach ($machines as $m)
         <option value="{{$m->id}}">{{$m->description}}</option>
@@ -16,6 +16,7 @@
     </select>
   </div>
   <div class="row">
+    <!-- How to make this refresh when a new operational note is added, edited, or deleted -->
     @if(!is_null($opNotes))
       <ol class="list-group list-group-numbered">
         @foreach ($opNotes as $o)
