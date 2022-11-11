@@ -16,7 +16,6 @@
     </select>
   </div>
   <div class="row">
-    <!-- How to make this refresh when a new operational note is added, edited, or deleted -->
     @if(!is_null($opNotes))
       <ol class="list-group list-group-numbered">
         @foreach ($opNotes as $o)
