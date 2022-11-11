@@ -33,7 +33,7 @@ class OperationalNotes extends Component
 
     public function updatedSelectedMachine()
     {
-        $this->opNotes = $this->machines->find($this->selectedMachine)->opnote()->get();
+        $this->opNotes = OpNote::where('machine_id', $this->selectedMachine)->get();
     }
 
     public function addNote($id, $note)
