@@ -21,11 +21,11 @@
         @foreach ($opNotes as $o)
           <li class="list-group-item">{{$o->note}}
             <a href="{{ route('opnotes.edit', $o->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Edit operational note">
-              <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Modify this tube">
+              <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Edit operational note">
                 <x-glyphs.pencil />
               </button>
             </a>
-            <button wire:click="deleteNote({{$o->id}})" class="btn btn-danger btn-sm" role="button" data-toggle="tooltip" title="Delete op note">
+            <button wire:click="deleteNote({{$o->id}})" class="btn btn-danger btn-sm" role="button" data-toggle="tooltip" title="Delete operational note">
               <x-glyphs.trashcan />
           </li>
         @endforeach
