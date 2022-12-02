@@ -18,6 +18,7 @@ class DashboardSurveyCategoriesController extends Controller
      * URI: /dashboard/surveyCategories
      *
      * @link https://developers.google.com/chart/interactive/docs/gallery/piechart Google Charts pie charts
+     *
      * @return \Illuminate\View\View
      */
     public function index()

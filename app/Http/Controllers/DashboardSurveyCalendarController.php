@@ -17,6 +17,7 @@ class DashboardSurveyCalendarController extends Controller
      * URI: /dashboard/surveyCalendar
      *
      * @link https://developers.google.com/chart/interactive/docs/gallery/calendar Google charts calendar charts
+     *
      * @return \Illuminate\View\View
      */
     public function index()

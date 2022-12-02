@@ -18,6 +18,7 @@ class DashboardSurveyCountController extends Controller
      * URI: /dashboard/surveyCount
      *
      * @link https://developers.google.com/chart/interactive/docs/gallery/columnchart Google charts column charts
+     *
      * @return \Illuminate\View\View
      */
     public function index()
