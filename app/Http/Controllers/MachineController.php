@@ -130,13 +130,13 @@ class MachineController extends Controller
      */
     public function show($id)
     {
-        $machine = Machine::findOrFail((int) $id)
-            ->with([
+        $machine = Machine::with([
                 'tube',
                 'opnote',
                 'testdate',
                 'recommendation',
-            ]);
+            ])
+            ->findOrFail((int) $id);
         $machinePhotos = $machine->getMedia('machine_photos');
 
         return view('machine.detail', [
