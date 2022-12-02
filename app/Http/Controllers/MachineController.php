@@ -48,7 +48,7 @@ class MachineController extends Controller
     }
 
     /**
-     * Show form for adding a new machine
+     * Show form for adding a new machine.
      *
      * URI: /machines/create
      *
@@ -67,7 +67,7 @@ class MachineController extends Controller
     }
 
     /**
-     * Save machine data to the database
+     * Save machine data to the database.
      *
      * Form data is validated in \App\Http\Requests\UpdateMachineRequest
      * before being stored in the database.  Then the user is redirected
@@ -119,23 +119,24 @@ class MachineController extends Controller
     }
 
     /**
-     * Display the information for machine $id
+     * Display the information for machine $id.
      *
      * URI: /machines/$id
      *
      * Method: GET.
      *
      * @param string $id Machine ID to display
+     *
      * @return \Illuminate\View\View
      */
     public function show($id)
     {
         $machine = Machine::with([
-                'tube',
-                'opnote',
-                'testdate',
-                'recommendation',
-            ])
+            'tube',
+            'opnote',
+            'testdate',
+            'recommendation',
+        ])
             ->findOrFail((int) $id);
         $machinePhotos = $machine->getMedia('machine_photos');
 
@@ -150,13 +151,14 @@ class MachineController extends Controller
     }
 
     /**
-     * Show the form for editing a machine
+     * Show the form for editing a machine.
      *
      * URI: /machines/$id/edit
      *
      * Method: GET.
      *
      * @param string $id Machine ID to edit
+     *
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -170,7 +172,7 @@ class MachineController extends Controller
     }
 
     /**
-     * Update machine details
+     * Update machine details.
      *
      * Form data is validated by App\Http\Requests\UpdateMachineRequest before
      * being stored in the database.  User is then redirected back to the machine
@@ -182,6 +184,7 @@ class MachineController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param string                   $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateMachineRequest $request, $id)
@@ -224,13 +227,14 @@ class MachineController extends Controller
     }
 
     /**
-     * Remove machine $id and associated tubes from the database
+     * Remove machine $id and associated tubes from the database.
      *
      * URI: /machines/$id
      *
      * Method: DELETE
      *
      * @param string $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

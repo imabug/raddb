@@ -81,6 +81,7 @@ class AnnReportController extends Controller
      * URI: /ar/$year/annrep.
      *
      * @param int $year The year to retrieve report data for
+     *
      * @return \Illuminate\View\View
      */
     public function annrep(int $year)
