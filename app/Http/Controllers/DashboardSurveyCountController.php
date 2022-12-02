@@ -9,21 +9,35 @@ use Khill\Lavacharts\Lavacharts;
 class DashboardSurveyCountController extends Controller
 {
     /**
-     * Show graphs of survey counts using Lavacharts.
+     * Show bar charts of survey counts for each year of surveys.
+     *
+     * Display a bar chart using the Google Chart API for every year that
+     * surveys were performed.  The charts are generated using
+     * Lavacharts ({@link https://lavacharts.com/}).
+     *
+     * URI: /dashboard/surveyCount
+     *
+     * @link https://developers.google.com/chart/interactive/docs/gallery/columnchart Google charts column charts
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        //
+        // Array of months of the year
         $months = [1 => 'Jan', 2 => 'Feb', 3 => 'Mar',
             4        => 'Apr', 5 => 'May', 6 => 'Jun',
             7        => 'Jul', 8 => 'Aug', 9 => 'Sep',
             10       => 'Oct', 11 => 'Nov', 12 => 'Dec', ];
 
+        /**
+         * @var Illuminate\Database\Eloquent\Collection $years Collection of years that surveys were performed in.
+         **/
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
             ->orderBy('years', 'desc')
             ->get();
 
+        // Create a column chart for each year showing the total number of surveys
+        // in each month.
         foreach ($years as $y) {
             // Initialize temp array used to hold survey counts by month
             foreach ($months as $m) {
@@ -72,7 +86,9 @@ class DashboardSurveyCountController extends Controller
         // Clear $y temp variable
         unset($y);
 
-        // Get a count of all surveys except for these test type_id's
+        // Create a column chart with each bar showing the total number of surveys
+        // for each year.
+        // Don't count these survey types:
         // 8 - Other
         // 10 - Calibration
         $yearCounts = TestDate::whereNotIn('type_id', [8, 10])

@@ -1,4 +1,5 @@
-<!-- resources/views/dashboard/survey_counts.blade.php -->
+{{-- resources/views/dashboard/survey_counts.blade.php --}}
+{{-- Used by DashboardSurveyCountController --}}
 @extends('layouts.app')
 @section('content')
   <h2>Survey Count Graphs</h2>

@@ -5,15 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\Machine;
 use App\Models\TestDate;
 
+/*
+ * Annual Report Controller.
+ *
+ * This controller is used to generate summaries of items that might go into an annual
+ * report or periodic summary of activities.
+ */
+
 class AnnReportController extends Controller
 {
     /**
-     * Generate a mammography continued experience report
+     * Mammography Continued Experience.
+     *
+     * This method retrieves the last two surveys for each mammography machine
+     * and presents it in a table to be used in the Mammography Continued Experience
+     * document.
+     *
      * URI: /ar/cexp.
+     *
+     * @todo Take into account who performed the survey (tester_id).
+     * @todo Modality ID is hardocded.  Need to make this more flexible.
+     *
+     * @return \Illuminate\View\View
      */
     public function mammContExp()
     {
-        // Get a list of active mammography machines
+        /**
+         * @var Illuminate\Database\Eloquent\Collection $mammMachines Collection of active mammography machines.
+         **/
         $mammMachines = Machine::with('modality', 'manufacturer', 'location', 'testdate')
             ->active()
             ->modality(8)
@@ -28,7 +47,9 @@ class AnnReportController extends Controller
             ];
         }
 
-        // Get a list of active stereotactic breast biopsy machines
+        /**
+         * @var Illuminate\Database\Eloquent\Collection $sbbMachines Collection of active SBB machines.
+         **/
         $sbbMachines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
             ->modality(15)
@@ -51,14 +72,22 @@ class AnnReportController extends Controller
     }
 
     /**
-     * Present data that will be used in the annual report
+     * Annual report.
+     *
+     * This method counts up all the surveys and counts all the active machines
+     * for the $year provided.  Survey counts are broken down by test type.
+     * Equipment inventory counts are provided by modality and by location.
+     *
      * URI: /ar/$year/annrep.
      *
-     * @param int $year
+     * @param int $year The year to retrieve report data for
+     * @return \Illuminate\View\View
      */
     public function annrep(int $year)
     {
-        // Get all the surveys performed in $year
+        /**
+         * @var Illuminate\Database\Eloquent\Collection $surveys Collection of surveys performed during $year.
+         **/
         $surveys = TestDate::with('machine', 'type')
             ->year($year)
             ->get();
@@ -70,7 +99,9 @@ class AnnReportController extends Controller
         arsort($surveyTypeCount);
         $surveyTotal = $surveys->count();
 
-        // Get all the active machines
+        /**
+         * @var Illuminate\Database\Eloquent\Collection $machines Collection of active machines.
+         **/
         $machines = Machine::with('modality', 'location')
             ->active()
             ->get();

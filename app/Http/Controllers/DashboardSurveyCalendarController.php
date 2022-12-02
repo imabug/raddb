@@ -7,11 +7,23 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardSurveyCalendarController extends Controller
 {
-    /*
+    /**
      * Show a page of Google Calendar Charts for each year of surveys.
+     *
+     * Display a calendar chart using the Google Chart API for every year
+     * that surveys were performed.  The charts are generated using
+     * Lavacharts ({@link https://lavacharts.com/}).
+     *
+     * URI: /dashboard/surveyCalendar
+     *
+     * @link https://developers.google.com/chart/interactive/docs/gallery/calendar Google charts calendar charts
+     * @return \Illuminate\View\View
      */
     public function index()
     {
+        /**
+         * @var Illuminate\Database\Eloquent\Collection $years Collection of years that surveys were performed in.
+         **/
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
             ->orderBy('years', 'desc')

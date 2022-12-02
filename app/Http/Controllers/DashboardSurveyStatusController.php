@@ -7,18 +7,28 @@ use App\Models\Machine;
 class DashboardSurveyStatusController extends Controller
 {
     /**
-     * Equipment test status dashboard
-     * Each machine is displayed in a table showing machine description,
-     * survey date and colour coded based on test status. Machines are
-     * grouped by modality.
-     * URI: /dashboard
-     * Method: GET.
+     * Equipment test status dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * Each machine is displayed in a table showing machine description,
+     * location, and survey date.  The survey date is colour coded based on test status.
+     * Green - Current.  Machine has been tested within the past year.
+     * Cyan -  Survey is due within 30 days
+     * Yellow - Survey is overdue but less than 13 months overdue.
+     * Red - Survey is overdue by more than 13 months.
+     * Blue - Survey is scheduled.
+     * Machines are grouped by modality.
+     *
+     * URI: /dashboard
+     *
+     * Method: GET
+     *
+     * @return \Illuminate\View\View
      */
     public function teststatus()
     {
-        // Fetch a list of all the machines grouped by modality
+        // Fetch a list of all active machines grouped by modality
+        // Include test dates where the test type is 1 (Routine Compliance) or
+        // 2 (Acceptance)
         $machines = Machine::with([
             'modality',
             'location',

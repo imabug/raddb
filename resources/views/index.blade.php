@@ -1,4 +1,5 @@
-<!-- resources/views/index.blade.php -->
+{{-- resources/views/index.blade.php --}}
+{{-- Used by HomeController --}}
 
 @extends('layouts.app')
 

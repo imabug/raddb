@@ -1,5 +1,5 @@
-<!-- resources/views/machine/info.blade.php -->
-
+{{-- resources/views/machine/info.blade.php --}}
+{{-- Used in resources/views/machine/detail.blade.php --}}
 <h3><span class="label label-default">Machine Information</span></h3>
 <div class="row">
   <div class="col-md-6">

@@ -1,5 +1,5 @@
-<!-- resources/views/dashboard/test_status.blade.php -->
-
+{{-- resources/views/dashboard/test_status.blade.php --}}
+{{-- Used by DashboardSurveyStatusController --}}
 @extends('layouts.app')
 
 @section('content')

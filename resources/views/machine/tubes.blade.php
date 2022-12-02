@@ -1,5 +1,5 @@
-<!-- resources/views/machine/tubes.blade.php -->
-
+{{-- resources/views/machine/tubes.blade.php --}}
+{{-- Used in resources/views/machine/detail.blade.php --}}
 <h3><span class="label label-default">Tube Information</span></h3>
 <table class="table">
   <thead>

@@ -8,11 +8,23 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardSurveyCategoriesController extends Controller
 {
-    // Show pie charts breaking down the surveys for each year by
-    // survey type (routine, acceptance, etc)
-
+    /**
+     * Show a page of pie charts breaking down surveys by survey type.
+     *
+     * Display a pie chart showing the breakdown of surveys by survey type
+     * using the Google Chart API for every year that surveys were performed.
+     * Charts are generated using Lavacharts ({@link https://lavacharts.com/}).
+     *
+     * URI: /dashboard/surveyCategories
+     *
+     * @link https://developers.google.com/chart/interactive/docs/gallery/piechart Google Charts pie charts
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
+        /**
+         * @var Illuminate\Database\Eloquent\Collection $years Collection of years that surveys were performed in.
+         **/
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()
             ->orderBy('years', 'desc')

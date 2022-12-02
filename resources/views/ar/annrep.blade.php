@@ -1,4 +1,5 @@
-<!-- resources/views/ar/annrep.blade.php -->
+{{-- resources/views/ar/annrep.blade.php --}}
+{{-- Template is used by the annrep method of AnnReportController --}}
 
     @extends('layouts.app')
 
