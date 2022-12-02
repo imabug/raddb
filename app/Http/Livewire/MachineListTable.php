@@ -41,15 +41,15 @@ class MachineListTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            SelectFilter::make('Status', 'machine_status')
-                ->options([
-                    'Active'      => 'Active',
-                    'Removed'     => 'Removed',
-                    'Inactive'    => 'Inactive',
-                ])
-                ->filter(function (Builder $builder, string $value) {
-                    $builder->where('machine_status', $value);
-                }),
+            // SelectFilter::make('Status', 'machine_status')
+            //     ->options([
+            //         'Active'      => 'Active',
+            //         'Removed'     => 'Removed',
+            //         'Inactive'    => 'Inactive',
+            //     ])
+            //     ->filter(function (Builder $builder, string $value) {
+            //         $builder->where('machine_status', $value);
+            //     }),
             SelectFilter::make('Modality')
                 ->options(
                     Modality::query()
