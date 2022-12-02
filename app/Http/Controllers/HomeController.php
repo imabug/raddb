@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Machine;
-use App\Models\SurveyScheduleView;
 use App\Models\TestDate;
 
 class HomeController extends Controller
