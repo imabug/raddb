@@ -4,13 +4,13 @@
 <p>Click a link to schedule a survey for a unit</p>
 
 <table class="table table-bordered table-sm">
-	<tbody>
-@foreach ($machinesUntested->chunk(5) as $chunk )
-		<tr>
+  <tbody>
+    @foreach ($machinesUntested->chunk(5) as $chunk )
+	  <tr>
 		@foreach ($chunk as $machine)
-			<td><a href="{{ route('surveys.createSurveyFor', $machine->id)}}">{{ $machine->description }}</a></td>
+		  <td><a href="{{ route('surveys.createSurveyFor', $machine->id)}}">{{ $machine->description }}</a></td>
 		@endforeach
-		</tr>
-@endforeach
-	</tbody>
+	  </tr>
+    @endforeach
+  </tbody>
 </table>
