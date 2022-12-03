@@ -40,25 +40,27 @@ class RecommendationController extends Controller
 
     /**
      * Show the form for adding a new recommendation.
-     * URI: /recommendations/$surveyID/create
-     * Method: GET.
      *
-     * @param int $surveyID (optional)
+     * URI: /recommendations/$surveyID/create
+     *
+     * Method: GET
+     *
+     * @param string $surveyID (optional)
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(int $surveyId = null)
+    public function create(string $surveyId = null)
     {
-        if (is_null($surveyId)) {
+        if (is_null((int) $surveyId)) {
             // No survey id was provided.
             $recs = null;
             $serviceReports = null;
             $survey = null;
         } else {
             // Get the machine description corresponding to the survey ID provided
-            $survey = TestDate::with('machine')->find($surveyId);
+            $survey = TestDate::with('machine')->find((int) $surveyId);
             $serviceReports = $survey->getMedia('service_reports');
-            $recs = Recommendation::where('survey_id', $surveyId)->get();
+            $recs = Recommendation::where('survey_id', (int) $surveyId)->get();
         }
 
         return view('recommendations.rec_create', [
@@ -70,7 +72,11 @@ class RecommendationController extends Controller
 
     /**
      * Add a new recommendation to the database.
+     *
+     * Form data is validated in App\Http\Requests\StoreRecommendationRequest
+     *
      * URI: /recommendations
+     *
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
@@ -128,23 +134,25 @@ class RecommendationController extends Controller
 
     /**
      * Display the recommendations for a specific survey.
+     *
      * URI: /recommendations/$surveyId
+     *
      * Method: GET.
      *
-     * @param int $surveyId
+     * @param string $surveyId
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(int $surveyId)
+    public function show(string $surveyId)
     {
         // Get the machine description corresponding to the survey ID provided
-        $survey = TestDate::with('machine')->find($surveyId);
+        $survey = TestDate::with('machine')->find((int) $surveyId);
         $serviceReports = $survey->getMedia('service_report');
 
         return view('recommendations.recommendations', [
             'survey'         => $survey,
             'serviceReports' => $serviceReports,
-            'recs'           => Recommendation::where('survey_id', $surveyId)->get(),
+            'recs'           => Recommendation::where('survey_id', (int) $surveyId)->get(),
         ]);
     }
 
@@ -162,22 +170,27 @@ class RecommendationController extends Controller
 
     /**
      * Update the recommendations for $surveyID.
+     *
+     * Form data is validated by App\Http\Requests\UpdateRecommendationRequest.
+     * User is redirected to the list of recommendations upon completion.
+     *
      * URI: /recommendations/$surveyID
+     *
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $surveyID
+     * @param string                   $surveyID
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRecommendationRequest $request, int $surveyID)
+    public function update(UpdateRecommendationRequest $request, string $surveyID)
     {
         // Check if action is allowed
         $this->authorize(Recommendation::class);
 
         $message = '';
 
-        $survey = TestDate::find($surveyID);
+        $survey = TestDate::find((int) $surveyID);
 
         // If a service report was uploaded, handle it
         if ($request->hasFile('ServiceReport') && $request->file('ServiceReport')->isValid()) {
@@ -214,17 +227,5 @@ class RecommendationController extends Controller
         return redirect()
             ->route('recommendations.show', $surveyID)
             ->with($status, $message);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

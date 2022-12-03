@@ -42,8 +42,6 @@ class MachineController extends Controller
      */
     public function index()
     {
-        // The list of machines is displayed in the view by the
-        // \App\Http\Livewire\MachineListTable Livewire component
         return view('machine.index');
     }
 
@@ -138,6 +136,7 @@ class MachineController extends Controller
             'recommendation',
         ])
             ->findOrFail((int) $id);
+
         $machinePhotos = $machine->getMedia('machine_photos');
 
         return view('machine.detail', [
@@ -247,7 +246,7 @@ class MachineController extends Controller
         $machine = Machine::find((int) $id)
             ->with('tube');
 
-        // Retrieve tubes associated with this machine
+        // Retrieve active tubes associated with this machine
         $tubes = $machine->tube->where('tube_status', 'Active');
 
         // Update the status and remove date for the machine

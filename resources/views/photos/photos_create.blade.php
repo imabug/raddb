@@ -1,4 +1,5 @@
-<!-- resources/views/photos/photos_create.blade.php -->
+{{-- resources/views/photos/photos_create.blade.php --}}
+{{-- Used by the create() method in MachinePhotoController --}}
 @extends('layouts.app')
 
 @section('content')
