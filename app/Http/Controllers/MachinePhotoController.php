@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMachinePhotoRequest;
 use App\Models\Machine;
 use App\Models\MachinePhoto;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class MachinePhotoController extends Controller
@@ -51,7 +50,7 @@ class MachinePhotoController extends Controller
     }
 
     /**
-     * Store the photo for a machine
+     * Store the photo for a machine.
      *
      * Form data is validated by App\Http\Requests\StoreMachinePhotoRequest before
      * being added to the media collection.  User is redirected to the machine
