@@ -1,20 +1,13 @@
-<!-- resources/views/opnotes/opnote_show.blade.php -->
-
+{{-- resources/views/opnotes/opnote_show.blade.php --}}
+{{-- Used by the show() method in OpNoteController --}}}}
 @extends('layouts.app')
 
 @section('content')
   <h2>Operational notes for <a href="{{route('machines.show', $machine->id) }}">{{ $machine->description }}</a></h2>
-  <ol>
-    @foreach ($opNotes as $opNote)
-      <li>{{ $opNote->note }}
-        <a href="{{ route('opnotes.edit', $opNote->id) }}" class="btn btn-default btn-xs" role="button" data-toggle="tooltip" title="Edit operational note">
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Modify this tube">
-            <x-glyphs.pencil />
-          </button>
-        </a>
-      </li>
-    @endforeach
-  </ol>
+  {{-- Use App\Http\Livewire\Opnotes\ShowOpnotes Livewire component to display existing operational notes --}}
+  <div>
+    <livewire:opnotes.show-opnotes :machineId="$machine->id" />
+  </div>
   <form class="form-inline" action="{{ route('opnotes.store')}}" method="post">
     @csrf
     <input type="hidden" name="machineId" value="{{$machine->id}}">

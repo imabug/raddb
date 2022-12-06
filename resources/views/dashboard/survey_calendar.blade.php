@@ -1,4 +1,5 @@
-<!-- resources/views/dashboard/survey_calendar.blade.php -->
+{{-- resources/views/dashboard/survey_calendar.blade.php --}}
+{{-- Used by DashboardSurveyCalendarController --}}
 @extends('layouts.app')
 @section('content')
   <h2>Daily Survey Count Calendar</h2>

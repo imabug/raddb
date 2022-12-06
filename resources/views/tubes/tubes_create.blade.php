@@ -1,5 +1,6 @@
-<!-- resources/views/tubes/tubes_create.blade.php -->
-
+{{-- resources/views/tubes/tubes_create.blade.php --}}
+{{-- Used by create() method in TubeController --}}
+{{-- The store() method in the MachineController redirects here when a new machine is created --}}
 @extends('layouts.app')
 
 @section('content')

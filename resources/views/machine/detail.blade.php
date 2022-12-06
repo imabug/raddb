@@ -1,5 +1,5 @@
-<!-- resources/views/machine/detail.blade.php -->
-
+{{-- resources/views/machine/detail.blade.php --}}
+{{-- Used by the show() method in MachineController --}}
 @extends('layouts.app')
 
 @section('content')

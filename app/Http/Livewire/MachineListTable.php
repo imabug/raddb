@@ -41,15 +41,15 @@ class MachineListTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            SelectFilter::make('Status', 'machine_status')
-                ->options([
-                    'Active'      => 'Active',
-                    'Removed'     => 'Removed',
-                    'Inactive'    => 'Inactive',
-                ])
-                ->filter(function (Builder $builder, string $value) {
-                    $builder->where('machine_status', $value);
-                }),
+            // SelectFilter::make('Status', 'machine_status')
+            //     ->options([
+            //         'Active'      => 'Active',
+            //         'Removed'     => 'Removed',
+            //         'Inactive'    => 'Inactive',
+            //     ])
+            //     ->filter(function (Builder $builder, string $value) {
+            //         $builder->where('machine_status', $value);
+            //     }),
             SelectFilter::make('Modality')
                 ->options(
                     Modality::query()
@@ -133,13 +133,7 @@ class MachineListTable extends DataTableComponent
     public function builder(): Builder
     {
         return Machine::query()
-            ->with(['modality', 'manufacturer', 'location']);
+            ->with(['modality', 'manufacturer', 'location'])
+            ->active();
     }
-
-    // public function rowView(): string
-    // {
-    //     // Use a custom row view so that things like the manufacturer,
-    //     // modality, description, location can be made clickable URLs
-    //     return 'livewire-tables.machines-list-row';
-    // }
 }

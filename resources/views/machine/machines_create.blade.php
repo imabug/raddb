@@ -1,5 +1,5 @@
-<!-- resources/views/machine/machines_create.blade.php -->
-
+{{-- resources/views/machine/machines_create.blade.php --}}
+{{-- Used by the create() method in MachineController --}}
 @extends('layouts.app')
 
 @section('content')
