@@ -58,7 +58,6 @@ Route::resource('machines', MachineController::class);
  */
 Route::name('testequipment.showCalDates')
     ->get('/testequipment/caldates', [TestEquipmentController::class, 'showCalDates']);
-Route::resource('testequipment', TestEquipmentController::class);
 
 /*
  * Operational notes controller
@@ -92,11 +91,6 @@ Route::resource('surveys', TestDateController::class);
 Route::name('surveyreports.create')
     ->get('surveyreports/create/{id?}', [SurveyReportController::class, 'create']);
 Route::resource('surveyreports', SurveyReportController::class, ['except' => ['create']]);
-
-/*
- * Service report controller
- */
-Route::resource('servicereports', ServiceReportController::class);
 
 /*
  * Tube controller
