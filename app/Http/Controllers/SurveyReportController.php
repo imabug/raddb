@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSurveyReportRequest;
 use App\Models\TestDate;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class SurveyReportController extends Controller
 {
@@ -34,7 +32,7 @@ class SurveyReportController extends Controller
      *
      * Method: GET.
      *
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,7 +42,7 @@ class SurveyReportController extends Controller
     }
 
     /**
-     * Handle an uploaded survey report
+     * Handle an uploaded survey report.
      *
      * Form data is validated by App\Http\Requests\StoreSurveyReportRequest
      * User is redirected to the main page after the report is stored.

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Machine;
-use Illuminate\Http\Request;
 
 class TestEquipmentController extends Controller
 {

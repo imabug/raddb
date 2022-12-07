@@ -21,7 +21,6 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\MachinePhotoController;
 use App\Http\Controllers\OpNoteController;
 use App\Http\Controllers\RecommendationController;
-use App\Http\Controllers\ServiceReportController;
 use App\Http\Controllers\SurveyReportController;
 use App\Http\Controllers\TestDateController;
 use App\Http\Controllers\TestEquipmentController;
