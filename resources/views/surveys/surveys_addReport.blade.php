@@ -1,5 +1,5 @@
-<!-- resources/views/surveys/surveys_addReport.blade.php -->
-
+{{-- resources/views/surveys/surveys_addReport.blade.php --}}
+{{-- Used by the create() method in SurveyReportController --}}}}
 @extends('layouts.app')
 
 @section('content')

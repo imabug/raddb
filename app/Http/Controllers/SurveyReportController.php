@@ -29,10 +29,11 @@ class SurveyReportController extends Controller
 
     /**
      * Show a form for adding a new survey report.
+     *
      * URI: /surveyreports/{id}/create
+     *
      * Method: GET.
      *
-     * @param \Illuminate\Http\Request $request
      * @param int                      $id
      *
      * @return \Illuminate\Http\Response
@@ -44,7 +45,12 @@ class SurveyReportController extends Controller
 
     /**
      * Handle an uploaded survey report
+     *
+     * Form data is validated by App\Http\Requests\StoreSurveyReportRequest
+     * User is redirected to the main page after the report is stored.
+     *
      * URI: /surveyreports
+     *
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request

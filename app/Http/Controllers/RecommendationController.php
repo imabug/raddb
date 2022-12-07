@@ -46,7 +46,7 @@ class RecommendationController extends Controller
      *
      * @param string $surveyID (optional)
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create(string $surveyId = null)
     {
@@ -140,7 +140,7 @@ class RecommendationController extends Controller
      *
      * @param string $surveyId
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(string $surveyId)
     {

@@ -1,5 +1,5 @@
-<!-- resources/views/surveys/surveys_edit.blade.php -->
-
+{{-- resources/views/surveys/surveys_edit.blade.php --}}
+{{-- Used by the edit() method in TestDateController --}}
 @extends('layouts.app')
 
 @section('content')

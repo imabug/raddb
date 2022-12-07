@@ -39,7 +39,7 @@ class OpNoteController extends Controller
      *
      * @param string $machineId
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create($machineId = null)
     {
@@ -106,7 +106,7 @@ class OpNoteController extends Controller
      *
      * @param string $machineId
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(int $machineId)
     {
@@ -128,7 +128,7 @@ class OpNoteController extends Controller
      *
      * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
