@@ -63,7 +63,7 @@ class TestDateController extends Controller
     }
 
     /**
-     * Save survey data to the database
+     * Save survey data to the database.
      *
      * Form data is validated by App\Http\Requests\UpdateTestDataRequest.
      * User is redirected to the home page after the survey is updated.
