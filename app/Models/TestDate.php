@@ -109,7 +109,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeForMachine($query, $machine_id) : Builder
+    public function scopeForMachine($query, $machine_id): Builder
     {
         // Scope function to return test dates belonging to $machine_id
         return $query->where('machine_id', $machine_id);
@@ -123,7 +123,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeYear($query, $yr) : Builder
+    public function scopeYear($query, $yr): Builder
     {
         return $query->whereYear('test_date', '=', $yr);
     }
@@ -136,7 +136,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeId($query, $id) : Builder
+    public function scopeId($query, $id): Builder
     {
         return $query->where('id', $id);
     }
@@ -149,7 +149,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeTestType($query, $id) : Builder
+    public function scopeTestType($query, $id): Builder
     {
         return $query->where('type_id', $id);
     }
@@ -161,7 +161,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePending($query) : Builder
+    public function scopePending($query): Builder
     {
         return $query->where('testdates.test_date', '>=', date('Y-m-d'));
     }
@@ -174,7 +174,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeRecent($query, $n) : Builder
+    public function scopeRecent($query, $n): Builder
     {
         return $query->where('type_id', 1)
             ->orderby('test_date', 'desc')

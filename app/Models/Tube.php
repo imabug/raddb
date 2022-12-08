@@ -88,7 +88,7 @@ class Tube extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeActive($query) : Builder
+    public function scopeActive($query): Builder
     {
         return $query->where('tube_status', 'Active');
     }
@@ -101,7 +101,7 @@ class Tube extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeForMachine($query, $machine_id) : Builder
+    public function scopeForMachine($query, $machine_id): Builder
     {
         return $query->where('machine_id', $machine_id);
     }
