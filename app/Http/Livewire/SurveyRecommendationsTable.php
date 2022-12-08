@@ -34,7 +34,8 @@ class SurveyRecommendationsTable extends DataTableComponent
             Column::make('Survey ID', 'id'),
             Column::make('Recommendation', 'recommendation')
                 ->searchable(),
-            Column::make('Resolved', 'resolved'),
+            Column::make('Resolved', 'resolved')
+                ->view('components.checkmark-view'),
             Column::make('Service Report', 'id')
                 ->view('livewire-tables.service-report-view'),
         ];
