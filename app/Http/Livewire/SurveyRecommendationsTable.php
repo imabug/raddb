@@ -51,9 +51,4 @@ class SurveyRecommendationsTable extends DataTableComponent
                 }
             );
     }
-
-    // public function rowView(): string
-    // {
-    //     return 'livewire-tables.recommendation-list-row';
-    // }
 }

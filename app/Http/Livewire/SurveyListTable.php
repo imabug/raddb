@@ -51,9 +51,4 @@ class SurveyListTable extends DataTableComponent
             ->with(['machine', 'type'])
             ->where('machine_id', $this->machine);
     }
-
-    // public function rowView(): string
-    // {
-    //     return 'livewire-tables.survey-list-row';
-    // }
 }

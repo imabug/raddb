@@ -38,9 +38,4 @@ class RecommendationsForSurveyTable extends DataTableComponent
         return Recommendation::query()
             ->where('survey_id', $this->surveyId);
     }
-
-    // public function rowView(): string
-    // {
-    //     return 'livewire-tables.recommendations-for-survey-row';
-    // }
 }
