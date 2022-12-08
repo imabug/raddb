@@ -29,23 +29,15 @@ class TubeController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Display form for creating a new tube for $machineID
+     *
      * URI: /tubes/$machineID/create
+     *
      * Method: GET.
      *
      * @param int $machineID
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create(int $machineID)
     {
@@ -58,7 +50,12 @@ class TubeController extends Controller
 
     /**
      * Store new tube information in the database
+     *
+     * Form submission is validated by App\Http\Requests\StoreTubeRequest
+     * User is redirected to the machine information page after data is stored.
+     *
      * URI: /tubes
+     *
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
@@ -103,25 +100,15 @@ class TubeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing a tube.
+     *
      * URI: /tubes/$id/edit
+     *
      * Method: GET.
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(int $id)
     {
@@ -137,8 +124,13 @@ class TubeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the x-ray tube corresponding to $id
+     *
+     * Form data is validated by App\Http\Requests\UpdateTubeRequest.
+     * User is redirected to machine information page when data is saved.
+     *
      * URI: /tubes/$id
+     *
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
@@ -187,7 +179,13 @@ class TubeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the tube corresponding to $id from the database.
+     *
+     * Tube removal date is updated with the current date and the
+     * status is updated to 'Removed'.  App\Models\Tube uses the
+     * SoftDelete trait, so the entry in the database is only marked
+     * as deleted.  User is redirected to the machine information page
+     * when completed.
      *
      * @param int $id
      *

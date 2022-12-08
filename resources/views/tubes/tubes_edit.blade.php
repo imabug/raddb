@@ -1,5 +1,5 @@
-<!-- resources/views/tubes/tubes_edit.blade.php -->
-
+{{-- resources/views/tubes/tubes_edit.blade.php --}}
+{{-- Used by the edit() method in TubeController --}}
 @extends('layouts.app')
 
 @section('content')
