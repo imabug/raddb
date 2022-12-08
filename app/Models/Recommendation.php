@@ -65,7 +65,7 @@ class Recommendation extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeUnresolved($query) : Builder
+    public function scopeUnresolved($query): Builder
     {
         return $query->where('resolved', 0);
     }
@@ -77,7 +77,7 @@ class Recommendation extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeResolved($query) : Builder
+    public function scopeResolved($query): Builder
     {
         return $query->where('resolved', 1);
     }
@@ -90,7 +90,7 @@ class Recommendation extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSurveyId($query, $surveyId) : Builder
+    public function scopeSurveyId($query, $surveyId): Builder
     {
         return $query->where('survey_id', $surveyId);
     }
