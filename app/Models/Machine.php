@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -142,7 +143,7 @@ class Machine extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeActive($query)
+    public function scopeActive($query) : Builder
     {
         return $query->where('machine_status', 'Active');
     }
@@ -154,7 +155,7 @@ class Machine extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeInactive($query)
+    public function scopeInactive($query) : Builder
     {
         return $query->where('machine_status', 'Inactive');
     }
@@ -166,7 +167,7 @@ class Machine extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeRemoved($query)
+    public function scopeRemoved($query) : Builder
     {
         return $query->where('machine_status', 'Removed');
     }
@@ -179,7 +180,7 @@ class Machine extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeLocation($query, $id)
+    public function scopeLocation($query, $id) : Builder
     {
         // Scope function to return machines with location_id=$id
         return $query->where('location_id', $id);
@@ -193,7 +194,7 @@ class Machine extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeModality($query, $id)
+    public function scopeModality($query, $id) : Builder
     {
         // Scope function to return machines with modality_id=$id
         return $query->where('modality_id', $id);
@@ -207,7 +208,7 @@ class Machine extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeManufacturer($query, $id)
+    public function scopeManufacturer($query, $id) : Builder
     {
         // Scope function to return machines with modality_id=$id
         return $query->where('manufacturer_id', $id);
@@ -218,7 +219,7 @@ class Machine extends Model implements HasMedia
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      */
-    public function scopeTestEquipment($query)
+    public function scopeTestEquipment($query) : Builder
     {
         // If the modality_id for test equipment is something other than 19
         // change the value in the where() clause.
