@@ -37,10 +37,11 @@ class CalibrationDatesTable extends DataTableComponent
                 ->html(),
             Column::make('Last calibration')
                 ->label(
-                    fn($row, Column $column) => TestDate::where('machine_id', $row->id)
+                    fn ($row, Column $column) => TestDate::where('machine_id', $row->id)
                         ->latest()
                         ->first()
-                        ->test_date ?? ''),
+                        ->test_date ?? ''
+                ),
             Column::make('Age')
                 ->label(
                     fn ($row, Column $column) => Machine::find($row->id)->age

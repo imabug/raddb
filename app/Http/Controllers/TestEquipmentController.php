@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Machine;
-
 class TestEquipmentController extends Controller
 {
     /**

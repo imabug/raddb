@@ -29,7 +29,7 @@ class TubeController extends Controller
     }
 
     /**
-     * Display form for creating a new tube for $machineID
+     * Display form for creating a new tube for $machineID.
      *
      * URI: /tubes/$machineID/create
      *
@@ -49,7 +49,7 @@ class TubeController extends Controller
     }
 
     /**
-     * Store new tube information in the database
+     * Store new tube information in the database.
      *
      * Form submission is validated by App\Http\Requests\StoreTubeRequest
      * User is redirected to the machine information page after data is stored.
@@ -124,7 +124,7 @@ class TubeController extends Controller
     }
 
     /**
-     * Update the x-ray tube corresponding to $id
+     * Update the x-ray tube corresponding to $id.
      *
      * Form data is validated by App\Http\Requests\UpdateTubeRequest.
      * User is redirected to machine information page when data is saved.
