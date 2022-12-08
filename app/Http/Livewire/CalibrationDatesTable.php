@@ -51,16 +51,8 @@ class CalibrationDatesTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        // return Machine::query()
-        //     ->with([
-        //         'manufacturer',
-        //         'testdate' => function($query) {
-        //             $query->where('type_id', '10')->latest('test_date');
-        //         }])
-        //     ->active()
-        //     ->testEquipment();
         return Machine::query()
-            ->with(['manufacturer', 'testdate'])
+            ->with('manufacturer')
             ->active()
             ->testEquipment();
     }
