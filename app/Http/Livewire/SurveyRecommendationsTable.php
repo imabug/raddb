@@ -35,9 +35,8 @@ class SurveyRecommendationsTable extends DataTableComponent
             Column::make('Recommendation', 'recommendation')
                 ->searchable(),
             Column::make('Resolved', 'resolved'),
-            // Need to figure out how to integrate with spatie/laravel-medialibrary to
-            // get the service report link
-            //Column::make('Service Report'),
+            Column::make('Service Report', 'id')
+                ->view('livewire-tables.service-report-view'),
         ];
     }
 
