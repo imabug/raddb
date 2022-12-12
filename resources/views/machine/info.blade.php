@@ -1,3 +1,4 @@
+
 {{-- resources/views/machine/info.blade.php --}}
 {{-- Used in resources/views/machine/detail.blade.php --}}
 <h3><span class="label label-default">Machine Information</span></h3>
@@ -6,16 +7,17 @@
     {{-- Machine data section --}}
     <p>
       Machine ID: {{ $machine->id }} <br>
+      Status: {{ $machine->machine_status }}<br>
+      Location: {{ $machine->location->location }} {{ $machine->room }}<br>
       Manufacturer: {{ $machine->manufacturer->manufacturer }} <br>
       Model: {{ $machine->model }} <br>
       Serial Number: {{ $machine->serial_number }} <br>
       Software version: {{ $machine->software_version }} <br>
       Vendor Site ID: {{ $machine->vend_site_id }} <br>
-      Location: {{ $machine->location->location }} {{ $machine->room }}<br>
       Manufacture Date: {{ $machine->manuf_date }} <br>
       Install Date: {{ $machine->install_date }} <br>
+      PACS Station Name: {{ $machine->pacs_station }}<br>
       Age: {{ $machine->age }}<br>
-      Status: {{ $machine->machine_status }}<br>
       Notes: {{ $machine->notes }}
       <div class="media">
         <div class="media-right">
