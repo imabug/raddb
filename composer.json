@@ -26,6 +26,8 @@
     },
     "require": {
         "php": "^8.0.2",
+        "blade-ui-kit/blade-icons": "^1.4",
+        "davidhsianturi/blade-bootstrap-icons": "^1.3",
         "doctrine/dbal": "^3.4.4",
         "guzzlehttp/guzzle": "^7.5",
         "khill/lavacharts": "^3.1.14",
@@ -39,6 +41,7 @@
         "rappasoft/laravel-livewire-tables": "^2.8",
         "spatie/laravel-medialibrary": "^10.4.5",
         "symfony/yaml": "^6.1.4",
+        "troccoli/blade-health-icons": "^0.3.0",
         "twbs/bootstrap": "^5.2.1"
     },
     "require-dev": {

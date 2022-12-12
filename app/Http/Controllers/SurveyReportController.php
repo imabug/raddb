@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSurveyReportRequest;
 use App\Models\TestDate;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class SurveyReportController extends Controller
 {
@@ -28,22 +26,13 @@ class SurveyReportController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show a form for adding a new survey report.
+     *
      * URI: /surveyreports/{id}/create
+     *
      * Method: GET.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -53,8 +42,13 @@ class SurveyReportController extends Controller
     }
 
     /**
-     * Handle an uploaded survey report
+     * Handle an uploaded survey report.
+     *
+     * Form data is validated by App\Http\Requests\StoreSurveyReportRequest
+     * User is redirected to the main page after the report is stored.
+     *
      * URI: /surveyreports
+     *
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
@@ -101,42 +95,5 @@ class SurveyReportController extends Controller
     public function show(int $id)
     {
         return TestDate::find($id)->getMedia('survey_reports');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

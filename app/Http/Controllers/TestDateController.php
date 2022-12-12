@@ -30,29 +30,32 @@ class TestDateController extends Controller
 
     /**
      * Show a form for creating a new survey.
+     *
      * This method is called with an optional parameter $id which corresponds to
      * the machine ID the survey is being created for.
+     *
      * URI: /surveys/$id/create
-     * Method: GET.
      *
-     * @param int $machineId (optional)
+     * Method: GET
      *
-     * @return \Illuminate\Http\Response
+     * @param string $id (optional)
+     *
+     * @return \Illuminate\View\View
      */
-    public function create($machineId = null)
+    public function create($id = null)
     {
-        if (is_null($machineId)) {
+        if (is_null((int) $id)) {
             $machines = Machine::select('id', 'description')
                 ->active()
                 ->orderBy('description')
                 ->get();
         } else {
             $machines = Machine::select('id', 'description')
-                ->findOrFail($machineId);
+                ->findOrFail((int) $id);
         }
 
         return view('surveys.surveys_create', [
-            'id'        => $machineId,
+            'id'        => $id,
             'testers'   => Tester::get(),
             'testtypes' => TestType::get(),
             'machines'  => $machines,
@@ -60,8 +63,13 @@ class TestDateController extends Controller
     }
 
     /**
-     * Save survey data to the database
+     * Save survey data to the database.
+     *
+     * Form data is validated by App\Http\Requests\UpdateTestDataRequest.
+     * User is redirected to the home page after the survey is updated.
+     *
      * URI: /surveys
+     *
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
@@ -78,18 +86,10 @@ class TestDateController extends Controller
         $testdate->test_date = $request->test_date;
         $testdate->machine_id = $request->machineID;
         $testdate->tester1_id = $request->tester1ID;
-        if (empty($request->tester2ID)) {
-            $testdate->tester2_id = null;
-        } else {
-            $testdate->tester2_id = $request->tester2ID;
-        }
+        $testdate->tester2_id = $request->has('tester2ID') ? $request->tester2_id : null;
         $testdate->type_id = $request->test_type;
-        if (!empty($request->notes)) {
-            $testdate->notes = $request->notes;
-        }
-        if (!empty($request->accession)) {
-            $testdate->accession = $request->accession;
-        }
+        $testdate->notes = $request->has('notes') ? $request->notes : null;
+        $testdate->accession = $request->has('accession') ? $request->accession : null;
 
         if ($testdate->save()) {
             $status = 'success';
@@ -107,29 +107,19 @@ class TestDateController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show a form for editing a survey. Typically used to edit the survey date.
+     *
+     * URI: /surveys/$id/edit
+     *
+     * Method: Get.
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function edit(int $id)
     {
-        //
-    }
-
-    /**
-     * Show a form for editing a survey. Typically used to edit the survey date.
-     * URI: /surveys/$id/edit
-     * Method: Get.
-     *
-     * @param int $surveyId
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(int $surveyId)
-    {
-        $survey = TestDate::findOrFail($surveyId);
+        $survey = TestDate::findOrFail($id);
 
         // Return survey information for $id
         return view('surveys.surveys_edit', [
@@ -145,7 +135,12 @@ class TestDateController extends Controller
 
     /**
      * Update the survey info for $surveyId.
+     *
+     * Form data is validated by App\Http\Requests\UpdateTestDateRequest.
+     * User is redirected to the home page after updating.
+     *
      * URI: /surveys/$surveyId
+     *
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
@@ -164,11 +159,7 @@ class TestDateController extends Controller
 
         $testdate->test_date = $request->test_date;
         $testdate->tester1_id = $request->tester1ID;
-        if (empty($request->tester2ID)) {
-            $testdate->tester2_id = null;
-        } else {
-            $testdate->tester2_id = $request->tester2ID;
-        }
+        $testdate->tester2_id = $request->has('tester2ID') ? $request->tester2ID : null;
         $testdate->notes = $request->notes;
         $testdate->accession = $request->accession;
         $testdate->type_id = $request->test_type;
@@ -190,8 +181,11 @@ class TestDateController extends Controller
 
     /**
      * Cancel a survey.
+     *
      * This method is called with the survey Id (required) to cancel.
+     *
      * URI: /surveys/$surveyId/cancel
+     *
      * Method: POST.
      *
      * @param int $surveyId
@@ -205,10 +199,9 @@ class TestDateController extends Controller
 
         $message = '';
 
-        $testdate = TestDate::findOrFail($surveyId);
-        if ($testdate->delete()) {
+        if (TestDate::findOrFail($surveyId)->delete()) {
             $status = 'success';
-            $message .= 'Survey '.$testdate->id.' canceled.';
+            $message .= 'Survey '.$surveyId.' canceled.';
             Log::info($message);
         } else {
             $status = 'fail';

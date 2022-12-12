@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -87,7 +88,7 @@ class Tube extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeActive($query)
+    public function scopeActive($query): Builder
     {
         return $query->where('tube_status', 'Active');
     }
@@ -100,7 +101,7 @@ class Tube extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeForMachine($query, $machine_id)
+    public function scopeForMachine($query, $machine_id): Builder
     {
         return $query->where('machine_id', $machine_id);
     }

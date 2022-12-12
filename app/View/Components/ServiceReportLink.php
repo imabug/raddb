@@ -10,9 +10,9 @@ class ServiceReportLink extends Component
     /**
      * Survey ID.
      *
-     * @int $surveyID
+     * @int $surveyId
      */
-    public $surveyID;
+    public $surveyId;
 
     /**
      * Service report link.

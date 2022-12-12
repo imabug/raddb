@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
@@ -108,7 +109,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeForMachine($query, $machine_id)
+    public function scopeForMachine($query, $machine_id): Builder
     {
         // Scope function to return test dates belonging to $machine_id
         return $query->where('machine_id', $machine_id);
@@ -122,7 +123,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeYear($query, $yr)
+    public function scopeYear($query, $yr): Builder
     {
         return $query->whereYear('test_date', '=', $yr);
     }
@@ -135,7 +136,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeId($query, $id)
+    public function scopeId($query, $id): Builder
     {
         return $query->where('id', $id);
     }
@@ -148,7 +149,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeTestType($query, $id)
+    public function scopeTestType($query, $id): Builder
     {
         return $query->where('type_id', $id);
     }
@@ -160,7 +161,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePending($query)
+    public function scopePending($query): Builder
     {
         return $query->where('testdates.test_date', '>=', date('Y-m-d'));
     }
@@ -173,7 +174,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeRecent($query, $n)
+    public function scopeRecent($query, $n): Builder
     {
         return $query->where('type_id', 1)
             ->orderby('test_date', 'desc')

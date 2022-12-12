@@ -14,7 +14,7 @@ class ShowOpnotes extends Component
      */
     public $machineId;
 
-    public function mount(int $machineId = null)
+    public function mount(int $machineId)
     {
         $this->machineId = $machineId;
     }

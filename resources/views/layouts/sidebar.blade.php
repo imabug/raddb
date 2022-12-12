@@ -56,7 +56,7 @@
             </form>
           </li>
         @else
-          <li role="presentation" class="nav-item"><a class="nav-link" href="{{route('home.index')}}">Login</a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link" href="{{url('/login')}}">Login</a></li>
         @endif
         <li role="presentation" class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" id="navbarHelp" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help<span class="caret"></span></a>

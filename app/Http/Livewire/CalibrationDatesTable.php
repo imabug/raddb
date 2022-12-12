@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Machine;
+use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -34,21 +35,26 @@ class CalibrationDatesTable extends DataTableComponent
                     fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
                 )
                 ->html(),
-            //Column::make('Age', 'age'),
+            Column::make('Last calibration')
+                ->label(
+                    fn ($row, Column $column) => TestDate::where('machine_id', $row->id)
+                        ->latest()
+                        ->first()
+                        ->test_date ?? ''
+                ),
+            Column::make('Age')
+                ->label(
+                    fn ($row, Column $column) => Machine::find($row->id)->age
+                ),
             Column::make('Room', 'room'),
-            //Column::make('Last calibration', 'testdate.test_date'),
         ];
     }
 
     public function builder(): Builder
     {
         return Machine::query()
-            ->with(['manufacturer', 'testdate'])
+            ->with('manufacturer')
+            ->active()
             ->testEquipment();
     }
-
-    // public function rowView(): string
-    // {
-    //     return 'livewire-tables.calibration-dates-row';
-    // }
 }

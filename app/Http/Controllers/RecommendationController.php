@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateRecommendationRequest;
 use App\Models\Recommendation;
 use App\Models\TestDate;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class RecommendationController extends Controller
 {
@@ -40,25 +39,27 @@ class RecommendationController extends Controller
 
     /**
      * Show the form for adding a new recommendation.
+     *
      * URI: /recommendations/$surveyID/create
-     * Method: GET.
      *
-     * @param int $surveyID (optional)
+     * Method: GET
      *
-     * @return \Illuminate\Http\Response
+     * @param string $surveyID (optional)
+     *
+     * @return \Illuminate\View\View
      */
-    public function create(int $surveyId = null)
+    public function create(string $surveyId = null)
     {
-        if (is_null($surveyId)) {
+        if (is_null((int) $surveyId)) {
             // No survey id was provided.
             $recs = null;
             $serviceReports = null;
             $survey = null;
         } else {
             // Get the machine description corresponding to the survey ID provided
-            $survey = TestDate::with('machine')->find($surveyId);
+            $survey = TestDate::with('machine')->find((int) $surveyId);
             $serviceReports = $survey->getMedia('service_reports');
-            $recs = Recommendation::where('survey_id', $surveyId)->get();
+            $recs = Recommendation::where('survey_id', (int) $surveyId)->get();
         }
 
         return view('recommendations.rec_create', [
@@ -70,7 +71,11 @@ class RecommendationController extends Controller
 
     /**
      * Add a new recommendation to the database.
+     *
+     * Form data is validated in App\Http\Requests\StoreRecommendationRequest
+     *
      * URI: /recommendations
+     *
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
@@ -88,20 +93,16 @@ class RecommendationController extends Controller
 
         $recommendation->survey_id = $request->surveyId;
         $recommendation->recommendation = $request->recommendation;
+        $recommendation->resolved = 0;
+        $recommendation->rec_status = 'New';
+        $recommendation->rec_add_ts = date('Y-m-d H:i:s');
+        // New recommendation was also marked as resolved
         if (isset($request->resolved)) {
-            // New recommendation was also marked as resolved
             $recommendation->resolved = 1;
             $recommendation->rec_status = 'Complete';
-            $recommendation->rec_add_ts = date('Y-m-d H:i:s');
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
             $recommendation->wo_number = $request->WONum;
-            if (is_null($request->RecResolveDate)) {
-                // Recommendation resolved date wasn't set (should have been).
-                // Use current date as a default.
-                $recommendation->rec_resolve_date = date('Y-m-d');
-            } else {
-                $recommendation->rec_resolve_date = $request->RecResolveDate;
-            }
+            $recommendation->rec_resolve_date = $request->has('RecResolveDate') ? $request->RecResolveDate : date('Y-m-d');
             $recommendation->resolved_by = $request->ResolvedBy;
 
             // If a service report was uploaded, handle it
@@ -113,11 +114,6 @@ class RecommendationController extends Controller
                     ->toMediaCollection('service_reports', 'ServiceReports');
                 $message .= "Service report uploaded.\n";
             }
-        } else {
-            // If the recommendation was not marked as resolved, ignore the rest of the fields
-            $recommendation->resolved = 0;
-            $recommendation->rec_status = 'New';
-            $recommendation->rec_add_ts = date('Y-m-d H:i:s');
         }
 
         if ($recommendation->save()) {
@@ -137,23 +133,25 @@ class RecommendationController extends Controller
 
     /**
      * Display the recommendations for a specific survey.
+     *
      * URI: /recommendations/$surveyId
+     *
      * Method: GET.
      *
-     * @param int $surveyId
+     * @param string $surveyId
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function show(int $surveyId)
+    public function show(string $surveyId)
     {
         // Get the machine description corresponding to the survey ID provided
-        $survey = TestDate::with('machine')->find($surveyId);
+        $survey = TestDate::with('machine')->find((int) $surveyId);
         $serviceReports = $survey->getMedia('service_report');
 
         return view('recommendations.recommendations', [
             'survey'         => $survey,
             'serviceReports' => $serviceReports,
-            'recs'           => Recommendation::where('survey_id', $surveyId)->get(),
+            'recs'           => Recommendation::where('survey_id', (int) $surveyId)->get(),
         ]);
     }
 
@@ -171,23 +169,27 @@ class RecommendationController extends Controller
 
     /**
      * Update the recommendations for $surveyID.
+     *
+     * Form data is validated by App\Http\Requests\UpdateRecommendationRequest.
+     * User is redirected to the list of recommendations upon completion.
+     *
      * URI: /recommendations/$surveyID
+     *
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $surveyID
+     * @param string                   $surveyID
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRecommendationRequest $request, int $surveyID)
+    public function update(UpdateRecommendationRequest $request, string $surveyID)
     {
         // Check if action is allowed
         $this->authorize(Recommendation::class);
 
         $message = '';
-        $path = env('SERVICE_REPORT_PATH', 'public/ServiceReports');
 
-        $survey = TestDate::find($surveyID);
+        $survey = TestDate::find((int) $surveyID);
 
         // If a service report was uploaded, handle it
         if ($request->hasFile('ServiceReport') && $request->file('ServiceReport')->isValid()) {
@@ -203,21 +205,9 @@ class RecommendationController extends Controller
             // Retrieve the Recommendations
             $recommendation = Recommendation::findOrFail($recId);
 
-            if (isset($request->WONum)) {
-                $recommendation->wo_number = $request->WONum;
-            }
-            if (isset($request->ResolvedBy)) {
-                $recommendation->resolved_by = $request->ResolvedBy;
-            }
-
-            if (is_null($request->RecResolveDate)) {
-                // Recommendation resolved date wasn't set (should have been).
-                // Use current date as a default.
-                $recommendation->rec_resolve_date = date('Y-m-d');
-            } else {
-                $recommendation->rec_resolve_date = $request->RecResolveDate;
-            }
-
+            $recommendation->wo_number = $request->has('WONum') ? $request->WONum : null;
+            $recommendation->resolved_by = $request->has('ResolvedBy') ? $request->ResolvedBy : null;
+            $recommendation->rec_resolve_date = $request->has('RecResolveDate') ? $request->RecResolveDate : date('Y-m-d');
             $recommendation->resolved = 1;
             $recommendation->rec_status = 'Complete';
             $recommendation->rec_resolve_ts = date('Y-m-d H:i:s');
@@ -236,17 +226,5 @@ class RecommendationController extends Controller
         return redirect()
             ->route('recommendations.show', $surveyID)
             ->with($status, $message);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
