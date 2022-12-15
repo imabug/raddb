@@ -33,14 +33,16 @@ class Tube extends Model
     ];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'created_at',
-        'deleted_at',
-        'updated_at',
+    proteted $casts = [
+        'created_at' => 'datetime',
+        'deleted_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'install_date' => 'datetime:Y-m-d',
+        'remove_date' => 'datetime:Y-m-d',
     ];
 
     /*

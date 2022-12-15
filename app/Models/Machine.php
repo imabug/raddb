@@ -34,16 +34,16 @@ class Machine extends Model implements HasMedia
     ];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'created_at',
-        'deleted_at',
-        'updated_at',
-        // 'manuf_date',
-        // 'install_date'
+    proteted $casts = [
+        'created_at' => 'datetime',
+        'deleted_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'manuf_date' => 'datetime:Y-m-d',
+        'install_date' => 'datetime:Y-m-d',
     ];
 
     /*

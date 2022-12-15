@@ -28,16 +28,16 @@ class Recommendation extends Model
     ];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'rec_add_ts',
-        'rec_resolve_ts',
-        'deleted_at',
-        'created_at',
-        'updated_at',
+    proteted $casts = [
+        'created_at' => 'datetime',
+        'deleted_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'rec_add_ts' => 'datetime',
+        'rec_resolve_ts' => 'datetime',
     ];
 
     public function registerMediaCollection(): void
