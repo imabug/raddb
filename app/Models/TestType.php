@@ -17,7 +17,7 @@ class TestType extends Model
     protected $fillable = ['test_type'];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */

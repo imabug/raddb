@@ -20,7 +20,7 @@ class OpNote extends Model
     ];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */

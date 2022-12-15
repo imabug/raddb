@@ -24,7 +24,7 @@ class Modality extends Model
     protected $fillable = ['modality'];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */

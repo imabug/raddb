@@ -34,15 +34,15 @@ class Machine extends Model implements HasMedia
     ];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'created_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'manuf_date' => 'datetime:Y-m-d',
+        'created_at'   => 'datetime',
+        'deleted_at'   => 'datetime',
+        'updated_at'   => 'datetime',
+        'manuf_date'   => 'datetime:Y-m-d',
         'install_date' => 'datetime:Y-m-d',
     ];
 

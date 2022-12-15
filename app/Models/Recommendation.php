@@ -28,15 +28,15 @@ class Recommendation extends Model
     ];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'created_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'rec_add_ts' => 'datetime',
+        'created_at'     => 'datetime',
+        'deleted_at'     => 'datetime',
+        'updated_at'     => 'datetime',
+        'rec_add_ts'     => 'datetime',
         'rec_resolve_ts' => 'datetime',
     ];
 
