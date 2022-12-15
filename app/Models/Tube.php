@@ -33,16 +33,16 @@ class Tube extends Model
     ];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'created_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'updated_at' => 'datetime',
+        'created_at'   => 'datetime',
+        'deleted_at'   => 'datetime',
+        'updated_at'   => 'datetime',
         'install_date' => 'datetime:Y-m-d',
-        'remove_date' => 'datetime:Y-m-d',
+        'remove_date'  => 'datetime:Y-m-d',
     ];
 
     /*

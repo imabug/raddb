@@ -17,7 +17,7 @@ class Location extends Model
     protected $fillable = ['location'];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */

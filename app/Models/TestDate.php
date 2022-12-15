@@ -34,7 +34,7 @@ class TestDate extends Model implements HasMedia
     ];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */

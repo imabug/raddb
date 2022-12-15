@@ -17,7 +17,7 @@ class Manufacturer extends Model
     protected $fillable = ['manufacturer'];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */
