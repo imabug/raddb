@@ -32,7 +32,7 @@ class Recommendation extends Model
      *
      * @var array<string, string>
      */
-    proteted $casts = [
+    protected $casts = [
         'created_at' => 'datetime',
         'deleted_at' => 'datetime',
         'updated_at' => 'datetime',
