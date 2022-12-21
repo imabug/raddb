@@ -14,7 +14,7 @@ class LutAdd extends Command
 {
     /**
      * The name and signature of the console command.
-    *
+     *
      * @var string
      */
     protected $signature = 'lut:add
