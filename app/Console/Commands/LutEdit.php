@@ -24,7 +24,7 @@ class LutEdit extends Command
     /**
      * Call lut:list console command to display the lookup table.
      *
-     * @var string $table Name of the table to display
+     * @var string Name of the table to display
      */
     public function showTable(string $table)
     {
@@ -94,8 +94,7 @@ class LutEdit extends Command
                 // Show the updated lookup table
                 $this->showTable($table);
                 $this->info($table.' table ID: '.$id.' edited.');
-            }
-            else {
+            } else {
                 $this->info('No changes made.');
             }
         }

@@ -34,7 +34,7 @@ class LutDelete extends Command
     /**
      * Call lut:list console command to display the lookup table.
      *
-     * @var string $table Name of the table to display
+     * @var string Name of the table to display
      */
     public function showTable(string $table)
     {
