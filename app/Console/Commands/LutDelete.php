@@ -32,6 +32,18 @@ class LutDelete extends Command
     }
 
     /**
+     * Call lut:list console command to display the lookup table.
+     *
+     * @var string $table Name of the table to display
+     */
+    public function showTable(string $table)
+    {
+        $this->call('lut:list', [
+            'table' => $table,
+        ]);
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -71,9 +83,7 @@ class LutDelete extends Command
 
         if (is_object($model)) {
             // Show the selected lookup table
-            $this->call('lut:list', [
-                'table' => $table,
-            ]);
+            $this->showTable($table);
 
             $lut = $model::find($this->ask('Enter the ID to remove'));
 
@@ -85,9 +95,7 @@ class LutDelete extends Command
                 $this->info($table.' ID:'.$lut->id.' deleted.');
 
                 // Show the updated lookup table
-                $this->call('lut:list', [
-                    'table' => $table,
-                ]);
+                $this->showTable($table);
             } else {
                 $this->info('No changes made.');
             }
