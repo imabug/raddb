@@ -12,14 +12,14 @@ class SurveyReportLink extends Component
      *
      * @int $surveyID
      */
-    public $surveyID;
+    public int $surveyID;
 
     /**
      * Survey report link.
      *
      * @string $surveyLink
      */
-    public $surveyLink;
+    public string $surveyLink;
 
     /**
      * Create a new component instance.
