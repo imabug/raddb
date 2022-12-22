@@ -34,8 +34,6 @@ class LutEdit extends Command
     public function handle()
     {
         $table = strtolower($this->argument('table'));
-        $headers = ['ID', $table];
-        $body = null;
         $model = null;
         $field = '';
 
@@ -72,10 +70,11 @@ class LutEdit extends Command
         }
 
         if (is_object($model)) {
-            $body = $model::all(['id', $field])->toArray();
 
-            // Show the current table
-            $this->table($headers, $body);
+            // Show the selected lookup table
+            $this->call('lut:list', [
+                'table' => $table,
+            ]);
 
             $id = $this->ask('Enter the ID of the entry to edit');
 
@@ -86,9 +85,10 @@ class LutEdit extends Command
             $lut->$field = $value; // Need to validate this before saving
             $lut->save();
 
-            // Refresh the table and display the modified table to the user
-            $body = $model::all(['id', $field])->toArray();
-            $this->table($headers, $body);
+            // Show the updated lookup table
+            $this->call('lut:list', [
+                'table' => $table,
+            ]);
 
             $this->info($table.' table ID: '.$id.' edited.');
         }
