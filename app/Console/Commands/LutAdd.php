@@ -45,7 +45,6 @@ class LutAdd extends Command
     public function handle()
     {
         $lut = null;
-
         $table = strtolower($this->argument('table'));
 
         switch ($table) {
