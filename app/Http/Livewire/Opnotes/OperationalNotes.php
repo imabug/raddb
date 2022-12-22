@@ -37,7 +37,7 @@ class OperationalNotes extends Component
     }
 
     /**
-     * @param int $id
+     * @param int    $id
      * @param string $note
      */
     public function addNote($id, $note): void

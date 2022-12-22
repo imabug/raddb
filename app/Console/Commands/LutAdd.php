@@ -8,6 +8,7 @@ use App\Models\Modality;
 use App\Models\Tester;
 use App\Models\TestType;
 use Illuminate\Console\Command;
+
 //use Illuminate\Support\Facades\Validator;
 
 class LutAdd extends Command
@@ -92,11 +93,10 @@ class LutAdd extends Command
         //     return 0;
         // }
 
-        if(is_object($lut)) {
+        if (is_object($lut)) {
             $lut->save();
             $this->info('New '.$table.' entry saved.');
         }
 
-        return;
     }
 }

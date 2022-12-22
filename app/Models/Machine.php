@@ -47,7 +47,7 @@ class Machine extends Model implements HasMedia
     ];
 
     /**
-     * Accessors to append to the model
+     * Accessors to append to the model.
      *
      * @var array<string>
      */
