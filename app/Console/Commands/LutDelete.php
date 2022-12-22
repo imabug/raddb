@@ -17,8 +17,7 @@ class LutDelete extends Command
      * @var string
      */
     protected $signature = 'lut:delete
-                            {table : The lookup table to delete from}
-                            {value : Value to remove from the lookup table}';
+                            {table : The lookup table to delete from}';
 
     /**
      * The console command description.
@@ -45,53 +44,59 @@ class LutDelete extends Command
     public function handle()
     {
         $table = strtolower($this->argument('table'));
-        $value = $this->argument('value');
         $lut = null;
-        $lutValue = '';
-
-        // Show the lookup table
-        $this->call('lut:list', [
-            'table' => $table,
-        ]);
+        $model = null;
+        $field = '';
 
         switch ($table) {
             case 'location':
-                $lut = Location::where('location', $value)->firstOrFail();
-                $lutValue = $lut->location;
+                $model = app('App\Models\Location');
+                $field = 'location';
                 break;
             case 'manufacturer':
-                $lut = Manufacturer::where('manufacturer', $value)->firstOrFail();
-                $lutValue = $lut->manufacturer;
+                $model = app('App\Models\Manufacturer');
+                $field = 'manufacturer';
                 break;
             case 'modality':
-                $lut = Modality::where('modality', $value)->firstOrFail();
-                $lutValue = $lut->modality;
+                $model = app('App\Models\Modality');
+                $field = 'modality';
                 break;
             case 'tester':
-                $lut = Tester::where('tester', $value)->firstOrFail();
-                $lutValue = $lut->tester;
+                $model = app('App\Models\Tester');
+                $field = 'name';
                 break;
             case 'testtype':
-                $lut = TestType::where('test_type', $value)->firstOrFail();
-                $lutValue = $lut->test_type;
+                $model = app('App\Models\TestType');
+                $field = 'test_type';
                 break;
             default:
-                $this->error('Usage: php artisan lut:delete <table> <value>');
+                $this->error('Usage: php artisan lut:delete <table>');
                 break;
         }
 
-        if (is_object($lut)) {
-            // Ask for confirmation
-            if ($this->confirm('Deleting '.$table.' ID:'.$lut->id.' Value: '.$lutValue.'. Do you wish to continue?')) {
-                $lut->delete();
-            }
-
-            // Show the lookup table
+        if (is_object($model)) {
+            // Show the selected lookup table
             $this->call('lut:list', [
                 'table' => $table,
             ]);
 
-            $this->info($table.' ID:'.$lut->id.' deleted.');
+            $lut = $model::find($this->ask('Enter the ID to remove'));
+
+            $this->info('Deleting from '.$table.' ID:'.$lut->id.' Value: '.$lut->$field);
+
+            // Ask for confirmation
+            if ($this->confirm('Do you wish to continue?')) {
+                $lut->delete();
+                $this->info($table.' ID:'.$lut->id.' deleted.');
+
+                // Show the updated lookup table
+                $this->call('lut:list', [
+                    'table' => $table,
+                ]);
+            }
+            else {
+                $this->info('No changes made.');
+            }
         }
 
         return;
