@@ -13,7 +13,6 @@ use App\Models\Tester;
 use App\Models\TestType;
 use App\Models\Tube;
 use App\Policies\LocationPolicy;
-use App\Policies\MachinePhotoPolicy;
 use App\Policies\MachinePolicy;
 use App\Policies\ManufacturerPolicy;
 use App\Policies\ModalityPolicy;

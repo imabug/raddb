@@ -46,7 +46,7 @@ class Tube extends Model
     ];
 
     /**
-     * Accessors to append to the model
+     * Accessors to append to the model.
      *
      * @var array<string>
      */
