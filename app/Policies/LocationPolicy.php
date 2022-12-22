@@ -11,7 +11,7 @@ class LocationPolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user, $ability)
+    public function before(User $user, $ability): int
     {
         return $user->isAdmin();
     }

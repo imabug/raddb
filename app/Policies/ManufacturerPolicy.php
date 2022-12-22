@@ -11,7 +11,7 @@ class ManufacturerPolicy
 {
     use HandlesAuthorization;
 
-    public function before($user, $ability)
+    public function before(User $user, $ability): int
     {
         return $user->isAdmin();
     }
