@@ -8,13 +8,13 @@ use App\Models\Modality;
 use App\Models\Tester;
 use App\Models\TestType;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Validator;
+//use Illuminate\Support\Facades\Validator;
 
 class LutAdd extends Command
 {
     /**
      * The name and signature of the console command.
-    *
+     *
      * @var string
      */
     protected $signature = 'lut:add
@@ -44,6 +44,8 @@ class LutAdd extends Command
      */
     public function handle()
     {
+        $lut = null;
+
         $table = strtolower($this->argument('table'));
 
         switch ($table) {
@@ -81,21 +83,21 @@ class LutAdd extends Command
                 break;
             default:
                 $this->error('Usage: php artisan lut:add <table>');
-
-                return 0;
                 break;
         }
 
         // Perform some validation
-        if ($validator->fails()) {
-            $this->error('There were problems with the '.$table.' values provided.');
+        // if ($validator->fails()) {
+        //     $this->error('There were problems with the '.$table.' values provided.');
 
-            return 0;
+        //     return 0;
+        // }
+
+        if(is_object($lut)) {
+            $lut->save();
+            $this->info('New '.$table.' entry saved.');
         }
 
-        $lut->save();
-        $this->info('New '.$table.' entry saved.');
-
-        return 1;
+        return;
     }
 }
