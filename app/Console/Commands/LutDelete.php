@@ -47,6 +47,7 @@ class LutDelete extends Command
         $table = strtolower($this->argument('table'));
         $value = $this->argument('value');
         $lut = null;
+        $lutValue = '';
 
         // Show the lookup table
         $this->call('lut:list', [
@@ -79,7 +80,7 @@ class LutDelete extends Command
                 break;
         }
 
-        if (!is_null($lut)) {
+        if (is_object($lut)) {
             // Ask for confirmation
             if ($this->confirm('Deleting '.$table.' ID:'.$lut->id.' Value: '.$lutValue.'. Do you wish to continue?')) {
                 $lut->delete();
@@ -93,6 +94,6 @@ class LutDelete extends Command
             $this->info($table.' ID:'.$lut->id.' deleted.');
         }
 
-        return 1;
+        return;
     }
 }
