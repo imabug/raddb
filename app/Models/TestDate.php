@@ -23,7 +23,7 @@ class TestDate extends Model implements HasMedia
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'test_date',
@@ -53,46 +53,73 @@ class TestDate extends Model implements HasMedia
     /*
      * Relationships
      */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function type()
     {
         return $this->belongsTo(TestType::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function tester1()
     {
         return $this->belongsTo(Tester::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function tester2()
     {
         return $this->belongsTo(Tester::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function recommendations()
     {
         return $this->hasMany(Recommendation::class, 'survey_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function thisyear()
     {
         return $this->belongsTo(ThisYear::class, 'survey_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function lastyear()
     {
         return $this->belongsTo(LastYear::class, 'survey_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function genData()
     {
         return $this->hasMany(GenData::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function leedsn3()
     {
         return $this->hasMany(LeedsN3::class);

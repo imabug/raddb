@@ -15,7 +15,7 @@ class Tube extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'housing_model',
@@ -45,36 +45,51 @@ class Tube extends Model
         'remove_date'  => 'datetime:Y-m-d',
     ];
 
-    /*
+    /**
      * Accessors to append to the model
      *
-     * @var array
+     * @var array<string>
      */
     protected $appends = ['age'];
 
     /*
      * Relationships
      */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function housing_manuf()
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function insert_manuf()
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function genData()
     {
         return $this->hasMany(GenData::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function leedsn3()
     {
         return $this->hasMany(LeedsN3::class);

@@ -12,7 +12,7 @@ class Tester extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = ['name', 'initials'];
 
@@ -28,6 +28,9 @@ class Tester extends Model
     ];
 
     // Relationships
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function testdate()
     {
         return $this->hasMany(TestDate::class);

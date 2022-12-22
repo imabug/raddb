@@ -15,7 +15,7 @@ class Recommendation extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'recommendation',
@@ -48,6 +48,9 @@ class Recommendation extends Model
 
     /*
      * Relationships
+     */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function survey()
     {
@@ -86,7 +89,7 @@ class Recommendation extends Model
      * Scope function to return recommendations for a given $surveyID.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $surveyID
+     * @param int                                   $surveyId
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

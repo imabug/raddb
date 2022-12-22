@@ -12,7 +12,7 @@ class OpNote extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'machine_id',
@@ -38,6 +38,9 @@ class OpNote extends Model
     protected $table = 'opnotes';
 
     // Relationships
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class);

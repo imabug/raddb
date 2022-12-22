@@ -12,7 +12,7 @@ class Manufacturer extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = ['manufacturer'];
 
@@ -28,16 +28,25 @@ class Manufacturer extends Model
     ];
 
     // Relationships
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function machine()
     {
         return $this->hasMany(Machine::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tube_housing_manuf()
     {
         return $this->hasMany(Tube::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tube_ins_manuf()
     {
         return $this->hasMany(Tube::class);

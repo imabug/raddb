@@ -12,7 +12,7 @@ class Location extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = ['location'];
 
@@ -28,6 +28,9 @@ class Location extends Model
     ];
 
     // Relationships
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function machine()
     {
         return $this->hasMany(Machine::class);
