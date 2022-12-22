@@ -70,6 +70,6 @@ class LutList extends Command
             $this->table($headers, $body);
         }
 
-        return 1;
+        return;
     }
 }
