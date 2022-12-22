@@ -92,6 +92,5 @@ class LutDelete extends Command
                 $this->info('No changes made.');
             }
         }
-
     }
 }
