@@ -22,6 +22,18 @@ class LutEdit extends Command
     protected $description = 'Edit an entry in one of the lookup tables';
 
     /**
+     * Call lut:list console command to display the lookup table.
+     *
+     * @var string $table Name of the table to display
+     */
+    public function showTable(string $table)
+    {
+        $this->call('lut:list', [
+            'table' => $table,
+        ]);
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -65,27 +77,27 @@ class LutEdit extends Command
         }
 
         if (is_object($model)) {
-
             // Show the selected lookup table
-            $this->call('lut:list', [
-                'table' => $table,
-            ]);
+            $this->showTable($table);
 
             $id = $this->ask('Enter the ID of the entry to edit');
 
-            $lut = $model::findOrFail($id); // Probably should fail more gracefully
+            $lut = $model::find($id); // Probably should fail more gracefully
 
             $value = $this->ask('What should the new value be?');
 
-            $lut->$field = $value; // Need to validate this before saving
-            $lut->save();
+            $this->info('Changing '.$lut->$field.' to '.$value.'.');
 
-            // Show the updated lookup table
-            $this->call('lut:list', [
-                'table' => $table,
-            ]);
-
-            $this->info($table.' table ID: '.$id.' edited.');
+            if ($this->confirm('Do you wish to continue?')) {
+                $lut->$field = $value; // Need to validate this before saving
+                $lut->save();
+                // Show the updated lookup table
+                $this->showTable($table);
+                $this->info($table.' table ID: '.$id.' edited.');
+            }
+            else {
+                $this->info('No changes made.');
+            }
         }
     }
 }
