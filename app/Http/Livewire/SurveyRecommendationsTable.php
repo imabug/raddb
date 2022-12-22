@@ -9,9 +9,9 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class SurveyRecommendationsTable extends DataTableComponent
 {
-    public $machine;
+    public int $machine;
 
-    public function mount($machine)
+    public function mount($machine): void
     {
         $this->machine = $machine;
     }
