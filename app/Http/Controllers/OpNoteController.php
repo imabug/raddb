@@ -39,7 +39,7 @@ class OpNoteController extends Controller
      *
      * @param string $machineId
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create($machineId = null)
     {
@@ -76,6 +76,9 @@ class OpNoteController extends Controller
      */
     public function store(OpNoteStoreRequest $request, OpNote $opNote)
     {
+        $message = '';
+        $status = '';
+
         // Check if action is allowed
         $this->authorize(OpNote::class);
 
@@ -106,7 +109,7 @@ class OpNoteController extends Controller
      *
      * @param string $machineId
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(int $machineId)
     {
@@ -128,7 +131,7 @@ class OpNoteController extends Controller
      *
      * @param string $id
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -154,6 +157,9 @@ class OpNoteController extends Controller
      */
     public function update(OpNoteUpdateRequest $request, string $id)
     {
+        $message = '';
+        $status = '';
+
         // Check if action is allowed
         $this->authorize(OpNote::class);
 

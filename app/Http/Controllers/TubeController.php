@@ -37,7 +37,7 @@ class TubeController extends Controller
      *
      * @param int $machineID
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(int $machineID)
     {
@@ -60,7 +60,7 @@ class TubeController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function store(StoreTubeRequest $request, Tube $tube)
     {
@@ -68,6 +68,7 @@ class TubeController extends Controller
         $this->authorize(Tube::class);
 
         $message = '';
+        $status = '';
 
         $tube->machine_id = $request->machine_id;
         $tube->housing_model = $request->hsgModel;
@@ -108,7 +109,7 @@ class TubeController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(int $id)
     {
@@ -136,7 +137,7 @@ class TubeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function update(UpdateTubeRequest $request, int $id)
     {
@@ -144,6 +145,7 @@ class TubeController extends Controller
         $this->authorize(Tube::class);
 
         $message = '';
+        $status = '';
 
         // Retrieve the model for the tube to be edited
         $tube = Tube::findOrFail($id);
@@ -189,7 +191,7 @@ class TubeController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function destroy(int $id)
     {
@@ -197,6 +199,7 @@ class TubeController extends Controller
         $this->authorize(Tube::class);
 
         $message = '';
+        $status = '';
 
         // Retrieve the model for the requested tube
         $tube = Tube::findOrFail($id);

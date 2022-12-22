@@ -38,7 +38,7 @@ class MachineController extends Controller
      *
      * Method: GET.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -52,7 +52,7 @@ class MachineController extends Controller
      *
      * Method: GET.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -77,7 +77,7 @@ class MachineController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function store(UpdateMachineRequest $request, Machine $machine)
     {
@@ -125,7 +125,7 @@ class MachineController extends Controller
      *
      * @param string $id Machine ID to display
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
@@ -158,7 +158,7 @@ class MachineController extends Controller
      *
      * @param string $id Machine ID to edit
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -184,7 +184,7 @@ class MachineController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param string                   $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function update(UpdateMachineRequest $request, $id)
     {
@@ -234,7 +234,7 @@ class MachineController extends Controller
      *
      * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

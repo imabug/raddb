@@ -34,7 +34,7 @@ class MachinePhotoController extends Controller
      *
      * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create($id)
     {
