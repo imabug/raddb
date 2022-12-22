@@ -19,12 +19,12 @@ class DashboardSurveyCategoriesController extends Controller
      *
      * @link https://developers.google.com/chart/interactive/docs/gallery/piechart Google Charts pie charts
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         /**
-         * @var Illuminate\Database\Eloquent\Collection $years Collection of years that surveys were performed in.
+         * @var \Illuminate\Database\Eloquent\Collection $years Collection of years that surveys were performed in.
          **/
         $years = TestDate::select(DB::raw('year(test_date) as years'))
             ->distinct()

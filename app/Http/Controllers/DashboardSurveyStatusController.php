@@ -22,7 +22,7 @@ class DashboardSurveyStatusController extends Controller
      *
      * Method: GET
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function teststatus()
     {
