@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\Location;
 use App\Models\Machine;
-use App\Models\MachinePhoto;
 use App\Models\Manufacturer;
 use App\Models\Modality;
 use App\Models\OpNote;
@@ -37,7 +36,6 @@ class AuthServiceProvider extends ServiceProvider
         //'App\Models\Model'         => 'App\Policies\ModelPolicy',
         Location::class       => LocationPolicy::class,
         Machine::class        => MachinePolicy::class,
-        MachinePhoto::class   => MachinePhotoPolicy::class,
         Manufacturer::class   => ManufacturerPolicy::class,
         Modality::class       => ModalityPolicy::class,
         OpNote::class         => OpNotePolicy::class,
