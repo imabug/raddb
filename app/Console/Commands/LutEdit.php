@@ -87,6 +87,5 @@ class LutEdit extends Command
 
             $this->info($table.' table ID: '.$id.' edited.');
         }
-
     }
 }

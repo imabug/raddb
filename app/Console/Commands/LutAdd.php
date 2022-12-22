@@ -98,6 +98,5 @@ class LutAdd extends Command
             $lut->save();
             $this->info('New '.$table.' entry saved.');
         }
-
     }
 }
