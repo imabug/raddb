@@ -48,6 +48,8 @@ class SurveyScheduleTable extends DataTableComponent
     public function builder(): Builder
     {
         return SurveyScheduleView::query()
-            ->with('machine', 'prevSurvey', 'currSurvey');
+            ->with('machine', 'prevSurvey', 'currSurvey')
+            ->orderBy('prevSurveyDate', 'asc')
+            ->orderBy('id', 'asc');
     }
 }
