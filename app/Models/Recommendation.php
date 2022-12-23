@@ -15,7 +15,7 @@ class Recommendation extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'recommendation',
@@ -28,16 +28,16 @@ class Recommendation extends Model
     ];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting.
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'rec_add_ts',
-        'rec_resolve_ts',
-        'deleted_at',
-        'created_at',
-        'updated_at',
+    protected $casts = [
+        'created_at'     => 'datetime',
+        'deleted_at'     => 'datetime',
+        'updated_at'     => 'datetime',
+        'rec_add_ts'     => 'datetime',
+        'rec_resolve_ts' => 'datetime',
     ];
 
     public function registerMediaCollection(): void
@@ -48,6 +48,9 @@ class Recommendation extends Model
 
     /*
      * Relationships
+     */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function survey()
     {
@@ -86,7 +89,7 @@ class Recommendation extends Model
      * Scope function to return recommendations for a given $surveyID.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $surveyID
+     * @param int                                   $surveyId
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

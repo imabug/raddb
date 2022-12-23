@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMachinePhotoRequest;
 use App\Models\Machine;
-use App\Models\MachinePhoto;
 use Illuminate\Support\Facades\Log;
 
 class MachinePhotoController extends Controller
@@ -35,7 +34,7 @@ class MachinePhotoController extends Controller
      *
      * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create($id)
     {
@@ -62,9 +61,7 @@ class MachinePhotoController extends Controller
      */
     public function store(StoreMachinePhotoRequest $request)
     {
-        $this->authorize('store', MachinePhoto::class);
-
-        $message = '';
+        (string) $message = '';
         $machine = Machine::find($request->machineId);
 
         if ($request->hasFile('photo')) {

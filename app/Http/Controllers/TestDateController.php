@@ -40,11 +40,11 @@ class TestDateController extends Controller
      *
      * @param string $id (optional)
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create($id = null)
+    public function create(string $id = null)
     {
-        if (is_null((int) $id)) {
+        if (is_null($id)) {
             $machines = Machine::select('id', 'description')
                 ->active()
                 ->orderBy('description')
@@ -74,7 +74,7 @@ class TestDateController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function store(UpdateTestDateRequest $request, TestDate $testdate)
     {
@@ -82,6 +82,7 @@ class TestDateController extends Controller
         $this->authorize(TestDate::class);
 
         $message = '';
+        $status = '';
 
         $testdate->test_date = $request->test_date;
         $testdate->machine_id = $request->machineID;
@@ -115,7 +116,7 @@ class TestDateController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(int $id)
     {
@@ -146,7 +147,7 @@ class TestDateController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param int                      $surveyId
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function update(UpdateTestDateRequest $request, $surveyId)
     {
@@ -154,6 +155,7 @@ class TestDateController extends Controller
         $this->authorize(TestDate::class);
 
         $message = '';
+        $status = '';
 
         $testdate = TestDate::find($surveyId);
 
@@ -190,14 +192,15 @@ class TestDateController extends Controller
      *
      * @param int $surveyId
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function cancel($surveyId)
+    public function cancel(int $surveyId)
     {
         // Check if action is allowed
         $this->authorize(TestDate::class);
 
         $message = '';
+        $status = '';
 
         if (TestDate::findOrFail($surveyId)->delete()) {
             $status = 'success';

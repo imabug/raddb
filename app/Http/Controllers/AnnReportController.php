@@ -26,12 +26,13 @@ class AnnReportController extends Controller
      * @todo Take into account who performed the survey (tester_id).
      * @todo Modality ID is hardocded.  Need to make this more flexible.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function mammContExp()
     {
         /**
-         * @var Illuminate\Database\Eloquent\Collection $mammMachines Collection of active mammography machines.
+         * @var \Illuminate\Database\Eloquent\Collection $mammMachines Collection of active mammography machines.
+         * @array $mamDates Array with the two most recent survey dates for each machine.
          **/
         $mammMachines = Machine::with('modality', 'manufacturer', 'location', 'testdate')
             ->active()
@@ -48,7 +49,8 @@ class AnnReportController extends Controller
         }
 
         /**
-         * @var Illuminate\Database\Eloquent\Collection $sbbMachines Collection of active SBB machines.
+         * @var \Illuminate\Database\Eloquent\Collection $sbbMachines Collection of active SBB machines.
+         * @array $sbbDates Array with the two most recent survey dates for each  machine.
          **/
         $sbbMachines = Machine::with('modality', 'manufacturer', 'location')
             ->active()
@@ -82,12 +84,12 @@ class AnnReportController extends Controller
      *
      * @param int $year The year to retrieve report data for
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function annrep(int $year)
     {
         /**
-         * @var Illuminate\Database\Eloquent\Collection $surveys Collection of surveys performed during $year.
+         * @var \Illuminate\Database\Eloquent\Collection $surveys Collection of surveys performed during $year.
          **/
         $surveys = TestDate::with('machine', 'type')
             ->year($year)
@@ -101,7 +103,7 @@ class AnnReportController extends Controller
         $surveyTotal = $surveys->count();
 
         /**
-         * @var Illuminate\Database\Eloquent\Collection $machines Collection of active machines.
+         * @var \Illuminate\Database\Eloquent\Collection $machines Collection of active machines.
          **/
         $machines = Machine::with('modality', 'location')
             ->active()

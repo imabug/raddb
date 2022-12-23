@@ -34,7 +34,7 @@ class SurveyReportController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View||\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(int $id = null)
     {
@@ -53,7 +53,7 @@ class SurveyReportController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function store(StoreSurveyReportRequest $request)
     {
@@ -61,6 +61,7 @@ class SurveyReportController extends Controller
         $this->authorize(TestDate::class);
 
         $message = '';
+        $status = '';
 
         // Get the survey data
         $survey = TestDate::find($request->surveyId);
@@ -90,7 +91,7 @@ class SurveyReportController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function show(int $id)
     {

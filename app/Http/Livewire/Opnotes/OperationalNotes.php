@@ -8,12 +8,12 @@ use Livewire\Component;
 
 class OperationalNotes extends Component
 {
-    public $machines;
-    public $opNotes;
-    public $selectedMachine;
-    public $note;
+    public \Illuminate\Database\Eloquent\Collection $machines;
+    public \Illuminate\Database\Eloquent\Collection $opNotes;
+    public int $selectedMachine;
+    public string $note;
 
-    public function mount()
+    public function mount(): void
     {
         $this->machines = Machine::active()
             ->with('opnote')
@@ -31,12 +31,16 @@ class OperationalNotes extends Component
             ->opnote;
     }
 
-    public function updatedSelectedMachine()
+    public function updatedSelectedMachine(): void
     {
         $this->opNotes = OpNote::where('machine_id', $this->selectedMachine)->get();
     }
 
-    public function addNote($id, $note)
+    /**
+     * @param int    $id
+     * @param string $note
+     */
+    public function addNote($id, $note): void
     {
         OpNote::create([
             'machine_id' => $id,
@@ -49,7 +53,7 @@ class OperationalNotes extends Component
         session()->flash('message', 'Op note added.');
     }
 
-    public function deleteNote($id)
+    public function deleteNote($id): void
     {
         OpNote::find($id)->delete();
 
@@ -58,6 +62,9 @@ class OperationalNotes extends Component
         session()->flash('message', 'Op note '.$id.' removed.');
     }
 
+    /**
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.opnotes.operational-notes')->extends('layouts.app');

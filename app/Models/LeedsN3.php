@@ -21,16 +21,26 @@ class LeedsN3 extends Model
     /*
      * Relationships
      */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function survey()
     {
         return $this->belongsTo(TestDate::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function tube()
     {
         return $this->belongsTo(Tube::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class);

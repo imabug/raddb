@@ -12,22 +12,25 @@ class Tester extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = ['name', 'initials'];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting.
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'created_at',
-        'deleted_at',
-        'updated_at',
+    protected $casts = [
+        'created_at' => 'datetime',
+        'deleted_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     // Relationships
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function testdate()
     {
         return $this->hasMany(TestDate::class);

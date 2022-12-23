@@ -18,7 +18,7 @@ class Machine extends Model implements HasMedia
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'description',
@@ -34,22 +34,22 @@ class Machine extends Model implements HasMedia
     ];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting.
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'created_at',
-        'deleted_at',
-        'updated_at',
-        // 'manuf_date',
-        // 'install_date'
+    protected $casts = [
+        'created_at'   => 'datetime',
+        'deleted_at'   => 'datetime',
+        'updated_at'   => 'datetime',
+        'manuf_date'   => 'datetime:Y-m-d',
+        'install_date' => 'datetime:Y-m-d',
     ];
 
-    /*
-     * Accessors to append to the model
+    /**
+     * Accessors to append to the model.
      *
-     * @var array
+     * @var array<string>
      */
     protected $appends = ['age'];
 
@@ -62,52 +62,83 @@ class Machine extends Model implements HasMedia
     /*
      * Relationships
      */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function location()
     {
         return $this->belongsTo(Location::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function modality()
     {
         return $this->belongsTo(Modality::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function manufacturer()
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tube()
     {
         return $this->hasMany(Tube::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function opnote()
     {
         return $this->hasMany(OpNote::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function testdate()
     {
         return $this->hasMany(TestDate::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function thisyear()
     {
         return $this->hasMany(ThisYear::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function lastyear()
     {
         return $this->hasMany(LastYear::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function testdateRecent()
     {
         return $this->hasMany(TestDate::class)
             ->latest('test_date')->first();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
     public function recommendation()
     {
         return $this->hasManyThrough(
@@ -118,16 +149,25 @@ class Machine extends Model implements HasMedia
         );
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function surveySchedule()
     {
         return $this->hasOne(SurveyScheduleView::class, 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function genData()
     {
         return $this->hasMany(GenData::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function leedsn3()
     {
         return $this->hasMany(LeedsN3::class);

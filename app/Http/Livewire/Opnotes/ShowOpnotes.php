@@ -7,18 +7,21 @@ use Livewire\Component;
 
 class ShowOpnotes extends Component
 {
+    public $machineId;
+
     /**
      * @param int $machineId
      *
      * Machine ID to retrieve operational notes for.
      */
-    public $machineId;
-
-    public function mount(int $machineId)
+    public function mount(?int $machineId)
     {
         $this->machineId = $machineId;
     }
 
+    /**
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         if (!is_null($this->machineId)) {

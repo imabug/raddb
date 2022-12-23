@@ -16,16 +16,25 @@ class SurveyScheduleView extends Model
     /*
      * Relationships
      */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class, 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function prevSurvey()
     {
         return $this->belongsTo(TestDate::class, 'prevSurveyID');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function currSurvey()
     {
         return $this->belongsTo(TestDate::class, 'currSurveyID');

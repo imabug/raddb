@@ -14,6 +14,11 @@ test('Survey calendar page exists', function () {
     $response = $this->get('/dashboard/surveyCalendar')
         ->assertStatus(200);
 });
+
+test('Survey categories page exists', function () {
+    $response = $this->get('/dashboard/surveyCategories')
+        ->assertStatus(200);
+});
 // namespace Tests\Feature;
 
 // use Tests\TestCase;

@@ -28,29 +28,19 @@ class RecommendationController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for adding a new recommendation.
      *
-     * URI: /recommendations/$surveyID/create
+     * URI: /recommendations/$surveyId/create
      *
      * Method: GET
      *
-     * @param string $surveyID (optional)
+     * @param string $surveyId (optional)
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(string $surveyId = null)
     {
-        if (is_null((int) $surveyId)) {
+        if (is_null($surveyId)) {
             // No survey id was provided.
             $recs = null;
             $serviceReports = null;
@@ -80,7 +70,7 @@ class RecommendationController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function store(StoreRecommendationRequest $request, Recommendation $recommendation)
     {
@@ -88,6 +78,7 @@ class RecommendationController extends Controller
         $this->authorize(Recommendation::class);
 
         $message = '';
+        $status = '';
 
         $survey = TestDate::find($request->surveyId);
 
@@ -140,7 +131,7 @@ class RecommendationController extends Controller
      *
      * @param string $surveyId
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(string $surveyId)
     {
@@ -156,18 +147,6 @@ class RecommendationController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the recommendations for $surveyID.
      *
      * Form data is validated by App\Http\Requests\UpdateRecommendationRequest.
@@ -180,7 +159,7 @@ class RecommendationController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param string                   $surveyID
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function update(UpdateRecommendationRequest $request, string $surveyID)
     {
@@ -188,6 +167,7 @@ class RecommendationController extends Controller
         $this->authorize(Recommendation::class);
 
         $message = '';
+        $status = '';
 
         $survey = TestDate::find((int) $surveyID);
 
