@@ -14,7 +14,7 @@ class ShowOpnotes extends Component
      *
      * Machine ID to retrieve operational notes for.
      */
-    public function mount(int $machineId)
+    public function mount(?int $machineId)
     {
         $this->machineId = $machineId;
     }
