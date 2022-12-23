@@ -137,7 +137,6 @@ class MachineListTable extends DataTableComponent
     public function builder(): Builder
     {
         return Machine::query()
-            ->with(['modality', 'manufacturer', 'location'])
-            ->active();
+            ->with(['modality', 'manufacturer', 'location']);
     }
 }
