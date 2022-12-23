@@ -2,7 +2,7 @@
 {{-- Used in resources/views/machine/detail.blade.php --}}
 <h3><span class="label label-default">Survey Information</span></h3>
 
-{{-- Use App\Http\Livewire\SurveyListTable to display the list of surveys --}}}}
+{{-- Use App\Http\Livewire\SurveyListTable to display the list of surveys --}}
 <livewire:survey-list-table :machine="$machine->id" />
 
 @if (Auth::check())
