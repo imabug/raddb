@@ -19,7 +19,7 @@
         <li role="presentation" class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" id="navbarListings" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings<span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="navbarListings">
-            <li role="presentation"><a class="dropdown-item" href="/machines?table[filters][machine_status]=Active">List machines</a></li>
+            <li role="presentation"><a class="dropdown-item" href="{{ route('machines.index') }}">List machines</a></li>
           </ul>
         </li>
         @if (Auth::check())

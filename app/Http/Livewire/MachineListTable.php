@@ -17,6 +17,10 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
  */
 class MachineListTable extends DataTableComponent
 {
+    public function mount() {
+        $this->setFilter('machine_status', 'Active');
+    }
+
     public function configure(): void
     {
         $this->setPrimaryKey('id')
