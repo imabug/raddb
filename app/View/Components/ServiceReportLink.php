@@ -12,14 +12,14 @@ class ServiceReportLink extends Component
      *
      * @int $surveyId
      */
-    public int $surveyId;
+    public ?int $surveyId;
 
     /**
      * Service report link.
      *
      * @string $surveyLink
      */
-    public string $serviceReportLink;
+    public ?string $serviceReportLink;
 
     /**
      * Create a new component instance.
