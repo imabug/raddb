@@ -15,7 +15,7 @@ test('Survey calendar page exists', function () {
         ->assertStatus(200);
 });
 
-test('Survey categories page exists', function() {
+test('Survey categories page exists', function () {
     $response = $this->get('/dashboard/surveyCategories')
         ->assertStatus(200);
 });
