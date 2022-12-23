@@ -1,7 +1,10 @@
 <?php
 
-it('has operational notes page', function () {
-    $response = $this->get('/opnotes/opnotes');
+use function Pest\Laravel\get;
 
-    $response->assertStatus(200);
-});
+it('has create operational notes page', function ($url) {
+    get($url)->assertStatus(302);
+})->with([
+    'Without a machine' => '/opnotes/create',
+    'With a machine' => '/opnotes/233/create',
+]);
