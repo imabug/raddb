@@ -28,16 +28,6 @@ class RecommendationController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for adding a new recommendation.
      *
      * URI: /recommendations/$surveyId/create
@@ -154,18 +144,6 @@ class RecommendationController extends Controller
             'serviceReports' => $serviceReports,
             'recs'           => Recommendation::where('survey_id', (int) $surveyId)->get(),
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
