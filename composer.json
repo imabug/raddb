@@ -41,7 +41,7 @@
         "rappasoft/laravel-livewire-tables": "^2.10",
         "spatie/laravel-medialibrary": "^10.7.10",
         "symfony/yaml": "^6.2.5",
-        "troccoli/blade-health-icons": "^0.3.0",
+        "troccoli/blade-health-icons": "^1.0.0",
         "twbs/bootstrap": "^5.2.3"
     },
     "require-dev": {
