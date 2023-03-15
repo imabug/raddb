@@ -57,23 +57,23 @@ class LutDelete extends Command
 
         switch ($table) {
             case 'location':
-                $model = app('App\Models\Location');
+                $model = app(\App\Models\Location::class);
                 $field = 'location';
                 break;
             case 'manufacturer':
-                $model = app('App\Models\Manufacturer');
+                $model = app(\App\Models\Manufacturer::class);
                 $field = 'manufacturer';
                 break;
             case 'modality':
-                $model = app('App\Models\Modality');
+                $model = app(\App\Models\Modality::class);
                 $field = 'modality';
                 break;
             case 'tester':
-                $model = app('App\Models\Tester');
+                $model = app(\App\Models\Tester::class);
                 $field = 'name';
                 break;
             case 'testtype':
-                $model = app('App\Models\TestType');
+                $model = app(\App\Models\TestType::class);
                 $field = 'test_type';
                 break;
             default:
