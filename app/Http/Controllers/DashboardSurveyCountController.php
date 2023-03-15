@@ -56,7 +56,7 @@ class DashboardSurveyCountController extends Controller
             // Convert this to an array with plain numeric elements.
             foreach ($chartData as $cd) {
                 // Replace the count data for the month in the $c array
-                $c[($cd->m) - 1] = [$months[$cd->m], $cd->c];
+                $c[$cd->m - 1] = [$months[$cd->m], $cd->c];
             }
 
             // Set up the data table for the chart
