@@ -30,6 +30,9 @@ class AnnReportController extends Controller
      */
     public function mammContExp()
     {
+        $mammDates = [];
+        $sbbDates = [];
+
         /**
          * @var \Illuminate\Database\Eloquent\Collection $mammMachines Collection of active mammography machines.
          * @array $mamDates Array with the two most recent survey dates for each machine.
@@ -88,6 +91,10 @@ class AnnReportController extends Controller
      */
     public function annrep(int $year)
     {
+        $surveyTypeCount = [];
+        $modalitiesCount = [];
+        $locationsCount = [];
+
         /**
          * @var \Illuminate\Database\Eloquent\Collection $surveys Collection of surveys performed during $year.
          **/
