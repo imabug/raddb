@@ -35,6 +35,7 @@ class AnnReportController extends Controller
 
         /**
          * @var \Illuminate\Database\Eloquent\Collection $mammMachines Collection of active mammography machines.
+         *
          * @array $mamDates Array with the two most recent survey dates for each machine.
          **/
         $mammMachines = Machine::with('modality', 'manufacturer', 'location', 'testdate')
@@ -53,6 +54,7 @@ class AnnReportController extends Controller
 
         /**
          * @var \Illuminate\Database\Eloquent\Collection $sbbMachines Collection of active SBB machines.
+         *
          * @array $sbbDates Array with the two most recent survey dates for each  machine.
          **/
         $sbbMachines = Machine::with('modality', 'manufacturer', 'location')
