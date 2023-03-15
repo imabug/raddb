@@ -21,7 +21,7 @@ class ThisYear extends Model
      */
     public function machine()
     {
-        return $this->belongsTo('App\Models\Machine');
+        return $this->belongsTo(\App\Models\Machine::class);
     }
 
     /**
