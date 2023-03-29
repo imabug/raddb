@@ -4441,27 +4441,28 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "10.7.12",
+            "version": "10.7.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "79b7295cf9ed810c777b3ab7f501319146ac8629"
+                "reference": "fbdcba9d7ff34d4d781d28bfddb51b4c73bddffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/79b7295cf9ed810c777b3ab7f501319146ac8629",
-                "reference": "79b7295cf9ed810c777b3ab7f501319146ac8629",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/fbdcba9d7ff34d4d781d28bfddb51b4c73bddffc",
+                "reference": "fbdcba9d7ff34d4d781d28bfddb51b4c73bddffc",
                 "shasum": ""
             },
             "require": {
                 "ext-exif": "*",
                 "ext-fileinfo": "*",
                 "ext-json": "*",
-                "illuminate/bus": "^9.18|^10.0",
-                "illuminate/console": "^9.18|^10.0",
-                "illuminate/database": "^9.18|^10.0",
-                "illuminate/pipeline": "^9.18|^10.0",
-                "illuminate/support": "^9.18|^10.0",
+                "illuminate/bus": "^9.52|^10.0",
+                "illuminate/conditionable": "^9.52|^10.0",
+                "illuminate/console": "^9.52|^10.0",
+                "illuminate/database": "^9.52|^10.0",
+                "illuminate/pipeline": "^9.52|^10.0",
+                "illuminate/support": "^9.52|^10.0",
                 "intervention/image": "^2.7",
                 "maennchen/zipstream-php": "^2.0",
                 "php": "^8.0",
@@ -4533,7 +4534,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.7.12"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.7.14"
             },
             "funding": [
                 {
@@ -4545,7 +4546,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-06T08:33:25+00:00"
+            "time": "2023-03-29T07:06:33+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
