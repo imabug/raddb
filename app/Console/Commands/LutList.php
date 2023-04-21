@@ -69,7 +69,5 @@ class LutList extends Command
         if (!is_null($body)) {
             $this->table($headers, $body);
         }
-
-        return 1;
     }
 }

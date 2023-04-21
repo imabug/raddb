@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
@@ -22,7 +23,7 @@ class TestDate extends Model implements HasMedia
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'test_date',
@@ -33,14 +34,14 @@ class TestDate extends Model implements HasMedia
     ];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting.
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'deleted_at',
-        'created_at',
-        'updated_at',
+    protected $casts = [
+        'created_at' => 'datetime',
+        'deleted_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     public function registerMediaCollections(Media $media = null): void
@@ -52,46 +53,73 @@ class TestDate extends Model implements HasMedia
     /*
      * Relationships
      */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function type()
     {
         return $this->belongsTo(TestType::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function tester1()
     {
         return $this->belongsTo(Tester::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function tester2()
     {
         return $this->belongsTo(Tester::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function recommendations()
     {
         return $this->hasMany(Recommendation::class, 'survey_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function thisyear()
     {
         return $this->belongsTo(ThisYear::class, 'survey_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function lastyear()
     {
         return $this->belongsTo(LastYear::class, 'survey_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function genData()
     {
         return $this->hasMany(GenData::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function leedsn3()
     {
         return $this->hasMany(LeedsN3::class);
@@ -108,7 +136,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeForMachine($query, $machine_id)
+    public function scopeForMachine($query, $machine_id): Builder
     {
         // Scope function to return test dates belonging to $machine_id
         return $query->where('machine_id', $machine_id);
@@ -122,7 +150,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeYear($query, $yr)
+    public function scopeYear($query, $yr): Builder
     {
         return $query->whereYear('test_date', '=', $yr);
     }
@@ -135,7 +163,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeId($query, $id)
+    public function scopeId($query, $id): Builder
     {
         return $query->where('id', $id);
     }
@@ -148,7 +176,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeTestType($query, $id)
+    public function scopeTestType($query, $id): Builder
     {
         return $query->where('type_id', $id);
     }
@@ -160,7 +188,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePending($query)
+    public function scopePending($query): Builder
     {
         return $query->where('testdates.test_date', '>=', date('Y-m-d'));
     }
@@ -173,7 +201,7 @@ class TestDate extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeRecent($query, $n)
+    public function scopeRecent($query, $n): Builder
     {
         return $query->where('type_id', 1)
             ->orderby('test_date', 'desc')

@@ -12,19 +12,22 @@ class OpNote extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
-    protected $fillable = ['note'];
+    protected $fillable = [
+        'machine_id',
+        'note',
+    ];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting.
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'created_at',
-        'deleted_at',
-        'updated_at',
+    protected $casts = [
+        'created_at' => 'datetime',
+        'deleted_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**
@@ -35,6 +38,9 @@ class OpNote extends Model
     protected $table = 'opnotes';
 
     // Relationships
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class);

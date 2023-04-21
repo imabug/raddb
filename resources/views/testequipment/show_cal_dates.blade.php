@@ -1,5 +1,5 @@
-<!-- resources/views/testequipment/show_cal_dates.blade.php -->
-
+{{-- resources/views/testequipment/show_cal_dates.blade.php --}}
+{{-- Used by the showCalDates() method in TestEquipmentController --}}
 @extends('layouts.app')
 
 @section('content')

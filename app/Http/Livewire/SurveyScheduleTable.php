@@ -45,16 +45,11 @@ class SurveyScheduleTable extends DataTableComponent
         ];
     }
 
-    // public function rowView(): string
-    // {
-    //     // Use a custom row view so that things like the manufacturer,
-    //     // modality, description, location can be made clickable URLs
-    //     return 'livewire-tables.survey-schedule-row';
-    // }
-
     public function builder(): Builder
     {
         return SurveyScheduleView::query()
-            ->with('machine', 'prevSurvey', 'currSurvey');
+            ->with('machine', 'prevSurvey', 'currSurvey')
+            ->orderBy('prevSurveyDate', 'asc')
+            ->orderBy('id', 'asc');
     }
 }

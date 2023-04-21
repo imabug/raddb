@@ -38,6 +38,8 @@ class ImportSurveyReports extends Command
      */
     public function handle()
     {
+        $file = '';
+
         $surveys = TestDate::whereNotNull('report_file_path')->get();
 
         foreach ($surveys as $s) {

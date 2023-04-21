@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,7 +15,7 @@ class Tube extends Model
     /**
      * Attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'housing_model',
@@ -32,46 +33,63 @@ class Tube extends Model
     ];
 
     /**
-     * Attributes that should be mutated to dates.
+     * Attribute casting.
      *
-     * @var array
+     * @var array<string, string>
      */
-    protected $dates = [
-        'created_at',
-        'deleted_at',
-        'updated_at',
+    protected $casts = [
+        'created_at'   => 'datetime',
+        'deleted_at'   => 'datetime',
+        'updated_at'   => 'datetime',
+        'install_date' => 'datetime:Y-m-d',
+        'remove_date'  => 'datetime:Y-m-d',
     ];
 
-    /*
-     * Accessors to append to the model
+    /**
+     * Accessors to append to the model.
      *
-     * @var array
+     * @var array<string>
      */
     protected $appends = ['age'];
 
     /*
      * Relationships
      */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function housing_manuf()
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function insert_manuf()
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function genData()
     {
         return $this->hasMany(GenData::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function leedsn3()
     {
         return $this->hasMany(LeedsN3::class);
@@ -87,7 +105,7 @@ class Tube extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeActive($query)
+    public function scopeActive($query): Builder
     {
         return $query->where('tube_status', 'Active');
     }
@@ -100,7 +118,7 @@ class Tube extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeForMachine($query, $machine_id)
+    public function scopeForMachine($query, $machine_id): Builder
     {
         return $query->where('machine_id', $machine_id);
     }

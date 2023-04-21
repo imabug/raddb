@@ -16,11 +16,18 @@ class LastYear extends Model
     /*
      * Relationships
      */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function machine()
     {
         return $this->belongsTo(Machine::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function survey()
     {
         return $this->belongsTo(TestDate::class, 'id');

@@ -21,7 +21,6 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\MachinePhotoController;
 use App\Http\Controllers\OpNoteController;
 use App\Http\Controllers\RecommendationController;
-use App\Http\Controllers\ServiceReportController;
 use App\Http\Controllers\SurveyReportController;
 use App\Http\Controllers\TestDateController;
 use App\Http\Controllers\TestEquipmentController;
@@ -58,18 +57,17 @@ Route::resource('machines', MachineController::class);
  */
 Route::name('testequipment.showCalDates')
     ->get('/testequipment/caldates', [TestEquipmentController::class, 'showCalDates']);
-Route::resource('testequipment', TestEquipmentController::class);
 
 /*
  * Operational notes controller
  */
 Route::prefix('opnotes')->group(function () {
     Route::name('opnotes.operationalNotes')
-        ->get('/opnotes', \App\Http\Livewire\Opnotes\OperationalNotes::class);
+        ->get('/', \App\Http\Livewire\Opnotes\OperationalNotes::class);
     Route::name('opnotes.createOpNoteFor')
         ->get('/{machineId?}/create', [OpNoteController::class, 'create']);
 });
-Route::resource('opnotes', OpNoteController::class);
+Route::resource('opnotes', OpNoteController::class, ['except' => ['index']]);
 /*
  * Recommendation controller
  */
@@ -92,11 +90,6 @@ Route::resource('surveys', TestDateController::class);
 Route::name('surveyreports.create')
     ->get('surveyreports/create/{id?}', [SurveyReportController::class, 'create']);
 Route::resource('surveyreports', SurveyReportController::class, ['except' => ['create']]);
-
-/*
- * Service report controller
- */
-Route::resource('servicereports', ServiceReportController::class);
 
 /*
  * Tube controller
@@ -123,7 +116,7 @@ Route::resource(
 /*
  * Route for user management
  */
-Route::resource('users', UserController::class);
+// Route::resource('users', UserController::class);
 
 /*
  * Reporting routes

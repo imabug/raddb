@@ -28,23 +28,18 @@ class OpNoteController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating an operational note for machine $machineId.
+     *
+     * If $machineId has existing operational notes, these are displayed by the
+     * App\Http\Livewire\Opnotes\ShowOpnotes component
+     *
      * URI: /opnotes/{$machineId}/create
+     *
      * Method: GET.
      *
-     * @param int $machineId
+     * @param string $machineId
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create($machineId = null)
     {
@@ -67,7 +62,12 @@ class OpNoteController extends Controller
 
     /**
      * Store a new operational note.
+     *
+     * Form data is validated by App\Http\Requests\OpNoteStoreRequest.  User is
+     * redirected to the list of operational notes upon completion.
+     *
      * URI: /opnotes
+     *
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
@@ -76,6 +76,9 @@ class OpNoteController extends Controller
      */
     public function store(OpNoteStoreRequest $request, OpNote $opNote)
     {
+        $message = '';
+        $status = '';
+
         // Check if action is allowed
         $this->authorize(OpNote::class);
 
@@ -99,16 +102,19 @@ class OpNoteController extends Controller
 
     /**
      * Display operational notes for machine $machineId.
+     *
      * URI: /opnotes/$machineId
+     *
      * Method: GET.
      *
-     * @param int $machineId
+     * @param string $machineId
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(int $machineId)
     {
-        $machine = Machine::findOrFail($machineId); // Return HTTP 404 if no machine is found
+        // Return HTTP 404 if no machine is found
+        $machine = Machine::findOrFail((int) $machineId);
 
         return view('opnotes.opnote_show', [
             'machine' => $machine,
@@ -118,36 +124,46 @@ class OpNoteController extends Controller
 
     /**
      * Show the form for editing an operational note.
+     *
      * URI: /opnotes/$id/edit
+     *
      * Method: GET.
      *
-     * @param int $id
+     * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(int $id)
+    public function edit($id)
     {
         return view('opnotes.opnote_edit', [
-            'opNote' => OpNote::findOrFail($id),
+            'opNote' => OpNote::findOrFail((int) $id),
         ]);
     }
 
     /**
      * Update the operational note.
+     *
+     * Form data is validated by App\Http\Requests\OpNoteUpdateRequest.  User is
+     * redirected to the list of operational notes after completion.
+     *
      * URI: /opnotes/$id
+     *
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param string                   $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(OpNoteUpdateRequest $request, int $id)
+    public function update(OpNoteUpdateRequest $request, string $id)
     {
+        $message = '';
+        $status = '';
+
         // Check if action is allowed
         $this->authorize(OpNote::class);
 
-        $opNote = OpNote::findOrFail($id);
+        $opNote = OpNote::findOrFail((int) $id);
         $opNote->note = $request->note;
 
         if ($opNote->save()) {
@@ -163,17 +179,5 @@ class OpNoteController extends Controller
         return redirect()
             ->route('opnotes.show', $opNote->machine_id)
             ->with($status, $message);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

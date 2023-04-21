@@ -30,24 +30,29 @@ class MachineController extends Controller
 
     /**
      * Display a listing of all active machines.
+     *
+     * \App\Http\Livewire\MachineListTable component is used to display the
+     * list of machines.
+     *
      * URI: /machines
+     *
      * Method: GET.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        // The list of machines is displayed in the view by the
-        // MachineListTable Livewire component
         return view('machine.index');
     }
 
     /**
-     * Show form for adding a new machine
+     * Show form for adding a new machine.
+     *
      * URI: /machines/create
+     *
      * Method: GET.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -60,13 +65,19 @@ class MachineController extends Controller
     }
 
     /**
-     * Save machine data to the database
+     * Save machine data to the database.
+     *
+     * Form data is validated in \App\Http\Requests\UpdateMachineRequest
+     * before being stored in the database.  Then the user is redirected
+     * to a form for adding a new tube for the machine.
+     *
      * URI: /machines
+     *
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function store(UpdateMachineRequest $request, Machine $machine)
     {
@@ -79,24 +90,16 @@ class MachineController extends Controller
         $machine->modality_id = $request->modality;
         $machine->description = $request->description;
         $machine->manufacturer_id = $request->manufacturer;
-        if (isset($request->vendSiteID)) {
-            $machine->vend_site_id = $request->vendSiteID;
-        }
+        $machine->vend_site_id = $request->has('vendSiteID') ? $request->vendSiteID : null;
         $machine->model = $request->model;
         $machine->serial_number = $request->serialNumber;
         $machine->software_version = $request->softwareVersion;
-        if (isset($request->manufDate)) {
-            $machine->manuf_date = $request->manufDate;
-        }
-        if (isset($request->installDate)) {
-            $machine->install_date = $request->installDate;
-        }
+        $machine->manuf_date = $request->has('manufDate') ? $request->manufDate : null;
+        $machine->install_date = $request->has('installDate') ? $request->installDate : null;
         $machine->location_id = $request->location;
         $machine->room = $request->room;
         $machine->machine_status = $request->status;
-        if (isset($request->notes)) {
-            $machine->notes = $request->notes;
-        }
+        $machine->notes = $request->has('notes') ? $request->notes : null;
 
         if ($machine->save()) {
             $status = 'success';
@@ -114,17 +117,26 @@ class MachineController extends Controller
     }
 
     /**
-     * Display the information for machine $id
+     * Display the information for machine $id.
+     *
      * URI: /machines/$id
+     *
      * Method: GET.
      *
-     * @param string $id
+     * @param string $id Machine ID to display
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
-        $machine = Machine::findOrFail($id);
+        $machine = Machine::with([
+            'tube',
+            'opnote',
+            'testdate',
+            'recommendation',
+        ])
+            ->findOrFail((int) $id);
+
         $machinePhotos = $machine->getMedia('machine_photos');
 
         return view('machine.detail', [
@@ -138,13 +150,15 @@ class MachineController extends Controller
     }
 
     /**
-     * Show the form for editing a machine
+     * Show the form for editing a machine.
+     *
      * URI: /machines/$id/edit
+     *
      * Method: GET.
      *
-     * @param string $id
+     * @param string $id Machine ID to edit
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -152,19 +166,25 @@ class MachineController extends Controller
             'modalities'    => Modality::get(),
             'manufacturers' => Manufacturer::get(),
             'locations'     => Location::get(),
-            'machine'       => Machine::findOrFail($id),
+            'machine'       => Machine::findOrFail((int) $id),
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update machine details.
+     *
+     * Form data is validated by App\Http\Requests\UpdateMachineRequest before
+     * being stored in the database.  User is then redirected back to the machine
+     * information page.
+     *
      * URI: /machines/$id
-     * Method: PUT.
+     *
+     * Method: PUT
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param string                   $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function update(UpdateMachineRequest $request, $id)
     {
@@ -174,29 +194,21 @@ class MachineController extends Controller
         $message = '';
 
         // Retrieve the model for the machine to be edited
-        $machine = Machine::find($id);
+        $machine = Machine::find((int) $id);
 
         $machine->modality_id = $request->modality;
         $machine->description = $request->description;
         $machine->manufacturer_id = $request->manufacturer;
-        if (isset($request->vendSiteID)) {
-            $machine->vend_site_id = $request->vendSiteID;
-        }
+        $machine->vend_site_id = $request->has('vendSiteID') ? $request->vendSiteID : null;
         $machine->model = $request->model;
         $machine->serial_number = $request->serialNumber;
         $machine->software_version = $request->softwareVersion;
-        if (isset($request->manufDate)) {
-            $machine->manuf_date = $request->manufDate;
-        }
-        if (isset($request->installDate)) {
-            $machine->install_date = $request->installDate;
-        }
+        $machine->manuf_date = $request->has('manufDate') ? $request->manufDate : null;
+        $machine->install_date = $request->has('installDate') ? $request->installDate : null;
         $machine->location_id = $request->location;
         $machine->room = $request->room;
         $machine->machine_status = $request->status;
-        if (isset($request->notes)) {
-            $machine->notes = $request->notes;
-        }
+        $machine->notes = $request->has('notes') ? $request->notes : null;
 
         if ($machine->save()) {
             $status = 'success';
@@ -214,13 +226,15 @@ class MachineController extends Controller
     }
 
     /**
-     * Remove machine $id and associated tubes from the database
+     * Remove machine $id and associated tubes from the database.
+     *
      * URI: /machines/$id
-     * Method: DELETE.
      *
-     * @param int $id
+     * Method: DELETE
      *
-     * @return \Illuminate\Http\Response
+     * @param string $id
+     *
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -229,9 +243,10 @@ class MachineController extends Controller
 
         $message = '';
 
-        $machine = Machine::find($id);
+        $machine = Machine::find((int) $id)
+            ->with('tube');
 
-        // Retrieve tubes associated with this machine
+        // Retrieve active tubes associated with this machine
         $tubes = $machine->tube->where('tube_status', 'Active');
 
         // Update the status and remove date for the machine

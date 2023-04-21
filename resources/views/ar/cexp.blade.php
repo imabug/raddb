@@ -1,4 +1,5 @@
-<!-- resources/views/ar/cexp.blade.php -->
+{{-- resources/views/ar/cexp.blade.php --}}
+{{-- This blade template is used by the mammContExp method in AnnReportController --}}
 
     @extends('layouts.app')
 

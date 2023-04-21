@@ -29,23 +29,15 @@ class TubeController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display form for creating a new tube for $machineID.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Display form for creating a new tube for $machineID
      * URI: /tubes/$machineID/create
+     *
      * Method: GET.
      *
      * @param int $machineID
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(int $machineID)
     {
@@ -57,13 +49,18 @@ class TubeController extends Controller
     }
 
     /**
-     * Store new tube information in the database
+     * Store new tube information in the database.
+     *
+     * Form submission is validated by App\Http\Requests\StoreTubeRequest
+     * User is redirected to the machine information page after data is stored.
+     *
      * URI: /tubes
+     *
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function store(StoreTubeRequest $request, Tube $tube)
     {
@@ -71,6 +68,7 @@ class TubeController extends Controller
         $this->authorize(Tube::class);
 
         $message = '';
+        $status = '';
 
         $tube->machine_id = $request->machine_id;
         $tube->housing_model = $request->hsgModel;
@@ -81,21 +79,9 @@ class TubeController extends Controller
         $tube->insert_manuf_id = $request->insertManufID;
         $tube->manuf_date = $request->manufDate;
         $tube->install_date = $request->installDate;
-        if (empty($request->lfs)) {
-            $tube->lfs = 0.0;
-        } else {
-            $tube->lfs = $request->lfs;
-        }
-        if (empty($request->mfs)) {
-            $tube->mfs = 0.0;
-        } else {
-            $tube->mfs = $request->mfs;
-        }
-        if (empty($request->sfs)) {
-            $tube->sfs = 0.0;
-        } else {
-            $tube->sfs = $request->sfs;
-        }
+        $tube->lfs = $request->has('lfs') ? $request->lfs : 0.0;
+        $tube->mfs = $request->has('mfs') ? $request->mfs : 0.0;
+        $tube->sfs = $request->has('sfs') ? $request->sfs : 0.0;
         $tube->notes = $request->notes;
         $tube->tube_status = 'Active';
 
@@ -115,25 +101,15 @@ class TubeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing a tube.
+     *
      * URI: /tubes/$id/edit
+     *
      * Method: GET.
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(int $id)
     {
@@ -149,14 +125,19 @@ class TubeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the x-ray tube corresponding to $id.
+     *
+     * Form data is validated by App\Http\Requests\UpdateTubeRequest.
+     * User is redirected to machine information page when data is saved.
+     *
      * URI: /tubes/$id
+     *
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function update(UpdateTubeRequest $request, int $id)
     {
@@ -164,6 +145,7 @@ class TubeController extends Controller
         $this->authorize(Tube::class);
 
         $message = '';
+        $status = '';
 
         // Retrieve the model for the tube to be edited
         $tube = Tube::findOrFail($id);
@@ -199,11 +181,17 @@ class TubeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the tube corresponding to $id from the database.
+     *
+     * Tube removal date is updated with the current date and the
+     * status is updated to 'Removed'.  App\Models\Tube uses the
+     * SoftDelete trait, so the entry in the database is only marked
+     * as deleted.  User is redirected to the machine information page
+     * when completed.
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function destroy(int $id)
     {
@@ -211,6 +199,7 @@ class TubeController extends Controller
         $this->authorize(Tube::class);
 
         $message = '';
+        $status = '';
 
         // Retrieve the model for the requested tube
         $tube = Tube::findOrFail($id);

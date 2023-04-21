@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMachinePhotoRequest;
 use App\Models\Machine;
-use App\Models\MachinePhoto;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class MachinePhotoController extends Controller
@@ -28,29 +26,21 @@ class MachinePhotoController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for adding a new photo.
+     *
      * URI: photos/{id}/create
+     *
      * Method: GET.
      *
-     * @param int $id
+     * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create($id)
     {
         $this->authorize('create', Machine::class);
 
-        $machine = Machine::find($id);
+        $machine = Machine::find((int) $id);
 
         return view('photos.photos_create', [
             'machine' => $machine,
@@ -59,7 +49,11 @@ class MachinePhotoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store the photo for a machine.
+     *
+     * Form data is validated by App\Http\Requests\StoreMachinePhotoRequest before
+     * being added to the media collection.  User is redirected to the machine
+     * information page upon completion.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -67,11 +61,8 @@ class MachinePhotoController extends Controller
      */
     public function store(StoreMachinePhotoRequest $request)
     {
-        $this->authorize('store', MachinePhoto::class);
-
-        $message = '';
-        $machineId = $request->machineId;
-        $machine = Machine::find($machineId);
+        (string) $message = '';
+        $machine = Machine::find($request->machineId);
 
         if ($request->hasFile('photo')) {
             // Associate the photo with the machine (spatie/medialibrary)
@@ -82,63 +73,24 @@ class MachinePhotoController extends Controller
                 ->toMediaCollection('machine_photos', 'MachinePhotos');
 
             $status = 'success';
-            $message .= 'Photo for machine '.$machineId.' saved.';
+            $message .= 'Photo for machine '.$machine->id.' saved.';
             Log::info($message);
         }
 
         return redirect()
-            ->route('machines.show', $machineId)
+            ->route('machines.show', $machine->id)
             ->with($status, $message);
     }
 
     /**
      * Display the photos for machine $id.
      *
-     * @param int $id
+     * @param string $id
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function show($id)
     {
-        return Machine::find($id)->getMedia('machine_photos');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove photo with id $id.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id)
-    {
-        // spatie/medialibrary doesn't have a facility for removing media (yet)
-        // so none of this applies yet. Will probably have to manually remove media
-        // from the media table.
+        return Machine::find((int) $id)->getMedia('machine_photos');
     }
 }

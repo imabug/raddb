@@ -1,5 +1,5 @@
-<!-- resources/views/opnotes/opnote_create.blade.php -->
-
+{{-- resources/views/opnotes/opnote_create.blade.php --}}
+{{-- Used by the create() method in OpNoteController --}}
 @extends('layouts.app')
 
 @section('content')
@@ -9,6 +9,7 @@
     <h2>Add operational note for <a href="{{route('machines.show', $machineId) }}">{{ $machines->description }}</a></h2>
   @endif
 
+  {{-- Use App\Http\Livewire\Opnotes\ShowOpnotes Livewire component to display existing operational notes --}}
   <div>
     <livewire:opnotes.show-opnotes :machineId="$machineId" />
   </div>

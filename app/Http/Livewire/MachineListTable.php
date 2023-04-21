@@ -17,6 +17,11 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
  */
 class MachineListTable extends DataTableComponent
 {
+    public function mount()
+    {
+        $this->setFilter('machine_status', 'Active');
+    }
+
     public function configure(): void
     {
         $this->setPrimaryKey('id')
@@ -135,11 +140,4 @@ class MachineListTable extends DataTableComponent
         return Machine::query()
             ->with(['modality', 'manufacturer', 'location']);
     }
-
-    // public function rowView(): string
-    // {
-    //     // Use a custom row view so that things like the manufacturer,
-    //     // modality, description, location can be made clickable URLs
-    //     return 'livewire-tables.machines-list-row';
-    // }
 }
