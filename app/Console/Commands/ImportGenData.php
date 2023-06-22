@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\GenData;
-use App\Models\Machine;
 use App\Models\TestDate;
 use App\Models\Tube;
 use Illuminate\Console\Command;
