@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\LeedsN3;
 use App\Models\LeedsTO10;
-use App\Models\Machine;
 use App\Models\TestDate;
 use App\Models\Tube;
 use Illuminate\Console\Command;
