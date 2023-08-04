@@ -17,10 +17,10 @@ class SurveyScheduleView extends Model
     /*
      * Relationships
      */
-    // public function machine(): BelongsTo
-    // {
-    //     return $this->belongsTo(Machine::class, 'id');
-    // }
+    public function machine(): BelongsTo
+    {
+        return $this->belongsTo(Machine::class, 'id');
+    }
 
     public function prevSurvey(): BelongsTo
     {
