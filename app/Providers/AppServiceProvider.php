@@ -29,11 +29,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Work around for MariaDB/MySQL key too long errors
-        // Not required as long as MySQL > 5.7 or Mariadb > 10.2.2
-        // and InnoDB tables are being used.
-        // Schema::defaultStringLength(191);
-
         /*
          * Blade directive to dump a variable/object inside a template.
          * This is similar to dd(), except that it doesn't interrupt the
