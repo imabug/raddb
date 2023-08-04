@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tube extends Model
 {
@@ -55,42 +57,27 @@ class Tube extends Model
     /*
      * Relationships
      */
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function machine()
+    public function machine(): BelongsTo
     {
         return $this->belongsTo(Machine::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function housing_manuf()
+    public function housing_manuf(): BelongsTo
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function insert_manuf()
+    public function insert_manuf(): BelongsTo
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function genData()
+    public function genData(): HasMany
     {
         return $this->hasMany(GenData::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function leedsn3()
+    public function leedsn3(): HasMany
     {
         return $this->hasMany(LeedsN3::class);
     }
@@ -102,8 +89,6 @@ class Tube extends Model
      * Scope function to return tubes with tube_status = Active.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query): Builder
     {
@@ -115,8 +100,6 @@ class Tube extends Model
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param int                                   $machine_id
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeForMachine($query, $machine_id): Builder
     {
@@ -129,8 +112,6 @@ class Tube extends Model
 
     /**
      * Add an age attribute based on either install or manufacture date.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function age(): Attribute
     {

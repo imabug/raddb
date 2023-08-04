@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Machine;
+use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ThisYear extends Model
 {
@@ -16,18 +19,12 @@ class ThisYear extends Model
     /*
      * Relationships
      */
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function machine()
+    public function machine(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Machine::class);
+        return $this->belongsTo(Machine::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function survey()
+    public function survey(): BelongsTo
     {
         return $this->belongsTo(TestDate::class, 'id');
     }
