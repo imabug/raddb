@@ -59,26 +59,26 @@ return [
         ],
 
         'single' => [
-            'driver' => 'single',
-            'path'   => storage_path('logs/laravel.log'),
-            'level'  => env('LOG_LEVEL', 'debug'),
+            'driver'               => 'single',
+            'path'                 => storage_path('logs/laravel.log'),
+            'level'                => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
 
         'daily' => [
-            'driver' => 'daily',
-            'path'   => storage_path('logs/laravel.log'),
-            'level'  => env('LOG_LEVEL', 'debug'),
-            'days'   => 14,
+            'driver'               => 'daily',
+            'path'                 => storage_path('logs/laravel.log'),
+            'level'                => env('LOG_LEVEL', 'debug'),
+            'days'                 => 14,
             'replace_placeholders' => true,
         ],
 
         'slack' => [
-            'driver'   => 'slack',
-            'url'      => env('LOG_SLACK_WEBHOOK_URL'),
-            'username' => 'Laravel Log',
-            'emoji'    => ':boom:',
-            'level'    => env('LOG_LEVEL', 'critical'),
+            'driver'               => 'slack',
+            'url'                  => env('LOG_SLACK_WEBHOOK_URL'),
+            'username'             => 'Laravel Log',
+            'emoji'                => ':boom:',
+            'level'                => env('LOG_LEVEL', 'critical'),
             'replace_placeholders' => true,
         ],
 
@@ -106,14 +106,14 @@ return [
         ],
 
         'syslog' => [
-            'driver' => 'syslog',
-            'level'  => env('LOG_LEVEL', 'debug'),
+            'driver'               => 'syslog',
+            'level'                => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
 
         'errorlog' => [
-            'driver' => 'errorlog',
-            'level'  => env('LOG_LEVEL', 'debug'),
+            'driver'               => 'errorlog',
+            'level'                => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
 

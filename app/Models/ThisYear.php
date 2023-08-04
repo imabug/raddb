@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Machine;
-use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
