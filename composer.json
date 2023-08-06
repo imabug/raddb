@@ -31,7 +31,7 @@
         "doctrine/dbal": "^3.5.3",
         "guzzlehttp/guzzle": "^7.5",
         "khill/lavacharts": "^3.1.14",
-        "laravel/framework": "^10.0",
+        "laravel/framework": "^9.50.2",
         "laravel/sanctum": "^3.2.1",
         "laravel/tinker": "^2.8.0",
         "laravel/ui": "^4.2.0",
@@ -41,6 +41,7 @@
         "rappasoft/laravel-livewire-tables": "^2.10",
         "spatie/laravel-medialibrary": "^10.7.10",
         "symfony/yaml": "^6.2.5",
+        "troccoli/blade-health-icons": "^1.0.0",
         "twbs/bootstrap": "^5.2.3"
     },
     "require-dev": {
@@ -48,13 +49,14 @@
         "laravel/dusk": "^7.5",
         "laravel/sail": "^1.19",
         "mockery/mockery": "^1.5.1",
-        "nunomaduro/collision": "^7.0",
-        "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "pestphp/pest-plugin-livewire": "^2.0",
+        "nunomaduro/collision": "^6.4",
+        "pestphp/pest": "^1.22.4",
+        "pestphp/pest-plugin-laravel": "^1.4",
+        "pestphp/pest-plugin-livewire": "^1.0",
+        "pestphp/pest-plugin-parallel": "^1.2.1",
         "phpstan/phpstan": "^1.9.14",
-        "phpunit/phpunit": "^10.0",
-        "spatie/laravel-ignition": "^2.0"
+        "phpunit/phpunit": "^9.6.2",
+        "spatie/laravel-ignition": "^1.6.4"
     },
     "autoload": {
         "psr-4": {
