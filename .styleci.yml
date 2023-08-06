@@ -5,3 +5,5 @@ php:
   finder:
     not-name:
       - index.php
+js: true
+css: true
