@@ -26,8 +26,6 @@ return [
     | may even configure multiple disks of the same driver. Defaults have
     | been setup for each driver as an example of the required options.
     |
-    | Supported Drivers: "local", "ftp", "sftp", "s3"
-    |
     */
 
     'disks' => [
@@ -93,6 +91,5 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
 
 ];

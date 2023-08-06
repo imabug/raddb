@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use RadDB\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -11,11 +12,18 @@ use Illuminate\Support\Str;
 class UserFactory extends Factory
 {
     /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
+
+    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
             'name'              => fake()->name(),
@@ -28,8 +36,10 @@ class UserFactory extends Factory
 
     /**
      * Define the model's unverified state.
+     *
+     * @return static
      */
-    public function unverified(): static
+    public function unverified()
     {
         return $this->state(function (array $attributes) {
             return [
