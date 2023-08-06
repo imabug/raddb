@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LeedsTO10 extends Model
 {
@@ -23,17 +22,26 @@ class LeedsTO10 extends Model
      * Relationships
      */
 
-    public function survey(): BelongsTo
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function survey()
     {
         return $this->belongsTo(TestDate::class);
     }
 
-    public function tube(): BelongsTo
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tube()
     {
         return $this->belongsTo(Tube::class);
     }
 
-    public function machine(): BelongsTo
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function machine()
     {
         return $this->belongsTo(Machine::class);
     }

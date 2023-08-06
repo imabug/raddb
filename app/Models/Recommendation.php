@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Recommendation extends Model
@@ -50,7 +49,10 @@ class Recommendation extends Model
     /*
      * Relationships
      */
-    public function survey(): BelongsTo
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function survey()
     {
         return $this->belongsTo(TestDate::class);
     }
@@ -63,6 +65,8 @@ class Recommendation extends Model
      * Scope function to return unresolved recommendations (resolved=0).
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeUnresolved($query): Builder
     {
@@ -73,6 +77,8 @@ class Recommendation extends Model
      * Scope function to return unresolved recommendations (resolved=1).
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeResolved($query): Builder
     {
@@ -84,6 +90,8 @@ class Recommendation extends Model
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param int                                   $surveyId
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeSurveyId($query, $surveyId): Builder
     {

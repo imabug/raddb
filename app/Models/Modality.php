@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Modality extends Model
 {
@@ -36,7 +35,10 @@ class Modality extends Model
     ];
 
     // Relationships
-    public function machine(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function machine()
     {
         return $this->hasMany(Machine::class);
     }

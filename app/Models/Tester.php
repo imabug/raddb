@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tester extends Model
 {
@@ -29,7 +28,10 @@ class Tester extends Model
     ];
 
     // Relationships
-    public function testdate(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function testdate()
     {
         return $this->hasMany(TestDate::class);
     }

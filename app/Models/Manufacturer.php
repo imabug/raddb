@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Manufacturer extends Model
 {
@@ -29,17 +28,26 @@ class Manufacturer extends Model
     ];
 
     // Relationships
-    public function machine(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function machine()
     {
         return $this->hasMany(Machine::class);
     }
 
-    public function tube_housing_manuf(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tube_housing_manuf()
     {
         return $this->hasMany(Tube::class);
     }
 
-    public function tube_ins_manuf(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tube_ins_manuf()
     {
         return $this->hasMany(Tube::class);
     }

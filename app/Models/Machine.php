@@ -7,10 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -67,53 +63,83 @@ class Machine extends Model implements HasMedia
      * Relationships
      */
 
-    public function location(): BelongsTo
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function location()
     {
         return $this->belongsTo(Location::class);
     }
 
-    public function modality(): BelongsTo
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function modality()
     {
         return $this->belongsTo(Modality::class);
     }
 
-    public function manufacturer(): BelongsTo
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function manufacturer()
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
-    public function tube(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tube()
     {
         return $this->hasMany(Tube::class);
     }
 
-    public function opnote(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function opnote()
     {
         return $this->hasMany(OpNote::class);
     }
 
-    public function testdate(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function testdate()
     {
         return $this->hasMany(TestDate::class);
     }
 
-    public function thisyear(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function thisyear()
     {
         return $this->hasMany(ThisYear::class);
     }
 
-    public function lastyear(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function lastyear()
     {
         return $this->hasMany(LastYear::class);
     }
 
-    public function testdateRecent(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function testdateRecent()
     {
         return $this->hasMany(TestDate::class)
             ->latest('test_date')->first();
     }
 
-    public function recommendation(): HasManyThrough
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function recommendation()
     {
         return $this->hasManyThrough(
             Recommendation::class,
@@ -123,17 +149,26 @@ class Machine extends Model implements HasMedia
         );
     }
 
-    public function surveySchedule(): HasOne
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function surveySchedule()
     {
         return $this->hasOne(SurveyScheduleView::class, 'id');
     }
 
-    public function genData(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function genData()
     {
         return $this->hasMany(GenData::class);
     }
 
-    public function leedsn3(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function leedsn3()
     {
         return $this->hasMany(LeedsN3::class);
     }
@@ -145,6 +180,8 @@ class Machine extends Model implements HasMedia
      * Scope function to return active machines.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query): Builder
     {
@@ -155,6 +192,8 @@ class Machine extends Model implements HasMedia
      * Scope function to return inactive machines.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeInactive($query): Builder
     {
@@ -165,6 +204,8 @@ class Machine extends Model implements HasMedia
      * Scope function to return removed machines.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeRemoved($query): Builder
     {
@@ -176,6 +217,8 @@ class Machine extends Model implements HasMedia
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param int                                   $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeLocation($query, $id): Builder
     {
@@ -188,6 +231,8 @@ class Machine extends Model implements HasMedia
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param int                                   $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeModality($query, $id): Builder
     {
@@ -200,6 +245,8 @@ class Machine extends Model implements HasMedia
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param int                                   $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeManufacturer($query, $id): Builder
     {
@@ -225,6 +272,8 @@ class Machine extends Model implements HasMedia
 
     /**
      * Add an age attribute based on either install or manufacture date.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function age(): Attribute
     {
