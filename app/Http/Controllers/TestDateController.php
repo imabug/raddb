@@ -7,7 +7,9 @@ use App\Models\Machine;
 use App\Models\TestDate;
 use App\Models\Tester;
 use App\Models\TestType;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class TestDateController extends Controller
 {
@@ -39,10 +41,8 @@ class TestDateController extends Controller
      * Method: GET
      *
      * @param string $id (optional)
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create(string $id = null)
+    public function create(string $id = null): View
     {
         if (is_null($id)) {
             $machines = Machine::select('id', 'description')
@@ -73,10 +73,8 @@ class TestDateController extends Controller
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function store(UpdateTestDateRequest $request, TestDate $testdate)
+    public function store(UpdateTestDateRequest $request, TestDate $testdate): RedirectResponse
     {
         // Check if action is allowed
         $this->authorize(TestDate::class);
@@ -115,10 +113,8 @@ class TestDateController extends Controller
      * Method: Get.
      *
      * @param int $id
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         $survey = TestDate::findOrFail($id);
 
@@ -146,10 +142,8 @@ class TestDateController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $surveyId
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateTestDateRequest $request, $surveyId)
+    public function update(UpdateTestDateRequest $request, $surveyId): RedirectResponse
     {
         // Check if action is allowed
         $this->authorize(TestDate::class);
@@ -191,10 +185,8 @@ class TestDateController extends Controller
      * Method: POST.
      *
      * @param int $surveyId
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function cancel(int $surveyId)
+    public function cancel(int $surveyId): RedirectResponse
     {
         // Check if action is allowed
         $this->authorize(TestDate::class);

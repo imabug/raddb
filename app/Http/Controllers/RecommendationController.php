@@ -6,7 +6,9 @@ use App\Http\Requests\StoreRecommendationRequest;
 use App\Http\Requests\UpdateRecommendationRequest;
 use App\Models\Recommendation;
 use App\Models\TestDate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class RecommendationController extends Controller
 {
@@ -35,10 +37,8 @@ class RecommendationController extends Controller
      * Method: GET
      *
      * @param string $surveyId (optional)
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create(string $surveyId = null)
+    public function create(string $surveyId = null): View
     {
         if (is_null($surveyId)) {
             // No survey id was provided.
@@ -69,10 +69,8 @@ class RecommendationController extends Controller
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRecommendationRequest $request, Recommendation $recommendation)
+    public function store(StoreRecommendationRequest $request, Recommendation $recommendation): RedirectResponse
     {
         // Check if action is allowed
         $this->authorize(Recommendation::class);
@@ -130,10 +128,8 @@ class RecommendationController extends Controller
      * Method: GET.
      *
      * @param string $surveyId
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(string $surveyId)
+    public function show(string $surveyId): View
     {
         // Get the machine description corresponding to the survey ID provided
         $survey = TestDate::with('machine')->find((int) $surveyId);
@@ -158,10 +154,8 @@ class RecommendationController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param string                   $surveyID
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRecommendationRequest $request, string $surveyID)
+    public function update(UpdateRecommendationRequest $request, string $surveyID): RedirectResponse
     {
         // Check if action is allowed
         $this->authorize(Recommendation::class);

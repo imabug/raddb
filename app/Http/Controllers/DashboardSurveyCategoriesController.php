@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TestDate;
 use App\Models\TestType;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class DashboardSurveyCategoriesController extends Controller
 {
@@ -18,10 +19,8 @@ class DashboardSurveyCategoriesController extends Controller
      * URI: /dashboard/surveyCategories
      *
      * @link https://developers.google.com/chart/interactive/docs/gallery/piechart Google Charts pie charts
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(): View
     {
         /**
          * @var \Illuminate\Database\Eloquent\Collection $years Collection of years that surveys were performed in.

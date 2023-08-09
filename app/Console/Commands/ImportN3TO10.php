@@ -30,10 +30,8 @@ class ImportN3TO10 extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $progressBar = $this->output->createProgressBar();
         $progressBar->start();

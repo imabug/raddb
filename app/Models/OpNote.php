@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OpNote extends Model
@@ -38,10 +39,7 @@ class OpNote extends Model
     protected $table = 'opnotes';
 
     // Relationships
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function machine()
+    public function machine(): BelongsTo
     {
         return $this->belongsTo(Machine::class);
     }

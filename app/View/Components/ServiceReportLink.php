@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use App\Models\TestDate;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class ServiceReportLink extends Component
 {
@@ -41,10 +42,8 @@ class ServiceReportLink extends Component
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View
     {
         return view('components.service-report-link');
     }

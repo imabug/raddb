@@ -23,8 +23,6 @@ class ImportSurveyReports extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -33,10 +31,8 @@ class ImportSurveyReports extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
         $file = '';
 

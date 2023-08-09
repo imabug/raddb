@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SurveyScheduleView extends Model
 {
@@ -16,26 +17,17 @@ class SurveyScheduleView extends Model
     /*
      * Relationships
      */
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function machine()
+    public function machine(): BelongsTo
     {
         return $this->belongsTo(Machine::class, 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function prevSurvey()
+    public function prevSurvey(): BelongsTo
     {
         return $this->belongsTo(TestDate::class, 'prevSurveyID');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function currSurvey()
+    public function currSurvey(): BelongsTo
     {
         return $this->belongsTo(TestDate::class, 'currSurveyID');
     }

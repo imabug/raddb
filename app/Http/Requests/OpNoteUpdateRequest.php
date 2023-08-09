@@ -19,9 +19,9 @@ class OpNoteUpdateRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, string>
+     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'note'      => 'required|string|max:1024',
