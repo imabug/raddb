@@ -52,7 +52,6 @@
         "pestphp/pest": "^1.22.4",
         "pestphp/pest-plugin-laravel": "^1.4",
         "pestphp/pest-plugin-livewire": "^1.0",
-        "pestphp/pest-plugin-parallel": "^1.2.1",
         "phpstan/phpstan": "^1.9.14",
         "phpunit/phpunit": "^9.6.2",
         "spatie/laravel-ignition": "^1.6.4"
