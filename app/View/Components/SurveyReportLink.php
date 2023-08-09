@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use App\Models\TestDate;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class SurveyReportLink extends Component
 {
@@ -44,10 +45,8 @@ class SurveyReportLink extends Component
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View
     {
         return view('components.survey-report-link');
     }
