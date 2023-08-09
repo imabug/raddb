@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7754a871b09fd6a2615e9dba984e2c46",
+    "content-hash": "cec68a6f9994f490b122f1b398bb8d77",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -1676,16 +1676,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.52.14",
+            "version": "v9.52.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5366a9035100f858589e1b43bbcb134ffcc81a73"
+                "reference": "e3350e87a52346af9cc655a3012d2175d2d05ad7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5366a9035100f858589e1b43bbcb134ffcc81a73",
-                "reference": "5366a9035100f858589e1b43bbcb134ffcc81a73",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/e3350e87a52346af9cc655a3012d2175d2d05ad7",
+                "reference": "e3350e87a52346af9cc655a3012d2175d2d05ad7",
                 "shasum": ""
             },
             "require": {
@@ -1870,7 +1870,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-08-02T14:58:02+00:00"
+            "time": "2023-08-08T14:28:40+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -2531,26 +2531,26 @@
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "c7f2872fb273bf493811473dafc88d60ae829f48"
+                "reference": "a6dfb1194a2946fcdc1f38219445234f65b35c96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/c7f2872fb273bf493811473dafc88d60ae829f48",
-                "reference": "c7f2872fb273bf493811473dafc88d60ae829f48",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/a6dfb1194a2946fcdc1f38219445234f65b35c96",
+                "reference": "a6dfb1194a2946fcdc1f38219445234f65b35c96",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
-                "php": "^7.2 || ^8.0"
+                "php": "^7.4 || ^8.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.2",
                 "phpstan/phpstan": "^0.12.68",
-                "phpunit/phpunit": "^8.5.8 || ^9.3"
+                "phpunit/phpunit": "^8.5.8 || ^9.3 || ^10.0"
             },
             "type": "library",
             "autoload": {
@@ -2571,7 +2571,7 @@
             "description": "Mime-type detection for Flysystem",
             "support": {
                 "issues": "https://github.com/thephpleague/mime-type-detection/issues",
-                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.12.0"
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.13.0"
             },
             "funding": [
                 {
@@ -2583,7 +2583,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-03T07:14:11+00:00"
+            "time": "2023-08-05T12:09:49+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -4433,16 +4433,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "10.11.2",
+            "version": "10.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "bac32801073bd9446277cdeb174cf4327ea28aef"
+                "reference": "293a066890e10c951ff29bc76bfa026a60034edc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/bac32801073bd9446277cdeb174cf4327ea28aef",
-                "reference": "bac32801073bd9446277cdeb174cf4327ea28aef",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/293a066890e10c951ff29bc76bfa026a60034edc",
+                "reference": "293a066890e10c951ff29bc76bfa026a60034edc",
                 "shasum": ""
             },
             "require": {
@@ -4455,7 +4455,6 @@
                 "illuminate/database": "^9.18|^10.0",
                 "illuminate/pipeline": "^9.18|^10.0",
                 "illuminate/support": "^9.18|^10.0",
-                "intervention/image": "^2.7",
                 "maennchen/zipstream-php": "^2.0|^3.0",
                 "php": "^8.0",
                 "spatie/image": "^2.2.7",
@@ -4526,7 +4525,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.11.2"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.11.3"
             },
             "funding": [
                 {
@@ -4538,7 +4537,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-27T08:00:59+00:00"
+            "time": "2023-08-07T07:30:22+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -7035,64 +7034,6 @@
             "time": "2023-01-03T09:29:04+00:00"
         },
         {
-            "name": "troccoli/blade-health-icons",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/troccoli/blade-health-icons.git",
-                "reference": "d56af5f263204ee63923079189aa9af9ad52b570"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/troccoli/blade-health-icons/zipball/d56af5f263204ee63923079189aa9af9ad52b570",
-                "reference": "d56af5f263204ee63923079189aa9af9ad52b570",
-                "shasum": ""
-            },
-            "require": {
-                "blade-ui-kit/blade-icons": "^1.0",
-                "illuminate/support": "^8.0|^9.0",
-                "php": "^7.4|^8.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^6.0",
-                "phpunit/phpunit": "^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Troccoli\\BladeHealthIcons\\BladeHealthIconsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Troccoli\\BladeHealthIcons\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Giulio Troccoli-Allard",
-                    "email": "giulio@troccoli.it"
-                }
-            ],
-            "description": "A package to easily make use of Health Icons in your Laravel Blade views.",
-            "keywords": [
-                "Healthicons",
-                "blade",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/troccoli/blade-health-icons/issues",
-                "source": "https://github.com/troccoli/blade-health-icons/tree/v1.0.0"
-            },
-            "time": "2023-02-15T18:37:52+00:00"
-        },
-        {
             "name": "twbs/bootstrap",
             "version": "v5.3.1",
             "source": {
@@ -7834,16 +7775,16 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v7.9.2",
+            "version": "v7.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "9af939b4f62b9086b7ce38aa1e953034809c5962"
+                "reference": "8d7ce583fb362472558cc1852adccfcd86cf87e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/9af939b4f62b9086b7ce38aa1e953034809c5962",
-                "reference": "9af939b4f62b9086b7ce38aa1e953034809c5962",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/8d7ce583fb362472558cc1852adccfcd86cf87e4",
+                "reference": "8d7ce583fb362472558cc1852adccfcd86cf87e4",
                 "shasum": ""
             },
             "require": {
@@ -7904,22 +7845,22 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/dusk/issues",
-                "source": "https://github.com/laravel/dusk/tree/v7.9.2"
+                "source": "https://github.com/laravel/dusk/tree/v7.9.3"
             },
-            "time": "2023-07-30T03:20:41+00:00"
+            "time": "2023-08-03T16:00:26+00:00"
         },
         {
             "name": "laravel/sail",
-            "version": "v1.23.1",
+            "version": "v1.23.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "62582606f80466aa81fba40b193b289106902853"
+                "reference": "f8694d6af5729be72ae96b91e344c5676c89114a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/62582606f80466aa81fba40b193b289106902853",
-                "reference": "62582606f80466aa81fba40b193b289106902853",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/f8694d6af5729be72ae96b91e344c5676c89114a",
+                "reference": "f8694d6af5729be72ae96b91e344c5676c89114a",
                 "shasum": ""
             },
             "require": {
@@ -7971,35 +7912,35 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2023-06-28T18:31:28+00:00"
+            "time": "2023-08-07T13:01:51+00:00"
         },
         {
             "name": "mockery/mockery",
-            "version": "1.6.4",
+            "version": "1.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "d1413755e26fe56a63455f7753221c86cbb88f66"
+                "reference": "b8e0bb7d8c604046539c1115994632c74dcb361e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/d1413755e26fe56a63455f7753221c86cbb88f66",
-                "reference": "d1413755e26fe56a63455f7753221c86cbb88f66",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/b8e0bb7d8c604046539c1115994632c74dcb361e",
+                "reference": "b8e0bb7d8c604046539c1115994632c74dcb361e",
                 "shasum": ""
             },
             "require": {
                 "hamcrest/hamcrest-php": "^2.0.1",
                 "lib-pcre": ">=7.0",
-                "php": ">=7.4,<8.3"
+                "php": ">=7.3"
             },
             "conflict": {
                 "phpunit/phpunit": "<8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.5 || ^9.3",
+                "phpunit/phpunit": "^8.5 || ^9.6.10",
                 "psalm/plugin-phpunit": "^0.18.4",
                 "symplify/easy-coding-standard": "^11.5.0",
-                "vimeo/psalm": "^5.13.1"
+                "vimeo/psalm": "^4.30"
             },
             "type": "library",
             "autoload": {
@@ -8056,7 +7997,7 @@
                 "security": "https://github.com/mockery/mockery/security/advisories",
                 "source": "https://github.com/mockery/mockery"
             },
-            "time": "2023-07-19T15:51:02+00:00"
+            "time": "2023-08-09T00:03:52+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -8785,16 +8726,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.26",
+            "version": "1.10.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "5d660cbb7e1b89253a47147ae44044f49832351f"
+                "reference": "e4545b55904ebef470423d3ddddb74fa7325497a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5d660cbb7e1b89253a47147ae44044f49832351f",
-                "reference": "5d660cbb7e1b89253a47147ae44044f49832351f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e4545b55904ebef470423d3ddddb74fa7325497a",
+                "reference": "e4545b55904ebef470423d3ddddb74fa7325497a",
                 "shasum": ""
             },
             "require": {
@@ -8843,7 +8784,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-19T12:44:37+00:00"
+            "time": "2023-08-08T12:33:42+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
