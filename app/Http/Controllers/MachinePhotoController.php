@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMachinePhotoRequest;
 use App\Models\Machine;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class MachinePhotoController extends Controller
 {
@@ -33,10 +35,8 @@ class MachinePhotoController extends Controller
      * Method: GET.
      *
      * @param string $id
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create($id)
+    public function create($id): View
     {
         $this->authorize('create', Machine::class);
 
@@ -56,10 +56,8 @@ class MachinePhotoController extends Controller
      * information page upon completion.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreMachinePhotoRequest $request)
+    public function store(StoreMachinePhotoRequest $request): RedirectResponse
     {
         (string) $message = '';
         $machine = Machine::find($request->machineId);

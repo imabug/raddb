@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSurveyReportRequest;
 use App\Models\TestDate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class SurveyReportController extends Controller
 {
@@ -33,10 +35,8 @@ class SurveyReportController extends Controller
      * Method: GET.
      *
      * @param int $id
-     *
-     * @return \Illuminate\View\View||\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create(int $id = null)
+    public function create(int $id = null): View
     {
         return view('surveys.surveys_addReport');
     }
@@ -52,10 +52,8 @@ class SurveyReportController extends Controller
      * Method: PUT.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function store(StoreSurveyReportRequest $request)
+    public function store(StoreSurveyReportRequest $request): RedirectResponse
     {
         // Check if action is allowed
         $this->authorize(TestDate::class);
@@ -90,8 +88,6 @@ class SurveyReportController extends Controller
      * Display the survey report.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function show(int $id)
     {
