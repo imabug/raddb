@@ -20,9 +20,9 @@ class StoreRecommendationRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, string>
+     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    public function rules(Request $request)
+    public function rules(Request $request): array
     {
         // Build the validation rules
         $rules = [
