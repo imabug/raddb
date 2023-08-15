@@ -18,13 +18,13 @@ class MachinePhotoController extends Controller
     public function __construct()
     {
         // Only apply auth middleware to these methods
-        $this->middleware('auth')->only([
-            'create',
-            'store',
-            'edit',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'store',
+        //     'edit',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -38,7 +38,7 @@ class MachinePhotoController extends Controller
      */
     public function create($id): View
     {
-        $this->authorize('create', Machine::class);
+        // $this->authorize('create', Machine::class);
 
         $machine = Machine::find((int) $id);
 

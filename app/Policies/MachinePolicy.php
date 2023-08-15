@@ -38,7 +38,7 @@ class MachinePolicy
      */
     public function create(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -50,7 +50,7 @@ class MachinePolicy
      */
     public function store(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -63,7 +63,7 @@ class MachinePolicy
      */
     public function update(User $user, Machine $machine)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**

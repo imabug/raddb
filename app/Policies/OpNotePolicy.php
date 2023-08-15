@@ -38,7 +38,7 @@ class OpNotePolicy
      */
     public function create(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -50,7 +50,7 @@ class OpNotePolicy
      */
     public function store(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -63,7 +63,7 @@ class OpNotePolicy
      */
     public function update(User $user, OpNote $opNote)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -76,6 +76,6 @@ class OpNotePolicy
      */
     public function delete(User $user, OpNote $opNote)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 }

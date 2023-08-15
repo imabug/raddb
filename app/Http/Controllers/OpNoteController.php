@@ -20,13 +20,13 @@ class OpNoteController extends Controller
     public function __construct()
     {
         // Only include these methods in the auth middlware
-        $this->middleware('auth')->only([
-            'create',
-            'edit',
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'edit',
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -78,7 +78,7 @@ class OpNoteController extends Controller
         $status = '';
 
         // Check if action is allowed
-        $this->authorize(OpNote::class);
+        // $this->authorize(OpNote::class);
 
         $opNote->machine_id = $request->machineId;
         $opNote->note = $request->note;
@@ -153,7 +153,7 @@ class OpNoteController extends Controller
         $status = '';
 
         // Check if action is allowed
-        $this->authorize(OpNote::class);
+        // $this->authorize(OpNote::class);
 
         $opNote = OpNote::findOrFail((int) $id);
         $opNote->note = $request->note;

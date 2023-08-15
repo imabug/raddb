@@ -21,13 +21,13 @@ class TubeController extends Controller
     public function __construct()
     {
         // Only use auth middlware on these methods
-        $this->middleware('auth')->only([
-            'create',
-            'edit',
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'edit',
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -63,7 +63,7 @@ class TubeController extends Controller
     public function store(StoreTubeRequest $request, Tube $tube): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Tube::class);
+        // $this->authorize(Tube::class);
 
         $message = '';
         $status = '';
@@ -136,7 +136,7 @@ class TubeController extends Controller
     public function update(UpdateTubeRequest $request, int $id): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Tube::class);
+        // $this->authorize(Tube::class);
 
         $message = '';
         $status = '';
@@ -188,7 +188,7 @@ class TubeController extends Controller
     public function destroy(int $id): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Tube::class);
+        // $this->authorize(Tube::class);
 
         $message = '';
         $status = '';

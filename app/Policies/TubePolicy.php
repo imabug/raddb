@@ -38,7 +38,7 @@ class TubePolicy
      */
     public function create(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -51,7 +51,7 @@ class TubePolicy
      */
     public function update(User $user, Tube $tube)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -64,6 +64,6 @@ class TubePolicy
      */
     public function delete(User $user, Tube $tube)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 }

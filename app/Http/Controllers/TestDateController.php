@@ -21,13 +21,13 @@ class TestDateController extends Controller
     public function __construct()
     {
         // Only use these methods with the auth middlware
-        $this->middleware('auth')->only([
-            'create',
-            'edit',
-            'store',
-            'update',
-            'cancel',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'edit',
+        //     'store',
+        //     'update',
+        //     'cancel',
+        // ]);
     }
 
     /**
@@ -77,7 +77,7 @@ class TestDateController extends Controller
     public function store(UpdateTestDateRequest $request, TestDate $testdate): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(TestDate::class);
+        // $this->authorize(TestDate::class);
 
         $message = '';
         $status = '';
@@ -146,7 +146,7 @@ class TestDateController extends Controller
     public function update(UpdateTestDateRequest $request, $surveyId): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(TestDate::class);
+        // $this->authorize(TestDate::class);
 
         $message = '';
         $status = '';
@@ -189,7 +189,7 @@ class TestDateController extends Controller
     public function cancel(int $surveyId): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(TestDate::class);
+        // $this->authorize(TestDate::class);
 
         $message = '';
         $status = '';

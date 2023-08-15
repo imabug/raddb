@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\Location;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 
 class LocationPolicy
 {
@@ -38,7 +38,7 @@ class LocationPolicy
      */
     public function create(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -51,7 +51,7 @@ class LocationPolicy
      */
     public function update(User $user, Location $location)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -64,6 +64,6 @@ class LocationPolicy
      */
     public function delete(User $user, Location $location)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 }

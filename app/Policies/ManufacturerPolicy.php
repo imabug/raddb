@@ -38,7 +38,7 @@ class ManufacturerPolicy
      */
     public function create(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -51,7 +51,7 @@ class ManufacturerPolicy
      */
     public function update(User $user, Manufacturer $manufacturer)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -64,6 +64,6 @@ class ManufacturerPolicy
      */
     public function delete(User $user, Manufacturer $manufacturer)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 }

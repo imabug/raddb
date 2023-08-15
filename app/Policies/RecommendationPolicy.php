@@ -38,7 +38,7 @@ class RecommendationPolicy
      */
     public function create(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -51,7 +51,7 @@ class RecommendationPolicy
      */
     public function update(User $user, Recommendation $recommendation)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**

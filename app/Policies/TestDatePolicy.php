@@ -38,7 +38,7 @@ class TestDatePolicy
      */
     public function create(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -50,7 +50,7 @@ class TestDatePolicy
      */
     public function storeSurveyReport(User $user)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**
@@ -63,7 +63,7 @@ class TestDatePolicy
      */
     public function update(User $user, TestDate $testDate)
     {
-        return Auth::check();
+        // return Auth::check();
     }
 
     /**

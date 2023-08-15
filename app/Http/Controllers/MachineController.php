@@ -21,13 +21,13 @@ class MachineController extends Controller
     public function __construct()
     {
         // Only apply auth middleware to these methods
-        $this->middleware('auth')->only([
-            'create',
-            'edit',
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'edit',
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -78,7 +78,7 @@ class MachineController extends Controller
     public function store(UpdateMachineRequest $request, Machine $machine): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        // $this->authorize(Machine::class);
 
         $message = '';
 
@@ -179,7 +179,7 @@ class MachineController extends Controller
     public function update(UpdateMachineRequest $request, $id): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        // $this->authorize(Machine::class);
 
         $message = '';
 
@@ -227,7 +227,7 @@ class MachineController extends Controller
     public function destroy($id): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        // $this->authorize(Machine::class);
 
         $message = '';
 

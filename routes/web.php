@@ -28,7 +28,7 @@ use App\Http\Controllers\TubeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+// Auth::routes();
 Route::name('home.index')
     ->get('/home', [HomeController::class, 'index']);
 Route::name('index')

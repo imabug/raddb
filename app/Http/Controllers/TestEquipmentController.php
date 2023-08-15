@@ -14,11 +14,11 @@ class TestEquipmentController extends Controller
     public function __construct()
     {
         // Only use middlware auth on these methods
-        $this->middleware('auth')->only([
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**

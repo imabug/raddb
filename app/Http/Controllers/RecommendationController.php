@@ -20,13 +20,13 @@ class RecommendationController extends Controller
     public function __construct()
     {
         // Only include these methods in the auth middlware
-        $this->middleware('auth')->only([
-            'create',
-            'edit',
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'edit',
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -73,7 +73,7 @@ class RecommendationController extends Controller
     public function store(StoreRecommendationRequest $request, Recommendation $recommendation): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Recommendation::class);
+        // $this->authorize(Recommendation::class);
 
         $message = '';
         $status = '';
@@ -158,7 +158,7 @@ class RecommendationController extends Controller
     public function update(UpdateRecommendationRequest $request, string $surveyID): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Recommendation::class);
+        // $this->authorize(Recommendation::class);
 
         $message = '';
         $status = '';
