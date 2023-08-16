@@ -49,7 +49,7 @@ Route::prefix('dashboard')->group(function () {
 /*
  * Annual report routes
  */
-Route::prefix('ar')->group(function() {
+Route::prefix('ar')->group(function () {
     Route::name('ar.cexp')
         ->get('/cexp', [AnnReportController::class, 'mammContExp']);
     Route::name('ar.annrep')
