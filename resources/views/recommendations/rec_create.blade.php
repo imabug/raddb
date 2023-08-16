@@ -1,5 +1,5 @@
 {{-- resources/views/recommendations/rec_create.blade.php --}}
-{{-- Used by the create() method in RecommendationController --}}}}
+{{-- Used by the create() method in RecommendationController --}}
 
 @extends('layouts.app')
 

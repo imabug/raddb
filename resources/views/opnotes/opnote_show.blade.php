@@ -1,5 +1,5 @@
 {{-- resources/views/opnotes/opnote_show.blade.php --}}
-{{-- Used by the show() method in OpNoteController --}}}}
+{{-- Used by the show() method in OpNoteController --}}
 @extends('layouts.app')
 
 @section('content')

@@ -1,4 +1,3 @@
-
 {{-- resources/views/machine/info.blade.php --}}
 {{-- Used in resources/views/machine/detail.blade.php --}}
 <h3><span class="label label-default">Machine Information</span></h3>
