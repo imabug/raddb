@@ -48,6 +48,16 @@ Route::prefix('dashboard')->group(function () {
 });
 
 /*
+ * Annual report routes
+ */
+Route::prefix('ar')->group(function() {
+    Route::name('ar.cexp')
+        ->get('/cexp', [AnnReportController::class, 'mammContExp']);
+    Route::name('ar.annrep')
+        ->get('/{year}/annrep/', [AnnReportController::class, 'annrep']);
+});
+
+/*
  * Machine controller
  */
 Route::resource('machines', MachineController::class);
@@ -105,24 +115,18 @@ Route::resource(
 /*
  * Photos controller. Used to handle uploading and updating photos of machines.
  */
-Route::name('photos.create')
-    ->get('photos/{id}/create', [MachinePhotoController::class, 'create']);
-Route::resource(
-    'photos',
-    MachinePhotoController::class,
-    ['except' => ['create']]
-);
+// Route::name('photos.create')
+//     ->get('photos/{id}/create', [MachinePhotoController::class, 'create']);
+// Route::resource(
+//     'photos',
+//     MachinePhotoController::class,
+//     ['except' => ['create']]
+// );
 
 /*
  * Route for user management
  */
 // Route::resource('users', UserController::class);
-
-/*
- * Reporting routes
- */
-Route::name('ar.cexp')->get('/ar/cexp', [AnnReportController::class, 'mammContExp']);
-Route::name('ar.annrep')->get('ar/{year}/annrep/', [AnnReportController::class, 'annrep']);
 
 // Experimental routes
 //Route::name('test.testtables')->get('/test/testtables', ShowMachines::class);
