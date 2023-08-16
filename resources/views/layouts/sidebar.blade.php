@@ -44,16 +44,6 @@
             <li role="presentation"><a class="dropdown-item" href="{{ route('testequipment.showCalDates') }}">Recent calibration dates</a></li>
           </ul>
         </li>
-        <li role="presentation" class="nav-item">
-          <a class="nav-link" href="{{ url('/logout') }}"
-             onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-            Logout
-          </a>
-          <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-            {{ csrf_field() }}
-          </form>
-        </li>
         <li role="presentation" class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" id="navbarHelp" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help<span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="navbarHelp">
