@@ -1,5 +1,5 @@
 {{-- resources/views/recommendations/rec_create.blade.php --}}
-{{-- Used by the create() method in RecommendationController --}}}}
+{{-- Used by the create() method in RecommendationController --}}
 
 @extends('layouts.app')
 
@@ -48,7 +48,6 @@
       </div>
   @endif
   <hr>
-  @if (Auth::check())
     <div class="row">
       <div class="col input-group mb-3">
         <span class="input-group-text">Survey ID:</span>
@@ -86,7 +85,6 @@
       </div>
     </div>
     <button class="btn btn-primary" type="SUBMIT">Add recommendations</button>
-  @endif
     </form>
     <p><span class="text-danger">*</span> Required field</p>
 

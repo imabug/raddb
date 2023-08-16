@@ -6,7 +6,9 @@ use App\Http\Requests\OpNoteStoreRequest;
 use App\Http\Requests\OpNoteUpdateRequest;
 use App\Models\Machine;
 use App\Models\OpNote;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class OpNoteController extends Controller
 {
@@ -18,13 +20,13 @@ class OpNoteController extends Controller
     public function __construct()
     {
         // Only include these methods in the auth middlware
-        $this->middleware('auth')->only([
-            'create',
-            'edit',
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'edit',
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -38,10 +40,8 @@ class OpNoteController extends Controller
      * Method: GET.
      *
      * @param string $machineId
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create($machineId = null)
+    public function create($machineId = null): View
     {
         if (is_null($machineId)) {
             // No machine was specified. Pull a list of active machines to use in the form
@@ -71,16 +71,14 @@ class OpNoteController extends Controller
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(OpNoteStoreRequest $request, OpNote $opNote)
+    public function store(OpNoteStoreRequest $request, OpNote $opNote): RedirectResponse
     {
         $message = '';
         $status = '';
 
         // Check if action is allowed
-        $this->authorize(OpNote::class);
+        // $this->authorize(OpNote::class);
 
         $opNote->machine_id = $request->machineId;
         $opNote->note = $request->note;
@@ -108,10 +106,8 @@ class OpNoteController extends Controller
      * Method: GET.
      *
      * @param string $machineId
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(int $machineId)
+    public function show(int $machineId): View
     {
         // Return HTTP 404 if no machine is found
         $machine = Machine::findOrFail((int) $machineId);
@@ -130,10 +126,8 @@ class OpNoteController extends Controller
      * Method: GET.
      *
      * @param string $id
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit($id): View
     {
         return view('opnotes.opnote_edit', [
             'opNote' => OpNote::findOrFail((int) $id),
@@ -152,16 +146,14 @@ class OpNoteController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param string                   $id
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(OpNoteUpdateRequest $request, string $id)
+    public function update(OpNoteUpdateRequest $request, string $id): RedirectResponse
     {
         $message = '';
         $status = '';
 
         // Check if action is allowed
-        $this->authorize(OpNote::class);
+        // $this->authorize(OpNote::class);
 
         $opNote = OpNote::findOrFail((int) $id);
         $opNote->note = $request->note;

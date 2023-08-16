@@ -33,10 +33,8 @@ class SurveyReportAdd extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
         $surveyId = $this->argument('survey_id');
         $reportFile = $this->argument('report_file');

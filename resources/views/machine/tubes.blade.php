@@ -31,31 +31,27 @@
         <td>{{ $tube->tube_status }}</td>
         <td>{{ $tube->notes }}</td>
 		<td>
-          @if (Auth::check())
-			<form class="row gy-1 gx-2 align-items-center" action="{{ route('tubes.destroy', $tube->id) }}" method="post">
-              @csrf
-              @method('DELETE')
-			  <div class="col-auto">
-                <a href="{{ route('tubes.edit', $tube->id) }}" data-toggle="tooltip" title="Modify this tube">
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Modify this tube">
-                    <x-glyphs.pencil />
-                  </button>
-                </a>
-                <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Remove this machine">
-                  <x-glyphs.trashcan />
+		  <form class="row gy-1 gx-2 align-items-center" action="{{ route('tubes.destroy', $tube->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+			<div class="col-auto">
+              <a href="{{ route('tubes.edit', $tube->id) }}" data-toggle="tooltip" title="Modify this tube">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Modify this tube">
+                  <x-glyphs.pencil />
                 </button>
-			  </div>
-			</form>
-          @endif
+              </a>
+              <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Remove this machine">
+                <x-glyphs.trashcan />
+              </button>
+			</div>
+		  </form>
 		</td>
       </tr>
     @endforeach
   </tbody>
 </table>
-@if (Auth::check())
-  <p>
-    <a href="{{ route('tubes.createTubeFor', $machine->id) }}">
-      <x-glyphs.plus />Add x-ray tube
-    </a>
-  </p>
-@endif
+<p>
+  <a href="{{ route('tubes.createTubeFor', $machine->id) }}">
+    <x-glyphs.plus />Add x-ray tube
+  </a>
+</p>

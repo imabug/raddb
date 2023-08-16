@@ -5,10 +5,8 @@
 {{-- Use App\Http\Livewire\SurveyListTable to display the list of surveys --}}
 <livewire:survey-list-table :machine="$machine->id" />
 
-@if (Auth::check())
-  <p>
-    <a href="{{ route('surveys.createSurveyFor',  $machine->id)}}">
-      <x-glyphs.plus />Add survey
-    </a>
-  </p>
-@endif
+<p>
+  <a href="{{ route('surveys.createSurveyFor',  $machine->id)}}">
+    <x-glyphs.plus />Add survey
+  </a>
+</p>

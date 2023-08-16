@@ -22,42 +22,28 @@
             <li role="presentation"><a class="dropdown-item" href="{{ route('machines.index') }}">List machines</a></li>
           </ul>
         </li>
-        @if (Auth::check())
-          <li role="presentation" class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarMachines" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Machines<span class="caret"></span></a>
-            <ul class="dropdown-menu" aria-labelledby="navbarMachines">
-              <li role="presentation"><a class="dropdown-item" href="{{ route('machines.create') }}">New machine</a></li>
-              <li role="presentation"><a class="dropdown-item" href="{{ route('opnotes.create' )}}">Add operational note</a></li>
-            </ul>
-          </li>
-          <li role="presentation" class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarSurveys" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Surveys<span class="caret"></span></a>
-            <ul class="dropdown-menu" aria-labelledby="navbarSurveys">
-              <li role="presentation"><a class="dropdown-item" href="{{ route('surveys.create') }}">Add survey</a></li>
-              <li role="presentation"><a class="dropdown-item" href="{{ route('recommendations.create') }}">Add survey recommendation</a></li>
-              <li role="presentation"><a class="dropdown-item" href="{{ route('surveyreports.create', ['id' => null]) }}">Add survey report</a></li>
-            </ul>
-          </li>
-          <li role="presentation" class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarTestEquip" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test Equipment<span class="caret"></span></a>
-            <ul class="dropdown-menu" aria-labelledby="navbarTestEquip">
-              <li role="presentation"><a class="dropdown-item" href="/machines?table[filters][machine_status]=Active&table[filters][modality]=19">List Test Equipment</a></li>
-              <li role="presentation"><a class="dropdown-item" href="{{ route('testequipment.showCalDates') }}">Recent calibration dates</a></li>
-            </ul>
-          </li>
-          <li role="presentation" class="nav-item">
-            <a class="nav-link" href="{{ url('/logout') }}"
-               onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-              Logout
-            </a>
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-              {{ csrf_field() }}
-            </form>
-          </li>
-        @else
-          <li role="presentation" class="nav-item"><a class="nav-link" href="{{url('/login')}}">Login</a></li>
-        @endif
+        <li role="presentation" class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="navbarMachines" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Machines<span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="navbarMachines">
+            <li role="presentation"><a class="dropdown-item" href="{{ route('machines.create') }}">New machine</a></li>
+            <li role="presentation"><a class="dropdown-item" href="{{ route('opnotes.create' )}}">Add operational note</a></li>
+          </ul>
+        </li>
+        <li role="presentation" class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="navbarSurveys" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Surveys<span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="navbarSurveys">
+            <li role="presentation"><a class="dropdown-item" href="{{ route('surveys.create') }}">Add survey</a></li>
+            <li role="presentation"><a class="dropdown-item" href="{{ route('recommendations.create') }}">Add survey recommendation</a></li>
+            <li role="presentation"><a class="dropdown-item" href="{{ route('surveyreports.create', ['id' => null]) }}">Add survey report</a></li>
+          </ul>
+        </li>
+        <li role="presentation" class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="navbarTestEquip" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test Equipment<span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="navbarTestEquip">
+            <li role="presentation"><a class="dropdown-item" href="/machines?table[filters][machine_status]=Active&table[filters][modality]=19">List Test Equipment</a></li>
+            <li role="presentation"><a class="dropdown-item" href="{{ route('testequipment.showCalDates') }}">Recent calibration dates</a></li>
+          </ul>
+        </li>
         <li role="presentation" class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" id="navbarHelp" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help<span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="navbarHelp">

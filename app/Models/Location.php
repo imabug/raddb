@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Location extends Model
@@ -28,10 +29,7 @@ class Location extends Model
     ];
 
     // Relationships
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function machine()
+    public function machine(): HasMany
     {
         return $this->hasMany(Machine::class);
     }

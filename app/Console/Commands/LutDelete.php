@@ -45,10 +45,8 @@ class LutDelete extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
         $table = strtolower($this->argument('table'));
         $lut = null;

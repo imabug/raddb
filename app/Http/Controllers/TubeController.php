@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateTubeRequest;
 use App\Models\Machine;
 use App\Models\Manufacturer;
 use App\Models\Tube;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class TubeController extends Controller
 {
@@ -19,13 +21,13 @@ class TubeController extends Controller
     public function __construct()
     {
         // Only use auth middlware on these methods
-        $this->middleware('auth')->only([
-            'create',
-            'edit',
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'edit',
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -36,10 +38,8 @@ class TubeController extends Controller
      * Method: GET.
      *
      * @param int $machineID
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create(int $machineID)
+    public function create(int $machineID): View
     {
         return view('tubes.tubes_create', [
             'machines'      => Machine::get(),
@@ -59,13 +59,11 @@ class TubeController extends Controller
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function store(StoreTubeRequest $request, Tube $tube)
+    public function store(StoreTubeRequest $request, Tube $tube): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Tube::class);
+        // $this->authorize(Tube::class);
 
         $message = '';
         $status = '';
@@ -108,10 +106,8 @@ class TubeController extends Controller
      * Method: GET.
      *
      * @param int $id
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         // Get the model for the x-ray tube
         $tube = Tube::findOrFail($id);
@@ -136,13 +132,11 @@ class TubeController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateTubeRequest $request, int $id)
+    public function update(UpdateTubeRequest $request, int $id): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Tube::class);
+        // $this->authorize(Tube::class);
 
         $message = '';
         $status = '';
@@ -190,13 +184,11 @@ class TubeController extends Controller
      * when completed.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Tube::class);
+        // $this->authorize(Tube::class);
 
         $message = '';
         $status = '';

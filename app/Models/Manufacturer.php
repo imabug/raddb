@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Manufacturer extends Model
@@ -28,26 +29,17 @@ class Manufacturer extends Model
     ];
 
     // Relationships
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function machine()
+    public function machine(): HasMany
     {
         return $this->hasMany(Machine::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tube_housing_manuf()
+    public function tube_housing_manuf(): HasMany
     {
         return $this->hasMany(Tube::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tube_ins_manuf()
+    public function tube_ins_manuf(): HasMany
     {
         return $this->hasMany(Tube::class);
     }

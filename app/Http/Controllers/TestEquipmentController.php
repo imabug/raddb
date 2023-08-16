@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+
 class TestEquipmentController extends Controller
 {
     /**
@@ -12,11 +14,11 @@ class TestEquipmentController extends Controller
     public function __construct()
     {
         // Only use middlware auth on these methods
-        $this->middleware('auth')->only([
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -25,10 +27,8 @@ class TestEquipmentController extends Controller
      * URI: /testequipment/caldates
      *
      * Method: GET.
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function showCalDates()
+    public function showCalDates(): View
     {
         return view('testequipment.show_cal_dates');
     }

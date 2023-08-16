@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Machine;
+use Illuminate\View\View;
 
 class DashboardSurveyStatusController extends Controller
 {
@@ -21,10 +22,8 @@ class DashboardSurveyStatusController extends Controller
      * URI: /dashboard
      *
      * Method: GET
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function teststatus()
+    public function teststatus(): View
     {
         // Fetch a list of all active machines grouped by modality
         // Include test dates where the test type is 1 (Routine Compliance) or

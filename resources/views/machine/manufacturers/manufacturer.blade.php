@@ -33,22 +33,20 @@
           <td>{{ $machine->age }}</td>
           <td>{{ $machine->room }}</td>
           <td>
-            @if (Auth::check())
-			  <form class="row gy-1 gx-2 align-items-center" action="{{ route('machines.destroy', $machine->id) }}" method="post">
-                @csrf
-                @method('DELETE')
-				<div class="col-auto">
-                  <a href="{{ route('machines.edit', $machine->id) }}" data-toggle="tooltip" title="Modify this machine">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Modify this machine">
-                      <x-glyphs.pencil />
-                    </button>
-                  </a>
-                  <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Remove this machine">
-                    <x-glyphs.trashcan />
+			<form class="row gy-1 gx-2 align-items-center" action="{{ route('machines.destroy', $machine->id) }}" method="post">
+              @csrf
+              @method('DELETE')
+			  <div class="col-auto">
+                <a href="{{ route('machines.edit', $machine->id) }}" data-toggle="tooltip" title="Modify this machine">
+                  <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Modify this machine">
+                    <x-glyphs.pencil />
                   </button>
-				</div>
-			  </form>
-            @endif
+                </a>
+                <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Remove this machine">
+                  <x-glyphs.trashcan />
+                </button>
+			  </div>
+			</form>
           </td>
         </tr>
       @endforeach
