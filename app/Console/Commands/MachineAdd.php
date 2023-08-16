@@ -37,10 +37,8 @@ class MachineAdd extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
-    public function handle()
+    public function handle(): int
     {
         $locations = Location::all(['id', 'location']);
         $modalities = Modality::all(['id', 'modality']);

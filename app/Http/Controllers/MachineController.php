@@ -7,7 +7,9 @@ use App\Models\Location;
 use App\Models\Machine;
 use App\Models\Manufacturer;
 use App\Models\Modality;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class MachineController extends Controller
 {
@@ -19,13 +21,13 @@ class MachineController extends Controller
     public function __construct()
     {
         // Only apply auth middleware to these methods
-        $this->middleware('auth')->only([
-            'create',
-            'edit',
-            'store',
-            'update',
-            'destroy',
-        ]);
+        // $this->middleware('auth')->only([
+        //     'create',
+        //     'edit',
+        //     'store',
+        //     'update',
+        //     'destroy',
+        // ]);
     }
 
     /**
@@ -37,10 +39,8 @@ class MachineController extends Controller
      * URI: /machines
      *
      * Method: GET.
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(): View
     {
         return view('machine.index');
     }
@@ -51,10 +51,8 @@ class MachineController extends Controller
      * URI: /machines/create
      *
      * Method: GET.
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create(): View
     {
         // Return data from lookup tables to use in the form
         return view('machine.machines_create', [
@@ -76,13 +74,11 @@ class MachineController extends Controller
      * Method: POST.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function store(UpdateMachineRequest $request, Machine $machine)
+    public function store(UpdateMachineRequest $request, Machine $machine): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        // $this->authorize(Machine::class);
 
         $message = '';
 
@@ -124,10 +120,8 @@ class MachineController extends Controller
      * Method: GET.
      *
      * @param string $id Machine ID to display
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show($id)
+    public function show($id): View
     {
         $machine = Machine::with([
             'tube',
@@ -157,10 +151,8 @@ class MachineController extends Controller
      * Method: GET.
      *
      * @param string $id Machine ID to edit
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit($id): View
     {
         return view('machine.machines_edit', [
             'modalities'    => Modality::get(),
@@ -183,13 +175,11 @@ class MachineController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param string                   $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateMachineRequest $request, $id)
+    public function update(UpdateMachineRequest $request, $id): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        // $this->authorize(Machine::class);
 
         $message = '';
 
@@ -233,13 +223,11 @@ class MachineController extends Controller
      * Method: DELETE
      *
      * @param string $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         // Check if action is allowed
-        $this->authorize(Machine::class);
+        // $this->authorize(Machine::class);
 
         $message = '';
 

@@ -6,8 +6,6 @@
     <li>{{ $opnote->note }}</li>
   @endforeach
 </ol>
-@if (Auth::check())
-  <p><a href="{{ route('opnotes.createOpNoteFor', $machine->id) }}">
-    <x-glyphs.plus />
-    Add operational note</a></p>
-@endif
+<p><a href="{{ route('opnotes.createOpNoteFor', $machine->id) }}">
+  <x-glyphs.plus />
+  Add operational note</a></p>

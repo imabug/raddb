@@ -28,7 +28,7 @@ use App\Http\Controllers\TubeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+// Auth::routes();
 Route::name('home.index')
     ->get('/home', [HomeController::class, 'index']);
 Route::name('index')
@@ -45,6 +45,16 @@ Route::prefix('dashboard')->group(function () {
         ->get('/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
     Route::name('dashboard.surveyCategories')
         ->get('/surveyCategories', [DashboardSurveyCategoriesController::class, 'index']);
+});
+
+/*
+ * Annual report routes
+ */
+Route::prefix('ar')->group(function () {
+    Route::name('ar.cexp')
+        ->get('/cexp', [AnnReportController::class, 'mammContExp']);
+    Route::name('ar.annrep')
+        ->get('/{year}/annrep/', [AnnReportController::class, 'annrep']);
 });
 
 /*
@@ -116,13 +126,7 @@ Route::resource(
 /*
  * Route for user management
  */
-Route::resource('users', UserController::class);
-
-/*
- * Reporting routes
- */
-Route::name('ar.cexp')->get('/ar/cexp', [AnnReportController::class, 'mammContExp']);
-Route::name('ar.annrep')->get('ar/{year}/annrep/', [AnnReportController::class, 'annrep']);
+// Route::resource('users', UserController::class);
 
 // Experimental routes
 //Route::name('test.testtables')->get('/test/testtables', ShowMachines::class);

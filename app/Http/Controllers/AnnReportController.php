@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Machine;
 use App\Models\TestDate;
+use Illuminate\View\View;
 
 /*
  * Annual Report Controller.
@@ -25,13 +26,15 @@ class AnnReportController extends Controller
      *
      * @todo Take into account who performed the survey (tester_id).
      * @todo Modality ID is hardocded.  Need to make this more flexible.
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function mammContExp()
+    public function mammContExp(): View
     {
+        $mammDates = [];
+        $sbbDates = [];
+
         /**
          * @var \Illuminate\Database\Eloquent\Collection $mammMachines Collection of active mammography machines.
+         *
          * @array $mamDates Array with the two most recent survey dates for each machine.
          **/
         $mammMachines = Machine::with('modality', 'manufacturer', 'location', 'testdate')
@@ -50,6 +53,7 @@ class AnnReportController extends Controller
 
         /**
          * @var \Illuminate\Database\Eloquent\Collection $sbbMachines Collection of active SBB machines.
+         *
          * @array $sbbDates Array with the two most recent survey dates for each  machine.
          **/
         $sbbMachines = Machine::with('modality', 'manufacturer', 'location')
@@ -83,11 +87,13 @@ class AnnReportController extends Controller
      * URI: /ar/$year/annrep.
      *
      * @param int $year The year to retrieve report data for
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function annrep(int $year)
+    public function annrep(int $year): View
     {
+        $surveyTypeCount = [];
+        $modalitiesCount = [];
+        $locationsCount = [];
+
         /**
          * @var \Illuminate\Database\Eloquent\Collection $surveys Collection of surveys performed during $year.
          **/

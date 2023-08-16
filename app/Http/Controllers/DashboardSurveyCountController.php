@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TestDate;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use Khill\Lavacharts\Lavacharts;
 
 class DashboardSurveyCountController extends Controller
@@ -18,10 +19,8 @@ class DashboardSurveyCountController extends Controller
      * URI: /dashboard/surveyCount
      *
      * @link https://developers.google.com/chart/interactive/docs/gallery/columnchart Google charts column charts
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(): View
     {
         // Array of months of the year
         $months = [1 => 'Jan', 2 => 'Feb', 3 => 'Mar',
@@ -56,7 +55,7 @@ class DashboardSurveyCountController extends Controller
             // Convert this to an array with plain numeric elements.
             foreach ($chartData as $cd) {
                 // Replace the count data for the month in the $c array
-                $c[($cd->m) - 1] = [$months[$cd->m], $cd->c];
+                $c[$cd->m - 1] = [$months[$cd->m], $cd->c];
             }
 
             // Set up the data table for the chart

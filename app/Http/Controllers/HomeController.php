@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Machine;
 use App\Models\TestDate;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -32,10 +33,8 @@ class HomeController extends Controller
      * URI: /
      *
      * Method: GET.
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(): View
     {
         return view('index', [
             'machinesUntested' => $this->untested(),

@@ -1,5 +1,5 @@
 {{-- resources/views/surveys/surveys_create.blade.php --}}
-{{-- Used by the create() method in TestDateController --}}}}
+{{-- Used by the create() method in TestDateController --}}
 @extends('layouts.app')
 
 @section('content')

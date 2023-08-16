@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TestDate;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class DashboardSurveyCalendarController extends Controller
 {
@@ -17,10 +18,8 @@ class DashboardSurveyCalendarController extends Controller
      * URI: /dashboard/surveyCalendar
      *
      * @link https://developers.google.com/chart/interactive/docs/gallery/calendar Google charts calendar charts
-     *
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(): View
     {
         /**
          * @var \Illuminate\Database\Eloquent\Collection $years Collection of years that surveys were performed in.

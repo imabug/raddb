@@ -35,10 +35,8 @@ class LutEdit extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
         $table = strtolower($this->argument('table'));
         $model = null;
@@ -47,27 +45,27 @@ class LutEdit extends Command
         // Get the current table
         switch ($table) {
             case 'location':
-                $model = app('App\Models\Location');
+                $model = app(\App\Models\Location::class);
                 $field = 'location';
                 $this->info('Editing Location table');
                 break;
             case 'manufacturer':
-                $model = app('App\Models\Manufacturer');
+                $model = app(\App\Models\Manufacturer::class);
                 $field = 'manufacturer';
                 $this->info('Editing Manufacturer table');
                 break;
             case 'modality':
-                $model = app('App\Models\Modality');
+                $model = app(\App\Models\Modality::class);
                 $field = 'modality';
                 $this->info('Editing Modality table');
                 break;
             case 'tester':
-                $model = app('App\Models\Tester');
+                $model = app(\App\Models\Tester::class);
                 $field = 'name';
                 $this->info('Editing Tester table');
                 break;
             case 'testtype':
-                $model = app('App\Models\TestType');
+                $model = app(\App\Models\TestType::class);
                 $field = 'test_type';
                 $this->info('Editing TestType table');
                 break;
