@@ -18,6 +18,7 @@ use App\Http\Controllers\DashboardSurveyCountController;
 use App\Http\Controllers\DashboardSurveyStatusController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MachineController;
+use App\Http\Controllers\MachinePhotoController;
 use App\Http\Controllers\OpNoteController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\SurveyReportController;
