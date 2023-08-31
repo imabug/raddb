@@ -8,7 +8,6 @@ use App\Models\Manufacturer;
 use App\Models\Modality;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\text;

@@ -82,7 +82,7 @@ class LutDelete extends Command
                 break;
             default:
                 error('Usage: php artisan lut:delete <table>');
-                exit();
+                exit;
                 break;
         }
 
