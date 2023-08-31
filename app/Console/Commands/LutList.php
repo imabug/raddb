@@ -65,7 +65,7 @@ class LutList extends Command
                 break;
             default:
                 error('Usage: php artisan lut:list <table>');
-                exit();
+                exit;
                 break;
         }
 

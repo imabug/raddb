@@ -77,7 +77,7 @@ class LutEdit extends Command
                 break;
             default:
                 error('Usage: php artisan lut:edit <table>');
-                exit();
+                exit;
                 break;
         }
 

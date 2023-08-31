@@ -8,9 +8,7 @@ use App\Models\Tube;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 
-use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
-use function Laravel\Prompts\info;
 use function Laravel\Prompts\text;
 
 class TubeAdd extends Command

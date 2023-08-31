@@ -4,9 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use function Laravel\Prompts\error;
-use function Laravel\Prompts\text;
-
 class MachineEdit extends Command
 {
     /**
