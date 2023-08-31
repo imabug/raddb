@@ -111,7 +111,10 @@ Route::resource('surveyreports', SurveyReportController::class, ['except' => ['c
  */
 Route::name('tubes.createTubeFor')
     ->get('tubes/{id}/create', [TubeController::class, 'create']);
-Route::resource('tubes', TubeController::class, ['except' => ['create']]
+Route::resource(
+    'tubes',
+    TubeController::class,
+    ['except' => ['create']]
 );
 
 /*
@@ -119,7 +122,10 @@ Route::resource('tubes', TubeController::class, ['except' => ['create']]
  */
 Route::name('photos.create')
     ->get('photos/{id}/create', [MachinePhotoController::class, 'create']);
-Route::resource('photos', MachinePhotoController::class, ['except' => ['create']]
+Route::resource(
+    'photos',
+    MachinePhotoController::class,
+    ['except' => ['create']]
 );
 
 /*
