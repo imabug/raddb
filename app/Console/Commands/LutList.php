@@ -8,6 +8,9 @@ use App\Models\Modality;
 use App\Models\Tester;
 use App\Models\TestType;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+
+use function Laravel\Prompts\error;
 
 class LutList extends Command
 {
@@ -40,7 +43,7 @@ class LutList extends Command
      */
     public function handle(): void
     {
-        $table = strtolower($this->argument('table'));
+        $table = Str::lower($this->argument('table'));
         $headers = ['ID', $table];
         $body = null;
 
@@ -61,11 +64,11 @@ class LutList extends Command
                 $body = TestType::all(['id', 'test_type'])->toArray();
                 break;
             default:
-                $this->error('Usage: php artisan lut:list <table>');
+                error('Usage: php artisan lut:list <table>');
+                exit();
                 break;
         }
-        if (!is_null($body)) {
-            $this->table($headers, $body);
-        }
+
+        $this->table($headers, $body);
     }
 }

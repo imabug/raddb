@@ -3,6 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\text;
 
 class LutEdit extends Command
 {
@@ -38,7 +44,7 @@ class LutEdit extends Command
      */
     public function handle(): void
     {
-        $table = strtolower($this->argument('table'));
+        $table = Str::lower($this->argument('table'));
         $model = null;
         $field = '';
 
@@ -47,30 +53,31 @@ class LutEdit extends Command
             case 'location':
                 $model = app(\App\Models\Location::class);
                 $field = 'location';
-                $this->info('Editing Location table');
+                info('Editing Location table');
                 break;
             case 'manufacturer':
                 $model = app(\App\Models\Manufacturer::class);
                 $field = 'manufacturer';
-                $this->info('Editing Manufacturer table');
+                info('Editing Manufacturer table');
                 break;
             case 'modality':
                 $model = app(\App\Models\Modality::class);
                 $field = 'modality';
-                $this->info('Editing Modality table');
+                info('Editing Modality table');
                 break;
             case 'tester':
                 $model = app(\App\Models\Tester::class);
                 $field = 'name';
-                $this->info('Editing Tester table');
+                info('Editing Tester table');
                 break;
             case 'testtype':
                 $model = app(\App\Models\TestType::class);
                 $field = 'test_type';
-                $this->info('Editing TestType table');
+                info('Editing TestType table');
                 break;
             default:
-                $this->error('Usage: php artisan lut:edit <table>');
+                error('Usage: php artisan lut:edit <table>');
+                exit();
                 break;
         }
 
@@ -78,22 +85,20 @@ class LutEdit extends Command
             // Show the selected lookup table
             $this->showTable($table);
 
-            $id = $this->ask('Enter the ID of the entry to edit');
+            $id = text(label: 'Enter the ID of the entry to edit', required: true);
 
             $lut = $model::find($id); // Probably should fail more gracefully
 
-            $value = $this->ask('What should the new value be?');
+            $value = text(label: 'What should the new value be?', required: true);
 
-            $this->info('Changing '.$lut->$field.' to '.$value.'.');
-
-            if ($this->confirm('Do you wish to continue?')) {
+            if (confirm('Changing '.$lut->$field.' to '.$value.'.', default: false)) {
                 $lut->$field = $value; // Need to validate this before saving
                 $lut->save();
                 // Show the updated lookup table
                 $this->showTable($table);
-                $this->info($table.' table ID: '.$id.' edited.');
+                info($table.' table ID: '.$id.' edited.');
             } else {
-                $this->info('No changes made.');
+                info('No changes made.');
             }
         }
     }

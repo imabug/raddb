@@ -3,6 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\text;
 
 class LutDelete extends Command
 {
@@ -48,7 +54,7 @@ class LutDelete extends Command
      */
     public function handle(): void
     {
-        $table = strtolower($this->argument('table'));
+        $table = Str::lower($this->argument('table'));
         $lut = null;
         $model = null;
         $field = '';
@@ -75,28 +81,25 @@ class LutDelete extends Command
                 $field = 'test_type';
                 break;
             default:
-                $this->error('Usage: php artisan lut:delete <table>');
+                error('Usage: php artisan lut:delete <table>');
+                exit();
                 break;
         }
 
-        if (is_object($model)) {
-            // Show the selected lookup table
+        // Show the selected lookup table
+        $this->showTable($table);
+
+        $lut = $model::find(text(label: 'Enter the ID to remove', required: true));
+
+        // Ask for confirmation
+        if (confirm(label: 'Deleting from '.$table.' ID:'.$lut->id.' Value: '.$lut->$field, default: false)) {
+            $lut->delete();
+            info($table.' ID:'.$lut->id.' deleted.');
+
+            // Show the updated lookup table
             $this->showTable($table);
-
-            $lut = $model::find($this->ask('Enter the ID to remove'));
-
-            $this->info('Deleting from '.$table.' ID:'.$lut->id.' Value: '.$lut->$field);
-
-            // Ask for confirmation
-            if ($this->confirm('Do you wish to continue?')) {
-                $lut->delete();
-                $this->info($table.' ID:'.$lut->id.' deleted.');
-
-                // Show the updated lookup table
-                $this->showTable($table);
-            } else {
-                $this->info('No changes made.');
-            }
+        } else {
+            info('No changes made.');
         }
     }
 }
