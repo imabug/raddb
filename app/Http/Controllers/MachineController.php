@@ -231,8 +231,8 @@ class MachineController extends Controller
 
         $message = '';
 
-        $machine = Machine::find((int) $id)
-            ->with('tube');
+        $machine = Machine::with('tube')->
+            find((int) $id);
 
         // Retrieve active tubes associated with this machine
         $tubes = $machine->tube->where('tube_status', 'Active');
