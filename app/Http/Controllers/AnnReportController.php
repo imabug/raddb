@@ -102,7 +102,7 @@ class AnnReportController extends Controller
             ->get();
 
         $sType = $surveys->groupBy('type.test_type');
-        foreach ($sType as $type=>$s) {
+        foreach ($sType as $type => $s) {
             $surveyTypeCount[$type] = $s->count();
         }
         arsort($surveyTypeCount);
@@ -117,7 +117,7 @@ class AnnReportController extends Controller
 
         // Group by modality and count them up
         $mod = $machines->groupBy('modality.modality');
-        foreach ($mod as $modality=>$m) {
+        foreach ($mod as $modality => $m) {
             $modalitiesCount[$modality] = $m->count();
         }
         arsort($modalitiesCount);
@@ -125,7 +125,7 @@ class AnnReportController extends Controller
 
         // Group by location and count them up
         $loc = $machines->groupBy('location.location');
-        foreach ($loc as $location=>$m) {
+        foreach ($loc as $location => $m) {
             $locationsCount[$location] = $m->count();
         }
         arsort($locationsCount);

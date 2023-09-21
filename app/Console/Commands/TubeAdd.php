@@ -8,6 +8,9 @@ use App\Models\Tube;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\text;
+
 class TubeAdd extends Command
 {
     /**
@@ -50,7 +53,7 @@ class TubeAdd extends Command
             $machines = Machine::all(['id', 'description']);
             $machHeader = ['ID', 'Machine'];
             $this->table($machHeader, $machines->toArray());
-            $tube->machine_id = $this->ask('Enter the machine ID to add a tube for');
+            $tube->machine_id = text('Enter the machine ID to add a tube for');
         } else {
             $tube->machine_id = $this->argument('machine_id');
         }
@@ -62,15 +65,15 @@ class TubeAdd extends Command
         if ($validator->fails()) {
             $errors = $validator->errors();
             foreach ($errors->all() as $message) {
-                $this->error($message);
+                error($message);
             }
 
-            return 0;
+            return 1;
         }
 
         // Valid machine_id.  Proceed with getting the rest of the tube information.
-        $this->table($manufHeader, $manufacturers->toArray());
-        $tube->housing_manuf_id = $this->ask('Enter the manufacturer ID for the tube');
+        $this->call('lut:list', ['table' => 'manufacturer']);
+        $tube->housing_manuf_id = text('Enter the manufacturer ID for the tube');
         $tube->insert_manuf_id = $tube->housing_manuf_id;
 
         // Validate the manufacturer ID provided.
@@ -81,23 +84,23 @@ class TubeAdd extends Command
         if ($validator->fails()) {
             $errors = $validator->errors();
             foreach ($errors->all() as $message) {
-                $this->error($message);
+                error($message);
             }
 
-            return 0;
+            return 1;
         }
 
         // Get the rest of the tube information.
-        $tube->housing_model = $this->ask('Enter the tube housing model');
-        $tube->housing_sn = $this->ask('Enter the tube housing serial number');
-        $tube->insert_model = $this->ask('Enter the tube insert model');
-        $tube->insert_sn = $this->ask('Enter the tube insert serial number');
-        $tube->manuf_date = $this->ask('Enter the manufacture date for the tube (YYYY-MM-DD)');
-        $tube->install_date = $this->ask('Enter the installation date for the tube (YYYY-MM-DD)');
-        $tube->lfs = $this->ask('Enter the large focal spot size');
-        $tube->mfs = $this->ask('Enter the medium focal spot size');
-        $tube->sfs = $this->ask('Enter the small focal spot size');
-        $tube->notes = $this->ask('Enter any notes for this tube');
+        $tube->housing_model = text('Enter the tube housing model');
+        $tube->housing_sn = text('Enter the tube housing serial number');
+        $tube->insert_model = text('Enter the tube insert model');
+        $tube->insert_sn = text('Enter the tube insert serial number');
+        $tube->manuf_date = text('Enter the manufacture date for the tube (YYYY-MM-DD)');
+        $tube->install_date = text('Enter the installation date for the tube (YYYY-MM-DD)');
+        $tube->lfs = text('Enter the large focal spot size');
+        $tube->mfs = text('Enter the medium focal spot size');
+        $tube->sfs = text('Enter the small focal spot size');
+        $tube->notes = text('Enter any notes for this tube');
         $tube->tube_status = 'Active';
 
         // Validate the rest of the tube information.

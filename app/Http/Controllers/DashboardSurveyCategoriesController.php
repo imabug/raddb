@@ -48,7 +48,7 @@ class DashboardSurveyCategoriesController extends Controller
                 ->countBy('type_id');
 
             // Add data to the data table
-            foreach ($chartData as $d=>$count) {
+            foreach ($chartData as $d => $count) {
                 $surveyCategories->addRow(
                     [TestType::find($d)->test_type, $count]
                 );

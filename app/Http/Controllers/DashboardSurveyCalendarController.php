@@ -46,7 +46,7 @@ class DashboardSurveyCalendarController extends Controller
                 ->countBy('test_date');
 
             // Add survey date and count data to the data table
-            foreach ($chartData as $d=>$count) {
+            foreach ($chartData as $d => $count) {
                 $surveyCalendar->addRow(
                     [$d, $count]
                 );

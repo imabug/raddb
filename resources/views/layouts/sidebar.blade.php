@@ -47,7 +47,7 @@
         <li role="presentation" class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" id="navbarHelp" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help<span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="navbarHelp">
-            <li role="presentation"><a class="dropdown-item" href="http://128.23.56.214/MPwiki/index.php/RadDB" target="_blank">Help (local)</a></li>
+            <li role="presentation"><a class="dropdown-item" href="http://rad-db.mdc.musc.edu/MPwiki/index.php/RadDB" target="_blank">Help (local)</a></li>
             <li role="presentation"><a class="dropdown-item" href="https://github.com/imabug/raddb/wiki" target="_blank">Help (on Github)</a></li>
             <li role="presentation"><a class="dropdown-item" href="https://github.com/imabug/raddb/issues" target="_blank">Report a bug</a></li>
           </ul>

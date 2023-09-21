@@ -9,6 +9,9 @@ use App\Models\Modality;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\text;
+
 class MachineAdd extends Command
 {
     /**
@@ -49,24 +52,24 @@ class MachineAdd extends Command
 
         $machine = new Machine();
 
-        $machine->description = $this->ask('Give a descriptive name for this machine');
+        $machine->description = text('Give a descriptive name for this machine');
 
-        $this->table($locHeader, $locations->toArray());
-        $machine->location_id = $this->ask('Enter the location ID for this machine');
+        $this->call('lut:list', ['table' => 'location']);
+        $machine->location_id = text('Enter the location ID for this machine');
 
-        $this->table($modHeader, $modalities->toArray());
-        $machine->modality_id = $this->ask('Enter the modality ID for this machine');
+        $this->call('lut:list', ['table' => 'modality']);
+        $machine->modality_id = text('Enter the modality ID for this machine');
 
-        $this->table($manufHeader, $manufacturers->toArray());
-        $machine->manufacturer_id = $this->ask('Enter the manufacturer ID for this machine');
+        $this->call('lut:list', ['table' => 'manufacturer']);
+        $machine->manufacturer_id = text('Enter the manufacturer ID for this machine');
 
-        $machine->model = $this->ask('Enter the model name for this machine');
-        $machine->serial_number = $this->ask('Enter the serial number for this machine');
-        $machine->manuf_date = $this->ask('Enter the manufacture date for this machine (YYYY-MM-DD)');
-        $machine->install_date = $this->ask('Enter the installation date for this machine (YYYY-MM-DD)');
-        $machine->room = $this->ask('Enter the room number for this machine');
-        $machine->vend_site_id = $this->ask('Enter the vendor site ID for this machine');
-        $machine->notes = $this->ask('Enter any special notes for this machine');
+        $machine->model = text('Enter the model name for this machine');
+        $machine->serial_number = text(label: 'Enter the serial number for this machine', required: true);
+        $machine->manuf_date = text('Enter the manufacture date for this machine (YYYY-MM-DD)');
+        $machine->install_date = text('Enter the installation date for this machine (YYYY-MM-DD)');
+        $machine->room = text(label: 'Enter the room number for this machine', required: true);
+        $machine->vend_site_id = text('Enter the vendor site ID for this machine');
+        $machine->notes = text('Enter any special notes for this machine');
         $machine->machine_status = 'Active';
 
         $validator = Validator::make($machine->toArray(), [
@@ -87,10 +90,10 @@ class MachineAdd extends Command
             $errors = $validator->errors();
 
             foreach ($errors->all() as $message) {
-                $this->error($message);
+                error($message);
             }
 
-            return 0;
+            return 1;
         } else {
             // Everything passed.  Save the new machine.
             $machine->save();
@@ -100,6 +103,6 @@ class MachineAdd extends Command
             ]);
         }
 
-        return 1;
+        return 0;
     }
 }

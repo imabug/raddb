@@ -8,6 +8,11 @@ use App\Models\Modality;
 use App\Models\Tester;
 use App\Models\TestType;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\text;
 
 class LutAdd extends Command
 {
@@ -42,38 +47,81 @@ class LutAdd extends Command
     public function handle(): void
     {
         $lut = null;
-        $table = strtolower($this->argument('table'));
+        $table = Str::lower($this->argument('table'));
 
         switch ($table) {
             case 'location':
                 $lut = new Location();
-                $lut->location = $this->ask('Enter a new location');
+                $lut->location = text(
+                    label: 'Enter a new location',
+                    required: true,
+                    validate: fn (string $value) => match (true) {
+                        Str::length($value) > 100 => 'The location must be less than 100 characters',
+                        default                   => null
+                    }
+                );
                 break;
             case 'manufacturer':
                 $lut = new Manufacturer();
-                $lut->manufacturer = $this->ask('Enter a new manufacturer');
+                $lut->manufacturer = text(
+                    label: 'Enter a new manufacturer',
+                    required: true,
+                    validate: fn (string $value) => match (true) {
+                        Str::length($value) > 50 => 'The manufacturer must be less than 50 characters',
+                        default                  => null
+                    }
+                );
                 break;
             case 'modality':
                 $lut = new Modality();
-                $lut->modality = $this->ask('Enter a new modality');
+                $lut->modality = text(
+                    label: 'Enter a new modality',
+                    required: true,
+                    validate: fn (string $value) => match (true) {
+                        Str::length($value) > 25 => 'The modality must be less than 25 characters',
+                        default                  => null
+                    }
+                );
                 break;
             case 'tester':
                 $lut = new Tester();
-                $lut->name = $this->ask('Enter new tester\'s name');
-                $lut->initials = $this->ask('Enter tester\'s initials');
+                $lut->name = text(
+                    label: 'Enter a new tester\'s name',
+                    required: true,
+                    validate: fn (string $value) => match (true) {
+                        Str::length($value) > 25 => 'The name must be less than 25 characters',
+                        default                  => null
+                    }
+                );
+                $lut->initials = text(
+                    label: 'Enter tester\'s initials',
+                    required: true,
+                    validate: fn (string $value) => match (true) {
+                        Str::length($value) > 4 => 'The initials must be less than 4 characters',
+                        default                 => null
+                    }
+                );
                 break;
             case 'testtype':
                 $lut = new TestType();
-                $lut->test_type = $this->ask('Enter new test type');
+                $lut->test_type = text(
+                    label: 'Enter a new test type',
+                    required: true,
+                    validate: fn (string $value) => match (true) {
+                        Str::length($value) > 30 => 'The test type must be less than 30 characters',
+                        default                  => null
+                    }
+                );
                 break;
             default:
-                $this->error('Usage: php artisan lut:add <table>');
+                error('Usage: php artisan lut:add <table>');
+                exit;
                 break;
         }
 
         if (is_object($lut)) {
             $lut->save();
-            $this->info('New '.$table.' entry saved.');
+            info('New '.$table.' entry saved.');
         }
     }
 }
