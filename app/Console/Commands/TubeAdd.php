@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\text;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\search;
 
 class TubeAdd extends Command
 {
@@ -42,18 +44,16 @@ class TubeAdd extends Command
      */
     public function handle(): int
     {
-        $manufacturers = Manufacturer::all(['id', 'manufacturer']);
-
-        $manufHeader = ['ID', 'Manufacturer'];
-
         $tube = new Tube();
 
         if (is_null($this->argument('machine_id'))) {
             // No machine ID was provided.  Display a list of all the machines and ask for a machine ID to add the new tube to.
-            $machines = Machine::all(['id', 'description']);
-            $machHeader = ['ID', 'Machine'];
-            $this->table($machHeader, $machines->toArray());
-            $tube->machine_id = text('Enter the machine ID to add a tube for');
+            $tube->machine_id = search(
+                'Search for the machine description to add a tube to',
+                fn (string $value) => strlen($value) > 0
+                    ? Machine::active()->where('description', 'like', "%{$value}%")->orderBy('description')->pluck('description', 'id')->all()
+                    : []
+            );
         } else {
             $tube->machine_id = $this->argument('machine_id');
         }
@@ -72,23 +72,12 @@ class TubeAdd extends Command
         }
 
         // Valid machine_id.  Proceed with getting the rest of the tube information.
-        $this->call('lut:list', ['table' => 'manufacturer']);
-        $tube->housing_manuf_id = text('Enter the manufacturer ID for the tube');
+        $tube->housing_manuf_id = select(
+            label: 'Select the manufacturer for the tube',
+            options: Manufacturer::pluck('manufacturer', 'id'),
+            scroll: 10);
+        // Assume tube manufacturer is the same.  Highly unlikely they'd be different.
         $tube->insert_manuf_id = $tube->housing_manuf_id;
-
-        // Validate the manufacturer ID provided.
-        $validator = Validator::make($tube->toArray(), [
-            'housing_manuf_id' => 'required|integer|exists:manufacturers,id',
-            'insert_manuf_id'  => 'required|integer|exists:manufacturers,id',
-        ]);
-        if ($validator->fails()) {
-            $errors = $validator->errors();
-            foreach ($errors->all() as $message) {
-                error($message);
-            }
-
-            return 1;
-        }
 
         // Get the rest of the tube information.
         $tube->housing_model = text('Enter the tube housing model');
@@ -122,12 +111,12 @@ class TubeAdd extends Command
                 $this->error($message);
             }
 
-            return 0;
+            return 1;
         } else {
             // Everything validated.  Save the new tube.
             $tube->save();
         }
 
-        return 1;
+        return 0;
     }
 }

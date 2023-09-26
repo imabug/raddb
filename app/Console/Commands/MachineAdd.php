@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\text;
+use function Laravel\Prompts\select;
 
 class MachineAdd extends Command
 {
@@ -43,25 +44,22 @@ class MachineAdd extends Command
      */
     public function handle(): int
     {
-        $locations = Location::all(['id', 'location']);
-        $modalities = Modality::all(['id', 'modality']);
-        $manufacturers = Manufacturer::all(['id', 'manufacturer']);
-        $locHeader = ['ID', 'Location'];
-        $modHeader = ['ID', 'Modality'];
-        $manufHeader = ['ID', 'Manufacturer'];
-
         $machine = new Machine();
 
         $machine->description = text('Give a descriptive name for this machine');
 
-        $this->call('lut:list', ['table' => 'location']);
-        $machine->location_id = text('Enter the location ID for this machine');
-
-        $this->call('lut:list', ['table' => 'modality']);
-        $machine->modality_id = text('Enter the modality ID for this machine');
-
-        $this->call('lut:list', ['table' => 'manufacturer']);
-        $machine->manufacturer_id = text('Enter the manufacturer ID for this machine');
+        $machine->location_id = select(
+            label: 'Select a location for this machine',
+            options: Location::pluck('location', 'id'),
+            scroll: 10);
+        $machine->modality_id = select(
+            label: 'Select a modality for this machine',
+            options: Modality::pluck('modality', 'id'),
+            scroll: 10);
+        $machine->manufacturer_id = select(
+            label: 'Select a manufacturer for this machine',
+            options: Manufacturer::pluck('manufacturer', 'id'),
+            scroll: 10);
 
         $machine->model = text('Enter the model name for this machine');
         $machine->serial_number = text(label: 'Enter the serial number for this machine', required: true);
@@ -74,9 +72,6 @@ class MachineAdd extends Command
 
         $validator = Validator::make($machine->toArray(), [
             'description'     => 'required|string|max:100',
-            'location_id'     => 'required|integer|exists:locations,id',
-            'modality_id'     => 'required|integer|exists:modalities,id',
-            'manufacturer_id' => 'required|integer|exists:manufacturers,id',
             'model'           => 'required|string|max:50',
             'serial_number'   => 'required|string|max:20',
             'manuf_date'      => 'required|date',

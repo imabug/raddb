@@ -9,6 +9,7 @@ use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\text;
+use function Laravel\Prompts\select;
 
 class LutEdit extends Command
 {
@@ -81,25 +82,24 @@ class LutEdit extends Command
                 break;
         }
 
-        if (is_object($model)) {
-            // Show the selected lookup table
+        // Show the selected lookup table
+        $id = select(
+            label: 'Select the '.$field.' to edit',
+            options: $model::pluck($field, 'id'),
+            scroll: 10);
+
+        $lut = $model::find($id);
+
+        $value = text(label: 'What should the new value be?', required: true);
+
+        if (confirm('Changing '.$lut->$field.' to '.$value.'.', default: false)) {
+            $lut->$field = $value; // Need to validate this before saving
+            $lut->save();
+            // Show the updated lookup table
             $this->showTable($table);
-
-            $id = text(label: 'Enter the ID of the entry to edit', required: true);
-
-            $lut = $model::find($id); // Probably should fail more gracefully
-
-            $value = text(label: 'What should the new value be?', required: true);
-
-            if (confirm('Changing '.$lut->$field.' to '.$value.'.', default: false)) {
-                $lut->$field = $value; // Need to validate this before saving
-                $lut->save();
-                // Show the updated lookup table
-                $this->showTable($table);
-                info($table.' table ID: '.$id.' edited.');
-            } else {
-                info('No changes made.');
-            }
+            info($table.' table ID: '.$id.' edited.');
+        } else {
+            info('No changes made.');
         }
     }
 }
