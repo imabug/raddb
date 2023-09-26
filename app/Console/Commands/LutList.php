@@ -11,6 +11,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
 use function Laravel\Prompts\error;
+use function Laravel\Prompts\table;
 
 class LutList extends Command
 {
@@ -69,6 +70,6 @@ class LutList extends Command
                 break;
         }
 
-        $this->table($headers, $body);
+        table($headers, $body);
     }
 }
