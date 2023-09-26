@@ -10,8 +10,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 
 use function Laravel\Prompts\error;
-use function Laravel\Prompts\text;
 use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 class MachineAdd extends Command
 {
@@ -51,15 +51,18 @@ class MachineAdd extends Command
         $machine->location_id = select(
             label: 'Select a location for this machine',
             options: Location::pluck('location', 'id'),
-            scroll: 10);
+            scroll: 10
+        );
         $machine->modality_id = select(
             label: 'Select a modality for this machine',
             options: Modality::pluck('modality', 'id'),
-            scroll: 10);
+            scroll: 10
+        );
         $machine->manufacturer_id = select(
             label: 'Select a manufacturer for this machine',
             options: Manufacturer::pluck('manufacturer', 'id'),
-            scroll: 10);
+            scroll: 10
+        );
 
         $machine->model = text('Enter the model name for this machine');
         $machine->serial_number = text(label: 'Enter the serial number for this machine', required: true);

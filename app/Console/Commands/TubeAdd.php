@@ -9,9 +9,9 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 
 use function Laravel\Prompts\error;
-use function Laravel\Prompts\text;
-use function Laravel\Prompts\select;
 use function Laravel\Prompts\search;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 class TubeAdd extends Command
 {
@@ -75,7 +75,8 @@ class TubeAdd extends Command
         $tube->housing_manuf_id = select(
             label: 'Select the manufacturer for the tube',
             options: Manufacturer::pluck('manufacturer', 'id'),
-            scroll: 10);
+            scroll: 10
+        );
         // Assume tube manufacturer is the same.  Highly unlikely they'd be different.
         $tube->insert_manuf_id = $tube->housing_manuf_id;
 
