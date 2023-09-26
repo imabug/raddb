@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
-use function Laravel\Prompts\text;
 use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 class LutEdit extends Command
 {
@@ -86,7 +86,8 @@ class LutEdit extends Command
         $id = select(
             label: 'Select the '.$field.' to edit',
             options: $model::pluck($field, 'id'),
-            scroll: 10);
+            scroll: 10
+        );
 
         $lut = $model::find($id);
 
