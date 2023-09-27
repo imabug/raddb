@@ -36,3 +36,6 @@ Commands used to add or edit equipment
 
 ### Adding survey reports
 `php artisan surveyreport:add <survey_id> <report_file>` where `<survey_id>` is the survey ID number of the report and `<report_file>` is the name of the survey report (including path information) to be added.
+
+## Adding surveys
+`php artisan survey:add <machine_id>` where <machine_id> is the ID of the machine to add a survey for.  If <machine_id> isn't provided, the user will be prompted to search for a machine to add a survey for.
