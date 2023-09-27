@@ -2,18 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Location;
-use App\Models\Machine;
-use App\Models\Manufacturer;
-use App\Models\Modality;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Validator;
-
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\error;
-use function Laravel\Prompts\info;
-use function Laravel\Prompts\multiselect;
-use function Laravel\Prompts\text;
 
 class MachineEdit extends Command
 {
