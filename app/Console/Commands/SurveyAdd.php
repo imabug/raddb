@@ -56,6 +56,7 @@ class SurveyAdd extends Command
                 foreach ($errors->all() as $message) {
                     error($message);
                 }
+
                 return 1;
             }
             $testdate->machine_id = $this->argument('machine_id');
@@ -84,7 +85,7 @@ class SurveyAdd extends Command
         $validator = Validator::make($testdate->toArray(), [
             'test_date' => 'required|date',
             'accession' => 'string|max:50',
-            'notes' => 'string',]);
+            'notes'     => 'string', ]);
         if ($validator->fails()) {
             $errors = $validator->errors();
             foreach ($errors->all() as $message) {
