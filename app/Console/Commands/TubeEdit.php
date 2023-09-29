@@ -3,17 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Models\Machine;
-use App\Models\Manufacturer;
 use App\Models\Tube;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Validator;
 
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\error;
-use function Laravel\Prompts\info;
 use function Laravel\Prompts\search;
 use function Laravel\Prompts\select;
-use function Laravel\Prompts\text;
 
 class TubeEdit extends Command
 {
@@ -68,8 +62,8 @@ class TubeEdit extends Command
         $tube = Tube::active()->forMachine($machine->id)->get();
 
         foreach ($tube as $t) {
-
         }
+
         return 0;
     }
 }
