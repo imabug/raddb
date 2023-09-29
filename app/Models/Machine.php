@@ -46,8 +46,8 @@ class Machine extends Model implements HasMedia
         'created_at'   => 'datetime',
         'deleted_at'   => 'datetime',
         'updated_at'   => 'datetime',
-        'manuf_date'   => 'datetime:Y-m-d',
-        'install_date' => 'datetime:Y-m-d',
+        'manuf_date'   => 'date:Y-m-d',
+        'install_date' => 'date:Y-m-d',
     ];
 
     /**
