@@ -43,8 +43,9 @@ class Tube extends Model
         'created_at'   => 'datetime',
         'deleted_at'   => 'datetime',
         'updated_at'   => 'datetime',
-        'install_date' => 'datetime:Y-m-d',
-        'remove_date'  => 'datetime:Y-m-d',
+        'manuf_date'   => 'date:Y-m-d',
+        'install_date' => 'date:Y-m-d',
+        'remove_date'  => 'date:Y-m-d',
     ];
 
     /**
