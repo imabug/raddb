@@ -166,10 +166,10 @@ class TubeEdit extends Command
             'insert_sn'     => 'required|string|max:20',
             'manuf_date'    => 'required|date',
             'install_date'  => 'required|date',
-            'lfs'           => 'required|decimal:1',
-            'mfs'           => 'decimal:1|nullable',
-            'sfs'           => 'required|decimal:1',
-            'notes'         => 'required|string|nullable',
+            'lfs'           => 'required|numeric',
+            'mfs'           => 'nullable|numeric',
+            'sfs'           => 'required|numeric',
+            'notes'         => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
