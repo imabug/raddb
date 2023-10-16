@@ -81,15 +81,15 @@ class TubeAdd extends Command
         $tube->insert_manuf_id = $tube->housing_manuf_id;
 
         // Get the rest of the tube information.
-        $tube->housing_model = text('Enter the tube housing model');
-        $tube->housing_sn = text('Enter the tube housing serial number');
-        $tube->insert_model = text('Enter the tube insert model');
-        $tube->insert_sn = text('Enter the tube insert serial number');
-        $tube->manuf_date = text('Enter the manufacture date for the tube (YYYY-MM-DD)');
-        $tube->install_date = text('Enter the installation date for the tube (YYYY-MM-DD)');
-        $tube->lfs = text('Enter the large focal spot size');
+        $tube->housing_model = text('Enter the tube housing model', required: true);
+        $tube->housing_sn = text('Enter the tube housing serial number', required: true);
+        $tube->insert_model = text('Enter the tube insert model', required: true);
+        $tube->insert_sn = text('Enter the tube insert serial number', required: true);
+        $tube->manuf_date = text('Enter the manufacture date for the tube (YYYY-MM-DD)', required: true);
+        $tube->install_date = text('Enter the installation date for the tube (YYYY-MM-DD)', required: true);
+        $tube->lfs = text('Enter the large focal spot size', required: true);
         $tube->mfs = text('Enter the medium focal spot size');
-        $tube->sfs = text('Enter the small focal spot size');
+        $tube->sfs = text('Enter the small focal spot size', required: true);
         $tube->notes = text('Enter any notes for this tube');
         $tube->tube_status = 'Active';
 
