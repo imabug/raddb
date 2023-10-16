@@ -74,8 +74,7 @@ class TubeEdit extends Command
                     scroll: 5
                 )
             );
-        }
-        else {
+        } else {
             $t = $machine->tube()->get();
         }
 
@@ -162,15 +161,15 @@ class TubeEdit extends Command
 
         $validator = Validator::make($t->toArray(), [
             'housing_model' => 'required|string|max:50',
-            'housing_sn' => 'required|string|max:20',
-            'insert_model' => 'required|string|max:50',
-            'insert_sn' => 'required|string|max:20',
-            'manuf_date' => 'required|date',
-            'install_date' => 'required|date',
-            'lfs' => 'required|decimal:1',
-            'mfs' => 'decimal:1|nullable',
-            'sfs' => 'required|decimal:1',
-            'notes' => 'required|string|nullable',
+            'housing_sn'    => 'required|string|max:20',
+            'insert_model'  => 'required|string|max:50',
+            'insert_sn'     => 'required|string|max:20',
+            'manuf_date'    => 'required|date',
+            'install_date'  => 'required|date',
+            'lfs'           => 'required|decimal:1',
+            'mfs'           => 'decimal:1|nullable',
+            'sfs'           => 'required|decimal:1',
+            'notes'         => 'required|string|nullable',
         ]);
 
         if ($validator->fails()) {
