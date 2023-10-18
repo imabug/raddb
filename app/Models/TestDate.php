@@ -41,6 +41,7 @@ class TestDate extends Model implements HasMedia
      * @var array<string, string>
      */
     protected $casts = [
+        'test_date'  => 'date',
         'created_at' => 'datetime',
         'deleted_at' => 'datetime',
         'updated_at' => 'datetime',
