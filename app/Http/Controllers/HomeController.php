@@ -24,10 +24,10 @@ class HomeController extends Controller
      * The survey schedule is a table of all the active machines with their previous
      * and current survey dates and survey IDs.  Provided by a Laravel Livewire
      * Tables ({@link https://rappasoft.com/packages/laravel-livewire-tables}) component,
-     * \App\Http\Livewire\SurveyScheduleTable.
+     * \App\Livewire\SurveyScheduleTable.
      * The Pending survey view displays a table of pending surveys (scheduled but not
      * performed yet).  Provided by a Laravel Livewire Tables component,
-     * \App\Http\Livewire\PendingSurveysTable
+     * \App\Livewire\PendingSurveysTable
      * Untested displays a table of machines that have not been tested yet for the year.
      *
      * URI: /

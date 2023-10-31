@@ -9,7 +9,7 @@
     <h2>Add operational note for <a href="{{route('machines.show', $machineId) }}">{{ $machines->description }}</a></h2>
   @endif
 
-  {{-- Use App\Http\Livewire\Opnotes\ShowOpnotes Livewire component to display existing operational notes --}}
+  {{-- Use App\Livewire\Opnotes\ShowOpnotes Livewire component to display existing operational notes --}}
   <div>
     <livewire:opnotes.show-opnotes :machineId="$machineId" />
   </div>

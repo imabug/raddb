@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Opnotes;
+namespace App\Livewire\Opnotes;
 
 use App\Models\OpNote;
 use Livewire\Component;

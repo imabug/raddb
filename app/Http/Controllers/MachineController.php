@@ -33,7 +33,7 @@ class MachineController extends Controller
     /**
      * Display a listing of all active machines.
      *
-     * \App\Http\Livewire\MachineListTable component is used to display the
+     * \App\Livewire\MachineListTable component is used to display the
      * list of machines.
      *
      * URI: /machines

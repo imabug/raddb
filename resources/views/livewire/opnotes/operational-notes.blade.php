@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <span class="input-group-text">Machine: {{$selectedMachine}}</span>
-    <select id="selectedMachine" name="selectedMachine" class="form-control" aria-label="Select a machine" wire:model="selectedMachine">
+    <select id="selectedMachine" name="selectedMachine" class="form-control" aria-label="Select a machine" wire:model.live="selectedMachine">
       @foreach ($machines as $m)
         <option value="{{$m->id}}">{{$m->description}}</option>
       @endforeach
@@ -34,7 +34,7 @@
   </div>
   <div class="row">
     <span class="input-group-text">Operational note</span>
-    <textarea wire:model="note" name="note" rows="8" cols="80" placeholder="Enter operational note" aria-label="Enter operational note"></textarea>
+    <textarea wire:model.live="note" name="note" rows="8" cols="80" placeholder="Enter operational note" aria-label="Enter operational note"></textarea>
     <div>
       <button wire:click="addNote({{$selectedMachine}}, '{{$note}}')" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Add operational note">
         <x-glyphs.plus />Add operational note

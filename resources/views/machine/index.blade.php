@@ -5,7 +5,7 @@
 @section('content')
   <h2>Equipment Inventory</h2>
 
-{{-- Use App\Http\Livewire\MachineListTable component to display the list of machines --}}
+{{-- Use App\Livewire\MachineListTable component to display the list of machines --}}
 <livewire:machine-list-table />
 
 @endsection

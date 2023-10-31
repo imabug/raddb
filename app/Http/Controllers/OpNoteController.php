@@ -33,7 +33,7 @@ class OpNoteController extends Controller
      * Show the form for creating an operational note for machine $machineId.
      *
      * If $machineId has existing operational notes, these are displayed by the
-     * App\Http\Livewire\Opnotes\ShowOpnotes component
+     * App\Livewire\Opnotes\ShowOpnotes component
      *
      * URI: /opnotes/{$machineId}/create
      *

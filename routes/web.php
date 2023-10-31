@@ -73,7 +73,7 @@ Route::name('testequipment.showCalDates')
  */
 Route::prefix('opnotes')->group(function () {
     Route::name('opnotes.operationalNotes')
-        ->get('/', \App\Http\Livewire\Opnotes\OperationalNotes::class);
+        ->get('/', \App\Livewire\Opnotes\OperationalNotes::class);
     Route::name('opnotes.createOpNoteFor')
         ->get('/{machineId?}/create', [OpNoteController::class, 'create']);
 });

@@ -4,7 +4,7 @@
 
 @section('content')
   <h2>Operational notes for <a href="{{route('machines.show', $machine->id) }}">{{ $machine->description }}</a></h2>
-  {{-- Use App\Http\Livewire\Opnotes\ShowOpnotes Livewire component to display existing operational notes --}}
+  {{-- Use App\Livewire\Opnotes\ShowOpnotes Livewire component to display existing operational notes --}}
   <div>
     <livewire:opnotes.show-opnotes :machineId="$machine->id" />
   </div>
