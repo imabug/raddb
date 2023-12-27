@@ -154,6 +154,7 @@ class MachineEdit extends Command
             foreach ($errors->all() as $message) {
                 error($message);
             }
+
             // Validation failed. Return non-zero error code
             return 1;
         }
