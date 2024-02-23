@@ -33,7 +33,7 @@
                   $test_date = new DateTime($td->test_date);
                   $days = $test_date->diff($today)->format('%a');
 
-                  if ($days < 355) {
+                  if ($days < 335) {
                   if ($td->test_date > date("Y-m-d")) {
                   echo "<div class=\"bg-primary\">" . $td->test_date . "</div>";
                   }
