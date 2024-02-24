@@ -91,6 +91,7 @@ class SurveyAdd extends Command
             foreach ($errors->all() as $message) {
                 error($message);
             }
+
             // Exit with a non-zero code
             return 1;
         }
