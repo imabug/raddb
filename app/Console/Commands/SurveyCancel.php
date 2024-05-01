@@ -2,16 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Machine;
 use App\Models\TestDate;
-use App\Models\Tester;
-use App\Models\TestType;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
-use function Laravel\Prompts\search;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
 
@@ -40,11 +36,12 @@ class SurveyCancel extends Command
             // No survey ID was provided.  Prompt the user to select a survey ID
             $survey_id = text(
                 label: 'Enter a survey ID to cancel',
-                required: true);
+                required: true
+            );
         }
 
         // Validate the provided survey ID.  It needs to exist in the testdates table
-        $validator = Validator::make(array($survey_id), [
+        $validator = Validator::make([$survey_id], [
             'survey_id' => 'required|integer|exists:testdates,id',
         ]);
 
@@ -53,6 +50,7 @@ class SurveyCancel extends Command
             foreach ($errors->all() as $message) {
                 error($message);
             }
+
             return 1;
         }
 
