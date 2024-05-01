@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Validator;
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
-use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
 
 class SurveyCancel extends Command
@@ -30,7 +29,7 @@ class SurveyCancel extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         if (is_null($this->argument('survey_id'))) {
             // No survey ID was provided.  Prompt the user to select a survey ID
@@ -58,5 +57,7 @@ class SurveyCancel extends Command
         $survey->delete();
 
         info('Survey ID '.$survey_id.' has been deleted');
+
+        return 0;
     }
 }
