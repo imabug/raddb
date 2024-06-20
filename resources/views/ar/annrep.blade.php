@@ -46,6 +46,7 @@
       </thead>
       <tbody>
         @foreach($locationsCount as $location => $count)
+        <tr>
           <td>{{$location}}</td>
           <td>{{$count}}</td>
         </tr>
@@ -53,4 +54,43 @@
       </tbody>
     </table>
 
+    <h3>New installations ({{$newInstalls->count()}})</h3>
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+            <th scope="col">Machine</th>
+            <th scope="col">Modality</th>
+            <th scope="col">Location</th>
+            <th scope="col">Install date</th>
+        </thead>
+        <tbody>
+            @foreach($newInstalls as $m)
+                <tr>
+                  <td>{{$m->description}}</td>
+                  <td>{{$m->modality->modality}}</td>
+                  <td>{{$m->location->location}}</td>
+                  <td>{{$m->install_date}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Removed machines ({{$removed->count()}})</h3>
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+            <th scope="col">Machine</th>
+            <th scope="col">Modality</th>
+            <th scope="col">Location</th>
+            <th scope="col">Remove date</th>
+        </thead>
+        <tbody>
+            @foreach($removed as $m)
+              <tr>
+                <td>{{$m->description}}</td>
+                <td>{{$m->modality->modality}}</td>
+                <td>{{$m->location->location}}</td>
+                <td>{{$m->deleted_at}}</td>
+              </tr>
+            @endforeach
+        </tbody>
+    </table>
     @endsection

@@ -130,10 +130,24 @@ class AnnReportController extends Controller
         }
         arsort($locationsCount);
 
+        // Get a list of new installations during the specified year
+        $newInstalls = Machine::with('modality', 'location')
+            ->whereBetween('install_date', [$year.'-01-01', $year.'-12-31'])
+            ->get();
+
+        // Get a list of machines removed during the specified year
+
+        $removed = Machine::onlyTrashed()
+            ->with('modality', 'location')
+            ->whereBetween('deleted_at', [$year.'-01-01', $year.'-12-31'])
+            ->get();
+
         return view('ar.annrep', [
             'year'            => $year,
             'surveyTotal'     => $surveyTotal,
             'machineTotal'    => $machineTotal,
+            'newInstalls'     => $newInstalls,
+            'removed'         => $removed,
             'surveyTypeCount' => collect($surveyTypeCount),
             'modalitiesCount' => collect($modalitiesCount),
             'locationsCount'  => collect($locationsCount),
