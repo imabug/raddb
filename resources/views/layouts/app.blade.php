@@ -6,16 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Latest compiled and minified Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-icons.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-icons.min.css">
     {{-- Only load the Slick CSS if the machine detail page is being shown
               Slick image carousel http://kenwheeler.github.io/slick/ --}}
     @if (Route::currentRouteName() == 'machines.show')
       <!-- Slick image carousel http://kenwheeler.github.io/slick/ -->
-      <link rel="stylesheet" type="text/css" href="{{asset('css/slick.css')}}"/>
+      <link rel="stylesheet" type="text/css" href="/css/slick.css"/>
       <!-- Add the slick-theme.css if you want default styling -->
-      <link rel="stylesheet" type="text/css" href="{{asset('css/slick-theme.css')}}"/>
+      <link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
     @endif
+    <!-- Alpine.js -->
+    <!-- <script defer type="text/javascript" src="/js/alpinejs.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
     <!-- Livewire CSS -->
     @livewireStyles
     <style>
@@ -23,23 +26,19 @@
     </style>
 
     <!-- JQuery -->
-    <script src="{{asset('js/jquery-3.7.1.min.js')}}"></script>
-    <script src="{{asset('js/jquery-ui.min.js')}}"></script>
-    <script src="{{asset('js/jquery-migrate-3.5.0.min.js')}}"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/jquery-migrate-3.5.0.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <!-- JavaScript Bundle with Popper -->
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <!-- Alpine.js -->
-    <script defer src="{{asset('alpine.min.js')}}"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
 
     {{-- Only load the Slick if the machine detail page is being shown
               Slick image carousel http://kenwheeler.github.io/slick/ --}}
     @if (Route::currentRouteName() == 'machines.show')
       <!-- Slick image carousel JS -->
-      <script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
-      <script
-        type="text/javascript"
-        src="{{ asset('js/slick_cfg.js') }}"></script>
+      <script type="text/javascript" src="/js/slick.min.js"></script>
+      <script type="text/javascript" src="/js/slick_cfg.js"></script>
     @endif
 
     <!-- CSRF Token -->
