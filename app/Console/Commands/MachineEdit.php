@@ -123,7 +123,7 @@ class MachineEdit extends Command
 
         $machine->vend_site_id = text(
             label: 'Enter the vendor site ID for this machine (enter to leave unchanged)',
-            default: $machine->vend_site_id
+            default: $machine->vend_site_id ?? ''
         );
 
         $machine->notes = text(
