@@ -128,7 +128,7 @@ class MachineEdit extends Command
 
         $machine->notes = text(
             label: 'Enter any special notes for this machine (enter to leave unchanged)',
-            default: $machine->notes
+            default: $machine->notes ?? ''
         );
 
         $machine->machine_status = select(
