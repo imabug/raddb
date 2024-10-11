@@ -121,6 +121,11 @@ class MachineEdit extends Command
             required: true
         );
 
+        $machine->software_version = text(
+            label: 'Enter the software version (enter to leave unchanged)',
+            default: $machine->software_version ?? ''
+        );
+
         $machine->vend_site_id = text(
             label: 'Enter the vendor site ID for this machine (enter to leave unchanged)',
             default: $machine->vend_site_id ?? ''
@@ -138,14 +143,15 @@ class MachineEdit extends Command
         );
 
         $validator = Validator::make($machine->toArray(), [
-            'description'     => 'required|string|max:100',
-            'model'           => 'required|string|max:50',
-            'serial_number'   => 'required|string|max:20',
-            'manuf_date'      => 'required|date',
-            'install_date'    => 'required|date',
-            'room'            => 'required|string|max:20',
-            'vend_site_id'    => 'string|nullable',
-            'notes'           => 'string|nullable',
+            'description'      => 'required|string|max:100',
+            'model'            => 'required|string|max:50',
+            'serial_number'    => 'required|string|max:20',
+            'manuf_date'       => 'required|date',
+            'install_date'     => 'required|date',
+            'room'             => 'required|string|max:20',
+            'software_version' => 'string|nullable',
+            'vend_site_id'     => 'string|nullable',
+            'notes'            => 'string|nullable',
         ]);
 
         if ($validator->fails()) {
