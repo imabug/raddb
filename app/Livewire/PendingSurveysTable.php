@@ -7,6 +7,7 @@ use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 class PendingSurveysTable extends DataTableComponent
 {
@@ -38,7 +39,8 @@ class PendingSurveysTable extends DataTableComponent
                         '</a>'
                 )
                 ->html(),
-            Column::make('Date scheduled', 'test_date')
+            DateColumn::make('Date scheduled', 'test_date')
+                ->outputFormat('Y-m-d')
                 ->sortable(),
             Column::make('Test Type', 'type.test_type'),
             Column::make('Accession'),
