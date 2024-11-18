@@ -6,6 +6,7 @@ use App\Models\SurveyScheduleView;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 class SurveyScheduleTable extends DataTableComponent
 {
@@ -34,11 +35,13 @@ class SurveyScheduleTable extends DataTableComponent
                     fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
                 )
                 ->html(),
-            Column::make('Previous', 'prevSurveyDate')
+            DateColumn::make('Previous', 'prevSurveyDate')
+                ->outputFormat('Y-m-d')
                 ->sortable(),
             Column::make('Prev Survey ID', 'prevSurveyID')
                 ->view('livewire-tables.survey-id-view'),
-            Column::make('Current', 'currSurveyDate')
+            DateColumn::make('Current', 'currSurveyDate')
+                ->outputFormat('Y-m-d')
                 ->sortable(),
             Column::make('Current Survey ID', 'currSurveyID')
                 ->view('livewire-tables.survey-id-view'),

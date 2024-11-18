@@ -11,6 +11,7 @@
       <th scope="col">Insert SN</th>
       <th scope="col">Focal Spots</th>
       <th scope="col">Manuf Date</th>
+      <th scope="col">Install Date</th>
       <th scope="col">Age</th>
       <th scope="col">Status</th>
       <th scope="col">Notes</th>
@@ -26,7 +27,8 @@
         <td>{{ $tube->insert_manuf->manufacturer }} {{ $tube->insert_model }}</td>
         <td>{{ $tube->insert_sn }}</td>
         <td>{{ $tube->lfs }} / {{ $tube->mfs }} / {{ $tube->sfs }}</td>
-        <td>{{ $tube->manuf_date }}</td>
+        <td>{{ substr($tube->manuf_date, 0, 10) }}</td>
+        <td>{{ substr($tube->install_date, 0, 10) }}</td>
         <td>{{ $tube->age }}</td>
         <td>{{ $tube->tube_status }}</td>
         <td>{{ $tube->notes }}</td>

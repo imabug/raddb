@@ -7,6 +7,7 @@ use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 class CalibrationDatesTable extends DataTableComponent
 {
@@ -35,13 +36,13 @@ class CalibrationDatesTable extends DataTableComponent
                     fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
                 )
                 ->html(),
-            Column::make('Last calibration')
+            DateColumn::make('Last calibration')
                 ->label(
                     fn ($row, Column $column) => TestDate::where('machine_id', $row->id)
                         ->latest()
                         ->first()
                         ->test_date ?? ''
-                ),
+                )->outputFormat('Y-m-d'),
             Column::make('Age')
                 ->label(
                     fn ($row, Column $column) => Machine::find($row->id)->age

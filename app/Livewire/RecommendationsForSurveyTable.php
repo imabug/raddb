@@ -6,6 +6,7 @@ use App\Models\Recommendation;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 class RecommendationsForSurveyTable extends DataTableComponent
 {
@@ -27,8 +28,8 @@ class RecommendationsForSurveyTable extends DataTableComponent
         return [
             Column::make('Resolved'),
             Column::make('Recommendation'),
-            Column::make('Date Added', 'rec_add_ts'),
-            Column::make('Date Resolved', 'rec_resolve_date'),
+            DateColumn::make('Date Added', 'rec_add_ts'),
+            DateColumn::make('Date Resolved', 'rec_resolve_date'),
             Column::make('Work Order', 'wo_number'),
         ];
     }

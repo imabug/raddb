@@ -81,11 +81,11 @@
       <div class="row">
         <div class="col input-group mb-3">
           <span class="input-group-text">Manufacture Date:</span>
-          <input class="form-control" type="date" id="manufDate" name="manufDate" size="10" value="{{ $tube->manuf_date }}" aria-label="Enter x-ray tube manufacture date">
+          <input class="form-control" type="date" id="manufDate" name="manufDate" size="10" value="{{ substr($tube->manuf_date, 0, 10) }}" aria-label="Enter x-ray tube manufacture date">
         </div>
         <div class="col input-group mb-3">
           <span class="input-group-text">Install date:</span>
-          <input class="form-control" type="date" id="installDate" name="installDate" size="10" value="{{ $tube->install_date }}" aria-label="Enter x-ray tube install date">
+          <input class="form-control" type="date" id="installDate" name="installDate" size="10" value="{{ substr($tube->install_date, 0, 10) }}" aria-label="Enter x-ray tube install date">
         </div>
       </div>
       <div class="row">

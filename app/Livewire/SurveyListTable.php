@@ -6,6 +6,7 @@ use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 class SurveyListTable extends DataTableComponent
 {
@@ -33,7 +34,7 @@ class SurveyListTable extends DataTableComponent
     {
         return [
             Column::make('Survey ID', 'id'),
-            Column::make('Test date', 'test_date'),
+            DateColumn::make('Test date', 'test_date')->outputFormat('Y-m-d'),
             Column::make('Test type', 'type.test_type'),
             Column::make('Accession', 'accession'),
             Column::make('Notes', 'notes'),
