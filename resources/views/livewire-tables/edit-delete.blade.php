@@ -1,5 +1,4 @@
 {{-- TODO: Edit/Delete buttons seem very kludgy.  Need to fix this --}}
-@if(Auth::check())
   <form class="row gy-1 gx-2 align-items-center" action="{{ route('machines.destroy', $row->id) }}" method="post">
     @csrf
     @method('DELETE')
@@ -14,4 +13,3 @@
       </button>
     </div>
   </form>
-@endif
