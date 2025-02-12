@@ -32,6 +32,7 @@
         "guzzlehttp/guzzle": "^7.9.2",
         "khill/lavacharts": "^3.1.14",
         "laravel/framework": "^10.43",
+        "laravel/prompts": "^0.1.25",
         "laravel/sanctum": "^3.3.3",
         "laravel/tinker": "^2.10.0",
         "laravel/ui": "^4.5.2",
