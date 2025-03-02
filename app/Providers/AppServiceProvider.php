@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
 
@@ -27,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // Work around for MariaDB/MySQL key too long errors
         // Not required as long as MySQL > 5.7 or Mariadb > 10.2.2
@@ -50,5 +51,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Continue using Bootstrap's paginator
         Paginator::useBootstrap();
+
+        // Use Carbon immutable dates
+        Date::use(CarbonImmutable::class);
     }
 }
