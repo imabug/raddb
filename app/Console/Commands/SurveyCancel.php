@@ -31,7 +31,9 @@ class SurveyCancel extends Command
      */
     public function handle(): int
     {
-        if (is_null($this->argument('survey_id'))) {
+        $survey_id = $this->argument('survey_id');
+
+        if (is_null($survey_id)) {
             // No survey ID was provided.  Prompt the user to select a survey ID
             $survey_id = text(
                 label: 'Enter a survey ID to cancel',
