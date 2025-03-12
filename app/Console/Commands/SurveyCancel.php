@@ -44,7 +44,7 @@ class SurveyCancel extends Command
             'survey_id' => 'required|integer|exists:testdates,id',
         ]);
 
-        if ($validator->failes()) {
+        if ($validator->fails()) {
             $errors = $validator->errors();
             foreach ($errors->all() as $message) {
                 error($message);
