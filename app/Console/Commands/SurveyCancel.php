@@ -17,7 +17,7 @@ class SurveyCancel extends Command
      *
      * @var string
      */
-    protected $signature = 'survey:cancel {survey_id : Survey ID to cancel}';
+    protected $signature = 'survey:cancel';
 
     /**
      * The console command description.
@@ -31,15 +31,10 @@ class SurveyCancel extends Command
      */
     public function handle(): int
     {
-        $survey_id = $this->argument('survey_id');
-
-        if (is_null($survey_id)) {
-            // No survey ID was provided.  Prompt the user to select a survey ID
-            $survey_id = text(
-                label: 'Enter a survey ID to cancel',
-                required: true
-            );
-        }
+        $survey_id = text(
+            label: 'Enter a survey ID to cancel',
+            required: true
+        );
 
         // Validate the provided survey ID.  It needs to exist in the testdates table
         $validator = Validator::make([$survey_id], [
