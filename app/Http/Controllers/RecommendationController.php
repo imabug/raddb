@@ -38,7 +38,7 @@ class RecommendationController extends Controller
      *
      * @param string $surveyId (optional)
      */
-    public function create(string $surveyId = null): View
+    public function create(?string $surveyId = null): View
     {
         if (is_null($surveyId)) {
             // No survey id was provided.

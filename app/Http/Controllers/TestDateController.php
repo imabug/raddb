@@ -42,7 +42,7 @@ class TestDateController extends Controller
      *
      * @param string $id (optional)
      */
-    public function create(string $id = null): View
+    public function create(?string $id = null): View
     {
         if (is_null($id)) {
             $machines = Machine::select('id', 'description')
