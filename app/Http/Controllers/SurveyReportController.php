@@ -36,7 +36,7 @@ class SurveyReportController extends Controller
      *
      * @param int $id
      */
-    public function create(int $id = null): View
+    public function create(?int $id = null): View
     {
         return view('surveys.surveys_addReport');
     }
