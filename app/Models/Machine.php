@@ -57,7 +57,7 @@ class Machine extends Model implements HasMedia
      */
     protected $appends = ['age'];
 
-    public function registerMediaCollections(Media $media = null): void
+    public function registerMediaCollections(?Media $media = null): void
     {
         $this->addMediaCollection('machine_photos')
             ->useDisk('MachinePhotos');
