@@ -44,6 +44,9 @@ class AnnReportController extends Controller
         foreach ($mammMachines as $m) {
             // Get the two most recent survey dates
             $recent = $m->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->take(2);
+            if ($recent->count() == 0) {
+                continue;
+            }  // Machine has no test dates, skip it
             $mammDates[$m->description] = [
                 'location' => $m->location->location,
                 'date1'    => $recent->pop()->test_date,
@@ -64,6 +67,9 @@ class AnnReportController extends Controller
         foreach ($sbbMachines as $m) {
             // Get the two most recent survey dates
             $recent = $m->testdate->whereIn('type_id', [1, 2])->sortByDesc('test_date')->take(2);
+            if ($recent->count() == 0) {
+                continue;
+            }  // Machine has no test dates, skip it.
             $sbbDates[$m->description] = [
                 'location' => $m->location->location,
                 'date1'    => $recent->pop()->test_date,
