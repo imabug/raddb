@@ -39,7 +39,7 @@
         "livewire/livewire": "^3.5.12",
         "nesbot/carbon": "^2.72",
         "phpoffice/phpspreadsheet": "^5.0",
-        "rappasoft/laravel-livewire-tables": "^3.5.3",
+        "rappasoft/laravel-livewire-tables": "^3.7",
         "spatie/laravel-medialibrary": "^11.10",
         "symfony/yaml": "^6.4.13",
         "twbs/bootstrap": "^5.3.3",
