@@ -131,6 +131,11 @@ class MachineEdit extends Command
             default: $machine->vend_site_id ?? ''
         );
 
+        $machine->pacs_station = text(
+            label: 'Enter the PACS station ID for this machine (enter to leave unchanged)',
+            default: $machine->pacs_station ?? ''
+        );
+
         $machine->notes = text(
             label: 'Enter any special notes for this machine (enter to leave unchanged)',
             default: $machine->notes ?? ''
@@ -151,6 +156,7 @@ class MachineEdit extends Command
             'room'             => 'required|string|max:20',
             'software_version' => 'string|nullable',
             'vend_site_id'     => 'string|nullable',
+            'pacs_station'     => 'string|nullable',
             'notes'            => 'string|nullable',
         ]);
 
