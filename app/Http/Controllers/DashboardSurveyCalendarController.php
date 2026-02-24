@@ -54,10 +54,10 @@ class DashboardSurveyCalendarController extends Controller
 
             // Create a column chart
             \Lava::CalendarChart(
-                'Daily survey count - '.$y->years,
+                'Daily survey count - ' . $y->years,
                 $surveyCalendar,
                 [
-                    'title'          => 'Daily survey counts - '.$y->years,
+                    'title'          => 'Daily survey counts - ' . $y->years,
                     'titleTextStyle' => [
                         'fontSize' => 14,
                         'color'    => 'black', ],

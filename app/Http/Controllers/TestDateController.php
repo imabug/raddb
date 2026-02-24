@@ -92,7 +92,7 @@ class TestDateController extends Controller
 
         if ($testdate->save()) {
             $status = 'success';
-            $message .= 'Survey '.$testdate->id.' added.';
+            $message .= 'Survey ' . $testdate->id . ' added.';
             Log::info($message);
         } else {
             $status = 'fail';
@@ -162,7 +162,7 @@ class TestDateController extends Controller
 
         if ($testdate->save()) {
             $status = 'success';
-            $message .= 'Survey '.$testdate->id.' edited.';
+            $message .= 'Survey ' . $testdate->id . ' edited.';
             Log::info($message);
         } else {
             $status = 'fail';
@@ -196,7 +196,7 @@ class TestDateController extends Controller
 
         if (TestDate::findOrFail($surveyId)->delete()) {
             $status = 'success';
-            $message .= 'Survey '.$surveyId.' canceled.';
+            $message .= 'Survey ' . $surveyId . ' canceled.';
             Log::info($message);
         } else {
             $status = 'fail';

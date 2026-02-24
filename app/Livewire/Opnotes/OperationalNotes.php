@@ -59,7 +59,7 @@ class OperationalNotes extends Component
 
         $this->opNotes = OpNote::where('machine_id', $this->selectedMachine)->get();
 
-        session()->flash('message', 'Op note '.$id.' removed.');
+        session()->flash('message', 'Op note ' . $id . ' removed.');
     }
 
     /**

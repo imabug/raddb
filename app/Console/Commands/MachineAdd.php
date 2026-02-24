@@ -70,6 +70,7 @@ class MachineAdd extends Command
         $machine->install_date = text('Enter the installation date for this machine (YYYY-MM-DD)');
         $machine->room = text(label: 'Enter the room number for this machine', required: true);
         $machine->vend_site_id = text('Enter the vendor site ID for this machine');
+        $machine->pacs_station = text('Enter the PACS station ID for this machine');
         $machine->notes = text('Enter any special notes for this machine');
         $machine->machine_status = 'Active';
 
@@ -81,6 +82,7 @@ class MachineAdd extends Command
             'install_date'    => 'required|date',
             'room'            => 'required|string|max:20',
             'vend_site_id'    => 'string|nullable',
+            'pacs_station'    => 'string|nullable',
             'notes'           => 'string|nullable',
         ]);
 

@@ -107,7 +107,7 @@ class RecommendationController extends Controller
 
         if ($recommendation->save()) {
             $status = 'success';
-            $message .= 'Recommendation '.$recommendation->id.' added.';
+            $message .= 'Recommendation ' . $recommendation->id . ' added.';
             Log::info($message);
         } else {
             $status = 'fail';
@@ -188,7 +188,7 @@ class RecommendationController extends Controller
 
             if ($recommendation->save()) {
                 $status = 'success';
-                $message .= 'Recommendation '.$recommendation->id.' resolved.';
+                $message .= 'Recommendation ' . $recommendation->id . ' resolved.';
                 Log::info($message);
             } else {
                 $status = 'fail';
