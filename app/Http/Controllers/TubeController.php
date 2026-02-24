@@ -85,7 +85,7 @@ class TubeController extends Controller
 
         if ($tube->save()) {
             $status = 'success';
-            $message .= 'New tube saved for machine: ' . $tube->machine_id . '.';
+            $message .= 'New tube saved for machine: '.$tube->machine_id.'.';
             Log::info($message);
         } else {
             $status = 'fail';
@@ -161,7 +161,7 @@ class TubeController extends Controller
 
         if ($tube->save()) {
             $status = 'success';
-            $message .= 'Tube ID ' . $tube->id . ' for machine ' . $tube->machine_id . ' updated.';
+            $message .= 'Tube ID '.$tube->id.' for machine '.$tube->machine_id.' updated.';
             Log::info($message);
         } else {
             $status = 'fail';
@@ -204,7 +204,7 @@ class TubeController extends Controller
         // Delete and log the x-ray tube removal
         if ($tube->delete()) {
             $status = 'success';
-            $message .= 'Tube ID ' . $tube->id . ' deleted.';
+            $message .= 'Tube ID '.$tube->id.' deleted.';
             Log::info($message);
         } else {
             $status = 'fail';
