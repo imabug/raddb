@@ -50,7 +50,7 @@ class TubeAdd extends Command
             // No machine ID was provided.  Display a list of all the machines and ask for a machine ID to add the new tube to.
             $tube->machine_id = search(
                 'Search for the machine description to add a tube to',
-                fn (string $value) => strlen($value) > 0
+                fn(string $value) => strlen($value) > 0
                     ? Machine::active()->where('description', 'like', "%{$value}%")->orderBy('description')->pluck('description', 'id')->all()
                     : []
             );

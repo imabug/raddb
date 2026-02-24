@@ -92,9 +92,9 @@ class LutDelete extends Command
         $lut = $model::find(text(label: 'Enter the ID to remove', required: true));
 
         // Ask for confirmation
-        if (confirm(label: 'Deleting from '.$table.' ID:'.$lut->id.' Value: '.$lut->$field, default: false)) {
+        if (confirm(label: 'Deleting from ' . $table . ' ID:' . $lut->id . ' Value: ' . $lut->$field, default: false)) {
             $lut->delete();
-            info($table.' ID:'.$lut->id.' deleted.');
+            info($table . ' ID:' . $lut->id . ' deleted.');
 
             // Show the updated lookup table
             $this->showTable($table);

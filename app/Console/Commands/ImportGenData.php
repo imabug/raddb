@@ -87,7 +87,7 @@ class ImportGenData extends Command
             // Ask the user which tube should be associated with the generator data
             $this->newLine();
             foreach ($tubes as $tube) {
-                $this->line($tube->id.': '.$tube->housing_model.' SN: '.$tube->housing_sn.' '.$tube->notes.' Status:'.$tube->tube_status);
+                $this->line($tube->id . ': ' . $tube->housing_model . ' SN: ' . $tube->housing_sn . ' ' . $tube->notes . ' Status:' . $tube->tube_status);
                 $tubeChoice[] = $tube->id;
             }
             $tubeId = $this->choice(
@@ -158,7 +158,7 @@ class ImportGenData extends Command
 
         $progressBar->finish();
         $this->newLine();
-        $this->info('Generator data for Survey ID: '.$surveyId.' ('.$machine->description.') saved.');
+        $this->info('Generator data for Survey ID: ' . $surveyId . ' (' . $machine->description . ') saved.');
 
         return 1;
     }
