@@ -53,7 +53,7 @@ class SurveyCancel extends Command
         $survey = TestDate::find($survey_id);
         $survey->delete();
 
-        info('Survey ID ' . $survey_id . ' has been deleted');
+        info('Survey ID '.$survey_id.' has been deleted');
 
         return 0;
     }
