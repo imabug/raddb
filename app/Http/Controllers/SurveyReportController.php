@@ -75,7 +75,7 @@ class SurveyReportController extends Controller
                 ])
                 ->toMediaCollection('survey_reports', 'SurveyReports');
             $status = 'success';
-            $message .= 'Survey report for ' . $request->surveyId . ' saved.';
+            $message .= 'Survey report for '.$request->surveyId.' saved.';
             Log::info($message);
         }
 
