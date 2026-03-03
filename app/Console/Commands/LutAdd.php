@@ -55,7 +55,7 @@ class LutAdd extends Command
                 $lut->location = text(
                     label: 'Enter a new location',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 100 => 'The location must be less than 100 characters',
                         default                   => null
                     }
@@ -66,7 +66,7 @@ class LutAdd extends Command
                 $lut->manufacturer = text(
                     label: 'Enter a new manufacturer',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 50 => 'The manufacturer must be less than 50 characters',
                         default                  => null
                     }
@@ -77,7 +77,7 @@ class LutAdd extends Command
                 $lut->modality = text(
                     label: 'Enter a new modality',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 25 => 'The modality must be less than 25 characters',
                         default                  => null
                     }
@@ -88,7 +88,7 @@ class LutAdd extends Command
                 $lut->name = text(
                     label: 'Enter a new tester\'s name',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 25 => 'The name must be less than 25 characters',
                         default                  => null
                     }
@@ -96,7 +96,7 @@ class LutAdd extends Command
                 $lut->initials = text(
                     label: 'Enter tester\'s initials',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 4 => 'The initials must be less than 4 characters',
                         default                 => null
                     }
@@ -107,7 +107,7 @@ class LutAdd extends Command
                 $lut->test_type = text(
                     label: 'Enter a new test type',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 30 => 'The test type must be less than 30 characters',
                         default                  => null
                     }
@@ -121,7 +121,7 @@ class LutAdd extends Command
 
         if (is_object($lut)) {
             $lut->save();
-            info('New ' . $table . ' entry saved.');
+            info('New '.$table.' entry saved.');
         }
     }
 }
