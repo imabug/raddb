@@ -105,13 +105,13 @@ class MachineEdit extends Command
 
         $machine->manuf_date = text(
             label: 'Enter the manufacture date for this machine (YYYY-MM-DD) (enter to leave unchanged)',
-            default: $machine->manuf_date,
+            default: $machine->manuf_date ?? '',
             required: true
         );
 
         $machine->install_date = text(
             label: 'Enter the installation date for this machine (YYYY-MM-DD) (enter to leave unchanged)',
-            default: $machine->install_date,
+            default: $machine->install_date ?? '',
             required: true
         );
 
