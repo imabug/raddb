@@ -14,7 +14,8 @@ class ShieldingRequest extends Model
     use SoftDeletes;
 
     /**
-     * Mass assignable attributes
+     * Mass assignable attributes.
+     *
      * @var array<string>
      */
     protected $fillable = [
@@ -24,20 +25,20 @@ class ShieldingRequest extends Model
         'user_id',
         'status',
         'completion_date',
-        'notes'
+        'notes',
     ];
 
     /**
-     * Attribute casting
+     * Attribute casting.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'request_date' => 'date:Y-m-d',
+        'request_date'    => 'date:Y-m-d',
         'completion_date' => 'date:Y-m-d',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'deleted_at' => 'datetime',
+        'created_at'      => 'datetime',
+        'updated_at'      => 'datetime',
+        'deleted_at'      => 'datetime',
     ];
 
     /*
@@ -58,17 +59,17 @@ class ShieldingRequest extends Model
      */
 
     /**
-     * Scope function to return in progress shielding plan requests
+     * Scope function to return in progress shielding plan requests.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      */
     public function scopeActive(Builder $query): Builder
     {
-        return $query->where('status', 'In progress'); 
+        return $query->where('status', 'In progress');
     }
 
     /**
-     * Scope function to return completed shielding plan requests
+     * Scope function to return completed shielding plan requests.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      */
@@ -78,7 +79,7 @@ class ShieldingRequest extends Model
     }
 
     /**
-     * Scope function to return shielding plans awaiting info
+     * Scope function to return shielding plans awaiting info.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      */
