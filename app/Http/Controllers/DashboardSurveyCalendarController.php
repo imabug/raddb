@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TestDate;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -40,16 +41,22 @@ class DashboardSurveyCalendarController extends Controller
             // Exclude these type_ids
             // 8 - Other
             // 10 - Calibration
-            $chartData = TestDate::year($y->years)
-                ->whereNotIn('type_id', [8, 10])
-                ->get()
-                ->countBy('test_date');
+            // select test_date,count(test_date) from testdates where year(test_date)=2025 group by test_date;
+            // $chartData = TestDate::year($y->years)
+            //     ->whereNotIn('type_id', [8, 10])
+            //     ->get()
+            //                  ->countBy('test_date');
+            $chartData = TestDate::select(DB::raw('test_date,count(test_date)'))
+                             ->whereYear('test_date', $y->years)
+                             ->groupBy('test_date')
+                             ->get();
 
             // Add survey date and count data to the data table
             foreach ($chartData as $d => $count) {
-                $surveyCalendar->addRow(
-                    [$d, $count]
-                );
+                echo $d." ".$count."\n";
+                // $surveyCalendar->addRow(
+                //     [Carbon::createFromFormat('Y-m-d',$d), $count]
+                // );
             }
 
             // Create a column chart
