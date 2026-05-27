@@ -16,8 +16,7 @@ return new class() extends Migration {
         Schema::create('shielding_requests', function (Blueprint $table) {
             $table->id();
             $table->tinyText('description')
-                ->nullable(false)
-                ->index();
+                ->nullable(false);
             $table->date('request_date')
                 ->nullable(false)
                 ->index();
