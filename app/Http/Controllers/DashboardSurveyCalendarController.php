@@ -53,7 +53,7 @@ class DashboardSurveyCalendarController extends Controller
 
             // Add survey date and count data to the data table
             foreach ($chartData as $d => $count) {
-                echo $d." ".$count."\n";
+                echo $d.' '.$count."\n";
                 // $surveyCalendar->addRow(
                 //     [Carbon::createFromFormat('Y-m-d',$d), $count]
                 // );
