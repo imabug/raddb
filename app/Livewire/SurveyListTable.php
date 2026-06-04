@@ -40,7 +40,7 @@ class SurveyListTable extends DataTableComponent
             Column::make('Notes', 'notes'),
             Column::make('Survey Report')
                 ->label(
-                    fn($row, Column $column) => view('livewire-tables.survey-report-view')
+                    fn ($row, Column $column) => view('livewire-tables.survey-report-view')
                         ->withRow($row)
                 ),
         ];

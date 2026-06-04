@@ -32,11 +32,11 @@ class PendingSurveysTable extends DataTableComponent
             Column::make('Description', 'machine.description')
                 ->searchable()
                 ->format(
-                    fn($value, $row, Column $column) => '<a href="'
-                        . route('machines.show', TestDate::find($row->id)->machine_id)
-                        . '">'
-                        . Machine::find(TestDate::find($row->id)->machine_id)->description
-                        . '</a>'
+                    fn ($value, $row, Column $column) => '<a href="'
+                        .route('machines.show', TestDate::find($row->id)->machine_id)
+                        .'">'
+                        .Machine::find(TestDate::find($row->id)->machine_id)->description
+                        .'</a>'
                 )
                 ->html(),
             DateColumn::make('Date scheduled', 'test_date')
@@ -47,11 +47,11 @@ class PendingSurveysTable extends DataTableComponent
             Column::make('Survey Note', 'notes'),
             Column::make('Edit')
                 ->label(
-                    fn($row, Column $column) => view('livewire-tables.edit-survey')->withRow($row)
+                    fn ($row, Column $column) => view('livewire-tables.edit-survey')->withRow($row)
                 ),
             Column::make('Cancel')
                 ->label(
-                    fn($row, Column $column) => view('livewire-tables.cancel-survey')->withRow($row)
+                    fn ($row, Column $column) => view('livewire-tables.cancel-survey')->withRow($row)
                 ),
         ];
     }

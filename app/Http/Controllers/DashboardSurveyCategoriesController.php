@@ -56,11 +56,11 @@ class DashboardSurveyCategoriesController extends Controller
 
             // Create a pie chart
             \Lava::PieChart(
-                'Yearly survey counts by test type - ' . $y->years,
+                'Yearly survey counts by test type - '.$y->years,
                 $surveyCategories,
                 [
                     'is3D'           => true,
-                    'title'          => 'Survey counts - ' . $y->years . ' (' . $chartData->sum() . ')',
+                    'title'          => 'Survey counts - '.$y->years.' ('.$chartData->sum().')',
                     'titleTextStyle' => [
                         'fontSize' => 14,
                         'color'    => 'black', ],

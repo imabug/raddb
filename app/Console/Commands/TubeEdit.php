@@ -56,7 +56,7 @@ class TubeEdit extends Command
             $machine = Machine::find(
                 search(
                     'Search for the machine description to edit',
-                    fn(string $value) => strlen($value) > 0
+                    fn (string $value) => strlen($value) > 0
                         ? Machine::active()->where('description', 'like', "%{$value}%")->orderBy('description')->pluck('description', 'id')->all()
                         : []
                 )

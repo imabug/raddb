@@ -83,7 +83,7 @@ class ImportN3TO10 extends Command
             // Ask the user which tube should be associated with the generator data
             $this->newLine();
             foreach ($tubes as $tube) {
-                $this->line($tube->id . ': ' . $tube->housing_model . ' SN: ' . $tube->housing_sn . ' ' . $tube->notes . ' Status:' . $tube->tube_status);
+                $this->line($tube->id.': '.$tube->housing_model.' SN: '.$tube->housing_sn.' '.$tube->notes.' Status:'.$tube->tube_status);
                 $tubeChoice[] = $tube->id;
             }
             $tubeId = $this->choice(
@@ -135,7 +135,7 @@ class ImportN3TO10 extends Command
             $progressBar->advance();
         }
 
-        $this->info(' Leeds N3 data for Survey ID: ' . $surveyId . ' (' . $machine->description . ') saved.');
+        $this->info(' Leeds N3 data for Survey ID: '.$surveyId.' ('.$machine->description.') saved.');
 
         /*
          * Get Leeds TO10 data (C414:M426)
