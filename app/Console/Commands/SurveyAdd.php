@@ -42,7 +42,7 @@ class SurveyAdd extends Command
             // No machine ID was provided.  Prompt the user to select a machine
             $testdate->machine_id = search(
                 'Search for the machine description to add a survey for',
-                fn (string $value) => strlen($value) > 0
+                fn(string $value) => strlen($value) > 0
                     ? Machine::active()->where('description', 'like', "%{$value}%")->orderBy('description')->pluck('description', 'id')->all()
                     : []
             );
@@ -98,7 +98,7 @@ class SurveyAdd extends Command
         // Save the survey
         $testdate->save();
 
-        info('Survey ID '.$testdate->id.' has been added for '.$testdate->machine->description.'.');
+        info('Survey ID ' . $testdate->id . ' has been added for ' . $testdate->machine->description . '.');
 
         return 0;
     }

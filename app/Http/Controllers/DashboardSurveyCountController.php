@@ -66,10 +66,10 @@ class DashboardSurveyCountController extends Controller
 
             // Create a column chart
             \Lava::ColumnChart(
-                'Survey count - '.$y->years,
+                'Survey count - ' . $y->years,
                 $surveyCounts,
                 [
-                    'title'          => 'Survey counts - '.$y->years,
+                    'title'          => 'Survey counts - ' . $y->years,
                     'titleTextStyle' => [
                         'fontSize' => 14, ],
                     'legend' => [

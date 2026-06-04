@@ -53,7 +53,7 @@ class DashboardSurveyCalendarController extends Controller
 
             // Add survey date and count data to the data table
             foreach ($chartData as $d => $count) {
-                echo $d." ".$count."\n";
+                echo $d . " " . $count . "\n";
                 // $surveyCalendar->addRow(
                 //     [Carbon::createFromFormat('Y-m-d',$d), $count]
                 // );
@@ -61,10 +61,10 @@ class DashboardSurveyCalendarController extends Controller
 
             // Create a column chart
             \Lava::CalendarChart(
-                'Daily survey count - '.$y->years,
+                'Daily survey count - ' . $y->years,
                 $surveyCalendar,
                 [
-                    'title'          => 'Daily survey counts - '.$y->years,
+                    'title'          => 'Daily survey counts - ' . $y->years,
                     'titleTextStyle' => [
                         'fontSize' => 14,
                         'color'    => 'black', ],

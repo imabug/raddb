@@ -32,7 +32,7 @@ class SurveyScheduleTable extends DataTableComponent
             Column::make('Description', 'description')
                 ->searchable()
                 ->format(
-                    fn ($value, $row, Column $column) => '<a href="'.route('machines.show', $row->id).'">'.$row->description.'</a>'
+                    fn($value, $row, Column $column) => '<a href="' . route('machines.show', $row->id) . '">' . $row->description . '</a>'
                 )
                 ->html(),
             DateColumn::make('Previous', 'prevSurveyDate')

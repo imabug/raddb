@@ -99,7 +99,7 @@ class MachineController extends Controller
 
         if ($machine->save()) {
             $status = 'success';
-            $message = 'New machine created: Machine ID '.$machine->id.'.';
+            $message = 'New machine created: Machine ID ' . $machine->id . '.';
             Log::info($message);
         } else {
             $status = 'fail';
@@ -202,7 +202,7 @@ class MachineController extends Controller
 
         if ($machine->save()) {
             $status = 'success';
-            $message = 'Machine ID '.$machine->id.' updated.';
+            $message = 'Machine ID ' . $machine->id . ' updated.';
             Log::info($message);
         } else {
             $status = 'fail';
@@ -248,19 +248,19 @@ class MachineController extends Controller
             $tube->remove_date = date('Y-m-d');
             $tube->save();
             if ($tube->delete()) {
-                $message .= 'Tube ID '.$tube->id.' deleted.';
+                $message .= 'Tube ID ' . $tube->id . ' deleted.';
             } else {
-                $message .= 'Error deleting tube ID '.$tube->id.'.';
+                $message .= 'Error deleting tube ID ' . $tube->id . '.';
             }
         }
 
         if ($machine->delete()) {
             $status = 'success';
-            $message .= 'Machine ID '.$machine->id.' deleted.';
+            $message .= 'Machine ID ' . $machine->id . ' deleted.';
             Log::info($message);
         } else {
             $status = 'fail';
-            $message .= 'Error deleting machine ID '.$machine->id.'.';
+            $message .= 'Error deleting machine ID ' . $machine->id . '.';
             Log::error($message);
         }
 

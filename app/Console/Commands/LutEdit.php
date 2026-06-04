@@ -84,7 +84,7 @@ class LutEdit extends Command
 
         // Show the selected lookup table
         $id = select(
-            label: 'Select the '.$field.' to edit',
+            label: 'Select the ' . $field . ' to edit',
             options: $model::pluck($field, 'id'),
             scroll: 10
         );
@@ -93,12 +93,12 @@ class LutEdit extends Command
 
         $value = text(label: 'What should the new value be?', required: true);
 
-        if (confirm('Changing '.$lut->$field.' to '.$value.'.', default: false)) {
+        if (confirm('Changing ' . $lut->$field . ' to ' . $value . '.', default: false)) {
             $lut->$field = $value; // Need to validate this before saving
             $lut->save();
             // Show the updated lookup table
             $this->showTable($table);
-            info($table.' table ID: '.$id.' edited.');
+            info($table . ' table ID: ' . $id . ' edited.');
         } else {
             info('No changes made.');
         }

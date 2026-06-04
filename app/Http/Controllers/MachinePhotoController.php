@@ -71,7 +71,7 @@ class MachinePhotoController extends Controller
                 ->toMediaCollection('machine_photos', 'MachinePhotos');
 
             $status = 'success';
-            $message .= 'Photo for machine '.$machine->id.' saved.';
+            $message .= 'Photo for machine ' . $machine->id . ' saved.';
             Log::info($message);
         }
 

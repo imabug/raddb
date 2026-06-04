@@ -138,14 +138,14 @@ class AnnReportController extends Controller
 
         // Get a list of new installations during the specified year
         $newInstalls = Machine::with('modality', 'location')
-            ->whereBetween('install_date', [$year.'-01-01', $year.'-12-31'])
+            ->whereBetween('install_date', [$year . '-01-01', $year . '-12-31'])
             ->get();
 
         // Get a list of machines removed during the specified year
 
         $removed = Machine::onlyTrashed()
             ->with('modality', 'location')
-            ->whereBetween('deleted_at', [$year.'-01-01', $year.'-12-31'])
+            ->whereBetween('deleted_at', [$year . '-01-01', $year . '-12-31'])
             ->get();
 
         return view('ar.annrep', [
