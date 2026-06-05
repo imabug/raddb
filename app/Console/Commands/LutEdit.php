@@ -86,7 +86,7 @@ class LutEdit extends Command
         $id = select(
             label: 'Select the ' . $field . ' to edit',
             options: $model::pluck($field, 'id'),
-            scroll: 10
+            scroll: 10,
         );
 
         $lut = $model::find($id);

@@ -50,7 +50,7 @@ class DashboardSurveyCategoriesController extends Controller
             // Add data to the data table
             foreach ($chartData as $d => $count) {
                 $surveyCategories->addRow(
-                    [TestType::find($d)->test_type, $count]
+                    [TestType::find($d)->test_type, $count],
                 );
             }
 
@@ -69,7 +69,7 @@ class DashboardSurveyCategoriesController extends Controller
                     'colorAxis' => [
                         'colors' => ['#c0d4ff', '#4273e0'],
                     ],
-                ]
+                ],
             );
 
             // Clear variables for the next loop iteration

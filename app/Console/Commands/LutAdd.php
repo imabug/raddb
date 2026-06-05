@@ -57,8 +57,8 @@ class LutAdd extends Command
                     required: true,
                     validate: fn(string $value) => match (true) {
                         Str::length($value) > 100 => 'The location must be less than 100 characters',
-                        default                   => null
-                    }
+                        default                   => null,
+                    },
                 );
                 break;
             case 'manufacturer':
@@ -68,8 +68,8 @@ class LutAdd extends Command
                     required: true,
                     validate: fn(string $value) => match (true) {
                         Str::length($value) > 50 => 'The manufacturer must be less than 50 characters',
-                        default                  => null
-                    }
+                        default                  => null,
+                    },
                 );
                 break;
             case 'modality':
@@ -79,8 +79,8 @@ class LutAdd extends Command
                     required: true,
                     validate: fn(string $value) => match (true) {
                         Str::length($value) > 25 => 'The modality must be less than 25 characters',
-                        default                  => null
-                    }
+                        default                  => null,
+                    },
                 );
                 break;
             case 'tester':
@@ -90,16 +90,16 @@ class LutAdd extends Command
                     required: true,
                     validate: fn(string $value) => match (true) {
                         Str::length($value) > 25 => 'The name must be less than 25 characters',
-                        default                  => null
-                    }
+                        default                  => null,
+                    },
                 );
                 $lut->initials = text(
                     label: 'Enter tester\'s initials',
                     required: true,
                     validate: fn(string $value) => match (true) {
                         Str::length($value) > 4 => 'The initials must be less than 4 characters',
-                        default                 => null
-                    }
+                        default                 => null,
+                    },
                 );
                 break;
             case 'testtype':
@@ -109,8 +109,8 @@ class LutAdd extends Command
                     required: true,
                     validate: fn(string $value) => match (true) {
                         Str::length($value) > 30 => 'The test type must be less than 30 characters',
-                        default                  => null
-                    }
+                        default                  => null,
+                    },
                 );
                 break;
             default:

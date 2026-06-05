@@ -41,7 +41,7 @@ class SurveyListTable extends DataTableComponent
             Column::make('Survey Report')
                 ->label(
                     fn($row, Column $column) => view('livewire-tables.survey-report-view')
-                        ->withRow($row)
+                        ->withRow($row),
                 ),
         ];
     }

@@ -75,7 +75,7 @@ class DashboardSurveyCountController extends Controller
                     'legend' => [
                         'position' => 'none',
                     ],
-                ]
+                ],
             );
 
             // Clear variables for the next loop iteration
@@ -120,7 +120,7 @@ class DashboardSurveyCountController extends Controller
                 'legend' => [
                     'position' => 'none',
                 ],
-            ]
+            ],
         );
 
         return view('dashboard.survey_counts', [

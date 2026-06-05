@@ -33,7 +33,7 @@ class SurveyCancel extends Command
     {
         $survey_id = text(
             label: 'Enter a survey ID to cancel',
-            required: true
+            required: true,
         );
 
         // Validate the provided survey ID.  It needs to exist in the testdates table

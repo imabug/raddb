@@ -119,7 +119,7 @@ class Machine extends Model implements HasMedia
             Recommendation::class,
             TestDate::class,
             'machine_id',
-            'survey_id'
+            'survey_id',
         );
     }
 
@@ -236,7 +236,7 @@ class Machine extends Model implements HasMedia
                 } elseif (!is_null($attributes['install_date'])) {
                     return Carbon::createFromFormat('Y-m-d', $attributes['install_date'])->age;
                 }
-            }
+            },
         );
     }
 }

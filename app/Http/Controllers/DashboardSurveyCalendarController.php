@@ -75,7 +75,7 @@ class DashboardSurveyCalendarController extends Controller
                     'colorAxis' => [
                         'colors' => ['#c0d4ff', '#4273e0'],
                     ],
-                ]
+                ],
             );
 
             // Clear variables for the next loop iteration

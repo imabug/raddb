@@ -58,8 +58,8 @@ class MachineEdit extends Command
                     'Search for the machine description to edit',
                     fn(string $value) => strlen($value) > 0
                         ? Machine::active()->where('description', 'like', "%{$value}%")->orderBy('description')->pluck('description', 'id')->all()
-                        : []
-                )
+                        : [],
+                ),
             );
         } else {
             $machine = Machine::findOrFail($this->argument('machine_id'));
@@ -69,82 +69,82 @@ class MachineEdit extends Command
         $machine->description = text(
             label: 'Set a new description (enter to leave unchanged)',
             default: $machine->description,
-            required: true
+            required: true,
         );
 
         $machine->location_id = select(
             label: 'Select a location for this machine (enter to leave unchanged)',
             options: Location::pluck('location', 'id'),
             default: $machine->location->id,
-            scroll: 10
+            scroll: 10,
         );
         $machine->modality_id = select(
             label: 'Select a modality for this machine (enter to leave unchanged)',
             options: Modality::pluck('modality', 'id'),
             default: $machine->modality->id,
-            scroll: 10
+            scroll: 10,
         );
         $machine->manufacturer_id = select(
             label: 'Select a manufacturer for this machine (enter to leave unchanged)',
             options: Manufacturer::pluck('manufacturer', 'id'),
             default: $machine->manufacturer->id,
-            scroll: 10
+            scroll: 10,
         );
 
         $machine->model = text(
             label: 'Enter the model name for this machine (enter to leave unchanged)',
             default: $machine->model,
-            required: true
+            required: true,
         );
 
         $machine->serial_number = text(
             label: 'Enter the serial number for this machine (enter to leave unchanged)',
             default: $machine->serial_number,
-            required: true
+            required: true,
         );
 
         $machine->manuf_date = text(
             label: 'Enter the manufacture date for this machine (YYYY-MM-DD) (enter to leave unchanged)',
             default: $machine->manuf_date ?? '',
-            required: true
+            required: true,
         );
 
         $machine->install_date = text(
             label: 'Enter the installation date for this machine (YYYY-MM-DD) (enter to leave unchanged)',
             default: $machine->install_date ?? '',
-            required: true
+            required: true,
         );
 
         $machine->room = text(
             label: 'Enter the room number for this machine (enter to leave unchanged)',
             default: $machine->room,
-            required: true
+            required: true,
         );
 
         $machine->software_version = text(
             label: 'Enter the software version (enter to leave unchanged)',
-            default: $machine->software_version ?? ''
+            default: $machine->software_version ?? '',
         );
 
         $machine->vend_site_id = text(
             label: 'Enter the vendor site ID for this machine (enter to leave unchanged)',
-            default: $machine->vend_site_id ?? ''
+            default: $machine->vend_site_id ?? '',
         );
 
         $machine->pacs_station = text(
             label: 'Enter the PACS station ID for this machine (enter to leave unchanged)',
-            default: $machine->pacs_station ?? ''
+            default: $machine->pacs_station ?? '',
         );
 
         $machine->notes = text(
             label: 'Enter any special notes for this machine (enter to leave unchanged)',
-            default: $machine->notes ?? ''
+            default: $machine->notes ?? '',
         );
 
         $machine->machine_status = select(
             label: 'Select the machine status (enter to leave unchanged)',
             options: ['Active', 'Inactive', 'Removed'],
-            default: $machine->machine_status
+            default: $machine->machine_status,
         );
 
         $validator = Validator::make($machine->toArray(), [

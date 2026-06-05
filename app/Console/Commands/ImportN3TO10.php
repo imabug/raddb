@@ -91,7 +91,7 @@ class ImportN3TO10 extends Command
                 $tubeChoice,
                 $defaultIndex = 0,
                 $maxAttempts = null,
-                $allowMultipleSelections = false
+                $allowMultipleSelections = false,
             );
         } else {
             $tubeId = $tubes->first()->id;
@@ -109,7 +109,7 @@ class ImportN3TO10 extends Command
                 null,
                 true,
                 true,
-                true
+                true,
             );
         $progressBar->advance();
 
@@ -153,7 +153,7 @@ class ImportN3TO10 extends Command
                 null,
                 true,
                 true,
-                true
+                true,
             );
         $progressBar->advance();
 

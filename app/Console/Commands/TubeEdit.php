@@ -58,8 +58,8 @@ class TubeEdit extends Command
                     'Search for the machine description to edit',
                     fn(string $value) => strlen($value) > 0
                         ? Machine::active()->where('description', 'like', "%{$value}%")->orderBy('description')->pluck('description', 'id')->all()
-                        : []
-                )
+                        : [],
+                ),
             );
         } else {
             $machine = Machine::findOrFail($this->argument('machine_id'));
@@ -71,8 +71,8 @@ class TubeEdit extends Command
                 select(
                     label: 'Select the tube to edit',
                     options: $machine->tube()->pluck('notes', 'id'),
-                    scroll: 5
-                )
+                    scroll: 5,
+                ),
             );
         } else {
             $t = $machine->tube()->get();
@@ -82,57 +82,57 @@ class TubeEdit extends Command
         $t->housing_model = text(
             label: 'Set a new tube housing model (enter to leave unchanged)',
             default: $t->housing_model,
-            required: true
+            required: true,
         );
 
         $t->housing_sn = text(
             label: 'Set a new tube housing serial number (enter to leave unchanged)',
             default: $t->housing_sn,
-            required: true
+            required: true,
         );
 
         $t->housing_manuf_id = select(
             label: 'Select a manufacturer for this tube housing (enter to leave unchanged)',
             options: Manufacturer::pluck('manufacturer', 'id'),
             default: $t->housing_manuf_id,
-            scroll: 10
+            scroll: 10,
         );
 
         $t->insert_model = text(
             label: 'Set a new tube insert model (enter to leave unchanged)',
             default: $t->insert_model,
-            required: true
+            required: true,
         );
 
         $t->insert_sn = text(
             label: 'Set a new tube insert serial number (enter to leave unchanged)',
             default: $t->insert_sn,
-            required: true
+            required: true,
         );
 
         $t->insert_manuf_id = select(
             label: 'Select a manufacturer for this tube insert (enter to leave unchanged)',
             options: Manufacturer::pluck('manufacturer', 'id'),
             default: $t->insert_manuf_id,
-            scroll: 10
+            scroll: 10,
         );
 
         $t->manuf_date = text(
             label: 'Enter the manufacture date for the tube (YYYY-MM-DD) (enter to leave unchanged)',
             default: $t->manuf_date,
-            required: true
+            required: true,
         );
 
         $t->install_date = text(
             label: 'Enter the install date for the tube (YYYY-MM-DD) (enter to leave unchanged)',
             default: $t->install_date,
-            required: true
+            required: true,
         );
 
         $t->lfs = text(
             label: 'Enter the large focal spot size (mm) (enter to leave unchanged)',
             default: $t->lfs,
-            required: true
+            required: true,
         );
 
         $t->mfs = text(
@@ -143,20 +143,20 @@ class TubeEdit extends Command
         $t->sfs = text(
             label: 'Enter the small focal spot size (mm) (enter to leave unchanged)',
             default: $t->sfs,
-            required: true
+            required: true,
         );
 
         $t->tube_status = select(
             label: 'Select the tube status (enter to leave unchanged)',
             options: ['Active', 'Inactive', 'Removed'],
             default: $t->tube_status,
-            required: true
+            required: true,
         );
 
         $t->notes = text(
             label: 'Enter any special notes for this tube (enter to leave unchanged)',
             default: $t->notes,
-            required: true
+            required: true,
         );
 
         $validator = Validator::make($t->toArray(), [

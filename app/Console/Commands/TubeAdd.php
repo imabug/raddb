@@ -52,7 +52,7 @@ class TubeAdd extends Command
                 'Search for the machine description to add a tube to',
                 fn(string $value) => strlen($value) > 0
                     ? Machine::active()->where('description', 'like', "%{$value}%")->orderBy('description')->pluck('description', 'id')->all()
-                    : []
+                    : [],
             );
         } else {
             $tube->machine_id = $this->argument('machine_id');
@@ -75,7 +75,7 @@ class TubeAdd extends Command
         $tube->housing_manuf_id = select(
             label: 'Select the manufacturer for the tube',
             options: Manufacturer::pluck('manufacturer', 'id'),
-            scroll: 10
+            scroll: 10,
         );
         // Assume tube manufacturer is the same.  Highly unlikely they'd be different.
         $tube->insert_manuf_id = $tube->housing_manuf_id;

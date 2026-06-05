@@ -95,7 +95,7 @@ class ImportGenData extends Command
                 $tubeChoice,
                 $defaultIndex = 0,
                 $maxAttempts = null,
-                $allowMultipleSelections = false
+                $allowMultipleSelections = false,
             );
         } else {
             $tubeId = $tubes->first()->id;
@@ -109,7 +109,7 @@ class ImportGenData extends Command
                 null,
                 true,
                 true,
-                true
+                true,
             );
 
         $progressBar->advance();

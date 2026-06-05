@@ -62,7 +62,7 @@ class MachineListTable extends DataTableComponent
                         ->get()
                         ->keyBy('id')
                         ->map(fn($modality) => $modality->modality)
-                        ->toArray()
+                        ->toArray(),
                 )
                 ->filter(function (Builder $builder, string $value) {
                     $builder->where('modality_id', $value);
@@ -74,7 +74,7 @@ class MachineListTable extends DataTableComponent
                         ->get()
                         ->keyBy('id')
                         ->map(fn($manufacturer) => $manufacturer->manufacturer)
-                        ->toArray()
+                        ->toArray(),
                 )
                 ->filter(function (Builder $builder, string $value) {
                     $builder->where('Manufacturer_id', $value);
@@ -86,7 +86,7 @@ class MachineListTable extends DataTableComponent
                         ->get()
                         ->keyBy('id')
                         ->map(fn($location) => $location->location)
-                        ->toArray()
+                        ->toArray(),
                 )
                 ->filter(function (Builder $builder, string $value) {
                     $builder->where('location_id', $value);
@@ -101,7 +101,7 @@ class MachineListTable extends DataTableComponent
             Column::make('Description', 'description')
                 ->searchable()
                 ->format(
-                    fn($value, $row, Column $column) => '<a href="' . route('machines.show', $row->id) . '">' . $row->description . '</a>'
+                    fn($value, $row, Column $column) => '<a href="' . route('machines.show', $row->id) . '">' . $row->description . '</a>',
                 )
                 ->html(),
             Column::make('Modality', 'modality.modality')
@@ -126,11 +126,11 @@ class MachineListTable extends DataTableComponent
             Column::make('Room', 'room'),
             Column::make('Age')
                 ->label(
-                    fn($row, Column $column) => Machine::find($row->id)->age
+                    fn($row, Column $column) => Machine::find($row->id)->age,
                 ),
             Column::make('Edit')
                 ->label(
-                    fn($row, Column $column) => view('livewire-tables.edit-delete')->withRow($row)
+                    fn($row, Column $column) => view('livewire-tables.edit-delete')->withRow($row),
                 ),
         ];
     }

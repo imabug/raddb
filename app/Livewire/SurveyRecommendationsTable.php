@@ -48,7 +48,7 @@ class SurveyRecommendationsTable extends DataTableComponent
                 'survey',
                 function ($query) {
                     $query->where('machine_id', $this->machine);
-                }
+                },
             );
     }
 }

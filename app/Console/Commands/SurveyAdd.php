@@ -44,7 +44,7 @@ class SurveyAdd extends Command
                 'Search for the machine description to add a survey for',
                 fn(string $value) => strlen($value) > 0
                     ? Machine::active()->where('description', 'like', "%{$value}%")->orderBy('description')->pluck('description', 'id')->all()
-                    : []
+                    : [],
             );
         } else {
             // Check the validity of the machine id
@@ -66,17 +66,17 @@ class SurveyAdd extends Command
         $testdate->tester1_id = select(
             label: 'Select the first tester initials',
             options: Tester::pluck('initials', 'id'),
-            scroll: 10
+            scroll: 10,
         );
         $testdate->tester2_id = select(
             label: 'Select the second tester initials',
             options: Tester::pluck('initials', 'id'),
-            scroll: 10
+            scroll: 10,
         );
         $testdate->type_id = select(
             label: 'Select the test type',
             options: TestType::pluck('test_type', 'id'),
-            scroll: 10
+            scroll: 10,
         );
         $testdate->accession = text('Enter the accession number for this survey');
         $testdate->notes = text('Enter any notes for this survey');
