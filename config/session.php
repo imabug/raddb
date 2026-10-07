@@ -31,9 +31,10 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => (int) env('SESSION_LIFETIME', 120),
 
-    'expire_on_close' => false,
+    'expire_on_close' => env('SESSION_EXPIRE_ON_CLOSE', false),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ return [
     |
     */
 
-    'encrypt' => false,
+    'encrypt' => env('SESSION_ENCRYPT', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +86,7 @@ return [
     |
     */
 
-    'table' => 'sessions',
+    'table' => env('SESSION_TABLE', 'sessions'),
 
     /*
     |--------------------------------------------------------------------------
@@ -126,7 +127,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+        Str::slug((string) env('APP_NAME', 'laravel')).'-session'
     ),
 
     /*
@@ -140,7 +141,7 @@ return [
     |
     */
 
-    'path' => '/',
+    'path' => env('SESSION_PATH', '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -179,21 +180,51 @@ return [
     |
     */
 
-    'http_only' => true,
+    'http_only' => env('SESSION_HTTP_ONLY', true),
 
     /*
-      |--------------------------------------------------------------------------
-      | Same-Site Cookies
-      |--------------------------------------------------------------------------
-      |
-      | This option determines how your cookies behave when cross-site requests
-      | take place, and can be used to mitigate CSRF attacks. By default, we
-      | will set this value to "lax" since this is a secure default value.
-      |
-      | Supported: "lax", "strict", "none", null
-      |
+    |--------------------------------------------------------------------------
+    | Same-Site Cookies
+    |--------------------------------------------------------------------------
+    |
+    | This option determines how your cookies behave when cross-site requests
+    | take place, and can be used to mitigate CSRF attacks. By default, we
+    | will set this value to "lax" to permit secure cross-site requests.
+    |
+    | See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value
+    |
+    | Supported: "lax", "strict", "none", null
+    |
     */
 
-    'same_site' => 'lax',
+    'same_site' => env('SESSION_SAME_SITE', 'lax'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Partitioned Cookies
+    |--------------------------------------------------------------------------
+    |
+    | Setting this value to true will tie the cookie to the top-level site for
+    | a cross-site context. Partitioned cookies are accepted by the browser
+    | when flagged "secure" and the Same-Site attribute is set to "none".
+    |
+    */
+
+    'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Session Serialization
+    |--------------------------------------------------------------------------
+    |
+    | This value controls the serialization strategy for session data, which
+    | is JSON by default. Setting this to "php" allows the storage of PHP
+    | objects in the session but can make an application vulnerable to
+    | "gadget chain" serialization attacks if the APP_KEY is leaked.
+    |
+    | Supported: "json", "php"
+    |
+    */
+
+    'serialization' => 'json',
 ];
