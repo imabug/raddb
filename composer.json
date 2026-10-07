@@ -27,12 +27,10 @@
     "require": {
         "php": "^8.5",
         "blade-ui-kit/blade-icons": "^1.10.1",
-        "doctrine/dbal": "^3.10.6",
         "guzzlehttp/guzzle": "^8.2",
         "laravel/framework": "^13.35",
-        "laravel/prompts": "^0.3.25",
         "laravel/sanctum": "^4.3.3",
-        "laravel/tinker": "^3.0.2",
+        "laravel/tinker": "^3.0",
         "laravel/ui": "^4.6.3",
         "livewire/livewire": "^3.8.10",
         "phpoffice/phpspreadsheet": "^5.10",
@@ -43,7 +41,6 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",
-        "laravel/sail": "^1.68",
         "mockery/mockery": "^1.6.15",
         "nunomaduro/collision": "^8.9.5",
         "phpunit/phpunit": "^12.5.38",
