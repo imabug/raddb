@@ -38,7 +38,6 @@
         "phpoffice/phpspreadsheet": "^5.10",
         "rappasoft/laravel-livewire-tables": "^3.8",
         "spatie/laravel-medialibrary": "^11.23.9",
-        "symfony/yaml": "^6.4.47",
         "twbs/bootstrap": "^5.3.8",
         "twbs/bootstrap-icons": "^1.13.1"
     },
