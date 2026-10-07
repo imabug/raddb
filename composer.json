@@ -28,11 +28,11 @@
         "php": "^8.5",
         "blade-ui-kit/blade-icons": "^1.10.1",
         "doctrine/dbal": "^3.10.6",
-        "guzzlehttp/guzzle": "^7.15.5",
-        "laravel/framework": "^12.69.3",
+        "guzzlehttp/guzzle": "^8.2",
+        "laravel/framework": "^13.35",
         "laravel/prompts": "^0.3.25",
         "laravel/sanctum": "^4.3.3",
-        "laravel/tinker": "^2.11.1",
+        "laravel/tinker": "^3.0.2",
         "laravel/ui": "^4.6.3",
         "livewire/livewire": "^3.8.10",
         "phpoffice/phpspreadsheet": "^5.10",
@@ -43,11 +43,11 @@
         "twbs/bootstrap-icons": "^1.13.1"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.24.1",
+        "fakerphp/faker": "^1.24",
         "laravel/sail": "^1.68",
         "mockery/mockery": "^1.6.15",
         "nunomaduro/collision": "^8.9.5",
-        "phpunit/phpunit": "^11.5.57",
+        "phpunit/phpunit": "^12.5.38",
         "spatie/laravel-ignition": "^2.12"
     },
     "autoload": {
@@ -68,11 +68,29 @@
         }
     },
     "scripts": {
+        "setup": [
+            "composer install",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate",
+            "@php artisan migrate --force",
+            "npm install --ignore-scripts",
+            "npm run build"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php artisan dev"
+        ],
+        "test": [
+            "@php artisan config:clear --ansi @no_additional_args",
+            "@php artisan test"
+        ],
         "post-root-package-install": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "php artisan key:generate --ansi"
+            "php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -80,20 +98,19 @@
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "pre-package-uninstall": [
+            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ]
-},
+    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true,
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
+            "php-http/discovery": true,
             "pestphp/pest-plugin": true
-        },
-        "policy": {
-            "advisories": {
-                "block": false
-            }
         }
     },
     "minimum-stability": "stable",
