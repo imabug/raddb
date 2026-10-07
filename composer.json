@@ -25,18 +25,16 @@
         "docs": "https://github.com/imabug/raddb/wiki"
     },
     "require": {
-        "php": "^8.1",
+        "php": "^8.5",
         "blade-ui-kit/blade-icons": "^1.7.2",
-        "davidhsianturi/blade-bootstrap-icons": "^1.5",
         "doctrine/dbal": "^3.9.3",
         "guzzlehttp/guzzle": "^7.9.2",
-        "laravel/framework": "^10.43",
-        "laravel/prompts": "^0.1.25",
-        "laravel/sanctum": "^3.3.3",
+        "laravel/framework": "^11.0",
+        "laravel/prompts": "^0.3.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.0",
         "laravel/ui": "^4.5.2",
         "livewire/livewire": "^3.5.12",
-        "nesbot/carbon": "^2.72",
         "phpoffice/phpspreadsheet": "^5.0",
         "rappasoft/laravel-livewire-tables": "^3.7",
         "spatie/laravel-medialibrary": "^11.10",
@@ -46,12 +44,11 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",
-        "laravel/dusk": "^7.13",
         "laravel/sail": "^1.38",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^7.11",
+        "nunomaduro/collision": "^8.1",
         "phpstan/phpstan": "^1.12.11",
-        "phpunit/phpunit": "^10.5",
+        "phpunit/phpunit": "^11",
         "spatie/laravel-ignition": "^2.8"
     },
     "autoload": {
@@ -93,6 +90,11 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "pestphp/pest-plugin": true
+        },
+        "policy": {
+            "advisories": {
+                "block": false
+            }
         }
     },
     "minimum-stability": "stable",
