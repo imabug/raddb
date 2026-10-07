@@ -12,9 +12,9 @@
 */
 
 use App\Http\Controllers\AnnReportController;
-use App\Http\Controllers\DashboardSurveyCalendarController;
-use App\Http\Controllers\DashboardSurveyCategoriesController;
-use App\Http\Controllers\DashboardSurveyCountController;
+// use App\Http\Controllers\DashboardSurveyCalendarController;
+// use App\Http\Controllers\DashboardSurveyCategoriesController;
+// use App\Http\Controllers\DashboardSurveyCountController;
 use App\Http\Controllers\DashboardSurveyStatusController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MachineController;
@@ -25,7 +25,7 @@ use App\Http\Controllers\SurveyReportController;
 use App\Http\Controllers\TestDateController;
 use App\Http\Controllers\TestEquipmentController;
 use App\Http\Controllers\TubeController;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
@@ -39,12 +39,12 @@ Route::name('index')
 Route::prefix('dashboard')->group(function () {
     Route::name('dashboard.dashboard')
         ->get('/', [DashboardSurveyStatusController::class, 'teststatus']);
-    Route::name('dashboard.surveyCount')
-        ->get('/surveyCount', [DashboardSurveyCountController::class, 'index']);
-    Route::name('dashboard.surveyCalendar')
-        ->get('/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
-    Route::name('dashboard.surveyCategories')
-        ->get('/surveyCategories', [DashboardSurveyCategoriesController::class, 'index']);
+    // Route::name('dashboard.surveyCount')
+    //     ->get('/surveyCount', [DashboardSurveyCountController::class, 'index']);
+    // Route::name('dashboard.surveyCalendar')
+    //     ->get('/surveyCalendar', [DashboardSurveyCalendarController::class, 'index']);
+    // Route::name('dashboard.surveyCategories')
+    //     ->get('/surveyCategories', [DashboardSurveyCategoriesController::class, 'index']);
 });
 
 /*

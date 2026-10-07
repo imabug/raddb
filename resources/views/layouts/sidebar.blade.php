@@ -11,9 +11,9 @@
           <a href="#" class="nav-link dropdown-toggle" id="navbarDashboards" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboards<span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="navbarDashboards">
             <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.dashboard')}}">Survey status</a></li>
-            <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.surveyCount') }}">Survey count graphs</a></li>
-            <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.surveyCalendar') }}">Survey calendar</a></li>
-            <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.surveyCategories') }}">Survey categories</a></li>
+            {{-- <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.surveyCount') }}">Survey count graphs</a></li> --}}
+            {{-- <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.surveyCalendar') }}">Survey calendar</a></li> --}}
+            {{-- <li role="presentation"><a class="dropdown-item" href="{{ route('dashboard.surveyCategories') }}">Survey categories</a></li> --}}
           </ul>
         </li>
         <li role="presentation" class="nav-item dropdown">
