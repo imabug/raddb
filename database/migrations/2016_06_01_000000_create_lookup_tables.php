@@ -50,5 +50,8 @@ class CreateLocationsTable extends Migration
     public function down()
     {
         Schema::drop('locations');
+        Schema::drop('manufacturers');
+        Schema::drop('modalities');
+        Schema::drop('testtypes');
     }
 }
