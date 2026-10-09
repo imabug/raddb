@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Machine;
+use App\Models\Manufacturer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +16,17 @@ class CreateTubesTable extends Migration
     public function up()
     {
         Schema::create('tubes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('machine_id')->default(0)->unsigned();
+            $table->id();
+            $table->integer('machine_id')
+                ->foreignIdFor(Machine::class)->index();
             $table->string('housing_model', 50)->nullable();
             $table->string('housing_sn', 20)->nullable();
-            $table->integer('housing_manuf_id')->default(0)->unsigned();
+            $table->integer('housing_manuf_id')
+                ->foreignIdFor(Manufacturer::class)->index();
             $table->string('insert_model', 50)->nullable();
             $table->string('insert_sn', 20)->nullable();
-            $table->integer('insert_manuf_id')->default(0)->unsigned();
+            $table->integer('insert_manuf_id')
+                ->foreignIdFor(Manufacturer::class)->index();
             $table->date('manuf_date')->nullable();
             $table->date('install_date')->nullable();
             $table->date('remove_date')->nullable();

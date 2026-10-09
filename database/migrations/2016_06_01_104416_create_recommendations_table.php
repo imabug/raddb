@@ -14,7 +14,7 @@ class CreateRecommendationsTable extends Migration
     public function up()
     {
         Schema::create('recommendations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('survey_id')->default(0)->unsigned();
             $table->text('recommendation')->nullable();
             $table->tinyInteger('resolved')->default(0);
