@@ -22,8 +22,11 @@ return new class() extends Migration {
                 ->index();
             $table->foreignId('machine_id')
                 ->comment('Foreign key to machines table')
-                ->nullable()
-                ->index();
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'machines')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->foreignId('user_id')
                 ->comment('Foreign key to users table')
                 ->nullable(false)

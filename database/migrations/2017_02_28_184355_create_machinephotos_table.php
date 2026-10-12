@@ -15,7 +15,13 @@ class CreateMachinephotosTable extends Migration
     {
         Schema::create('machinephotos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('machine_id')->unsigned()->default(0);
+            $table->foreignId('machine_id')
+                ->comment('Foreign key to machines table')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'machines')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->text('machine_photo_path')->nullable();
             $table->text('machine_photo_thumb')->nullable();
             $table->text('photo_description')->nullable();
