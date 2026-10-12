@@ -18,7 +18,13 @@ class CreateContactsTable extends Migration
             $table->string('phone', 10)->nullable();
             $table->string('pager', 6)->nullable();
             $table->string('email', 50)->nullable();
-            $table->integer('location_id')->nullable()->unsigned();
+            $table->foreignId('location_id')
+                ->comment('Foreign key to locations table')
+                ->nullable()
+                ->index()
+                ->constrained(table: 'locations')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->string('title', 50)->nullable();
             $table->softDeletes();
             $table->timestamps();

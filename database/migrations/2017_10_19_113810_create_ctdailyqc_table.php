@@ -15,16 +15,20 @@ class CreateCtdailyqcTable extends Migration
     {
         Schema::create('ctdailyqc', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('machine_id')->unsigned()->nullable();
-            $table->date('qcdate')->nullable();
+            $table->foreignId('machine_id')
+                ->comment('Foreign key to machines table')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'machines')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
+            $table->date('qcdate')->nullable()->index();
             $table->enum('scan_type', ['Axial', 'Helical'])->nullable();
             $table->float('water_hu', 4, 1)->nullable();
             $table->float('water_sd', 4, 1)->nullable();
             $table->enum('artifacts', ['Y', 'N'])->nullable();
             $table->string('initials', 4);
             $table->text('notes')->nullable();
-            $table->index(['machine_id', 'id']);
-            $table->index('qcdate');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -15,7 +15,13 @@ class CreateRecommendationsTable extends Migration
     {
         Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
-            $table->integer('survey_id')->default(0)->unsigned();
+            $table->foreignId('survey_id')
+                ->comment('Foreign key to testdates table')
+                ->nullable()
+                ->index()
+                ->constrained(table: 'testdates')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->text('recommendation')->nullable();
             $table->tinyInteger('resolved')->default(0);
             $table->dateTime('rec_add_ts')->nullable();

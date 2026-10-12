@@ -22,7 +22,7 @@ class CreateLocationsTable extends Migration
 
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->id();
-            $table->string('manufacturer', 20)->nullable();
+            $table->string('manufacturer', 50)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -40,7 +40,15 @@ class CreateLocationsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-    }
+
+        Schema::create('testers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('initials', 4)->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+        }
 
     /**
      * Reverse the migrations.
