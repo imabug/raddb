@@ -14,8 +14,8 @@ class CreateTestersTable extends Migration
     public function up()
     {
         Schema::create('testers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 25)->nullable();
+            $table->id();
+            $table->string('name')->nullable();
             $table->string('initials', 4)->nullable();
             $table->softDeletes();
             $table->timestamps();

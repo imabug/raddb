@@ -14,9 +14,9 @@ class CreateGendataTable extends Migration
     public function up()
     {
         Schema::create('gendata', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('survey_id')->nullable()->unsigned();
-            $table->integer('tube_id')->nullable()->unsigned();
+            $table->id();
+            $table->integer('survey_id')->nullable()->unsigned()->index();
+            $table->integer('tube_id')->nullable()->unsigned()->index();
             $table->tinyInteger('kv_set')->nullable()->unsigned();
             $table->float('ma_set')->nullable();
             $table->float('time_set')->nullable();
