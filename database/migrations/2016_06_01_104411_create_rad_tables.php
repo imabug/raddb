@@ -200,10 +200,10 @@ class CreateGendataTable extends Migration
      */
     public function down()
     {
-        Schema::drop('gendata');
-        Schema::drop('hvldata');
-        Schema::drop('radsurveydata');
-        Schema::drop('collimatordata');
-        Schema::drop('radoutputdata');
+        Schema::dropIfExists('gendata');
+        Schema::dropIfExists('hvldata');
+        Schema::dropIfExists('radsurveydata');
+        Schema::dropIfExists('collimatordata');
+        Schema::dropIfExists('radoutputdata');
     }
 }

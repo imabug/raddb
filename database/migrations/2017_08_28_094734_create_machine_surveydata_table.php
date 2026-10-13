@@ -66,6 +66,6 @@ class CreateMachineSurveydataTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('machine_surveydata');
     }
 }

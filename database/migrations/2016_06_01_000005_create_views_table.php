@@ -60,6 +60,6 @@ class CreateLastyearView extends Migration
      */
     public function down()
     {
-        //
+        DB::statement('drop view if exists lastyear_view,thisyear_view,surveyschedule_view');
     }
 }

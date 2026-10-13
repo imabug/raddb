@@ -62,6 +62,6 @@ class CreateTestdatesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('testdates');
+        Schema::dropIfExists('testdates');
     }
 }
