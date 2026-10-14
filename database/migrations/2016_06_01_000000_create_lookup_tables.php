@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -57,9 +57,10 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('locations');
-        Schema::drop('manufacturers');
-        Schema::drop('modalities');
-        Schema::drop('testtypes');
+        Schema::dropIfExists('locations');
+        Schema::dropIfExists('manufacturers');
+        Schema::dropIfExists('modalities');
+        Schema::dropIfExists('testtypes');
+        Schema::dropIfExists('testers');
     }
 }

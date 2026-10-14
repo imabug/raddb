@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMachineSurveydataTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -66,6 +66,6 @@ class CreateMachineSurveydataTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('machine_surveydata');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
-class CreateLastyearView extends Migration
+return new class extends Migration
 {
     /**
      * Create a view containing surveys from the previous year.
@@ -60,6 +60,6 @@ class CreateLastyearView extends Migration
      */
     public function down()
     {
-        //
+        DB::statement('drop view if exists lastyear_view,thisyear_view,surveyschedule_view');
     }
 }

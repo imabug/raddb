@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCtdailyqcTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -24,8 +24,8 @@ class CreateCtdailyqcTable extends Migration
                 ->noActionOnDelete();
             $table->date('qcdate')->nullable()->index();
             $table->enum('scan_type', ['Axial', 'Helical'])->nullable();
-            $table->float('water_hu', 4, 1)->nullable();
-            $table->float('water_sd', 4, 1)->nullable();
+            $table->float('water_hu')->nullable();
+            $table->float('water_sd')->nullable();
             $table->enum('artifacts', ['Y', 'N'])->nullable();
             $table->string('initials', 4);
             $table->text('notes')->nullable();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGendataTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -200,10 +200,10 @@ class CreateGendataTable extends Migration
      */
     public function down()
     {
-        Schema::drop('gendata');
-        Schema::drop('hvldata');
-        Schema::drop('radsurveydata');
-        Schema::drop('collimatordata');
-        Schema::drop('radoutputdata');
+        Schema::dropIfExists('gendata');
+        Schema::dropIfExists('hvldata');
+        Schema::dropIfExists('radsurveydata');
+        Schema::dropIfExists('collimatordata');
+        Schema::dropIfExists('radoutputdata');
     }
 }
