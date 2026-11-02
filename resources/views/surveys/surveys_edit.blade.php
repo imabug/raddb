@@ -16,7 +16,7 @@
     </div>
     <div class="col input-group mb-3">
       <span class="input-group-text">Date tested:</span>
-      <input class="form-control" type="date" id="test_date" name="test_date" size="10" value="{{ $survey->test_date }}" >
+      <input class="form-control" type="date" id="test_date" name="test_date" size="10" value="{{ $survey->test_date->format('Y-m-d') }}" >
     </div>
     <div class="col input-group mb-3">
       <span class="input-group-text">Accession:</span>
