@@ -31,7 +31,7 @@ class SurveyRecommendationsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Survey ID', 'id'),
+            Column::make('Survey ID', 'survey_id'),
             Column::make('Recommendation', 'recommendation')
                 ->searchable(),
             Column::make('Resolved', 'resolved')
