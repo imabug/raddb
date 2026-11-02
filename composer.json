@@ -32,7 +32,7 @@
         "laravel/sanctum": "^4.3.3",
         "laravel/tinker": "^3.0",
         "laravel/ui": "^4.6.3",
-        "livewire/livewire": "^3.8.10",
+        "livewire/livewire": "^4.4.8",
         "phpoffice/phpspreadsheet": "^5.10",
         "rappasoft/laravel-livewire-tables": "^3.8",
         "spatie/laravel-medialibrary": "^11.23.9",
