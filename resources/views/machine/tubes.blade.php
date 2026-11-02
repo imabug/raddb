@@ -27,8 +27,8 @@
         <td>{{ $tube->insert_manuf->manufacturer }} {{ $tube->insert_model }}</td>
         <td>{{ $tube->insert_sn }}</td>
         <td>{{ $tube->lfs }} / {{ $tube->mfs }} / {{ $tube->sfs }}</td>
-        <td>{{ substr($tube->manuf_date, 0, 10) }}</td>
-        <td>{{ substr($tube->install_date, 0, 10) }}</td>
+        <td>{{ $tube->manuf_date->format('Y-m-d') }}</td>
+        <td>{{ $tube->install_date->format('Y-m-d') }}</td>
         <td>{{ $tube->age }}</td>
         <td>{{ $tube->tube_status }}</td>
         <td>{{ $tube->notes }}</td>
