@@ -19,8 +19,8 @@
      <tr>
      <td>{{$desc}}</td>
      <td>{{$m['location']}}</td>
-     <td>{{$m['date1']}}</td>
-     <td>{{$m['date2']}}</td>
+     <td>{{($m['date1'] == null) ? '' : $m['date1']->format('Y-m-d')}}</td>
+     <td>{{($m['date2'] == null) ? '' : $m['date2']->format('Y-m-d')}}</td>
      </tr>
      @endforeach
      </tbody>
@@ -39,9 +39,9 @@
      <tr>
        <td>{{$desc}}</td>
        <td>{{$m['location']}}</td>
-       <td>{{$m['date1']}}</td>
-       <td>{{$m['date2']}}</td>
-     </tr>
+       <td>{{($m['date1'] == null) ? '' : $m['date1']->format('Y-m-d')}}</td>
+       <td>{{($m['date2'] == null) ? '' : $m['date2']->format('Y-m-d')}}</td>
+      </tr>
      @endforeach
      </tbody>
     </table>

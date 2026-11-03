@@ -84,11 +84,11 @@
     <div class="row">
       <div class="col input-group mb-3">
         <span class="input-group-text">Manufacture date:</span>
-        <input class="form-control" type="date" id="manufDate" name="manufDate" size="20" value="{{ $machine->manuf_date->format('Y-m-d') }}" aria-label="Enter manufacture date">
+        <input class="form-control" type="date" id="manufDate" name="manufDate" size="20" value="{{ ($machine->manuf_date == null) ? '' : $machine->manuf_date->format('Y-m-d') }}" aria-label="Enter manufacture date">
       </div>
       <div class="col input-group mb-3">
         <span class="input-group-text">Install date:</span>
-        <input class="form-control" type="date" id="installDate" name="installDate" size="20" value="{{ $machine->install_date->format('Y-m-d') }}"  aria-label="Enter installation date">
+        <input class="form-control" type="date" id="installDate" name="installDate" size="20" value="{{ ($machine->install_date == null) ? '' : $machine->install_date->format('Y-m-d') }}"  aria-label="Enter installation date">
       </div>
     </div>
     <div class="row">

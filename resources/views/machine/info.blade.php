@@ -13,8 +13,8 @@
       Serial Number: {{ $machine->serial_number }} <br>
       Software version: {{ $machine->software_version }} <br>
       Vendor Site ID: {{ $machine->vend_site_id }} <br>
-      Manufacture Date: {{ $machine->manuf_date->format('Y-m-d') }} <br>
-      Install Date: {{ $machine->install_date->format('Y-m-d') }} <br>
+      Manufacture Date: {{ ($machine->manuf_date == null) ? '' : $machine->manuf_date->format('Y-m-d') }} <br>
+      Install Date: {{ ($machine->install_date == null) ? '' : $machine->install_date->format('Y-m-d') }} <br>
       PACS Station Name: {{ $machine->pacs_station }}<br>
       Age: {{ $machine->age }}<br>
       Notes: {{ $machine->notes }}

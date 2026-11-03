@@ -54,7 +54,7 @@
       </tbody>
     </table>
 
-    <h3>New installations ({{$newInstalls->count()}})</h3>
+    <h3>New/moved installations ({{$newInstalls->count()}})</h3>
     <table class="table table-striped table-hover table-sm">
         <thead>
             <th scope="col">Machine</th>
@@ -68,7 +68,7 @@
                   <td>{{$m->description}}</td>
                   <td>{{$m->modality->modality}}</td>
                   <td>{{$m->location->location}}</td>
-                  <td>{{$m->install_date}}</td>
+                  <td>{{($m->install_date == null) ? '' : $m->install_date->format('Y-m-d')}}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -88,7 +88,7 @@
                 <td>{{$m->description}}</td>
                 <td>{{$m->modality->modality}}</td>
                 <td>{{$m->location->location}}</td>
-                <td>{{$m->deleted_at}}</td>
+                <td>{{($m->deleted_at == null) ? '' : $m->deleted_at->format('Y-m-d')}}</td>
               </tr>
             @endforeach
         </tbody>
