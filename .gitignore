@@ -17,6 +17,7 @@
 /auth.json
 /database/schema
 /node_modules
+/phpactor
 /public/build
 /public/fonts-manifest.dev.json
 /public/hot
